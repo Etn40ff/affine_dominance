@@ -186,3 +186,55 @@ def foo(g, B, seq):
     polytope_m = Mp*(polytope.intersection(Hm))
     polytope = polytope_p.convex_hull(polytope_m)
     return polytope #.intersection(current_cone)
+
+def get_inequalities(B, seq, la):
+    r"""
+    Return the dominance region based at `la` corresponding to the sequence of mutations seq
+    """
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+
+    if seq == []:
+        O = (0,)*n
+        normals = B[n:].inverse().rows()
+        return [ [ (vector(O+tuple(normal)), 0) for normal in normals ] ]
+
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    k = seq.pop(0)
+    
+    def E(sgn):
+        E = identity_matrix(2*n)
+        E.set_column(k, list(map( lambda b: max(sgn*b,0), B.column(k))))
+        E[k,k] = -1
+        return E
+    
+    new_la = E(sign(la[k])) * la
+
+    new_B = copy(B)
+    new_B.mutate(k)
+
+    regions = get_inequalities(new_B, seq, new_la)
+
+    new_regions = []
+    for region in regions:
+        for sgn in [-1, 1]:
+            P = Polyhedron(ieqs=[ (-c+norm*la,)+tuple(norm) for (norm,c) in region]+[ (0,)*(k+1) + (-sgn,) + (0,)*(2*n-k-1)])
+            if not P.is_empty():
+                new_region = []
+                for (normal, const) in region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), 0)]:
+                    new_normal = E(sgn).transpose()*normal
+                    new_region.append( (new_normal, const - normal*(E(sgn)*la-new_la)) )
+                new_regions.append(new_region)
+            
+    return new_regions
+
+    
+def mutation_map(B, k, la):
+    B = B.transpose().stack(la)
+    B.mutate(k)
+    return vector(B.row(-1))
