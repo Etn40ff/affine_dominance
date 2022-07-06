@@ -218,20 +218,18 @@ def get_inequalities(B, seq, la):
     new_B = copy(B)
     new_B.mutate(k)
 
-    regions = get_inequalities(new_B, seq, new_la)
+    new_regions = get_inequalities(new_B, seq, new_la)
 
-    new_regions = []
-    for region in regions:
+    regions = []
+    for new_region in new_regions:
         for sgn in [-1, 1]:
-            P = Polyhedron(ieqs=[ (-c+norm*la,)+tuple(norm) for (norm,c) in region]+[ (0,)*(k+1) + (-sgn,) + (0,)*(2*n-k-1)])
-            if not P.is_empty():
-                new_region = []
-                for (normal, const) in region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), 0)]:
-                    new_normal = E(sgn).transpose()*normal
-                    new_region.append( (new_normal, const - normal*(E(sgn)*la-new_la)) )
-                new_regions.append(new_region)
-            
-    return new_regions
+            region = []
+            for (new_normal, new_const) in new_region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), sgn*new_la[k])]:
+                normal = E(sgn).transpose()*new_normal
+                const = new_const - normal*(la-E(sgn)*new_la)
+                region.append( (normal, const) )
+            regions.append(region)
+    return regions
 
     
 def mutation_map(B, k, la):
