@@ -1,5 +1,5 @@
 \documentclass{amsart}
-\usepackage{amsmath,amssymb,latexsym,color,ulem}
+\usepackage{amsmath,amssymb,latexsym,color,ulem,mathabx}
 \usepackage[margin=1in]{geometry}
 \usepackage{tikz}
 \usepackage[bookmarks=true, bookmarksopen=true, bookmarksdepth=3,bookmarksopenlevel=2, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, menucolor=blue, urlcolor=blue]{hyperref}
@@ -433,27 +433,27 @@
   Using this we explicitly compute the action of $\phi_{t_r}$ on $\bfg$-vectors. 
   For a $\bfg$-vector $\lambda\in\ZZ^n$, write $\tilde\lambda\in\ZZ^{2n}$ for its extension by zeros.
 
-  Given a sequence of signs $\beps=(\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_r)$ with $\varepsilon_i\in\{\pm\}$, define a quiver $Q^{(r)}_\beps$ with vertices $(\ell,s)\in [n]\times\ZZ_{\ge0}$ satisfying $ns+\ell\le n+r$ and having the following arrows:
+  Given a sequence of signs $\beps=(\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_r)$ with $\varepsilon_i\in\{\pm\}$, define a quiver $\widehat{Q}^{(r)}_\beps$ with vertices $(\ell,s)\in [n]\times\ZZ_{\ge0}$ satisfying $ns+\ell\le n+r$ and having the following arrows:
   \begin{itemize}
     \item an arrow $(\ell,s)\to (k,s)$ of weight $b_{k\ell}$ whenever $\ell<k$, $ns+\ell\le r$, and $\varepsilon_{ns+\ell}=+$;
     \item an arrow $(\ell,s)\to (k,s+1)$ of weight $-b_{k\ell}$ whenever $k<\ell$, $ns+\ell\le r$, and $\varepsilon_{ns+\ell}=+$;
     \item an arrow $(\ell,s)\to (\ell,s+1)$ of weight $-1$ whenever $ns+\ell\le r$.
   \end{itemize}
-  For $1\le\ell\le r$, write $\hat{\ell}$ for the vertex $(\ell,s)$ of $Q^{(r)}_\beps$ with $s$ maximal.
+  For $1\le\ell\le n$, write $\hat{\ell}$ for the vertex $(\ell,s)$ of $\widehat{Q}^{(r)}_\beps$ with $s$ maximal.
   Below we freely identify each vertex $(\ell,0)$ with $\ell$ itself.
 
-  Given a sequence of signs $\beps=(\varepsilon_0,\varepsilon_{-1},\varepsilon_{-2},\ldots,\varepsilon_{-r+1})$ with $\varepsilon_i\in\{\pm\}$, define a quiver $Q^{(-r)}_\beps$ with vertices $(\ell,s)\in [n]\times\ZZ_{<0}$ satisfying $-n-r<ns+\ell$ and having the following arrows:
+  Given a sequence of signs $\beps=(\varepsilon_0,\varepsilon_{-1},\varepsilon_{-2},\ldots,\varepsilon_{-r+1})$ with $\varepsilon_i\in\{\pm\}$, define a quiver $\widecheck{Q}^{(-r)}_\beps$ with vertices $(\ell,s)\in [n]\times\ZZ_{<0}$ satisfying $-n-r<ns+\ell$ and having the following arrows:
   \begin{itemize}
     \item an arrow $(\ell,s)\to (k,s)$ of weight $-b_{k\ell}$ whenever $k<\ell$, $-r<ns+\ell$, and $\varepsilon_{ns+\ell}=-$;
     \item an arrow $(\ell,s)\to (k,s+1)$ of weight $b_{k\ell}$ whenever $\ell<k$, $-r<ns+\ell$, and $\varepsilon_{ns+\ell}=-$;
     \item an arrow $(\ell,s)\to (\ell,s-1)$ of weight $-1$ whenever $-r<ns+\ell$.
   \end{itemize}
-  For $1\le\ell\le r$, write $\check{\ell}$ for the vertex $(\ell,s)$ of $Q^{(r)}_\beps$ with $s$ minimal.
+  For $1\le\ell\le n$, write $\check{\ell}$ for the vertex $(\ell,s)$ of $\widecheck{Q}^{(-r)}_\beps$ with $s$ minimal.
   Below we freely identify each vertex $(\ell,-1)$ with $\ell$ itself.
 
-  Given a path $\fp\subset Q^{(\pm r)}_\beps$, write $\wt(\fp)$ for the product of the weights along the arrows in $\fp$.
+  Given a path $\fp\subset \widehat{Q}^{(r)}_\beps$ or $\fp\subset \widecheck{Q}^{(r)}_\beps$, write $\wt(\fp)$ for the product of the weights along the arrows in $\fp$.
   Let $i(\fp)$ and $t(\fp)$ denote the initial and terminal vertex along the path $\fp$.
-  Below we only consider paths $\fp\subset Q^{(r)}_\beps$ with $i(\fp)=(\ell,0)$ for some $\ell$ and paths $\fp\subset Q^{(-r)}_\beps$ with $i(\fp)=(\ell,-1)$ for some $\ell$.
+  Below we only consider paths $\fp\subset \widehat{Q}^{(r)}_\beps$ with $i(\fp)=(\ell,0)$ for some $\ell$ and paths $\fp\subset \widecheck{Q}^{(-r)}_\beps$ with $i(\fp)=(\ell,-1)$ for some $\ell$.
   \begin{proposition}
     Consider $r>0$ with $r=ns+\ell$ for $1\le\ell\le n$.
     \begin{enumerate}
@@ -464,7 +464,7 @@
         with the signs $\beps=(\varepsilon_1,\cdots,\varepsilon_r)$ determined by $\lambda$.
         Then for $1\le k\le n$ we have
         \[
-          \lambda'_k=\sum\limits_{\fp\subset Q^{(r)}_\beps\!,\, t(\fp)=\hat{k}} \wt(\fp)\lambda_{i(\fp)}.
+          \lambda'_k=\sum\limits_{\fp\subset \widehat{Q}^{(r)}_\beps\!,\, t(\fp)=\hat{k}} \wt(\fp)\lambda_{i(\fp)}.
         \]
       \sayDR{We still need to deal with extended $\bfg$-vectors.}
       \item For $\lambda\in\ZZ^n$, suppose the tropical transformation $\phi_{t_{-r}}(\tilde\lambda)=(\lambda'_1,\ldots,\lambda'_n,\lambda'_{n+1},\cdots,\lambda'_{2n})$ is given by
@@ -474,7 +474,7 @@
         with the signs $\beps=(\varepsilon_0,\varepsilon_{-1},\cdots,\varepsilon_{-r+1})$ determined by $\lambda$.
         Then for $1\le k\le n$ we have
         \[
-          \lambda'_k=\sum\limits_{\fp\subset Q^{(-r)}_\beps\!,\, t(\fp)=\check{k}} \wt(\fp)\lambda_{i(\fp)}.
+          \lambda'_k=\sum\limits_{\fp\subset \widecheck{Q}^{(-r)}_\beps\!,\, t(\fp)=\check{k}} \wt(\fp)\lambda_{i(\fp)}.
         \]
     \end{enumerate}
   \end{proposition}
