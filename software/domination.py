@@ -195,6 +195,56 @@ def get_inequalities(B, seq, la):
     if B.is_square():
         B = B.stack(identity_matrix(n))
 
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    if seq == []:
+        O = (0,)*n
+        normals = B[n:].inverse().rows()
+        return [ [ (vector(O+tuple(normal)), vector(normal)*la[n:]) for normal in normals ] ]
+
+    k = seq.pop(0)
+
+    def E(sgn):
+        E = identity_matrix(2*n)
+        E.set_column(k, list(map( lambda b: max(sgn*b,0), B.column(k))))
+        E[k,k] = -1
+        return E
+
+    new_la = E(sign(la[k])) * la
+
+    new_B = copy(B)
+    new_B.mutate(k)
+
+    new_regions = get_inequalities(new_B, seq, new_la)
+
+    regions = []
+    for new_region in new_regions:
+        #print(new_region)
+        for sgn in [-1, 1]:
+            #P = Polyhedron(ieqs=[ (-c+norm*new_la,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
+            #print(sgn,P.inequalities(),P.equations())
+            #if P.is_empty():
+            #    continue
+            region = []
+            for (new_normal, new_const) in new_region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), 0)]:
+                normal = E(sgn).transpose()*new_normal
+                const = new_const
+                region.append( (normal, const) )
+            regions.append(region)
+    return regions
+
+
+def get_inequalities_first_attempt(B, seq, la):
+    r"""
+    Return the dominance region based at `la` corresponding to the sequence of mutations seq
+    """
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+
     if seq == []:
         O = (0,)*n
         normals = B[n:].inverse().rows()
@@ -218,15 +268,16 @@ def get_inequalities(B, seq, la):
     new_B = copy(B)
     new_B.mutate(k)
 
-    new_regions = get_inequalities(new_B, seq, new_la)
+    new_regions = get_inequalities_first_attempt(new_B, seq, new_la)
 
     regions = []
     for new_region in new_regions:
-        #print(new_region)
+        print(new_region)
         for sgn in [-1, 1]:
-            #P = Polyhedron(ieqs=[ (-c+norm*new_la,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
-            #print(sgn,P.inequalities(),P.equations())
-            #if not P.is_empty():
+            P = Polyhedron(ieqs=[ (-c+norm*new_la,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
+            print(sgn,P.inequalities(),P.equations())
+            if P.is_empty():
+                continue
             region = []
             for (new_normal, new_const) in new_region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), sgn*new_la[k])]:
                 normal = E(sgn).transpose()*new_normal
