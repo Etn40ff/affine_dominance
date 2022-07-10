@@ -224,10 +224,11 @@ def get_inequalities(B, seq, la):
     for new_region in new_regions:
         #print(new_region)
         for sgn in [-1, 1]:
-            #P = Polyhedron(ieqs=[ (-c+norm*new_la,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
+            P = Polyhedron(ieqs=[ (-c,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
             #print(sgn,P.inequalities(),P.equations())
-            #if P.is_empty():
-            #    continue
+            if P.is_empty():
+            #    print("It is empty")
+               continue
             region = []
             for (new_normal, new_const) in new_region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), 0)]:
                 normal = E(sgn).transpose()*new_normal
@@ -235,6 +236,22 @@ def get_inequalities(B, seq, la):
                 region.append( (normal, const) )
             regions.append(region)
     return regions
+
+def get_region(B, seq, la):
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    eqns = [ (la[m]-(B[:n]*B[n:].inverse())[m]*la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((B[:n]*B[n:].inverse())[m]) for m in range(n) ]
+    polys = [ Polyhedron(ieqs=[ (-c,)+tuple(v) for (v,c) in ieqs],eqns=eqns) for ieqs in get_inequalities(B,seq,la) ]
+    P = polys[0]
+    for Q in polys:
+        P = P.convex_hull(Q)
+    return P
 
 
 def get_inequalities_first_attempt(B, seq, la):
