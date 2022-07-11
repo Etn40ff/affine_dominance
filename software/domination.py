@@ -224,11 +224,11 @@ def get_inequalities(B, seq, la):
     for new_region in new_regions:
         #print(new_region)
         for sgn in [-1, 1]:
-            P = Polyhedron(ieqs=[ (-c,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
+            #P = Polyhedron(ieqs=[ (-c,)+tuple(norm) for (norm,c) in new_region]+[ (-sgn*new_la[k],)+(0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)], eqns=[ (new_la[m]-(new_B[:n]*new_B[n:].inverse())[m]*new_la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((new_B[:n]*new_B[n:].inverse())[m]) for m in range(n) ])
             #print(sgn,P.inequalities(),P.equations())
-            if P.is_empty():
+            #if P.is_empty():
             #    print("It is empty")
-               continue
+            #   continue
             region = []
             for (new_normal, new_const) in new_region+[ (vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1)), 0)]:
                 normal = E(sgn).transpose()*new_normal
@@ -252,6 +252,48 @@ def get_region(B, seq, la):
     for Q in polys:
         P = P.convex_hull(Q)
     return P
+
+def get_inequalities_2(B, seq, la):
+    r"""
+    Return the dominance region based at `la` corresponding to the sequence of mutations seq
+    """
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    if seq == []:
+        O = (0,)*n
+        normals = B[n:].inverse().rows()
+        return [ [ [ (vector(O+tuple(normal)), vector(normal)*la[n:]) for normal in normals ], [] ] ]
+
+    k = seq.pop(0)
+
+    def E(sgn):
+        E = identity_matrix(2*n)
+        E.set_column(k, list(map( lambda b: max(sgn*b,0), B.column(k))))
+        E[k,k] = -1
+        return E
+
+    la_p = E(sign(la[k])) * la
+
+    B_p = copy(B)
+    B_p.mutate(k)
+
+    inequalities_p = get_inequalities_2(B_p, seq, la_p)
+
+    inequalities = []
+    for (ieqs_p, region_p) in inequalities_p:
+        for sgn in [-1, 1]:
+            ieqs = [ (E(sgn).transpose()*normal_p, const) for (normal_p, const) in ieqs_p ]
+            region = [ E(sgn).transpose()*normal_p for normal_p in region_p + [ vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1))] ]
+            inequalities.append( (ieqs, region) )
+    return inequalities
+
 
 
 def get_inequalities_first_attempt(B, seq, la):
