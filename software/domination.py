@@ -187,7 +187,7 @@ def foo(g, B, seq):
     polytope = polytope_p.convex_hull(polytope_m)
     return polytope #.intersection(current_cone)
 
-def get_inequalities(B, seq, la):
+def get_inequalities_broken(B, seq, la):
     r"""
     Return the dominance region based at `la` corresponding to the sequence of mutations seq
     """
@@ -218,7 +218,7 @@ def get_inequalities(B, seq, la):
     new_B = copy(B)
     new_B.mutate(k)
 
-    new_regions = get_inequalities(new_B, seq, new_la)
+    new_regions = get_inequalities_broken(new_B, seq, new_la)
 
     regions = []
     for new_region in new_regions:
@@ -237,7 +237,7 @@ def get_inequalities(B, seq, la):
             regions.append(region)
     return regions
 
-def get_region(B, seq, la):
+def get_region_broken(B, seq, la):
     n = B.ncols()
     if B.is_square():
         B = B.stack(identity_matrix(n))
@@ -247,13 +247,13 @@ def get_region(B, seq, la):
         la = vector(la)
 
     eqns = [ (la[m]-(B[:n]*B[n:].inverse())[m]*la[n:],) + (0,)*m + (-1,) + (0,)*(n-m-1) + tuple((B[:n]*B[n:].inverse())[m]) for m in range(n) ]
-    polys = [ Polyhedron(ieqs=[ (-c,)+tuple(v) for (v,c) in ieqs],eqns=eqns) for ieqs in get_inequalities(B,seq,la) ]
+    polys = [ Polyhedron(ieqs=[ (-c,)+tuple(v) for (v,c) in ieqs],eqns=eqns) for ieqs in get_inequalities_broken(B,seq,la) ]
     P = polys[0]
     for Q in polys:
         P = P.convex_hull(Q)
     return P
 
-def get_inequalities_2(B, seq, la):
+def get_inequalities(B, seq, la):
     r"""
     Return the dominance region based at `la` corresponding to the sequence of mutations seq
     """
@@ -284,7 +284,7 @@ def get_inequalities_2(B, seq, la):
     B_p = copy(B)
     B_p.mutate(k)
 
-    inequalities_p = get_inequalities_2(B_p, seq, la_p)
+    inequalities_p = get_inequalities(B_p, seq, la_p)
 
     inequalities = []
     for (ieqs_p, region_p) in inequalities_p:
@@ -296,6 +296,12 @@ def get_inequalities_2(B, seq, la):
                 inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
 
+def get_regions(B, seq, la):
+    regions = defaultdict(list)
+    for k, v in get_inequalities(B, seq, la):
+        #regions[Set(k)].append(v)
+        regions[k].append(v)
+    return table(list(regions.items()))
 
 
 def get_inequalities_first_attempt(B, seq, la):
