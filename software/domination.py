@@ -269,7 +269,7 @@ def get_inequalities_2(B, seq, la):
     if seq == []:
         O = (0,)*n
         normals = B[n:].inverse().rows()
-        return [ [ [ (vector(O+tuple(normal)), vector(normal)*la[n:]) for normal in normals ], [] ] ]
+        return [ ( tuple( (O+tuple(normal), vector(normal)*la[n:]) for normal in normals ), [] ) ]
 
     k = seq.pop(0)
 
@@ -289,9 +289,11 @@ def get_inequalities_2(B, seq, la):
     inequalities = []
     for (ieqs_p, region_p) in inequalities_p:
         for sgn in [-1, 1]:
-            ieqs = [ (E(sgn).transpose()*normal_p, const) for (normal_p, const) in ieqs_p ]
-            region = [ E(sgn).transpose()*normal_p for normal_p in region_p + [ vector((0,)*(k) + (-sgn,) + (0,)*(2*n-k-1))] ]
-            inequalities.append( (ieqs, region) )
+            ieqs = tuple( (tuple(E(sgn).transpose()*vector(normal_p)), const) for (normal_p, const) in ieqs_p )
+            region = [ E(sgn).transpose()[:n,:n]*normal_p for normal_p in region_p + [ vector((0,)*(k) + (-sgn,) + (0,)*(n-k-1))] ]
+            C = Polyhedron(ieqs = [ (0,)+tuple(v) for v in region ])
+            if C.dim() == n:
+                inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
 
 
