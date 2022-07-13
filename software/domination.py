@@ -1,3 +1,5 @@
+from collection import defaultdict
+
 class DominanceOrder(SageObject):
     r"""
     A class to compute the dominace order as defined in `arXiv:1902.09507`
