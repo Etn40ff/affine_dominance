@@ -253,6 +253,29 @@ def get_region_broken(B, seq, la):
         P = P.convex_hull(Q)
     return P
 
+def get_inequalities_with_return_steps(B, seq, la, return_steps=infinity):
+    r"""
+    Return the dominance region based at `la` corresponding to the sequence of mutations seq
+    """
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    B = block_matrix([[B,la.column()]])
+    while len(seq) > return_steps:
+        k = seq.pop(0)
+        B.mutate(k)
+
+    la = vector(B[:,-1])
+    B = B[:,:-1]
+
+    return get_inequalities(B, seq, la)
+
 def get_inequalities(B, seq, la):
     r"""
     Return the dominance region based at `la` corresponding to the sequence of mutations seq
@@ -358,3 +381,39 @@ def mutation_map(B, k, la):
     B = B.transpose().stack(la)
     B.mutate(k)
     return vector(B.row(-1))
+
+
+
+##### Try to understand pairings
+def explore_function(B, length=5):
+    A = ClusterAlgebra(B)
+    AA = ClusterAlgebra(-B.transpose())
+    n = B.ncols()
+    good = 0
+    bad = 0
+    negative = 0
+    positive = 0
+    for s,t in cartesian_product([range(length)]*2):
+        for i in cartesian_product([range(n)]*s):
+            if all( i[k] != i[k+1] for k in range(len(i)-1)):
+                S = A.initial_seed()
+                S.mutate(i, mutating_F=False)
+                for j in cartesian_product([range(n)]*t):
+                    if all( j[k] != j[k+1] for k in range(len(j)-1)):
+                        SS = AA.initial_seed()
+                        SS.mutate(j, mutating_F=False)
+                        M = S.g_matrix().transpose()*SS.c_matrix()
+                        AAA = ClusterAlgebra(-SS.b_matrix())
+                        SSS = AAA.initial_seed()
+                        SSS.mutate(list(reversed(list(i)))+list(j), mutating_F=false)
+                        if SSS.c_matrix() == M and i!=j:
+                            good += 1
+                            print(i,j)
+                        else:
+                            bad += 1
+                        if all( x >=0 for x in M.list() ):
+                            positive += 1
+                        if all( x <=0 for x in M.list() ):
+                            negative += 1
+    print(good, bad, positive, negative)
+
