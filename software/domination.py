@@ -391,7 +391,7 @@ def explore_function(B, length=5):
     A = ClusterAlgebra(B)
     AA = ClusterAlgebra(-B.transpose())
     n = B.ncols()
-    good = 0
+    good = [ 0, 0, 0, 0 ]
     bad = 0
     negative = 0
     positive = 0
@@ -404,18 +404,29 @@ def explore_function(B, length=5):
                     if all( j[k] != j[k+1] for k in range(len(j)-1)):
                         SS = AA.initial_seed()
                         SS.mutate(j, mutating_F=False)
-                        M = S.g_matrix().transpose()*SS.c_matrix()
-                        AAA = ClusterAlgebra(-SS.b_matrix())
-                        SSS = AAA.initial_seed()
-                        SSS.mutate(list(reversed(list(i)))+list(j), mutating_F=false)
-                        if SSS.c_matrix() == M and i!=j:
-                            good += 1
-                            print(i,j)
-                        else:
-                            bad += 1
-                        if all( x >=0 for x in M.list() ):
-                            positive += 1
-                        if all( x <=0 for x in M.list() ):
-                            negative += 1
+                        M = SS.g_matrix().transpose()*S.c_matrix()
+                        As = []
+                        As.append(ClusterAlgebra(S.b_matrix()))
+                        As.append(ClusterAlgebra(-S.b_matrix()))
+                        As.append(ClusterAlgebra(SS.b_matrix()))
+                        As.append(ClusterAlgebra(-SS.b_matrix()))
+                        Ss = [ _.initial_seed() for _ in As ]
+                        for s in Ss:
+                            s.mutate(list(reversed(list(j)))+list(i), mutating_F=false)
+                        if i != j:
+                            is_good = False
+                            for k in range(4):
+                                if Ss[k].c_matrix() == M and not is_good:
+                                    good[k] += 1
+                                    is_good = True
+                            if not is_good:
+                                if all( x >=0 for x in M.list() ):
+                                    positive += 1
+                                elif all( x <=0 for x in M.list() ):
+                                    negative += 1
+                                else:
+                                    bad += 1
+                                    #print("B:",i,j)
+                                    #print(M)
     print(good, bad, positive, negative)
 
