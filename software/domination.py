@@ -434,5 +434,5 @@ def explore_function(B, length=5):
                                         bad += 1
                                         #print("B:",i,j)
                                         #print(M)
-    print(good, positive, negative, not_coherent, bad)
+    print("g:", good, "p:", positive, "n:", negative, "nsc:", not_coherent, "b:", bad)
 
