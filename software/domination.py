@@ -428,5 +428,5 @@ def explore_function(B, length=5):
                                     bad += 1
                                     #print("B:",i,j)
                                     #print(M)
-    print(good, bad, positive, negative)
+    print(good, positive, negative, bad)
 
