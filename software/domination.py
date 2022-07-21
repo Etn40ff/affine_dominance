@@ -413,8 +413,8 @@ def explore_function(B, length=5):
                         else:
                             if i != j:
                                 As = []
-                                As.append(ClusterAlgebra(SS.b_matrix()))
-                                As.append(ClusterAlgebra(-SS.b_matrix()))
+                                As.append(ClusterAlgebra(SS.b_matrix().transpose()))
+                                As.append(ClusterAlgebra(-SS.b_matrix().transpose()))
                                 As.append(ClusterAlgebra(S.b_matrix()))
                                 As.append(ClusterAlgebra(-S.b_matrix()))
                                 Ss = [ _.initial_seed() for _ in As ]
