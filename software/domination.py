@@ -392,9 +392,10 @@ def explore_function(B, length=5):
     AA = ClusterAlgebra(-B.transpose())
     n = B.ncols()
     good = [ 0, 0, 0, 0 ]
-    bad = 0
     negative = 0
     positive = 0
+    not_coherent = 0
+    bad = 0
     for s,t in cartesian_product([range(length)]*2):
         for i in cartesian_product([range(n)]*s):
             if all( i[k] != i[k+1] for k in range(len(i)-1)):
@@ -405,28 +406,31 @@ def explore_function(B, length=5):
                         SS = AA.initial_seed()
                         SS.mutate(j, mutating_F=False)
                         M = SS.g_matrix().transpose()*S.c_matrix()
-                        As = []
-                        As.append(ClusterAlgebra(S.b_matrix()))
-                        As.append(ClusterAlgebra(-S.b_matrix()))
-                        As.append(ClusterAlgebra(SS.b_matrix()))
-                        As.append(ClusterAlgebra(-SS.b_matrix()))
-                        Ss = [ _.initial_seed() for _ in As ]
-                        for s in Ss:
-                            s.mutate(list(reversed(list(j)))+list(i), mutating_F=false)
-                        if i != j:
-                            is_good = False
-                            for k in range(4):
-                                if Ss[k].c_matrix() == M and not is_good:
-                                    good[k] += 1
-                                    is_good = True
-                            if not is_good:
-                                if all( x >=0 for x in M.list() ):
-                                    positive += 1
-                                elif all( x <=0 for x in M.list() ):
-                                    negative += 1
-                                else:
-                                    bad += 1
-                                    #print("B:",i,j)
-                                    #print(M)
-    print(good, positive, negative, bad)
+                        if all( x <=0 for x in M.list() ):
+                            negative += 1
+                        elif not all( all( x >= 0 for x in v ) or all( x <= 0 for x in v ) for v in M.columns() ):
+                            not_coherent += 1
+                        else:
+                            As = []
+                            As.append(ClusterAlgebra(S.b_matrix()))
+                            As.append(ClusterAlgebra(-S.b_matrix()))
+                            As.append(ClusterAlgebra(SS.b_matrix()))
+                            As.append(ClusterAlgebra(-SS.b_matrix()))
+                            Ss = [ _.initial_seed() for _ in As ]
+                            for s in Ss:
+                                s.mutate(list(reversed(list(j)))+list(i), mutating_F=false)
+                            if i != j:
+                                is_good = False
+                                for k in range(4):
+                                    if Ss[k].c_matrix() == M and not is_good:
+                                        good[k] += 1
+                                        is_good = True
+                                if not is_good:
+                                    if all( x >=0 for x in M.list() ):
+                                        positive += 1
+                                    else:
+                                        bad += 1
+                                        #print("B:",i,j)
+                                        #print(M)
+    print(good, positive, negative, not_coherent, bad)
 
