@@ -396,43 +396,47 @@ def explore_function(B, length=5):
     positive = 0
     not_coherent = 0
     bad = 0
-    for s,t in cartesian_product([range(length)]*2):
+    weird_prods = defaultdict(list)
+    for s,t in cartesian_product([range(length+1)]*2):
         for i in cartesian_product([range(n)]*s):
             if all( i[k] != i[k+1] for k in range(len(i)-1)):
                 S = A.initial_seed()
                 S.mutate(i, mutating_F=False)
                 for j in cartesian_product([range(n)]*t):
                     if all( j[k] != j[k+1] for k in range(len(j)-1)):
+                        if i == j:
+                            continue
                         SS = AA.initial_seed()
                         SS.mutate(j, mutating_F=False)
                         M = SS.g_matrix().transpose()*S.c_matrix()
-                        if all( x <=0 for x in M.list() ):
-                            negative += 1
-                        elif not all( all( x >= 0 for x in v ) or all( x <= 0 for x in v ) for v in M.columns() ):
+                        if not all( all( x >= 0 for x in v ) or all( x <= 0 for x in v ) for v in M.columns() ):
                             not_coherent += 1
-                        else:
-                            if i != j:
-                                As = []
-                                As.append(ClusterAlgebra(SS.b_matrix().transpose()))
-                                As.append(ClusterAlgebra(-SS.b_matrix().transpose()))
-                                As.append(ClusterAlgebra(S.b_matrix()))
-                                As.append(ClusterAlgebra(-S.b_matrix()))
-                                Ss = [ _.initial_seed() for _ in As ]
-                                is_good = False
-                                k = 0
-                                for s in Ss:
-                                    s.mutate(list(reversed(list(j)))+list(i), mutating_F=false)
-                                    if s.c_matrix() == M:
-                                        good[k] += 1
-                                        is_good = True
-                                        break
-                                    k += 1
-                                if not is_good:
-                                    if all( x >=0 for x in M.list() ):
-                                        positive += 1
-                                    else:
-                                        bad += 1
-                                        #print("B:",i,j)
-                                        #print(M)
+                            weird_prods['nsc'].append([i,j,M])
+                            continue
+                        As = []
+                        As.append(ClusterAlgebra(SS.b_matrix().transpose()))
+                        As.append(ClusterAlgebra(-SS.b_matrix().transpose()))
+                        As.append(ClusterAlgebra(S.b_matrix()))
+                        As.append(ClusterAlgebra(-S.b_matrix()))
+                        Ss = [ _.initial_seed() for _ in As ]
+                        is_good = False
+                        k = 0
+                        for s in Ss:
+                            s.mutate(list(reversed(list(j)))+list(i), mutating_F=false)
+                            if s.c_matrix() == M:
+                                good[k] += 1
+                                is_good = True
+                                break
+                            k += 1
+                        if not is_good:
+                            if all( x <=0 for x in M.list() ):
+                                negative += 1
+                                weird_prods['n'].append([i,j,M])
+                            elif all( x >=0 for x in M.list() ):
+                                positive += 1
+                            else:
+                                bad += 1
+                                weird_prods['b'].append([i,j,M])
     print("g:", good, "p:", positive, "n:", negative, "nsc:", not_coherent, "b:", bad)
+    return weird_prods
 
