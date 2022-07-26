@@ -492,6 +492,98 @@
     \]
   \end{proof}
 
+  \begin{lemma}
+    For any $t\in\TT_n$ and $\lambda\in\cI$, the coefficient part of the normal vectors giving the inequalities cutting out $\phi_t^{-1}\cC_t(\phi_t\lambda)$ inside $\RR^{2n}$ are precisely the $\bfg$-vectors associated to the dual exchange matrix $-B^T$.
+  \end{lemma}
+  \begin{proof}
+    It is obvious.
+    Indeed, the inequalities defining $\cC_t(\phi_t\lambda)$ are given by the inverse of the $\bfc$-vector matrix for $\mu_t\tilde B$ and any $(E^{t'}_{k,\varepsilon})^T$ acts as the identity on the last $n$ components of a vector in $\RR^{2n}$.
+  \end{proof}
+
+
+\section{Rank 2 Again}
+  Let $B=\left[\begin{array}{cc} 0 & -b \\ c & 0\end{array}\right]$ and write $\tilde B=\left[\begin{array}{c} B\\ I\end{array}\right]$.
+  
+  \begin{lemma}
+    \label{lem:rank 2 exchange matrices}
+    For $k\ge0$, we have
+    \begin{align*}
+      \underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k-1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k+1}\end{array}\right]
+      &
+      \underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k}\\ u^-_{2k+2} & -u^+_{2k+1}\end{array}\right]\\
+      \mu_1\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ -1 & 0\\ 0 & 1\end{array}\right]
+      &
+      \mu_2\mu_1\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -1 & 0\\ 0 & -1\end{array}\right]\\
+      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k-1}\end{array}\right]
+      &
+      \underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k+2}\\ u^-_{2k} & -u^+_{2k+1}\end{array}\right]
+    \end{align*}
+  \end{lemma}
+  \begin{proof}
+    Induction.
+  \end{proof}
+
+  \begin{remark}
+    \label{rem:sign coherence}
+    The only (mutated) exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices} containing a totally sign coherent column are $\tilde B$, $\mu_1\tilde B$, and $\mu_2\mu_1\tilde B$.
+  \end{remark}
+
+  \begin{lemma}
+    Consider $\lambda=(\lambda_1,\lambda_2)\in\cI\subset\RR^2$ and write $\tilde\lambda=(\lambda_1,\lambda_2,0,0)$.
+    For $k\ge0$, we have
+    \begin{align*}
+      \underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde\lambda
+      &= 
+      (u^+_{2k+1}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k}\lambda_1-u^-_{2k+1}\lambda_2,0,0)
+      \\
+      \underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde\lambda
+      &= 
+      (-u^+_{2k-1}\lambda_1-u^+_{2k}\lambda_2,u^-_{2k}\lambda_1+u^-_{2k+1}\lambda_2,0,0)
+      \\
+      \mu_1\tilde\lambda
+      &= 
+      (-\lambda_1,c\lambda_1+\lambda_2,\lambda_1,0)
+      \\
+      \mu_2\mu_1\tilde\lambda
+      &= 
+      \big((bc-1)\lambda_1+b\lambda_2,-c\lambda_1-\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)\\
+      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde\lambda 
+      &= 
+      \big(u^+_{2k+3}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
+      \\
+      \underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde\lambda
+      &= 
+      \big(-u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2,u^-_{2k+4}\lambda_1+u^-_{2k+3}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
+    \end{align*}
+  \end{lemma}
+  \begin{proof}
+    Induction, taking Remark~\ref{rem:sign coherence} into account.
+  \end{proof}
+
+  \begin{lemma}
+    The corresponding starting inequalities pointed at $\mu_t(\lambda)$ are given by
+    \begin{align*}
+      &\left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\mu\rangle\ge0\\ \langle(0,0,u^-_{2k},-u^-_{2k-1}),\mu\rangle\ge0}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\mu\rangle\ge0\\ \langle(0,0,u^-_{2k+2},-u^-_{2k+1}),\mu\rangle\ge0}\right\}\\
+      &\left\{\substack{\langle(0,0,-1,0),\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,1),\mu\rangle\ge0}\right\} & & \left\{\substack{\langle(0,0,-1,0),\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,-1),\mu\rangle\ge -c\lambda_1-\lambda_2}\right\}\\
+      &\left\{\substack{\langle(0,0,u^+_{2k-1},-u^+_{2k}),\mu\rangle\ge -u^+_{2k+1}\lambda_1-u^+_{2k}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k+2}),\mu\rangle\ge u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\}
+    \end{align*}
+  \end{lemma}
+  \begin{proof}
+    Explicit case by case check that the normal vectors provide the rows of a left preuso-inverse for the mutated exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices}.
+  \end{proof}
+
 \bibliographystyle{amsalpha}
 \bibliography{bibliography}  
 

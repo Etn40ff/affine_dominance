@@ -414,8 +414,8 @@ def explore_function(B, length=5):
                             weird_prods['nsc'].append([i,j,M])
                             continue
                         As = []
-                        As.append(ClusterAlgebra(SS.b_matrix().transpose()))
                         As.append(ClusterAlgebra(-SS.b_matrix().transpose()))
+                        As.append(ClusterAlgebra(SS.b_matrix().transpose()))
                         As.append(ClusterAlgebra(S.b_matrix()))
                         As.append(ClusterAlgebra(-S.b_matrix()))
                         Ss = [ _.initial_seed() for _ in As ]
