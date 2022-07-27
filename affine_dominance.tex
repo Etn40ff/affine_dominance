@@ -508,13 +508,13 @@
     \label{lem:rank 2 exchange matrices}
     For $k\ge0$, we have
     \begin{align*}
-      \underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde B 
-      &= 
-      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k-1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k+1}\end{array}\right]
-      &
       \underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde B 
       &= 
-      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k}\\ u^-_{2k+2} & -u^+_{2k+1}\end{array}\right]\\
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k}\\ u^-_{2k+2} & -u^+_{2k+1}\end{array}\right]
+      &
+      \underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k-1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k+1}\end{array}\right]\\
       \mu_1\tilde B 
       &= 
       \left[\begin{array}{cc} 0 & b \\ -c & 0\\ -1 & 0\\ 0 & 1\end{array}\right]
@@ -522,13 +522,13 @@
       \mu_2\mu_1\tilde B 
       &= 
       \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -1 & 0\\ 0 & -1\end{array}\right]\\
-      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde B 
-      &= 
-      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k-1}\end{array}\right]
-      &
       \underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde B 
       &= 
       \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k+2}\\ u^-_{2k} & -u^+_{2k+1}\end{array}\right]
+      &
+      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k-1}\end{array}\right]
     \end{align*}
   \end{lemma}
   \begin{proof}
@@ -558,14 +558,15 @@
       \\
       \mu_2\mu_1\tilde\lambda
       &= 
-      \big((bc-1)\lambda_1+b\lambda_2,-c\lambda_1-\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)\\
-      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde\lambda 
-      &= 
-      \big(u^+_{2k+3}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
+      \big((bc-1)\lambda_1+b\lambda_2,-c\lambda_1-\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
       \\
       \underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde\lambda
       &= 
       \big(-u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2,u^-_{2k+4}\lambda_1+u^-_{2k+3}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
+      \\
+      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde\lambda 
+      &= 
+      \big(u^+_{2k+3}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
     \end{align*}
   \end{lemma}
   \begin{proof}
@@ -573,15 +574,15 @@
   \end{proof}
 
   \begin{lemma}
-    The corresponding starting inequalities pointed at $\mu_t(\lambda)$ are given by
+    The corresponding starting (in)equalities pointed at $\mu_t(\lambda)$ are given by
     \begin{align*}
-      &\left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\mu\rangle\ge0\\ \langle(0,0,u^-_{2k},-u^-_{2k-1}),\mu\rangle\ge0\\ \langle(-1,0,-bu^-_{2k},bu^-_{2k-1}),\mu\rangle=u^+_{2k-1}\lambda_1+u^+_{2k}\lambda_2\\ \langle(0,-1,cu^+_{2k+1},-cu^+_{2k}),\mu\rangle=-u^-_{2k}\lambda_1-u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\mu\rangle\ge0\\ \langle(0,0,u^-_{2k+2},-u^-_{2k+1}),\mu\rangle\ge0}\right\}\\
-      &\left\{\substack{\langle(0,0,-1,0),\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,1),\mu\rangle\ge0}\right\} & & \left\{\substack{\langle(0,0,-1,0),\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,-1),\mu\rangle\ge -c\lambda_1-\lambda_2}\right\}\\
-      &\left\{\substack{\langle(0,0,u^+_{2k-1},-u^+_{2k}),\mu\rangle\ge -u^+_{2k+1}\lambda_1-u^+_{2k}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k+2}),\mu\rangle\ge u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\}
+      &\left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\tilde\mu\rangle\ge0\\ \langle(0,0,u^-_{2k+2},-u^-_{2k+1}),\tilde\mu\rangle\ge0\\ \langle(-1,0,-bu^-_{2k+2},bu^-_{2k+1}),\tilde\mu\rangle=-u^+_{2k+1}\lambda_1-u^+_{2k+2}\lambda_2\\ \langle(0,-1,cu^+_{2k+1},-cu^+_{2k}),\tilde\mu\rangle=u^-_{2k}\lambda_1+u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\tilde\mu\rangle\ge0\\ \langle(0,0,u^-_{2k},-u^-_{2k-1}),\tilde\mu\rangle\ge0\\ \langle(-1,0,-bu^-_{2k},bu^-_{2k-1}),\tilde\mu\rangle=u^+_{2k-1}\lambda_1+u^+_{2k}\lambda_2\\ \langle(0,-1,cu^+_{2k+1},-cu^+_{2k}),\tilde\mu\rangle=-u^-_{2k}\lambda_1-u^-_{2k+1}\lambda_2}\right\}\\
+      &\left\{\substack{\langle(0,0,-1,0),\tilde\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,1),\tilde\mu\rangle\ge0}\right\} & & \left\{\substack{\langle(0,0,-1,0),\tilde\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,-1),\tilde\mu\rangle\ge -c\lambda_1-\lambda_2}\right\}\\
+      &\left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k-1},-u^+_{2k}),\tilde\mu\rangle\ge -u^+_{2k+1}\lambda_1-u^+_{2k}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\}
     \end{align*}
   \end{lemma}
   \begin{proof}
-    Explicit case by case check that the given normal vectors provide the rows of a left preuso-inverse for the mutated exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices}.
+    Explicit case by case check that the given normal vectors provide the rows of a left pseudo-inverse for the mutated exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices}.
   \end{proof}
 
 \bibliographystyle{amsalpha}
