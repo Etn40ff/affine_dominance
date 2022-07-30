@@ -502,87 +502,140 @@
 
 
 \section{Rank 2 Again}
-  Let $B=\left[\begin{array}{cc} 0 & -b \\ c & 0\end{array}\right]$ and write $\tilde B=\left[\begin{array}{c} B\\ I\end{array}\right]$.
+  Let $B=\left[\begin{array}{cc} 0 & -b \\ c & 0\end{array}\right]$ and write $\tilde B^{t_0}=\tilde B=\left[\begin{array}{c} B\\ I\end{array}\right]$.
   
   \begin{lemma}
     \label{lem:rank 2 exchange matrices}
     For $k\ge0$, we have
     \begin{align*}
-      \underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde B 
+      \tilde B^{t_{-2k-1}}:=\underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde B 
       &= 
-      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k}\\ u^-_{2k+2} & -u^+_{2k+1}\end{array}\right]
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^+_{2k+1} & -u^+_{2k}\\ u^-_{2k+2} & -u^-_{2k+1}\end{array}\right]
       &
-      \underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde B 
+      \tilde B^{t_{-2k}}:=\underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde B 
       &= 
-      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k-1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k+1}\end{array}\right]\\
-      \mu_1\tilde B 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^+_{2k-1} & u^+_{2k}\\ -u^-_{2k} & u^-_{2k+1}\end{array}\right]\\
+      \tilde B^{t_1}:=\mu_1\tilde B 
       &= 
       \left[\begin{array}{cc} 0 & b \\ -c & 0\\ -1 & 0\\ 0 & 1\end{array}\right]
       &
-      \mu_2\mu_1\tilde B 
+      \tilde B^{t_2}:=\mu_2\mu_1\tilde B 
       &= 
       \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -1 & 0\\ 0 & -1\end{array}\right]\\
-      \underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde B 
+      \tilde B^{t_{2k+3}}:=\underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde B 
       &= 
-      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^-_{2k+1} & -u^+_{2k+2}\\ u^-_{2k} & -u^+_{2k+1}\end{array}\right]
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^+_{2k+1} & -u^+_{2k+2}\\ u^-_{2k} & -u^-_{2k+1}\end{array}\right]
       &
-      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde B 
+      \tilde B^{t_{2k+2}}:=\underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde B 
       &= 
-      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^-_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^+_{2k-1}\end{array}\right]
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^+_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^-_{2k-1}\end{array}\right]
     \end{align*}
   \end{lemma}
   \begin{proof}
-    Induction.
+    Induction and the independence on sign for odd Chebyshev polynomials.
   \end{proof}
 
   \begin{remark}
     \label{rem:sign coherence}
-    The only (mutated) exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices} containing a totally sign coherent column are $\tilde B$, $\mu_1\tilde B$, and $\mu_2\mu_1\tilde B$.
+    The only exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices} containing a totally sign coherent column are $\tilde B^{t_0}$, $\tilde B^{t_1}$, and $\mu_1\tilde B^{t_2}$.
   \end{remark}
 
   \begin{lemma}
     Consider $\lambda=(\lambda_1,\lambda_2)\in\cI\subset\RR^2$ and write $\tilde\lambda=(\lambda_1,\lambda_2,0,0)$.
     For $k\ge0$, we have
     \begin{align*}
-      \underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde\lambda
+      \phi_{t_{-2k-1}}\tilde\lambda:=\underbrace{\mu_2\mu_1\mu_2\cdots\mu_1\mu_2}_{2k+1}\tilde\lambda
       &= 
-      (u^+_{2k+1}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k}\lambda_1-u^-_{2k+1}\lambda_2,0,0)
+      (u^-_{2k+1}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k}\lambda_1-u^+_{2k+1}\lambda_2,0,0)
       \\
-      \underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde\lambda
+      \phi_{t_{-2k}}\tilde\lambda:=\underbrace{\mu_1\mu_2\cdots\mu_1\mu_2}_{2k}\tilde\lambda
       &= 
-      (-u^+_{2k-1}\lambda_1-u^+_{2k}\lambda_2,u^-_{2k}\lambda_1+u^-_{2k+1}\lambda_2,0,0)
+      (-u^-_{2k-1}\lambda_1-u^+_{2k}\lambda_2,u^-_{2k}\lambda_1+u^+_{2k+1}\lambda_2,0,0)
       \\
-      \mu_1\tilde\lambda
+      \phi_{t_1}\tilde\lambda:=\mu_1\tilde\lambda
       &= 
       (-\lambda_1,c\lambda_1+\lambda_2,\lambda_1,0)
       \\
-      \mu_2\mu_1\tilde\lambda
+      \phi_{t_2}\tilde\lambda:=\mu_2\mu_1\tilde\lambda
       &= 
       \big((bc-1)\lambda_1+b\lambda_2,-c\lambda_1-\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
       \\
-      \underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde\lambda
+      \phi_{t_{2k+3}}\tilde\lambda:=\underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+3}\tilde\lambda
       &= 
-      \big(-u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2,u^-_{2k+4}\lambda_1+u^-_{2k+3}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
+      \big(-u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2,u^-_{2k+4}\lambda_1+u^+_{2k+3}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
       \\
-      \underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde\lambda 
+      \phi_{t_{2k+2}}\tilde\lambda:=\underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde\lambda 
       &= 
-      \big(u^+_{2k+3}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
+      \big(u^-_{2k+3}\lambda_1+u^+_{2k+2}\lambda_2,-u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2,\lambda_1,c\lambda_1+\lambda_2\big)
     \end{align*}
   \end{lemma}
   \begin{proof}
-    Induction, taking Remark~\ref{rem:sign coherence} into account.
+    Induction and the independence on sign for odd Chebyshev polynomials, taking Remark~\ref{rem:sign coherence} into account.
   \end{proof}
 
+  For $r\in\ZZ$, write $\cC_{t_r}(\phi_{t_r})$ for the $\tilde B^{t_r}$-cone pointed at $\phi_{t_r}\tilde\lambda$.
   \begin{lemma}
-    The corresponding starting (in)equalities pointed at $\mu_t(\lambda)$ are given by
+    For $k\ge0$, we have
     \begin{align*}
-      &\left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\tilde\mu\rangle\ge0\\ \langle(0,0,u^-_{2k+2},-u^-_{2k+1}),\tilde\mu\rangle\ge0\\ \langle(-1,0,-bu^-_{2k+2},bu^-_{2k+1}),\tilde\mu\rangle=-u^+_{2k+1}\lambda_1-u^+_{2k+2}\lambda_2\\ \langle(0,-1,cu^+_{2k+1},-cu^+_{2k}),\tilde\mu\rangle=u^-_{2k}\lambda_1+u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k}),\tilde\mu\rangle\ge0\\ \langle(0,0,u^-_{2k},-u^-_{2k-1}),\tilde\mu\rangle\ge0\\ \langle(-1,0,-bu^-_{2k},bu^-_{2k-1}),\tilde\mu\rangle=u^+_{2k-1}\lambda_1+u^+_{2k}\lambda_2\\ \langle(0,-1,cu^+_{2k+1},-cu^+_{2k}),\tilde\mu\rangle=-u^-_{2k}\lambda_1-u^-_{2k+1}\lambda_2}\right\}\\
-      &\left\{\substack{\langle(0,0,-1,0),\tilde\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,1),\tilde\mu\rangle\ge0}\right\} & & \left\{\substack{\langle(0,0,-1,0),\tilde\mu\rangle\ge -\lambda_1\\ \langle(0,0,0,-1),\tilde\mu\rangle\ge -c\lambda_1-\lambda_2}\right\}\\
-      &\left\{\substack{\langle(0,0,u^+_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge u^+_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\} & & \left\{\substack{\langle(0,0,u^+_{2k-1},-u^+_{2k}),\tilde\mu\rangle\ge -u^+_{2k+1}\lambda_1-u^+_{2k}\lambda_2\\ \langle(0,0,u^-_{2k},-u^-_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^-_{2k+1}\lambda_2}\right\}
+      \cC_{t_{-2k-1}}(\phi_{t_{-2k-1}}\tilde\lambda)
+      &=
+      \left\{\tilde\mu\in\RR^4:
+      \substack{
+        \langle(0,0,u^-_{2k+1},-u^+_{2k}),\tilde\mu\rangle\ge0\\
+        \langle(0,0,u^-_{2k+2},-u^+_{2k+1}),\tilde\mu\rangle\ge0\\
+        \langle(-1,0,bu^-_{2k+2},-bu^+_{2k+1}),\tilde\mu\rangle=-u^-_{2k+1}\lambda_1-u^+_{2k+2}\lambda_2\\
+        \langle(0,-1,-cu^-_{2k+1},cu^+_{2k}),\tilde\mu\rangle=u^-_{2k}\lambda_1+u^+_{2k+1}\lambda_2
+      }\right\}\\
+      \cC_{t_{-2k}}(\phi_{t_{-2k}}\tilde\lambda)
+      &=
+      \left\{\tilde\mu\in\RR^4:
+      \substack{
+        \langle(0,0,u^-_{2k+1},-u^+_{2k}),\tilde\mu\rangle\ge0\\
+        \langle(0,0,u^-_{2k},-u^+_{2k-1}),\tilde\mu\rangle\ge0\\
+        \langle(-1,0,-bu^-_{2k},bu^+_{2k-1}),\tilde\mu\rangle=u^-_{2k-1}\lambda_1+u^+_{2k}\lambda_2\\
+        \langle(0,-1,cu^-_{2k+1},-cu^+_{2k}),\tilde\mu\rangle=-u^-_{2k}\lambda_1-u^+_{2k+1}\lambda_2
+      }\right\}\\
+      \cC_{t_1}(\phi_{t_1}\tilde\lambda)
+      &=
+      \left\{\tilde\mu\in\RR^4:
+      \substack{
+        \langle(0,0,-1,0),\tilde\mu\rangle\ge -\lambda_1\\
+        \langle(0,0,0,1),\tilde\mu\rangle\ge0\\
+        \langle(-1,0,0,b),\tilde\mu\rangle=\lambda_1\\
+        \langle(0,-1,c,0),\tilde\mu\rangle=-\lambda_2
+      }\right\}\\
+      \cC_{t_2}(\phi_{t_2}\tilde\lambda)
+      &=
+      \left\{\tilde\mu\in\RR^4:
+      \substack{
+        \langle(0,0,-1,0),\tilde\mu\rangle\ge -\lambda_1\\
+        \langle(0,0,0,-1),\tilde\mu\rangle\ge -c\lambda_1-\lambda_2\\
+        \langle(-1,0,0,b),\tilde\mu\rangle=\lambda_1\\
+        \langle(0,-1,-c,0),\tilde\mu\rangle=\lambda_2
+      }\right\}\\
+      \cC_{t_{2k+3}}(\phi_{t_{2k+3}}\tilde\lambda)
+      &=
+      \left\{\tilde\mu\in\RR^4:
+      \substack{
+        \langle(0,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+        \langle(0,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+        \langle(-1,0,bu^-_{2k},-bu^+_{2k+1}),\tilde\mu\rangle=-u^-_{2k+1}\lambda_1-u^+_{2k}\lambda_2\\
+        \langle(0,-1,-cu^-_{2k+1},cu^+_{2k+2}),\tilde\mu\rangle=u^-_{2k+2}\lambda_1+u^+_{2k+1}\lambda_2
+      }\right\}\\
+      \cC_{t_{2k+2}}(\phi_{t_{2k+2}}\tilde\lambda)
+      &=
+      \left\{\tilde\mu\in\RR^4:
+      \substack{
+        \langle(0,0,u^-_{2k-1},-u^+_{2k}),\tilde\mu\rangle\ge -u^-_{2k+1}\lambda_1-u^+_{2k}\lambda_2\\
+        \langle(0,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+        \langle(-1,0,-bu^-_{2k},bu^+_{2k+1}),\tilde\mu\rangle=u^-_{2k+1}\lambda_1+u^+_{2k}\lambda_2\\
+        \langle(0,-1,cu^-_{2k-1},-cu^+_{2k}),\tilde\mu\rangle=-u^-_{2k}\lambda_1-u^+_{2k-1}\lambda_2
+      }\right\}
     \end{align*}
   \end{lemma}
   \begin{proof}
-    Explicit case by case check that the given normal vectors provide the rows of a left pseudo-inverse for the mutated exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices}.
+    Explicit case by case check that the given normal vectors for the inequalities provide the rows of a left pseudo-inverse for the mutated exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices}.
+    In the last two cases, there are some cancellations that happen using the Chebyshev recursion.
   \end{proof}
 
 \bibliographystyle{amsalpha}
