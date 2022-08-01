@@ -294,7 +294,7 @@ def get_inequalities(B, seq, la):
     if seq == []:
         O = (0,)*n
         normals = B[n:].inverse().rows()
-        return [ ( tuple( (O+tuple(normal), vector(normal)*la[n:]) for normal in normals ), [] ) ]
+        return [ ( tuple( (O+tuple(normal), vector(normal)*la[n:]) for normal in normals ), [vector(O)] ) ]
 
     k = seq.pop(0)
 
@@ -321,11 +321,12 @@ def get_inequalities(B, seq, la):
                 inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
 
-def get_regions(B, seq, la):
+def get_regions(B, seq, la, return_steps=infinity):
     regions = defaultdict(list)
-    for k, v in get_inequalities(B, seq, la):
+    for k, v in get_inequalities_with_return_steps(B, seq, la, return_steps):
         #regions[Set(k)].append(v)
-        regions[k].append(v)
+        for kk in k:
+            regions[kk].append(v)
     return table(list(regions.items()))
 
 

@@ -528,7 +528,14 @@
       &
       \tilde B^{t_{2k+2}}:=\underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+2}\tilde B 
       &= 
-      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^+_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^-_{2k-1}\end{array}\right]
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^+_{2k+1} & u^+_{2k}\\ -u^-_{2k} & u^-_{2k-1}\end{array}\right]\\
+      \tilde B^{t_{2k+1}}:=\underbrace{\mu_1\mu_2\mu_1\cdots\mu_2\mu_1}_{2k+1}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & b \\ -c & 0\\ u^+_{2k-1} & -u^+_{2k}\\ u^-_{2k-2} & -u^-_{2k-1}\end{array}\right]
+      &
+      \tilde B^{t_{2k}}:=\underbrace{\mu_2\mu_1\cdots\mu_2\mu_1}_{2k}\tilde B 
+      &= 
+      \left[\begin{array}{cc} 0 & -b \\ c & 0\\ -u^+_{2k-1} & u^+_{2k-2}\\ -u^-_{2k-2} & u^-_{2k-3}\end{array}\right]
     \end{align*}
   \end{lemma}
   \begin{proof}
@@ -637,6 +644,45 @@
     Explicit case by case check that the given normal vectors for the inequalities provide the rows of a left pseudo-inverse for the mutated exchange matrices from Lemma~\ref{lem:rank 2 exchange matrices}.
     In the last two cases, there are some cancellations that happen using the Chebyshev recursion.
   \end{proof}
+
+  \begin{equation}
+    u_{i+\ell}^\varepsilon=\begin{cases} u_{\ell+1}^\varepsilon u_i^{-\varepsilon}-u_\ell^{-\varepsilon} u_{i-1}^\varepsilon & \text{\upshape if $\ell$ is odd;}\\ u_{\ell+1}^{-\varepsilon} u_i^\varepsilon-u_\ell^\varepsilon u_{i-1}^{-\varepsilon} & \text{\upshape if $\ell$ is even.} \end{cases}
+  \end{equation}
+  \begin{equation}
+    u_{2k+1-2k+1}^\varepsilon=\begin{cases} u_{-2k+2}^\varepsilon u_{2k+1}^{-\varepsilon}-u_{-2k+1}^{-\varepsilon} u_{2k}^\varepsilon & \text{\upshape if $\ell$ is odd;}\\ u_{\ell+1}^{-\varepsilon} u_i^\varepsilon-u_\ell^\varepsilon u_{i-1}^{-\varepsilon} & \text{\upshape if $\ell$ is even.} \end{cases}
+  \end{equation}
+
+  \begin{align*}
+    &\left\{\substack{
+      \langle(0,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(0,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2
+    }\right\}\\
+    &\left\{\substack{
+      \langle(0,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(0,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+      \langle(1,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+    }\right\}\\
+    &\left\{\substack{
+      \langle(0,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(0,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+      \langle(u^-_1,u^+_2,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(0,u^+_2,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(0,u^+_1,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+    }\right\}\\
+    &\left\{\substack{
+      \langle(0,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(0,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+      \langle(u^-_3,u^+_2,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(cu^+_2,u^+_2,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(u^-_2,u^+_1,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+      %
+      \langle(u^-_3,0,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      \langle(u^-_2,0,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+      \langle(bc-2,u^+_2,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      %\langle(bc-1,u^+_2,u^-_{2k+1},-u^+_{2k+2}),\tilde\mu\rangle\ge -u^-_{2k+3}\lambda_1-u^+_{2k+2}\lambda_2\\
+      %\langle(u^-_2,u^+_1,u^-_{2k},-u^+_{2k+1}),\tilde\mu\rangle\ge -u^-_{2k+2}\lambda_1-u^+_{2k+1}\lambda_2\\
+    }\right\}\\
+  \end{align*}
 
 \bibliographystyle{amsalpha}
 \bibliography{bibliography}  
