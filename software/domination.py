@@ -317,8 +317,9 @@ def get_inequalities(B, seq, la):
             ieqs = tuple( (tuple(E(sgn).transpose()*vector(normal_p)), const) for (normal_p, const) in ieqs_p )
             region = [ E(sgn).transpose()[:n,:n]*normal_p for normal_p in region_p + [ vector((0,)*(k) + (-sgn,) + (0,)*(n-k-1))] ]
             C = Polyhedron(ieqs = [ (0,)+tuple(v) for v in region ])
-            if C.dim() == n:
-                inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
+            if C.dim() != n:
+                continue
+            inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
 
 def get_regions(B, seq, la, return_steps=infinity):
