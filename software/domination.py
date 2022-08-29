@@ -325,9 +325,10 @@ def get_inequalities(B, seq, la):
 def get_regions(B, seq, la, return_steps=infinity):
     regions = defaultdict(list)
     for k, v in get_inequalities_with_return_steps(B, seq, la, return_steps):
-        #regions[Set(k)].append(v)
-        for kk in k:
-            regions[kk].append(v)
+        regions[Set(k)].append(v)
+        #for kk in k:
+        #    regions[kk].append(v)
+    print(len(regions))
     return table(list(regions.items()))
 
 
