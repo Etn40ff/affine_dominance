@@ -1,4 +1,5 @@
 from collections import defaultdict
+from numpy import linspace
 
 class DominanceOrder(SageObject):
     r"""
@@ -328,6 +329,7 @@ def get_regions(B, seq, la, return_steps=infinity):
         regions[Set(k)].append(v)
         #for kk in k:
         #    regions[kk].append(v)
+    return regions
     print(len(regions))
     return table(list(regions.items()))
 
@@ -443,3 +445,118 @@ def explore_function(B, length=5):
     print("g:", good, "p:", positive, "n:", negative, "nsc:", not_coherent, "b:", bad)
     return weird_prods
 
+
+def _basis(north, right):
+    north = _normalize(north)
+    right = _normalize(right)
+    right = _normalize(right - north.dot_product(right)*north)
+    up = north.cross_product(right)
+    return (north, right, up)
+
+def _normalize(v):
+    return vector(v,RR)/N(vector(v).norm())
+
+def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False):
+    north, right, up = _basis(north, right)
+    C = matrix((right, up, north)).inverse().transpose()
+
+    def proj(pt):
+        # apparently the code is robust even if we try to project the point at infinity... it's a kind of magic?
+        #if _normalize(pt) == north:
+        pt = _normalize(C*pt)
+        t = (distance-pt[2])/(1-pt[2])
+        return (1-t)*pt[:2]
+
+    G = Graphics()
+
+    colors = rainbow(len(regions))
+    for region,color in zip(regions.values(),colors):
+        for cone in region:
+            rays = list(map( lambda x: x.vector(), Polyhedron(ieqs=list(map(lambda x : [0]+list(x), cone))).rays()))
+            vertices = zip(rays, rays[1:]+[rays[0]])
+            triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+            if all( sum( a*b for (a,b) in zip(ieq, north)) >=0 for ieq in cone ):
+                # HERE adjust the radius
+                G += circle((0,0), max(norm(proj(r))**(3/2) for r in rays), color=color, zorder=0, fill=True)
+                G += polygon( triangle, color='white', zorder=0)
+            else:
+                G += polygon( triangle, color=color)
+
+    G.set_aspect_ratio(1)
+    G.SHOW_OPTIONS['axes']=False
+    return G
+
+def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, list_normals=False, color_initial=True, color_final=True):
+    if fan.dim() != 3:
+        raise ValueError("Can only stereographically project 3-dimensional fans.")
+
+    north, right, up = _basis(north, right)
+    C = matrix((right, up, north)).inverse().transpose()
+
+    def proj(pt):
+        # apparently the code is robust even if we try to project the point at infinity... it's a kind of magic?
+        #if _normalize(pt) == north:
+        pt = _normalize(C*pt)
+        t = (distance-pt[2])/(1-pt[2])
+        return (1-t)*pt[:2]
+
+    G = Graphics()
+
+    # plot walls
+    if list_normals:
+        seen_normals = []
+        G.set_legend_options(title='c-vectors:')
+        for w in fan.cones(2):
+            r1, r2 = map(_normalize,w.rays())
+            normal = tuple(w.orthogonal_sublattice().gens()[0])
+            if normal in seen_normals:
+                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)))
+            else:
+                seen_normals.append(normal)
+                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)), legend_label=normal)
+    else:
+        for w in fan.cones(2):
+            r1, r2 = map(_normalize,w.rays())
+            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ], color='black')
+
+    # plot rays
+    for r in fan.rays():
+        G += point(proj(r),color='black', zorder=len(G)+1)
+        #G += text(tuple(r), proj(r), fontsize='x-small',horizontal_alignment='right')
+
+    # plot initial cluster
+    if color_initial:
+        units = identity_matrix(3).columns()
+        for r, color in zip(units,['red','green','blue']):
+            G += point(proj(r),color=color, zorder=len(G)+1, size=20)
+        vertices = zip(units, units[1:]+[units[0]])
+        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        if all(i>0 for i in list(north)):
+            G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='lightgreen', zorder=0, fill=True)
+            G += polygon( triangle, color='white', zorder=0)
+        else:
+            G += polygon( triangle, color='lightgreen')
+
+    # plot final cluster
+    if color_final:
+        units = (-identity_matrix(3)).columns()
+        for r, color in zip(units,['red','green','blue']):
+            G += point(proj(r),color=color, zorder=len(G)+1, size=20)
+        vertices = zip(units, units[1:]+[units[0]])
+        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        if all(i<0 for i in list(north)):
+            G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='coral', zorder=0, fill=True)
+            G += polygon( triangle, color='white', zorder=0)
+        else:
+            G += polygon( triangle, color='coral')
+
+
+    G.set_aspect_ratio(1)
+    G.SHOW_OPTIONS['axes']=False
+    return G
+
+def stereo(B, seq, la, return_steps=+Infinity, depth=10):
+    A = ClusterAlgebra(B)
+    F = A.cluster_fan(depth=depth)
+    regions = get_regions(B, seq, la, return_steps)
+    return stereo_regions(regions) + stereo_fan(F,color_initial=false, color_final=false)
