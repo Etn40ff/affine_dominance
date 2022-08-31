@@ -474,7 +474,7 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
         for cone in region:
             rays = list(map( lambda x: x.vector(), Polyhedron(ieqs=list(map(lambda x : [0]+list(x), cone))).rays()))
             vertices = zip(rays, rays[1:]+[rays[0]])
-            triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+            triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,50*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
             if all( sum( a*b for (a,b) in zip(ieq, north)) >=0 for ieq in cone ):
                 # HERE adjust the radius
                 G += circle((0,0), max(norm(proj(r))**(3/2) for r in rays), color=color, zorder=0, fill=True)
@@ -510,14 +510,14 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
             r1, r2 = map(_normalize,w.rays())
             normal = tuple(w.orthogonal_sublattice().gens()[0])
             if normal in seen_normals:
-                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)))
+                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)))
             else:
                 seen_normals.append(normal)
-                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)), legend_label=normal)
+                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)), legend_label=normal)
     else:
         for w in fan.cones(2):
             r1, r2 = map(_normalize,w.rays())
-            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ], color='black')
+            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], color='black')
 
     # plot rays
     for r in fan.rays():
@@ -530,7 +530,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         for r, color in zip(units,['red','green','blue']):
             G += point(proj(r),color=color, zorder=len(G)+1, size=20)
         vertices = zip(units, units[1:]+[units[0]])
-        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
         if all(i>0 for i in list(north)):
             G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='lightgreen', zorder=0, fill=True)
             G += polygon( triangle, color='white', zorder=0)
@@ -543,7 +543,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         for r, color in zip(units,['red','green','blue']):
             G += point(proj(r),color=color, zorder=len(G)+1, size=20)
         vertices = zip(units, units[1:]+[units[0]])
-        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,10*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
         if all(i<0 for i in list(north)):
             G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='coral', zorder=0, fill=True)
             G += polygon( triangle, color='white', zorder=0)
@@ -555,8 +555,14 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo(B, seq, la, return_steps=+Infinity, depth=10):
-    A = ClusterAlgebra(B)
+def stereo(B, seq, la, return_steps=+Infinity, depth=6):
+    if return_steps >= len(seq):
+        mutated_B = B
+    else:
+        mutated_B = copy(B)
+        for k in seq[:-return_steps]:
+            mutated_B.mutate(k)
+    A = ClusterAlgebra(mutated_B)
     F = A.cluster_fan(depth=depth)
     regions = get_regions(B, seq, la, return_steps)
     return stereo_regions(regions) + stereo_fan(F,color_initial=false, color_final=false)
