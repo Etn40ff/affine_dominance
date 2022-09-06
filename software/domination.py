@@ -329,8 +329,8 @@ def get_regions(B, seq, la, return_steps=infinity):
         regions[Set(k)].append(v)
         #for kk in k:
         #    regions[kk].append(v)
-    return regions
     print(len(regions))
+    return regions
     return table(list(regions.items()))
 
 
@@ -471,9 +471,16 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
 
     colors = rainbow(len(regions))
     for region,color in zip(regions.values(),colors):
+        boundaries = []
         for cone in region:
             rays = list(map( lambda x: x.vector(), Polyhedron(ieqs=list(map(lambda x : [0]+list(x), cone))).rays()))
             vertices = zip(rays, rays[1:]+[rays[0]])
+            for v in vertices:
+                v = set( map( tuple, v) )
+                if not v in boundaries:
+                    boundaries.append(v)
+                else:
+                    boundaries.remove(v)
             triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,50*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
             if all( sum( a*b for (a,b) in zip(ieq, north)) >=0 for ieq in cone ):
                 # HERE adjust the radius
@@ -481,6 +488,9 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
                 G += polygon( triangle, color='white', zorder=0)
             else:
                 G += polygon( triangle, color=color)
+
+            for r1,r2 in boundaries: 
+                G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ] )
 
     G.set_aspect_ratio(1)
     G.SHOW_OPTIONS['axes']=False
@@ -517,11 +527,11 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
     else:
         for w in fan.cones(2):
             r1, r2 = map(_normalize,w.rays())
-            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], color='black')
+            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], color='black', thickness=0.001)
 
     # plot rays
     for r in fan.rays():
-        G += point(proj(r),color='black', zorder=len(G)+1)
+        G += point(proj(r),color='black', zorder=len(G)+1, size=0.5)
         #G += text(tuple(r), proj(r), fontsize='x-small',horizontal_alignment='right')
 
     # plot initial cluster
@@ -555,7 +565,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo(B, seq, la, return_steps=+Infinity, depth=6):
+def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1):
     if return_steps >= len(seq):
         mutated_B = B
     else:
@@ -563,6 +573,9 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6):
         for k in seq[:-return_steps]:
             mutated_B.mutate(k)
     A = ClusterAlgebra(mutated_B)
+    #seed = A.initial_seed()
+    #seed.mutate(seq[-return_steps:],mutating_F=False)
+    #north = sum(vector(g) for g in seed.g_vectors())
     F = A.cluster_fan(depth=depth)
     regions = get_regions(B, seq, la, return_steps)
-    return stereo_regions(regions) + stereo_fan(F,color_initial=false, color_final=false)
+    return stereo_regions(regions, distance=distance) + stereo_fan(F,color_initial=false, color_final=false, distance=distance)
