@@ -474,7 +474,7 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
         boundaries = []
         for cone in region:
             rays = list(map( lambda x: x.vector(), Polyhedron(ieqs=list(map(lambda x : [0]+list(x), cone))).rays()))
-            vertices = zip(rays, rays[1:]+[rays[0]])
+            vertices = list(zip(rays, rays[1:]+[rays[0]]))
             for v in vertices:
                 v = set( map( tuple, v) )
                 if not v in boundaries:
