@@ -456,7 +456,7 @@ def _basis(north, right):
 def _normalize(v):
     return vector(v,RR)/N(vector(v).norm())
 
-def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False):
+def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False, check_signle_region=True):
     north, right, up = _basis(north, right)
     C = matrix((right, up, north)).inverse().transpose()
 
@@ -488,9 +488,23 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
                 G += polygon( triangle, color='white', zorder=0)
             else:
                 G += polygon( triangle, color=color)
-
-            for r1,r2 in boundaries: 
-                G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ] )
+        
+        for r1,r2 in boundaries: 
+            G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ], thickness=0.3 )
+        
+        if check_signle_region:
+            bounderies_bkp = copy(boundaries)
+            side = boundaries.pop()
+            last_vertex = side.pop()
+            current_vertex = side.pop()
+            while current_vertex != last_vertex:
+                side = [ s for s in boundaries if current_vertex in s ][0]
+                boundaries.remove(side)
+                current_vertex = [ v for v in side if v != current_vertex ][0]
+            if boundaries:
+                print("Warning: the following seems to consist of multiple regions")
+                print("region: ",region)
+                print("boundaries: ",boundaries)
 
     G.set_aspect_ratio(1)
     G.SHOW_OPTIONS['axes']=False
