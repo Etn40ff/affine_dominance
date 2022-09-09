@@ -456,7 +456,7 @@ def _basis(north, right):
 def _normalize(v):
     return vector(v,RR)/N(vector(v).norm())
 
-def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False, check_signle_region=True):
+def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False, check_single_region=True, random_colors=True, precision=50):
     north, right, up = _basis(north, right)
     C = matrix((right, up, north)).inverse().transpose()
 
@@ -468,8 +468,12 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
         return (1-t)*pt[:2]
 
     G = Graphics()
-
-    colors = rainbow(len(regions))
+    
+    if random_colors:
+        colors = list(sage.plot.colors.colors.values())
+        shuffle(colors)
+    else:
+        colors = rainbow(len(regions))
     for region,color in zip(regions.values(),colors):
         boundaries = []
         for cone in region:
@@ -481,7 +485,7 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
                     boundaries.append(v)
                 else:
                     boundaries.remove(v)
-            triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,50*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+            triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
             if all( sum( a*b for (a,b) in zip(ieq, north)) >=0 for ieq in cone ):
                 # HERE adjust the radius
                 G += circle((0,0), max(norm(proj(r))**(3/2) for r in rays), color=color, zorder=0, fill=True)
@@ -490,27 +494,30 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
                 G += polygon( triangle, color=color)
         
         for r1,r2 in boundaries: 
-            G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ], thickness=0.3 )
+            G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ], thickness=0.3 )
         
-        if check_signle_region:
+        if check_single_region:
             bounderies_bkp = copy(boundaries)
             side = boundaries.pop()
             last_vertex = side.pop()
             current_vertex = side.pop()
             while current_vertex != last_vertex:
-                side = [ s for s in boundaries if current_vertex in s ][0]
+                sides = [ s for s in boundaries if current_vertex in s ]
+                side = sides[0]
+                if len(sides)>1:
+                    break
                 boundaries.remove(side)
                 current_vertex = [ v for v in side if v != current_vertex ][0]
             if boundaries:
-                print("Warning: the following seems to consist of multiple regions")
+                print("Warning: the following is a problematic region")
                 print("region: ",region)
-                print("boundaries: ",boundaries)
+                print("boundaries: ",boundaries_bkp)
 
     G.set_aspect_ratio(1)
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, list_normals=False, color_initial=True, color_final=True):
+def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, list_normals=False, color_initial=True, color_final=True, precision=50):
     if fan.dim() != 3:
         raise ValueError("Can only stereographically project 3-dimensional fans.")
 
@@ -534,14 +541,14 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
             r1, r2 = map(_normalize,w.rays())
             normal = tuple(w.orthogonal_sublattice().gens()[0])
             if normal in seen_normals:
-                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)))
+                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)))
             else:
                 seen_normals.append(normal)
-                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)), legend_label=normal)
+                G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ], rgbcolor=tuple(_normalize(normal)), legend_label=normal)
     else:
         for w in fan.cones(2):
             r1, r2 = map(_normalize,w.rays())
-            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ], color='black', thickness=0.001)
+            G += line([ proj(r1*s+r2*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ], color='black', thickness=0.001)
 
     # plot rays
     for r in fan.rays():
@@ -554,7 +561,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         for r, color in zip(units,['red','green','blue']):
             G += point(proj(r),color=color, zorder=len(G)+1, size=20)
         vertices = zip(units, units[1:]+[units[0]])
-        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
         if all(i>0 for i in list(north)):
             G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='lightgreen', zorder=0, fill=True)
             G += polygon( triangle, color='white', zorder=0)
@@ -567,7 +574,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         for r, color in zip(units,['red','green','blue']):
             G += point(proj(r),color=color, zorder=len(G)+1, size=20)
         vertices = zip(units, units[1:]+[units[0]])
-        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,30*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
         if all(i<0 for i in list(north)):
             G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='coral', zorder=0, fill=True)
             G += polygon( triangle, color='white', zorder=0)
@@ -579,7 +586,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1):
+def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1, check_single_region=True, random_colors=True, precision=50):
     if return_steps >= len(seq):
         mutated_B = B
     else:
@@ -592,4 +599,4 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distan
     #north = sum(vector(g) for g in seed.g_vectors())
     F = A.cluster_fan(depth=depth)
     regions = get_regions(B, seq, la, return_steps)
-    return stereo_regions(regions, distance=distance) + stereo_fan(F,color_initial=false, color_final=false, distance=distance)
+    return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_fan(F,color_initial=false, color_final=false, distance=distance,precision=precision, north=north)
