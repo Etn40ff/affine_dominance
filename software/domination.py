@@ -496,22 +496,22 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
         for r1,r2 in boundaries: 
             G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ], thickness=0.3 )
         
-        if check_single_region:
-            bounderies_bkp = copy(boundaries)
-            side = boundaries.pop()
-            last_vertex = side.pop()
-            current_vertex = side.pop()
-            while current_vertex != last_vertex:
-                sides = [ s for s in boundaries if current_vertex in s ]
-                side = sides[0]
-                if len(sides)>1:
-                    break
-                boundaries.remove(side)
-                current_vertex = [ v for v in side if v != current_vertex ][0]
-            if boundaries:
-                print("Warning: the following is a problematic region")
-                print("region: ",region)
-                print("boundaries: ",boundaries_bkp)
+        #if check_single_region:
+        #    bounderies_bkp = copy(boundaries)
+        #    side = boundaries.pop()
+        #    last_vertex = side.pop()
+        #    current_vertex = side.pop()
+        #    while current_vertex != last_vertex:
+        #        sides = [ s for s in boundaries if current_vertex in s ]
+        #        side = sides[0]
+        #        if len(sides)>1:
+        #            break
+        #        boundaries.remove(side)
+        #        current_vertex = [ v for v in side if v != current_vertex ][0]
+        #    if boundaries:
+        #        print("Warning: the following is a problematic region")
+        #        print("region: ",region)
+        #        print("boundaries: ",boundaries_bkp)
 
     G.set_aspect_ratio(1)
     G.SHOW_OPTIONS['axes']=False
@@ -566,7 +566,7 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
             G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='lightgreen', zorder=0, fill=True)
             G += polygon( triangle, color='white', zorder=0)
         else:
-            G += polygon( triangle, color='lightgreen')
+            G += polygon( triangle, color='white')
 
     # plot final cluster
     if color_final:
@@ -576,17 +576,17 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         vertices = zip(units, units[1:]+[units[0]])
         triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
         if all(i<0 for i in list(north)):
-            G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='coral', zorder=0, fill=True)
+            G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='red', zorder=0, fill=True)
             G += polygon( triangle, color='white', zorder=0)
         else:
-            G += polygon( triangle, color='coral')
+            G += polygon( triangle, color='red')
 
 
     G.set_aspect_ratio(1)
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1, check_single_region=True, random_colors=True, precision=50):
+def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1, check_single_region=True, random_colors=False, precision=50):
     if return_steps >= len(seq):
         mutated_B = B
     else:
@@ -599,4 +599,4 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distan
     #north = sum(vector(g) for g in seed.g_vectors())
     F = A.cluster_fan(depth=depth)
     regions = get_regions(B, seq, la, return_steps)
-    return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_fan(F,color_initial=false, color_final=false, distance=distance,precision=precision, north=north)
+    return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_fan(F,color_initial=True, color_final=True, distance=distance,precision=precision, north=north)
