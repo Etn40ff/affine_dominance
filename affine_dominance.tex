@@ -286,6 +286,7 @@
 
 
 \section{Iterated Mutations}
+  \label{sec:iterated mutations}
 
   Let $B=(b_{ij})$ denote an acyclic $n\times n$ exchange matrix.
   Write $Q_B$ for the corresponding quiver, here $b_{ij}>0$ means there is an arrow from $j$ to $i$ in $Q$.
@@ -1027,6 +1028,7 @@
 
 \begin{landscape}
   \section{Rank 3}
+  \label{sec:rank3}
   Let $\tilde B^{t_0}=\left[\begin{array}{ccc} 0 & -a & -b \\ a' & 0 & -c\\ b' & c' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
 
   Suppose $s>1$.
@@ -1574,7 +1576,245 @@
       \langle(0,1,0,0,0,0),\tilde\mu\rangle\ge 0
       }\right\}
   \end{align*}
+
+  \section{Rank 4}
+  Let $\tilde B^{t_0}=\left[\begin{array}{cccc} 0 & -a & -b & -c\\ a' & 0 & -d & -e\\ b' & d' & 0 & -f\\ c' & e' & f' & 0 \\ 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 1\end{array}\right]$.
+
+  \begin{align*}
+    &\mu_2\to t_{4s-3}\\ %%
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} + (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,0,0,-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,0,-1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,0,0,1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,0,-1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} E^{B,t_0}_{3,-,t_{4s-1}} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,0,-f',-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,0,1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,0,f',1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,0,1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    \hline
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} + (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} \big] E^{B,t_0}_{2,-,t_{4s-2}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,-e',0,-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,-d',-1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} E^{B,t_0}_{2,-,t_{4s-2}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,e',0,1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,-d',-1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} (C^{B,t_0}_{t_{4s}})^{\bullet 4} E^{B,t_0}_{3,-,t_{4s-1}} E^{B,t_0}_{2,-,t_{4s-2}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,-d'f'-e',-f',-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,d',1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} \boldsymbol{0} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,d'f'+e',f',1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,d',1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    \hline\hline %
+  \end{align*}
+
+  \begin{align*}
+    &\mu_1\to t_{4s-4}\\ %%
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} + (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,0,0,-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,0,-1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,0,0,1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,0,-1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} E^{B,t_0}_{3,-,t_{4s-1}} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,0,-f',-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,0,1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,0,f',1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,0,1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ [ (C^{B,t_0}_{t_{4s}})^{\bullet 4} + (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} ] E^{B,t_0}_{2,-,t_{4s-2}} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,-e',0,-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,-d',-1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} E^{B,t_0}_{2,-,t_{4s-2}} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,e',0,1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,-d',-1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} E^{B,t_0}_{3,-,t_{4s-1}} E^{B,t_0}_{2,-,t_{4s-2}} + (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} \big] & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(0,-d'f'-e',-f',-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,d',1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      G^{-B^T,t_0}_{t_{4s}} \left[\begin{array}{cc} (C^{B,t_0}_{t_{4s-3}})^{\bullet 1} & I \end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(0,d'f'+e',f',1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,d',1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(0,1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    \hline %
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} + (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} \big] E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(-c',0,0,-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-b',0,-1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-a',-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} \big] E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(c',0,0,1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(-b',0,-1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(-a',-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} E^{B,t_0}_{3,-,t_{4s-1}} + (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} \big] E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(-b'f'-c',0,-f',-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(b',0,1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-a',-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} (C^{B,t_0}_{t_{4s-2}})^{\bullet 2} E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(b'f'+c',0,f',1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(b',0,1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(-a',-1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} \big[ (C^{B,t_0}_{t_{4s}})^{\bullet 4} + (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} \big] E^{B,t_0}_{2,-,t_{4s-2}} E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(-a'e'-c',-e',0,-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-a'd'-b',-d',-1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(a',1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} (C^{B,t_0}_{t_{4s-1}})^{\bullet 3} E^{B,t_0}_{2,-,t_{4s-2}} E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(a'e'+c',e',0,1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(-a'd'-b',-d',-1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(a',1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    &\left\{\substack{
+      \left[\begin{array}{cc} G^{-B^T,t_0}_{t_{4s}} (C^{B,t_0}_{t_{4s}})^{\bullet 4} E^{B,t_0}_{3,-,t_{4s-1}} E^{B,t_0}_{2,-,t_{4s-2}} E^{B,t_0}_{1,-,t_{4s-3}} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu \ge M_{4s}\lambda\\
+      \langle(-a'd'f'-a'e'-b'f'-c',-d'f'-e',-f',-1,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(a'd'+b',d',1,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(a',1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+    }\right\}
+    \qquad
+    \left\{\substack{
+      \left[\begin{array}{cc} \boldsymbol{0} & G^{-B^T,t_0}_{t_{4s}}\end{array}\right] \tilde\mu\ge M_{4s}\lambda\\
+      \langle(a'd'f'+a'e'+b'f'+c',d'f'+e',f',1,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(a'd'+b',d',1,0,0,0,0,0),\tilde\mu\rangle\ge 0\\
+      \langle(a',1,0,0,0,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+    \hline\hline %
+  \end{align*}
 \end{landscape}
+
+\section{General Rank}
+  
+  Here we use the conventions and notation established in Sections~\ref{sec:iterated mutations} and \ref{sec:rank3}.
+  For $r\in\ZZ$, write $1\le\ell_r\le n$ for the number so that $r=ns+\ell_r$.
+
+  Fix a seed labeled by $t_r$ for $r>n$ and an imaginary weight $\lambda$.
+  Write $M_{t_r}\lambda$ for the vector of right hand sides of the starting inequalities pointed at $\phi_{t_r}\tilde\lambda$.
+  We consider the change in inequalities as we return to the seed labeled by $t_{r'}$ for $n\le r'<r$ with $r-r'\ge n$.
+  \begin{theorem}
+    The region $\phi^{-1}_{t_{r'}}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is given by the following inequalities (region inequalities still need to be understood):
+    \[
+      \left\{\substack{
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \boldsymbol{0} & I \end{array} \right] , \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \vdots
+      }\right\}
+    \]
+    \[
+      \left\{\substack{
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{q:r'\le q< r'+n-1} (C^{B,t_0}_{t_q})^{\bullet \ell_q} & I \end{array} \right], \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \vdots
+      }\right\}
+    \]
+    \[
+      \left\{\substack{
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{q:r'\le q< r'+n} (C^{B,t_0}_{t_q})^{\bullet \ell_q} & I \end{array} \right], \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \vdots
+      }\right\}
+    \]
+    \[
+      \left\{\substack{
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{q:r-n+1<q\le r} (C^{B,t_0}_{t_q})^{\bullet \ell_q} \stackrel{\leftarrow}{\prod_{q:r' \le q \le r-n+1}} E^{B,t_0}_{\ell_q,-,t_q} & I \end{array} \right], \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \vdots
+      }\right\}
+    \]
+    and the inequalities
+    \[
+      \left\{\substack{
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{a=1}^m \sum\limits_{q:q'_a\le q\le q_a} (C^{B,t_0}_{t_q})^{\bullet \ell_q} \stackrel{\leftarrow}{\prod\limits_{q:q_{a+1} < q < q'_a}} E^{B,t_0}_{\ell_q,-,t_q} \stackrel{\leftarrow}{\prod\limits_{q:r' \le q < q_m}} E^{B,t_0}_{\ell_q,-,t_q} & I \end{array} \right] , \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \vdots
+      }\right\}
+    \]
+    for sequences 
+    \[r'\le q_{m+1}=q'_m\le q_m < \cdots < q'_1\le q_1\le r\] 
+    with $1\le m < n$ satisfying 
+    \[q_1-q'_m<n, \qquad q_a-q'_a<n-1, \qquad q'_a-q_{a+1}>1;\]
+  \end{theorem}
+  
+
+
+
 
 \bibliographystyle{amsalpha}
 \bibliography{bibliography}  
