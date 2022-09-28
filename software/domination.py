@@ -323,15 +323,41 @@ def get_inequalities(B, seq, la):
             inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
 
-def get_regions(B, seq, la, return_steps=infinity):
+def get_regions(B, seq, la, return_steps=infinity,return_table=False):
     regions = defaultdict(list)
     for k, v in get_inequalities_with_return_steps(B, seq, la, return_steps):
         regions[Set(k)].append(v)
         #for kk in k:
         #    regions[kk].append(v)
     print(len(regions))
+    if return_table:
+        return table(list(regions.items()))
     return regions
-    return table(list(regions.items()))
+
+def get_combined_regions(B, seq, la, return_steps=infinity):
+    if B.ncols() != 3:
+        raise ValueError("Only works for rank 3.")
+
+    regions = get_regions(B, seq, la, return_steps=return_steps)
+
+    for key in regions:
+        boundaries = []
+        for cone in regions[key]:
+            rays = list(map( lambda x: x.vector(), Polyhedron(ieqs=list(map(lambda x : [0]+list(x), cone))).rays()))
+            vertices = list(zip(rays, rays[1:]+[rays[0]]))
+            for v in vertices:
+                v = set( map( tuple, v) )
+                if not v in boundaries:
+                    boundaries.append(v)
+                else:
+                    boundaries.remove(v)
+        rays = set(flatten(list(map(list,boundaries)),max_level=1))
+        #regions[key] = [ tuple(n(vector(x[1:]).normalized(),digits=4)) for x in Polyhedron(rays=rays).inequalities_list()]
+        regions[key] = [ vector(x[1:]) for x in Polyhedron(rays=rays).inequalities_list()]
+
+    return list(regions.values())
+    return sorted(set(flatten(list(regions.values()),max_level=1)))
+
 
 
 def get_inequalities_first_attempt(B, seq, la):
@@ -560,26 +586,26 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         units = identity_matrix(3).columns()
         for r, color in zip(units,['red','green','blue']):
             G += point(proj(r),color=color, zorder=len(G)+1, size=20)
-        vertices = zip(units, units[1:]+[units[0]])
-        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
-        if all(i>0 for i in list(north)):
-            G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='lightgreen', zorder=0, fill=True)
-            G += polygon( triangle, color='white', zorder=0)
-        else:
-            G += polygon( triangle, color='white')
+        #vertices = zip(units, units[1:]+[units[0]])
+        #triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        #if all(i>0 for i in list(north)):
+        #    G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='lightgreen', zorder=0, fill=True)
+        #    G += polygon( triangle, color='white', zorder=0)
+        #else:
+        #    G += polygon( triangle, color='white')
 
     # plot final cluster
     if color_final:
         units = (-identity_matrix(3)).columns()
         for r, color in zip(units,['red','green','blue']):
             G += point(proj(r),color=color, zorder=len(G)+1, size=20)
-        vertices = zip(units, units[1:]+[units[0]])
-        triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
-        if all(i<0 for i in list(north)):
-            G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='red', zorder=0, fill=True)
-            G += polygon( triangle, color='white', zorder=0)
-        else:
-            G += polygon( triangle, color='red')
+        #vertices = zip(units, units[1:]+[units[0]])
+        #triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+        #if all(i<0 for i in list(north)):
+        #    G += circle((0,0), max(sqrt(G.xmin()**2+G.ymin()**2), sqrt(G.xmax()**2+G.ymax()**2)), color='red', zorder=0, fill=True)
+        #    G += polygon( triangle, color='white', zorder=0)
+        #else:
+        #    G += polygon( triangle, color='red')
 
 
     G.set_aspect_ratio(1)
@@ -594,6 +620,25 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distan
         for k in seq[:-return_steps]:
             mutated_B.mutate(k)
     A = ClusterAlgebra(mutated_B)
+
+    #plot limiting hyperplane
+    #ev = tau(B).eigenvectors_left()[2][1][0]
+    #right=vector((1,0,0))
+    #north, right, up = _basis(north, right)
+    #C = matrix((right, up, north)).inverse().transpose()
+
+    #def proj(pt):
+    #    # apparently the code is robust even if we try to project the point at infinity... it's a kind of magic?
+    #    #if _normalize(pt) == north:
+    #    pt = _normalize(C*pt)
+    #    t = (distance-pt[2])/(1-pt[2])
+    #    return (1-t)*pt[:2]
+
+    #vecs = [vector((ev[1],-ev[0],0)),vector((ev[2],0,-ev[0])),vector((0,ev[2],-ev[1]))]
+    #vertices = list(zip(vecs, vecs[1:]+[vecs[0]]))
+    #triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+    #G = polygon( triangle, fill=False, color="green")
+
     #seed = A.initial_seed()
     #seed.mutate(seq[-return_steps:],mutating_F=False)
     #north = sum(vector(g) for g in seed.g_vectors())

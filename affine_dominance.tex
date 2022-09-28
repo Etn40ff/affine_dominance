@@ -22,6 +22,7 @@
 \newcommand{\bfc}{\boldsymbol{c}}
 \newcommand{\bfe}{\boldsymbol{e}}
 \newcommand{\bfg}{\boldsymbol{g}}
+\newcommand{\bfk}{\boldsymbol{k}}
 \newcommand{\bfn}{\boldsymbol{n}}
 \newcommand{\bfr}{\boldsymbol{r}}
 \newcommand{\bfu}{\boldsymbol{u}}
@@ -48,6 +49,7 @@
 
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\beps}{{\boldsymbol{\varepsilon}}}
+\newcommand{\eps}{{\varepsilon}}
 \newcommand{\Col}{\operatorname{Col}}
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\dpt}{\operatorname{dp}}
@@ -1771,14 +1773,33 @@
   For $r\in\ZZ$, write $1\le\ell_r\le n$ for the number so that $r=ns+\ell_r$.
 
   Fix a seed labeled by $t_r$ for $r>n$ and an imaginary weight $\lambda$.
-  Write $M_{t_r}\lambda$ for the vector of right hand sides of the starting inequalities pointed at $\phi_{t_r}\tilde\lambda$.
-  We consider the change in inequalities as we return to the seed labeled by $t_{r'}$ for $n\le r'<r$ with $r-r'\ge n$.
+  Write $M_{t_r}\lambda$ for the vector of right hand sides of the starting inequalities pointed at $\phi_{t_r}\tilde\lambda$ defining $\cC_{t_r}(\phi_{t_r}\tilde\lambda)$.
+  We consider the change in inequalities as we return to the seed labeled by $t_{r'}$ for $n\le r'<r$. 
+
+  \begin{lemma}
+    \label{le:first n steps}
+    If $r-r' \le n$, then the region $\phi_{t_{r'}}\phi^{-1}_{t_r}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is subdivided into the following subregions:
+    \[
+      \left\{\substack{
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{a=1}^m \sum\limits_{q:q'_a < q \le q_a} (C^{B,t_0}_{t_q})^{\bullet \ell_q} \stackrel{\rightarrow}{\prod\limits_{b:a\le b\le m}}\, \stackrel{\leftarrow}{\prod\limits_{q:q_{b+1} < q \le q'_b}} E^{B,t_0}_{\ell_q,-,t_q} & I \end{array} \right] , \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \left\{\left\langle -\bfe_{\ell_{q'}} \stackrel{\rightarrow}{\prod\limits_{b:a\le b\le m}}\, \stackrel{\leftarrow}{\prod\limits_{q:q_{b+1} < q \le q'_b}} E^{B,t_0}_{\ell_q,-,t_q} ,\mu \right\rangle \ge \boldsymbol{0}:q'_a < q'\le q_a,1\le a\le m\right\}\\
+        \left\{\left\langle \bfe_{\ell_{q'}} \stackrel{\leftarrow}{\prod\limits_{q:q_a < q < q'}} \tilde E^{B,t_0}_{\ell_q,-,t_q} \stackrel{\rightarrow}{\prod\limits_{b:a\le b\le m}}\, \stackrel{\leftarrow}{\prod\limits_{q:q_{b+1} < q \le q'_b}} E^{B,t_0}_{\ell_q,-,t_q} ,\mu \right\rangle \ge \boldsymbol{0}:q_a < q' \le q'_{a-1},1\le a\le m+1\right\}
+      }\right\}
+    \]
+    for all sequences 
+    \[r'\le q'_m < q_m < \cdots < q'_1 < q_1\le r\]
+    for $m\ge0$, here we also set $q'_0=r$ and $q_{m+1}=r'$.
+  \end{lemma}
+  \begin{remark}
+    There are $2^{r-r'}$ subregions described in Lemma~\ref{le:first n steps}.  Indeed, there is a bijection from sequences as above to subsets of $\{r'+1,\ldots,r-1,r\}$ given by assigning $\bigcup_{a=1}^m \{q:q'_a < q \le q_a\}$ to such a sequence.
+  \end{remark}
+
   \begin{theorem}
-    The region $\phi^{-1}_{t_{r'}}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is given by the following inequalities (region inequalities still need to be understood):
+    If $r-r'\ge n$, then the region $\phi^{-1}_{t_{r'}}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is given by the following inequalities (region inequalities still need to be understood):
     \[
       \left\{\substack{
         \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \boldsymbol{0} & I \end{array} \right] , \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
-        \vdots
+        \left\{\left\langle -\tilde\bfe_{\ell_q} \stackrel{\leftarrow}{\prod\limits_{q':r'\le q'\le q}} \tilde E^{B,t_0}_{\ell_{q'},-,t_{q'}},\tilde\mu \right\rangle \ge \boldsymbol{0}:r'\le q\le r\right\}
       }\right\}
     \]
     \[
@@ -1790,7 +1811,7 @@
     \[
       \left\{\substack{
         \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{q:r'\le q< r'+n} (C^{B,t_0}_{t_q})^{\bullet \ell_q} & I \end{array} \right], \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
-        \vdots
+          \left\{\left\langle \tilde\bfe_{\ell_q} \stackrel{\leftarrow}{\prod\limits_{q':r'\le q'\le q}} \tilde E^{B,t_0}_{\ell_{q'},+,t_{q'}},\tilde\mu \right\rangle \ge \boldsymbol{0}:r'\le q< r'+n\right\}
       }\right\}
     \]
     \[
@@ -1802,16 +1823,24 @@
     and the inequalities
     \[
       \left\{\substack{
-        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{a=1}^m \sum\limits_{q:q'_a\le q\le q_a} (C^{B,t_0}_{t_q})^{\bullet \ell_q} \stackrel{\rightarrow}{\prod\limits_{b:a\le b\le m}}\, \stackrel{\leftarrow}{\prod\limits_{q:q_{b+1} < q < q'_b}} E^{B,t_0}_{\ell_q,-,t_q} \stackrel{\leftarrow}{\prod\limits_{q:r' \le q < q_m}} E^{B,t_0}_{\ell_q,-,t_q} & I \end{array} \right] , \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
-        \vdots
+        \left\langle G^{-B^T,t_0}_{t_r} \left[\begin{array}{cc} \sum\limits_{a=1}^m \sum\limits_{q:q'_a < q \le q_a} (C^{B,t_0}_{t_q})^{\bullet \ell_q} \stackrel{\rightarrow}{\prod\limits_{b:a\le b\le m}}\, \stackrel{\leftarrow}{\prod\limits_{q:q_{b+1} < q \le q'_b}} E^{B,t_0}_{\ell_q,-,t_q} & I \end{array} \right] , \tilde\mu\right\rangle \ge M_{t_r}\lambda\\
+        \left\{\left\langle -\tilde\bfe_{\ell_q} \stackrel{\rightarrow}{\prod\limits_{b:a\le b\le m}}\, \stackrel{\leftarrow}{\prod\limits_{q':q_{b+1} < q' < q'_b}} E^{B,t_0}_{\ell_{q'},-,t_{q'}} \stackrel{\leftarrow}{\prod\limits_{q':r' \le q' < q'_m}} E^{B,t_0}_{\ell_{q'},-,t_{q'}},\tilde\mu \right\rangle \ge \boldsymbol{0}:q'_a\le q\le q_a,1\le a\le m\right\}
       }\right\}
     \]
     for sequences 
-    \[r'\le q_{m+1}=q'_m\le q_m < \cdots < q'_1\le q_1\le r\] 
-    with $1\le m < n$ satisfying 
-    \[q_1-q'_m<n, \qquad q_a-q'_a<n-1, \qquad q'_a-q_{a+1}>1;\]
+    \[r'\le q'_m < q_m < \cdots < q'_1 < q_1\le r\] 
+    with $m\ge0$ satisfying $q_1-q'_m\le n$ and $q_a-q'_a<n-1$, here we also set $q'_0=r$ and $q_{m+1}=r'$.
   \end{theorem}
   
+  \begin{theorem}
+    Consider a sequence of mutations $\bfk=(k_1,\ldots,k_{r-1})$, $1\le k_q\le n$.
+    Define $t_q\in\TT_n$, $1\le q\le r$, recursively by the condition that $t_q$ and $t_{q+1}$ are joined by an edge labeled $k_q$ for $1\le q\le r-1$.
+    Write $M_{t_r}\lambda$ for the vector of right hand sides of the starting inequalities pointed at $\phi_{t_r}\tilde\lambda$.
+    Then for $0\le r'\le r$, the region $\phi_{t_{r'}}^{-1}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is given by the following inequalities for each $\beps=(\eps_1,\ldots,\eps_{r-1})$, $\eps_q\in\{\pm1\}$:
+    \sayDR{The matrix mutations make this seem impossible to do anything with, so I stopped writing, but in principle it an be written down.}
+  \end{theorem}
+
+
 
 
 
