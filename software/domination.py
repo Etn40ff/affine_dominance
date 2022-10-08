@@ -645,3 +645,31 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distan
     F = A.cluster_fan(depth=depth)
     regions = get_regions(B, seq, la, return_steps)
     return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_fan(F,color_initial=True, color_final=True, distance=distance,precision=precision, north=north)
+
+
+def regions_with_equalities(B, seq, la, return_table=False):
+    n = B.ncols()
+    la = vector(la)
+    regions = get_regions(B, seq, la)
+    new_regions = {}
+    for (key,value) in regions.items():
+        new_key = Set( (tuple(vector(lhs[:n])*B+vector(lhs[n:])),rhs-vector(lhs[:n]).dot_product(la)) for (lhs,rhs) in key)
+        new_value = []
+        for cone in value:
+            new_value.append([(vector(ieq)*B,-vector(ieq).dot_product(la)) for ieq in cone])
+        new_regions[new_key] = new_value
+    if return_table:
+        return table(list(new_regions.items()))
+    return new_regions
+
+def get_polyhedra(B, seq, la):
+    regions =  regions_with_equalities(B, seq, la)
+    polyhedra = flatten( [ [ Polyhedron(ieqs=[ [-rhs]+list(lhs) for (lhs,rhs) in key ] +[[-rhs] + list(lhs) for (lhs,rhs) in cone]) for cone in value ] for (key,value) in regions.items()], max_level=1 )
+    return polyhedra
+
+def get_polyhedron(B, seq, la):
+    polyhedra = get_polyhedra(B, seq, la)
+    Q = Polyhedron(ambient_dim=B.ncols(),base_ring=QQ)
+    for P in polyhedra:
+        Q = Q.convex_hull(P)
+    return Q
