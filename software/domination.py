@@ -1,5 +1,8 @@
 from collections import defaultdict
 from numpy import linspace
+from sage.repl.rich_output import get_display_manager
+dm = get_display_manager()
+setattr(dm.preferences,'graphics',u'vector')
 
 class DominanceOrder(SageObject):
     r"""
@@ -132,8 +135,6 @@ class DominanceOrder(SageObject):
         g = vector(g)
         C = 2-self.B.apply_map(abs)
         return C.adjugate().transpose()*g
-            
-
 
 
 def cut_along_sequence(g, B, seq):
@@ -156,7 +157,8 @@ def cut_along_sequence(g, B, seq):
     polytope_p = Mm*(polytope.intersection(Hp))
     polytope_m = Mp*(polytope.intersection(Hm))
     polytope = polytope_p.convex_hull(polytope_m)
-    return polytope.intersection(current_cone)
+    return polytope #.intersection(current_cone)
+
 
 def region_vertices(b,c,g):
     #this is only for rank 2
@@ -188,7 +190,8 @@ def foo(g, B, seq):
     polytope_p = Mm*(polytope.intersection(Hp))
     polytope_m = Mp*(polytope.intersection(Hm))
     polytope = polytope_p.convex_hull(polytope_m)
-    return polytope #.intersection(current_cone)
+    return polytope.intersection(current_cone)
+
 
 def get_inequalities_broken(B, seq, la):
     r"""
@@ -240,6 +243,7 @@ def get_inequalities_broken(B, seq, la):
             regions.append(region)
     return regions
 
+
 def get_region_broken(B, seq, la):
     n = B.ncols()
     if B.is_square():
@@ -256,10 +260,12 @@ def get_region_broken(B, seq, la):
         P = P.convex_hull(Q)
     return P
 
+
 def get_inequalities_with_return_steps(B, seq, la, return_steps=infinity):
     r"""
     Return the dominance region based at `la` corresponding to the sequence of mutations seq
     """
+    seq = copy(seq)
     n = B.ncols()
     if B.is_square():
         B = B.stack(identity_matrix(n))
@@ -278,6 +284,7 @@ def get_inequalities_with_return_steps(B, seq, la, return_steps=infinity):
     B = B[:,:-1]
 
     return get_inequalities(B, seq, la)
+
 
 def get_inequalities(B, seq, la):
     r"""
@@ -323,16 +330,18 @@ def get_inequalities(B, seq, la):
             inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
 
+
 def get_regions(B, seq, la, return_steps=infinity,return_table=False):
     regions = defaultdict(list)
     for k, v in get_inequalities_with_return_steps(B, seq, la, return_steps):
         regions[Set(k)].append(v)
         #for kk in k:
         #    regions[kk].append(v)
-    print(len(regions))
+    #print(len(regions))
     if return_table:
         return table(list(regions.items()))
     return regions
+
 
 def get_combined_regions(B, seq, la, return_steps=infinity):
     if B.ncols() != 3:
@@ -357,7 +366,6 @@ def get_combined_regions(B, seq, la, return_steps=infinity):
 
     return list(regions.values())
     return sorted(set(flatten(list(regions.values()),max_level=1)))
-
 
 
 def get_inequalities_first_attempt(B, seq, la):
@@ -414,7 +422,6 @@ def mutation_map(B, k, la):
     B = B.transpose().stack(la)
     B.mutate(k)
     return vector(B.row(-1))
-
 
 
 ##### Try to understand pairings
@@ -479,10 +486,12 @@ def _basis(north, right):
     up = north.cross_product(right)
     return (north, right, up)
 
+
 def _normalize(v):
     return vector(v,RR)/N(vector(v).norm())
 
-def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False, check_single_region=True, random_colors=True, precision=50):
+
+def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_normals=False, check_single_region=True, random_colors=True, precision=50, fixed_color=""):
     north, right, up = _basis(north, right)
     C = matrix((right, up, north)).inverse().transpose()
 
@@ -494,7 +503,7 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
         return (1-t)*pt[:2]
 
     G = Graphics()
-    
+
     if random_colors:
         colors = list(sage.plot.colors.colors.values())
         shuffle(colors)
@@ -512,16 +521,21 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
                 else:
                     boundaries.remove(v)
             triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
-            if all( sum( a*b for (a,b) in zip(ieq, north)) >=0 for ieq in cone ):
-                # HERE adjust the radius
-                G += circle((0,0), max(norm(proj(r))**(3/2) for r in rays), color=color, zorder=0, fill=True)
-                G += polygon( triangle, color='white', zorder=0)
-            else:
-                G += polygon( triangle, color=color)
-        
-        for r1,r2 in boundaries: 
-            G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ], thickness=0.3 )
-        
+
+            if not fixed_color:
+                if all( sum( a*b for (a,b) in zip(ieq, north)) >=0 for ieq in cone ):
+                    # HERE adjust the radius
+                    G += circle((0,0), max(norm(proj(r))**(3/2) for r in rays), color=color, zorder=0, fill=True)
+                    G += polygon( triangle, color='white', zorder=0)
+                else:
+                    G += polygon( triangle, color=color)
+
+        for r1,r2 in boundaries:
+            thickness = 0.3
+            if fixed_color:
+                thickness = 1
+            G += line([ proj(vector(r1)*s+vector(r2)*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(vector(r1))-proj(vector(r2))))) ], thickness=thickness, color="black")
+
         #if check_single_region:
         #    bounderies_bkp = copy(boundaries)
         #    side = boundaries.pop()
@@ -543,7 +557,8 @@ def stereo_regions(regions, north=(-1,-1,-1), right=(1,0,0), distance=-1, list_n
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, list_normals=False, color_initial=True, color_final=True, precision=50):
+
+def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, list_normals=False, color_initial=True, color_final=True, precision=50, plot_vectors=[]):
     if fan.dim() != 3:
         raise ValueError("Can only stereographically project 3-dimensional fans.")
 
@@ -607,12 +622,19 @@ def stereo_fan(fan, north=-vector((1,1,1)), right=vector((1,0,0)), distance=-1, 
         #else:
         #    G += polygon( triangle, color='red')
 
+    for plot_vector in plot_vectors:
+        G += point(proj(vector(plot_vector)),color='black', zorder=len(G)+1, size=20, legend_label=str(plot_vector))
+        for eps, color in zip(list(cartesian_product([[1,-1]]*B.ncols())),rainbow(8)):
+            G += point(proj(tau(B,eps)*vector(plot_vector)),color='black', marker='d', markeredgecolor=color, zorder=len(G)+1, size=20, legend_label="ep="+str(eps))
 
     G.set_aspect_ratio(1)
     G.SHOW_OPTIONS['axes']=False
     return G
 
-def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1, check_single_region=True, random_colors=False, precision=50):
+
+def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distance=-1, check_single_region=True, random_colors=False, precision=50, plot_vectors=[]):
+    tau_linearity_regions = get_regions(B,source_sequence(B),(0,)*B.ncols())
+
     if return_steps >= len(seq):
         mutated_B = B
     else:
@@ -622,54 +644,201 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distan
     A = ClusterAlgebra(mutated_B)
 
     #plot limiting hyperplane
-    #ev = tau(B).eigenvectors_left()[2][1][0]
-    #right=vector((1,0,0))
-    #north, right, up = _basis(north, right)
-    #C = matrix((right, up, north)).inverse().transpose()
+    ev = tau(B,(-1,-1,-1),inv=True).eigenvectors_left()[-1][1][0]
+    right=vector((1,0,0))
+    north, right, up = _basis(north, right)
+    C = matrix((right, up, north)).inverse().transpose()
 
-    #def proj(pt):
-    #    # apparently the code is robust even if we try to project the point at infinity... it's a kind of magic?
-    #    #if _normalize(pt) == north:
-    #    pt = _normalize(C*pt)
-    #    t = (distance-pt[2])/(1-pt[2])
-    #    return (1-t)*pt[:2]
+    def proj(pt):
+        # apparently the code is robust even if we try to project the point at infinity... it's a kind of magic?
+        #if _normalize(pt) == north:
+        pt = _normalize(C*pt)
+        t = (distance-pt[2])/(1-pt[2])
+        return (1-t)*pt[:2]
 
-    #vecs = [vector((ev[1],-ev[0],0)),vector((ev[2],0,-ev[0])),vector((0,ev[2],-ev[1]))]
-    #vertices = list(zip(vecs, vecs[1:]+[vecs[0]]))
-    #triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
-    #G = polygon( triangle, fill=False, color="green")
+    vecs = [vector((ev[1],-ev[0],0)),vector((ev[2],0,-ev[0])),vector((0,ev[2],-ev[1]))]
+    vertices = list(zip(vecs, vecs[1:]+[vecs[0]]))
+    triangle = flatten( [ [ proj(r2*s+r1*(1-s)) for s in linspace(0,1,precision*ceil(norm(proj(r1)-proj(r2)))) ] for (r1,r2) in vertices], max_level=1)
+    G = polygon( triangle, fill=False, color="green")
 
     #seed = A.initial_seed()
     #seed.mutate(seq[-return_steps:],mutating_F=False)
     #north = sum(vector(g) for g in seed.g_vectors())
     F = A.cluster_fan(depth=depth)
     regions = get_regions(B, seq, la, return_steps)
-    return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_fan(F,color_initial=True, color_final=True, distance=distance,precision=precision, north=north)
+    return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_regions(tau_linearity_regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors, precision=precision, north=north, fixed_color="blue") + stereo_fan(F,color_initial=True, color_final=True, distance=distance,precision=precision, north=north, plot_vectors=plot_vectors)+G
 
 
-def regions_with_equalities(B, seq, la, return_table=False):
+def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
+    if projection == 'g':
+        if B.rank() != B.ncols():
+            raise ValueError("B is not full rank")
+    elif projection != 'c':
+        raise ValueError("What projection are you trying to do??")
     n = B.ncols()
     la = vector(la)
     regions = get_regions(B, seq, la)
     new_regions = {}
     for (key,value) in regions.items():
-        new_key = Set( (tuple(vector(lhs[:n])*B+vector(lhs[n:])),rhs-vector(lhs[:n]).dot_product(la)) for (lhs,rhs) in key)
+        if projection == 'c':
+            new_key = Set( (tuple(vector(lhs[:n])*B+vector(lhs[n:])),rhs-vector(lhs[:n]).dot_product(la)) for (lhs,rhs) in key)
+            # lhs[:n][-I B]mu = -lhs[:n]*lambda
+        else:
+            new_key = Set( (tuple(vector(lhs[:n])+vector(lhs[n:])*B.inverse()),rhs+vector(lhs[n:])*B.inverse()*la) for (lhs,rhs) in key)
+            # lhs[n:][B.inverse() -I]mu = lhs[n:]*B.inverse()*lambda
         new_value = []
         for cone in value:
-            new_value.append([(vector(ieq)*B,-vector(ieq).dot_product(la)) for ieq in cone])
+            if projection == 'c':
+                new_value.append([(vector(ieq)*B,-vector(ieq).dot_product(la)) for ieq in cone])
+            else:
+                new_value.append([(ieq,0) for ieq in cone])
         new_regions[new_key] = new_value
     if return_table:
         return table(list(new_regions.items()))
     return new_regions
 
-def get_polyhedra(B, seq, la):
-    regions =  regions_with_equalities(B, seq, la)
+
+def get_polyhedra(B, seq, la, projection='c'):
+    regions =  regions_with_equalities(B, seq, la, projection=projection)
     polyhedra = flatten( [ [ Polyhedron(ieqs=[ [-rhs]+list(lhs) for (lhs,rhs) in key ] +[[-rhs] + list(lhs) for (lhs,rhs) in cone]) for cone in value ] for (key,value) in regions.items()], max_level=1 )
     return polyhedra
 
-def get_polyhedron(B, seq, la):
-    polyhedra = get_polyhedra(B, seq, la)
+
+def get_polyhedron(B, seq, la, projection='c'):
+    polyhedra = get_polyhedra(B, seq, la, projection=projection)
     Q = Polyhedron(ambient_dim=B.ncols(),base_ring=QQ)
     for P in polyhedra:
         Q = Q.convex_hull(P)
     return Q
+
+
+def get_intersected_polyhedron(B, seq, la, projection='c'):
+    P = get_polyhedron(B, seq, la, projection=projection)
+    for k in range(len(seq)):
+        old_P = copy(P)
+        P = P.intersection(get_polyhedron(B, seq[:k], la, projection=projection))
+    return P
+
+
+def mutate_polyhedron(P, B, seq):
+    r"""
+    Actually broken since we're in the wrong lattice
+    """
+    polytope = P
+    if seq == []:
+        return polytope
+    k = seq.pop(0)
+    n = B.ncols()
+    Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(n-k-1)])
+    Mp = matrix(n, lambda i,j: (1 if i == j else 0) if j != k else (max(B[i,k],0) if i != k else -1) )
+    Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(n-k-1)])
+    Mm = matrix(n, lambda i,j: (1 if i == j else 0) if j != k else (max(-B[i,k],0) if i != k else -1) )
+    polytope_p = Mm*(polytope.intersection(Hp))
+    polytope_m = Mp*(polytope.intersection(Hm))
+    polytope = polytope_p.convex_hull(polytope_m)
+    new_B = copy(B)
+    new_B.mutate(k)
+    polytope = mutate_polyhedron(polytope, new_B, seq)
+    return polytope
+
+
+def filtered_inequalities(ieqs, tolerance=0.0000001):
+    ieqs = [ n(ieq.vector()/ieq.vector()[1:].norm()) for ieq in ieqs ]
+    filtered_ieqs = {}
+    for ieq in ieqs:
+        found = False
+        for normal in filtered_ieqs:
+            if sum(abs(ieq[i+1]-normal[i]) for i in range(B.ncols())) < tolerance:
+                filtered_ieqs[normal].append(ieq[0])
+                found = True
+                break
+        if not found:
+            filtered_ieqs[tuple(ieq[1:])] = [ieq[0]]
+    return [ (min(filtered_ieqs[key]),)+tuple(key) for key in sorted(filtered_ieqs.keys()) ]
+
+
+def find_inequalities(B, seq_type, num_steps, la, projection='c', tolerance=0.00000000000001):
+    n = B.ncols()
+    if seq_type == 'source':
+        inv_seq = False
+        taus_B = B.transpose()
+    elif seq_type == 'sink':
+        inv_seq = True
+        taus_B = B
+    else:
+        raise ValueError("Unknown sequence type requested.")
+    seq = source_sequence(B,inv=inv_seq)
+    poly = get_intersected_polyhedron(B, seq*floor(num_steps/n)+seq[:num_steps%n], la, projection=projection)
+    not_found_ieqs = filtered_inequalities(poly.inequalities(), tolerance=tolerance)
+
+    ev = tau(taus_B,(-1,)*B.ncols(),inv=True).eigenvectors_right()[-1][1][0].normalized()
+    if seq_type == 'source':
+        ev = -ev
+
+    working_ieqs = {}
+    for ieq in not_found_ieqs:
+        if sum(abs(ieq[i+1]-ev[i]) for i in range(B.ncols())) < tolerance:
+            working_ieqs[ieq] = []
+    for ieq in working_ieqs:
+        not_found_ieqs.remove(ieq)
+
+    found_ieqs = copy(working_ieqs)
+    while working_ieqs:
+        key = list(working_ieqs.keys())[0]
+        eps_list = working_ieqs.pop(key)
+        for eps in cartesian_product([[1,-1]]*n):
+            checking = True
+            if eps_list != []:
+                if eps_list[-1] == eps:
+                    checking = False
+            if checking:
+                new_normal = (tau(taus_B, eps, inv=True)*vector(key[1:])).normalized()
+                found = []
+                for ieq in not_found_ieqs:
+                    if sum(abs(ieq[i+1]-new_normal[i]) for i in range(B.ncols())) < tolerance:
+                        working_ieqs[ieq] = eps_list+[eps]
+                        found_ieqs[ieq] = eps_list+[eps]
+                        found.append(ieq)
+                for ieq in found:
+                    not_found_ieqs.remove(ieq)
+
+    print("Not found: ",not_found_ieqs)
+    print("Found: ",found_ieqs)
+
+
+#Exchange matrix methods
+
+def source_sequence(B,inv=False):
+    seq = []
+    Bp = copy(B)
+    n = B.ncols()
+    col_list = list(range(n))
+    while col_list != []:
+        for k in col_list:
+            if all( Bp[l][k] >= 0 for l in range(n) ):
+                seq.append(k)
+                col_list.remove(k)
+                Bp.mutate(k)
+                break
+    if inv:
+        seq.reverse()
+    return seq
+
+
+def E(B,k,sgn):
+     n = B.ncols()
+     E = identity_matrix(n)
+     E.set_column(k, list(map( lambda b: max(sgn*b,0), B.column(k))))
+     E[k,k] = -1
+     return E
+
+
+def tau(B, eps, inv=False):
+     n = B.ncols()
+     Bp = copy(B)
+     tau = identity_matrix(n)
+     ss = source_sequence(B, inv)
+     for k in range(n):
+         tau *= E(Bp,ss[k],eps[k])
+         Bp.mutate(ss[k])
+     return tau
