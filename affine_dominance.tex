@@ -1028,6 +1028,8 @@
     \\\hline\hline\\
   \end{align*}
 
+  
+
 \begin{landscape}
   \section{Rank 3}
   \label{sec:rank3}
@@ -1579,6 +1581,26 @@
       }\right\}
   \end{align*}
 
+  \begin{align*}
+    &\mu_1\to t_{3s-6}\\ %%
+    &\left\{\substack{
+      G^{-B^T,t_0}_{t_{3s}} \left[\begin{array}{cc} \big[ (C^{B,t_0}_{t_{3s}})^{\bullet 3} E^{B,t_0}_{2,-,t_{3s-1}} E^{B,t_0}_{1,-,t_{3s-2}} E^{B,t_0}_{3,-,t_{3s-3}} E^{B,t_0}_{2,-,t_{3s-4}} + (C^{B,t_0}_{t_{3s-5}})^{\bullet 1} \big] & I \end{array}\right] \tilde\mu \ge M_{3s}\lambda\\
+      \langle(a'c'+b',-aa'c'-ab'-ba'{c'}^2-bb'c'-c{c'}^2+2c',-ba'c'-bb'-cc'+1,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-a',aa'+ba'c'+cc'-1,ba'+c,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,a+bc',b,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+      \hline\\
+    &\left\{\substack{
+      G^{-B^T,t_0}_{t_{3s}} \left[\begin{array}{cc} (C^{B,t_0}_{t_{3s}})^{\bullet 3} E^{B,t_0}_{2,-,t_{3s-1}} E^{B,t_0}_{1,-,t_{3s-2}} E^{B,t_0}_{3,-,t_{3s-3}} E^{B,t_0}_{2,-,t_{3s-4}} E^{B,t_0}_{1,-,t_{3s-5}} & I \end{array}\right] \tilde\mu \ge M_{3s}\lambda\\
+        \langle(a'c'+b'+a'(-aa'c'-ab'-ba'{c'}^2-bb'c'-c{c'}^2+2c')+b'(-ba'c'-bb'-cc'+1),-aa'c'-ab'-ba'{c'}^2-bb'c'-c{c'}^2+2c',-ba'c'-bb'-cc'+1,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-a'+a'(aa'+ba'c'+cc'-1)+b'(ba'+c),aa'+ba'c'+cc'-1,ba'+c,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(-1+a'(a+bc')+b'b,a+bc',b,0,0,0),\tilde\mu\rangle \ge 0\\
+      \langle(1,0,0,0,0,0),\tilde\mu\rangle \ge 0
+      }\right\}\\
+      \hline\hline %%
+  \end{align*}
+
   \section{Rank 4}
   Let $\tilde B^{t_0}=\left[\begin{array}{cccc} 0 & -a & -b & -c\\ a' & 0 & -d & -e\\ b' & d' & 0 & -f\\ c' & e' & f' & 0 \\ 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 1\end{array}\right]$.
 
@@ -1796,6 +1818,33 @@
   \end{remark}
 
   \begin{lemma}
+    Assume $Q_B$ is connected.
+    For $r > n$ and $r'<r$ with $r-r'\ge n-1$, the region defined by the inequalities
+    \[
+      \left\{\substack{
+        \left\{\left\langle \bfe_{\ell_{q'}} \stackrel{\leftarrow}{\prod\limits_{q:r' \le q < q'}} \tilde E^{B,t_0}_{\ell_q,-,t_q}, \mu \right\rangle \ge 0:r' < q' \le r \right\}\\
+        \langle -\bfe_{\ell_{r'}}, \mu\rangle \ge 0
+      }\right\}
+    \]
+    is equal to the region defined by the inequalities
+    \[
+      \left\{\substack{
+        \left\{\left\langle \bfe_{\ell_{q'}} \stackrel{\leftarrow}{\prod\limits_{q:r' \le q < q'}} \tilde E^{B,t_0}_{\ell_q,-,t_q}, \mu \right\rangle \ge 0:r' < q' \le r'+n-1 \right\}\\
+        \langle -\bfe_{\ell_{r'}}, \mu\rangle \ge 0
+      }\right\}.
+    \]
+  \end{lemma}
+  \begin{proof}
+    We work by induction on $r-r'$ leaving $r'$ fixed, the case $r-r'=n-1$ being tautological.
+    Assume the claim holds for $r-1$ in place of $r$.
+    The inequality 
+    \[
+      \left\langle \bfe_{\ell_r} \stackrel{\leftarrow}{\prod\limits_{q:r' \le q < r}} \tilde E^{B,t_0}_{\ell_q,-,t_q}, \mu \right\rangle \ge 0
+    \]
+
+  \end{proof}
+
+  \begin{lemma}
     Assume $r > n$ and consider a sequence 
     \[n\le q'_m < q_m < \cdots < q'_1 < q_1\le r\] 
     with injective map $\{q:q'_a < q \le q_a, 1\le a\le m\}\to\{1,\ldots,n\}$, $q\mapsto\ell_q$.
@@ -1858,8 +1907,57 @@
     \sayDR{The matrix mutations make this seem impossible to do anything with, so I stopped writing, but in principle it an be written down.}
   \end{theorem}
 
+  \section{Affine Type $A$}
+
+  \begin{lemma}
+    For affine type $\tilde A_{n,1}$, there are $3\cdot 2^n-2$ regions after sufficiently many mutations.
+  \end{lemma}
 
 
+  \section{Rank 2 Subsequences in Rank 3}
+
+  Consider $B=\left[\begin{array}{ccc} 0 & -b & -d' \\ c & 0 & -e'\\ d & e & 0\end{array}\right]$.
+  Define $B_0:=B$ and define $t_k\in\TT_3$ recursively by joining 
+  \begin{itemize}
+    \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $1$;
+    \item $t_{2s-1}$ to $t_{2s}$ by an edge labeled $2$.
+  \end{itemize}
+  Then define $B_k$ recursively by $B_k:=\mu_\ell B_{k-1}$ for $k=2s+\ell$ with $1\le\ell\le 2$.
+
+  \begin{lemma}
+    For $s\ge 1$, we have 
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ c & 0 & -d'u_{2s-2}^- - e'u_{2s-3}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\end{array}\right]\]
+    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ -c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s-1}^- + eu_{2s-2}^- & -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]\]
+    For $s\le 0$, we have
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s+1}^+ - e'u_{2s}^+ \\ c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s+1}^- + eu_{2s}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]\]
+    \[B_{2s-1}=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- & du_{2s}^+ + eu_{2s-1}^+ & 0\end{array}\right]\]
+  \end{lemma}
+  \begin{proof}
+    We prove the claim for $s\le 0$ by downward induction.
+    For $s=0$, it is easy to check that the given expression for $B_{2s}$ agrees with $B_0$.
+    Now, using that $u_k^{\pm}<0$ for $k<0$, we compute
+    \begin{align*}
+      B_{2s-1}
+      &=\mu_2 B_{2s}\\
+      &=\left[\begin{array}{ccc} 0 & b & d'(bu_{2s}^- - u_{2s+1}^+) + e'(bu_{2s-1}^- - u_{2s}^+) \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -d(cu_{2s}^+ - u_{2s+1}^-) - e(cu_{2s-1}^+ - u_{2s}^-) &  -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]\\
+      &=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]
+    \end{align*}
+    and
+    \begin{align*}
+      B_{2s-2}
+      &=\mu_1 B_{2s-1}\\
+      &=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ c & 0 & d'(cu_{2s-1}^+ - u_{2s}^-) + e'(cu_{2s-2}^+ - u_{2s-1}^-)\\ du_{2s-1}^- + eu_{2s-2}^- &  d(bu_{2s-1}^- - u_{2s}^+) + e(bu_{2s-2}^- - u_{2s-1}^+) & 0\end{array}\right]\\
+      &=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ c & 0 & d'u_{2s-2}^- + e'u_{2s-3}^-\\ du_{2s-1}^- + eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\end{array}\right]
+    \end{align*}
+    as desired.
+
+    To prove the claim for $s\ge 1$, we first compute
+    \[B_1=\mu_1 B_0=\left[\begin{array}{ccc} 0 & b & d' \\ -c & 0 & -e'\\ -d & e & 0\end{array}\right]\]
+    and then
+    \[B_2=\mu_2 B_1=\left[\begin{array}{ccc} 0 & -b & d' \\ c & 0 & e'\\ -d & -e & 0\end{array}\right],\]
+    which agrees with the given expression for $B_{2s}$ for $s=1$.
+    The claim then follows by induction on $s\ge 1$ as above, we leave the details for this case as an exercise for the reader.
+  \end{proof}
 
 
 
