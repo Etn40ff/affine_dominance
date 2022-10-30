@@ -1916,7 +1916,7 @@
 
   \section{Rank 2 Subsequences in Rank 3}
 
-  Consider $B=\left[\begin{array}{ccc} 0 & -b & -d' \\ c & 0 & -e'\\ d & e & 0\end{array}\right]$.
+  Consider $B=\left[\begin{array}{ccc} 0 & -b & -d' \\ c & 0 & -e'\\ d & e & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
   Define $B_0:=B$ and define $t_k\in\TT_3$ recursively by joining 
   \begin{itemize}
     \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $1$;
@@ -1926,11 +1926,11 @@
 
   \begin{lemma}
     For $s\ge 1$, we have 
-    \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ c & 0 & -d'u_{2s-2}^- - e'u_{2s-3}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\end{array}\right]\]
-    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ -c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s-1}^- + eu_{2s-2}^- & -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]\]
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ c & 0 & -d'u_{2s-2}^- - e'u_{2s-3}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\\ -u_{2s-1}^- & u_{2s-2}^+ & 0\\ -u_{2s-2}^- & u_{2s-3}^+ & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ -c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s-1}^- + eu_{2s-2}^- & -du_{2s}^+ - eu_{2s-1}^+ & 0\\ u_{2s-1}^- & -u_{2s}^+ & 0\\ u_{2s-2}^- & -u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\]
     For $s\le 0$, we have
-    \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s+1}^+ - e'u_{2s}^+ \\ c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s+1}^- + eu_{2s}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]\]
-    \[B_{2s-1}=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- & du_{2s}^+ + eu_{2s-1}^+ & 0\end{array}\right]\]
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s+1}^+ - e'u_{2s}^+ \\ c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s+1}^- + eu_{2s}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\\ u_{2s+1}^- & -u_{2s}^+ & 0\\ u_{2s}^- & -u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_{2s-1}=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- & du_{2s}^+ + eu_{2s-1}^+ & 0\\ -u_{2s-1}^- & u_{2s}^+ & 0\\ -u_{2s-2}^- & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\]
   \end{lemma}
   \begin{proof}
     We prove the claim for $s\le 0$ by downward induction.
@@ -1939,22 +1939,22 @@
     \begin{align*}
       B_{2s-1}
       &=\mu_2 B_{2s}\\
-      &=\left[\begin{array}{ccc} 0 & b & d'(bu_{2s}^- - u_{2s+1}^+) + e'(bu_{2s-1}^- - u_{2s}^+) \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -d(cu_{2s}^+ - u_{2s+1}^-) - e(cu_{2s-1}^+ - u_{2s}^-) &  -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]\\
-      &=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\end{array}\right]
+      &=\left[\begin{array}{ccc} 0 & b & d'(bu_{2s}^- - u_{2s+1}^+) + e'(bu_{2s-1}^- - u_{2s}^+) \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -d(cu_{2s}^+ - u_{2s+1}^-) - e(cu_{2s-1}^+ - u_{2s}^-) & -du_{2s}^+ - eu_{2s-1}^+ & 0\\ -(cu_{2s}^+-u_{2s+1}^-) & u_{2s}^+ & 0\\ -(cu_{2s-1}^+-u_{2s}^-) & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\\
+      &=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\\ -u_{2s-1}^- & u_{2s}^+ & 0\\ -u_{2s-2}^- & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]
     \end{align*}
     and
     \begin{align*}
       B_{2s-2}
       &=\mu_1 B_{2s-1}\\
-      &=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ c & 0 & d'(cu_{2s-1}^+ - u_{2s}^-) + e'(cu_{2s-2}^+ - u_{2s-1}^-)\\ du_{2s-1}^- + eu_{2s-2}^- &  d(bu_{2s-1}^- - u_{2s}^+) + e(bu_{2s-2}^- - u_{2s-1}^+) & 0\end{array}\right]\\
-      &=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ c & 0 & d'u_{2s-2}^- + e'u_{2s-3}^-\\ du_{2s-1}^- + eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\end{array}\right]
+      &=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ c & 0 & d'(cu_{2s-1}^+ - u_{2s}^-) + e'(cu_{2s-2}^+ - u_{2s-1}^-)\\ du_{2s-1}^- + eu_{2s-2}^- &  d(bu_{2s-1}^- - u_{2s}^+) + e(bu_{2s-2}^- - u_{2s-1}^+) & 0\\ u_{2s-1}^- & -(bu_{2s-1}^- - u_{2s}^+) & 0\\ u_{2s-2}^- & -(bu_{2s-2}^- - u_{2s-1}^+) & 0\\ 0 & 0 & 1\end{array}\right]\\
+      &=\left[\begin{array}{ccc} 0 & -b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ c & 0 & d'u_{2s-2}^- + e'u_{2s-3}^-\\ du_{2s-1}^- + eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\\ u_{2s-1}^- & -u_{2s-2}^+ & 0\\ u_{2s-2}^- & -u_{2s-3}^+ & 0\\ 0 & 0 & 1\end{array}\right]
     \end{align*}
     as desired.
 
     To prove the claim for $s\ge 1$, we first compute
-    \[B_1=\mu_1 B_0=\left[\begin{array}{ccc} 0 & b & d' \\ -c & 0 & -e'\\ -d & e & 0\end{array}\right]\]
+    \[B_1=\mu_1 B_0=\left[\begin{array}{ccc} 0 & b & d' \\ -c & 0 & -e'\\ -d & e & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
     and then
-    \[B_2=\mu_2 B_1=\left[\begin{array}{ccc} 0 & -b & d' \\ c & 0 & e'\\ -d & -e & 0\end{array}\right],\]
+    \[B_2=\mu_2 B_1=\left[\begin{array}{ccc} 0 & -b & d' \\ c & 0 & e'\\ -d & -e & 0\\ -1 & 0 & 0\\ 0 & -1 & 0\\ 0 & 0 & 1\end{array}\right],\]
     which agrees with the given expression for $B_{2s}$ for $s=1$.
     The claim then follows by induction on $s\ge 1$ as above, we leave the details for this case as an exercise for the reader.
   \end{proof}
