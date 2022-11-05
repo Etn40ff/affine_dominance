@@ -673,7 +673,7 @@ def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
     if projection == 'g':
         if B.rank() != B.ncols():
             raise ValueError("B is not full rank")
-    elif projection != 'c':
+    elif projection != 'c' and projection:
         raise ValueError("What projection are you trying to do??")
     n = B.ncols()
     la = vector(la)
@@ -683,15 +683,19 @@ def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
         if projection == 'c':
             new_key = Set( (tuple(vector(lhs[:n])*B+vector(lhs[n:])),rhs-vector(lhs[:n]).dot_product(la)) for (lhs,rhs) in key)
             # lhs[:n][-I B]mu = -lhs[:n]*lambda
-        else:
+        elif projection == 'g':
             new_key = Set( (tuple(vector(lhs[:n])+vector(lhs[n:])*B.inverse()),rhs+vector(lhs[n:])*B.inverse()*la) for (lhs,rhs) in key)
             # lhs[n:][B.inverse() -I]mu = lhs[n:]*B.inverse()*lambda
+        else:
+            new_key = key
         new_value = []
         for cone in value:
             if projection == 'c':
                 new_value.append([(vector(ieq)*B,-vector(ieq).dot_product(la)) for ieq in cone])
-            else:
+            elif projection == 'g':
                 new_value.append([(ieq,0) for ieq in cone])
+            else:
+                new_value.append([(tuple(ieq)+(0,)*n,0) for ieq in cone])
         new_regions[new_key] = new_value
     if return_table:
         return table(list(new_regions.items()))
@@ -706,7 +710,10 @@ def get_polyhedra(B, seq, la, projection='c'):
 
 def get_polyhedron(B, seq, la, projection='c'):
     polyhedra = get_polyhedra(B, seq, la, projection=projection)
-    Q = Polyhedron(ambient_dim=B.ncols(),base_ring=QQ)
+    dim = B.ncols()
+    if not projection:
+        dim = 2*dim
+    Q = Polyhedron(ambient_dim=dim,base_ring=QQ)
     for P in polyhedra:
         Q = Q.convex_hull(P)
     return Q

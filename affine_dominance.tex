@@ -1968,6 +1968,126 @@
     Otherwise, the possible signs appearing in the exchange matrix could be somewhat arbitrary and hence a precise formula for the result of iterated mutations seems out of reach.
   \end{remark}
 
+  The next result gives the equalities which must be imposed on $\RR^6$ to obtain the dominance region from that cut out by the inequalities obtained below.
+  \begin{corollary}\mbox{}
+    \begin{enumerate}
+      \item For $k\ge2$, the columns of the exchange matrix $B_k$ span the space determined by the equations
+        \begin{align*}
+          -\mu_0 - b u_{2s-2}^- \mu_3 + b u_{2s-1}^- \mu_4 + (d' u_{2s-1}^+ + e' u_{2s-2}^+) \mu_5 &= 0\\
+          -\mu_1 + c u_{2s-3}^+ \mu_3 - c u_{2s-2}^+ \mu_4 - (d' u_{2s-2}^- + e' u_{2s-3}^-) \mu_5 &= 0\\
+          -\mu_2 + d \mu_3 + e \mu_4 &= 0
+        \end{align*}
+        if $k=2s$ for $s \ge 1$, and by the equations
+        \begin{align*}
+          -\mu_0 + b u_{2s-2}^- \mu_3 - b u_{2s-1}^- \mu_4 - (d' u_{2s-1}^+ + e' u_{2s-2}^+) \mu_5 &= 0\\
+          -\mu_1 - c u_{2s-1}^+ \mu_3 + c u_{2s}^+ \mu_4 + (d' u_{2s}^- + e' u_{2s-1}^-) \mu_5 &= 0\\
+          -\mu_2 + d \mu_3 + e \mu_4 &= 0
+        \end{align*}
+        if $k=2s+1$ for $s \ge 1$.
+      \item For $k\le0$, the columns of the exchange matrix $B_k$ span the space determined by the equations
+        \begin{align*}
+          -\mu_0 + b u_{2s}^- \mu_3 - b u_{2s+1}^- \mu_4 - (d' u_{2s+1}^+ + e' u_{2s}^+) \mu_5 &= 0\\
+          -\mu_1 - c u_{2s-1}^+ \mu_3 + c u_{2s}^+ \mu_4 + (d' u_{2s}^- + e' u_{2s-1}^-) \mu_5 &= 0\\
+          -\mu_2 + d \mu_3 + e \mu_4 &= 0
+        \end{align*}
+        if $k=2s$ for $s \le 0$, and by the equations
+        \begin{align*}
+          -\mu_0 - b u_{2s-2}^- \mu_3 + b u_{2s-1}^- \mu_4 + (d' u_{2s-1}^+ + e' u_{2s-2}^+) \mu_5 &= 0\\
+          -\mu_1 + c u_{2s-1}^+ \mu_3 - c u_{2s}^+ \mu_4 - (d' u_{2s}^- + e' u_{2s-1}^-) \mu_5 &= 0\\
+          -\mu_2 + d \mu_3 + e \mu_4 &= 0
+        \end{align*}
+        if $k=2s-1$ for $s \le 0$.
+    \end{enumerate}
+  \end{corollary}
+
+  To begin understanding the inequalities cutting out the dominance region after mutations, we first write down the inequalities defining the initial cones.
+  \begin{lemma}
+    For $\tilde\lambda\in\RR^6$ and $k\in\ZZ$, the cone $\cC_{t_k}(\tilde\lambda)$ is determined by inequalities as follows:
+    \begin{itemize}
+      \item for $k\ge 2$
+        \begin{align*}
+          \langle (0,0,0,u_{k-3}^-,-u_{k-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,u_{k-2}^-,-u_{k-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+      \item for $k=1$
+        \begin{align*}
+          \langle (0,0,0,-1,0,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,1,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+      \item for $k\le 0$
+        \begin{align*}
+          \langle (0,0,0,-u_{k-1}^-,u_{k}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,-u_{k}^-,u_{k+1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+    \end{itemize}
+  \end{lemma}
+  \begin{proof}
+    \begin{itemize}
+      \item if $k\ge 2$, the inequalities are
+        \begin{align*}
+          \langle (0,0,0,u_{2s-3}^+,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^-,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+        if $k=2s$ for $s\ge1$ and the inequalities are
+        \begin{align*}
+          \langle (0,0,0,u_{2s-1}^+,-u_{2s}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^-,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+        if $k=2s+1$ for $s\ge1$;
+      \item if $k\le 0$, the inequalities are
+        \begin{align*}
+          \langle (0,0,0,-u_{2s-1}^+,u_{2s}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,-u_{2s}^-,u_{2s+1}^-,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+        if $k=2s$ for $s\le0$ and the inequalities are
+        \begin{align*}
+          \langle (0,0,0,-u_{2s-1}^+,u_{2s}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,-u_{2s-2}^-,u_{2s-1}^-,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+          \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+        \end{align*}
+        if $k=2s-1$ for $s\le0$;
+    \end{itemize}
+  \end{proof}
+
+  Define piecewise-linear transformations $\phi_{2s}$ and $\phi_{2s+1}$ of $\RR^6$ for $s\ge 1$ as follows:
+  \begin{equation}
+    \phi_{2s}(\tilde\lambda)
+    :=
+    \begin{cases} 
+      (-\mu_0,c\mu_0+\mu_1,\mu_2,\mu_3,\mu_4,\mu_5) & \text{if $\mu_0 \ge 0$;}\\
+      \big(-\mu_0,\mu_1,(du_{2s-1}^-+eu_{2s-2}^-)\mu_0+\mu_2,u_{2s-1}^-\mu_0+\mu_3,u_{2s-2}^-\mu_0+\mu_4,\mu_5\big) & \text{if $\mu_0 < 0$;}
+    \end{cases}
+  \end{equation}
+  \begin{equation}
+    \phi_{2s+1}(\tilde\mu)
+    :=
+    \begin{cases} 
+      (\mu_0+b\mu_1,-\mu_1,\mu_2,\mu_3,\mu_4,\mu_5) & \text{if $\mu_1 \ge 0$;}\\
+      \big(\mu_0,-\mu_1,(du_{2s}^++eu_{2s-1}^+)\mu_1+\mu_2,u_{2s}^+\mu_1+\mu_3,u_{2s-1}^+\mu_1+\mu_4,\mu_5\big) & \text{if $\mu_1 < 0$.}
+    \end{cases}
+  \end{equation}
+
+  Then define $\tau_{2s}:=\phi_{2s+1}\phi_{2s}$ for $s\ge 1$ and observe that this is given by the following piecewise-linear transformation:
+  \begin{equation}
+    \tau_{2s}(\tilde\mu)
+    :=
+    \begin{cases} 
+      \big((bc-1)\mu_0+b\mu_1,-c\mu_0-\mu_1,\mu_2, & \text{if $\mu_0 \ge 0$ and $c\mu_0+\mu_1 \ge 0$;}\\
+      \hspace{1.79in} \mu_3,\mu_4,\mu_5\big) & \\
+      \big(-\mu_0,-c\mu_0-\mu_1,(du_{2s}^++eu_{2s-1}^+)(c\mu_0+\mu_1)+\mu_2, & \text{if $\mu_0 \ge 0$ and $c\mu_0+\mu_1 < 0$;}\\
+      \hspace{1.15in} u_{2s}^+(c\mu_0+\mu_1)+\mu_3,u_{2s-1}^+(c\mu_0+\mu_1)+\mu_4,\mu_5\big) & \\ 
+      \big(-\mu_0,-\mu_1,(du_{2s-1}^-+eu_{2s-2}^-)\mu_0+(du_{2s}^++eu_{2s-1}^+)\mu_1+\mu_2, & \text{if $\mu_0 < 0$ and $\mu_1 < 0$;}\\
+      \hspace{0.78in} u_{2s-1}^-\mu_0+u_{2s}^+\mu_1+\mu_3,u_{2s-2}^-\mu_0+u_{2s-1}^+\mu_1+\mu_4,\mu_5\big) & \\ 
+      \big(-\mu_0+b\mu_1,-\mu_1,(du_{2s-1}^-+eu_{2s-2}^-)\mu_0+\mu_2, & \text{if $\mu_0 < 0$ and $\mu_1 \ge 0$;}\\
+      \hspace{1.15in} u_{2s-1}^-\mu_0+\mu_3,u_{2s-2}^-\mu_0+\mu_4,\mu_5\big) & 
+    \end{cases}
+  \end{equation}
 
 
 \bibliographystyle{amsalpha}
