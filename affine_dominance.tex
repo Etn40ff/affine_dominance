@@ -1916,6 +1916,8 @@
 
   \section{Rank 2 Subsequences in Rank 3}
 
+  \subsection{Source mutations}
+
   Consider $B=\left[\begin{array}{ccc} 0 & -b & -d' \\ c & 0 & -e'\\ d & e & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
   Define $B_0:=B$ and define $t_k\in\TT_3$ recursively by joining 
   \begin{itemize}
@@ -1925,6 +1927,7 @@
   Then define $B_k$ recursively by $B_k:=\mu_\ell B_{k-1}$ for $k=2s+\ell$ with $1\le\ell\le 2$.
 
   \begin{lemma}
+    \[B_1=\left[\begin{array}{ccc} 0 & b & d' \\ -c & 0 & -e'\\ -d & e & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
     For $s\ge 1$, we have 
     \[B_{2s}=\left[\begin{array}{ccc} 0 & -b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ c & 0 & -d'u_{2s-2}^- - e'u_{2s-3}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  du_{2s-2}^+ + eu_{2s-3}^+ & 0\\ -u_{2s-1}^- & u_{2s-2}^+ & 0\\ -u_{2s-2}^- & u_{2s-3}^+ & 0\\ 0 & 0 & 1\end{array}\right]\]
     \[B_{2s+1}=\left[\begin{array}{ccc} 0 & b & -d'u_{2s-1}^+ - e'u_{2s-2}^+ \\ -c & 0 & d'u_{2s}^- + e'u_{2s-1}^-\\ du_{2s-1}^- + eu_{2s-2}^- & -du_{2s}^+ - eu_{2s-1}^+ & 0\\ u_{2s-1}^- & -u_{2s}^+ & 0\\ u_{2s-2}^- & -u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\]
@@ -1977,11 +1980,21 @@
           -\mu_1 + c u_{2s-3}^+ \mu_3 - c u_{2s-2}^+ \mu_4 - (d' u_{2s-2}^- + e' u_{2s-3}^-) \mu_5 &= 0\\
           -\mu_2 + d \mu_3 + e \mu_4 &= 0
         \end{align*}
+        \begin{align*}
+          \langle (-1,0,0, -b u_{2s-2}^-, b u_{2s-1}^-, d' u_{2s-1}^+ + e' u_{2s-2}^+), \tilde\mu \rangle &= 0\\
+          \langle (0,-1,0, c u_{2s-3}^+, -c u_{2s-2}^+, -d' u_{2s-2}^- - e' u_{2s-3}^-), \tilde\mu \rangle &= 0\\
+          \langle (0,0,-1, d, e, 0),\tilde\mu \rangle &= 0
+        \end{align*}
         if $k=2s$ for $s \ge 1$, and by the equations
         \begin{align*}
           -\mu_0 + b u_{2s-2}^- \mu_3 - b u_{2s-1}^- \mu_4 - (d' u_{2s-1}^+ + e' u_{2s-2}^+) \mu_5 &= 0\\
           -\mu_1 - c u_{2s-1}^+ \mu_3 + c u_{2s}^+ \mu_4 + (d' u_{2s}^- + e' u_{2s-1}^-) \mu_5 &= 0\\
           -\mu_2 + d \mu_3 + e \mu_4 &= 0
+        \end{align*}
+        \begin{align*}
+          \langle (-1,0,0, b u_{2s-2}^-, -b u_{2s-1}^-, -d' u_{2s-1}^+ - e' u_{2s-2}^+), \tilde\mu \rangle &= 0\\
+          \langle (0,-1,0, -c u_{2s-1}^+, c u_{2s}^+, d' u_{2s}^- + e' u_{2s-1}^-), \tilde\mu \rangle &= 0\\
+          \langle (0,0,-1, d, e, 0), \tilde\mu \rangle &= 0
         \end{align*}
         if $k=2s+1$ for $s \ge 1$.
       \item For $k\le0$, the columns of the exchange matrix $B_k$ span the space determined by the equations
@@ -1990,11 +2003,21 @@
           -\mu_1 - c u_{2s-1}^+ \mu_3 + c u_{2s}^+ \mu_4 + (d' u_{2s}^- + e' u_{2s-1}^-) \mu_5 &= 0\\
           -\mu_2 + d \mu_3 + e \mu_4 &= 0
         \end{align*}
+        \begin{align*}
+          \langle (-1,0,0, b u_{2s}^-, -b u_{2s+1}^-, -d' u_{2s+1}^+ - e' u_{2s}^+), \tilde\mu \rangle &= 0\\
+          \langle (0,-1,0, -c u_{2s-1}^+, c u_{2s}^+, d' u_{2s}^- + e' u_{2s-1}^-), \tilde\mu \rangle &= 0\\
+          \langle (0,0,-1, d, e, 0), \tilde\mu \rangle &= 0
+        \end{align*}
         if $k=2s$ for $s \le 0$, and by the equations
         \begin{align*}
           -\mu_0 - b u_{2s-2}^- \mu_3 + b u_{2s-1}^- \mu_4 + (d' u_{2s-1}^+ + e' u_{2s-2}^+) \mu_5 &= 0\\
           -\mu_1 + c u_{2s-1}^+ \mu_3 - c u_{2s}^+ \mu_4 - (d' u_{2s}^- + e' u_{2s-1}^-) \mu_5 &= 0\\
           -\mu_2 + d \mu_3 + e \mu_4 &= 0
+        \end{align*}
+        \begin{align*}
+          \langle (-1,0,0, -b u_{2s-2}^-, b u_{2s-1}^-, d' u_{2s-1}^+ + e' u_{2s-2}^+), \tilde\mu \rangle &= 0\\
+          \langle (0,-1,0, c u_{2s-1}^+, -c u_{2s}^+, -d' u_{2s}^- - e' u_{2s-1}^-), \tilde\mu \rangle &= 0\\
+          \langle (0,0,-1, d, e, 0), \tilde\mu \rangle &= 0
         \end{align*}
         if $k=2s-1$ for $s \le 0$.
     \end{enumerate}
@@ -2057,13 +2080,15 @@
 
   Define piecewise-linear transformations $\phi_{2s}$ and $\phi_{2s+1}$ of $\RR^6$ for $s\ge 1$ as follows:
   \begin{equation}
-    \phi_{2s}(\tilde\lambda)
+    \phi_{2s}(\tilde\mu)
     :=
     \begin{cases} 
       (-\mu_0,c\mu_0+\mu_1,\mu_2,\mu_3,\mu_4,\mu_5) & \text{if $\mu_0 \ge 0$;}\\
       \big(-\mu_0,\mu_1,(du_{2s-1}^-+eu_{2s-2}^-)\mu_0+\mu_2,u_{2s-1}^-\mu_0+\mu_3,u_{2s-2}^-\mu_0+\mu_4,\mu_5\big) & \text{if $\mu_0 < 0$;}
     \end{cases}
   \end{equation}
+  \[E^{2s}_{1,+}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ c & 1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s}_{1,-}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ du_{2s-1}^+ + eu_{2s-2}^- & 0 & 1 & 0 & 0 & 0\\ u_{2s-1}^+ & 0 & 0 & 1 & 0 & 0\\ u_{2s-2}^- & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
   \begin{equation}
     \phi_{2s+1}(\tilde\mu)
     :=
@@ -2072,6 +2097,8 @@
       \big(\mu_0,-\mu_1,(du_{2s}^++eu_{2s-1}^+)\mu_1+\mu_2,u_{2s}^+\mu_1+\mu_3,u_{2s-1}^+\mu_1+\mu_4,\mu_5\big) & \text{if $\mu_1 < 0$.}
     \end{cases}
   \end{equation}
+  \[E^{2s+1}_{2,+}=\left[\begin{array}{cccccc} 1 & b & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s+1}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s}^+ + eu_{2s-1}^-  & 1 & 0 & 0 & 0\\ 0 & u_{2s}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-1}^- & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
 
   Then define $\tau_{2s}:=\phi_{2s+1}\phi_{2s}$ for $s\ge 1$ and observe that this is given by the following piecewise-linear transformation:
   \begin{equation}
@@ -2088,6 +2115,170 @@
       \hspace{1.15in} u_{2s-1}^-\mu_0+\mu_3,u_{2s-2}^-\mu_0+\mu_4,\mu_5\big) & 
     \end{cases}
   \end{equation}
+
+
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion}
+      u_{i-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{i-1}^\varepsilon-u_{\ell-1}^\varepsilon u_i^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{i-1}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_i^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion}
+      u_{2s-1-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-2}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-1}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-2}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-1}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion}
+      u_{2s-2-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-3}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-2}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-3}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-2}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
+
+
+  Mutations of inequalities back to the initial cluster.
+
+  For $s\ge1$, we have $\cC_{t_{2s}}(\tilde\lambda)$ given by the inequalities
+  \sayDR{Really this $\tilde\lambda$ is the one mutated from the initial choice of $\tilde\lambda$, but the mutations end up canceling out once we get back to the initial cluster.}
+  \begin{align*}
+    \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+  \end{align*}
+  \[E^{2s-1}_{2,+}=\left[\begin{array}{cccccc} 1 & b & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s-1}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s-2}^+ + eu_{2s-3}^-  & 1 & 0 & 0 & 0\\ 0 & u_{2s-2}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-3}^- & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  Then $\phi_{2s-1}^{-1}\cC_{t_{2s}}(\tilde\lambda)$ is given by the inequalities
+  \begin{align*}
+    \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,1,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+  \end{align*}
+  \[E^{2s-2}_{1,+}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ c & 1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s-2}_{1,-}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ du_{2s-3}^+ + eu_{2s-4}^- & 0 & 1 & 0 & 0 & 0\\ u_{2s-3}^+ & 0 & 0 & 1 & 0 & 0\\ u_{2s-4}^- & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  Then $\phi_{2s-2}^{-1}\phi_{2s-1}^{-1}\cC_{t_{2s}}(\tilde\lambda)$ is given by the inequalities
+  \begin{align*}
+    \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (1,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (c,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (c,1,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0 \qquad \leftarrow \text{glued}\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+  \end{align*}
+  \[E^{2s-3}_{2,+}=\left[\begin{array}{cccccc} 1 & b & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s-3}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s-4}^+ + eu_{2s-5}^-  & 1 & 0 & 0 & 0\\ 0 & u_{2s-4}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-5}^- & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  Then $\phi_{2s-3}^{-1}\phi_{2s-2}^{-1}\phi_{2s-1}^{-1}\cC_{t_{2s}}(\tilde\lambda)$ is given by the inequalities
+  \begin{align*}
+    \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,u_2^+,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (u_1^-,u_2^+,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0 \qquad \leftarrow \text{glued}\\ 
+    \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (0,u_3^+,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \langle (u_2^-,bu_2^-,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0 \qquad \leftarrow \text{\color{red}not supposed to be here}\\
+    \langle (u_2^-,u_3^+,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0 \qquad \leftarrow \text{glued}\\ 
+    \langle (u_2^-,u_3^+ - 1,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0 \qquad \leftarrow \text{\color{red}not supposed to be here}\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+  \end{align*}
+
+  $s=5$
+  \begin{align*}
+    \langle (-1,0,0,24, -57, -73, \tilde\mu \rangle &= 0\\
+    \langle (0,-1,0, -38, 90, 128), \tilde\mu \rangle &= 0\\
+    \langle (0,0,-1, 3, 3, 0), \tilde\mu \rangle &= 0
+  \end{align*}
+
+  \begin{proposition}
+    Suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\{\langle\alpha_k,\mu\rangle = 0\}$, for some $k\in\{1,2,\ldots,n\}$, which is fixed by $\phi$.
+    Write $E_+$ (resp.~$E_-$) for the linear transformation applied by $\phi$ when $\langle\alpha_k,\mu\rangle\ge0$ (resp. $\langle\alpha_k,\mu\rangle\le 0$) and suppose $E_\pm^T(\alpha_k)=-\alpha_k$.
+    Consider $\beta\in\RR^n$ such that $E_+^T(\beta)_\ell=E_-^T(\beta)_\ell$ for $\ell\ne k$ and $E_+^T(\beta)_k\ge E_-^T(\beta)_k$.
+    Then the region defined by $\{\langle\beta,\mu\rangle\ge0\}$ is transformed by $\phi$ into the union of the regions defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ which is equal to the region defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$.
+  \end{proposition}
+  \begin{proof}
+    Splitting the region $\{\langle\beta,\mu\rangle\ge0\}$ into the union of $\left\{\substack{\langle \beta,\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle \beta,\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$, then applying $\phi$ gives the first claim.
+    The inequality $\langle E_-^T(\beta),\mu\rangle \ge 0$ holds inside the region $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and the inequality $\langle E_+^T(\beta),\mu\rangle \ge 0$ holds inside the region $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ so that 
+    \[\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\} \cup \left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\} \subseteq \left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}.\]
+    The opposite containment is immediate by considering the intersection of $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$ with each of $\{\langle\pm\alpha_k,\mu\rangle\ge0\}$. 
+  \end{proof}
+
+  \begin{proposition}
+    For $k\in\{1,2,\ldots,n\}$, suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\mu_k = 0$.
+    Write $E^+$ (resp. $E^-$) for the linear transformation applied by $\phi$ when $\mu_k\ge0$ (resp. $\mu_k\le 0$).
+    Consider $\beta\in\RR^n$.
+    Suppose 
+    \[(E^\pm)^T(\beta)_\ell=\begin{cases} \beta_\ell & \text{if $\ell\ne k$;}\\ -\beta_k+\sum_{m=1}^n e^\pm_m \beta_m & \text{if $\ell=k$;}\end{cases}\]
+    where $e^\pm_m\ge0$ and $e^\pm_k=0$.
+    If $(E^+)^T(\beta)_k-(E^-)^T(\beta)_k\ge 0$, then the region defined by $\left\{\substack{\langle (E^+)^T(\beta),\mu\rangle \ge 0\\ \langle (E^-)^T(\beta),\mu\rangle \ge 0}\right\}$ is equal to the union of the regions defined by $\left\{\substack{\langle (E^+)^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \le 0}\right\}$ and $\left\{\substack{\langle (E^-)^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$.
+  \end{proposition}
+
+  \subsection{Sink mutations}
+
+  Consider $B=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & -b\\ e' & c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
+  Define $B_0:=B$ and define $t_k\in\TT_3$ recursively by joining 
+  \begin{itemize}
+    \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $3$;
+    \item $t_{2s-1}$ to $t_{2s}$ by an edge labeled $2$.
+  \end{itemize}
+  Then define $B_k$ recursively by $B_k:=\mu_\ell B_{k-1}$ for $k=2s+\ell$ with $2\le\ell\le 3$.
+
+  \begin{lemma}
+    \[B_1=\left[\begin{array}{ccc} 0 & -d & e \\ d' & 0 & b\\ -e' & -c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ e' & c & -1\end{array}\right]\]
+    For $s\ge 1$, we have 
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -du_{2s-3}^+ - eu_{2s-2}^- & du_{2s-2}^+ + eu_{2s-1}^- \\ d'u_{2s-3}^- + e'u_{2s-2}^+ & 0 & -b\\ -d'u_{2s-2}^- - e'u_{2s-1}^+ &  c & 0\\ 1 & 0 & 0\\ d' & -u_{2s-1}^- & u_{2s}^+ \\ cd'+e' & -u_{2s}^- & u_{2s+1}^+\end{array}\right]\]
+    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & du_{2s-1}^+ + eu_{2s}^- & -du_{2s-2}^+ - eu_{2s-1}^- \\ -d'u_{2s-1}^- - e'u_{2s}^+ & 0 & b\\ d'u_{2s-2}^- + e'u_{2s-1}^+ &  -c & 0\\ 1 & 0 & 0\\ d' & u_{2s+1}^- & -u_{2s}^+ \\ cd'+e' & u_{2s+2}^- & -u_{2s+1}^+\end{array}\right]\]
+    \[B_{-1}=\left[\begin{array}{ccc} 0 & d & -bd-e \\ -d' & 0 & b\\ cd'+e' & -c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    For $s\le -1$, we have
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & du_{2s-1}^+ + eu_{2s}^- & -du_{2s}^+ - eu_{2s+1}^- \\ -d'u_{2s-1}^- - e'u_{2s}^+ & 0 & -b\\ d'u_{2s}^- + e'u_{2s+1}^+ &  c & 0\\ 1 & 0 & 0\\ d' & u_{2s+1}^- & -u_{2s+2}^+ \\ cd'+e' & u_{2s+2}^- & -u_{2s+3}^+\end{array}\right]\]
+    \[B_{2s-1}=\left[\begin{array}{ccc} 0 & -du_{2s-1}^+ - eu_{2s}^- & du_{2s-2}^+ + eu_{2s-1}^- \\ d'u_{2s-1}^- + e'u_{2s}^+ & 0 & b\\ -d'u_{2s-2}^- - e'u_{2s-1}^+ &  -c & 0\\ 1 & 0 & 0\\ d' & -u_{2s+1}^- & u_{2s}^+ \\ cd'+e' & -u_{2s+2}^- & u_{2s+1}^+\end{array}\right]\]
+  \end{lemma}
+  \begin{proof}
+    \[B_0=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & -b\\ e' & c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_1=\left[\begin{array}{ccc} 0 & -d & e \\ d' & 0 & b\\ -e' & -c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ e' & c & -1\end{array}\right]\]
+    \[B_2=\left[\begin{array}{ccc} 0 & d & e \\ -d' & 0 & -b\\ -e' & c & 0\\ 1 & 0 & 0\\ d' & -1 & b\\ cd'+e' & -c & bc-1\end{array}\right]\]
+    \[B_3=\left[\begin{array}{ccc} 0 & d+ce & -e \\ -d'-be' & 0 & b\\ e' & -c & 0\\ 1 & 0 & 0\\ d' & bc-1 & -b\\ cd'+e' & bc^2-2c & -(bc-1)\end{array}\right]\]
+    \[B_4=\left[\begin{array}{ccc} 0 & -d-ce & bd+(bc-1)e \\ d'+be' & 0 & -b\\ -cd'-(bc-1)e' & c & 0\\ 1 & 0 & 0\\ d' & -(bc-1) & b^2c-2b\\ cd'+e' & -(bc^2-2c) & b^2c^2-3bc+1\end{array}\right]\]
+
+    \[B_0=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & -b\\ e' & c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_{-1}=\left[\begin{array}{ccc} 0 & d & -bd-e \\ -d' & 0 & b\\ cd'+e' & -c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_{-2}=\left[\begin{array}{ccc} 0 & -(bc-1)d-ce & bd+e \\ (bc-1)d'+be' & 0 & -b\\ -cd'-e' & c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ cd'+e' & 0 & -1\end{array}\right]\]
+      \[B_{-3}=\left[\begin{array}{ccc} 0 & (bc-1)d+ce & -(b^2c-2b)d-(bc-1)e \\ -(bc-1)d'-be' & 0 & b\\ (bc^2-2c)d'+(bc-1)e' & -c & 0\\ 1 & 0 & 0\\ d' & 1 & -b\\ cd'+e' & 0 & -1\end{array}\right]\]
+
+  \end{proof}
+
+  \subsection{Mixed mutations}
+
+  Consider $B=\left[\begin{array}{ccc} 0 & -d' & -b \\ d & 0 & -e\\ c & e' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
+  Define $B_0:=B$ and define $t_k\in\TT_3$ recursively by joining 
+  \begin{itemize}
+    \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $1$;
+    \item $t_{2s-1}$ to $t_{2s}$ by an edge labeled $3$.
+  \end{itemize}
+  Then define $B_k$ recursively by $B_k:=\mu_? B_{k-1}$ for $k=2s+?$.
+
+  \begin{lemma}
+    \[B_1=\left[\begin{array}{ccc} 0 & d' & b \\ -d & 0 & -e\\ -c & e' & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    For $s\ge 1$, we have 
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & d'u_{2s-1}^- + e'u_{2s}^+ & -b \\ -du_{2s-1}^+ - eu_{2s}^- & 0 & du_{2s-2}^+ + eu_{2s-1}^-\\ c &  -d'u_{2s-2}^- - e'u_{2s-1}^+ & 0\\ -u_{2s-1}^- & 0 & u_{2s-2}^+\\ 0 & 1 & 0 \\ -u_{2s-2}^- & e' & u_{2s-3}^+\end{array}\right]\]
+    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & -d'u_{2s-1}^- - e'u_{2s}^+ & b \\ du_{2s-1}^+ + eu_{2s}^- & 0 & -du_{2s}^+ - eu_{2s+1}^-\\ -c &  d'u_{2s}^- + e'u_{2s+1}^+ & 0\\ u_{2s-1}^- & 0 & -u_{2s}^+\\ 0 & 1 & 0 \\ u_{2s-2}^- & e' & -u_{2s-1}^+\end{array}\right]\]
+    For $s\le -1$, we have
+    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & d'u_{2s+1}^- + e'u_{2s+2}^+ & b \\ -du_{2s+1}^+ - eu_{2s+2}^- & 0 & du_{2s+2}^+ + eu_{2s+3}^-\\ -c &  -d'u_{2s+2}^- - e'u_{2s+3}^+ & 0\\ -u_{2s+1}^- & 0 & u_{2s+2}^+\\ 0 & 1 & 0 \\ -u_{2s}^- & e' & u_{2s+1}^+\end{array}\right]\]
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -d'u_{2s+1}^- - e'u_{2s+2}^+ & -b \\ du_{2s+1}^+ + eu_{2s+2}^- & 0 & -du_{2s}^+ - eu_{2s+1}^-\\ c &  d'u_{2s}^- + e'u_{2s+1}^+ & 0\\ u_{2s+1}^- & 0 & -u_{2s}^+\\ 0 & 1 & 0 \\ u_{2s}^- & e' & -u_{2s-1}^+\end{array}\right]\]
+  \end{lemma}
+  \begin{proof}
+    \[B_0=\left[\begin{array}{ccc} 0 & -d' & -b \\ d & 0 & -e\\ c & e' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_1=\left[\begin{array}{ccc} 0 & d' & b \\ -d & 0 & -e\\ -c & e' & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_2=\left[\begin{array}{ccc} 0 & d'+be' & -b \\ -d-ce & 0 & e\\ c & -e' & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & e' & -1\end{array}\right]\]
+    \[B_3=\left[\begin{array}{ccc} 0 & -d' - be' & b \\ d + ce & 0 & -bd - (bc-1)e\\ -c & cd' + (bc-1)e' & 0\\ 1 & 0 & -b\\ 0 & 1 & 0\\ 0 & e' & -1\end{array}\right]\]
+    \[B_4=\left[\begin{array}{ccc} 0 & (bc-1)d' + (b^2c-2b)e' & -b \\ -(bc-1)d - (bc^2-2c)e & 0 & bd + (bc-1)e\\ c & -cd' - (bc-1)e' & 0\\ -(bc-1) & 0 & b\\ 0 & 1 & 0\\ -c & e' & 1\end{array}\right]\]
+
+    \[B_0=\left[\begin{array}{ccc} 0 & -d' & -b \\ d & 0 & -e\\ c & e' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_{-1}=\left[\begin{array}{ccc} 0 & -d' & b \\ d & 0 & e\\ -c & -e' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ c & e' & -1\end{array}\right]\]
+    \[B_{-2}=\left[\begin{array}{ccc} 0 & d' & -b \\ -d & 0 & db + e\\ c & -cd' - e' & 0\\ -1 & 0 & b\\ 0 & 1 & 0\\ -c & e' & bc-1\end{array}\right]\]
+      \[B_{-3}=\left[\begin{array}{ccc} 0 & -(bc-1)d' - be' & b \\ (bc-1)d + ce & 0 & -db - e\\ -c & cd' + e' & 0\\ bc-1 & 0 & -b\\ 0 & 1 & 0\\ bc^2-2c & e' & -(bc-1)\end{array}\right]\]
+  \end{proof}
 
 
 \bibliographystyle{amsalpha}

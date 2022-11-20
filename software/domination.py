@@ -849,3 +849,13 @@ def tau(B, eps, inv=False):
          tau *= E(Bp,ss[k],eps[k])
          Bp.mutate(ss[k])
      return tau
+
+def chebyshev(k,eps,b,c):
+    if k == 0:
+        return 0
+    if k == 1:
+        return 1
+    if eps == 1:
+        return b*chebyshev(k-1,-eps,b,c) - chebyshev(k-2,eps,b,c)
+    else:
+        return c*chebyshev(k-1,-eps,b,c) - chebyshev(k-2,eps,b,c)
