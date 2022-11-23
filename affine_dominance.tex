@@ -1971,6 +1971,124 @@
     Otherwise, the possible signs appearing in the exchange matrix could be somewhat arbitrary and hence a precise formula for the result of iterated mutations seems out of reach.
   \end{remark}
 
+  For $s\ge1$, define 
+  \[\phi^{t_{2s}}_1(\mu)=\begin{cases} E^{2s}_{1,+}\mu & \text{if $\mu_1\ge0$;}\\ E^{2s}_{1,-}\mu & \text{if $\mu_1<0$;}\end{cases}\]
+  where
+  \[E^{2s}_{1,+}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ c & 1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s}_{1,-}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ du_{2s-1}^+ + eu_{2s-2}^- & 0 & 1 & 0 & 0 & 0\\ u_{2s-1}^+ & 0 & 0 & 1 & 0 & 0\\ u_{2s-2}^- & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  and define
+  \[\phi^{t_{2s+1}}_2(\mu)=\begin{cases} E^{2s+1}_{2,+}\mu & \text{if $\mu_2\ge0$;}\\ E^{2s+1}_{2,-}\mu & \text{if $\mu_2<0$;}\end{cases}\]
+  where
+  \[E^{2s+1}_{2,+}=\left[\begin{array}{cccccc} 1 & b & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s+1}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s}^+ + eu_{2s-1}^-  & 1 & 0 & 0 & 0\\ 0 & u_{2s}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-1}^- & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+
+\begin{landscape}
+  Set $\phi_{t_{2s}}$ as the composition $\phi^{t_{2s-1}}_2\cdots\phi^{t_1}_2\phi^{t_0}_1$ and set $\phi_{t_{2s+1}}$ as the composition $\phi^{t_{2s}}_1\cdots\phi^{t_1}_2\phi^{t_0}_1$.
+
+  \begin{lemma}
+    For $s\ge1$, $\phi_{t_{2s}}$ is the following piecewise linear map
+  \begin{equation}
+    \phi_{t_{2s}}(\lambda)
+      =
+      \begin{cases} 
+        \big(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,d\lambda_1+e(c\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s-2}^-\lambda_1-u_{2s-1}^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,c\lambda_1+\lambda_2,\lambda_3, & \text{if $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) & \\
+        \big(-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s-1}^-+eu_{2s-2}^-)(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_3, & \text{if $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$;}\\
+        \hspace{1.29in} u_{2s-1}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_4,u_{2s-2}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_5,\lambda_6\big) & 
+      \end{cases}
+  \end{equation}
+  \end{lemma}
+  \begin{proof}
+    \[
+      \phi^{t_0}_1(\lambda)
+      :=
+      \begin{cases} 
+        (-\lambda_1,c\lambda_1+\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+        \big(-\lambda_1,\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+      \end{cases}
+    \]
+    \[
+      \phi^{t_1}_2\phi^{t_0}_1(\lambda)
+      =
+      \begin{cases} 
+        (u_3^+\lambda_1+u_2^+\lambda_2,-u_2^-\lambda_1-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_2^-\lambda_1+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(-\lambda_1+u_2^+\lambda_2,-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \hline
+        (-\lambda_1,-u_2^-\lambda_1-\lambda_2,d\lambda_1+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_2^-\lambda_1-\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_1+\lambda_4,\lambda_5,\lambda_6\big) & \\ 
+        \big(-\lambda_1,-\lambda_2,\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{0.78in} \lambda_4,\lambda_5,\lambda_6\big) & 
+      \end{cases}
+    \]
+
+    \begin{align*}
+      \phi^{t_2}_1\phi^{t_1}_2\phi^{t_0}_1(\lambda)
+      &=
+      \begin{cases} 
+        \big(-u_3^+\lambda_1-u_2^+\lambda_2,u_4^-\lambda_1+u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1+u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(\lambda_1,-u_2^-\lambda_1-\lambda_2,\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{0.78in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
+        \hline
+        (-u_3^+\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1-\lambda_2,d(u_3^+\lambda_1+u_2^+\lambda_2)+e(u_2^-\lambda_1+\lambda_2)+d\lambda_1+\lambda_3, & \text{if $u_2^-\lambda_1+\lambda_2 \ge 0$ and $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} u_2^+(u_2^-\lambda_1+\lambda_2)+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (\lambda_1,-u_2^-\lambda_1-\lambda_2,\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_2^-\lambda_1-\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
+      \end{cases}\\
+      &=
+      \begin{cases} 
+        \big(-u_3^+\lambda_1-u_2^+\lambda_2,u_4^-\lambda_1+u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1+u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (\lambda_1,-u_2^-\lambda_1-\lambda_2,\lambda_3, & \text{if $-u_2^-\lambda_1-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
+        (-u_3^+\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1-\lambda_2,(du_2^++e)(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $u_2^-\lambda_1+\lambda_2 \ge 0$ and $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} u_2^+(u_2^-\lambda_1+\lambda_2)+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+      \end{cases}\\
+    \end{align*}
+
+    \begin{align*}
+      \phi^{t_3}_2\phi^{t_2}_1\phi^{t_1}_2\phi^{t_0}_1(\lambda)
+      &=
+      \begin{cases} 
+        \big(u_5^+\lambda_1+u_4^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_4^-\lambda_1+u_3^-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(-u_3^+\lambda_1+u_4^+\lambda_2,u_2^-\lambda_1-u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (-u_3^+\lambda_1-u_2^+\lambda_2,u_2^-\lambda_1+\lambda_2,\lambda_3, & \text{if $-u_2^-\lambda_1-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
+        \hline
+        \big(-u_3^+\lambda_1-u_2^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,(du_2^++e)(u_4^-\lambda_1+u_3^-\lambda_2)+d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$ and $-u_4^-\lambda_1-u_3^-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} u_2^+(u_4^-\lambda_1+u_3^-\lambda_2)+\lambda_1+\lambda_4,u_4^-\lambda_1+u_3^-\lambda_2+u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (-u_3^+\lambda_1-u_2^+\lambda_2,u_2^-\lambda_1+\lambda_2,\lambda_3, & \text{if $u_2^-\lambda_1+\lambda_2 \ge 0$ and $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) & \\
+      \end{cases}\\
+      &=
+      \begin{cases} 
+        \big(u_5^+\lambda_1+u_4^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_4^-\lambda_1+u_3^-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(-u_3^+\lambda_1+u_4^+\lambda_2,u_2^-\lambda_1-u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (-u_3^+\lambda_1-u_2^+\lambda_2,u_2^-\lambda_1+\lambda_2,\lambda_3, & \text{if $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) & \\
+        \big(-u_3^+\lambda_1-u_2^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,(du_3^-+eu_2^-)(u_3^+\lambda_1+u_2^+\lambda_2)+\lambda_3, & \text{if $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$ and $-u_4^-\lambda_1-u_3^-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} u_3^-(u_3^+\lambda_1+u_2^+\lambda_2)+\lambda_4,u_2^-(u_3^+\lambda_1+u_2^+\lambda_2)+\lambda_5,\lambda_6\big) & \\
+      \end{cases}\\
+    \end{align*}
+
+  \end{proof}
+
+\end{landscape}
+
   The next result gives the equalities which must be imposed on $\RR^6$ to obtain the dominance region from that cut out by the inequalities obtained below.
   \begin{corollary}\mbox{}
     \begin{enumerate}
@@ -2192,7 +2310,7 @@
   \end{align*}
 
   \begin{proposition}
-    Suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\{\langle\alpha_k,\mu\rangle = 0\}$, for some $k\in\{1,2,\ldots,n\}$, which is fixed by $\phi$.
+    Suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\{\langle\alpha_k,\mu\rangle = 0\}$, for some $k\in\{1,2,\ldots,n\}$.
     Write $E_+$ (resp.~$E_-$) for the linear transformation applied by $\phi$ when $\langle\alpha_k,\mu\rangle\ge0$ (resp. $\langle\alpha_k,\mu\rangle\le 0$) and suppose $E_\pm^T(\alpha_k)=-\alpha_k$.
     Consider $\beta\in\RR^n$ such that $E_+^T(\beta)_\ell=E_-^T(\beta)_\ell$ for $\ell\ne k$ and $E_+^T(\beta)_k\ge E_-^T(\beta)_k$.
     Then the region defined by $\{\langle\beta,\mu\rangle\ge0\}$ is transformed by $\phi$ into the union of the regions defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ which is equal to the region defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$.
