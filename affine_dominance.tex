@@ -1972,122 +1972,143 @@
   \end{remark}
 
   For $s\ge1$, define 
-  \[\phi^{t_{2s}}_1(\mu)=\begin{cases} E^{2s}_{1,+}\mu & \text{if $\mu_1\ge0$;}\\ E^{2s}_{1,-}\mu & \text{if $\mu_1<0$;}\end{cases}\]
+  \begin{equation}
+    \label{eq:even positive mutation map definition}
+    \phi^{t_{2s}}_1(\lambda)=\begin{cases} E^{2s}_{1,+}\lambda & \text{if $\lambda_1\ge0$;}\\ E^{2s}_{1,-}\lambda & \text{if $\lambda_1<0$;}\end{cases}
+  \end{equation}
   where
   \[E^{2s}_{1,+}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ c & 1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
-  \[E^{2s}_{1,-}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ du_{2s-1}^+ + eu_{2s-2}^- & 0 & 1 & 0 & 0 & 0\\ u_{2s-1}^+ & 0 & 0 & 1 & 0 & 0\\ u_{2s-2}^- & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s}_{1,-}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ du_{2s-1}^- + eu_{2s-2}^- & 0 & 1 & 0 & 0 & 0\\ u_{2s-1}^- & 0 & 0 & 1 & 0 & 0\\ u_{2s-2}^- & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
   and define
-  \[\phi^{t_{2s+1}}_2(\mu)=\begin{cases} E^{2s+1}_{2,+}\mu & \text{if $\mu_2\ge0$;}\\ E^{2s+1}_{2,-}\mu & \text{if $\mu_2<0$;}\end{cases}\]
+  \begin{equation}
+    \label{eq:odd positive mutation map definition}
+    \phi^{t_{2s+1}}_2(\lambda)=\begin{cases} E^{2s+1}_{2,+}\lambda & \text{if $\lambda_2\ge0$;}\\ E^{2s+1}_{2,-}\lambda & \text{if $\lambda_2<0$;}\end{cases}
+  \end{equation}
   where
   \[E^{2s+1}_{2,+}=\left[\begin{array}{cccccc} 1 & b & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
-  \[E^{2s+1}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s}^+ + eu_{2s-1}^-  & 1 & 0 & 0 & 0\\ 0 & u_{2s}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-1}^- & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E^{2s+1}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s}^+ + eu_{2s-1}^+  & 1 & 0 & 0 & 0\\ 0 & u_{2s}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-1}^+ & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
 
-\begin{landscape}
+%\begin{landscape}
   Set $\phi_{t_{2s}}$ as the composition $\phi^{t_{2s-1}}_2\cdots\phi^{t_1}_2\phi^{t_0}_1$ and set $\phi_{t_{2s+1}}$ as the composition $\phi^{t_{2s}}_1\cdots\phi^{t_1}_2\phi^{t_0}_1$.
 
   \begin{lemma}
     For $s\ge1$, $\phi_{t_{2s}}$ is the following piecewise linear map
-  \begin{equation}
-    \phi_{t_{2s}}(\lambda)
+    \begin{equation}
+      \label{eq:even positive mutation map expression}
+      \phi_{t_{2s}}(\lambda)
       =
       \begin{cases} 
         \big(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,d\lambda_1+e(c\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$;}\\
         \hspace{1.79in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s-1}^-+eu_{2s-2}^-)(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_3, & \text{if $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$;}\\
+        \hspace{1.29in} u_{2s-1}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_4,u_{2s-2}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_5,\lambda_6\big) & \\
         \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s-2}^-\lambda_1-u_{2s-1}^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
         \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,c\lambda_1+\lambda_2,\lambda_3, & \text{if $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) & \\
-        \big(-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s-1}^-+eu_{2s-2}^-)(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_3, & \text{if $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$;}\\
-        \hspace{1.29in} u_{2s-1}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_4,u_{2s-2}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_5,\lambda_6\big) & 
+        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,u_{2s-2}^-\lambda_1+u_{2s-3}^-\lambda_2,\lambda_3, & \text{if $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) &
       \end{cases}
-  \end{equation}
+    \end{equation}
+    \begin{equation}
+      \label{eq:odd positive mutation map expression}
+      \phi_{t_{2s+1}}(\lambda)
+      =
+      \begin{cases} 
+        \big(-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2,u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2,d\lambda_1+e(c\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \big(-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s}^+ + eu_{2s-1}^+)(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_3, & \text{if $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$ and $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} u_{2s}^+(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_4,u_{2s-1}^+(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_5,\lambda_6\big) & \\
+        \big(u_{2s-1}^+\lambda_1-u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1+u_{2s+1}^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,\lambda_3, & \text{if $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) &
+      \end{cases}
+    \end{equation}
   \end{lemma}
   \begin{proof}
+    To begin, observe that
     \[
       \phi^{t_0}_1(\lambda)
-      :=
+      =
       \begin{cases} 
         (-\lambda_1,c\lambda_1+\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
         \big(-\lambda_1,\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
       \end{cases}
     \]
+    and
     \[
-      \phi^{t_1}_2\phi^{t_0}_1(\lambda)
+      \phi^{t_1}_2(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1+b\lambda_2,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+        \big(\lambda_1,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_2 \ge 0$.}
+      \end{cases}
+    \]
+    Composing these gives
+    \[
+      \phi_{t_2}(\lambda):=\phi^{t_1}_2\phi^{t_0}_1(\lambda)
       =
       \begin{cases} 
         (u_3^+\lambda_1+u_2^+\lambda_2,-u_2^-\lambda_1-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_2^-\lambda_1+\lambda_2 \ge 0$;}\\
         \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \big(-\lambda_1+u_2^+\lambda_2,-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \hline
         (-\lambda_1,-u_2^-\lambda_1-\lambda_2,d\lambda_1+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_2^-\lambda_1-\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_1+\lambda_4,\lambda_5,\lambda_6\big) & \\ 
+        \hspace{1.15in} \lambda_1+\lambda_4,\lambda_5,\lambda_6\big) & \\
+        \big(-\lambda_1+u_2^+\lambda_2,-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\ 
         \big(-\lambda_1,-\lambda_2,\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}\\
         \hspace{0.78in} \lambda_4,\lambda_5,\lambda_6\big) & 
       \end{cases}
     \]
+    which agrees with \eqref{eq:even positive mutation map expression} for $s=1$.
 
-    \begin{align*}
-      \phi^{t_2}_1\phi^{t_1}_2\phi^{t_0}_1(\lambda)
-      &=
-      \begin{cases} 
-        \big(-u_3^+\lambda_1-u_2^+\lambda_2,u_4^-\lambda_1+u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \big(\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1+u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \big(\lambda_1,-u_2^-\lambda_1-\lambda_2,\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}\\
-        \hspace{0.78in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
-        \hline
-        (-u_3^+\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1-\lambda_2,d(u_3^+\lambda_1+u_2^+\lambda_2)+e(u_2^-\lambda_1+\lambda_2)+d\lambda_1+\lambda_3, & \text{if $u_2^-\lambda_1+\lambda_2 \ge 0$ and $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} u_2^+(u_2^-\lambda_1+\lambda_2)+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (\lambda_1,-u_2^-\lambda_1-\lambda_2,\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_2^-\lambda_1-\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
-      \end{cases}\\
-      &=
-      \begin{cases} 
-        \big(-u_3^+\lambda_1-u_2^+\lambda_2,u_4^-\lambda_1+u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \big(\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1+u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (\lambda_1,-u_2^-\lambda_1-\lambda_2,\lambda_3, & \text{if $-u_2^-\lambda_1-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
-        (-u_3^+\lambda_1-u_2^+\lambda_2,-u_2^-\lambda_1-\lambda_2,(du_2^++e)(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $u_2^-\lambda_1+\lambda_2 \ge 0$ and $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} u_2^+(u_2^-\lambda_1+\lambda_2)+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-      \end{cases}\\
-    \end{align*}
+    Applying $\phi^{t_{2s}}_1$ to the expression \eqref{eq:even positive mutation map expression}, we ostensibly obtain eight new expressions depending upon the sign of the first coordinate observed in \eqref{eq:even positive mutation map expression}.
+    We consider each expression in turn:
+    \begin{itemize}
+      \item When $\lambda_1 \ge 0$ and $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$ in \eqref{eq:even positive mutation map expression}, we obtain two new expressions.
 
-    \begin{align*}
-      \phi^{t_3}_2\phi^{t_2}_1\phi^{t_1}_2\phi^{t_0}_1(\lambda)
-      &=
-      \begin{cases} 
-        \big(u_5^+\lambda_1+u_4^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_4^-\lambda_1+u_3^-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \big(-u_3^+\lambda_1+u_4^+\lambda_2,u_2^-\lambda_1-u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (-u_3^+\lambda_1-u_2^+\lambda_2,u_2^-\lambda_1+\lambda_2,\lambda_3, & \text{if $-u_2^-\lambda_1-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_5,\lambda_6\big) & \\ 
-        \hline
-        \big(-u_3^+\lambda_1-u_2^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,(du_2^++e)(u_4^-\lambda_1+u_3^-\lambda_2)+d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$ and $-u_4^-\lambda_1-u_3^-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} u_2^+(u_4^-\lambda_1+u_3^-\lambda_2)+\lambda_1+\lambda_4,u_4^-\lambda_1+u_3^-\lambda_2+u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (-u_3^+\lambda_1-u_2^+\lambda_2,u_2^-\lambda_1+\lambda_2,\lambda_3, & \text{if $u_2^-\lambda_1+\lambda_2 \ge 0$ and $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) & \\
-      \end{cases}\\
-      &=
-      \begin{cases} 
-        \big(u_5^+\lambda_1+u_4^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,d\lambda_1+e(u_2^-\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $u_4^-\lambda_1+u_3^-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_1+\lambda_4,u_2^-\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
-        \big(-u_3^+\lambda_1+u_4^+\lambda_2,u_2^-\lambda_1-u_3^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (-u_3^+\lambda_1-u_2^+\lambda_2,u_2^-\lambda_1+\lambda_2,\lambda_3, & \text{if $-u_3^+\lambda_1-u_2^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) & \\
-        \big(-u_3^+\lambda_1-u_2^+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_2,(du_3^-+eu_2^-)(u_3^+\lambda_1+u_2^+\lambda_2)+\lambda_3, & \text{if $u_3^+\lambda_1+u_2^+\lambda_2 \ge 0$ and $-u_4^-\lambda_1-u_3^-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} u_3^-(u_3^+\lambda_1+u_2^+\lambda_2)+\lambda_4,u_2^-(u_3^+\lambda_1+u_2^+\lambda_2)+\lambda_5,\lambda_6\big) & \\
-      \end{cases}\\
-    \end{align*}
+        First, when in addition we have $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$, the identity \eqref{eq:long Chebyshev recursion} with $i=2s+1$ and $\ell=2s$ allows to eliminate the condition $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$.
+        Then, using the expression for $E^{2s}_{1,+}$ following \eqref{eq:even positive mutation map definition} and the Chebyshev recursion \eqref{eq:chebyshev}, the expression for $\phi^{t_{2s}}_1\phi_{t_{2s}}(\lambda)$ is given by
+        \begin{align*}
+          \big(-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2,u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2,d\lambda_1+e(c\lambda_1+\lambda_2)+\lambda_3,\lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big),
+        \end{align*}
+        which agrees with \eqref{eq:odd positive mutation map expression} when $\lambda_1 \ge 0$ and $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$.
 
+        On the other hand, when in addition we have $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$, the identity \eqref{eq:long Chebyshev recursion} with $i=2s+1$ and $\ell=2s$ allows to eliminate the condition $\lambda_1 \ge 0$.
+        Then, using the expression for $E^{2s}_{1,-}$ following \eqref{eq:even positive mutation map definition} and \eqref{eq:long Chebyshev recursion} with $i=2s+1$, $\ell=2s$ and with $i=2s+1$, $\ell=2s-1$, the expression for $\phi^{t_{2s}}_1\phi_{t_{2s}}(\lambda)$ is given by
+        \begin{align*}
+          &~\big(-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s-1}^-+eu_{2s-2}^-)(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+d\lambda_1+e(c\lambda_1+\lambda_2)+\lambda_3,\\
+          &\hspace{1.79in} u_{2s-1}^-(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_1+\lambda_4,u_{2s-2}^-(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big)\\
+          &=\big(-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s}^+ + eu_{2s-1}^+)(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_3,\\
+          &\hspace{1.79in} u_{2s}^+(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_4,u_{2s-1}^+(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_5,\lambda_6\big),
+        \end{align*}
+        which agrees with \eqref{eq:odd positive mutation map expression} when $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$ and $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$.
+
+      \item When $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$ in \eqref{eq:even positive mutation map expression}, we obtain only one new expression.
+        Indeed, the condition $u_{2s-1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$ is inconsistent and so we only apply $E^{2s}_{1,+}$ in this range to obtain the expression for $\phi^{t_{2s}}_1\phi_{t_{2s}}(\lambda)$ using \eqref{eq:long Chebyshev recursion} with $i=2s+1$, $\ell=2s$ as
+        \begin{align*}
+          \big(u_{2s-1}^+\lambda_1-u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1+u_{2s+1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
+        \end{align*}
+        which agrees with \eqref{eq:odd positive mutation map expression} when $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$.
+
+      \item When $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$ in \eqref{eq:even positive mutation map expression}, we obtain only one new expression.
+        Indeed, the condition $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ is inconsistent and so we only apply $E^{2s}_{1,-}$ in this range to obtain the expression for $\phi^{t_{2s}}_1\phi_{t_{2s}}(\lambda)$ (after obvious cancellations) as
+        \begin{align*}
+          \big(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big),
+        \end{align*}
+        which agrees with \eqref{eq:odd positive mutation map expression} when $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$.
+
+      \item When $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$ in \eqref{eq:even positive mutation map expression}, we obtain only one new expression.
+        Indeed, the condition $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ is inconsistent and so we only apply $E^{2s}_{1,+}$ in this range to obtain the expression for $\phi^{t_{2s}}_1\phi_{t_{2s}}(\lambda)$ (after obvious cancellations) as
+        \begin{align*}
+          (u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big)
+        \end{align*}
+        which agrees with \eqref{eq:odd positive mutation map expression} when $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$.
+    \end{itemize}
+    The final two regions combine to give \eqref{eq:odd positive mutation map expression} when $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$.
+
+    Similar considerations when applying $\phi^{t_{2s+1}}_1$ to the expression \eqref{eq:odd positive mutation map expression} completes the proof, we leave the details as an exercise for the reader.
   \end{proof}
 
-\end{landscape}
+%\end{landscape}
 
   The next result gives the equalities which must be imposed on $\RR^6$ to obtain the dominance region from that cut out by the inequalities obtained below.
   \begin{corollary}\mbox{}
@@ -2245,14 +2266,14 @@
   \begin{lemma}
     For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
     \begin{equation}
-      \label{eq:long Chebyshev recursion}
+      \label{eq:long Chebyshev recursion 1}
       u_{2s-1-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-2}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-1}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-2}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-1}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
     \end{equation}
   \end{lemma}
   \begin{lemma}
     For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
     \begin{equation}
-      \label{eq:long Chebyshev recursion}
+      \label{eq:long Chebyshev recursion 2}
       u_{2s-2-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-3}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-2}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-3}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-2}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
     \end{equation}
   \end{lemma}
