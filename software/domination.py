@@ -859,3 +859,40 @@ def chebyshev(k,eps,b,c):
         return b*chebyshev(k-1,-eps,b,c) - chebyshev(k-2,eps,b,c)
     else:
         return c*chebyshev(k-1,-eps,b,c) - chebyshev(k-2,eps,b,c)
+
+
+def phi(B, seq):
+    B = copy(B)
+    I = identity_matrix(B.nrows())
+    
+    if seq == []:
+        I.set_immutable()
+        return ({I:[[]]},B)
+
+    k = seq.pop()
+    current_regions, current_B = phi(B, seq)
+    
+    Ep = matrix(B.nrows(), lambda i,j: 0 if j!=k else current_B[i,j] if current_B[i,j] > 0 else 0) + 1
+    Ep[k,k] = -1
+
+    Em = matrix(B.nrows(), lambda i,j: 0 if j!=k else -current_B[i,j] if current_B[i,j] < 0 else 0) + 1
+    Em[k,k] = -1
+    
+    new_regions = {}
+    for transformation in current_regions:
+        new_transformation = Ep*transformation
+        new_transformation.set_immutable()
+        for ieqs in current_regions[transformation]:
+            P = Polyhedron(ieqs=ieqs+[[0]+list(transformation[k])])
+            if P.dimension() == B.nrows():
+                new_regions[new_transformation] = new_regions.get(new_transformation,[])+[P.inequalities_list()]
+        new_transformation = Em*transformation
+        new_transformation.set_immutable()
+        for ieqs in current_regions[transformation]:
+            P = Polyhedron(ieqs=ieqs+[[0]+list(-transformation[k])])
+            if P.dimension() == B.nrows():
+                new_regions[new_transformation] = new_regions.get(new_transformation,[])+[P.inequalities_list()]
+
+    current_B.mutate(k)
+
+    return (new_regions, current_B)
