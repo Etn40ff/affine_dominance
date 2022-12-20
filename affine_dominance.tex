@@ -12,6 +12,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{remark}[theorem]{Remark}
@@ -1942,8 +1943,8 @@
     \begin{align*}
       B_{2s-1}
       &=\mu_2 B_{2s}\\
-      &=\left[\begin{array}{ccc} 0 & b & d'(bu_{2s}^- - u_{2s+1}^+) + e'(bu_{2s-1}^- - u_{2s}^+) \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -d(cu_{2s}^+ - u_{2s+1}^-) - e(cu_{2s-1}^+ - u_{2s}^-) & -du_{2s}^+ - eu_{2s-1}^+ & 0\\ -(cu_{2s}^+-u_{2s+1}^-) & u_{2s}^+ & 0\\ -(cu_{2s-1}^+-u_{2s}^-) & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\\
-      &=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  -du_{2s}^+ - eu_{2s-1}^+ & 0\\ -u_{2s-1}^- & u_{2s}^+ & 0\\ -u_{2s-2}^- & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]
+      &=\left[\begin{array}{ccc} 0 & b & d'(bu_{2s}^- - u_{2s+1}^+) + e'(bu_{2s-1}^- - u_{2s}^+) \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -d(cu_{2s}^+ - u_{2s+1}^-) - e(cu_{2s-1}^+ - u_{2s}^-) & du_{2s}^+ + eu_{2s-1}^+ & 0\\ -(cu_{2s}^+-u_{2s+1}^-) & u_{2s}^+ & 0\\ -(cu_{2s-1}^+-u_{2s}^-) & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]\\
+      &=\left[\begin{array}{ccc} 0 & b & d'u_{2s-1}^+ + e'u_{2s-2}^+ \\ -c & 0 & -d'u_{2s}^- - e'u_{2s-1}^-\\ -du_{2s-1}^- - eu_{2s-2}^- &  du_{2s}^+ + eu_{2s-1}^+ & 0\\ -u_{2s-1}^- & u_{2s}^+ & 0\\ -u_{2s-2}^- & u_{2s-1}^+ & 0\\ 0 & 0 & 1\end{array}\right]
     \end{align*}
     and
     \begin{align*}
@@ -1988,8 +1989,9 @@
   \[E^{2s+1}_{2,+}=\left[\begin{array}{cccccc} 1 & b & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
   \[E^{2s+1}_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & du_{2s}^+ + eu_{2s-1}^+  & 1 & 0 & 0 & 0\\ 0 & u_{2s}^+ & 0 & 1 & 0 & 0\\ 0 & u_{2s-1}^+ & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
 
-%\begin{landscape}
-  Set $\phi_{t_{2s}}$ as the composition $\phi^{t_{2s-1}}_2\cdots\phi^{t_1}_2\phi^{t_0}_1$ and set $\phi_{t_{2s+1}}$ as the composition $\phi^{t_{2s}}_1\cdots\phi^{t_1}_2\phi^{t_0}_1$.
+\begin{landscape}
+  For $s\ge0$ set $\phi_{t_{2s}}$ as the composition $\phi^{t_{2s-1}}_2\cdots\phi^{t_1}_2\phi^{t_0}_1$ and set $\phi_{t_{2s+1}}$ as the composition $\phi^{t_{2s}}_1\cdots\phi^{t_1}_2\phi^{t_0}_1$.
+  For $s\le0$ set $\phi_{t_{2s}}$ as the composition $\phi^{t_{2s+1}}_1\cdots\phi^{t_{-1}}_1\phi^{t_0}_2$ and set $\phi_{t_{2s-1}}$ as the composition $\phi^{t_{2s}}_2\cdots\phi^{t_{-1}}_1\phi^{t_0}_2$.
 
   \begin{lemma}
     For $s\ge1$, $\phi_{t_{2s}}$ is the following piecewise linear map
@@ -2002,12 +2004,86 @@
         \hspace{1.79in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
         \big(-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,(du_{2s-1}^-+eu_{2s-2}^-)(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_3, & \text{if $u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$;}\\
         \hspace{1.29in} u_{2s-1}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_4,u_{2s-2}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_2)+\lambda_5,\lambda_6\big) & \\
-        \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s-2}^-\lambda_1-u_{2s-1}^-\lambda_2,e\lambda_2+\lambda_3, & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
-        \hspace{1.15in} \lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \\
-        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,u_{2s-2}^-\lambda_1+u_{2s-3}^-\lambda_2,\lambda_3, & \text{if $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
-        \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) &
+        \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s-2}^-\lambda_1-u_{2s-1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,u_{2s-2}^-\lambda_1+u_{2s-3}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}
       \end{cases}
     \end{equation}
+    \[
+      \left[\begin{array}{cccccc} 
+        u_{2s+1}^+ & u_{2s}^+ & 0 & 0 & 0 & 0\\
+        -u_{2s}^- & -u_{2s-1}^- & 0 & 0 & 0 & 0\\
+        d+ec & e & 1 & 0 & 0 & 0\\
+        1 & 0 & 0 & 1 & 0 & 0\\
+        c & 1 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]^{-1}
+      =
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^- & -u_{2s}^+ & 0 & 0 & 0 & 0\\
+        u_{2s}^- & u_{2s+1}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-1}^-d+u_{2s-2}^-e & u_{2s}^+d+u_{2s-1}^+e & 1 & 0 & 0 & 0\\
+        u_{2s-1}^- & u_{2s}^+ & 0 & 1 & 0 & 0\\
+        u_{2s-2}^- & u_{2s-1}^+ & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \[
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^+ & -u_{2s-2}^+ & 0 & 0 & 0 & 0\\
+        -u_{2s}^- & -u_{2s-1}^- & 0 & 0 & 0 & 0\\
+        u_{2s-1}^+(du_{2s-1}^-+eu_{2s-2}^-) & u_{2s-2}^+(du_{2s-1}^-+eu_{2s-2}^-) & 1 & 0 & 0 & 0\\
+        u_{2s-1}^+u_{2s-1}^- & u_{2s-2}^+u_{2s-1}^- & 0 & 1 & 0 & 0\\
+        u_{2s-1}^+u_{2s-2}^- & u_{2s-2}^+u_{2s-2}^- & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]^{-1}
+      =
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^- & u_{2s-2}^+ & 0 & 0 & 0 & 0\\
+        u_{2s}^- & -u_{2s-1}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-1}^-d+u_{2s-2}^-e & 0 & 1 & 0 & 0 & 0\\
+        u_{2s-1}^- & 0 & 0 & 1 & 0 & 0\\
+        u_{2s-2}^- & 0 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \[
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^+ & u_{2s}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-2}^- & -u_{2s-1}^- & 0 & 0 & 0 & 0\\
+        0 & e & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0\\
+        0 & 1 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]^{-1}
+      =
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^- & -u_{2s}^+ & 0 & 0 & 0 & 0\\
+        -u_{2s-2}^- & -u_{2s-1}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-2}^-e & u_{2s-1}^+e & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0\\
+        u_{2s-2}^- & u_{2s-1}^+ & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \[
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^+ & -u_{2s-2}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-2}^- & u_{2s-3}^- & 0 & 0 & 0 & 0\\
+        0 & 0 & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]^{-1}
+      =
+      \left[\begin{array}{cccccc} 
+        u_{2s-3}^- & u_{2s-2}^+ & 0 & 0 & 0 & 0\\
+        -u_{2s-2}^- & -u_{2s-1}^+ & 0 & 0 & 0 & 0\\
+        0 & 0 & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
     \begin{equation}
       \label{eq:odd positive mutation map expression}
       \phi_{t_{2s+1}}(\lambda)
@@ -2023,7 +2099,34 @@
         \hspace{1.79in} \lambda_4,\lambda_5,\lambda_6\big) &
       \end{cases}
     \end{equation}
+    For $s\le-1$, $\phi_{t_{2s}}$ is given by
+    \begin{align*}
+      \phi_{t_{2s}}(\lambda)
+      =
+      \begin{cases}
+        \big(-u_{2s+3}^+\lambda_1-u_{2s+2}^+\lambda_2,u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_{2s+2}^-\lambda_1-u_{2s+1}^-\lambda_2 \ge 0$;}\\
+        \hspace{2in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2,(u_{2s+1}^-d+u_{2s}^-e)(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_3, & \text{if $u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2 \ge 0$ and $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$;}\\
+        \hspace{1in} u_{2s+1}^-(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_4,u_{2s}^-(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_5,\lambda_6) & \\
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \big(u_{2s+1}^+\lambda_1-u_{2s+2}^+\lambda_2,-u_{2s}^-\lambda_1+u_{2s+1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \end{align*}
+    and
+    \begin{align*}
+    \phi_{t_{2s-1}}(\lambda)
+      =
+      \begin{cases}
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,-u_{2s+2}^-\lambda_1-u_{2s+1}^-\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$;}\\
+        \hspace{1in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2,(u_{2s}^+d+u_{2s-1}^+e)(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_3, & \text{if $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$;}\\
+        \hspace{1in} u_{2s}^+(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_4,u_{2s-1}^+(u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2)+\lambda_5,\lambda_6) & \\
+        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s}^-\lambda_1-u_{2s+1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \end{align*}
   \end{lemma}
+\end{landscape}
   \begin{proof}
     To begin, observe that
     \[
@@ -2106,6 +2209,167 @@
     The final two regions combine to give \eqref{eq:odd positive mutation map expression} when $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$.
 
     Similar considerations when applying $\phi^{t_{2s+1}}_1$ to the expression \eqref{eq:odd positive mutation map expression} completes the proof, we leave the details as an exercise for the reader.
+
+
+
+    \[
+      \phi^{t_0}_2(\lambda)
+      =
+      \begin{cases} 
+        \big(\lambda_1,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_2 \ge 0$;}\\
+        (\lambda_1+b\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \]
+    and
+    \[
+      \phi^{t_{-1}}_1(\lambda)
+      =
+      \begin{cases} 
+        \big(-\lambda_1,\lambda_2,(d+ce)\lambda_1+\lambda_3,\lambda_1+\lambda_4,c\lambda_1+\lambda_5,\lambda_6\big) & \text{if $\lambda_1 \ge 0$;}\\
+        (-\lambda_1,c\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$;}
+      \end{cases}
+    \]
+    \begin{landscape}
+    so that 
+    \[
+      \phi_{t_{-2}}(\lambda)
+      :=\phi^{t_{-1}}_1\phi^{t_0}_2(\lambda)
+      =
+      \begin{cases} 
+        \big(-\lambda_1,-\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3,\lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        \big(-\lambda_1,c\lambda_1-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (-\lambda_1-b\lambda_2,-\lambda_2,(d+ce)(\lambda_1+b\lambda_2)+\lambda_3,\lambda_1+b\lambda_2+\lambda_4,c(\lambda_1+b\lambda_2)+\lambda_5,\lambda_6) & \text{if $\lambda_1+b\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+        (-\lambda_1-b\lambda_2,c\lambda_1+(bc-1)\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1-b\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \]
+    Then
+    \[
+      \phi^{t_{-2}}_2(\lambda)
+      =
+      \begin{cases} 
+        \big(\lambda_1,-\lambda_2,(bd+(bc-1)e)\lambda_2+\lambda_3,b\lambda_2+\lambda_4,(bc-1)\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_2 \ge 0$;}\\
+        (\lambda_1+b\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \]
+    so that 
+    \begin{align*}
+    \phi_{t_{-3}}(\lambda)
+      :=\phi^{t_{-2}}_2\phi_{t_{-2}}(\lambda)
+      &=
+      \begin{cases} 
+        \big(-\lambda_1-b\lambda_2,\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3,\lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_1 \ge 0$ and $\lambda_1+b\lambda_2 \ge 0$;}\\
+        \big((bc-1)\lambda_1-b\lambda_2,-c\lambda_1+\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (-\lambda_1-b\lambda_2,-c\lambda_1-(bc-1)\lambda_2,(bd+(bc-1)e)(c\lambda_1+(bc-1)\lambda_2)+\lambda_3, & \text{if $-\lambda_1-b\lambda_2 \ge 0$ and $c\lambda_1+(bc-1)\lambda_2 \ge 0$;}\\
+        \hspace{1.5in} b(c\lambda_1+(bc-1)\lambda_2)+\lambda_4,(bc-1)(c\lambda_1+(bc-1)\lambda_2)+\lambda_5,\lambda_6) & \\
+        ((bc-1)\lambda_1+(b^2c-2b)\lambda_2,-c\lambda_1-(bc-1)\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-c\lambda_1-(bc-1)\lambda_2 \ge 0$;}\\
+      \end{cases}\\
+      &=
+      \begin{cases} 
+        \big(u_{-1}^+\lambda_1+u_{-2}^+\lambda_2,\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3,\lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_1 \ge 0$ and $-u_{-1}^+\lambda_1-u_{-2}^+\lambda_2 \ge 0$;}\\
+        \big(-u_{-3}^+\lambda_1+u_{-2}^+\lambda_2,u_{-2}^-\lambda_1-u_{-1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (u_{-1}^+\lambda_1+u_{-2}^+\lambda_2,u_{-2}^-\lambda_1+u_{-3}^-\lambda_2,(u_{-2}^+d+u_{-3}^+e)(u_{-2}^-\lambda_1+u_{-3}^-\lambda_2)+\lambda_3, & \text{if $u_{-1}^+\lambda_1+u_{-2}^+\lambda_2 \ge 0$ and $-u_{-2}^-\lambda_1-u_{-3}^-\lambda_2 \ge 0$;}\\
+        \hspace{1.5in} u_{-2}^+(u_{-2}^-\lambda_1+u_{-3}^-\lambda_2)+\lambda_4,u_{-3}^+(u_{-2}^-\lambda_1+u_{-3}^-\lambda_2)+\lambda_5,\lambda_6) & \\
+        (-u_{-3}^+\lambda_1-u_{-4}^+\lambda_2,u_{-2}^-\lambda_1+u_{-3}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $u_{-2}^-\lambda_1+u_{-3}^-\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \end{align*}
+    Then
+    \[
+      \phi^{t_{-3}}_1(\lambda)
+      =
+      \begin{cases} 
+        \big(-\lambda_1,\lambda_2,((bc-1)d+(bc^2-2c)e)\lambda_1+\lambda_3,(bc-1)\lambda_1+\lambda_4,(bc^2-2c)\lambda_1+\lambda_5,\lambda_6\big) & \text{if $\lambda_1 \ge 0$;}\\
+        (-\lambda_1,c\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$;}
+      \end{cases}
+    \]
+    \newpage
+    so that
+    \begin{align*}
+    \phi_{t_{-4}}(\lambda)
+      &:=\phi^{t_{-3}}_1\phi_{t_{-3}}(\lambda)
+      &=
+      \begin{cases} 
+        \big(\lambda_1+b\lambda_2,-c\lambda_1-(bc-1)\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3,\lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_1 \ge 0$ and $c\lambda_1+(bc-1)\lambda_2 \ge 0$;}\\
+        (-(bc-1)\lambda_1-(b^2c-2b)\lambda_2,-c\lambda_1-(bc-1)\lambda_2,((bc-1)d+(bc^2-2c)e)((bc-1)\lambda_1+(b^2c-2b)\lambda_2)+\lambda_3, & \text{if $-c\lambda_1-(bc-1)\lambda_2 \ge 0$ and $(bc-1)\lambda_1+(b^2c-2b)\lambda_2 \ge 0$;}\\
+        (bc-1)((bc-1)\lambda_1+(b^2c-2b)\lambda_2)+\lambda_4,(bc^2-2c)((bc-1)\lambda_1+(b^2c-2b)\lambda_2)+\lambda_5,\lambda_6) & \\
+        \big(-(bc-1)\lambda_1+b\lambda_2,(bc^2-2c)\lambda_1-(bc-1)\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (-(bc-1)\lambda_1-(b^2c-2b)\lambda_2,(bc^2-2c)\lambda_1+(b^2c^2-3bc+1)\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-(bc-1)\lambda_1-(b^2c-2b)\lambda_2 \ge 0$;}\\
+      \end{cases}\\
+      &=
+      \begin{cases}
+        \big(-u_{-1}^+\lambda_1-u_{-2}^+\lambda_2,u_{-2}^-\lambda_1+u_{-3}^-\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_{-2}^-\lambda_1-u_{-3}^-\lambda_2 \ge 0$;}\\
+        \hspace{2in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (u_{-3}^+\lambda_1+u_{-4}^+\lambda_2,u_{-2}^-\lambda_1+u_{-3}^-\lambda_2,(u_{-3}^-d+u_{-4}^-e)(u_{-3}^+\lambda_1+u_{-4}^+\lambda_2)+\lambda_3, & \text{if $u_{-2}^-\lambda_1+u_{-3}^-\lambda_2 \ge 0$ and $-u_{-3}^+\lambda_1-u_{-4}^+\lambda_2 \ge 0$;}\\
+        \hspace{1in} u_{-3}^-(u_{-3}^+\lambda_1+u_{-4}^+\lambda_2)+\lambda_4,u_{-4}^-(u_{-3}^+\lambda_1+u_{-4}^+\lambda_2)+\lambda_5,\lambda_6) & \\
+        \big(u_{-3}^+\lambda_1-u_{-2}^+\lambda_2,-u_{-4}^-\lambda_1+u_{-3}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (u_{-3}^+\lambda_1+u_{-4}^+\lambda_2,-u_{-4}^-\lambda_1-u_{-5}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $u_{-3}^+\lambda_1+u_{-4}^+\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \end{align*}
+    \newpage
+
+    For $s\le -1$, we have
+    \begin{align*}
+      \phi_{t_{2s}}(\lambda)
+      =
+      \begin{cases}
+        \big(-u_{2s+3}^+\lambda_1-u_{2s+2}^+\lambda_2,u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_{2s+2}^-\lambda_1-u_{2s+1}^-\lambda_2 \ge 0$;}\\
+        \hspace{2in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6\big) & \\
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2,(u_{2s+1}^-d+u_{2s}^-e)(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_3, & \text{if $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$ and $u_{2s+2}^-\lambda_1+u_{2s+1}^-\lambda_2 \ge 0$;}\\
+        \hspace{1in} u_{2s+1}^-(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_4,u_{2s}^-(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2)+\lambda_5,\lambda_6) & \\
+        \big(u_{2s+1}^+\lambda_1-u_{2s+2}^+\lambda_2,-u_{2s}^-\lambda_1+u_{2s+1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \end{align*}
+    \[
+      \phi^{t_{2s}}_2(\lambda)
+      =
+      \begin{cases} 
+        \big(\lambda_1,-\lambda_2,(-u_{2s}^+d-u_{2s-1}^+e)\lambda_2+\lambda_3,-u_{2s}^+\lambda_2+\lambda_4,-u_{2s-1}^+\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_2 \ge 0$;}\\
+        (\lambda_1+b\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \]
+    \begin{align*}
+    \phi_{t_{2s-1}}(\lambda)
+      :=\phi^{t_{2s}}_2\phi_{t_{2s}}(\lambda)
+      =
+      \begin{cases}
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,-u_{2s+2}^-\lambda_1-u_{2s+1}^-\lambda_2,(d+ce)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $-u_{2s+1}^+\lambda_1-u_{2s}^+\lambda_2 \ge 0$;}\\
+        \hspace{1in} \lambda_1+\lambda_4,c\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+        (u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2,(-u_{2s}^+d-u_{2s-1}^+e)(-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2)+\lambda_3, & \text{if $u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_2 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2 \ge 0$;}\\
+        \hspace{1in} -u_{2s}^+(-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2)+\lambda_4,-u_{2s-1}^+(-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_2)+\lambda_5,\lambda_6) & \\
+        (-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_2,u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_2 \ge 0$;}\\
+        \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_2,u_{2s}^-\lambda_1-u_{2s+1}^-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      \end{cases}
+    \end{align*}
+    \end{landscape}
+
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion}
+      u_{i-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{i-1}^\varepsilon-u_{\ell-1}^\varepsilon u_i^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{i-1}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_i^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion 1}
+      u_{2s-1-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-2}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-1}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-2}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-1}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion 2}
+      u_{2s-2-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-3}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-2}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-3}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-2}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
+  \begin{lemma}
+    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
+    \begin{equation}
+      \label{eq:long Chebyshev recursion 2}
+      u_{2s+2-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s+1}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s+2}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s+1}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s+2}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
+    \end{equation}
+  \end{lemma}
   \end{proof}
 
 %\end{landscape}
@@ -2217,6 +2481,95 @@
     \end{itemize}
   \end{proof}
 
+  \begin{example}
+    \begin{align*}
+      \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \end{align*}
+  
+    \[
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^- & -u_{2s}^+ & 0 & 0 & 0 & 0\\
+        u_{2s}^- & u_{2s+1}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-1}^-d+u_{2s-2}^-e & u_{2s}^+d+u_{2s-1}^+e & 1 & 0 & 0 & 0\\
+        u_{2s-1}^- & u_{2s}^+ & 0 & 1 & 0 & 0\\
+        u_{2s-2}^- & u_{2s-1}^+ & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \begin{align*}
+      \langle (-1,-b,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,-1,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \end{align*}
+    \[
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^- & u_{2s-2}^+ & 0 & 0 & 0 & 0\\
+        u_{2s}^- & -u_{2s-1}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-1}^-d+u_{2s-2}^-e & 0 & 1 & 0 & 0 & 0\\
+        u_{2s-1}^- & 0 & 0 & 1 & 0 & 0\\
+        u_{2s-2}^- & 0 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \begin{align*}
+      \langle (-1,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \end{align*}
+    \[
+      \left[\begin{array}{cccccc} 
+        -u_{2s-1}^- & -u_{2s}^+ & 0 & 0 & 0 & 0\\
+        -u_{2s-2}^- & -u_{2s-1}^+ & 0 & 0 & 0 & 0\\
+        u_{2s-2}^-e & u_{2s-1}^+e & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0\\
+        u_{2s-2}^- & u_{2s-1}^+ & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \begin{align*}
+      \langle (-u_{2s-2}^+u_{2s-2}^-,-u_{2s-2}^+u_{2s-1}^+,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (-u_{2s-1}^+u_{2s-2}^-,-u_{2s-1}^+u_{2s-1}^+,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \end{align*}
+    \[
+      \left[\begin{array}{cccccc} 
+        u_{2s-3}^- & u_{2s-2}^+ & 0 & 0 & 0 & 0\\
+        -u_{2s-2}^- & -u_{2s-1}^+ & 0 & 0 & 0 & 0\\
+        0 & 0 & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 0 & 0 & 1
+      \end{array}\right]
+    \]
+    \begin{align*}
+      \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \end{align*}
+
+    The final set of inequalities is
+    \begin{align*}
+      \langle (-1,-b,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,-1,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (-1,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (-u_{2s-2}^+u_{2s-2}^-,-u_{2s-2}^+u_{2s-1}^+,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (-u_{2s-1}^+u_{2s-2}^-,-u_{2s-1}^+u_{2s-1}^+,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,u_{2s-3}^-,-u_{2s-2}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,u_{2s-2}^-,-u_{2s-1}^+,0), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+      \langle (0,0,0,0,0,1), \tilde\mu - \tilde\lambda\rangle &\ge 0\\ 
+    \end{align*}
+
+    The equalities are:
+    \begin{align*}
+      \langle (-1,0,0, -b u_{2s-2}^-, b u_{2s-1}^-, d' u_{2s-1}^+ + e' u_{2s-2}^+), \tilde\mu \rangle &= 0\\
+      \langle (0,-1,0, c u_{2s-3}^+, -c u_{2s-2}^+, -d' u_{2s-2}^- - e' u_{2s-3}^-), \tilde\mu \rangle &= 0\\
+      \langle (0,0,-1, d, e, 0),\tilde\mu \rangle &= 0
+    \end{align*}
+    or
+  \end{example}
+
   Define piecewise-linear transformations $\phi_{2s}$ and $\phi_{2s+1}$ of $\RR^6$ for $s\ge 1$ as follows:
   \begin{equation}
     \phi_{2s}(\tilde\mu)
@@ -2255,28 +2608,6 @@
     \end{cases}
   \end{equation}
 
-
-  \begin{lemma}
-    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
-    \begin{equation}
-      \label{eq:long Chebyshev recursion}
-      u_{i-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{i-1}^\varepsilon-u_{\ell-1}^\varepsilon u_i^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{i-1}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_i^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
-    \end{equation}
-  \end{lemma}
-  \begin{lemma}
-    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
-    \begin{equation}
-      \label{eq:long Chebyshev recursion 1}
-      u_{2s-1-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-2}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-1}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-2}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-1}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
-    \end{equation}
-  \end{lemma}
-  \begin{lemma}
-    For $i,\ell\in\ZZ$ and $\varepsilon\in\{\pm\}$, we have
-    \begin{equation}
-      \label{eq:long Chebyshev recursion 2}
-      u_{2s-2-\ell}^\varepsilon=\begin{cases} u_{\ell}^{-\varepsilon} u_{2s-3}^\varepsilon-u_{\ell-1}^\varepsilon u_{2s-2}^{-\varepsilon} & \text{\upshape if $\ell$ is odd;}\\ u_{\ell}^\varepsilon u_{2s-3}^{-\varepsilon}-u_{\ell-1}^{-\varepsilon} u_{2s-2}^\varepsilon & \text{\upshape if $\ell$ is even.} \end{cases}
-    \end{equation}
-  \end{lemma}
 
 
   Mutations of inequalities back to the initial cluster.
@@ -2358,34 +2689,167 @@
   Consider $B=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & -b\\ e' & c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
   Define $B_0:=B$ and define $t_k\in\TT_3$ recursively by joining 
   \begin{itemize}
-    \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $3$;
-    \item $t_{2s-1}$ to $t_{2s}$ by an edge labeled $2$.
+    \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $2$;
+    \item $t_{2s-1}$ to $t_{2s}$ by an edge labeled $3$.
   \end{itemize}
-  Then define $B_k$ recursively by $B_k:=\mu_\ell B_{k-1}$ for $k=2s+\ell$ with $2\le\ell\le 3$.
+  Then define $B_k$ recursively by $B_k:=\mu_\ell B_{k-1}$ for $k=2s+\ell-1$ with $2\le\ell\le 3$.
 
   \begin{lemma}
-    \[B_1=\left[\begin{array}{ccc} 0 & -d & e \\ d' & 0 & b\\ -e' & -c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ e' & c & -1\end{array}\right]\]
+    \[B_1=\left[\begin{array}{ccc} 0 & d & -bd-e \\ -d' & 0 & b\\ cd'+e' & -c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ 0 & 0 & 1\end{array}\right]\]
     For $s\ge 1$, we have 
-    \[B_{2s}=\left[\begin{array}{ccc} 0 & -du_{2s-3}^+ - eu_{2s-2}^- & du_{2s-2}^+ + eu_{2s-1}^- \\ d'u_{2s-3}^- + e'u_{2s-2}^+ & 0 & -b\\ -d'u_{2s-2}^- - e'u_{2s-1}^+ &  c & 0\\ 1 & 0 & 0\\ d' & -u_{2s-1}^- & u_{2s}^+ \\ cd'+e' & -u_{2s}^- & u_{2s+1}^+\end{array}\right]\]
-    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & du_{2s-1}^+ + eu_{2s}^- & -du_{2s-2}^+ - eu_{2s-1}^- \\ -d'u_{2s-1}^- - e'u_{2s}^+ & 0 & b\\ d'u_{2s-2}^- + e'u_{2s-1}^+ &  -c & 0\\ 1 & 0 & 0\\ d' & u_{2s+1}^- & -u_{2s}^+ \\ cd'+e' & u_{2s+2}^- & -u_{2s+1}^+\end{array}\right]\]
-    \[B_{-1}=\left[\begin{array}{ccc} 0 & d & -bd-e \\ -d' & 0 & b\\ cd'+e' & -c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & -du_{2s+1}^- - eu_{2s}^- & du_{2s}^+ + eu_{2s-1}^+ \\ d'u_{2s+1}^+ + e'u_{2s}^+ & 0 & -b\\ -d'u_{2s}^- - e'u_{2s-1}^- &  c & 0\\ 1 & 0 & 0\\ d' & -u_{2s-1}^- & u_{2s-2}^+ \\ cd'+e' & -u_{2s-2}^- & u_{2s-3}^+\end{array}\right]\]
+    \[B_{2s+1}=\left[\begin{array}{ccc} 0 & du_{2s+1}^- + eu_{2s}^- & -du_{2s+2}^+ - eu_{2s+1}^+ \\ -d'u_{2s+1}^+ - e'u_{2s}^+ & 0 & b\\ d'u_{2s+2}^- + e'u_{2s+1}^- &  -c & 0\\ 1 & 0 & 0\\ d' & u_{2s-1}^- & -u_{2s}^+ \\ cd'+e' & u_{2s-2}^- & -u_{2s-1}^+\end{array}\right]\]
+    \[B_{-1}=\left[\begin{array}{ccc} 0 & -d & e \\ d' & 0 & b\\ -e' & -c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ e' & c & -1\end{array}\right]\]
     For $s\le -1$, we have
-    \[B_{2s}=\left[\begin{array}{ccc} 0 & du_{2s-1}^+ + eu_{2s}^- & -du_{2s}^+ - eu_{2s+1}^- \\ -d'u_{2s-1}^- - e'u_{2s}^+ & 0 & -b\\ d'u_{2s}^- + e'u_{2s+1}^+ &  c & 0\\ 1 & 0 & 0\\ d' & u_{2s+1}^- & -u_{2s+2}^+ \\ cd'+e' & u_{2s+2}^- & -u_{2s+3}^+\end{array}\right]\]
-    \[B_{2s-1}=\left[\begin{array}{ccc} 0 & -du_{2s-1}^+ - eu_{2s}^- & du_{2s-2}^+ + eu_{2s-1}^- \\ d'u_{2s-1}^- + e'u_{2s}^+ & 0 & b\\ -d'u_{2s-2}^- - e'u_{2s-1}^+ &  -c & 0\\ 1 & 0 & 0\\ d' & -u_{2s+1}^- & u_{2s}^+ \\ cd'+e' & -u_{2s+2}^- & u_{2s+1}^+\end{array}\right]\]
+    \[B_{2s}=\left[\begin{array}{ccc} 0 & du_{2s+3}^- + eu_{2s+2}^- & -du_{2s+2}^+ - eu_{2s+1}^+ \\ -d'u_{2s+3}^+ - e'u_{2s+2}^+ & 0 & -b\\ d'u_{2s+2}^- + e'u_{2s+1}^- &  c & 0\\ 1 & 0 & 0\\ d' & u_{2s+1}^- & -u_{2s}^+ \\ cd'+e' & u_{2s}^- & -u_{2s-1}^+\end{array}\right]\]
+    \[B_{2s-1}=\left[\begin{array}{ccc} 0 & -du_{2s+1}^- - eu_{2s}^- & du_{2s+2}^+ + eu_{2s+1}^+ \\ d'u_{2s+1}^+ + e'u_{2s}^+ & 0 & b\\ -d'u_{2s+2}^- - e'u_{2s+1}^- &  -c & 0\\ 1 & 0 & 0\\ d' & -u_{2s-1}^- & u_{2s}^+ \\ cd'+e' & -u_{2s-2}^- & u_{2s-1}^+\end{array}\right]\]
   \end{lemma}
   \begin{proof}
     \[B_0=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & -b\\ e' & c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
-    \[B_1=\left[\begin{array}{ccc} 0 & -d & e \\ d' & 0 & b\\ -e' & -c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ e' & c & -1\end{array}\right]\]
-    \[B_2=\left[\begin{array}{ccc} 0 & d & e \\ -d' & 0 & -b\\ -e' & c & 0\\ 1 & 0 & 0\\ d' & -1 & b\\ cd'+e' & -c & bc-1\end{array}\right]\]
-    \[B_3=\left[\begin{array}{ccc} 0 & d+ce & -e \\ -d'-be' & 0 & b\\ e' & -c & 0\\ 1 & 0 & 0\\ d' & bc-1 & -b\\ cd'+e' & bc^2-2c & -(bc-1)\end{array}\right]\]
-    \[B_4=\left[\begin{array}{ccc} 0 & -d-ce & bd+(bc-1)e \\ d'+be' & 0 & -b\\ -cd'-(bc-1)e' & c & 0\\ 1 & 0 & 0\\ d' & -(bc-1) & b^2c-2b\\ cd'+e' & -(bc^2-2c) & b^2c^2-3bc+1\end{array}\right]\]
-
+    \[B_1=\left[\begin{array}{ccc} 0 & d & -bd-e \\ -d' & 0 & b\\ cd'+e' & -c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ 0 & 0 & 1\end{array}\right]\]
+    \[B_2=\left[\begin{array}{ccc} 0 & -(bc-1)d-ce & bd+e \\ (bc-1)d'+be' & 0 & -b\\ -cd'-e' & c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ cd'+e' & 0 & -1\end{array}\right]\]
+    \[B_3=\left[\begin{array}{ccc} 0 & (bc-1)d+ce & -(b^2c-2b)d-(bc-1)e \\ -(bc-1)d'-be' & 0 & b\\ (bc^2-2c)d'+(bc-1)e' & -c & 0\\ 1 & 0 & 0\\ d' & 1 & -b\\ cd'+e' & 0 & -1\end{array}\right]\]
+    
     \[B_0=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & -b\\ e' & c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]\]
-    \[B_{-1}=\left[\begin{array}{ccc} 0 & d & -bd-e \\ -d' & 0 & b\\ cd'+e' & -c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ 0 & 0 & 1\end{array}\right]\]
-    \[B_{-2}=\left[\begin{array}{ccc} 0 & -(bc-1)d-ce & bd+e \\ (bc-1)d'+be' & 0 & -b\\ -cd'-e' & c & 0\\ 1 & 0 & 0\\ d' & -1 & 0\\ cd'+e' & 0 & -1\end{array}\right]\]
-      \[B_{-3}=\left[\begin{array}{ccc} 0 & (bc-1)d+ce & -(b^2c-2b)d-(bc-1)e \\ -(bc-1)d'-be' & 0 & b\\ (bc^2-2c)d'+(bc-1)e' & -c & 0\\ 1 & 0 & 0\\ d' & 1 & -b\\ cd'+e' & 0 & -1\end{array}\right]\]
+    \[B_{-1}=\left[\begin{array}{ccc} 0 & -d & e \\ d' & 0 & b\\ -e' & -c & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ e' & c & -1\end{array}\right]\]
+    \[B_{-2}=\left[\begin{array}{ccc} 0 & d & e \\ -d' & 0 & -b\\ -e' & c & 0\\ 1 & 0 & 0\\ d' & -1 & b\\ cd'+e' & -c & bc-1\end{array}\right]\]
+    \[B_{-3}=\left[\begin{array}{ccc} 0 & d+ce & -e \\ -d'-be' & 0 & b\\ e' & -c & 0\\ 1 & 0 & 0\\ d' & bc-1 & -b\\ cd'+e' & bc^2-2c & -(bc-1)\end{array}\right]\]
+    \[B_{-4}=\left[\begin{array}{ccc} 0 & -d-ce & bd+(bc-1)e \\ d'+be' & 0 & -b\\ -cd'-(bc-1)e' & c & 0\\ 1 & 0 & 0\\ d' & -(bc-1) & b^2c-2b\\ cd'+e' & -(bc^2-2c) & b^2c^2-3bc+1\end{array}\right]\]
 
   \end{proof}
+
+  \begin{landscape}
+  \begin{lemma}
+    For $s\ge 1$, we have
+    \begin{align*}
+      \phi_{t_{2s}}(\lambda)
+      &=
+      \begin{cases} 
+        (\lambda_1,u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3,-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,-u_{2s-1}^+\lambda_2+u_{2s}^+\lambda_3,u_{2s-2}^-\lambda_2-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,-u_{2s-1}^+\lambda_2-u_{2s-2}^+\lambda_3,u_{2s-2}^-\lambda_2+u_{2s-3}^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_{2s-1}^+\lambda_2-u_{2s-2}^+\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        (\lambda_1+(u_{2s}^+d+u_{2s-1}^+e)(u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3),-u_{2s-1}^+\lambda_2-u_{2s-2}^+\lambda_3,u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3, & \text{if $u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3 \ge 0$ and $-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3 \ge 0$;}\\
+        \hspace{1in} \lambda_4,u_{2s-1}^-(u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3)+\lambda_5,u_{2s-2}^-(u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3)+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \begin{align*}
+      \phi_{t_{2s+1}}(\lambda)
+      &=
+      \begin{cases} 
+        (\lambda_1,-u_{2s+1}^+\lambda_2-u_{2s}^+\lambda_3,u_{2s+2}^-\lambda_2+u_{2s+1}^-\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,u_{2s-1}^+\lambda_2-u_{2s}^+\lambda_3,-u_{2s}^-\lambda_2+u_{2s+1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3,-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        (\lambda_1+(u_{2s+1}^-d+u_{2s}^-e)(u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3),-u_{2s+1}^+\lambda_2-u_{2s}^+\lambda_3,-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3, & \text{if $u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3 \ge 0$ and $-u_{2s+1}^+\lambda_2-u_{2s}^+\lambda_3 \ge 0$;}\\
+        \hspace{0.25in} \lambda_4,u_{2s-1}^-(u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3)+\lambda_2+\lambda_5,u_{2s-2}^-(u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3)+c\lambda_2+\lambda_3+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+  \end{lemma}
+  \begin{proof}
+    \[
+      \phi^{t_0}_2(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1,-\lambda_2,c\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_2 \ge 0$;}
+      \end{cases}
+    \]
+    and
+    \[
+      \phi^{t_1}_3(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1,\lambda_2+b\lambda_3,-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6) & \text{if $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+(bd+e)\lambda_3,\lambda_2,-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_3 \ge 0$.}
+      \end{cases}
+    \]
+    so
+    \begin{align*}
+      \phi_{t_2}(\lambda)
+      &=\phi^{t_1}_3\phi^{t_0}_2(\lambda)\\
+      &=
+      \begin{cases} 
+        (\lambda_1,(bc-1)\lambda_2+b\lambda_3,-c\lambda_2-\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $c\lambda_2+\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,-\lambda_2+b\lambda_3,-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \hline
+        (\lambda_1+(bd+e)(c\lambda_2+\lambda_3),-\lambda_2,-c\lambda_2-\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$ and $-c\lambda_2-\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,-\lambda_2,-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $-\lambda_3 \ge 0$;}
+      \end{cases}
+    \end{align*}
+    \[
+      \phi^{t_2}_2(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1,-\lambda_2,c\lambda_2+\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+        \big(\lambda_1+((bc-1)d+ce)\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_2 \ge 0$;}
+      \end{cases}
+    \]
+    \begin{align*}
+      \phi_{t_3}(\lambda)
+      &=\phi^{t_2}_2\phi_{t_2}(\lambda)\\
+      &=
+      \begin{cases} 
+        (\lambda_1,-(bc-1)\lambda_2-b\lambda_3,(bc^2-2c)\lambda_2+(bc-1)\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $(bc-1)\lambda_2+b\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,\lambda_2-b\lambda_3,-c\lambda_2+(bc-1)\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,\lambda_2,-c\lambda_2-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-c\lambda_2-\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        (\lambda_1+((bc-1)d+ce)((bc-1)\lambda_2+b\lambda_3),-(bc-1)\lambda_2-b\lambda_3,-c\lambda_2-\lambda_3, & \text{if $c\lambda_2+\lambda_3 \ge 0$ and $-(bc-1)\lambda_2-b\lambda_3 \ge 0$;}\\
+        \hspace{2in} \lambda_4,b(c\lambda_2+\lambda_3)+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \[
+      \phi^{t_3}_3(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1,\lambda_2+b\lambda_3,-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6) & \text{if $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+((b^2c-2b)d+(bc-1)e)\lambda_3,\lambda_2,-\lambda_3,\lambda_4,b\lambda_3+\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_3 \ge 0$.}
+      \end{cases}
+    \]
+    \begin{align*}
+      \phi_{t_4}(\lambda)
+      &=\phi^{t_3}_3\phi_{t_3}(\lambda)\\
+      &=
+      \begin{cases} 
+        (\lambda_1,u_5^+\lambda_2+u_4^+\lambda_3,-u_4^-\lambda_2-u_3^-\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $u_4^-\lambda_2+u_3^-\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,-u_3^+\lambda_2+u_4^+\lambda_3,u_2^-\lambda_2-u_3^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,-u_3^+\lambda_2-u_2^+\lambda_3,u_2^-\lambda_2+u_1^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_3^+\lambda_2-u_2^+\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        (\lambda_1+(u_4^+d+u_3^+e)(u_4^-\lambda_2+u_3^-\lambda_3),-u_3^+\lambda_2-u_2^+\lambda_3,u_4^-\lambda_2+u_3^-\lambda_3, & \text{if $u_3^+\lambda_2+u_2^+\lambda_3 \ge 0$ and $-u_4^-\lambda_2-u_3^-\lambda_3 \ge 0$;}\\
+        \hspace{1in} \lambda_4,u_3^-(u_3^+\lambda_2+u_2^+\lambda_3)+\lambda_5,u_2^-(u_3^+\lambda_2+u_2^+\lambda_3)+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \begin{align*}
+      \phi_{t_{2s}}(\lambda)
+      &=\phi^{t_{2s-1}}_3\phi_{t_{2s-1}}(\lambda)\\
+      &=
+      \begin{cases} 
+        (\lambda_1,u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3,-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,-u_{2s-1}^+\lambda_2+u_{2s}^+\lambda_3,u_{2s-2}^-\lambda_2-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,-u_{2s-1}^+\lambda_2-u_{2s-2}^+\lambda_3,u_{2s-2}^-\lambda_2+u_{2s-3}^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_{2s-1}^+\lambda_2-u_{2s-2}^+\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        (\lambda_1+(u_{2s}^+d+u_{2s-1}^+e)(u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3),-u_{2s-1}^+\lambda_2-u_{2s-2}^+\lambda_3,u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3, & \text{if $u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3 \ge 0$ and $-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3 \ge 0$;}\\
+        \hspace{1in} \lambda_4,u_{2s-1}^-(u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3)+\lambda_5,u_{2s-2}^-(u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3)+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \[
+      \phi^{t_{2s}}_2(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1,-\lambda_2,c\lambda_2+\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+        \big(\lambda_1+(u_{2s+1}^-d+u_{2s}^-e)\lambda_2,-\lambda_2,\lambda_3,\lambda_4,u_{2s-1}^-\lambda_2+\lambda_5,u_{2s-2}^-\lambda_2+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$;}
+      \end{cases}
+    \]
+    \begin{align*}
+      \phi_{t_{2s+1}}(\lambda)
+      &=\phi^{t_{2s}}_2\phi_{t_{2s}}(\lambda)\\
+      &=
+      \begin{cases} 
+        (\lambda_1,-u_{2s+1}^+\lambda_2-u_{2s}^+\lambda_3,u_{2s+2}^-\lambda_2+u_{2s+1}^-\lambda_3,\lambda_4,\lambda_2+\lambda_5,c\lambda_2+\lambda_3+\lambda_6) & \text{if $\lambda_2 \ge 0$ and $u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2,u_{2s-1}^+\lambda_2-u_{2s}^+\lambda_3,-u_{2s}^-\lambda_2+u_{2s+1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_2 \ge 0$ and $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1+d\lambda_2+(bd+e)\lambda_3,u_{2s-1}^+\lambda_2+u_{2s-2}^+\lambda_3,-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        (\lambda_1+(u_{2s+1}^-d+u_{2s}^-e)(u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3),-u_{2s+1}^+\lambda_2-u_{2s}^+\lambda_3,-u_{2s}^-\lambda_2-u_{2s-1}^-\lambda_3, & \text{if $u_{2s}^-\lambda_2+u_{2s-1}^-\lambda_3 \ge 0$ and $-u_{2s+1}^+\lambda_2-u_{2s}^+\lambda_3 \ge 0$;}\\
+        \hspace{0.25in} \lambda_4,u_{2s-1}^-(u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3)+\lambda_2+\lambda_5,u_{2s-2}^-(u_{2s+1}^+\lambda_2+u_{2s}^+\lambda_3)+c\lambda_2+\lambda_3+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+  \end{proof}
+  \end{landscape}
+
 
   \subsection{Mixed mutations}
 
@@ -2419,6 +2883,561 @@
       \[B_{-3}=\left[\begin{array}{ccc} 0 & -(bc-1)d' - be' & b \\ (bc-1)d + ce & 0 & -db - e\\ -c & cd' + e' & 0\\ bc-1 & 0 & -b\\ 0 & 1 & 0\\ bc^2-2c & e' & -(bc-1)\end{array}\right]\]
   \end{proof}
 
+  \begin{lemma}
+  \end{lemma}
+  \begin{proof}
+    \[
+      \phi^{t_0}_1(\lambda)
+      =
+      \begin{cases} 
+        (-\lambda_1,d\lambda_1+\lambda_2,c\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+        \big(-\lambda_1,\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+      \end{cases}
+    \]
+    and
+    \[
+      \phi^{t_1}_3(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1+b\lambda_3,\lambda_2,-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6) & \text{if $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1,\lambda_2+e\lambda_3+,-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_3 \ge 0$.}
+      \end{cases}
+    \]
+    \begin{align*}
+      \phi_{t_2}(\lambda)
+      &:=\phi^{t_1}_3\phi^{t_0}_1(\lambda)\\
+      &=
+      \begin{cases} 
+        \big((bc-1)\lambda_1+b\lambda_3,d\lambda_1+\lambda_2,-c\lambda_1-\lambda_3,\lambda_1+\lambda_4,\lambda_5,c\lambda_1+\lambda_3+\lambda_6) & \text{if $\lambda_1 \ge 0$ and $c\lambda_1+\lambda_3 \ge 0$;}\\
+        \big(-\lambda_1+b\lambda_3,\lambda_2,-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_3 \ge 0$;} \\
+        \hline
+        (-\lambda_1,(d+ce)\lambda_1+\lambda_2+e\lambda_3,-c\lambda_1-\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$ and $-c\lambda_1-\lambda_3 \ge 0$;}\\
+        \big(-\lambda_1,\lambda_2+e\lambda_3,-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $-\lambda_3 \ge 0$;}
+      \end{cases}
+    \end{align*}
+    \[
+      \phi^{t_2}_1(\lambda)
+      =
+      \begin{cases} 
+        (-\lambda_1,\lambda_2,c\lambda_1+\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+        \big(-\lambda_1,(d+ce)\lambda_1+\lambda_2,\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+      \end{cases}
+    \]
+    \begin{landscape}
+    \begin{align*}
+      \phi_{t_3}(\lambda)
+      &:=\phi^{t_2}_1\phi_{t_2}(\lambda)\\
+      &=
+      \begin{cases} 
+        \big(-(bc-1)\lambda_1-b\lambda_3,d\lambda_1+\lambda_2,(bc^2-2c)\lambda_1+(bc-1)\lambda_3,\lambda_1+\lambda_4,\lambda_5,c\lambda_1+\lambda_3+\lambda_6) & \text{if $\lambda_1 \ge 0$ and $(bc-1)\lambda_1+b\lambda_3 \ge 0$;}\\
+        \big(\lambda_1-b\lambda_3,\lambda_2,-c\lambda_1+(bc-1)\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_3 \ge 0$;} \\
+        \big(\lambda_1,\lambda_2+e\lambda_3,-c\lambda_1-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-c\lambda_1-\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        \big(-(bc-1)\lambda_1-b\lambda_3,(bd+(bc-1)e)(c\lambda_1+\lambda_3)+e\lambda_3+\lambda_2,-c\lambda_1-\lambda_3, & \text{if $c\lambda_1+\lambda_3 \ge 0$ and $-(bc-1)\lambda_1-b\lambda_3 \ge 0$;}\\
+        \hspace{2in} b(c\lambda_1+\lambda_3)+\lambda_4,\lambda_5,c\lambda_1+\lambda_3+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \[
+      \phi^{t_3}_3(\lambda)
+      =
+      \begin{cases} 
+        (\lambda_1+b\lambda_3,\lambda_2,-\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_3 \ge 0$;}\\
+        \big(\lambda_1,\lambda_2+(bd+(bc-1)e)\lambda_3,-\lambda_3,b\lambda_3+\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_3 \ge 0$.}
+      \end{cases}
+    \]
+    \begin{align*}
+      \phi_{t_4}(\lambda)
+      &:=\phi^{t_3}_3\phi_{t_3}(\lambda)\\
+      &=
+      \begin{cases}
+        \big(u_5^+\lambda_1+u_4^+\lambda_3,d\lambda_1+\lambda_2,-u_4^-\lambda_1-u_3^-\lambda_3,\lambda_1+\lambda_4,\lambda_5,c\lambda_1+\lambda_3+\lambda_6) & \text{if $\lambda_1 \ge 0$ and $u_4^-\lambda_1+u_3^-\lambda_3 \ge 0$;}\\
+        \big(-u_3^+\lambda_1+u_4^+\lambda_3,\lambda_2,u_2^-\lambda_1-u_3^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_3 \ge 0$;} \\
+        \big(-u_3^+\lambda_1-u_2^+\lambda_3,\lambda_2+e\lambda_3,u_2^-\lambda_1+u_1^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_3^+\lambda_1-u_2^+\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        \hspace{2in} u_2^+(u_2^-\lambda_1+u_1^-\lambda_3)+\lambda_4,\lambda_5,u_2^-\lambda_1+u_1^-\lambda_3+\lambda_6) & \\
+        \big(-u_3^+\lambda_1-u_2^+\lambda_3,(u_3^-d+u_4^-e)(u_3^+\lambda_1+u_2^+\lambda_3)+\lambda_2+e\lambda_3,-u_4^-\lambda_1-u_3^-\lambda_3, & \text{if $u_3^+\lambda_1+u_2^+\lambda_3 \ge 0$ and $-u_4^-\lambda_1-u_3^-\lambda_3 \ge 0$;}\\
+        \hspace{2in} u_3^-(u_3^+\lambda_1+u_2^+\lambda_3)+\lambda_4,\lambda_5,u_2^-(u_3^+\lambda_1+u_2^+\lambda_3)+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \begin{align*}
+      \phi_{t_{2s}}(\lambda)
+      &:=\phi^{t_{2s-1}}_3\phi_{t_{2s-1}}(\lambda)\\
+      &=
+      \begin{cases}
+        \big(u_{2s+1}^+\lambda_1+u_{2s}^+\lambda_3,d\lambda_1+\lambda_2,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_3,\lambda_1+\lambda_4,\lambda_5,c\lambda_1+\lambda_3+\lambda_6) & \text{if $\lambda_1 \ge 0$ and $u_{2s}^-\lambda_1+u_{2s-1}^-\lambda_3 \ge 0$;}\\
+        \big(-u_{2s-1}^+\lambda_1+u_{2s}^+\lambda_3,\lambda_2,u_{2s-2}^-\lambda_1-u_{2s-1}^-\lambda_3,\lambda_4,\lambda_5,\lambda_3+\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_3 \ge 0$;} \\
+        \big(-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_3,\lambda_2+e\lambda_3,u_{2s-2}^-\lambda_1+u_{2s-3}^-\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_3 \ge 0$ and $-\lambda_3 \ge 0$;}\\
+        \hspace{2in} u_{2s-2}^+(u_{2s-2}^-\lambda_1+u_{2s-3}^-\lambda_3)+\lambda_4,\lambda_5,u_{2s-2}^-\lambda_1+u_{2s-3}^-\lambda_3+\lambda_6) & \\
+        \big(-u_{2s-1}^+\lambda_1-u_{2s-2}^+\lambda_3,(u_{2s-1}^-d+u_{2s}^-e)(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_3)+\lambda_2+e\lambda_3,-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_3, & \text{if $u_{2s-1}^+\lambda_1+u_{2S-2}^+\lambda_3 \ge 0$ and $-u_{2s}^-\lambda_1-u_{2s-1}^-\lambda_3 \ge 0$;}\\
+        \hspace{2in} u_{2s-1}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_3)+\lambda_4,\lambda_5,u_{2s-2}^-(u_{2s-1}^+\lambda_1+u_{2s-2}^+\lambda_3)+\lambda_6) & \\
+      \end{cases}
+    \end{align*}
+    \end{landscape}
+  \end{proof}
+
+  \section{Finite Type Rank 2 Inside Rank 3}
+
+  \subsection{$bc=0$}
+  \[
+    B=\left[\begin{array}{ccc} 
+    0 & 0 & -d' \\ 
+    0 & 0 & -e'\\ 
+    d & e & 0\\ 
+    1 & 0 & 0\\ 
+    0 & 1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \begin{align*}
+    \langle (1,0,0,0,0,d'), \tilde\mu\rangle &= \lambda_1\\ 
+    \langle (0,1,0,0,0,e'), \tilde\mu\rangle &= \lambda_2\\ 
+    \langle (0,0,1,-d,-e,0), \tilde\mu\rangle &= \lambda_3\\ 
+  \end{align*}
+  \begin{align*}
+    \langle (0,0,0,1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+  \[
+    \phi^{t_0}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+      \big(-\lambda_1,\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+    \end{cases}
+  \]
+  \[E_{1,+}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ d & 0 & 1 & 0 & 0 & 0\\ 1 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E_{1,-}=\left[\begin{array}{cccccc} -1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[
+    \mu_1 B=\left[\begin{array}{ccc} 
+    0 & 0 & d' \\ 
+    0 & 0 & -e'\\ 
+    -d & e & 0\\ 
+    -1 & 0 & 0\\ 
+    0 & 1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  If $\lambda_1 \ge 0$, we get $(-\lambda_1,\lambda_2,d\lambda_1+\lambda_3,\lambda_1,0,0)$
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,0,0,0,1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+  If $-\lambda_1 \ge 0$, we get $(-\lambda_1,\lambda_2,\lambda_3,0,0,0)$
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+  \[
+    \phi_{t_2}(\lambda)=\phi^{t_1}_2\phi^{t_0}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,-\lambda_2,d\lambda_1+e\lambda_2+\lambda_3,\lambda_1+\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      \big(-\lambda_1,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      (-\lambda_1,-\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+      \big(-\lambda_1,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \mu_1\mu_2 B=\mu_2\mu_1 B=\left[\begin{array}{ccc} 
+    0 & 0 & d' \\ 
+    0 & 0 & e'\\ 
+    -d & -e & 0\\ 
+    -1 & 0 & 0\\ 
+    0 & -1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  If $\lambda_1 \ge 0$ and $\lambda_2 \ge 0$, we get $(-\lambda_1,-\lambda_2,d\lambda_1+e\lambda_2+\lambda_3,\lambda_1,\lambda_2,0)$ 
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+
+  If $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$, we get $(-\lambda_1,-\lambda_2,e\lambda_2+\lambda_3,0,\lambda_2,0)$
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+
+  If $\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$, we get $(-\lambda_1,-\lambda_2,d\lambda_1+\lambda_3,\lambda_1,0,0)$
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+
+  If $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$, we get $(-\lambda_1,-\lambda_2,\lambda_3,0,0,0)$
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+
+  \[
+    \phi^{t_0}_2(\lambda)
+    =
+    \begin{cases} 
+      \big(\lambda_1,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_2 \ge 0$;}\\
+      (\lambda_1,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[E_{2,+}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & e & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 1 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[E_{2,-}=\left[\begin{array}{cccccc} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 & 0 & 0\\ 0 & 0 & 1 & 0 & 0 & 0\\ 0 & 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 0 & 0 &  1\end{array}\right]\]
+  \[
+    \mu_2 B=\left[\begin{array}{ccc} 
+    0 & 0 & -d' \\ 
+    0 & 0 & e'\\ 
+    d & -e & 0\\ 
+    1 & 0 & 0\\ 
+    0 & -1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  If $\lambda_2 \ge 0$, we get $(\lambda_1,-\lambda_2,e\lambda_2+\lambda_3,0,\lambda_2,0)$
+  \begin{align*}
+    \langle (0,0,0,1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+  If $-\lambda_2 \ge 0$, we get $(\lambda_1,-\lambda_2,\lambda_3,0,0,0)$
+  \begin{align*}
+    \langle (0,0,0,1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+
+  If $\lambda_1 \ge 0$ and $\lambda_2 \ge 0$, then the final inequalities are
+  \begin{align*}
+    \langle (-1,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,-1,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,1,0,0), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+  or with the equalities
+  \begin{align*}
+    \langle (1,0,0,0,0,d'), \tilde\mu\rangle &= \lambda_1\\ 
+    \langle (0,1,0,0,0,e'), \tilde\mu\rangle &= \lambda_2\\ 
+    \langle (0,0,1,-d,-e,0), \tilde\mu\rangle &= \lambda_3\\ 
+  \end{align*}
+  we get
+  \begin{align*}
+    \langle (0,0,0,-1,0,d'), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,-1,e'), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,-1,0,0), \tilde\mu\rangle &\ge -\lambda_1\\ 
+    \langle (0,0,0,0,-1,0), \tilde\mu\rangle &\ge -\lambda_2\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,1,0,0), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+  \newpage
+
+  Consider $B=\left[\begin{array}{ccc} 0 & -d & -e \\ d' & 0 & 0\\ e' & 0 & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]$.
+  \[
+    \phi^{t_0}_2(\lambda)
+    =
+    \begin{cases} 
+      (\lambda_1,-\lambda_2,\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+      \big(\lambda_1+d\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_2 \ge 0$;}
+    \end{cases}
+  \]
+
+  \subsection{$b=3$, $c=1$}
+  \[
+    B=\left[\begin{array}{ccc} 
+    0 & -3 & -d' \\ 
+    1 & 0 & -e'\\ 
+    d & e & 0\\ 
+    1 & 0 & 0\\ 
+    0 & 1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \begin{align*}
+    \langle (1,0,0,0,3,d'), \tilde\mu\rangle &= \lambda_1\\ 
+    \langle (0,1,0,-1,0,e'), \tilde\mu\rangle &= \lambda_2\\ 
+    \langle (0,0,1,-d,-e,0), \tilde\mu\rangle &= \lambda_3\\ 
+  \end{align*}
+  \begin{align*}
+    \langle (0,0,0,1,0,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,1,0), \tilde\mu\rangle &\ge 0\\ 
+    \langle (0,0,0,0,0,1), \tilde\mu\rangle &\ge 0\\ 
+  \end{align*}
+
+  \[
+    \phi_{t_1}=\phi^{t_0}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,\lambda_1+\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+      \big(-\lambda_1,\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \mu_1 B=\left[\begin{array}{ccc} 
+    0 & 3 & d' \\ 
+    -1 & 0 & -e'\\ 
+    -d & e & 0\\ 
+    -1 & 0 & 0\\ 
+    0 & 1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_1}_2(\lambda)
+    =
+    \begin{cases} 
+      \big(\lambda_1+3\lambda_2,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6\big) & \text{if $\lambda_2 \ge 0$;}\\
+      (\lambda_1,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \phi_{t_2}(\lambda)=\phi^{t_1}_2\phi^{t_0}_1(\lambda)
+    =
+    \begin{cases} 
+      (2\lambda_1+3\lambda_2,-\lambda_1-\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3,\lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$ and $\lambda_1+\lambda_2 \ge 0$;}\\
+      (-\lambda_1+3\lambda_2,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      (-\lambda_1,-\lambda_1-\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$ and $-\lambda_1-\lambda_2 \ge 0$;}\\
+      \big(-\lambda_1,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$ and $-\lambda_2 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \mu_2\mu_1 B=\left[\begin{array}{ccc} 
+    0 & -3 & d' \\ 
+    1 & 0 & e'\\ 
+    -d & -e & 0\\ 
+    -1 & 0 & 0\\ 
+    0 & -1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_2}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+      \big(-\lambda_1,\lambda_2,d\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \phi_{t_3}(\lambda)=\phi^{t_2}_1\phi_{t_2}(\lambda)
+    =
+    \begin{cases} 
+      (-2\lambda_1-3\lambda_2,\lambda_1+2\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $2\lambda_1+3\lambda_2 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (\lambda_1-3\lambda_2,-\lambda_1+2\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      (\lambda_1,-\lambda_1-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1-\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+      (-2\lambda_1-3\lambda_2,-\lambda_1-\lambda_2,(3d+e)(\lambda_1+\lambda_2)+\lambda_3, & \text{if $\lambda_1+\lambda_2 \ge 0$ and $-2\lambda_1-3\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} 3(\lambda_1+\lambda_2)+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+    \end{cases}
+  \]
+  \[
+    \mu_1\mu_2\mu_1 B=\left[\begin{array}{ccc} 
+    0 & 3 & -d' \\ 
+    -1 & 0 & d'+e'\\ 
+    d & -3d-e & 0\\ 
+    1 & -3 & 0\\ 
+    0 & -1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_3}_2(\lambda)
+    =
+    \begin{cases} 
+      \big(\lambda_1+3\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6\big) & \text{if $\lambda_2 \ge 0$;}\\
+      (\lambda_1,-\lambda_2,(3d+e)\lambda_2+\lambda_3,3\lambda_2+\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \phi_{t_4}(\lambda)=\phi^{t_3}_2\phi_{t_3}(\lambda)
+    =
+    \begin{cases}
+      (\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $\lambda_1+2\lambda_2 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (-2\lambda_1+3\lambda_2,\lambda_1-2\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      (-2\lambda_1-3\lambda_2,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-2\lambda_1-3\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+      (-2\lambda_1-3\lambda_2,-\lambda_1-2\lambda_2,(2d+e)(2\lambda_1+3\lambda_2)+\lambda_3, & \text{if $2\lambda_1+3\lambda_2 \ge 0$ and $-\lambda_1-2\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} 2(2\lambda_1+3\lambda_2)+\lambda_4,2\lambda_1+3\lambda_2+\lambda_5,\lambda_6) & \\
+    \end{cases}
+  \]
+  \[
+    \mu_2\mu_1\mu_2\mu_1 B=\left[\begin{array}{ccc} 
+    0 & -3 & 2d'+3e' \\ 
+    1 & 0 & -d'-e'\\ 
+    -2d-e & 3d+e & 0\\ 
+    -2 & 3 & 0\\ 
+    -1 & 1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_4}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+      \big(-\lambda_1,\lambda_2,(2d+e)\lambda_1+\lambda_3,2\lambda_1+\lambda_4,\lambda_1+\lambda_5,\lambda_6\big) & \text{if $-\lambda_1 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \phi_{t_5}(\lambda)=\phi^{t_4}_1\phi_{t_4}(\lambda)
+    =
+    \begin{cases}
+      (-\lambda_1-3\lambda_2,\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1 \ge 0$ and $\lambda_1+3\lambda_2 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (2\lambda_1-3\lambda_2,-\lambda_1+\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$ and $\lambda_2 \ge 0$;}\\
+      (2\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1-2\lambda_2 \ge 0$ and $-\lambda_2 \ge 0$;}\\
+      (-\lambda_1-3\lambda_2,-\lambda_1-2\lambda_2,(3d+2e)(\lambda_1+2\lambda_2)+\lambda_3, & \text{if $\lambda_1+2\lambda_2 \ge 0$ and $-\lambda_1-3\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} 3(\lambda_1+2\lambda_2)+\lambda_4,2(\lambda_1+2\lambda_2)+\lambda_5,\lambda_6) & \\
+    \end{cases}
+  \]
+
+  \[
+    \phi^{t_0}_2(\lambda)
+    =
+    \begin{cases} 
+      (\lambda_1,-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+      (\lambda_1+3\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \mu_2 B=\left[\begin{array}{ccc} 
+    0 & 3 & -d'-3e' \\ 
+    -1 & 0 & e'\\ 
+    d+e & -e & 0\\ 
+    1 & 0 & 0\\ 
+    1 & -1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_{-1}}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,\lambda_2,(d+e)\lambda_1+\lambda_3,\lambda_1+\lambda_4,\lambda_1+\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+      (-\lambda_1,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \phi_{t_{-2}}(\lambda)=\phi^{t_{-1}}_1\phi^{t_0}_2(\lambda)
+    =
+    \begin{cases}
+      (-\lambda_1,-\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_2 \ge 0$ and $\lambda_1 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (-\lambda_1-3\lambda_2,-\lambda_2,(d+e)(\lambda_1+3\lambda_2)+\lambda_3, & \text{if $-\lambda_2 \ge 0$ and $\lambda_1+3\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} \lambda_1+3\lambda_2+\lambda_4,\lambda_1+3\lambda_2+\lambda_5,\lambda_6) & \\
+      (-\lambda_1,\lambda_1-\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$ and $-\lambda_1 \ge 0$;}\\
+      (-\lambda_1-3\lambda_2,\lambda_1+2\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-\lambda_1-3\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \mu_1\mu_2 B=\left[\begin{array}{ccc} 
+    0 & -3 & d'+3e' \\ 
+    1 & 0 & -d'-2e'\\ 
+    -d-e & 3d+2e & 0\\ 
+    -1 & 3 & 0\\ 
+    -1 & 2 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_{-2}}_2(\lambda)
+    =
+    \begin{cases} 
+      (\lambda_1,-\lambda_2,(3d+2e)\lambda_2+\lambda_3,3\lambda_2+\lambda_4,2\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+      (\lambda_1+3\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \phi_{t_{-3}}(\lambda)=\phi^{t_{-2}}_2\phi_{t_{-2}}(\lambda)
+    =
+    \begin{cases}
+      (-\lambda_1-3\lambda_2,-\lambda_1-2\lambda_2,(3d+2e)(\lambda_1+2\lambda_2)+\lambda_3, & \text{if $-\lambda_1-3\lambda_2 \ge 0$ and $\lambda_1+2\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} 3(\lambda_1+2\lambda_2)+\lambda_4,2(\lambda_1+2\lambda_2)+\lambda_5,\lambda_6) & \\
+      (-\lambda_1-3\lambda_2,\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1+3\lambda_2 \ge 0$ and $\lambda_1 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (2\lambda_1-3\lambda_2,-\lambda_1+\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$ and $-\lambda_1 \ge 0$;}\\
+      (2\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-\lambda_1-2\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \mu_2\mu_1\mu_2 B=\left[\begin{array}{ccc} 
+    0 & 3 & -2d'-3e' \\ 
+    -1 & 0 & d'+2e'\\ 
+    2d+e & -3d-2e & 0\\ 
+    2 & -3 & 0\\ 
+    1 & -2 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_{-3}}_1(\lambda)
+    =
+    \begin{cases} 
+      (-\lambda_1,\lambda_2,(2d+e)\lambda_1+\lambda_3,2\lambda_1+\lambda_4,\lambda_1+\lambda_5,\lambda_6) & \text{if $\lambda_1 \ge 0$;}\\
+      (-\lambda_1,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_1 \ge 0$;}
+    \end{cases}
+  \]
+  \[
+    \phi_{t_{-4}}(\lambda)=\phi^{t_{-3}}_1\phi_{t_{-3}}(\lambda)
+    =
+    \begin{cases}
+      (2\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,(2d+e)(2\lambda_1+3\lambda_2)+\lambda_3, & \text{if $-\lambda_1-2\lambda_2 \ge 0$ and $2\lambda_1+3\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} 2(2\lambda_1+3\lambda_2)+\lambda_4,2\lambda_1+3\lambda_2+\lambda_5,\lambda_6) & \\
+      (\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1+2\lambda_2 \ge 0$ and $\lambda_1 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (-2\lambda_1+3\lambda_2,\lambda_1-2\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$ and $-\lambda_1 \ge 0$;}\\
+      (-2\lambda_1-3\lambda_2,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-2\lambda_1-3\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \mu_1\mu_2\mu_1\mu_2 B=\left[\begin{array}{ccc} 
+    0 & -3 & 2d'+3e' \\ 
+    1 & 0 & -d'-e'\\ 
+    -2d-e & 3d+e & 0\\ 
+    -2 & 3 & 0\\ 
+    -1 & 1 & 0\\ 
+    0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
+    \phi^{t_{-4}}_2(\lambda)
+    =
+    \begin{cases} 
+      (\lambda_1,-\lambda_2,(3d+e)\lambda_2+\lambda_3,3\lambda_2+\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$;}\\
+      (\lambda_1+3\lambda_2,-\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
+  \[
+    \phi_{t_{-5}}(\lambda)=\phi^{t_{-4}}_2\phi_{t_{-4}}(\lambda)
+    =
+    \begin{cases}
+      (2\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,(2d+e)(2\lambda_1+3\lambda_2)+\lambda_3, & \text{if $-\lambda_1-2\lambda_2 \ge 0$ and $2\lambda_1+3\lambda_2 \ge 0$;}\\
+      \hspace{0.8in} 2(2\lambda_1+3\lambda_2)+\lambda_4,2\lambda_1+3\lambda_2+\lambda_5,\lambda_6) & \\
+      (-2\lambda_1-3\lambda_2,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-2\lambda_1-3\lambda_2 \ge 0$ and $\lambda_1+\lambda_2 \ge 0$;}\\
+    \hline
+      (\lambda_1+3\lambda_2,-\lambda_1-2\lambda_2,(d+e)\lambda_1+e\lambda_2+\lambda_3, & \text{if $\lambda_1+2\lambda_2 \ge 0$ and $\lambda_1 \ge 0$ and $\lambda_1+2\lambda_2 \ge 0$;}\\
+      \hspace{1.3in} \lambda_1+\lambda_4,\lambda_1+\lambda_2+\lambda_5,\lambda_6) & \\
+      (-2\lambda_1+3\lambda_2,\lambda_1-2\lambda_2,e\lambda_2+\lambda_3,\lambda_4,\lambda_2+\lambda_5,\lambda_6) & \text{if $\lambda_2 \ge 0$ and $-\lambda_1 \ge 0$ and $-\lambda_1+2\lambda_2 \ge 0$;}\\
+      (-2\lambda_1-3\lambda_2,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-2\lambda_1-3\lambda_2 \ge 0$ and $-\lambda_1-\lambda_2 \ge 0$;}\\
+    \end{cases}
+  \]
 
 \bibliographystyle{amsalpha}
 \bibliography{bibliography}  
