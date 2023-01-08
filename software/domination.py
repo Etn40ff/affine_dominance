@@ -261,31 +261,6 @@ def get_region_broken(B, seq, la):
     return P
 
 
-def get_inequalities_with_return_steps(B, seq, la, return_steps=infinity):
-    r"""
-    Return the dominance region based at `la` corresponding to the sequence of mutations seq
-    """
-    seq = copy(seq)
-    n = B.ncols()
-    if B.is_square():
-        B = B.stack(identity_matrix(n))
-
-    if len(la) == n:
-        la = vector(tuple(la)+(0,)*n)
-    else:
-        la = vector(la)
-
-    B = block_matrix([[B,la.column()]])
-    while len(seq) > return_steps:
-        k = seq.pop(0)
-        B.mutate(k)
-
-    la = vector(B[:,-1])
-    B = B[:,:-1]
-
-    return get_inequalities(B, seq, la)
-
-
 def get_inequalities(B, seq, la):
     r"""
     Return the dominance region based at `la` corresponding to the sequence of mutations seq
@@ -329,6 +304,31 @@ def get_inequalities(B, seq, la):
                 continue
             inequalities.append( (ieqs, [ vector(v[1:]) for v in C.inequalities_list()]) )
     return inequalities
+
+
+def get_inequalities_with_return_steps(B, seq, la, return_steps=infinity):
+    r"""
+    Return the dominance region based at `la` corresponding to the sequence of mutations seq
+    """
+    seq = copy(seq)
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    B = block_matrix([[B,la.column()]])
+    while len(seq) > return_steps:
+        k = seq.pop(0)
+        B.mutate(k)
+
+    la = vector(B[:,-1])
+    B = B[:,:-1]
+
+    return get_inequalities(B, seq, la)
 
 
 def get_regions(B, seq, la, return_steps=infinity,return_table=False):
@@ -669,7 +669,8 @@ def stereo(B, seq, la, return_steps=+Infinity, depth=6, north=(-1,-1,-1), distan
     return stereo_regions(regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors,precision=precision, north=north) + stereo_regions(tau_linearity_regions, distance=distance, check_single_region=check_single_region, random_colors=random_colors, precision=precision, north=north, fixed_color="blue") + stereo_fan(F,color_initial=True, color_final=True, distance=distance,precision=precision, north=north, plot_vectors=plot_vectors)+G
 
 
-def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
+def regions_with_equalities(B, seq, la, return_table=False, projection='c'): 
+    #principal initial coefficients
     if projection == 'g':
         if B.rank() != B.ncols():
             raise ValueError("B is not full rank")
@@ -682,16 +683,56 @@ def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
     for (key,value) in regions.items():
         if projection == 'c':
             new_key = Set( (tuple(vector(lhs[:n])*B+vector(lhs[n:])),rhs-vector(lhs[:n]).dot_product(la)) for (lhs,rhs) in key)
-            # lhs[:n][-I B]mu = -lhs[:n]*lambda
+            # lhs[:n][-I B]mu = -lhs[:n]*la
         elif projection == 'g':
             new_key = Set( (tuple(vector(lhs[:n])+vector(lhs[n:])*B.inverse()),rhs+vector(lhs[n:])*B.inverse()*la) for (lhs,rhs) in key)
-            # lhs[n:][B.inverse() -I]mu = lhs[n:]*B.inverse()*lambda
+            # lhs[n:][B.inverse() -I]mu = lhs[n:]*B.inverse()*la
         else:
             new_key = key
         new_value = []
         for cone in value:
             if projection == 'c':
+                print([ ieq for ieq in cone])
                 new_value.append([(vector(ieq)*B,-vector(ieq).dot_product(la)) for ieq in cone])
+            elif projection == 'g':
+                new_value.append([(ieq,0) for ieq in cone])
+            else:
+                new_value.append([(tuple(ieq)+(0,)*n,0) for ieq in cone])
+        new_regions[new_key] = new_value
+    if return_table:
+        return table(list(new_regions.items()))
+    return new_regions
+
+
+def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
+    if projection == 'g':
+        if B.rank() != B.ncols():
+            raise ValueError("B is not full rank")
+    elif projection != 'c' and projection:
+        raise ValueError("What projection are you trying to do??")
+    n = B.ncols()
+    if B.is_square():
+        B = B.stack(identity_matrix(n))
+    if len(la) == n:
+        la = vector(tuple(la)+(0,)*n)
+    else:
+        la = vector(la)
+
+    regions = get_regions(B, seq, la)
+    new_regions = {}
+    for (key,value) in regions.items():
+        if projection == 'c':
+            new_key = Set( (tuple(vector(lhs)*B),rhs-vector(lhs).dot_product(la)) for (lhs,rhs) in key)
+            # lhs[:n][-I B]mu = -lhs[:n]*la
+        elif projection == 'g':
+            new_key = Set( (tuple(vector(lhs[:n])+vector(lhs[n:])*B.inverse()),rhs+vector(lhs[n:])*B.inverse()*la) for (lhs,rhs) in key)
+            # lhs[n:][B.inverse() -I]mu = lhs[n:]*B.inverse()*la
+        else:
+            new_key = key
+        new_value = []
+        for cone in value:
+            if projection == 'c':
+                new_value.append([(vector(ieq)*B[:n,:n]*B[n:,:n].inverse(),-vector(ieq).dot_product(la[:n])) for ieq in cone])
             elif projection == 'g':
                 new_value.append([(ieq,0) for ieq in cone])
             else:
@@ -833,11 +874,21 @@ def source_sequence(B,inv=False):
 
 
 def E(B,k,sgn):
-     n = B.ncols()
+     n = B.nrows()
      E = identity_matrix(n)
      E.set_column(k, list(map( lambda b: max(sgn*b,0), B.column(k))))
      E[k,k] = -1
      return E
+
+
+def mutate_lambda(B,seq,la):
+    if seq == []:
+        return la
+    seq = copy(seq)
+    k = seq.pop(0)
+    new_B = copy(B)
+    new_B.mutate(k)
+    return mutate_lambda(new_B,seq,E(B,k,sign(la[k]))*vector(la))
 
 
 def tau(B, eps, inv=False):
@@ -864,20 +915,20 @@ def chebyshev(k,eps,b,c):
 def phi(B, seq):
     B = copy(B)
     I = identity_matrix(B.nrows())
-    
+
     if seq == []:
         I.set_immutable()
         return ({I:[[]]},B)
 
     k = seq.pop()
     current_regions, current_B = phi(B, seq)
-    
+
     Ep = matrix(B.nrows(), lambda i,j: 0 if j!=k else current_B[i,j] if current_B[i,j] > 0 else 0) + 1
     Ep[k,k] = -1
 
     Em = matrix(B.nrows(), lambda i,j: 0 if j!=k else -current_B[i,j] if current_B[i,j] < 0 else 0) + 1
     Em[k,k] = -1
-    
+
     new_regions = {}
     for transformation in current_regions:
         new_transformation = Ep*transformation
@@ -896,3 +947,55 @@ def phi(B, seq):
     current_B.mutate(k)
 
     return (new_regions, current_B)
+
+
+def parabolic_intersection(B,la,depth=500,projection='c'):
+    A = ClusterAlgebra(B)
+    seqs = []
+    for i in range(A.rank()):
+        seeds = A.seeds(mutating_F=False, allowed_directions=[k for k in range(A.rank()) if k != i])
+        count = 0
+        for seed in seeds:
+            seqs.append(seed.path_from_initial_seed())
+            count += 1
+            if count > depth:
+                break
+    new_seqs = []
+    for seq in seqs:
+        for k in range(len(seq)):
+            if seq[:k+1] not in new_seqs:
+                new_seqs.append(seq[:k+1])
+    new_seqs = list(sorted(sorted(new_seqs), key=len, reverse=True))
+    Q = get_intersected_polyhedron(B,[],la,projection='c')
+    print('\n')
+    for seq in new_seqs:
+        print('\033[A' + str(seq))
+        Q = Q.intersection(get_polyhedron(B,seq,la,projection='c'))
+    return Q
+
+
+def cambrian(B,n,la,projection='c'):
+    if n == 0:
+        raise ValueError("n=0 not handled")
+    if B.is_square():
+        B = B.stack(identity_matrix(B.ncols()))
+    if n > 0:
+        start_seq = list(range(B.ncols()))*(ceil(n/B.ncols())+1)
+    if n < 0:
+        start_seq = list(reversed(range(B.ncols())))*(ceil(-n/B.ncols())+1)
+    k = start_seq[abs(n)]
+    start_seq = start_seq[:abs(n)]
+    new_B = copy(B)
+    for i in seq:
+        new_B.mutate(i)
+    A = ClusterAlgebra(new_B)
+    end_seqs = []
+    for i in range(A.rank()):
+        seeds = A.seeds(mutating_F=False, allowed_directions=[j for j in range(A.rank()) if j != k])
+        for seed in seeds:
+            end_seqs.append(seed.path_from_initial_seed())
+    new_la = mutate_lambda(B,start_seq,la)
+    Q = get_intersected_polyhedron(new_B,[],new_la,projection=projection)
+    for seq in end_seqs:
+         Q = Q.intersection(get_intersected_polyhedron(new_B,seq,new_la,projection=projection))
+    return Q
