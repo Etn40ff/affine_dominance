@@ -1,10 +1,9 @@
-from collections import defaultdict
-
+# inequalities are stored in the same format as Polyhedron expect them:
+# [-1,7,3,4] represents the inequality 7x_1+3x_2+4x_3>= 1
 
 def mutate_inequalities(B, seq, ieqs_list):
     #this function assumes B is 2n x n
     #this pulls the inequalities back along the sequence, starting from the end
-
     if seq == []:
         return ieqs_list
 
@@ -25,11 +24,11 @@ def mutate_inequalities(B, seq, ieqs_list):
     ieqs_list = []
     for ieqs_p in ieqs_list_p:
         for sgn in [-1, 1]:
-            ieqs = [ (tuple(E(sgn).transpose()*vector(normal_p)), const) for (normal_p, const) in ieqs_p ] + [ ((0,)*(k) + (sgn,) + (0,)*(2*n-k-1),0) ]
+            ieqs = [ (const,) + tuple(E(sgn).transpose()*vector(normal_p)) for (const, *normal_p) in ieqs_p ] + [ ((0,)*(k+1) + (sgn,) + (0,)*(2*n-k-1)) ]
             #check the sign of sgn above
-            P = Polyhedron(ieqs=[ [-rhs]+list(lhs) for (lhs,rhs) in ieqs ] )
+            P = Polyhedron(ieqs=ieqs)
             if P.dimension() == 2*n:
-                ieqs_list.append( [ (v[1:],-v[0]) for v in P.inequalities_list() ] )
+                ieqs_list.append( P.inequalities_list() )
     return ieqs_list
 
 
@@ -44,7 +43,7 @@ def get_inequalities(B, seq, la):
 
     la_p = vector(M[:,-1])
 
-    return mutate_inequalities(B, seq, [ [ ((0,)*n+tuple(normal), vector(normal)*la_p[n:]) for normal in M[n:,:n].inverse().rows() ] ])
+    return mutate_inequalities(B, seq, [ [ (-vector(normal)*la_p[n:],) + (0,)*n+tuple(normal)  for normal in M[n:,:n].inverse().rows() ] ])
 
 
 def parabolic_sequences(B, seq, k):
@@ -61,7 +60,7 @@ def get_polyhedron(B, seq, la, projection=None):
     if projection:
         dim = B.ncols()
         ieqs_list = project_inequalities(B, ieqs_list, projection=projection)
-    polyhedra = [ Polyhedron(ieqs=[ [-rhs]+list(lhs) for (lhs,rhs) in ieqs ] ) for ieqs in ieqs_list ]
+    polyhedra = [ Polyhedron(ieqs=ieqs) for ieqs in ieqs_list ]
     Q = Polyhedron(ambient_dim=dim,base_ring=QQ)
     for P in polyhedra:
         Q = Q.convex_hull(P)
@@ -69,6 +68,8 @@ def get_polyhedron(B, seq, la, projection=None):
 
 
 def project_inequalities(B, ieqs_list, projection='c'):
+    # TODO: this function still uses the old notation for inequalities
+    # TODO: the g pprojection needs a shift
     #this function assumes B is 2n x n and the bottom is invertible
     n = B.ncols()
     top = B[:n,:n]
