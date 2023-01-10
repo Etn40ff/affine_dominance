@@ -59,7 +59,7 @@ def get_polyhedron(B, seq, la, projection=None):
     dim = B.nrows()
     if projection:
         dim = B.ncols()
-        ieqs_list = project_inequalities(B, ieqs_list, projection=projection)
+        ieqs_list = project_inequalities(B, la, ieqs_list, projection=projection)
     polyhedra = [ Polyhedron(ieqs=ieqs) for ieqs in ieqs_list ]
     Q = Polyhedron(ambient_dim=dim,base_ring=QQ)
     for P in polyhedra:
@@ -67,10 +67,13 @@ def get_polyhedron(B, seq, la, projection=None):
     return Q
 
 
-def project_inequalities(B, ieqs_list, projection='c'):
+def project_inequalities(B, la, ieqs_list, projection=None):
     # TODO: this function still uses the old notation for inequalities
     # TODO: the g pprojection needs a shift
     #this function assumes B is 2n x n and the bottom is invertible
+    if not projection:
+        return ieqs_list
+
     n = B.ncols()
     top = B[:n,:n]
     bottom = B[n:,:n]
@@ -78,23 +81,24 @@ def project_inequalities(B, ieqs_list, projection='c'):
         elimination_matrix = block_matrix([[-identity_matrix(n), top*bottom.inverse()]])
         start = 0
         end = n
+        shift = lambda normal: vector(normal).dot_product(la)
     if projection == 'g':
         #requires top to be invertible
-        elimination_matrix = block_matrix([[bottom*top.inverse(), -identity_matrix(n)]])
+        bti = bottom*top.inverse()
+        elimination_matrix = block_matrix([[bti, -identity_matrix(n)]])
         start = n
         end = 2*n
+        shift = lambda normal: -vector(normal[n:])*bti*la[:n]
     new_ieqs_list = []
     for ieqs in ieqs_list:
-        new_ieqs = []
-        for ieq in ieqs:
-            #take first entries in one and last entries in the other
-            new_ieqs.append((tuple(vector(ieq[0])-vector(ieq[0][start:end])*elimination_matrix)[2*n-end:2*n-start],ieq[1]))
+        #take first entries in one and last entries in the other
+        new_ieqs = [ (const+shift(normal),)+tuple(vector(normal)+vector(normal[start:end])*elimination_matrix)[2*n-end:2*n-start] for (const, *normal) in ieqs ]
         new_ieqs_list.append(new_ieqs)
 
     return new_ieqs_list
 
 
-def global_function(B, seq, la):
+def parabolic_intersection(B, seq, la, k, projection=None):
     n = B.ncols()
     if B.is_square():
         B = B.stack(identity_matrix(n))
@@ -104,3 +108,12 @@ def global_function(B, seq, la):
     if len(la) != B.nrows():
         raise ValueError("la has the wrong length")
     la = vector(la)
+
+    seqs = parabolic_sequences(B, seq, k)
+    seq = seqs.pop(0)
+
+    P = get_polyhedron(B, seq, la, projection=projection)
+    for seq in seqs:
+        P = P.intersection(get_polyhedron(B, seq, la, projection=projection))
+
+    return P

@@ -725,7 +725,7 @@ def regions_with_equalities(B, seq, la, return_table=False, projection='c'):
             new_key = Set( (tuple(vector(lhs)*B),rhs-vector(lhs).dot_product(la)) for (lhs,rhs) in key)
             # lhs[:n][-I B]mu = -lhs[:n]*la
         elif projection == 'g':
-            new_key = Set( (tuple(vector(lhs[:n])+vector(lhs[n:])*B.inverse()),rhs+vector(lhs[n:])*B.inverse()*la) for (lhs,rhs) in key)
+            new_key = Set( (tuple(vector(lhs[:n])-vector(lhs[n:])*B[:n].inverse()),rhs+vector(lhs[n:])*B[:n].inverse()*la[:n]) for (lhs,rhs) in key)
             # lhs[n:][B.inverse() -I]mu = lhs[n:]*B.inverse()*la
         else:
             new_key = key
@@ -778,11 +778,11 @@ def mutate_polyhedron(P, B, seq):
     k = seq.pop(0)
     n = B.ncols()
     Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(n-k-1)])
-    Mp = matrix(n, lambda i,j: (1 if i == j else 0) if j != k else (max(B[i,k],0) if i != k else -1) )
+    Ep = matrix(n, lambda i,j: (1 if i == j else 0) if j != k else (max(B[i,k],0) if i != k else -1) )
     Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(n-k-1)])
-    Mm = matrix(n, lambda i,j: (1 if i == j else 0) if j != k else (max(-B[i,k],0) if i != k else -1) )
-    polytope_p = Mm*(polytope.intersection(Hp))
-    polytope_m = Mp*(polytope.intersection(Hm))
+    Em = matrix(n, lambda i,j: (1 if i == j else 0) if j != k else (max(-B[i,k],0) if i != k else -1) )
+    polytope_p = Em*(polytope.intersection(Hp))
+    polytope_m = Ep*(polytope.intersection(Hm))
     polytope = polytope_p.convex_hull(polytope_m)
     new_B = copy(B)
     new_B.mutate(k)
