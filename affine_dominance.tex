@@ -21,6 +21,7 @@
 \numberwithin{theorem}{section}
 
 \newcommand{\bfc}{\boldsymbol{c}}
+\newcommand{\bfd}{\boldsymbol{d}}
 \newcommand{\bfe}{\boldsymbol{e}}
 \newcommand{\bfg}{\boldsymbol{g}}
 \newcommand{\bfk}{\boldsymbol{k}}
@@ -60,6 +61,7 @@
 \newcommand{\obeta}{{\overline{\beta}}}
 \newcommand{\oi}{{\overline{\imath}}}
 \newcommand{\ot}{{\overline{t}}}
+\newcommand{\rep}{\mathrm{rep}}
 \newcommand{\rsh}{{\operatorname{rsh}}}
 \newcommand{\sh}{{\operatorname{sh}}}
 \newcommand{\WA}{{W\!\!A}}
@@ -3438,6 +3440,219 @@
       (-2\lambda_1-3\lambda_2,\lambda_1+\lambda_2,\lambda_3,\lambda_4,\lambda_5,\lambda_6) & \text{if $-\lambda_2 \ge 0$ and $-2\lambda_1-3\lambda_2 \ge 0$ and $-\lambda_1-\lambda_2 \ge 0$;}\\
     \end{cases}
   \]
+
+
+\section{Rank Two Redux}
+  
+
+\section{Parabolic Intersections}
+
+\begin{example}
+  $B = \left[\begin{array}{cccc} 0 & -1 & -1 & 0 \\ 1 & 0 & 0 & -1 \\ 1 & 0 & 0 & -1 \\ 0 & 1 & 1 & 0 \end{array}\right]$ 
+
+  $\lambda = (4,0,0,-4)$
+
+  Source adapted sequence: $(0,1,2,3)$
+
+
+  $\bfd$-vectors $(0,1,0,0)$ and $(0,0,1,0)$
+  \begin{align*}
+    && (\rho_2+\rho_3)(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_2, \beta \rangle &&\\
+    0 \leq && \langle \alpha_3, \beta \rangle &&\\
+    && \langle \alpha_2+\alpha_3, \beta \rangle && \leq 4\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+  \begin{align*}
+    && (\rho_2+\rho_3)(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_1+\alpha_3+\alpha_4, \beta \rangle &&\\
+    0 \leq && \langle \alpha_1+\alpha_2+\alpha_4, \beta \rangle &&\\
+    && \langle (\alpha_1+\alpha_2+\alpha_4)+(\alpha_1+\alpha_3+\alpha_4), \beta \rangle && \leq 4\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+\end{example}
+
+\begin{example}
+  $B = \left[\begin{array}{ccccc} 0 & -1 & 0 & 0 & -1\\ 1 & 0 & -1 & 0 & 0\\ 0 & 1 & 0 & -1 & 0\\ 0 & 0 & 1 & 0 & -1\\ 1 & 0 & 0 & 1 & 0\end{array}\right]$
+
+  $\lambda = (4,0,0,0,-4)$
+
+  Source adapted sequence: $(0,1,2,3,4)$
+
+  Write $\langle\cdot,\cdot\rangle$ for the Euler pairing on $\rep(Q)$.
+  The base of the tube consists of the roots $\alpha_2,\alpha_3,\alpha_4,\alpha_1+\alpha_5$.
+
+  Note: A representation theoretic interpretation for the first inequality is still needed.
+
+  \begin{align*}
+    && (\rho_1+\rho_2)(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_2+\alpha_3+\alpha_4, \beta \rangle &&\leq 4\\
+    && \langle \alpha_3+\alpha_4, \beta \rangle &&= 0\\
+    && \langle \alpha_4, \beta \rangle &&= 0\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+
+  \begin{align*}
+    && (\rho_1+\rho_2)(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_1+\alpha_3+\alpha_4+\alpha_5, \beta \rangle &&\leq 4\\
+    && \langle \alpha_1+\alpha_4+\alpha_5, \beta \rangle &&= 0\\
+    && \langle \alpha_1+\alpha_5, \beta \rangle &&= 0\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+
+  \begin{align*}
+    && (\rho_2+\rho_3)(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_1+\alpha_2+\alpha_4+\alpha_5, \beta \rangle &&\leq 4\\
+    && \langle \alpha_1+\alpha_2+\alpha_5, \beta \rangle &&= 0\\
+    && \langle \alpha_2, \beta \rangle &&= 0\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+
+  \begin{align*}
+    && (\rho_2+\rho_3)(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_1+\alpha_2+\alpha_3+\alpha_5, \beta \rangle &&\leq 4\\
+    && \langle \alpha_2+\alpha_3, \beta \rangle &&= 0\\
+    && \langle \alpha_3, \beta \rangle &&= 0\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+\end{example}
+
+\begin{example}
+  $B = \left[\begin{array}{ccccc} 0 & 0 & -1 & 0 & 0\\ 0 & 0 & -1 & 0 & 0\\ 1 & 1 & 0 & -1 & -1\\ 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0 & 0\end{array}\right]$
+
+  $\lambda = (4,4,0,-4,-4)$
+
+  Source adapted sequence: $(0,1,2,3,4)$
+
+  The bases of the tubes consists of the roots 
+  \[\alpha_1+\alpha_3+\alpha_4,\alpha_2+\alpha_3+\alpha_5 \qquad \alpha_1+\alpha_3+\alpha_5,\alpha_2+\alpha_3+\alpha_4 \qquad \alpha_1+\alpha_2+\alpha_3+\alpha_4+\alpha_5,\alpha_3.\]
+
+  \begin{align*}
+    && \rho_3(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_1+\alpha_3+\alpha_4, \beta \rangle &&\\
+    0 \leq && \langle \alpha_2+\alpha_3+\alpha_4, \beta \rangle &&\\
+    0 \leq && \langle \alpha_3, \beta \rangle &&\\
+    && (-2, 0, 1, 0, 0) x + 4 &&\geq 0\\
+    && (0, 0, -1, 2, 0) x + 4 &&\geq 0\\
+    && (0, -2, 1, 0, 0) x + 4 &&\geq 0\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+  \begin{align*}
+    && \rho_3(\beta) &&\leq 4\\
+    0 \leq && \langle \alpha_2+\alpha_3+\alpha_5, \beta \rangle &&\\
+    0 \leq && \langle \alpha_1+\alpha_3+\alpha_5, \beta \rangle &&\\
+    0 \leq && \langle \alpha_1+\alpha_2+\alpha_3+\alpha_4+\alpha_5, \beta \rangle &&\\
+    (0, 0, 1, -2, 0) x + 4 &\geq 0\\
+    (2, 0, -1, 0, 0) x + 4 &\geq 0\\
+    (0, 2, -1, 0, 0) x + 4 &\geq 0\\
+    && \langle \delta,\beta \rangle &&= 0
+  \end{align*}
+\end{example}
+
+\begin{example}
+  Let $B=\left[\begin{array}{ccccc} 0 & -1 & 0 & -1 & 0\\ 1 & 0 & -1 & 0 & 0\\ 0 & 1 & 0 & 0 & -1\\ 1 & 0 & 0 & 0 & -1\\ 0 & 0 & 1 & 1 & 0 \end{array}\right]$.
+
+  We computed the parabolic intersections for $\lambda=(4,0,0,0,-4)$ along repeated copies of the source adapted sequence $(1,2,3,4,5)$ where the intersections are taken inside the parabolic with $5$ omitted.
+  We found that there is a pseudo-periodicity of order 6 (the products of the sizes of the tubes).
+  The $\bfg$-vectors for cluster variables at the bases of the tubes are given by
+  \[(1, -1, 0, 0, 0), (0, 1, -1, 0, 0), (0, 0, 1, 0, -1) \qquad \text{and} \qquad (1, 0, 0, -1, 0), (0, 0, 0, 1, -1).\]
+
+  The limiting polyhedra (in the $\bfc$-vector projection) along pseudo-periodically equivalent parabolic intersections are given by the following collections of equalities and inequalities:
+  \begin{enumerate}
+    \item 
+      \begin{align*}
+        \langle (0,-1, 0, -1, 0), \mu \rangle + 4 \geq 0 && (\rho_2+\rho_4)(\beta) \leq 4\\
+        \langle (-2, 1, 0, 1, 0), \mu \rangle + 4 \geq 0 && \langle \alpha_2+\alpha_4, \beta \rangle \leq 4\\
+        \langle (1, 0, 0, -1, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_4, \beta \rangle\\
+        \langle (1, -1, 0, 0, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_2, \beta \rangle\\
+        \langle (0, 1, -1, 0, 0), \mu \rangle + 0 = 0 && \langle \alpha_3, \beta \rangle = 0\\
+        \langle (1, 0, 0, 0, -1), \mu \rangle + 0 = 0 && \langle \delta, \beta \rangle = 0
+      \end{align*}
+    \item 
+      \begin{align*}
+        \langle (0, 0, -1,-1, 0), \mu \rangle + 4 \geq 0 && (\rho_3+\rho_4)(\beta) \leq 4\\
+        \langle (0, 0, -1,-1, 2), \mu \rangle + 4 \geq 0 && \langle (\alpha_1+\alpha_4+\alpha_5)+(\alpha_1+\alpha_2+\alpha_3+\alpha_5), \beta \rangle \leq 4\\
+        \langle (0, 0, 0, 1, -1), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_1+\alpha_2+\alpha_3+\alpha_5, \beta \rangle\\
+        \langle (0, 0, 1, 0, -1), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_1+\alpha_4+\alpha_5, \beta \rangle\\
+        \langle (1, -1, 0, 0, 0), \mu \rangle + 0 = 0 && \langle \alpha_2, \beta \rangle = 0\\
+        \langle (1, 0, 0, 0, -1), \mu \rangle + 0 = 0 && \langle \delta, \beta \rangle = 0
+      \end{align*}
+    \item 
+      \begin{align*}
+        \langle (0, -1, 0,-1, 0), \mu \rangle + 4 \geq 0 && (\rho_2+\rho_4)(\beta) \leq 4\\
+        \langle (-1,-1, 1, 1, 0), \mu \rangle + 4 \geq 0 && \langle \alpha_3+\alpha_4, \beta \rangle \leq 4\\
+        \langle (1, 0, 0, -1, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_4, \beta \rangle\\
+        \langle (0, 1, -1, 0, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_3, \beta \rangle\\
+        \langle (0, 0, 1, 0, -1), \mu \rangle + 0 = 0 && \langle \alpha_1+\alpha_4+\alpha_5, \beta \rangle = 0\\
+        \langle (1, 0, 0, 0, -1), \mu \rangle + 0 = 0 && \langle \delta, \beta \rangle = 0
+      \end{align*}
+    \item 
+      \begin{align*}
+        \langle (0, -1, 0,-1, 0), \mu \rangle + 4 \geq 0 && (\rho_2+\rho_4)(\beta) \leq 4\\
+        \langle (0, 1, 0, -1, 0), \mu \rangle + 4 \geq 0 && \langle \alpha_2+(\alpha_1+\alpha_2+\alpha_3+\alpha_5), \beta \rangle \leq 4\\
+        \langle (0, 0, 0, 1, -1), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_1+\alpha_2+\alpha_3+\alpha_5, \beta \rangle\\
+        \langle (1, -1, 0, 0, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_2, \beta \rangle\\
+        \langle (0, 1, -1, 0, 0), \mu \rangle + 0 = 0 && \langle \alpha_3, \beta \rangle = 0\\
+        \langle (1, 0, 0, 0, -1), \mu \rangle + 0 = 0 && \langle \delta, \beta \rangle = 0
+      \end{align*}
+    \item 
+      \begin{align*}
+        \langle (0, 0, -1,-1, 0), \mu \rangle + 4 \geq 0 && (\rho_3+\rho_4)(\beta) \leq 4\\
+        \langle (-1, 0,-1, 1, 1), \mu \rangle + 4 \geq 0 && \langle (\alpha_1+\alpha_4+\alpha_5)+\alpha_4, \beta \rangle \leq 4\\
+        \langle (1, 0, 0, -1, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_4, \beta \rangle\\
+        \langle (0, 0, 1, 0, -1), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_1+\alpha_4+\alpha_5, \beta \rangle\\
+        \langle (1, -1, 0, 0, 0), \mu \rangle + 0 = 0 && \langle \alpha_2, \beta \rangle = 0\\
+        \langle (1, 0, 0, 0, -1), \mu \rangle + 0 = 0 && \langle \delta, \beta \rangle = 0
+      \end{align*}
+    \item 
+      \begin{align*}
+        \langle (0, -1, 0,-1, 0), \mu \rangle + 4 \geq 0 && (\rho_2+\rho_4)(\beta) \leq 4\\
+        \langle (0, -1, 1,-1, 1), \mu \rangle + 4 \geq 0 && \langle \alpha_3+(\alpha_1+\alpha_2+\alpha_3+\alpha_5), \beta \rangle \leq 4\\
+        \langle (0, 0, 0, 1, -1), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_1+\alpha_2+\alpha_3+\alpha_5, \beta \rangle\\
+        \langle (0, 1, -1, 0, 0), \mu \rangle + 0 \geq 0 && 0 \leq \langle \alpha_3, \beta \rangle\\
+        \langle (1, 0, -1, 0, 0), \mu \rangle + 0 = 0 && \langle \alpha_1+\alpha_4+\alpha_5, \beta \rangle = 0\\
+        \langle (1, 0, 0, 0, -1), \mu \rangle + 0 = 0 && \langle \delta, \beta \rangle = 0
+      \end{align*}
+  \end{enumerate}
+  
+\end{example}
+
+\subsection{Affine Type $A$ - Single Tube Case}
+
+  For $n\ge3$, let $B$ be an $n\times n$ exchange matrix of affine type $A$ with source adapted sequence $(1,\ldots,n)$ (negatives above the diagonal) and an arrow $1\to n$.
+
+  Let $\overline{\mu}$ denote the mutation sequence $\mu_n\cdots\mu_1$.
+  We consider the parabolic intersections of the dominance regions pointed at $\lambda=a(\rho_1-\rho_n)$ at the end of the mutation sequences $\overline{\mu}^\ell$ for $\ell\ge0$.
+
+  \begin{proposition}
+    The intersection of all dominance polyhedra along parabolic mutations following $\overline{\mu}^\ell$ is given by the following equalities and inequalities:
+    \begin{enumerate}
+      \item if $\ell=(n-1)s$, we get 
+        \begin{itemize}
+          \item $\langle \rho_r-\rho_{r+1}, \beta\rangle = 0$ for $2\le r\le n-2$
+          \item $\langle \rho_1+(\ell+s)\rho_2+(\ell+s)\rho_n, \beta\rangle \le a(\ell+s+1)$
+          \item $\langle (\ell+s+1)\rho_1+(\ell+s)\rho_2, \beta\rangle \le a(\ell+s+1)$
+          \item $\langle -(\ell+s-1)\rho_1+(\ell+s)\rho_n, \beta\rangle \le a$
+          \item $0 \le \langle \rho_1-\rho_2, \beta\rangle$
+          \item $0 \le \langle -(\ell+s+1)\rho_1+\rho_2+(\ell+s+1)\rho_n, \beta\rangle$
+          \item $0 \le \langle -\rho_2+\rho_n, \beta\rangle$
+          \item $0 \le \langle -(\ell+s)\rho_1+\rho_2+(\ell+s)\rho_n, \beta\rangle$
+        \end{itemize}
+      \item if $\ell=(n-1)s+t$ for $1\le t < n-1$, we get 
+        \begin{itemize}
+          \item $\langle \rho_r-\rho_{r+1}, \beta\rangle = 0$ for $1\le r\le t-1$
+          \item $\langle \rho_r-\rho_{r+1}, \beta\rangle = 0$ for $t+2\le r\le n-1$
+          \item $\langle (\ell+s+1)\rho_1+(\ell+s+1)\rho_{t+1}-\rho_{t+2}, \beta\rangle \le a(\ell+s+1)$
+          \item $\langle (\ell+s+1)\rho_{t+1}+(\ell+s)\rho_{t+2}, \beta\rangle \le a(\ell+s+1)$
+          \item $\langle \rho_1+\rho_{t+2}, \beta\rangle \le a$
+          \item $\langle -(\ell+s)\rho_1+\rho_{t+1}+(\ell+s)\rho_{t+2}, \beta\rangle \le a$
+          \item $0 \le \langle \rho_{t+1}-\rho_{t+2}, \beta\rangle$
+          \item $0 \le \langle -(\ell+s+1)\rho_1+(\ell+s+2)\rho_{t+2}, \beta\rangle$
+          \item $0 \le \langle -\rho_1+\rho_{t+1}, \beta\rangle$
+          \item $0 \le \langle -(\ell+s)\rho_1+(\ell+s+1)\rho_{t+2}, \beta\rangle$
+        \end{itemize}
+    \end{enumerate}
+  \end{proposition}
 
 \bibliographystyle{amsalpha}
 \bibliography{bibliography}  

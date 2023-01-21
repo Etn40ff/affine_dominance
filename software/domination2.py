@@ -48,6 +48,7 @@ def get_inequalities(B, seq, la):
 
 def parabolic_sequences(B, seq, k):
     A = ClusterAlgebra(B)
+    A.reset_current_seed()
     A.current_seed().mutate(seq, mutating_F=False)
     seeds = A.seeds(mutating_F=False, allowed_directions=[i for i in range(A.rank()) if i != k], from_current_seed=True)
     return [ seed.path_from_initial_seed() for seed in seeds ]
@@ -55,6 +56,7 @@ def parabolic_sequences(B, seq, k):
 
 def get_polyhedron(B, seq, la, projection=None):
     #this function assumes B is 2n x n and the bottom is invertible and la is a vector of length 2n
+
     ieqs_list = get_inequalities(B, seq, la)
     dim = B.nrows()
     if projection:
