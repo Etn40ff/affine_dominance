@@ -71,7 +71,7 @@ def get_polyhedron(B, seq, la, projection=None):
 
 def project_inequalities(B, la, ieqs_list, projection=None):
     # TODO: this function still uses the old notation for inequalities
-    # TODO: the g pprojection needs a shift
+    # TODO: the g projection needs a shift
     #this function assumes B is 2n x n and the bottom is invertible
     if not projection:
         return ieqs_list
@@ -119,3 +119,11 @@ def parabolic_intersection(B, seq, la, k, projection=None):
         P = P.intersection(get_polyhedron(B, seq, la, projection=projection))
 
     return P
+
+
+def E(B,k,sgn):
+     n = B.nrows()
+     E = identity_matrix(n)
+     E.set_column(k, list(map( lambda b: max(sgn*b,0), B.column(k))))
+     E[k,k] = -1
+     return E

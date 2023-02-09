@@ -138,6 +138,85 @@
   \]
   where the entries of $E^t_{k,\varepsilon}$ are given by \eqref{eq:left mutation matrix} with $b^t_{ij}$ in place of $b_{ij}$.
   We leave it as an exercise for the reader to check that $(\phi^t_k)^{-1}=\phi^{t'}_k$ whenever $t,t'\in\TT_n$ are joined by an edge labeled $k$.
+
+  \begin{lemma}
+    \label{le:transformed inequalities}
+    Let $A$ be an invertible $n\times n$ matrix.
+    Under the left action of $A$, say $A\mu=\mu'$ for $\mu,\mu'\in\RR^n$, the region inside $\RR^n$ defined by the inequality $\langle\alpha,\mu-\lambda\rangle\le c$ with $\alpha,\lambda\in\RR^n$ and $c\in\RR$ is transformed into the region defined by the inequality $\langle A^{-T}\alpha,\mu'-A\lambda\rangle\le c$.
+  \end{lemma}
+  \begin{proof}
+    This is immediate from the equalities
+    \[
+      \langle\alpha,\mu-\lambda\rangle=\alpha^T(\mu-\lambda)=\alpha^TA^{-1}A(\mu-\lambda)=(A^{-T}\alpha)^T(A\mu-A\lambda)=\langle A^{-T}\alpha,\mu'-A\lambda\rangle.
+    \]
+  \end{proof}
+
+
+  \begin{lemma}
+    Consider the region $R$ in $\RR^{2n}$ determined by the inequality $\langle\alpha,\mu-\lambda\rangle\le c$ with $\alpha,\lambda\in\RR^{2n}$ and $c\in\RR$.
+    Define $R_{k,+}$ as the intersection of $R$ with the half space where $\mu_k\ge 0$ and $R_{k,-}$ as the intersection of $R$ with the half space where $\mu_k\le 0$.
+    Then 
+    \[(E_{k,+}^t\cdot R_{k,+}) \cup (E_{k,-}^t\cdot R_{k,-})\]
+    is convex and is equal to the region defined by the inequalities 
+    \[\langle (E_{k,+}^t)^T\alpha,\mu'-E_{k,+}^t\lambda\rangle\le c \qquad \text{and} \qquad \langle (E_{k,-}^t)^T\alpha,\mu'-E_{k,-}^t\lambda\rangle\le c.\]
+  \end{lemma}
+  \begin{proof}
+    Write $\alpha=(\alpha_1,\ldots,\alpha_{2n})$ and set $\alpha'_\varepsilon=(\alpha'_{1,\varepsilon},\ldots,\alpha'_{2n,\varepsilon})=(E_{k,\varepsilon}^t)^T\alpha$.
+    This gives 
+    \[
+      \alpha'_{j,\varepsilon}
+      =
+      \begin{cases}
+        \alpha_j & \text{if $j\ne k$;}\\
+        -\alpha_k+\sum\limits_{i=1}^{2n} [\varepsilon b_{ik}]_+ \alpha_i & \text{if $j=k$.}
+      \end{cases}
+    \]
+
+  \end{proof}
+
+  \begin{proposition}
+    Suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\{\langle\alpha_k,\mu\rangle = 0\}$, for some $k\in\{1,2,\ldots,n\}$.
+    Write $E_+$ (resp.~$E_-$) for the linear transformation applied by $\phi$ when $\langle\alpha_k,\mu\rangle\ge0$ (resp. $\langle\alpha_k,\mu\rangle\le 0$) and suppose $E_\pm^T(\alpha_k)=-\alpha_k$.
+    Consider $\beta\in\RR^n$ such that $E_+^T(\beta)_\ell=E_-^T(\beta)_\ell$ for $\ell\ne k$ and $E_+^T(\beta)_k\ge E_-^T(\beta)_k$.
+    Then the region defined by $\{\langle\beta,\mu\rangle\ge0\}$ is transformed by $\phi$ into the union of the regions defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ which is equal to the region defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$.
+  \end{proposition}
+  \begin{proof}
+    Splitting the region $\{\langle\beta,\mu\rangle\ge0\}$ into the union of $\left\{\substack{\langle \beta,\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle \beta,\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$, then applying $\phi$ gives the first claim.
+    Since $E_+^T(\beta)_k\ge E_-^T(\beta)_k$, the inequality $\langle E_-^T(\beta),\mu\rangle \ge 0$ is a positive linear combination of the inequalities defining the region $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and so it is satisfied in that region.
+    Similarly, the inequality $\langle E_+^T(\beta),\mu\rangle \ge 0$ holds inside the region $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$.
+    It follows that 
+    \[\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\} \cup \left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\} \subseteq \left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}.\]
+    The opposite containment is immediate by considering the intersection of $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$ with each of $\{\langle\pm\alpha_k,\mu\rangle\ge0\}$. 
+  \end{proof}
+
+  \begin{proposition}
+    For $k\in\{1,2,\ldots,n\}$, suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\mu_k = 0$.
+    Write $E^+$ (resp. $E^-$) for the linear transformation applied by $\phi$ when $\mu_k\ge0$ (resp. $\mu_k\le 0$).
+    Consider $\beta\in\RR^n$.
+    Suppose 
+    \[(E^\pm)^T(\beta)_\ell=\begin{cases} \beta_\ell & \text{if $\ell\ne k$;}\\ -\beta_k+\sum_{m=1}^n e^\pm_m \beta_m & \text{if $\ell=k$;}\end{cases}\]
+    where $e^\pm_m\ge0$ and $e^\pm_k=0$.
+    If $(E^+)^T(\beta)_k-(E^-)^T(\beta)_k\ge 0$, then the region defined by $\left\{\substack{\langle (E^+)^T(\beta),\mu\rangle \ge 0\\ \langle (E^-)^T(\beta),\mu\rangle \ge 0}\right\}$ is equal to the union of the regions defined by $\left\{\substack{\langle (E^+)^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \le 0}\right\}$ and $\left\{\substack{\langle (E^-)^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$.
+  \end{proposition}
+
+  \begin{lemma}
+    Suppose $t,t'\in\TT_n$ are joined by an edge labeled by $k$.
+    Assume $\beta\in\RR^{2n}$ satisfies $\big((\tilde B^t)^T\beta\big)_k\ge 0$.
+    Then for $\varepsilon\in\{\pm\}$ and $\beta':=(E_{k,\varepsilon}^t)^T\beta$ we have $\big((\tilde B^{t'})^T\beta'\big)_k\le 0$.
+  \end{lemma}
+  \begin{proof}
+    Since $\tilde B^{t'}=E^t_{k,\varepsilon} \tilde{B}^t F^t_{k,\varepsilon}$, we have
+    \begin{align*}
+      (\tilde B^{t'})^T\beta'
+      &=
+      (E^t_{k,\varepsilon} \tilde{B}^t F^t_{k,\varepsilon})^T (E^t_{k,\varepsilon})^T \beta\\
+      &=
+      (F^t_{k,\varepsilon})^T (\tilde{B}^t)^T (E^t_{k,\varepsilon})^T (E^t_{k,\varepsilon})^T \beta\\
+      &=
+      (F^t_{k,\varepsilon})^T (\tilde{B}^t)^T \beta\\
+    \end{align*}
+  \end{proof}
+
   \begin{lemma}
     Suppose $t,t'\in\TT_n$ are joined by an edge labeled $k$.
     If $\mu\in\lambda+\Col(\tilde{B}^t)$, then $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
@@ -176,19 +255,6 @@
   \begin{lemma}
     The sets $\cP(\lambda)$ are polytopes.
   \end{lemma}
-
-
-  \begin{lemma}
-    \label{le:transformed inequalities}
-    Let $A$ be an invertible $n\times n$ matrix.
-    Under the left action of $A$, say $A\bfx=\bfy$ for $\bfx,\bfy\in\RR^n$, the region inside $\RR^n$ defined by the inequality $\langle\bfn,\bfx-\lambda\rangle\le t$ with $\lambda,\bfn\in\RR^n$ and $t\in\RR$ is transformed into the region defined by the inequality $\langle A^{-T}\bfn,\bfy-A\lambda\rangle\le t$.
-  \end{lemma}
-  \begin{proof}
-    This is immediate from the equalities
-    \[
-      \langle\bfn,\bfx-\lambda\rangle=\bfn^T(\bfx-\lambda)=\bfn^TA^{-1}A(\bfx-\lambda)=(A^{-T}\bfn)^T(A\bfx-A\lambda)=\langle A^{-T}\bfn,\bfy-A\lambda\rangle.
-    \]
-  \end{proof}
 
 
   \section{Affine Types}
@@ -1907,7 +1973,7 @@
     Define $t_q\in\TT_n$, $1\le q\le r$, recursively by the condition that $t_q$ and $t_{q+1}$ are joined by an edge labeled $k_q$ for $1\le q\le r-1$.
     Write $M_{t_r}\lambda$ for the vector of right hand sides of the starting inequalities pointed at $\phi_{t_r}\tilde\lambda$.
     Then for $0\le r'\le r$, the region $\phi_{t_{r'}}^{-1}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is given by the following inequalities for each $\beps=(\eps_1,\ldots,\eps_{r-1})$, $\eps_q\in\{\pm1\}$:
-    \sayDR{The matrix mutations make this seem impossible to do anything with, so I stopped writing, but in principle it an be written down.}
+    \sayDR{The matrix mutations make this seem impossible to do anything with, so I stopped writing, but in principle it can be written down.}
   \end{theorem}
 
   \section{Affine Type $A$}
@@ -2662,29 +2728,6 @@
     \langle (0,-1,0, -38, 90, 128), \tilde\mu \rangle &= 0\\
     \langle (0,0,-1, 3, 3, 0), \tilde\mu \rangle &= 0
   \end{align*}
-
-  \begin{proposition}
-    Suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\{\langle\alpha_k,\mu\rangle = 0\}$, for some $k\in\{1,2,\ldots,n\}$.
-    Write $E_+$ (resp.~$E_-$) for the linear transformation applied by $\phi$ when $\langle\alpha_k,\mu\rangle\ge0$ (resp. $\langle\alpha_k,\mu\rangle\le 0$) and suppose $E_\pm^T(\alpha_k)=-\alpha_k$.
-    Consider $\beta\in\RR^n$ such that $E_+^T(\beta)_\ell=E_-^T(\beta)_\ell$ for $\ell\ne k$ and $E_+^T(\beta)_k\ge E_-^T(\beta)_k$.
-    Then the region defined by $\{\langle\beta,\mu\rangle\ge0\}$ is transformed by $\phi$ into the union of the regions defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ which is equal to the region defined by $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$.
-  \end{proposition}
-  \begin{proof}
-    Splitting the region $\{\langle\beta,\mu\rangle\ge0\}$ into the union of $\left\{\substack{\langle \beta,\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ and $\left\{\substack{\langle \beta,\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$, then applying $\phi$ gives the first claim.
-    The inequality $\langle E_-^T(\beta),\mu\rangle \ge 0$ holds inside the region $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\}$ and the inequality $\langle E_+^T(\beta),\mu\rangle \ge 0$ holds inside the region $\left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$ so that 
-    \[\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle -\alpha_k,\mu\rangle \ge 0}\right\} \cup \left\{\substack{\langle E_-^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\} \subseteq \left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}.\]
-    The opposite containment is immediate by considering the intersection of $\left\{\substack{\langle E_+^T(\beta),\mu\rangle \ge 0\\ \langle E_-^T(\beta),\mu\rangle \ge 0}\right\}$ with each of $\{\langle\pm\alpha_k,\mu\rangle\ge0\}$. 
-  \end{proof}
-
-  \begin{proposition}
-    For $k\in\{1,2,\ldots,n\}$, suppose we have a piecewise linear transformation $\phi:\RR^n\to\RR^n$ with two domains of linearity separated by the hyperplane $\mu_k = 0$.
-    Write $E^+$ (resp. $E^-$) for the linear transformation applied by $\phi$ when $\mu_k\ge0$ (resp. $\mu_k\le 0$).
-    Consider $\beta\in\RR^n$.
-    Suppose 
-    \[(E^\pm)^T(\beta)_\ell=\begin{cases} \beta_\ell & \text{if $\ell\ne k$;}\\ -\beta_k+\sum_{m=1}^n e^\pm_m \beta_m & \text{if $\ell=k$;}\end{cases}\]
-    where $e^\pm_m\ge0$ and $e^\pm_k=0$.
-    If $(E^+)^T(\beta)_k-(E^-)^T(\beta)_k\ge 0$, then the region defined by $\left\{\substack{\langle (E^+)^T(\beta),\mu\rangle \ge 0\\ \langle (E^-)^T(\beta),\mu\rangle \ge 0}\right\}$ is equal to the union of the regions defined by $\left\{\substack{\langle (E^+)^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \le 0}\right\}$ and $\left\{\substack{\langle (E^-)^T(\beta),\mu\rangle \ge 0\\ \langle \alpha_k,\mu\rangle \ge 0}\right\}$.
-  \end{proposition}
 
   \subsection{Sink mutations}
 
@@ -3632,14 +3675,20 @@
           \item $\langle \rho_r-\rho_{r+1}, \beta\rangle = 0$ for $2\le r\le n-2$\\
             $\langle \alpha_{r+1}, \beta\rangle = 0$ for $2\le r\le n-2$\\
           \item $\langle \rho_1+(\ell+s)\rho_2+(\ell+s)\rho_n, \beta\rangle \le a(\ell+s+1)$
-          \item $\langle (\ell+s+1)\rho_1+(\ell+s)\rho_2, \beta\rangle \le a(\ell+s+1)$
-          \item $\langle -(\ell+s-1)\rho_1+(\ell+s)\rho_n, \beta\rangle \le a$
+          \item $\langle (\ell+s+1)\rho_1+(\ell+s)\rho_2, \beta\rangle \le a(\ell+s+1)$\\
+          \item $\langle -(\ell+s-1)\rho_1+(\ell+s)\rho_n, \beta\rangle \le a$\\
+            $-a \le \langle (\ell+s-1)\rho_1-(\ell+s)\rho_n, \beta\rangle$\\
+            $-a \le \langle (\ell+s+1)\alpha_1+(\ell+s)\sum_{i=2}^n\alpha_i, \beta\rangle$\\
           \item $0 \le \langle \rho_1-\rho_2, \beta\rangle$\\
             $0 \le \langle \alpha_2, \beta\rangle$\\
-          \item $0 \le \langle -(\ell+s+1)\rho_1+\rho_2+(\ell+s+1)\rho_n, \beta\rangle$
+          \item $0 \le \langle -(\ell+s+1)\rho_1+\rho_2+(\ell+s+1)\rho_n, \beta\rangle$\\
+            $\langle (\ell+s+1)\rho_1-\rho_2-(\ell+s+1)\rho_n, \beta\rangle \le 0$\\
+            $\langle (\ell+s+2)\sum_{i=1}^2\alpha_i+(\ell+s+1)\sum_{i=3}^n\alpha_i, \beta\rangle \le 0$\\
           \item $0 \le \langle -\rho_2+\rho_n, \beta\rangle$\\
             $\langle \alpha_1+\sum_{i=3}^n \alpha_i, \beta\rangle \le 0$\\
-          \item $0 \le \langle -(\ell+s)\rho_1+\rho_2+(\ell+s)\rho_n, \beta\rangle$
+          \item $0 \le \langle -(\ell+s)\rho_1+\rho_2+(\ell+s)\rho_n, \beta\rangle$\\
+            $\langle (\ell+s)\rho_1-\rho_2-(\ell+s)\rho_n, \beta\rangle \le 0$\\
+            $\langle (\ell+s+1)\sum_{i=1}^2\alpha_i+(\ell+s)\sum_{i=3}^n\alpha_i, \beta\rangle \le 0$\\
         \end{itemize}
       \item if $\ell=(n-1)s+t$ for $1\le t < n-1$, we get 
         \begin{itemize}
@@ -3647,12 +3696,13 @@
             $\langle \alpha_{r+1}, \beta\rangle = 0$ for $1\le r\le t-1$\\
           \item $\langle \rho_r-\rho_{r+1}, \beta\rangle = 0$ for $t+2\le r\le n-1$\\
             $\langle \alpha_{r+1}, \beta\rangle = 0$ for $t+2\le r\le n-2$\\
+            $\langle \alpha_1+\alpha_n, \beta\rangle = 0$\\
           \item $\langle (\ell+s+1)\rho_1+(\ell+s+1)\rho_{t+1}-\rho_{t+2}, \beta\rangle \le a(\ell+s+1)$
           \item $\langle (\ell+s+1)\rho_{t+1}+(\ell+s)\rho_{t+2}, \beta\rangle \le a(\ell+s+1)$
           \item $\langle \rho_1+\rho_{t+2}, \beta\rangle \le a$\\
           \item $\langle -(\ell+s)\rho_1+\rho_{t+1}+(\ell+s)\rho_{t+2}, \beta\rangle \le a$\\
-            $a \le \langle (\ell+s)\rho_1-\rho_{t+1}-(\ell+s)\rho_n, \beta\rangle$\\
-            $a\le \langle (\ell+s+1)\sum_{i=1}^{t+1}\alpha_i+(\ell+s)\sum_{i=t+2}^n\alpha_i, \beta\rangle$\\
+            $-a \le \langle (\ell+s)\rho_1-\rho_{t+1}-(\ell+s)\rho_n, \beta\rangle$\\
+            $-a\le \langle (\ell+s+1)\sum_{i=1}^{t+1}\alpha_i+(\ell+s)\sum_{i=t+2}^n\alpha_i, \beta\rangle$\\
           \item $0 \le \langle \rho_{t+1}-\rho_{t+2}, \beta\rangle$\\
             $0 \le \langle \alpha_{t+2}, \beta\rangle$\\
           \item $0 \le \langle -(\ell+s+1)\rho_1+(\ell+s+2)\rho_{t+2}, \beta\rangle$\\
@@ -3660,7 +3710,7 @@
             $\langle (\ell+s+3)\alpha_1+(\ell+s+2)\sum_{i=2}^n\alpha_i, \beta\rangle \le 0$\\
           \item $0 \le \langle -\rho_1+\rho_{t+1}, \beta\rangle$\\
             $\langle \sum_{i=2}^{t+1} \alpha_i, \beta\rangle \le 0$\\
-          \item $0 \le \langle -(\ell+s)\rho_1+(\ell+s+1)\rho_{t+2}, \beta\rangle$
+          \item $0 \le \langle -(\ell+s)\rho_1+(\ell+s+1)\rho_{t+2}, \beta\rangle$\\
             $\langle (\ell+s)\rho_1-(\ell+s+1)\rho_n, \beta\rangle \le 0$\\
             $\langle (\ell+s+2)\alpha_1+(\ell+s+1)\sum_{i=2}^n\alpha_i, \beta\rangle \le 0$\\
         \end{itemize}
