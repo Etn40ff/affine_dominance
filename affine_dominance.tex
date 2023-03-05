@@ -356,6 +356,135 @@
   \end{question}
 
 
+\section{Higher Rank Chebyshev Polynomials}
+  Fix a positive integer $n$ and a choice of non-negative integers $b_\ell^\varepsilon$ for $1\le \ell\le n-1$ and $\varepsilon\in\ZZ_n$.
+  Also set $b_n^\varepsilon=-1$ for $\varepsilon\in\ZZ_n$.
+  Define $u_{k,m}^\varepsilon$ for $k\in\ZZ$, $1\le m\le n$, and $\varepsilon\in\ZZ_n$ recursively by
+  \[u_{j,m}^\varepsilon = 0 \text{ for $j=0,\ldots,n-2$ and $1\le m\le n$,} \qquad u_{n-1,m}^\varepsilon = 1 \text{ for $1\le m\le n$,}\]
+  \[u_{k,m}^\varepsilon = -u_{k-n,1}^\varepsilon+\sum\limits_{\ell=m}^{n-1} b_\ell^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell} = \sum\limits_{\ell=m}^n b_\ell^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}.\]
+  \[u_{k+n,m}^\varepsilon = -u_{k,1}^\varepsilon+\sum\limits_{\ell=m}^{n-1} b_\ell^\varepsilon u_{k+n-\ell,1}^{\varepsilon+\ell} = \sum\limits_{\ell=m}^n b_\ell^\varepsilon u_{k+n-\ell,1}^{\varepsilon+\ell}.\]
+  \[u_{k,m}^\varepsilon = -u_{k-n,m}^\varepsilon-\sum\limits_{\ell=1}^{m-1} b_\ell^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}+\sum\limits_{\ell=m}^{n-1} b_\ell^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}.\]
+
+  \begin{lemma}
+    \mbox{}
+    \begin{enumerate}
+      \item The degree of $u_{k,m}^\varepsilon$ is $k-m-1-\delta_{mn}$.
+        Here degree 0 means it is $\pm 1$ and degree less than $0$ means it is $0$.
+      \item $u_{n+m-1,m}^\varepsilon=b_m^\varepsilon$ for $1\le m\le n-1$
+      \item $u_{k+n,n}^\varepsilon = -u_{k,1}^\varepsilon$
+      \item $u_{k,m}^\varepsilon = u_{k,m+1}^\varepsilon + b_m^\varepsilon u_{k-m,1}^{\varepsilon+m} = u_{k,m+1}^\varepsilon + u_{n+m-1,m}^\varepsilon u_{k-m,1}^{\varepsilon+m}$
+      \item $u_{k,m}^\varepsilon = \sum\limits_{\ell=m}^n u_{n+\ell-1,\ell}^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}$
+        \[u_{k+n-\ell,1}^{\varepsilon+\ell} = \sum\limits_{\ell'=1}^n u_{n+\ell'-1,\ell'}^{\varepsilon+\ell} u_{k+n-\ell-\ell',1}^{\varepsilon+\ell+\ell'}\]
+        \begin{align*}
+          u_{k+n,m}^\varepsilon 
+          &=
+          \sum\limits_{\ell=m}^n u_{n+\ell-1,\ell}^\varepsilon u_{k+n-\ell,1}^{\varepsilon+\ell} \\
+          &=
+          \sum\limits_{\ell=m}^n u_{n+\ell-1,\ell}^\varepsilon \sum\limits_{\ell'=1}^n u_{n+\ell'-1,\ell'}^{\varepsilon+\ell} u_{k+n-\ell-\ell',1}^{\varepsilon+\ell+\ell'} \\
+          &=
+          \sum\limits_{\ell=m}^n \sum\limits_{\ell'=1}^n u_{n+\ell-1,\ell}^\varepsilon u_{n+\ell'-1,\ell'}^{\varepsilon+\ell} u_{k+n-\ell-\ell',1}^{\varepsilon+\ell+\ell'} \\
+        \end{align*}
+    \end{enumerate}
+  \end{lemma}
+
+  \begin{definition}
+    New labeling:\\
+    Define $u_{k,m}^\varepsilon$ for $k\in\ZZ$, $1\le m\le n$, and $\varepsilon\in\ZZ_n$ recursively by
+    \[u_{j,m}^\varepsilon = 0 \text{ for $j=-n+1,\ldots,-1$ and $1\le m\le n$,} \qquad u_{0,m}^\varepsilon = 1 \text{ for $1\le m\le n$,}\]
+    \[u_{k,m}^\varepsilon = \sum\limits_{\ell=m}^n b_\ell^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}.\]
+  \end{definition}
+  \begin{lemma}
+    \mbox{}
+    \begin{enumerate}
+      \item $u_{m,m}^\varepsilon = b_m^\varepsilon$
+      \item $u_{k,n}^\varepsilon = -u_{k-n,1}^\varepsilon$
+      \item $u_{k,m}^\varepsilon = \sum\limits_{\ell=m}^n u_{\ell,\ell}^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}$
+      \item $\sum\limits_{i=1}^{n} u_{kn,i}^{\varepsilon-i}$ is independent of $\varepsilon$ for every $k\ge1$
+      \item For $m<n$, we have $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{i,i}^{\varepsilon+k-n-i} u_{k-i,m}^\varepsilon$
+      \item $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{n+1-i,m}^{\varepsilon} u_{k-n-1+i,i}^{\varepsilon+1-i}$
+      \item for $n=3$, the following hold:
+        \begin{enumerate}
+          \item $u_{3,3}^\varepsilon u_{2,1}^\varepsilon + u_{2,2}^\varepsilon u_{3,1}^{\varepsilon+2} = u_{3,2}^\varepsilon u_{2,1}^\varepsilon + u_{2,2}^\varepsilon u_{3,2}^{\varepsilon+2}$
+          \item $u_{1,1}^\varepsilon u_{4,1}^{\varepsilon+1} + u_{2,2}^\varepsilon u_{3,2}^{\varepsilon+2} = u_{1,1}^{\varepsilon+1} u_{4,1}^\varepsilon + u_{2,2}^\varepsilon u_{3,2}^{\varepsilon+1}$
+          \item $u_{7,1}^1 = u_{2,1}^1 u_{5,1}^3 + u_{3,2}^2 u_{4,1}^1 + u_{4,3}^1 u_{3,1}^2$
+        \end{enumerate}
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    Number 3:\\
+    For $k=1$, we claim $\sum\limits_{i=1}^{n} u_{n,i}^{\varepsilon-i}$ is independent of $\varepsilon$.
+    \[ \sum\limits_{i=1}^{n} \sum\limits_{\ell=i}^n u_{\ell,\ell}^{\varepsilon-i} u_{n-\ell,1}^{\varepsilon-i+\ell} = \sum\limits_{\ell=1}^n \sum\limits_{i=1}^{\ell} u_{\ell,\ell}^{\varepsilon-i} u_{n-\ell,1}^{\varepsilon-i+\ell}\]
+    For $n=2$:\\
+    \begin{align*}
+      u_{2k,1}^{\varepsilon-1}+u_{2k,2}^{\varepsilon}
+      &=
+      u_{1,1}^{\varepsilon-1}u_{2k-1,1}^{\varepsilon}+u_{2,2}^{\varepsilon-1}u_{2k-2,1}^{\varepsilon+1}-u_{2k-2,1}^{\varepsilon}\\
+      &=
+      u_{1,1}^{\varepsilon-1}(u_{1,1}^\varepsilon u_{2k-2,1}^{\varepsilon+1}+u_{2,2}^\varepsilon u_{2k-3,1}^{\varepsilon}) - ( u_{2k-2,1}^{\varepsilon+1} + u_{2k-2,1}^{\varepsilon})\\
+      &=
+      u_{1,1}^{\varepsilon-1}(u_{1,1}^\varepsilon u_{2k-2,1}^{\varepsilon+1}+u_{2k-1,2}^{\varepsilon}) - ( u_{2k-2,1}^{\varepsilon+1} + u_{2k-2,1}^{\varepsilon})\\
+      &=
+    \end{align*}
+  \end{proof}
+
+  \[
+    \left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ 1 & 0 & u_{0,1}^3=0\\ 0 & 1 & u_{-1,1}^3=0\\ 0 & 0 & u_{0,1}^3=1\end{array}\right]
+      \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ u_{0,2}^1=1 & u_{-1,1}^2=0 & u_{1,3}^3=0\\ u_{1,2}^1=0 & u_{0,1}^2=1 & u_{2,3}^3=0\\ u_{2,2}^1=b' & u_{1,1}^2 = c' & u_{3,3}^3 = -1\end{array}\right]
+        \stackrel{\mu_2}{\longrightarrow}\left[\begin{array}{ccc} 0 & a & b\\ -a' & 0 & -c\\ -b' & c' & 0\\ u_{0,1}^1=1 & u_{2,3}^2=0 & u_{1,2}^3=0\\ u_{1,1}^1=a' & u_{3,3}^2=-1 & u_{2,2}^3=c\\ u_{2,1}^1=a'c'+b' & u_{4,3}^2 = -c' & u_{3,2}^3=cc'-1\end{array}\right]
+  \]
+  $u_{2,1}^1 = a'c'+b' = u_{2,2}^1 + u_{1,1}^2 u_{1,1}^1$\\
+  $u_{3,2}^3 = cc'-1 = u_{3,3}^3 + u_{1,1}^2 u_{2,2}^3$\\
+  \[
+    \stackrel{\mu_1}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ u_{3,3}^1=-1 & u_{2,2}^2=a & u_{1,1}^3 = b\\ u_{4,3}^1=-a' & u_{3,2}^2=aa'-1 & u_{2,1}^3 = a'b+c\\ u_{5,3}^1 = u_{3,3}^1 u_{2,1}^1 = -(a'c'+b') & u_{4,2}^2=a(a'c'+b')-c' & u_{3,1}^3=b(a'c'+b')+cc'-1\end{array}\right]
+  \]
+  $u_{3,1}^3 = b(a'c'+b')+cc'-1 = u_{3,2}^3 u_{0,1}^3 + u_{2,1}^1 u_{1,1}^3$\\
+  $u_{3,1}^3 = c'(ba'+c)+bb'-1 = u_{2,1}^3 u_{1,1}^2 + u_{3,2}^1 u_{0,1}^1$\\
+  $u_{3,2}^2 = aa'-1 = u_{2,2}^2 u_{1,1}^1 + u_{3,3}^2 = u_{2,2}^2 u_{1,1}^1 - u_{0,1}^2$\\
+  $u_{4,2}^2 = a(a'c'+b')-c' = u_{4,3}^2 u_{0,1}^3 + u_{2,2}^2 u_{2,1}^1 = u_{2,2}^2 u_{2,1}^1 - u_{1,1}^2$\\
+  $u_{4,2}^2 = c'(aa'-1) + ab' = u_{1,1}^2 u_{3,2}^2 + u_{2,2}^2 u_{2,2}^1$\\
+  \begin{landscape}
+    \[
+      \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ u_{3,2}^1 = bb'-1 & u_{2,1}^2=bc'+a & u_{4,3}^3=-b\\ u_{4,2}^1 = -a'+b'(a'b+c) & u_{3,1}^2=aa'-1+c'(a'b+c) & u_{5,3}^3=-(a'b+c)\\ u_{5,2}^1=-(a'c'+b')+b'(b(a'c'+b')+cc'-1) & u_{4,1}^2 = a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1) & u_{6,3}^3=-(b(a'c'+b')+cc'-1)\end{array}\right]
+    \]
+    $u_{4,2}^1 = a'(bb'-1)+b'c = u_{1,1}^1 u_{3,2}^1 + u_{2,2}^1 u_{2,2}^3$\\
+    $u_{3,1}^2 = a'(bc'+a)+cc'-1 = u_{1,1}^1 u_{2,1}^1 + u_{3,2}^3$\\
+    $u_{5,2}^1 = -(a'c'+b')+b'(b(a'c'+b')+cc'-1) = u_{3,3}^1 u_{2,1}^1 + u_{2,2}^1 u_{3,1}^3$\\
+    $u_{5,2}^1 = (bb'-1)(a'c'+b')+b'(cc'-1) = u_{3,2}^1 u_{2,1}^1 + u_{2,2}^1 u_{3,2}^3$\\
+    $u_{5,2}^1 = c'(-a'+b'(ba'+c))+b(b')^2-2b' = u_{4,2}^1 u_{1,1}^1 + \text{lower chebyshev}$\\
+    $u_{4,1}^2 = a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1) = u_{4,2}^2 + u_{1,1}^2 u_{3,1}^3 = u_{4,3}^2 u_{0,1}^3 + u_{3,1}^3 u_{1,1}^2 + u_{2,2}^2 u_{2,1}^1$\\
+    $u_{4,1}^2 = c'(aa'-1+c'(a'b+c))+ab'+c'(bb'-1) = u_{1,1}^2 u_{3,1}^2 + u_{2,2}^2 u_{2,2}^1 + u_{1,1}^2 u_{3,2}^1$\\
+    $u_{4,1}^2 = (a+c'b)(a'c'+b')+c(c')^2-2c' = u_{2,1}^2 u_{2,1}^1 + \text{lower chebyshev}$\\
+    \[
+      \stackrel{\mu_2}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ u_{3,1}^1 = a'(bc'+a)+bb'-1 & u_{5,3}^2 = -(bc'+a) & u_{4,2}^3 = c(bc'+a)-b\\ u_{4,1}^1 = a'(aa'-1+c'(a'b+c))-a'+b'(a'b+c) & u_{6,3}^2 = -(aa'-1+c'(a'b+c)) & u_{5,2}^3 = c(aa'-1+c'(a'b+c))-(a'b+c)\\ u_{5,1}^1 = a'(a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1))-(a'c'+b')+b'(b(a'c'+b')+cc'-1) & u_{7,3}^2 = -(a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1)) & u_{6,2}^3 = c(a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1))-(b(a'c'+b')+cc'-1)\end{array}\right]
+    \]
+    $u_{4,1}^1 = a'(a'(bc'+a)+bb'-1)+a'(cc'-1)+b'c = u_{1,1}^1 u_{3,1}^1 + u_{1,1}^1 u_{3,2}^3 + u_{2,2}^1 u_{2,2}^3$\\
+    $u_{5,2}^3 = a'(c(a+c'b)-b)+c^2c'-2c = u_{1,1}^1 u_{4,2}^3 + u_{2,2}^3 u_{3,2}^3 - u_{2,2}^3$\\
+    $u_{5,1}^1 = a'(a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1))-(a'c'+b')+b'(b(a'c'+b')+cc'-1) = u_{1,1}^1 u_{4,1}^2 + u_{5,2}^1$\\
+    $u_{5,1}^1 = c'(a'(aa'-1+c'(a'b+c))-a'+b'(a'b+c))+b'(a'a-1)+(b'b-1)(a'c'+b') = u_{1,1}^2 u_{4,1}^1 + u_{2,2}^1 u_{3,2}^2 + u_{3,2}^1 u_{2,1}^1$\\
+    $u_{5,1}^1 = u_{1,1}^1 u_{4,1}^2 + u_{2,2}^1 u_{3,1}^3 + u_{3,3}^1 u_{2,1}^1$\\
+    $u_{5,1}^1 = u_{1,1}^1 u_{4,1}^2 + u_{2,2}^1 u_{3,2}^3 + u_{3,2}^1 u_{2,1}^1$\\
+    $u_{5,1}^1 = u_{1,1}^2 u_{4,1}^1 + u_{2,2}^1 u_{3,2}^2 + u_{3,2}^1 u_{2,1}^1$\\
+    $u_{5,1}^1 = c'(a'(aa'-1+c'(a'b+c))-a'+b'(a'b+c))+a'(b'(a+bc')-c')+b(b')^2-2b' = u_{1,1}^2 u_{4,1}^1 + ??? + \text{lower chebyshev}$\\
+    $u_{4,2}^3 = c(bc'+a)-b$\\
+    $u_{5,1}^1 = a'(a(a'c'+b')+c'b(a'c'+b')+c(c')^2-2c')+b'c'(ba'+c)+b(b')^2-2b' = u_{1,1}^1 u_{4,1}^2 + u_{5,2}^1$\\
+  \end{landscape}
+
+  \[
+    \left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]
+    \stackrel{\mu_1}{\longrightarrow}\left[\begin{array}{ccc} 0 & a & b\\ -a' & 0 & -c\\ -b' & c' & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]
+    \stackrel{\mu_2}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ -1 & 0 & 0\\ 0 & -1 & 0\\ 0 & 0 & 1\end{array}\right]
+    \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ -1 & 0 & 0\\ 0 & -1 & 0\\ 0 & 0 & -1\end{array}\right]
+  \]
+  \[
+    \stackrel{\mu_1}{\longrightarrow}\left[\begin{array}{ccc} 0 & a & b\\ -a' & 0 & -c\\ -b' & c' & 0\\ 1 & -a & -b\\ 0 & -1 & 0\\ 0 & 0 & -1\end{array}\right]
+    \stackrel{\mu_2}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ 1-a'a & a & -b-ca\\ -a' & 1 & -c\\ 0 & 0 & -1\end{array}\right]
+    \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ 1-a'a-b'(b+ca) & a-c'(b+ca) & b+ca\\ -a'-b'c & 1-c'c & c\\ -b' & -c' & 1\end{array}\right]
+  \]
+  \[
+    \stackrel{\mu_1}{\longrightarrow}\left[\begin{array}{ccc} 0 & a & b\\ -a' & 0 & -c\\ -b' & c' & 0\\ -(1-a'a-b'(b+ca)) & a(1-a'a-b'(b+ca))+a-c'(b+ca) & b(1-a'a-b'(b+ca))+b+ca\\ a'+b'c & -a(a'+b'c)+1-c'c & -b(a'+b'c)+c\\ b' & -ab'-c' & -bb'+1\end{array}\right]
+  \]
+
+
 \section{Iterated Mutations}
   \label{sec:iterated mutations}
 
@@ -1983,7 +2112,7 @@
   \end{lemma}
 
 
-  \section{Rank 2 Subsequences in Rank 3}
+\section{Rank 2 Subsequences in Rank 3}
 
   \subsection{Source mutations}
 
