@@ -381,7 +381,7 @@
       \frac{\partial^2 y}{\partial b^2}
       &=\frac{\partial^2 u_k^\pm}{\partial b^2} u_\ell^\pm + 2 \frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial b} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial b^2}\\
       \frac{\partial^2 y}{\partial b \partial c}
-      &=\frac{\partial^2 u_k^\pm}{\partial b \partial c} u_\ell^\pm + 2 \frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial c} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial b \partial c}\\
+      &=\frac{\partial^2 u_k^\pm}{\partial b \partial c} u_\ell^\pm + \frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial c} + \frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial b} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial b \partial c}\\
       \frac{\partial^2 y}{\partial c^2}
       &=\frac{\partial^2 u_k^\pm}{\partial c^2} u_\ell^\pm + 2 \frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial c} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial c^2}.
     \end{align*}
@@ -389,7 +389,7 @@
     \begin{align*}
       & \left(\frac{4b}{c}-b^2\right)\frac{\partial^2 y}{\partial b^2} + \left(\frac{4c}{b}-c^2\right)\frac{\partial^2 y}{\partial c^2} + (8-2bc)\frac{\partial^2 y}{\partial b\partial c} - 3b\frac{\partial y}{\partial b} - 3c\frac{\partial y}{\partial c} + n(n+2) y\\
       & \qquad = -k(k+2) u_k^\pm u_\ell^\pm -\ell(\ell+2) u_k^\pm u_\ell^\pm + n(n+2) u_k^\pm u_\ell^\pm\\
-      & \qquad \qquad + 2\left(\frac{4b}{c}-b^2\right)\frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial b}  + 2\left(\frac{4b}{c}-b^2\right)\frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial c} + 2(8-2bc)\frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial c}
+      & \qquad \qquad + 2\left(\frac{4b}{c}-b^2\right)\frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial b}  + 2\left(\frac{4c}{b}-b^2\right)\frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial c} + (8-2bc)\frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial c} + (8-2bc)\frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial b}
     \end{align*}
     If $n=k+\ell$, we have $n(n+2)=k(k+2)+\ell(\ell+2)+2k\ell$.
 
@@ -399,7 +399,12 @@
 
 \section{ODE for Higher Rank Chebyshevs}
 
-  \[\sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} \left(\frac{4 b_\ell^\varepsilon}{???}-(b_\ell^\varepsilon)^2\right)\frac{\partial^2 y}{(\partial b_\ell^\varepsilon)^2} + \sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} (8-2b_\ell^\varepsilon b_{???}^{???})\frac{\partial^2 y}{\partial b_\ell^\varepsilon \partial b_{???}^{???}} - 3\sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} b_\ell^\varepsilon\frac{\partial y}{\partial b_\ell^\varepsilon} + n(n+2) y = 0\]
+  For $u_{k,m}^\varepsilon$ with $m<n$, we use $r=k-m+1$.
+  \begin{align*}
+    & \sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} \left(\frac{4 b_\ell^\varepsilon}{???}-(b_\ell^\varepsilon)^2\right)\frac{\partial^2 y}{(\partial b_\ell^\varepsilon)^2}\\
+    & \qquad + \sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-2} (-5b_{\ell+1}^\varepsilon-2b_\ell^\varepsilon b_1^{\varepsilon+\ell})\frac{\partial^2 y}{\partial b_\ell^\varepsilon \partial b_1^{\varepsilon+\ell}} + \sum_{\varepsilon\in\ZZ_n} (8-2b_{n-1}^\varepsilon b_1^{\varepsilon-1})\frac{\partial^2 y}{\partial b_{n-1}^\varepsilon \partial b_1^{\varepsilon+\ell}}\\
+    & \qquad \qquad + \sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} (-3b_\ell^\varepsilon) \frac{\partial y}{\partial b_\ell^\varepsilon} + r(r+2) y = 0
+  \end{align*}
 
 \section{Higher Rank Chebyshev Polynomials}
   Fix a positive integer $n$ and a choice of non-negative integers $b_\ell^\varepsilon$ for $1\le \ell\le n-1$ and $\varepsilon\in\ZZ_n$.
