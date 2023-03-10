@@ -355,6 +355,51 @@
     Is the trace of $\tau$ an invariant of matrix mutations?  P.A.: It is invariant under sink and source mutations since the trace is a class function and these mutations simply enact a cyclic shift in the factors of $\tau$.
   \end{question}
 
+\section{ODE for Rank 2 Chebyshevs}
+
+  $u_2^\pm = bc-1$
+
+  $u_3^+=b^2c-2b$ and $u_3^-=bc^2-2c$
+
+  $u_4^\pm = b^2c^2 - 3bc +1$
+
+  \begin{theorem}
+    For $n\ge0$, the Chebyshev polynomial $u_n^\pm$ satisfies the following differential equation:
+    \[\left(\frac{4b}{c}-b^2\right)\frac{\partial^2 y}{\partial b^2} + \left(\frac{4c}{b}-c^2\right)\frac{\partial^2 y}{\partial c^2} + (8-2bc)\frac{\partial^2 y}{\partial b\partial c} - 3b\frac{\partial y}{\partial b} - 3c\frac{\partial y}{\partial c} + n(n+2) y = 0.\]
+  \end{theorem}
+  \begin{proof}
+    We work by induction on $n$.
+    This is an easy check for $n=0$ and $n=1$.
+
+    Suppose $u_k^\pm$ and $u_\ell^\pm$ satisfy their respective differential equations.
+    For $y=u_k^\pm u_\ell^\pm$, we have 
+    \begin{align*}
+      \frac{\partial y}{\partial b}
+      &=\frac{\partial u_k^\pm}{\partial b} u_\ell^\pm + u_k^\pm \frac{\partial u_\ell^\pm}{\partial b}\\
+      \frac{\partial y}{\partial c}
+      &=\frac{\partial u_k^\pm}{\partial c} u_\ell^\pm + u_k^\pm \frac{\partial u_\ell^\pm}{\partial c}\\
+      \frac{\partial^2 y}{\partial b^2}
+      &=\frac{\partial^2 u_k^\pm}{\partial b^2} u_\ell^\pm + 2 \frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial b} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial b^2}\\
+      \frac{\partial^2 y}{\partial b \partial c}
+      &=\frac{\partial^2 u_k^\pm}{\partial b \partial c} u_\ell^\pm + 2 \frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial c} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial b \partial c}\\
+      \frac{\partial^2 y}{\partial c^2}
+      &=\frac{\partial^2 u_k^\pm}{\partial c^2} u_\ell^\pm + 2 \frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial c} + u_k^\pm \frac{\partial^2 u_\ell^\pm}{\partial c^2}.
+    \end{align*}
+    It follows that
+    \begin{align*}
+      & \left(\frac{4b}{c}-b^2\right)\frac{\partial^2 y}{\partial b^2} + \left(\frac{4c}{b}-c^2\right)\frac{\partial^2 y}{\partial c^2} + (8-2bc)\frac{\partial^2 y}{\partial b\partial c} - 3b\frac{\partial y}{\partial b} - 3c\frac{\partial y}{\partial c} + n(n+2) y\\
+      & \qquad = -k(k+2) u_k^\pm u_\ell^\pm -\ell(\ell+2) u_k^\pm u_\ell^\pm + n(n+2) u_k^\pm u_\ell^\pm\\
+      & \qquad \qquad + 2\left(\frac{4b}{c}-b^2\right)\frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial b}  + 2\left(\frac{4b}{c}-b^2\right)\frac{\partial u_k^\pm}{\partial c} \frac{\partial u_\ell^\pm}{\partial c} + 2(8-2bc)\frac{\partial u_k^\pm}{\partial b} \frac{\partial u_\ell^\pm}{\partial c}
+    \end{align*}
+    If $n=k+\ell$, we have $n(n+2)=k(k+2)+\ell(\ell+2)+2k\ell$.
+
+    ...
+  \end{proof}
+
+
+\section{ODE for Higher Rank Chebyshevs}
+
+  \[\sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} \left(\frac{4 b_\ell^\varepsilon}{???}-(b_\ell^\varepsilon)^2\right)\frac{\partial^2 y}{(\partial b_\ell^\varepsilon)^2} + \sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} (8-2b_\ell^\varepsilon b_{???}^{???})\frac{\partial^2 y}{\partial b_\ell^\varepsilon \partial b_{???}^{???}} - 3\sum_{\varepsilon\in\ZZ_n}\sum\limits_{\ell=1}^{n-1} b_\ell^\varepsilon\frac{\partial y}{\partial b_\ell^\varepsilon} + n(n+2) y = 0\]
 
 \section{Higher Rank Chebyshev Polynomials}
   Fix a positive integer $n$ and a choice of non-negative integers $b_\ell^\varepsilon$ for $1\le \ell\le n-1$ and $\varepsilon\in\ZZ_n$.
@@ -387,21 +432,28 @@
     \end{enumerate}
   \end{lemma}
 
+  $u^{p,q}_{k}:=u_{k,p}^q$
   \begin{definition}
     New labeling:\\
     Define $u_{k,m}^\varepsilon$ for $k\in\ZZ$, $1\le m\le n$, and $\varepsilon\in\ZZ_n$ recursively by
     \[u_{j,m}^\varepsilon = 0 \text{ for $j=-n+1,\ldots,-1$ and $1\le m\le n$,} \qquad u_{0,m}^\varepsilon = 1 \text{ for $1\le m\le n$,}\]
     \[u_{k,m}^\varepsilon = \sum\limits_{\ell=m}^n b_\ell^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}.\]
+    Define $u_{k}^{p,q}$ for $k\in\ZZ$ and $p,q\in\ZZ_n$ recursively by
+    \[u_{j}^{p,q} = 0 \text{ for $j=-n+1,\ldots,-1$ and $p,q\in\ZZ_n$,} \qquad u_{0}^{p,q} = 1 \text{ for $p,q\in\ZZ_n$,}\]
+    \[u_{k}^{p,q} = \sum\limits_{\ell=p}^n b_\ell^q u_{k-\ell}^{1,q+\ell}.\]
   \end{definition}
   \begin{lemma}
     \mbox{}
     \begin{enumerate}
-      \item $u_{m,m}^\varepsilon = b_m^\varepsilon$
+      \item $u_{k,m}^\varepsilon$ has a unique term of maximal degree $k-m+1$ if $m<n$ or of maximal degree $k-m$ if $m=n$, this is given by $???$
+      \item $u_{m,m}^\varepsilon = b_m^\varepsilon$ for $1\le m\le n$
       \item $u_{k,n}^\varepsilon = -u_{k-n,1}^\varepsilon$
-      \item $u_{k,m}^\varepsilon = \sum\limits_{\ell=m}^n u_{\ell,\ell}^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}$
+      \item \label{itm:standard} $u_{k,m}^\varepsilon = \sum\limits_{\ell=m}^n u_{\ell,\ell}^\varepsilon u_{k-\ell,1}^{\varepsilon+\ell}$
+      \item \label{itm:one step standard} $u_{k,m}^\varepsilon = u_{m,m}^\varepsilon u_{k-m,1}^{\varepsilon+\ell} + u_{k,m+1}^\varepsilon$
       \item $\sum\limits_{i=1}^{n} u_{kn,i}^{\varepsilon-i}$ is independent of $\varepsilon$ for every $k\ge1$
-      \item For $m<n$, we have $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{i,i}^{\varepsilon+k-n-i} u_{k-i,m}^\varepsilon$
-      \item $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{n+1-i,m}^{\varepsilon} u_{k-n-1+i,i}^{\varepsilon+1-i}$
+      \item \label{itm:modified} For $m<n$, we have $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{i,i}^{\varepsilon+k-i} u_{k-i,m}^\varepsilon$
+      \item \label{itm:r shifted recursion og} More generally, for $0\le r<k-n$ with $m<k-r-n$, we have $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{r+i,i}^{\varepsilon+k-r-i} u_{k-r-i,m}^\varepsilon$
+      \item \label{itm:r shifted recursion} More generally, for $0\le r\le k$ with $m<r-n$, we have $u_{k,m}^\varepsilon = \sum\limits_{i=1}^n u_{k-r+i,i}^{\varepsilon+r-i} u_{r-i,m}^\varepsilon$
       \item for $n=3$, the following hold:
         \begin{enumerate}
           \item $u_{3,3}^\varepsilon u_{2,1}^\varepsilon + u_{2,2}^\varepsilon u_{3,1}^{\varepsilon+2} = u_{3,2}^\varepsilon u_{2,1}^\varepsilon + u_{2,2}^\varepsilon u_{3,2}^{\varepsilon+2}$
@@ -411,6 +463,22 @@
     \end{enumerate}
   \end{lemma}
   \begin{proof}
+    \begin{itemize}
+      \item \eqref{itm:r shifted recursion} holds for $m=1$ with no restriction on $r$:
+        \[u_{k,1}^\varepsilon = u_{k,1}^\varepsilon u_{0,1}^\varepsilon = u_{k+n,n}^\varepsilon u_{-n,1}^\varepsilon\]
+        so \eqref{itm:r shifted recursion} holds for $r=1$ and $r=0$.
+        \[u_{k,1}^\varepsilon = u_{k,1}^\varepsilon u_{0,1}^\varepsilon = ( u_{1,1}^\varepsilon u_{k-1,1}^{\varepsilon+1} + u_{k,2}^\varepsilon ) u_{0,1}^\varepsilon = u_{k-1,1}^{\varepsilon+1} u_{1,1}^\varepsilon + u_{k,2}^\varepsilon u_{0,1}^\varepsilon \]
+        so \eqref{itm:r shifted recursion} holds for $r=2$
+      \item \eqref{itm:one step standard} for $k=k-r+i+1$ and \eqref{itm:modified} for $k=r-1$ imply \eqref{itm:r shifted recursion} is equivalent for all $r$:
+        \begin{align*}
+          \sum\limits_{i=1}^n u_{k-r+i,i}^{\varepsilon+r-i} u_{r-i,m}^\varepsilon
+          &= u_{k-r+1,1}^{\varepsilon+r-1} \sum\limits_{i=1}^n u_{i,i}^{\varepsilon+r-1-i} u_{r-1-i,m}^\varepsilon + \sum\limits_{i=2}^n u_{k-r+i,i}^{\varepsilon+r-i} u_{r-i,m}^\varepsilon\\
+          &= u_{k-r+1,1}^{\varepsilon+r-1} \sum\limits_{i=1}^n u_{i,i}^{\varepsilon+r-1-i} u_{r-1-i,m}^\varepsilon + \sum\limits_{i=1}^{n-1} u_{k-r+i+1,i+1}^{\varepsilon+r-i-1} u_{r-i-1,m}^\varepsilon\\
+          &= u_{k-r+1,1}^{\varepsilon+r-1} u_{n,n}^{\varepsilon+r-1} u_{r-1-n,m}^\varepsilon + \sum\limits_{i=1}^{n-1} (u_{k-r+1,1}^{\varepsilon+r-1} u_{i,i}^{\varepsilon+r-1-i} + u_{k-r+i+1,i+1}^{\varepsilon+r-i-1}) u_{r-i-1,m}^\varepsilon\\
+          &= u_{k-r+n+1,n}^{\varepsilon+r-1} u_{r-1-n,m}^\varepsilon + \sum\limits_{i=1}^{n-1} u_{k-r+i+1,i}^{\varepsilon+r-1-i} u_{r-i-1,m}^\varepsilon\\
+          &= \sum\limits_{i=1}^n u_{k-r+1+i,i}^{\varepsilon+r-1-i} u_{r-1-i,m}^\varepsilon\\
+        \end{align*}
+    \end{itemize}
     Number 3:\\
     For $k=1$, we claim $\sum\limits_{i=1}^{n} u_{n,i}^{\varepsilon-i}$ is independent of $\varepsilon$.
     \[ \sum\limits_{i=1}^{n} \sum\limits_{\ell=i}^n u_{\ell,\ell}^{\varepsilon-i} u_{n-\ell,1}^{\varepsilon-i+\ell} = \sum\limits_{\ell=1}^n \sum\limits_{i=1}^{\ell} u_{\ell,\ell}^{\varepsilon-i} u_{n-\ell,1}^{\varepsilon-i+\ell}\]
@@ -428,14 +496,39 @@
   \end{proof}
 
   \[
-    \left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ 1 & 0 & u_{0,1}^3=0\\ 0 & 1 & u_{-1,1}^3=0\\ 0 & 0 & u_{0,1}^3=1\end{array}\right]
-      \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ u_{0,2}^1=1 & u_{-1,1}^2=0 & u_{1,3}^3=0\\ u_{1,2}^1=0 & u_{0,1}^2=1 & u_{2,3}^3=0\\ u_{2,2}^1=b' & u_{1,1}^2 = c' & u_{3,3}^3 = -1\end{array}\right]
-        \stackrel{\mu_2}{\longrightarrow}\left[\begin{array}{ccc} 0 & a & b\\ -a' & 0 & -c\\ -b' & c' & 0\\ u_{0,1}^1=1 & u_{2,3}^2=0 & u_{1,2}^3=0\\ u_{1,1}^1=a' & u_{3,3}^2=-1 & u_{2,2}^3=c\\ u_{2,1}^1=a'c'+b' & u_{4,3}^2 = -c' & u_{3,2}^3=cc'-1\end{array}\right]
+    \left[\begin{array}{cccccc} 
+      0 & -a & -b & 1 & 0 & 0\\ 
+      a' & 0 & -c & 0 & 1 & 0\\ 
+      b' & c' & 0 & 0 & 0 & 1\\ 
+      1 & 0 & u_{0,1}^3=0\\ 0 & 1 & u_{-1,1}^3=0\\ 0 & 0 & u_{0,1}^3=1
+    \end{array}\right]
+    \stackrel{\mu_3}{\longrightarrow}
+    \left[\begin{array}{cccccc} 
+         0 & -a & b & 1 & 0 & 0\\ 
+         a' & 0 & c & 0 & 1 & 0\\ 
+      -b' & -c' & 0 & 0 & 0 & -1\\ 
+      u_{0,2}^1=1 & u_{-1,1}^2=0 & u_{1,3}^3=0\\ u_{1,2}^1=0 & u_{0,1}^2=1 & u_{2,3}^3=0\\ u_{2,2}^1=b' & u_{1,1}^2 = c' & u_{3,3}^3 = -1
+    \end{array}\right]
+  \]
+  \[
+    \stackrel{\mu_2}{\longrightarrow}
+    \left[\begin{array}{cccccc} 
+         0 & a & b & 1 & 0 & 0\\  
+      -a' & 0 & -c & 0 & -1 & 0\\  
+      -b' & c' & 0 & 0 & 0 & -1\\ 
+      u_{0,1}^1=1 & u_{2,3}^2=0 & u_{1,2}^3=0\\ u_{1,1}^1=a' & u_{3,3}^2=-1 & u_{2,2}^3=c\\ u_{2,1}^1=a'c'+b' & u_{4,3}^2 = -c' & u_{3,2}^3=cc'-1
+    \end{array}\right]
   \]
   $u_{2,1}^1 = a'c'+b' = u_{2,2}^1 + u_{1,1}^2 u_{1,1}^1$\\
   $u_{3,2}^3 = cc'-1 = u_{3,3}^3 + u_{1,1}^2 u_{2,2}^3$\\
   \[
-    \stackrel{\mu_1}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ u_{3,3}^1=-1 & u_{2,2}^2=a & u_{1,1}^3 = b\\ u_{4,3}^1=-a' & u_{3,2}^2=aa'-1 & u_{2,1}^3 = a'b+c\\ u_{5,3}^1 = u_{3,3}^1 u_{2,1}^1 = -(a'c'+b') & u_{4,2}^2=a(a'c'+b')-c' & u_{3,1}^3=b(a'c'+b')+cc'-1\end{array}\right]
+    \stackrel{\mu_1}{\longrightarrow}
+    \left[\begin{array}{cccccc} 
+      0 & -a & -b & -1 & 0 & 0\\ 
+      a' & 0 & -c & 0 & -1 & 0\\
+      b' & c' & 0 & 0 & 0 & -1\\
+      u_{3,3}^1=-1 & u_{2,2}^2=a & u_{1,1}^3 = b\\ u_{4,3}^1=-a' & u_{3,2}^2=aa'-1 & u_{2,1}^3 = a'b+c\\ u_{5,3}^1 = u_{3,3}^1 u_{2,1}^1 = -(a'c'+b') & u_{4,2}^2=a(a'c'+b')-c' & u_{3,1}^3=b(a'c'+b')+cc'-1
+    \end{array}\right]
   \]
   $u_{3,1}^3 = b(a'c'+b')+cc'-1 = u_{3,2}^3 u_{0,1}^3 + u_{2,1}^1 u_{1,1}^3$\\
   $u_{3,1}^3 = c'(ba'+c)+bb'-1 = u_{2,1}^3 u_{1,1}^2 + u_{3,2}^1 u_{0,1}^1$\\
@@ -444,7 +537,13 @@
   $u_{4,2}^2 = c'(aa'-1) + ab' = u_{1,1}^2 u_{3,2}^2 + u_{2,2}^2 u_{2,2}^1$\\
   \begin{landscape}
     \[
-      \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ u_{3,2}^1 = bb'-1 & u_{2,1}^2=bc'+a & u_{4,3}^3=-b\\ u_{4,2}^1 = -a'+b'(a'b+c) & u_{3,1}^2=aa'-1+c'(a'b+c) & u_{5,3}^3=-(a'b+c)\\ u_{5,2}^1=-(a'c'+b')+b'(b(a'c'+b')+cc'-1) & u_{4,1}^2 = a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1) & u_{6,3}^3=-(b(a'c'+b')+cc'-1)\end{array}\right]
+      \stackrel{\mu_3}{\longrightarrow}
+      \left[\begin{array}{cccccc} 
+           0 & -a & b & -1 & 0 & 0\\
+           a' & 0 & c & 0 & -1 & 0\\
+        -b' & -c' & 0 & 0 & 0 & -1\\
+        u_{3,2}^1 = bb'-1 & u_{2,1}^2=bc'+a & u_{4,3}^3=-b\\ u_{4,2}^1 = -a'+b'(a'b+c) & u_{3,1}^2=aa'-1+c'(a'b+c) & u_{5,3}^3=-(a'b+c)\\ u_{5,2}^1=-(a'c'+b')+b'(b(a'c'+b')+cc'-1) & u_{4,1}^2 = a(a'c'+b')-c'+c'(b(a'c'+b')+cc'-1) & u_{6,3}^3=-(b(a'c'+b')+cc'-1)
+      \end{array}\right]
     \]
     $u_{4,2}^1 = a'(bb'-1)+b'c = u_{1,1}^1 u_{3,2}^1 + u_{2,2}^1 u_{2,2}^3$\\
     $u_{3,1}^2 = a'(bc'+a)+cc'-1 = u_{1,1}^1 u_{2,1}^1 + u_{3,2}^3$\\
@@ -470,8 +569,21 @@
   \end{landscape}
 
   \[
-    \left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]
-    \stackrel{\mu_1}{\longrightarrow}\left[\begin{array}{ccc} 0 & a & b\\ -a' & 0 & -c\\ -b' & c' & 0\\ -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{array}\right]
+    \left[\begin{array}{cccccc}
+      0 & -a & -b & 1 & 0 & 0\\
+      a' & 0 & -c & 0 & 1 & 0\\
+      b' & c' & 0 & 0 & 0 & 1\\
+      1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1
+    \end{array}\right]
+    \stackrel{\mu_1}{\longrightarrow}
+    \left[\begin{array}{cccccc}
+         0 & a & b & -1 & 0 & 0\\
+      -a' & 0 & -c & a' & 1 & 0\\
+      -b' & c' & 0 & b' & 0 & 1\\
+      -1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1
+    \end{array}\right]
+  \]
+  \[
     \stackrel{\mu_2}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & b\\ a' & 0 & c\\ -b' & -c' & 0\\ -1 & 0 & 0\\ 0 & -1 & 0\\ 0 & 0 & 1\end{array}\right]
     \stackrel{\mu_3}{\longrightarrow}\left[\begin{array}{ccc} 0 & -a & -b\\ a' & 0 & -c\\ b' & c' & 0\\ -1 & 0 & 0\\ 0 & -1 & 0\\ 0 & 0 & -1\end{array}\right]
   \]
