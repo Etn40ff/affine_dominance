@@ -1,6 +1,6 @@
 \documentclass{amsart}
 \usepackage{amsmath,amssymb,latexsym,color,ulem,mathabx,pdflscape}
-\usepackage[margin=1in]{geometry}
+\usepackage{geometry}
 \usepackage{tikz}
 \usepackage[bookmarks=true, bookmarksopen=true, bookmarksdepth=3,bookmarksopenlevel=2, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, menucolor=blue, urlcolor=blue]{hyperref}
 \usepackage{cancel}
@@ -20,6 +20,7 @@
 
 \numberwithin{theorem}{section}
 
+\newcommand{\bfb}{\boldsymbol{b}}
 \newcommand{\bfc}{\boldsymbol{c}}
 \newcommand{\bfd}{\boldsymbol{d}}
 \newcommand{\bfe}{\boldsymbol{e}}
@@ -85,22 +86,24 @@
 
 
   \section{Lattice Mutations and Linear Inequalities}
-  Let $B=(b_{ij})$ be an $n\times n$ skew-symmetrizable integer matrix, i.e. there exists a diagonal integer matrix $D=\diag(d_1,\ldots,d_n)$ so that $DB$ is skew-symmetric, more precisely we have $d_i b_{ij}=-d_j b_{ji}$.
+  Let $B=(b_{ij})$ be an $n\times n$ skew-symmetrizable integer matrix, i.e. there exists a diagonal integer matrix $D=\diag(d_1,\ldots,d_n)$ so that $DB$ is skew-symmetric, more precisely we have $d_i b_{ij}=-d_j b_{ji}$ for $1\le i,j\le n$.
   Write $\Col(B)$ for the span of the columns of $B$ inside $\RR^n$ and $\Col^+(B)$ for their non-negative span.
   Define $\Col_\ZZ(B)$ and $\Col^+_\ZZ(B)$ analogously over the integers.
 
   The matrix $B$ is \emph{acyclic} if there is no sequence $i_1,\ldots,i_m,i_{m+1}=i_1$ so that $b_{i_\ell i_{\ell+1}}>0$ for $1\le\ell\le m$.
-  This condition is naturally interpreted in terms of an associated quiver $Q_B$ with $n$ vertices and an arrow $i\to j$ whenever $b_{ji}>0$ (if we need to use representation theory at any point we'll have to change this to be $\gcd(b_{ij},b_{ji})$ arrows $i\to j$).
+  This condition is naturally interpreted in terms of an associated (simply-laced) quiver $Q_B$ with $n$ vertices and an arrow $i\to j$ whenever $b_{ji}>0$ 
+  \sayDR{if we need to use representation theory at any point we'll have to change this to be $\gcd(b_{ij},b_{ji})$ arrows $i\to j$}.
   Indeed, this is precisely the condition that $Q_B$ has no oriented cycles.
-  In the case when $B$ is acyclic, there exists a labeling $\{k_1,\ldots,k_n\}=\{1,\ldots,n\}$ so that $\ell<\ell'$ implies $b_{k_{\ell'} k_\ell}\ge 0$.
+  In the case when $B$ is acyclic, there exists a labeling $\{k_1,\ldots,k_n\}=\{1,\ldots,n\}$ so that $r<r'$ implies $b_{k_{r'} k_r}\ge 0$.
   The sequence $(k_1,\ldots,k_n)$ (resp. $(k_n,\ldots,k_1)$) is then said to be \emph{source-adapted} (resp. \emph{sink-adapted}) since the condition implies $k_1$ is a source and $k_n$ is a sink in $Q_B$.
 
   We work with principal coefficients.
   Write $\tilde{B}=(b_{ij})$ for the $2n\times n$ matrix obtained from $B$ by adjoining an $n\times n$ identity matrix as the last $n$ rows.
   Call the matrix $B$ the \emph{principal part} of $\tilde{B}$.
 
-  For $b\in\ZZ$, write $[b]_+=max(b,0)$.
-  Given a sign $\varepsilon\in\{\pm1\}$ and $k\in\{1,\ldots,n\}$, define a $2n\times 2n$ matrix $E_{k,\varepsilon}=(e_{ij})$ with
+  For $b\in\RR$, write $[b]_+=\max(b,0)$.
+  Similarly, given a vector $\bfb\in\RR^n$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
+  Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define a $2n\times 2n$ matrix $E_{k,\varepsilon}=(e_{ij})$ with
   \begin{equation}
     \label{eq:left mutation matrix}
     e_{ij}=\begin{cases} 1 & \text{if $i=j\ne k$;}\\ -1 & \text{if $i=j=k$;}\\ [\varepsilon b_{ik}]_+ & \text{if $i\ne j=k$;}\\ 0 & \text{otherwise;} \end{cases}
@@ -110,29 +113,49 @@
     \label{eq:right mutation matrix}
     f_{ij}=\begin{cases} 1 & \text{if $k\ne i=j$;}\\ -1 & \text{if $k=i=j$;}\\ [-\varepsilon b_{kj}]_+ & \text{if $k=i\ne j$;}\\ 0 & \text{otherwise.} \end{cases}
   \end{equation}
-  Observe that $E^2_{k,\varepsilon}=\Id$ and $F^2_{k,\varepsilon}=\Id$ for any $k$ and any choice of $\varepsilon$.
+  Observe that $E^2_{k,\varepsilon}=\Id$ and $F^2_{k,\varepsilon}=\Id$ for any choice of $\varepsilon$.
+  
+  Given a matrix $M$, denote by $M_{\bullet k}$ (resp. $M_{k \bullet}$) the matrix obtained from $M$ by replacing all entries outside the $k$-th column (resp. $k$-th row) by zeros.
   \begin{lemma}
-    For $\varepsilon\in\{\pm1\}$ and $k\in\{1,\ldots,n\}$, we have $E_{k,-\varepsilon}E_{k,\varepsilon}=I_n+\varepsilon B^{\bullet k}$ and $E_{k,\varepsilon}-E_{k,-\varepsilon}=\varepsilon B^{\bullet k}$.
+    For $\varepsilon\in\{\pm1\}$ and $1\le k \le n$, we have 
+    \begin{enumerate}
+      \item $E_{k,-\varepsilon}E_{k,\varepsilon}=I_{2n}+\varepsilon \tilde B_{\bullet k}$ and $E_{k,\varepsilon}-E_{k,-\varepsilon}=\varepsilon \tilde B_{\bullet k}$;
+      \item $F_{k,-\varepsilon}F_{k,\varepsilon}=I_n+\varepsilon B_{k \bullet}$ and $F_{k,\varepsilon}-F_{k,-\varepsilon}=-\varepsilon B_{k \bullet}$.
+    \end{enumerate}
   \end{lemma}
   \begin{proof}
     This is immediate from the equality $\varepsilon b_{ij}=[\varepsilon b_{ij}]_+-[-\varepsilon b_{ij}]_+$.
   \end{proof}
 
-  The index $k\in\{1,\ldots,n\}$ also determines a new matrix $\mu_k \tilde{B}=(b'_{ij})$ given by
+  The index $k$ also determines a new matrix $\mu_k \tilde{B}=(b'_{ij})$ given by
   \begin{equation}
     \label{eq:matrix mutation}
     b'_{ij}=\begin{cases} -b_{ij} & \text{if $i=k$ or $j=k$;}\\ b_{ij}+[b_{ik}]_+b_{kj}+b_{ik}[-b_{kj}]_+ & \text{otherwise.} \end{cases}
   \end{equation}
-    One easily observes that the principal part of $\mu_k \tilde{B}$ is again skew-symmetrizable using the same matrix $D$.
+  One easily observes that the principal part $\mu_k B$ of $\mu_k \tilde{B}$ is again skew-symmetrizable using the same matrix $D$.
   \begin{remark}
-    Note that $\mu_k \tilde{B}=E_{k,\varepsilon} \tilde{B} F_{k,\varepsilon}$ for $\varepsilon=\pm 1$, the case $\varepsilon=1$ being obvious from the definitions and the case $\varepsilon=-1$ following from the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$.
+    Note that $\mu_k \tilde B=E_{k,\varepsilon} \tilde B F_{k,\varepsilon}$ for $\varepsilon=\pm 1$, the case $\varepsilon=1$ being obvious from the definitions and the case $\varepsilon=-1$ following from the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$.
   \end{remark}
 
-  To record sequences of these matrix mutations, we introduce the labeled $n$-regular rooted tree $\TT_n$ with root vertex $t_0$ and associate $2n\times n$ matrices $\tilde{B}^t$ for $t\in\TT_n$ satisfying:
+  To record sequences of these matrix mutations, we introduce the $n$-regular rooted tree $\TT_n$ with root vertex $t_0$ and edges labeled by $\{1,\ldots,n\}$.
+  Associate $2n\times n$ matrices $\tilde{B}^t$ to the vertices $t\in\TT_n$ so that:
   \begin{itemize}
     \item $\tilde{B}^{t_0}=\tilde{B}$;
     \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\tilde{B}^{t'}=\mu_k \tilde{B}^t$.
   \end{itemize}
+  Write $B^t$ for the principal part of $\tilde B^t$.
+
+  Define matrices $C^t$ for $t\in\TT_n$ as the lower $n\times n$ matrix of $\tilde{B}^t$.
+  The columns of the matrices $C^t$ are called \emph{$\bfc$-vectors}.
+  The $\bfc$-vectors exhibit a remarkable sign-coherence property.
+  \begin{theorem}
+    \cite{GHKK}
+    For $1\le k \le n$, the $k$-th column $\bfc^t_k$ of $C^t$ has either all non-negative or all non-positive entries.
+  \end{theorem}
+  
+  Let $\varepsilon^t_\ell$ denote the sign of the nonzero entries of $\bfc^t_\ell$.
+  For $t,t'\in\TT_n$ joined by an edge labeled by $k$, it then follows from the definitions that $C^{t'}=C^t F_{k,-\varepsilon^t_k}$.
+  Since each $F_{k,-\varepsilon^t_k}$ is invertible, we see that $C^t$ is invertible for all $t$ and we write $G^{\vee,t}$ for its inverse.
 
   For $t\in\TT_n$ and $k\in\{1,\ldots,n\}$, define $\phi^t_k:\RR^{2n}\to\RR^{2n}$ as the piecewise-linear map
   \[
@@ -140,6 +163,70 @@
   \]
   where the entries of $E^t_{k,\varepsilon}$ are given by \eqref{eq:left mutation matrix} with $b^t_{ij}$ in place of $b_{ij}$.
   We leave it as an exercise for the reader to check that $(\phi^t_k)^{-1}=\phi^{t'}_k$ whenever $t,t'\in\TT_n$ are joined by an edge labeled $k$.
+
+  \begin{lemma}
+    Suppose $t,t'\in\TT_n$ are joined by an edge labeled $k$.
+    If $\mu\in\lambda+\Col(\tilde{B}^t)$, then $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
+  \end{lemma}
+  \begin{proof}
+    Suppose $\mu=\lambda+\tilde{B}^t\alpha$ for some $\alpha\in\RR^n$.
+    Let $\varepsilon$ (resp. $\varepsilon'$) be such that $\phi^t_k(\mu)=E^t_{k,\varepsilon}\mu$ (resp. $\phi^t_k(\lambda)=E^t_{k,\varepsilon'}\lambda$).
+    Then 
+    \[
+      \phi^t_k(\mu)=E^t_{k,\varepsilon}\mu=E^t_{k,\varepsilon}(\lambda+\tilde{B}^t\alpha)=E^t_{k,\varepsilon}\lambda + E^t_{k,\varepsilon} \tilde{B}^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\alpha=E^t_{k,\varepsilon}\lambda + \tilde{B}^{t'} F^t_{k,\varepsilon}\alpha.
+    \]
+    If $\varepsilon'=\varepsilon$, this is equal to $\phi^t_k(\lambda) + \tilde{B}^{t'} F^t_{k,\varepsilon}\alpha$ and so $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
+    Otherwise, 
+    \[
+      E^t_{k,\varepsilon}\lambda=E^t_{k,\varepsilon'}\lambda+\varepsilon(\tilde{B}^t)^{\bullet k}\lambda=\phi^t_k(\lambda)-\varepsilon(\tilde{B}^{t'})^{\bullet k}\lambda=\phi^t_k(\lambda)-\varepsilon \tilde{B}^{t'} \lambda_k \mathbf{e}_k
+    \]
+    and again we see that $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
+  \end{proof}
+
+  For $t\in\TT_n$, define the piecewise-linear automorphisms $\phi_t:\RR^{2n}\to\RR^{2n}$ by
+  \begin{itemize}
+    \item $\phi_{t_0}=\Id$;
+    \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\phi_{t'}=\phi^t_k \phi_t$.
+  \end{itemize}
+
+  
+  For $\tilde\lambda\in\RR^{2n}$ and $t\in\TT_n$, define the \emph{$\tilde B^t$-cone} $\cC_t(\tilde\lambda):=\tilde\lambda+\tilde B^t\cdot\RR_{\ge0}^n$ pointed at $\tilde\lambda$.
+  \begin{lemma}
+    For $\tilde\lambda\in\RR^{2n}$ and $t\in\TT_n$, a vector $\tilde\mu\in\RR^{2n}$ is inside the $\tilde B^t$-cone $\cC_t(\tilde\lambda)$ precisely when it satisfies the following (in)equalities:
+    \begin{align}
+      \label{eq:cone equalities} \left\langle \big[\begin{array}{cc} -I & B^t G^{\vee,t} \end{array}\big],\tilde\mu-\tilde\lambda \right\rangle &= 0;\\
+      \label{eq:cone inequalities} \left\langle \big[\begin{array}{cc}\boldsymbol{0} & G^{\vee,t} \end{array}\big],\tilde\mu-\tilde\lambda \right\rangle &\ge 0.
+    \end{align}
+  \end{lemma}
+  \begin{proof}
+    The equalities \eqref{eq:cone equalities} state that $\tilde\mu-\tilde\lambda$ is in the span of the columns of $\tilde B^t$ while the inequalities \eqref{eq:cone inequalities} state that $\tilde\mu-\tilde\lambda$ must then be in their positive span.
+  \end{proof}
+
+  \begin{definition}
+    For $\tilde\lambda\in\RR^{2n}$, define the \emph{dominance region} 
+    \[
+      \cP(\tilde\lambda) = \bigcap_{t\in\TT_n} \phi_t^{-1} \cC_t(\phi_t \tilde\lambda).
+    \]
+    When $\tilde\mu\in\cP(\tilde\lambda)$, we say \emph{$\tilde\lambda$ dominates $\tilde\mu$}.
+  \end{definition}
+  \begin{lemma}
+    The sets $\cP(\lambda)$ are polytopes.
+  \end{lemma}
+
+  Our goal is to understand the \emph{dominance polytopes} $\cP(\tilde\lambda)$ for all $\tilde\lambda$.
+  As a first step we make a simple reduction.
+  Let $\pi:\RR^{2n}\to\RR^n$ denote the projection on the first $n$ coordinates.
+  \begin{lemma}
+    For $\tilde\lambda,\tilde\lambda'\in\RR^{2n}$ with $\pi(\tilde\lambda)=\pi(\tilde\lambda')$, we have $\cP(\tilde\lambda')-\tilde\lambda'=\cP(\tilde\lambda)-\tilde\lambda$.
+  \end{lemma}
+  \begin{proof}
+
+  \end{proof}
+
+
+  \section{Linear Algebra Lemmas}
+
+  Needs cleaning
 
   \begin{lemma}
     \label{le:transformed inequalities}
@@ -219,44 +306,90 @@
     \end{align*}
   \end{proof}
 
-  \begin{lemma}
-    Suppose $t,t'\in\TT_n$ are joined by an edge labeled $k$.
-    If $\mu\in\lambda+\Col(\tilde{B}^t)$, then $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
-  \end{lemma}
+
+  \section{General Affine Type}
+  
+  \begin{proposition}
+    The dominance region for an imaginary $\bfg$-vector $\lambda$ does not intersect the interior of the $\bfg$-vector fan.
+  \end{proposition}
   \begin{proof}
-    Suppose $\mu=\lambda+\tilde{B}^t\alpha$ for some $\alpha\in\RR^n$.
-    Let $\varepsilon$ (resp. $\varepsilon'$) be such that $\phi^t_k(\mu)=E^t_{k,\varepsilon}\mu$ (resp. $\phi^t_k(\lambda)=E^t_{k,\varepsilon'}\lambda$).
-    Then 
-    \[
-      \phi^t_k(\mu)=E^t_{k,\varepsilon}\mu=E^t_{k,\varepsilon}(\lambda+\tilde{B}^t\alpha)=E^t_{k,\varepsilon}\lambda + E^t_{k,\varepsilon} \tilde{B}^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\alpha=E^t_{k,\varepsilon}\lambda + \tilde{B}^{t'} F^t_{k,\varepsilon}\alpha.
-    \]
-    If $\varepsilon'=\varepsilon$, this is equal to $\phi^t_k(\lambda) + \tilde{B}^{t'} F^t_{k,\varepsilon}\alpha$ and so $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
-    Otherwise, 
-    \[
-      E^t_{k,\varepsilon}\lambda=E^t_{k,\varepsilon'}\lambda+\varepsilon(\tilde{B}^t)^{\bullet k}\lambda=\phi^t_k(\lambda)-\varepsilon(\tilde{B}^{t'})^{\bullet k}\lambda=\phi^t_k(\lambda)-\varepsilon \tilde{B}^{t'} \lambda_k \mathbf{e}_k
-    \]
-    and again we see that $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
+    Anything in the interior of the $\bfg$-vector fan is a part of a single cluster.
+    Moreover, it contains a preprojective or postinjective summand.
+    It follows that a sufficiently high power of $\tau$ or $\tau^{-1}$ will move the $\bfg$-vector for that summand far away from the origin and close to the boundary of the $\bfg$-vector fan.
+    Thus it cannot lie in the $B$-cone pointed at $\lambda$.
   \end{proof}
 
-  For $t\in\TT_n$, define the piecewise-linear automorphisms $\phi_t:\RR^{2n}\to\RR^{2n}$ by
-  \begin{itemize}
-    \item $\phi_{t_0}=\Id$;
-    \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\phi_{t'}=\phi^t_k \phi_t$.
-  \end{itemize}
+  \begin{proposition}
+    For acyclic $\tilde B$, the first $n$ entries of $\tilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
+  \end{proposition}
+  \begin{proof}
+    $B+C$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
+  \end{proof}
+  \sayDR{We need this for any $\tilde B$ mutation equivalent to acyclic affine.}
 
-  
-  For $\lambda\in\RR^n$, define the \emph{$B_t$-cone} $\cC_t(\lambda):=\lambda+B_t\cdot\RR_{\ge0}^n$ pointed at $\lambda$.
-  \begin{definition}
-    For $\lambda\in\RR^n$, define the \emph{dominance region} 
-    \[
-      \cP(\lambda) = \bigcap_{t\in\TT_n} \phi_t^{-1} \cC_t(\phi_t \lambda).
-    \]
-    When $\mu\in\cP(\lambda)$, we say \emph{$\lambda$ dominates $\mu$}.
-  \end{definition}
-  Our goal is to understand the dominance polytopes $\cP(\lambda)$ for all $\lambda$.
+  \begin{proposition}
+    In affine type $A$, the imaginary direction corresponds to the sinks minus the sources in the non-oriented cycles of the mutated quiver.
+  \end{proposition}
+  \begin{proof}
+    This can be shown using the triangulations and laminations.
+  \end{proof}
+
+  \begin{theorem}
+    The imaginary $\bfg$-vector direction corresponding to any quiver mutation equivalent to an acyclic affine A quiver is the negative of the sum of the columns corresponding to the unique non-oriented cycle in the quiver.
+  \end{theorem}
+
+  \begin{proposition}
+    Let $\lambda$ be an imaginary $\bfg$-vector.
+    Write $\delta$ for the $\bfd$-vector of the imaginary direction for a quiver mutation equivalent to an acyclic affine quiver.
+    Then for $s$ small enough, the mutation map of $\lambda+\tilde B s\delta$ is again of the form $\lambda'+\tilde B's'\delta'$ for some $s'$.
+  \end{proposition}
+
+
+  Let $B$ be an acyclic exchange matrix of affine type with $DB$ skew-symmetric.
+  Write $A$ for the Cartan companion of $B$ and note that $A$ has corank 1.
+  Consider $B^t$ mutation equivalent to $B$ and $C^t$ the associated $\bfc$-matrix.
+
+  Let $A_0$ denote the Cartan companion of $B$ and write $\delta_0$ for the positive vector spanning the kernel of $A_0$.
+  For $t\in\TT_n$, let $A^t:=(C^{\vee,t})^T A_0 C^t$ denote the Reading-Speyer quasi-Cartan companion of $B^t$ \cite[Cor. 3.29]{Combinatorial Frameworks for Cluster Algebras}.
+  \begin{theorem}
+    Let $\delta^t$ be the absolute value of the kernel of $A^t$.
+    Then the primitive purely imaginary $\bfg$-vector direction at the seed $t$ is $-B^t\delta^t/2$.
+  \end{theorem}
+
   \begin{lemma}
-    The sets $\cP(\lambda)$ are polytopes.
+    The matrix $\cE^t A^t \cE^t$ is an admissible quasi-Cartan companion of $B^t$ of corank 1.
+    Moreover, the kernel of $A^t$ is spanned by a non-negative vector $\delta^t$. 
   \end{lemma}
+
+  Define $\zeta^t := -B^t \delta^t$.
+  \begin{lemma}
+    The vector $\zeta^t$ is an imaginary $\bfg$-vector.
+  \end{lemma}
+
+  \begin{lemma}
+    With respect to the seed $t$, the $\bfd$-vector of the imaginary theta basis element $\vartheta_{\zeta^t}$ is $\delta^t$. 
+  \end{lemma}
+
+  Define the (opposite) defect vector of signs $\boldsymbol{\varepsilon}^t=(\varepsilon^t_1,\ldots,\varepsilon^t_n)$ where $\varepsilon^t_i=\sgn\,\langle \bfg^{\vee,t}_i,\delta\rangle$ is (the negative of) the defect of the representation of $Q$ with $\bfg$-vector $\bfg^t_i$.
+  Let $\kappa^t$ denote the vector $(G^{\vee,t})^T\delta_0$ which spans the kernel of $A^t$.
+  \begin{align*}
+    E_{k,\varepsilon}^t B^t \boldsymbol{\varepsilon}^t \kappa^t
+    &=
+    E_{k,\varepsilon}^t B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t\\
+    &=
+    B^{t'} F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t\\
+    &\stackrel{?}{=} B^{t'} \boldsymbol{\varepsilon}^{t'} \kappa^{t'}
+  \end{align*}
+  \begin{align*}
+    A^t\kappa^t=0=(F^{\vee,t}_{k,\varepsilon_{trop}})^T A^t F^t_{k,\varepsilon_{trop}} F^t_{k,\varepsilon_{trop}} \kappa^t=A^{t'} F^t_{k,\varepsilon_{trop}} \kappa^t
+  \end{align*}
+  so $\kappa^{t'}=F^t_{k,\varepsilon_{trop}} \kappa^t$
+
+  \begin{lemma}
+    $F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t = \boldsymbol{\varepsilon}^{t'} F^t_{k,\varepsilon_{trop}} \kappa^t$
+  \end{lemma}
+  \[F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t - F^t_{k,-\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t=-\varepsilon B^t_{k\bullet} \boldsymbol{\varepsilon}^t \kappa^t \le 0\]
+  since $\varepsilon$ is the sign of the $k$-th entry of $B^t \boldsymbol{\varepsilon}^t \kappa^t$
 
 
   \section{Affine Types}
@@ -1977,89 +2110,6 @@
     Then for $0\le r'\le r$, the region $\phi_{t_{r'}}^{-1}\cC_{t_r}(\phi_{t_r}\tilde\lambda)$ is given by the following inequalities for each $\beps=(\eps_1,\ldots,\eps_{r-1})$, $\eps_q\in\{\pm1\}$:
     \sayDR{The matrix mutations make this seem impossible to do anything with, so I stopped writing, but in principle it can be written down.}
   \end{theorem}
-
-
-  \section{General Affine Type}
-  
-  \begin{proposition}
-    The dominance region for an imaginary $\bfg$-vector $\lambda$ does not intersect the interior of the $\bfg$-vector fan.
-  \end{proposition}
-  \begin{proof}
-    Anything in the interior of the $\bfg$-vector fan is a part of a single cluster.
-    Moreover, it contains a preprojective or postinjective summand.
-    It follows that a sufficiently high power of $\tau$ or $\tau^{-1}$ will move the $\bfg$-vector for that summand far away from the origin and close to the boundary of the $\bfg$-vector fan.
-    Thus it cannot lie in the $B$-cone pointed at $\lambda$.
-  \end{proof}
-
-  \begin{proposition}
-    For acyclic $\tilde B$, the first $n$ entries of $\tilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
-  \end{proposition}
-  \begin{proof}
-    $B+C$ or $B-C$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
-  \end{proof}
-  \sayDR{We need this for any $\tilde B$ mutation equivalent to acyclic affine.}
-
-  \begin{proposition}
-    In affine type $A$, the imaginary direction corresponds to the sinks minus the sources in the non-oriented cycles of the mutated quiver.
-  \end{proposition}
-  \begin{proof}
-    This can be shown using the triangulations and laminations.
-  \end{proof}
-
-  \begin{theorem}
-    The imaginary $\bfg$-vector direction corresponding to any quiver mutation equivalent to an acyclic affine A quiver is the negative of the sum of the columns corresponding to the unique non-oriented cycle in the quiver.
-  \end{theorem}
-
-  \begin{proposition}
-    Let $\lambda$ be an imaginary $\bfg$-vector.
-    Write $\delta$ for the $\bfd$-vector of the imaginary direction for a quiver mutation equivalent to an acyclic affine quiver.
-    Then for $s$ small enough, the mutation map of $\lambda+\tilde B s\delta$ is again of the form $\lambda'+\tilde B's'\delta'$ for some $s'$.
-  \end{proposition}
-
-  Let $A^t$ be the Reading-Speyer quasi-cartan companion \cite[Cor. 3.29]{Combinatorial Frameworks for Cluster Algebras} of $B^t$ in affine type.
-  \begin{theorem}
-    Let $\delta$ be the absolute value of the kernel of $A^t$.
-    Then the primitive purely imaginary $\bfg$-vector direction is $-B^t\delta/2$.
-  \end{theorem}
-
-  Let $B$ be an acyclic exchange matrix of affine type with $DB$ skew-symmetric.
-  Write $A$ for the Cartan companion of $B$ and note that $A$ has corank 1.
-  Consider $B^t$ mutation equivalent to $B$ and $C^t$ the associated $\bfc$-matrix.
-  Let $\cE^t$ denote the diagonal matrix whose entries are the signs of the $\bfc$-vectors.
-  \begin{lemma}
-    The matrix $A^t := D^{-1}\cE^t (C^t)^T DA C^t \cE^t$ is an admissible quasi-Cartan companion of $B^t$ of corank 1.
-    Moreover, the kernel of $A^t$ is spanned by a non-negative vector $\delta^t$. 
-  \end{lemma}
-
-  Define $\zeta^t := -B^t \delta^t$.
-  \begin{lemma}
-    The vector $\zeta^t$ is an imaginary $\bfg$-vector.
-  \end{lemma}
-
-  \begin{lemma}
-    With respect to the seed $t$, the $\bfd$-vector of the imaginary theta basis element $\vartheta_{\zeta^t}$ is $\delta^t$. 
-  \end{lemma}
-
-  Define the defect vector of signs $\boldsymbol{\varepsilon}^t=(\varepsilon^t_1,\ldots,\varepsilon^t_n)$ where $\varepsilon^t_i=\sgn\langle \bfg^t_i,\delta\rangle$ is the defect of the corresponding representation.
-  Let $\kappa^t$ denote the vector $(G^{\vee,t})^T\delta$ which spans the kernel of $A^t$.
-  \begin{align*}
-    E_{k,\varepsilon}^t B^t \boldsymbol{\varepsilon}^t \kappa^t
-    &=
-    E_{k,\varepsilon}^t B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t\\
-    &=
-    B^{t'} F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t\\
-    &\stackrel{?}{=} B^{t'} \boldsymbol{\varepsilon}^{t'} \kappa^{t'}
-  \end{align*}
-  \begin{align*}
-    0=A^t\kappa^t=(F^{\vee,t}_{k,\varepsilon_{trop}})^T A^t F^t_{k,\varepsilon_{trop}} F^t_{k,\varepsilon_{trop}} \kappa^t=A^{t'} F^t_{k,\varepsilon_{trop}} \kappa^t
-  \end{align*}
-  so $\kappa^{t'}=F^t_{k,\varepsilon_{trop}} \kappa^t$
-
-  \begin{lemma}
-    $F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t = \boldsymbol{\varepsilon}^{t'} F^t_{k,\varepsilon_{trop}} \kappa^t$
-  \end{lemma}
-  \[F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t - F^t_{k,-\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t=-\varepsilon B^t_{k\bullet} \boldsymbol{\varepsilon}^t \kappa^t \le 0\]
-  since $\varepsilon$ is the sign of the $k$-th entry of $B^t \boldsymbol{\varepsilon}^t \kappa^t$
 
   \section{Affine Type $A$}
 

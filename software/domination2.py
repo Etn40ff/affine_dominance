@@ -43,7 +43,7 @@ def get_inequalities(B, seq, la):
 
     la_p = vector(M[:,-1])
 
-    return mutate_inequalities(B, seq, [ [ (-vector(normal)*la_p[n:],) + (0,)*n+tuple(normal)  for normal in M[n:,:n].inverse().rows() ] ])
+    return mutate_inequalities(B, seq, [ [ (-vector(normal)*la_p[n:],) + (0,)*n+tuple(normal) for normal in M[n:,:n].inverse().rows() ] ])
 
 
 def parabolic_sequences(B, seq, k):
