@@ -43,7 +43,7 @@ def get_inequalities(B, seq, la):
 
     la_p = vector(M[:,-1])
 
-    return mutate_inequalities(B, seq, [ [ (-vector(normal)*la_p[n:],) + (0,)*n+tuple(normal)  for normal in M[n:,:n].inverse().rows() ] ])
+    return mutate_inequalities(B, seq, [ [ (-vector(normal)*la_p[n:],) + (0,)*n+tuple(normal) for normal in M[n:,:n].inverse().rows() ] ])
 
 
 def parabolic_sequences(B, seq, k):
@@ -150,3 +150,79 @@ def domains_of_linearity(B, seq):
         (foo,bar) = domains.get(X,([],[]))
         domains[X] = (foo+[signs],bar+[ieqs])
     return domains
+
+#hard coded for now
+#b_list = [[b,-1],[c,-1]]
+#var('a','b','c','ap','bp','cp')
+#b_list = [[ap,bp,-1],[cp,a,-1],[b,c,-1]]
+b_list = [[1,1,0,-1],[0,1,1,-1],[1,1,0,-1],[0,1,1,-1]]
+n=4
+#r=6
+#var(['b'+str(i)+str(j) for i in range(1,n+1) for j in range(1,n+1)])
+#b_list = [ [ eval('b'+str(i)+str(j)) for i in range(1,n+1) ] for j in range(1,n+1) ]
+
+
+def gen_chebyshev(k,m,eps,n=len(b_list)):
+    if eps == 0:
+        eps = n
+    if m < 1 or m > n:
+        raise ValueError("m must be between 1 and " + str(n))
+    if eps < 1 or eps > n:
+        raise ValueError("eps must be between 1 and " + str(n))
+    if k in range(-n+1,0):
+        return 0 + 0*b_list[0][0]
+    if k == 0:
+        return 1 + 0*b_list[0][0]
+    if k == m:
+        return b_list[eps-1][k-1]
+    if k > 0 or m > 1:
+        return sum(gen_chebyshev(l,l,eps)*gen_chebyshev(k-l,1,(eps+l)%n) for l in range(m,n+1))
+    else:
+        return gen_chebyshev(k+n,1,eps) + sum(gen_chebyshev(n-l,n-l,eps)*gen_chebyshev(k+l,1,(eps-l)%n) for l in range(m,n))
+
+
+def gen_chebyshev2(k,m,eps,n=len(b_list)):
+    if eps == 0:
+        eps = n
+    if m < 1 or m > n:
+        raise ValueError("m must be between 1 and " + str(n))
+    if eps < 1 or eps > n:
+        raise ValueError("eps must be between 1 and " + str(n))
+    if k == 0:
+        return 1 + 0*b_list[0][0]
+    if k in range(-n+1,0) or (k > 0 and k < m):
+        return 0 + 0*b_list[0][0]
+    if k == m:
+        return b_list[eps-1][k-1]
+    return sum(gen_chebyshev(i,i,(eps+k-i)%n)*gen_chebyshev(k-i,m,eps) for i in range(1,n+1))
+
+
+#leading_terms = {}
+#chebs = { (k,m,eps): u for k in range(0,r+1) for m in range(1,n+1) for eps in range(1,n+1) for u in [expand(gen_chebyshev(k,m,eps))] if u != 0 }
+#for key1 in chebs:
+#    for key2 in chebs:
+#        if key1 > key2 or key1[0] + key2[0] > r+1:
+#            continue
+#        prod = expand(chebs[key1]*chebs[key2])
+#        leading_term = prod.polynomial(QQ).monomials()[0]
+#        if leading_term not in leading_terms:
+#            leading_terms[leading_term] = [(key1,key2)]
+#        else:
+#            leading_terms[leading_term].append((key1,key2))
+#
+#
+#def expansion(poly, decomp):
+#    if poly == 0:
+#        return [decomp]
+#    out = []
+#    mons = poly.polynomial(QQ).monomials()
+#    leading_term = mons[0]
+#    if leading_term not in leading_terms:
+#        return -1
+#    for (key1,key2) in leading_terms[leading_term]:
+#        new_poly = expand(poly - gen_chebyshev(*key1)*gen_chebyshev(*key2))
+#        if new_poly == 0 or new_poly == -1 or (new_poly.polynomial(QQ).monomials()[0] != leading_term and all(mon in mons for mon in new_poly.polynomial(QQ).monomials())):
+#            exp = expansion(new_poly,decomp+[(key1,key2)])
+#            if exp != -1:
+#                out += exp
+#    return out
