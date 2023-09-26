@@ -128,6 +128,28 @@ def E(B,k,sgn):
      E[k,k] = -1
      return E
 
+def domains_of_linearity(B, seq):
+    regions = [(identity_matrix(B.nrows()),[],[])]
+    seq = copy(seq)
+    B = copy(B)
+    while seq:
+        k = seq.pop()
+        new_regions = []
+        for eps in [+1, -1]:
+            for (X,signs,ieqs) in regions:
+                cur_ieqs = ieqs+[vector( (0,)*k+(eps,)+(0,)*(B.nrows()-k-1))]
+                P = Polyhedron(ieqs=[(0,)+tuple(ieq) for ieq in cur_ieqs])
+                if P.dim() == B.nrows():
+                    new_ieqs = [E(B,k,eps).transpose()*ieq for ieq in [vector(v[1:]) for v in P.inequalities_list()]]
+                    new_regions.append( (E(B,k,eps)*X, signs+[eps], new_ieqs) )
+        regions = new_regions
+        B.mutate(k)
+    domains = {}
+    for (X,signs,ieqs) in regions:
+        X.set_immutable()
+        (foo,bar) = domains.get(X,([],[]))
+        domains[X] = (foo+[signs],bar+[ieqs])
+    return domains
 
 #hard coded for now
 #b_list = [[b,-1],[c,-1]]
