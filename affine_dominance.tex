@@ -66,6 +66,7 @@
 \newcommand{\ot}{{\overline{t}}}
 \newcommand{\rep}{\mathrm{rep}}
 \newcommand{\sgn}{{\operatorname{sgn}}}
+\newcommand{\Span}{{\operatorname{Span}}}
 \newcommand{\WA}{{W\!\!A}}
 \newcommand{\wt}{{\operatorname{wt}}}
 
@@ -171,14 +172,30 @@
   \end{definition}
 
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \section{$\bfg$-vectors and $\bfc$-vectors}
+  %%%%%%%%%%%%%%%%%%%%%%%%
+  \section{$\bfc$-vectors}
 
   Definitions
 
-  $G^t$ is $m\times m$ and $C^t$ is $n\times n$
+  $C^t$ is $n\times n$
   \begin{lemma}
-    $G^t$ is a product of matrices $E^t_{k,\varepsilon}$ and $C^t$ is a product of matrices $F^t_{k,\varepsilon}$
+    $C^t$ is a product of matrices $F^t_{k,\varepsilon}$ using tropical signs
+  \end{lemma}
+
+  Sign coherence
+
+  Imaginary root $\delta$
+
+  \begin{lemma}
+    Limit of $\bfc$-vectors under Coxeter transformation
+  \end{lemma}
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%
+  \section{$\bfg$-vectors}
+  Definitions $G^t$ is $m\times m$
+  \begin{lemma}
+    $G^t$ is a product of matrices $E^t_{k,\varepsilon}$ using tropical signs
   \end{lemma}
 
   \begin{lemma}
@@ -186,13 +203,39 @@
     \[G^t\tilde B^t=\tilde B^0 C^t.\]
   \end{lemma}
 
+  $\bfg$-vector fan
+
+  $\nu_c$ for rectangular $\tilde B^0$
+
+  Imaginary cone
+
+  Imaginary clusters
   \begin{lemma}
-    Limit of $\bfc$-vectors under Coxeter transformation
+    $\lambda$ imaginary implies there exists $I_\lambda:=\{\eta_1,\ldots,\eta_{n-2},\nu_c(\delta)\}$ so that $\lambda\in\Span_{\ge0} I_\lambda$.
+  \end{lemma}
+
+  There exists $\ell$ so that $c^\ell\eta_i=\eta_i$.
+
+  There exists a rank 2 cluster algebra with frozen variables $\eta_i$, with $\bfg$-vectors $\bfg_k$ for $k\in\ZZ$.
+  This gives real clusters $X_k:=\{\eta_1,\ldots,\eta_{n-2},\bfg_k,\bfg_{k+1}\}$ such that $\lim_{j\to\infty} c^{j\ell}\bfg_k=\nu_c(\delta)$.
+
+  \begin{lemma}
+    There exist $\lambda_k\in\Span_{\ge0} X_k$ so that $\lim_{k\to\infty} \lambda_k=\lambda$.
   \end{lemma}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \section{Green and Red Regions}
+
+  \begin{definition}
+    Green cone $\Lambda_\lambda^+$ and red cone $\Lambda_\lambda^-$
+  \end{definition}
+
+  Define $\Lambda^\pm_\lambda:=\lim_{k\to\infty} \Lambda^\pm_{\lambda_k}$.
+
+  \begin{lemma}
+    $\cP(\lambda) \subseteq \Lambda^\pm_\lambda$
+  \end{lemma}
 
   \begin{lemma}
     Consider $\lambda$ inside the $\bfg$-vector fan, say $\lambda$ lies inside the cone spanned by $G_t$.
@@ -208,6 +251,13 @@
     \sayDR{Possibly multiplied by a Laurent monomial in coefficients}. 
     Then $\cP(\lambda)=\{\lambda\}$.
   \end{corollary}
+  \begin{remark}
+    This uses full rank assumption.
+  \end{remark}
+
+  \begin{lemma}
+    For imaginary $\lambda$, $\Lambda^+_\lambda\cap\Lambda^-_\lambda$ is the line through $\lambda$ in direction $\nu_c(\delta)$.
+  \end{lemma}
 
   \begin{corollary}
     Assume $\tilde B$ is affine.
