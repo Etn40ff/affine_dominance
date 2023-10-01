@@ -26,7 +26,7 @@
 \newcommand{\bfd}{\boldsymbol{d}}
 \newcommand{\bfe}{\boldsymbol{e}}
 \newcommand{\bfg}{\boldsymbol{g}}
-\newcommand{\bfk}{\boldsymbol{k}}
+\newcommand{\bfk}{{\boldsymbol{k}}}
 \newcommand{\bfn}{\boldsymbol{n}}
 \newcommand{\bfr}{\boldsymbol{r}}
 \newcommand{\bfu}{\boldsymbol{u}}
@@ -88,12 +88,11 @@
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \section{Mutation Maps and Dominance}
-  Let $\tilde B^0=(b_{ij})$ be an $m\times n$ exchange matrix with principal $n\times n$ submatrix $B$.
-  Then $B^0$ is skew-symmetrizable with $DB^0$ skew-symmetric for some diagonal integer matrix $D=\diag(d_1,\ldots,d_n)$.
-  The matrix $B$ is \emph{acyclic} if there is no sequence $i_1,\ldots,i_m,i_{m+1}=i_1$ so that $b_{i_\ell i_{\ell+1}}>0$ for $1\le\ell\le m$.
-  In the case when $B$ is acyclic, there exists a labeling $\{k_1,\ldots,k_n\}=\{1,\ldots,n\}$ so that $r<r'$ implies $b_{k_{r'} k_r}\ge 0$.
-  The sequence $(k_1,\ldots,k_n)$ (resp. $(k_n,\ldots,k_1)$) is then said to be \emph{source-adapted} (resp. \emph{sink-adapted}).
-
+  Fix $m\ge n$.
+  Let $\tilde B=(b_{ij})$ be an $m\times n$ exchange matrix with principal $n\times n$ submatrix $B$.
+  Note that our exchange matrices are tall, which matches the convention of \cite{qin}.
+  Then $B$ is skew-symmetrizable with $DB$ skew-symmetric for some diagonal integer matrix $D=\diag(d_1,\ldots,d_n)$.
+ 
   For $b\in\RR$, write $[b]_+=\max(b,0)$.
   Similarly, given a vector $\bfb\in\RR^n$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
   Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define an $m\times m$ matrix $E_{k,\varepsilon}=(e_{ij})$ with
@@ -107,69 +106,51 @@
     f_{ij}=\begin{cases} 1 & \text{if $k\ne i=j$;}\\ -1 & \text{if $k=i=j$;}\\ [-\varepsilon b_{kj}]_+ & \text{if $k=i\ne j$;}\\ 0 & \text{otherwise.} \end{cases}
   \end{equation}
   Observe that $E^2_{k,\varepsilon}=\Id$ and $F^2_{k,\varepsilon}=\Id$ for any choice of $\varepsilon$.
+  Then define $\mu_k\tilde B=E_{k,\varepsilon} \tilde B F_{k,\varepsilon}$.
+  Using the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$ it is easy to see that $\mu_k\tilde B$ doesn't depend on the choice of sign $\varepsilon$.
+  Moreover, the principal part $\mu_k B$ of $\mu_k\tilde B$ is again skew-symmetrizable using the same matrix $D$.
 
-  The index $k$ also determines a new matrix $\mu_k \tilde{B}=(b'_{ij})$ given by
-  \begin{equation}
-    \label{eq:matrix mutation}
-    b'_{ij}=\begin{cases} -b_{ij} & \text{if $i=k$ or $j=k$;}\\ b_{ij}+[b_{ik}]_+b_{kj}+b_{ik}[-b_{kj}]_+ & \text{otherwise.} \end{cases}
-  \end{equation}
-  One easily observes that the principal part $\mu_k B$ of $\mu_k \tilde{B}$ is again skew-symmetrizable using the same matrix $D$.
-  \begin{remark}
-    Note that $\mu_k \tilde B=E_{k,\varepsilon} \tilde B F_{k,\varepsilon}$ for $\varepsilon=\pm 1$, the case $\varepsilon=1$ being obvious from the definitions and the case $\varepsilon=-1$ following from the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$.
-  \end{remark}
+  Given a sequence $\bfk=(k_1,\ldots,k_r)$ with $k_i\in\{1,\ldots,n\}$ write $\mu_\bfk$ for the iterated matrix mutation $\mu_{k_r}\circ\cdots\circ\mu_{k_1}$.
+
+  %$\mu_k \tilde{B}=(b'_{ij})$ is given by
+  %\begin{equation}
+  %  \label{eq:matrix mutation}
+  %  b'_{ij}=\begin{cases} -b_{ij} & \text{if $i=k$ or $j=k$;}\\ b_{ij}+[b_{ik}]_+b_{kj}+b_{ik}[-b_{kj}]_+ & \text{otherwise.} \end{cases}
+  %\end{equation}
 
   To record sequences of these matrix mutations, we introduce the $n$-regular rooted tree $\TT_n$ with root vertex $t_0$ and edges labeled by $\{1,\ldots,n\}$.
-  Associate $2n\times n$ matrices $\tilde{B}^t$ to the vertices $t\in\TT_n$ so that:
+  Associate $m\times n$ matrices $\tilde{B}^t$ with principal part $B^t$ to the vertices $t\in\TT_n$ so that:
   \begin{itemize}
     \item $\tilde{B}^{t_0}=\tilde{B}$;
     \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\tilde{B}^{t'}=\mu_k \tilde{B}^t$.
   \end{itemize}
-  Write $B^t$ for the principal part of $\tilde B^t$.
+  More directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_1,\ldots,k_r)$, we have $\tilde B^{t'}=\mu_\bfk \tilde B$.
 
-  Associated to a skew-symmetrizable matrix $B=(b_{ij})$ there is a Cartan matrix $A=(a_{ij})$ with $a_{ii}=2$ and $a_{ij}=-|b_{ij}|$.
-  We say that $B^0$ is of \emph{affine type} if there exists $B^t$ mutation equivalent to $B^0$ whose associated Cartan matrix gives rise to an affine Dynkin diagram.
-
-  For $t\in\TT_n$ and $k\in\{1,\ldots,n\}$, define $\phi^t_k:\RR^m\to\RR^m$ as the piecewise-linear map
-  \[
-    \phi^t_k(\lambda)=\begin{cases} E^t_{k,+}\lambda & \text{if $\lambda_k\ge0$;}\\ E^t_{k,-}\lambda & \text{if $\lambda_k<0$;} \end{cases}
-  \]
-  where the entries of $E^t_{k,\varepsilon}$ are given by \eqref{eq:left mutation matrix} with $b^t_{ij}$ in place of $b_{ij}$.
-  We leave it as an exercise for the reader to check that $(\phi^t_k)^{-1}=\phi^{t'}_k$ whenever $t,t'\in\TT_n$ are joined by an edge labeled $k$.
-
-  %\begin{lemma}
-  %  Suppose $t,t'\in\TT_n$ are joined by an edge labeled $k$.
-  %  If $\mu\in\lambda+\Col(\tilde{B}^t)$, then $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
-  %\end{lemma}
-  %\begin{proof}
-  %  Suppose $\mu=\lambda+\tilde{B}^t\alpha$ for some $\alpha\in\RR^n$.
-  %  Let $\varepsilon$ (resp. $\varepsilon'$) be such that $\phi^t_k(\mu)=E^t_{k,\varepsilon}\mu$ (resp. $\phi^t_k(\lambda)=E^t_{k,\varepsilon'}\lambda$).
-  %  Then 
-  %  \[
-  %    \phi^t_k(\mu)=E^t_{k,\varepsilon}\mu=E^t_{k,\varepsilon}(\lambda+\tilde{B}^t\alpha)=E^t_{k,\varepsilon}\lambda + E^t_{k,\varepsilon} \tilde{B}^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\alpha=E^t_{k,\varepsilon}\lambda + \tilde{B}^{t'} F^t_{k,\varepsilon}\alpha.
-  %  \]
-  %  If $\varepsilon'=\varepsilon$, this is equal to $\phi^t_k(\lambda) + \tilde{B}^{t'} F^t_{k,\varepsilon}\alpha$ and so $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
-  %  Otherwise, 
-  %  \[
-  %    E^t_{k,\varepsilon}\lambda=E^t_{k,\varepsilon'}\lambda+\varepsilon(\tilde{B}^t)^{\bullet k}\lambda=\phi^t_k(\lambda)-\varepsilon(\tilde{B}^{t'})^{\bullet k}\lambda=\phi^t_k(\lambda)-\varepsilon \tilde{B}^{t'} \lambda_k \mathbf{e}_k
-  %  \]
-  %  and again we see that $\phi^t_k(\mu)\in\phi^t_k(\lambda)+\Col(\tilde{B}^{t'})$.
-  %\end{proof}
-
-  For $t\in\TT_n$, define the piecewise-linear automorphisms $\phi_t:\RR^m\to\RR^m$ by
-  \begin{itemize}
-    \item $\phi_{t_0}=\Id$;
-    \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\phi_{t'}=\phi^t_k \phi_t$.
-  \end{itemize}
+  A skew-symmetric matrix $B=(b_{ij})$ is \emph{acyclic} if there is no sequence $i_1,\ldots,i_r,i_{r+1}=i_1$ so that $b_{i_\ell i_{\ell+1}}>0$ for $1\le\ell\le r$.
+  In the case when $B$ is acyclic, there exists a permutation $\sigma$ of $\{1,\ldots,n\}$ so that $r<r'$ implies $b_{\sigma_r \sigma_{r'}}\ge 0$.
+  We also associate to $B$ a Cartan matrix $A=(a_{ij})$ with $a_{ii}=2$ and $a_{ij}=-|b_{ij}|$i for $i\ne j$.
+  We say that the mutation pattern is of \emph{affine type} if there exists acyclic $B^t$ whose associated Cartan matrix gives rise to an affine Dynkin diagram.
   
-  For $\lambda\in\RR^m$ and $t\in\TT_n$, define the \emph{$\tilde B^t$-cone} $\cC_t(\lambda):=\lambda+\tilde B^t\cdot\RR_{\ge0}^n$ pointed at $\lambda$.
+  Assume there exists $t_+\in\TT_n$ so that $B^{t_+}=(b^{t_+}_{ij})$ is acyclic with $b^{t_+}_{ij}\ge 0$ for $i<j$.
+  This provides a Coxeter element $c=s_1\cdots s_n$ in the Weyl group associated to $A$.
+  
+  Given $\bfk=(k_1,\ldots,k_r)$ and any $\tilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\tilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\tilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\tilde{B}\;\nu])$.
+  Note that $\left(\eta^{\tilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\tilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_r,\ldots,k_1)$.
 
+  For $\lambda\in\RR^m$ and $\bfk=(k_1,\ldots,k_r)$, define $S_{\bfk,\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
+  
   \begin{definition}
     For $\lambda\in\RR^m$, define the \emph{dominance region} 
     \[
-      \cP(\lambda) = \bigcap_{t\in\TT_n} \phi_t^{-1} \cC_t(\phi_t \lambda).
+      \cP(\lambda) = \bigcap_\bfk S_{\bfk,\lambda}.
     \]
     When $\mu\in\cP(\lambda)$, we say \emph{$\lambda$ dominates $\mu$}.
   \end{definition}
+
+  \begin{theorem}
+    \cite{qin}
+    $\cP(\lambda)$ controls the deformations of a basis element pointed at $\lambda$
+  \end{theorem}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%
