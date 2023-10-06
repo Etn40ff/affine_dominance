@@ -37,6 +37,7 @@
 \newcommand{\cC}{\mathcal{C}}
 \newcommand{\cD}{\mathcal{D}}
 \newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
 \newcommand{\cI}{\mathcal{I}}
 \newcommand{\cP}{\mathcal{P}}
 \newcommand{\cQ}{\mathcal{Q}}
@@ -149,8 +150,49 @@
 
   \begin{theorem}
     \cite{qin}
-    $\cP(\lambda)$ controls the deformations of a basis element pointed at $\lambda$
+    $(\tilde B^+\cdot\ZZ^n)\cap \cP(\lambda)$ controls the deformations of a basis element pointed at $\lambda$
   \end{theorem}
+
+  Define the $m\times m$ matrix $\tilde G^t$ and the $n\times n$ matrix $C^t$ recursively from the initial seed $t_+$.
+  \begin{remark}
+    Since we only mutate in directions $k\in[1,n]$, $\tilde G^t$ has the following block form:
+    \[\left[\begin{array}{cc} G^t & 0\\ * & 1\end{array}\right]\]
+    where $G^t$ is the $n\times n$ $\bfg$-matrix for the coefficient-free case.
+  \end{remark}
+
+  The following is immediate by manipulating the recursion and using that it is independent of the choice of sign.
+  \begin{lemma}
+    For any $t\in\TT_n$, we have
+    \[G^t\tilde B^t=\tilde B^0 C^t.\]
+  \end{lemma}
+
+  \begin{definition}
+    We say $\nu,\lambda\in\RR^m$ are in the same \emph{$\tilde B^+$-class} if they lie in the same domain of linearity for $\eta^{\tilde B^+}_\bfk$ for all sequences $\bfk$.
+    Define the \emph{mutation fan} $\cF_{\tilde B^+}$ whose maximal cones are the closures of the $\tilde B^+$-classes.
+  \end{definition}
+  \begin{remark}
+    $\cF_{\tilde B^+}=\cF_{B^+}\times \RR^{m-n}$ since the linearity domain in which $\nu$ lies depends only on its first $n$ coordinates.
+  \end{remark}
+
+  Cite these results for affine types:
+  \begin{itemize}
+    \item $\cF_{B^+}$ is simplicial and complete 
+    \item $\cF_{B^+}$ is equivalent to the (transposed) scattering diagram fan and the associahedron(?) fan
+    \item A maximal (by inclusion) cone $K$ in $\cF_{B^+}$ is \emph{real} if there exists $t\in\TT_n$ such that $K=G^t\cdot\RR^n_{\ge0}$, otherwise it is \emph{imaginary}.
+    \item There is a finite of imaginary cones.
+    \item Any maximal imaginary cone $K$ is $n-1$ dimensional and is contained in $\delta^\perp$ (need to define $\delta$ and $\perp$)
+    \item There exists $N>0$ so that $c^N$ (as it acts on weights) fixes $K$ pointwise
+    \item $-\frac12 B^+\cdot\delta$ is one of the primitive vectors spanning a ray of $K$
+    \item Let $\eta_1,\ldots,\eta_{n-2}$ be the other $n-2$ primitive vectors spanning rays of $K$.  
+    \item Then there exists a real cone $H$ in $\cF_{B^+}$ such that
+      \begin{itemize}
+        \item $\eta_1,\ldots,\eta^{n-2}$ span rays of $H$
+        \item $c^{\ell N} H$ is a real cone for all $\ell\ge0$
+        \item $\lim\limits_{\ell\to\infty} c^{\ell N} H = K$
+      \end{itemize}
+      The second condition above defines a sequence $t_\ell\in\TT_n$ that \emph{converges} to $K$.
+    \item Let $\eta_{n-1},\eta_n$ be the remaining primitive vectors spanning rays of $H$.  Then, in the appropriate scaling limit, both of these vectors limit to $-\frac12 B^+\cdot\delta$ under the action of $c^{\ell N}$ as $\ell\to\infty$.
+  \end{itemize}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,11 +219,6 @@
   Definitions $G^t$ is $m\times m$
   \begin{lemma}
     $G^t$ is a product of matrices $E^t_{k,\varepsilon}$ using tropical signs
-  \end{lemma}
-
-  \begin{lemma}
-    For any $t\in\TT_n$, we have
-    \[G^t\tilde B^t=\tilde B^0 C^t.\]
   \end{lemma}
 
   $\bfg$-vector fan
