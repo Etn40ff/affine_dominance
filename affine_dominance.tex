@@ -85,6 +85,13 @@
 
   %%%%%%%%%%%%%%%%%%%%%%
   \section{Introduction}
+  Cluster algebras are recursively defined commutative rings.
+  Since their discovery by Fomin and Zelevinsky through an intensive study of dual canonical bases \cite{...}, cluster algebras have found application throughout mathematics, including Lie theory \cite{...}, representation theory \cite{...}, Teichm\"uller theory \cite{...}, and mathematical physics \cite{...}.
+  See \cite{...} for a more exhaustive description of the deep connections found to cluster algebras.
+
+  A guiding question in the theory has always been to understand possible bases of a cluster algebra.
+  Qin put bounds on how the pointed bases can be related.
+  
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +118,7 @@
   Using the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$ it is easy to see that $\mu_k\tilde B$ doesn't depend on the choice of sign $\varepsilon$.
   Moreover, the principal part $\mu_k B$ of $\mu_k\tilde B$ is again skew-symmetrizable using the same matrix $D$.
 
-  Given a sequence $\bfk=(k_1,\ldots,k_r)$ with $k_i\in\{1,\ldots,n\}$ write $\mu_\bfk$ for the iterated matrix mutation $\mu_{k_r}\circ\cdots\circ\mu_{k_1}$.
+  Given a sequence $\bfk=(k_N,\ldots,k_1)$ with $k_i\in\{1,\ldots,n\}$ write $\mu_\bfk$ for the iterated matrix mutation $\mu_{k_N}\circ\cdots\circ\mu_{k_1}$.
 
   %$\mu_k \tilde{B}=(b'_{ij})$ is given by
   %\begin{equation}
@@ -125,7 +132,7 @@
     \item $\tilde{B}^{t_0}=\tilde{B}$;
     \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\tilde{B}^{t'}=\mu_k \tilde{B}^t$.
   \end{itemize}
-  More directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_1,\ldots,k_r)$, we have $\tilde B^{t'}=\mu_\bfk \tilde B$.
+  More directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_N,\ldots,k_1)$, we have $\tilde B^{t'}=\mu_\bfk \tilde B$.
 
   A skew-symmetric matrix $B=(b_{ij})$ is \emph{acyclic} if there is no sequence $i_1,\ldots,i_r,i_{r+1}=i_1$ so that $b_{i_\ell i_{\ell+1}}>0$ for $1\le\ell\le r$.
   In the case when $B$ is acyclic, there exists a permutation $\sigma$ of $\{1,\ldots,n\}$ so that $r<r'$ implies $b_{\sigma_r \sigma_{r'}}\ge 0$.
@@ -135,7 +142,7 @@
   Assume there exists $t_+\in\TT_n$ so that $B^{t_+}=(b^{t_+}_{ij})$ is acyclic with $b^{t_+}_{ij}\ge 0$ for $i<j$.
   This provides a Coxeter element $c=s_1\cdots s_n$ in the Weyl group associated to $A$.
   
-  Given $\bfk=(k_1,\ldots,k_r)$ and any $\tilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\tilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\tilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\tilde{B}\;\nu])$.
+  Given $\bfk=(k_N,\ldots,k_1)$ and any $\tilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\tilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\tilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\tilde{B}\;\nu])$.
   Note that $\left(\eta^{\tilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\tilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_r,\ldots,k_1)$.
 
   For $\lambda\in\RR^m$ and $\bfk=(k_1,\ldots,k_r)$, define $S_{\bfk,\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
@@ -178,7 +185,7 @@
   \begin{itemize}
     \item $\cF_{B^+}$ is simplicial and complete 
     \item $\cF_{B^+}$ is equivalent to the (transposed) scattering diagram fan and the associahedron(?) fan
-    \item A maximal (by inclusion) cone $K$ in $\cF_{B^+}$ is \emph{real} if there exists $t\in\TT_n$ such that $K=G^t\cdot\RR^n_{\ge0}$, otherwise it is \emph{imaginary}.
+    \item A maximal (by inclusion) cone $K$ in $\cF_{B^+}$ is \emph{real} if there exists $t\in\TT_n$ such that $K=K_t:=G^t\cdot\RR^n_{\ge0}$, otherwise it is \emph{imaginary}.
     \item There is a finite of imaginary cones.
     \item Any maximal imaginary cone $K$ is $n-1$ dimensional and is contained in $\delta^\perp$ (need to define $\delta$ and $\perp$)
     \item There exists $N>0$ so that $c^N$ (as it acts on weights) fixes $K$ pointwise
@@ -194,6 +201,15 @@
     \item Let $\eta_{n-1},\eta_n$ be the remaining primitive vectors spanning rays of $H$.  Then, in the appropriate scaling limit, both of these vectors limit to $-\frac12 B^+\cdot\delta$ under the action of $c^{\ell N}$ as $\ell\to\infty$.
   \end{itemize}
 
+  Part of $\cF_{B^+}$ is the Cambrian fan
+  
+  c-sortable elements
+  
+  after Prop. 5.4 in \cite{combinatorial frameworks} gives C-matrices explicitly
+  
+  -> quasi-Cartan companions, kernels of those
+
+
 
   %%%%%%%%%%%%%%%%%%%%%%%%
   \section{$\bfc$-vectors}
@@ -205,13 +221,8 @@
     $C^t$ is a product of matrices $F^t_{k,\varepsilon}$ using tropical signs
   \end{lemma}
 
-  Sign coherence
+  Sign coherence?
 
-  Imaginary root $\delta$
-
-  \begin{lemma}
-    Limit of $\bfc$-vectors under Coxeter transformation
-  \end{lemma}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%
@@ -220,19 +231,6 @@
   \begin{lemma}
     $G^t$ is a product of matrices $E^t_{k,\varepsilon}$ using tropical signs
   \end{lemma}
-
-  $\bfg$-vector fan
-
-  $\nu_c$ for rectangular $\tilde B^0$
-
-  Imaginary cone
-
-  Imaginary clusters
-  \begin{lemma}
-    $\lambda$ imaginary implies there exists $I_\lambda:=\{\eta_1,\ldots,\eta_{n-2},\nu_c(\delta)\}$ so that $\lambda\in\Span_{\ge0} I_\lambda$.
-  \end{lemma}
-
-  There exists $\ell$ so that $c^\ell\eta_i=\eta_i$.
 
   There exists a rank 2 cluster algebra with frozen variables $\eta_i$, with $\bfg$-vectors $\bfg_k$ for $k\in\ZZ$.
   This gives real clusters $X_k:=\{\eta_1,\ldots,\eta_{n-2},\bfg_k,\bfg_{k+1}\}$ such that $\lim_{j\to\infty} c^{j\ell}\bfg_k=\nu_c(\delta)$.
@@ -246,10 +244,13 @@
   \section{Green and Red Regions}
 
   \begin{definition}
-    Green cone $\Lambda_\lambda^+$ and red cone $\Lambda_\lambda^-$
+    Consider real $\tilde \lambda$, say $\tilde \lambda\in \tilde K_t:= K_t\times \RR^{m-n}$.
+    Let $t$ be connected to $t_+$ by a sequence of edges labeled by $\bfk^+=(k_N,\ldots k_1)$. 
+    Define the \emph{green cone} $S_\lambda^+:=S_{\bfk^+,\tilde\lambda}\cap\tilde K_t$.
+    Similarly, let $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$ and define the \emph{red cone} $S_\lambda^-:=S_{\bfk^-,\tilde\lambda}\cap\tilde K_t$.
   \end{definition}
 
-  Define $\Lambda^\pm_\lambda:=\lim_{k\to\infty} \Lambda^\pm_{\lambda_k}$.
+  Define $S^\pm_\lambda:=\lim_{k\to\infty} S^\pm_{\lambda_k}$.
 
   \begin{lemma}
     $\cP(\lambda) \subseteq \Lambda^\pm_\lambda$
@@ -286,7 +287,12 @@
   %%%%%%%%%%%%%%%%%%%%%%%%%%%
   \section{Quasi-Cartan Companions}
 
-
+  \begin{lemma}
+    For any $t\in\TT_n$, there exists a quasi-Cartan companion $A^t$ of corank 1 for $B^t$ such that $\ker A_t$ is spanned by a positive primitive vector $\delta_t$.
+  \end{lemma}
+  \begin{proof}
+    Move from $t$ to $t'$ with $B^t=B^{t'}$ such that $G^{t'}\cdots\RR^n$ lies entirely on one side of the imaginary hyperplane.
+  \end{proof}
 
   %%%%%%%%%%%%%%%%%%%%%
   \section{Affine Type}
