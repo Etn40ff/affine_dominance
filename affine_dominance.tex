@@ -145,19 +145,20 @@
   Given $\bfk=(k_N,\ldots,k_1)$ and any $\tilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\tilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\tilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\tilde{B}\;\nu])$.
   Note that $\left(\eta^{\tilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\tilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_r,\ldots,k_1)$.
 
-  For $\lambda\in\RR^m$ and $\bfk=(k_1,\ldots,k_r)$, define $S_{\bfk,\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
+  For $\tilde\lambda\in\RR^m$ and $\bfk=(k_1,\ldots,k_r)$, define $S_{\bfk,\tilde\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\tilde\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
   
   \begin{definition}
-    For $\lambda\in\RR^m$, define the \emph{dominance region} 
+    For $\tilde\lambda\in\RR^m$, define the \emph{dominance region} 
     \[
-      \cP(\lambda) = \bigcap_\bfk S_{\bfk,\lambda}.
+      \cP(\tilde\lambda) = \bigcap_\bfk S_{\bfk,\tilde\lambda}.
     \]
-    When $\mu\in\cP(\lambda)$, we say \emph{$\lambda$ dominates $\mu$}.
+    When $\tilde\mu\in\cP(\tilde\lambda)$, we say \emph{$\tilde\lambda$ dominates $\tilde\mu$}.
+    Write $\cP_\ZZ(\tilde\lambda):=\cP(\tilde\lambda)\cap \tilde B^+ \cdot \ZZ_{\ge0}^n$. 
   \end{definition}
 
   \begin{theorem}
     \cite{qin}
-    $(\tilde B^+\cdot\ZZ^n)\cap \cP(\lambda)$ controls the deformations of a basis element pointed at $\lambda$
+    $\cP_\ZZ(\lambda)$ controls the deformations of a basis element pointed at $\tilde\lambda$.
   \end{theorem}
 
   Define the $m\times m$ matrix $\tilde G^t$ and the $n\times n$ matrix $C^t$ recursively from the initial seed $t_+$.
@@ -209,6 +210,37 @@
   
   -> quasi-Cartan companions, kernels of those
 
+  \begin{theorem}
+    Let $\tilde\lambda$ be imaginary with $s$ minimal such that $\tilde\lambda+s\tilde B^+\cdot\delta$ is real.
+    Then the dominance region $\cP_{\tilde\lambda}$ is the segment $\{\tilde\lambda+r\tilde B^+\cdot\delta:0\le r\le s\}$.
+  \end{theorem}
+  \begin{remark}
+    When $\tilde B^+$ is full rank, $\cP_\ZZ(\tilde\lambda)$ contains points of the form $\tilde\lambda+r\tilde B^+\cdot\delta$ with $r\in\ZZ_{\ge0}$.
+    Without the full rank assumption, this no longer has to hold.
+  \end{remark}
+  \begin{proof}
+    \begin{itemize}
+      \item $\cP(\tilde\lambda)$ is contained in the imaginary cone.
+        $\cP(\tilde\lambda)$ is contained in $\tilde\lambda + \tilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\tilde B^+$ is full rank.
+        In particular, for sufficiently large $r$, $\cP(\tilde\lambda)$ doesn't contain $-r \tilde B^+\cdot \delta$.
+        Then for any point $\tilde\mu$ outside the closure of the imaginary cone, for sufficiently large $\ell$ the vector $c^\ell \tilde\mu$ has large magnitude and is arbitrarily close the imaginary ray.
+      \item $\cP(\tilde\lambda)$ contains $\{\tilde\lambda+r\tilde B^+\cdot\delta:0\le r\le s\}$.
+        \begin{itemize}
+          \item $\delta$ spans the kernel of the Cartan companion $A$ of $B^+$ as well as any number of Coxeter mutations away
+          \item after sufficiently many Coxeter mutations, the seed $t$ lies entirely on one side of the imaginary hyperplane and so the kernel $\kappa_t$ of the quasi-Cartan companion is sign coherent
+          \item for $t'$ connected to $t$ by mutation in direction $k$, $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde B^{t'}\cdot\kappa_{t'}$
+        \end{itemize}
+      \item $\cP(\tilde\lambda)$ is contained in the ray $\{\tilde\lambda+r\tilde B^+\cdot\delta:r\ge 0\}$.
+        \begin{itemize}
+          \item Define green and red regions for real $\tilde\lambda$.
+          \item Compute the green and red regions as $\tilde\lambda \pm \tilde B^+\cdot C^t\cdot \RR_{\ge0}^n$.
+            Use $\tilde G^t\tilde B^t = \tilde B^+ C^t$.
+          \item Limits of regions make sense because of continuity after intersecting with domains of linearity.
+          \item Use limits of $C^t$ to draw the conclusion.
+        \end{itemize}
+    \end{itemize}
+
+  \end{proof}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%
