@@ -102,8 +102,8 @@
   Then $B$ is skew-symmetrizable with $DB$ skew-symmetric for some diagonal integer matrix $D=\diag(d_1,\ldots,d_n)$.
  
   For $b\in\RR$, write $[b]_+=\max(b,0)$.
-  Similarly, given a vector $\bfb\in\RR^n$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
-  Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define an $m\times m$ matrix $E_{k,\varepsilon}=(e_{ij})$ with
+  %Similarly, given a vector $\bfb\in\RR^m$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
+  Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define an $m\times m$ matrix $\tilde E_{k,\varepsilon}=(e_{ij})$ with
   \begin{equation}
     \label{eq:left mutation matrix}
     e_{ij}=\begin{cases} 1 & \text{if $i=j\ne k$;}\\ -1 & \text{if $i=j=k$;}\\ [\varepsilon b_{ik}]_+ & \text{if $i\ne j=k$;}\\ 0 & \text{otherwise;} \end{cases}
@@ -113,18 +113,22 @@
     \label{eq:right mutation matrix}
     f_{ij}=\begin{cases} 1 & \text{if $k\ne i=j$;}\\ -1 & \text{if $k=i=j$;}\\ [-\varepsilon b_{kj}]_+ & \text{if $k=i\ne j$;}\\ 0 & \text{otherwise.} \end{cases}
   \end{equation}
-  Observe that $E^2_{k,\varepsilon}=\Id$ and $F^2_{k,\varepsilon}=\Id$ for any choice of $\varepsilon$.
-  Then define $\mu_k\tilde B=E_{k,\varepsilon} \tilde B F_{k,\varepsilon}$.
+  Observe that $\tilde E^2_{k,\varepsilon}=\Id$ and $F^2_{k,\varepsilon}=\Id$ for any choice of $\varepsilon$.
+  Then define $\mu_k\tilde B=\tilde E_{k,\varepsilon} \tilde B F_{k,\varepsilon}$.
   Using the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$ it is easy to see that $\mu_k\tilde B$ doesn't depend on the choice of sign $\varepsilon$.
   Moreover, the principal part $\mu_k B$ of $\mu_k\tilde B$ is again skew-symmetrizable using the same matrix $D$.
 
-  Given a sequence $\bfk=(k_N,\ldots,k_1)$ with $k_i\in\{1,\ldots,n\}$ write $\mu_\bfk$ for the iterated matrix mutation $\mu_{k_N}\circ\cdots\circ\mu_{k_1}$.
-
-  %$\mu_k \tilde{B}=(b'_{ij})$ is given by
-  %\begin{equation}
-  %  \label{eq:matrix mutation}
-  %  b'_{ij}=\begin{cases} -b_{ij} & \text{if $i=k$ or $j=k$;}\\ b_{ij}+[b_{ik}]_+b_{kj}+b_{ik}[-b_{kj}]_+ & \text{otherwise.} \end{cases}
-  %\end{equation}
+  Given a matrix $M$, denote by $M_{\bullet k}$ (resp. $M_{k \bullet}$) the square matrix whose $k$-th column (resp. $k$-th row) matches that of $M$ with all other entries being zero.
+  \begin{lemma}
+    For $\varepsilon\in\{\pm1\}$ and $1\le k \le n$, we have 
+    \begin{enumerate}
+      \item $\tilde E_{k,-\varepsilon} \tilde E_{k,\varepsilon} = I_m + \varepsilon \tilde B_{\bullet k}$, $\tilde E_{k,\varepsilon} - \tilde E_{k,-\varepsilon} = \varepsilon \tilde B_{\bullet k}$, and $\tilde E_{k,\varepsilon} \tilde B_{\bullet k} = \tilde B_{\bullet k}$;
+      \item $F_{k,-\varepsilon} F_{k,\varepsilon} = I_n + \varepsilon B_{k \bullet}$, $F_{k,\varepsilon} - F_{k,-\varepsilon} = -\varepsilon B_{k \bullet}$, and $F_{k,\varepsilon} B_{k \bullet} = -B_{k \bullet}$.
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    This is immediate from the equality $\varepsilon b_{ij}=[\varepsilon b_{ij}]_+-[-\varepsilon b_{ij}]_+$.
+  \end{proof}
 
   To record sequences of these matrix mutations, we introduce the $n$-regular rooted tree $\TT_n$ with root vertex $t_0$ and edges labeled by $\{1,\ldots,n\}$.
   Associate $m\times n$ matrices $\tilde{B}^t$ with principal part $B^t$ to the vertices $t\in\TT_n$ so that:
@@ -132,7 +136,8 @@
     \item $\tilde{B}^{t_0}=\tilde{B}$;
     \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\tilde{B}^{t'}=\mu_k \tilde{B}^t$.
   \end{itemize}
-  More directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_N,\ldots,k_1)$, we have $\tilde B^{t'}=\mu_\bfk \tilde B$.
+  Given a sequence $\bfk=(k_N,\ldots,k_1)$ with $k_i\in\{1,\ldots,n\}$ write $\mu_\bfk$ for the iterated matrix mutation $\mu_{k_N}\circ\cdots\circ\mu_{k_1}$.
+  Then more directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_N,\ldots,k_1)$, we have $\tilde B^{t'}=\mu_\bfk \tilde B$.
 
   A skew-symmetric matrix $B=(b_{ij})$ is \emph{acyclic} if there is no sequence $i_1,\ldots,i_r,i_{r+1}=i_1$ so that $b_{i_\ell i_{\ell+1}}>0$ for $1\le\ell\le r$.
   In the case when $B$ is acyclic, there exists a permutation $\sigma$ of $\{1,\ldots,n\}$ so that $r<r'$ implies $b_{\sigma_r \sigma_{r'}}\ge 0$.
@@ -143,9 +148,9 @@
   This provides a Coxeter element $c=s_1\cdots s_n$ in the Weyl group associated to $A$.
   
   Given $\bfk=(k_N,\ldots,k_1)$ and any $\tilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\tilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\tilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\tilde{B}\;\nu])$.
-  Note that $\left(\eta^{\tilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\tilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_r,\ldots,k_1)$.
+  Note that $\left(\eta^{\tilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\tilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
 
-  For $\tilde\lambda\in\RR^m$ and $\bfk=(k_1,\ldots,k_r)$, define $S_{\bfk,\tilde\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\tilde\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
+  For $\tilde\lambda\in\RR^m$ and $\bfk=(k_N,\ldots,k_1)$, define $S_{\bfk,\tilde\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\tilde\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
   
   \begin{definition}
     For $\tilde\lambda\in\RR^m$, define the \emph{dominance region} 
@@ -160,6 +165,38 @@
     \cite{qin}
     $\cP_\ZZ(\lambda)$ controls the deformations of a basis element pointed at $\tilde\lambda$.
   \end{theorem}
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section{Weyl group combinatorics of mutations}
+  Let $A^+=(a_{ij})$ denote the Cartan companion of $B^{t^+}$.
+  Fix an $n$-dimensional vector space $V$ with basis $\alpha^\vee_1,\ldots,\alpha^\vee_n$, called the \emph{simple coroots}.
+  Define \emph{simple roots} $\alpha_i:=d_i\alpha^\vee_i$ which provide another basis of $V$.
+  We will use the bilinear pairing $K$ on $V$ defined by $K(\alpha^\vee_i,\alpha_j)=a_{ij}$.
+  This defines the \emph{simple reflections} $s_i(\beta)=\beta-K(\alpha^\vee_i,\beta)\alpha_i$ and the corresponding Weyl group $W=\langle s_1,\ldots,s_n\rangle$ acting linearly on $V$.
+  Write $S=\{s_1,\ldots,s_n\}$ for the collection of simple reflections.
+  Given $I\subseteq S$, let $W_I=\langle s:s\in I\rangle$ denote the \emph{parabolic subgroup} generated by $I$.
+  For $s\in S$, write $[s]=S\setminus\{s\}$.
+
+  Let $c=s_1\cdots s_n$ be the \emph{Coxeter element} of $W$ associated to $B^{t^+}$.
+  More generally, any element of $W$ that can be obtained as the product of all elements of $S$ in some order is a \emph{Coxeter element}.
+  An element $s\in S$ is \emph{initial} in $c$ if $\ell(sc)<\ell(c)$, in this case $sc$ is a Coxeter element of $W_{[s]}$.
+  When $s_k$ is initial in $c$, $s_k c s_k$ is the Coxeter element associated to $\mu_k B^{t^+}$.
+  An element $w\in W$ is \emph{$c$-sortable} if the following recursive definition holds
+  \begin{itemize}
+    \item the identity element of $W$ is $c$-sortable;
+    \item if $s$ is initial in $c$ and $\ell(sw)<\ell(w)$, then $w$ is $c$-sortable if and only if $sw$ is $scs$-sortable;
+    \item if $s$ is initial in $c$ and $\ell(sw)>\ell(w)$, then $w$ is $c$-sortable if and only if $w\in W_{[s]}$ is $sc$-sortable.
+  \end{itemize}
+
+
+  
+  
+
+
+
+
+
 
   Define the $m\times m$ matrix $\tilde G^t$ and the $n\times n$ matrix $C^t$ recursively from the initial seed $t_+$.
   \begin{remark}
@@ -228,7 +265,15 @@
         \begin{itemize}
           \item $\delta$ spans the kernel of the Cartan companion $A$ of $B^+$ as well as any number of Coxeter mutations away
           \item after sufficiently many Coxeter mutations, the seed $t$ lies entirely on one side of the imaginary hyperplane and so the kernel $\kappa_t$ of the quasi-Cartan companion is sign coherent
-          \item for $t'$ connected to $t$ by mutation in direction $k$, $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde B^{t'}\cdot\kappa_{t'}$
+          \item for $t'$ connected to $t$ by mutation in direction $k$, we want $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde B^{t'}\cdot\kappa_{t'}$
+          \item $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde E^t_{k,\varepsilon}\tilde B^t\cdot\kappa_t=\tilde E^t_{k,\varepsilon}\tilde B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\cdot\kappa_t = \tilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t $ but $\kappa_{t'}= F^t_{k,\varepsilon_{trop}} \kappa_t$
+          \item For Cambrian mutations, $\varepsilon_{trop}$ is always positive.
+            This follows from the explicit formula for $\bfc$-vectors in \cite{cambrian frameworks} after Prop. 5.4.
+          \item The $k$-th row of $F^t_{k,+}+F^t_{k,-}$ is the negative of the $k$-th row of the associated Cartan companion (not quasi)
+          \item The $k$-th row of $F^t_{k,-}-F^t_{k,+}$ is the $k$-th row of $\tilde B^t$
+          \item The $k$-th entries of $\tilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t$ and $\tilde B^{t'} \cdot \kappa_{t'}$ are the same
+          \item $A^t:=(C^{\vee,t})^T A_0 C^t$
+          \item $A^{t'}=F^{t,\vee}_{k,\varepsilon_{trop}} A_t F^t_{k,\varepsilon_{trop}}$
         \end{itemize}
       \item $\cP(\tilde\lambda)$ is contained in the ray $\{\tilde\lambda+r\tilde B^+\cdot\delta:r\ge 0\}$.
         \begin{itemize}
