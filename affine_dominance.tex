@@ -265,6 +265,8 @@
         \begin{itemize}
           \item $\delta$ spans the kernel of the Cartan companion $A$ of $B^+$ as well as any number of Coxeter mutations away
           \item after sufficiently many Coxeter mutations, the seed $t$ lies entirely on one side of the imaginary hyperplane and so the kernel $\kappa_t$ of the quasi-Cartan companion is sign coherent
+
+            \emph{proof}: Since $A^t:=(C^{\vee,t})^T A_0 C^t$ then $G^t A^t (G^{\vee,t})^T:=A_0$. Since $G^t $ is invertible $A_0\cdot \delta = 0$ implies $A^t (G^{\vee,t})^T \cdot \delta = 0$ i.e. $(G^{\vee,t})^T \cdot \delta$ spans the kernel of $A^t$. After sufficiently many coxeter all the g-vectors at $t$ are on the positive side of $\delta^\perp$ and the result follows.
           \item for $t'$ connected to $t$ by mutation in direction $k$, we want $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde B^{t'}\cdot\kappa_{t'}$
           \item $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde E^t_{k,\varepsilon}\tilde B^t\cdot\kappa_t=\tilde E^t_{k,\varepsilon}\tilde B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\cdot\kappa_t = \tilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t $ but $\kappa_{t'}= F^t_{k,\varepsilon_{trop}} \kappa_t$
           \item For Cambrian mutations, $\varepsilon_{trop}$ is always positive.
@@ -274,6 +276,7 @@
           \item The $k$-th entries of $\tilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t$ and $\tilde B^{t'} \cdot \kappa_{t'}$ are the same
           \item $A^t:=(C^{\vee,t})^T A_0 C^t$
           \item $A^{t'}=F^{t,\vee}_{k,\varepsilon_{trop}} A_t F^t_{k,\varepsilon_{trop}}$
+            \saySS{I think here we mean $A^{t'}=(F^{t,\vee}_{k,\varepsilon_{trop}})^T A_t F^t_{k,\varepsilon_{trop}}$}
         \end{itemize}
       \item $\cP(\tilde\lambda)$ is contained in the ray $\{\tilde\lambda+r\tilde B^+\cdot\delta:r\ge 0\}$.
         \begin{itemize}
