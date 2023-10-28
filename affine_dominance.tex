@@ -283,6 +283,7 @@
           \item Limits of regions make sense because of continuity after intersecting with domains of linearity.
           \item Use limits of $C^t$ to draw the conclusion.
         \end{itemize}
+      \item For (sufficiently) Cambrian seeds $t$, the sign of the $k$-th entry of $\tilde B^t (G^{\vee,t})^T \delta$ is the same as the sign of the $k$-th $\bfc$-vector since $\tilde B^t (G^{\vee,t})^T \delta=(C^{\vee,t})^T B^+ \delta = -2 (C^{\vee,t})^T \nu_c(\delta)$ and $\nu_c$ is given by the negative of the Euler matrix.
     \end{itemize}
 
   \end{proof}
@@ -291,7 +292,13 @@
   %%%%%%%%%%%%%%%%%%%%%%%%
   \section{$\bfc$-vectors}
 
-  Definitions
+  Definition $\bfc$-matrices $C^t$, for $t\in\TT_n$, recursively as follows:
+  \begin{itemize}
+    \item $C^{t_0} = \boldsymbol{1}_n$ is the $n\times n$ identity matrix;
+    \item when $t$ and $t'$ are joined by an edge labeled $k$, $C^{t'}=(c^{t'}_{ij})$ is related to $C^t=(c^t_{ij})$ by
+      \[ c^{t'}_{ij} = \begin{cases} -c^t_{ij} & \text{if $i=k$ or $j=k$;}\\ c^t_{ij} + [-\varepsilon c^t_{ik}]_+ b^t_{kj} + c^t_{ik} [\varepsilon b^t_{kj}]_+ & \text{otherwise;} \end{cases} \]
+        for any choice of sign $\varepsilon\in\{\pm1\}$.
+  \end{itemize}
 
   $C^t$ is $n\times n$
   \begin{lemma}
@@ -385,7 +392,7 @@
   \end{proof}
 
   \begin{proposition}
-    For acyclic $\tilde B$, the first $n$ entries of $\tilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
+    For acyclic $\tilde B$, the first $n$ entries of $-\tilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
   \end{proposition}
   \begin{proof}
     $B+C$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
