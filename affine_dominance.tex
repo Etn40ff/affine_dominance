@@ -347,7 +347,7 @@
   \begin{proof}
     Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
     Then, by definition, we have
-    \[ \widetilde B^t = \mu_\bfk \widetilde B^+ = \widetilde E^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}\cdots E^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}} \widetilde B^+ F^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\cdots F^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}, \]
+    \[ \widetilde B^t = \mu_\bfk \widetilde B^+ = \widetilde E^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}\cdots \widetilde E^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}} \widetilde B^+ F^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\cdots F^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}, \]
     and the result follows from Lemma~\ref{le:c-matrix factorization} and Lemma~\ref{le:g-matrix factorization} using the identity $(E^t_{k,\varepsilon})^2=\bOne_m$.
   \end{proof}
 
@@ -360,11 +360,13 @@
   \end{align}
   whenever $\widetilde C^{\vee,t}=(c^{\vee,t}_{ij})$ (resp. $G^{\vee,t}=(g^{\vee,t}_{ij})$) is related to $\widetilde C^{\vee,t'}=(c^{\vee,t'}_{ij})$ (resp. $G^{\vee,t'}=(g^{\vee,t'}_{ij})$) by mutation in direction $k$.
   \begin{remark}
+    \label{rem:dual c-matrix structure}
     Since we only mutate in directions $k\in[1,n]$, $\widetilde C^{\vee,t}$ has the following block form:
     \[\left[\begin{array}{cc} C^{\vee,t} & *\\ 0 & \bOne_{m-n}\end{array}\right]\]
     where $C^{\vee,t}$ is the $n\times n$ $\bfc$-matrix for $-B^T$.
   \end{remark}
   \begin{lemma}
+    \label{le:tropical signs}
     For $1\le k,\ell\le n$, we have $d_k c^t_{k\ell} = c^{\vee,t}_{k\ell} d_\ell $ and $d_k g^t_{k\ell} = g^{\vee,t}_{k\ell} d_\ell$.
     In particular, the first $n$ columns of $\widetilde C^{\vee,t}$ share the same tropical signs with the $n$ columns of $C^t$.
   \end{lemma}
@@ -390,9 +392,50 @@
   \end{proof}
 
   \begin{corollary}
+    \label{cor:dual BG=CB}
     For any $t\in\TT_n$, we have
     \[\widetilde B^t \big(G^{\vee,t}\big)^T=\big(\widetilde C^{\vee,t}\big)^T \widetilde B^+.\]
   \end{corollary}
+
+  \begin{lemma}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_{N+1}=t$.
+    Consider seeds $t'_1,\ldots,t'_{N+1}$ with $t'_{r+1}$ obtained from $t'_r$ by mutation in direction $k_r$ and $t'_1$ obtained from $t_+$ by mutating along the sequence $(n,\ldots,1)$ sufficiently many times that $\big(G^{\vee,t'_r}\big)^T \delta$ is a nonnegative vector for every $r$. 
+    \sayDR{Think about $\vee$ or no $\vee$ in the $G$ matrix here.}
+    For $0\le r\le N$, define $\delta_r = F^{t_r}_{k_r,-\varepsilon^{t'_r}_{k_r}} \cdots F^{t_1}_{k_1,-\varepsilon^{t'_1}_{k_1}} \cdot \delta$.
+    Then the following hold.
+    \begin{enumerate}
+      \item $\delta_r$ is a nonnegative vector for $0\le r\le N$;
+      \item For $1\le r\le N+1$, the sign of the $k_r$-th entry of $\widetilde B^{t_r} \delta_{r-1}$ is $\varepsilon^{t'_r}_{k_r}$.
+      \item $\eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)=-\widetilde B^t \delta_N$.
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    First observe that $F^{t_r}_{k_r,-\varepsilon^{t'_r}_{k_r}}=F^{t'_r}_{k_r,-\varepsilon^{t'_r}_{k_r}}$ for each $r$.
+    But $F^{t'_r}_{k_r,-\varepsilon^{t'_r}_{k_r}} \cdots F^{t'_1}_{k_1,-\varepsilon^{t'_1}_{k_1}}=(G^{\vee,t'_{r+1}})^T M$ for some matrix $M$ such that $M\cdot \delta=\delta$ since $t'_1$ is obtained from $t_+$ by repeatedly mutating along the sequence $(n,\ldots,1)$.
+    Therefore $\delta_r = (G^{\vee,t'_{r+1}})^T \cdot \delta$ is a nonnegative vector by assumption.
+
+    Now $\widetilde B^{t_r}$ and $\widetilde B^{t'_r}$ have the same principal $n\times n$ submatrix so to understand the principal signs appearing in $\widetilde B^{t_r} \delta_{r-1}$ it is equivalent to consider the principal signs appearing in $\widetilde B^{t'_r} \delta_{r-1}$.
+    Since $\delta_{r-1} = (G^{\vee,t'_r})^T \delta$, we apply Corollary~\ref{cor:dual BG=CB} to get
+    \begin{align*}
+      \widetilde B^{t'_r} \delta_{r-1} 
+      &= \widetilde B^{t'_r} (G^{\vee,t'_r})^T \delta\\
+      &= \big(\widetilde C^{\vee,t'_r}\big)^T \widetilde B^+ \delta.
+    \end{align*}
+    Following Remark~\ref{rem:dual c-matrix structure}, the principal signs are only computed from the product $\big(C^{\vee,t'_r}\big)^T B^+ \delta$.
+    Since $\big(C^{\vee,t'_r}\big)^T B^+ \delta = \big(C^{\vee,t'_r}\big)^T (B^+ + A) \, \delta$, Lemma~\ref{???} shows that these signs correspond to the Euler pairing of the dual $\bfc$-vectors and $\delta$.
+    By definition of $t'_r$, the sign of the pairing between $C^{\vee,t'_r}_{\bullet k_r}$ and $\delta$ coincides with the tropical sign of $C^{\vee,t'_r}_{\bullet k_r}$, which is $\varepsilon^{t'_r}_{k_r}$ by Lemma~\ref{le:tropical signs}.
+
+    To conclude, we are now able to compute 
+    \begin{align*}
+      \eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)
+      &= - \widetilde E^{t_N}_{k_N,-\varepsilon^{t'_N}_{k_N}} \cdots \widetilde E^{t_1}_{k_1,-\varepsilon^{t'_1}_{k_1}} \widetilde B^+ \delta\\
+      &= - \widetilde B^t F^{t_N}_{k_N,-\varepsilon^{t'_N}_{k_N}} \cdots F^{t_1}_{k_1,-\varepsilon^{t'_1}_{k_1}} \delta\\
+      &= - \widetilde B^t \delta_N.
+    \end{align*}
+  \end{proof}
+  \begin{remark}
+    Say something about quasi-Cartan companions.
+  \end{remark}
 
   There exists a rank 2 cluster algebra with frozen variables $\eta_i$, with $\bfg$-vectors $\bfg_k$ for $k\in\ZZ$.
   This gives real clusters $X_k:=\{\eta_1,\ldots,\eta_{n-2},\bfg_k,\bfg_{k+1}\}$ such that $\lim_{j\to\infty} c^{j\ell}\bfg_k=\nu_c(\delta)$.
@@ -473,7 +516,7 @@
     For acyclic $\widetilde B$, the first $n$ entries of $-\widetilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
   \end{proposition}
   \begin{proof}
-    $B+C$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
+    $B+A$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
   \end{proof}
 
 
