@@ -1,5 +1,5 @@
 \documentclass{amsart}
-\usepackage{amsmath,amssymb,latexsym,color,ulem,mathabx,pdflscape}
+\usepackage{amsmath,amssymb,latexsym,color,ulem,mathabx,pdflscape,bbm}
 \usepackage{geometry}
 \usepackage{tikz}
 \usepackage[bookmarks=true, bookmarksopen=true, bookmarksdepth=3,bookmarksopenlevel=2, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, menucolor=blue, urlcolor=blue]{hyperref}
@@ -49,6 +49,7 @@
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\TT}{\mathbb{T}}
 \newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\bOne}{\mathbbm{1}}
 
 \newcommand{\ol}[1]{{\overline{#1}}}
 \newcommand{\vv}[1]{{{}^\vee \! #1}}
@@ -97,13 +98,13 @@
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \section{Mutation Maps and Dominance}
   Fix $m\ge n$.
-  Let $\tilde B=(b_{ij})$ be an $m\times n$ exchange matrix with principal $n\times n$ submatrix $B$.
+  Let $\widetilde B=(b_{ij})$ be an $m\times n$ exchange matrix with principal $n\times n$ submatrix $B$.
   Note that our exchange matrices are tall, which matches the convention of \cite{qin}.
   Then $B$ is skew-symmetrizable with $DB$ skew-symmetric for some diagonal integer matrix $D=\diag(d_1,\ldots,d_n)$.
  
   For $b\in\RR$, write $[b]_+=\max(b,0)$.
   %Similarly, given a vector $\bfb\in\RR^m$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
-  Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define an $m\times m$ matrix $\tilde E_{k,\varepsilon}=(e_{ij})$ with
+  Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define an $m\times m$ matrix $\widetilde E_{k,\varepsilon}=(e_{ij})$ with
   \begin{equation}
     \label{eq:left mutation matrix}
     e_{ij}=\begin{cases} 1 & \text{if $i=j\ne k$;}\\ -1 & \text{if $i=j=k$;}\\ [\varepsilon b_{ik}]_+ & \text{if $i\ne j=k$;}\\ 0 & \text{otherwise;} \end{cases}
@@ -113,17 +114,17 @@
     \label{eq:right mutation matrix}
     f_{ij}=\begin{cases} 1 & \text{if $k\ne i=j$;}\\ -1 & \text{if $k=i=j$;}\\ [-\varepsilon b_{kj}]_+ & \text{if $k=i\ne j$;}\\ 0 & \text{otherwise.} \end{cases}
   \end{equation}
-  Observe that $\tilde E^2_{k,\varepsilon}=\Id$ and $F^2_{k,\varepsilon}=\Id$ for any choice of $\varepsilon$.
-  Then define $\mu_k\tilde B=\tilde E_{k,\varepsilon} \tilde B F_{k,\varepsilon}$.
-  Using the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$ it is easy to see that $\mu_k\tilde B$ doesn't depend on the choice of sign $\varepsilon$.
-  Moreover, the principal part $\mu_k B$ of $\mu_k\tilde B$ is again skew-symmetrizable using the same matrix $D$.
+  Observe that $\widetilde E^2_{k,\varepsilon}=\bOne_m$ and $F^2_{k,\varepsilon}=\bOne_n$ for any choice of $\varepsilon$.
+  Then define $\mu_k\widetilde B=\widetilde E_{k,\varepsilon} \widetilde B F_{k,\varepsilon}$.
+  Using the identity $b_{ij}=[b_{ij}]_+-[-b_{ij}]_+$ it is easy to see that $\mu_k\widetilde B$ doesn't depend on the choice of sign $\varepsilon$.
+  Moreover, the principal part $\mu_k B$ of $\mu_k\widetilde B$ is again skew-symmetrizable using the same matrix $D$.
 
-  Given a matrix $M$, denote by $M_{\bullet k}$ (resp. $M_{k \bullet}$) the square matrix whose $k$-th column (resp. $k$-th row) matches that of $M$ with all other entries being zero.
+  Given a matrix $M$, denote by $M_{\bullet k}$ (resp. $M_{k \bullet}$) the $k$-th column (resp. $k$-th row) of $M$ and write $[M]_{\bullet k}$ (resp $[M]_{k\bullet}$)  the square matrix whose $k$-th column (resp. $k$-th row) matches that of $M$ with all other entries being zero.
   \begin{lemma}
     For $\varepsilon\in\{\pm1\}$ and $1\le k \le n$, we have 
     \begin{enumerate}
-      \item $\tilde E_{k,-\varepsilon} \tilde E_{k,\varepsilon} = I_m + \varepsilon \tilde B_{\bullet k}$, $\tilde E_{k,\varepsilon} - \tilde E_{k,-\varepsilon} = \varepsilon \tilde B_{\bullet k}$, and $\tilde E_{k,\varepsilon} \tilde B_{\bullet k} = \tilde B_{\bullet k}$;
-      \item $F_{k,-\varepsilon} F_{k,\varepsilon} = I_n + \varepsilon B_{k \bullet}$, $F_{k,\varepsilon} - F_{k,-\varepsilon} = -\varepsilon B_{k \bullet}$, and $F_{k,\varepsilon} B_{k \bullet} = -B_{k \bullet}$.
+      \item $\widetilde E_{k,-\varepsilon} \widetilde E_{k,\varepsilon} = \bOne_m + \varepsilon [\widetilde B]_{\bullet k}$, $\widetilde E_{k,\varepsilon} - \widetilde E_{k,-\varepsilon} = \varepsilon [\widetilde B]_{\bullet k}$, and $\widetilde E_{k,\varepsilon} [\widetilde B]_{\bullet k} = [\widetilde B]_{\bullet k}$;
+      \item $F_{k,-\varepsilon} F_{k,\varepsilon} = \bOne_n + \varepsilon [B]_{k \bullet}$, $F_{k,\varepsilon} - F_{k,-\varepsilon} = -\varepsilon [B]_{k \bullet}$, and $F_{k,\varepsilon} [B]_{k \bullet} = -[B]_{k \bullet}$.
     \end{enumerate}
   \end{lemma}
   \begin{proof}
@@ -131,13 +132,13 @@
   \end{proof}
 
   To record sequences of these matrix mutations, we introduce the $n$-regular rooted tree $\TT_n$ with root vertex $t_0$ and edges labeled by $\{1,\ldots,n\}$.
-  Associate $m\times n$ matrices $\tilde{B}^t$ with principal part $B^t$ to the vertices $t\in\TT_n$ so that:
+  Associate $m\times n$ matrices $\widetilde{B}^t$ with principal part $B^t$ to the vertices $t\in\TT_n$ so that:
   \begin{itemize}
-    \item $\tilde{B}^{t_0}=\tilde{B}$;
-    \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\tilde{B}^{t'}=\mu_k \tilde{B}^t$.
+    \item $\widetilde{B}^{t_0}=\widetilde{B}$;
+    \item if $t,t'\in\TT_n$ are joined by an edge labeled $k$, then $\widetilde{B}^{t'}=\mu_k \widetilde{B}^t$.
   \end{itemize}
   Given a sequence $\bfk=(k_N,\ldots,k_1)$ with $k_i\in\{1,\ldots,n\}$ write $\mu_\bfk$ for the iterated matrix mutation $\mu_{k_N}\circ\cdots\circ\mu_{k_1}$.
-  Then more directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_N,\ldots,k_1)$, we have $\tilde B^{t'}=\mu_\bfk \tilde B$.
+  Then more directly, when $t'$ is obtained from $t$ by following edges labeled by $\bfk=(k_N,\ldots,k_1)$, we have $\widetilde B^{t'}=\mu_\bfk \widetilde B$.
 
   A skew-symmetric matrix $B=(b_{ij})$ is \emph{acyclic} if there is no sequence $i_1,\ldots,i_r,i_{r+1}=i_1$ so that $b_{i_\ell i_{\ell+1}}>0$ for $1\le\ell\le r$.
   In the case when $B$ is acyclic, there exists a permutation $\sigma$ of $\{1,\ldots,n\}$ so that $r<r'$ implies $b_{\sigma_r \sigma_{r'}}\ge 0$.
@@ -147,10 +148,10 @@
   Assume there exists $t_+\in\TT_n$ so that $B^{t_+}=(b^{t_+}_{ij})$ is acyclic with $b^{t_+}_{ij}\ge 0$ for $i<j$.
   This provides a Coxeter element $c=s_1\cdots s_n$ in the Weyl group associated to $A$.
   
-  Given $\bfk=(k_N,\ldots,k_1)$ and any $\tilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\tilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\tilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\tilde{B}\;\nu])$.
-  Note that $\left(\eta^{\tilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\tilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
+  Given $\bfk=(k_N,\ldots,k_1)$ and any $\widetilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\widetilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\widetilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\widetilde{B}\;\nu])$.
+  Note that $\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\widetilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
 
-  For $\tilde\lambda\in\RR^m$ and $\bfk=(k_N,\ldots,k_1)$, define $S_{\bfk,\tilde\lambda}=\left\{\left(\eta^{\tilde{B}}_\bfk\right)^{-1}\big(\eta^{\tilde B^{t_+}}_\bfk(\tilde\lambda)+\tilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
+  For $\tilde\lambda\in\RR^m$ and $\bfk=(k_N,\ldots,k_1)$, define $S_{\bfk,\tilde\lambda}=\left\{\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}\big(\eta^{\widetilde B^{t_+}}_\bfk(\tilde\lambda)+\widetilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
   
   \begin{definition}
     For $\tilde\lambda\in\RR^m$, define the \emph{dominance region} 
@@ -158,7 +159,7 @@
       \cP(\tilde\lambda) = \bigcap_\bfk S_{\bfk,\tilde\lambda}.
     \]
     When $\tilde\mu\in\cP(\tilde\lambda)$, we say \emph{$\tilde\lambda$ dominates $\tilde\mu$}.
-    Write $\cP_\ZZ(\tilde\lambda):=\cP(\tilde\lambda)\cap \tilde B^+ \cdot \ZZ_{\ge0}^n$. 
+    Write $\cP_\ZZ(\tilde\lambda):=\cP(\tilde\lambda)\cap \widetilde B^+ \cdot \ZZ_{\ge0}^n$. 
   \end{definition}
 
   \begin{theorem}
@@ -169,7 +170,7 @@
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \section{Weyl group combinatorics of mutations}
-  Let $A^+=(a_{ij})$ denote the Cartan companion of $B^{t^+}$.
+  Let $A^+=(a_{ij})$ denote the Cartan companion of $B^{t_+}$.
   Fix an $n$-dimensional vector space $V$ with basis $\alpha^\vee_1,\ldots,\alpha^\vee_n$, called the \emph{simple coroots}.
   Define \emph{simple roots} $\alpha_i:=d_i\alpha^\vee_i$ which provide another basis of $V$.
   We will use the bilinear pairing $K$ on $V$ defined by $K(\alpha^\vee_i,\alpha_j)=a_{ij}$.
@@ -178,10 +179,10 @@
   Given $I\subseteq S$, let $W_I=\langle s:s\in I\rangle$ denote the \emph{parabolic subgroup} generated by $I$.
   For $s\in S$, write $[s]=S\setminus\{s\}$.
 
-  Let $c=s_1\cdots s_n$ be the \emph{Coxeter element} of $W$ associated to $B^{t^+}$.
+  Let $c=s_1\cdots s_n$ be the \emph{Coxeter element} of $W$ associated to $B^{t_+}$.
   More generally, any element of $W$ that can be obtained as the product of all elements of $S$ in some order is a \emph{Coxeter element}.
   An element $s\in S$ is \emph{initial} in $c$ if $\ell(sc)<\ell(c)$, in this case $sc$ is a Coxeter element of $W_{[s]}$.
-  When $s_k$ is initial in $c$, $s_k c s_k$ is the Coxeter element associated to $\mu_k B^{t^+}$.
+  When $s_k$ is initial in $c$, $s_k c s_k$ is the Coxeter element associated to $\mu_k B^{t_+}$.
   An element $w\in W$ is \emph{$c$-sortable} if the following recursive definition holds
   \begin{itemize}
     \item the identity element of $W$ is $c$-sortable;
@@ -198,25 +199,13 @@
 
 
 
-  Define the $m\times m$ matrix $\tilde G^t$ and the $n\times n$ matrix $C^t$ recursively from the initial seed $t_+$.
-  \begin{remark}
-    Since we only mutate in directions $k\in[1,n]$, $\tilde G^t$ has the following block form:
-    \[\left[\begin{array}{cc} G^t & 0\\ * & 1\end{array}\right]\]
-    where $G^t$ is the $n\times n$ $\bfg$-matrix for the coefficient-free case.
-  \end{remark}
-
-  The following is immediate by manipulating the recursion and using that it is independent of the choice of sign.
-  \begin{lemma}
-    For any $t\in\TT_n$, we have
-    \[G^t\tilde B^t=\tilde B^0 C^t.\]
-  \end{lemma}
 
   \begin{definition}
-    We say $\nu,\lambda\in\RR^m$ are in the same \emph{$\tilde B^+$-class} if they lie in the same domain of linearity for $\eta^{\tilde B^+}_\bfk$ for all sequences $\bfk$.
-    Define the \emph{mutation fan} $\cF_{\tilde B^+}$ whose maximal cones are the closures of the $\tilde B^+$-classes.
+    We say $\nu,\lambda\in\RR^m$ are in the same \emph{$\widetilde B^+$-class} if they lie in the same domain of linearity for $\eta^{\widetilde B^+}_\bfk$ for all sequences $\bfk$.
+    Define the \emph{mutation fan} $\cF_{\widetilde B^+}$ whose maximal cones are the closures of the $\widetilde B^+$-classes.
   \end{definition}
   \begin{remark}
-    $\cF_{\tilde B^+}=\cF_{B^+}\times \RR^{m-n}$ since the linearity domain in which $\nu$ lies depends only on its first $n$ coordinates.
+    $\cF_{\widetilde B^+}=\cF_{B^+}\times \RR^{m-n}$ since the linearity domain in which $\nu$ lies depends only on its first $n$ coordinates.
   \end{remark}
 
   Cite these results for affine types:
@@ -248,76 +237,162 @@
   -> quasi-Cartan companions, kernels of those
 
   \begin{theorem}
-    Let $\tilde\lambda$ be imaginary with $s$ minimal such that $\tilde\lambda+s\tilde B^+\cdot\delta$ is real.
-    Then the dominance region $\cP_{\tilde\lambda}$ is the segment $\{\tilde\lambda+r\tilde B^+\cdot\delta:0\le r\le s\}$.
+    Let $\tilde\lambda$ be imaginary with $s$ minimal such that $\tilde\lambda+s\widetilde B^+\cdot\delta$ is real.
+    Then the dominance region $\cP_{\tilde\lambda}$ is the segment $\{\tilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
   \end{theorem}
   \begin{remark}
-    When $\tilde B^+$ is full rank, $\cP_\ZZ(\tilde\lambda)$ contains points of the form $\tilde\lambda+r\tilde B^+\cdot\delta$ with $r\in\ZZ_{\ge0}$.
+    When $\widetilde B^+$ is full rank, $\cP_\ZZ(\tilde\lambda)$ contains points of the form $\tilde\lambda+r\widetilde B^+\cdot\delta$ with $r\in\ZZ_{\ge0}$.
     Without the full rank assumption, this no longer has to hold.
   \end{remark}
   \begin{proof}
     \begin{itemize}
       \item $\cP(\tilde\lambda)$ is contained in the imaginary cone.
-        $\cP(\tilde\lambda)$ is contained in $\tilde\lambda + \tilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\tilde B^+$ is full rank.
-        In particular, for sufficiently large $r$, $\cP(\tilde\lambda)$ doesn't contain $-r \tilde B^+\cdot \delta$.
+        $\cP(\tilde\lambda)$ is contained in $\tilde\lambda + \widetilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\widetilde B^+$ is full rank.
+        In particular, for sufficiently large $r$, $\cP(\tilde\lambda)$ doesn't contain $-r \widetilde B^+\cdot \delta$.
         Then for any point $\tilde\mu$ outside the closure of the imaginary cone, for sufficiently large $\ell$ the vector $c^\ell \tilde\mu$ has large magnitude and is arbitrarily close the imaginary ray.
-      \item $\cP(\tilde\lambda)$ contains $\{\tilde\lambda+r\tilde B^+\cdot\delta:0\le r\le s\}$.
+      \item $\cP(\tilde\lambda)$ is contained in the ray $\{\tilde\lambda+r\widetilde B^+\cdot\delta:r\ge 0\}$.
+        \begin{itemize}
+          \item Define green and red regions for real $\tilde\lambda$.
+          \item Compute the green and red regions as $\tilde\lambda \pm \widetilde B^+\cdot C^t\cdot \RR_{\ge0}^n$.
+            Use $\widetilde G^t\widetilde B^t = \widetilde B^+ C^t$.
+          \item Limits of regions make sense because of continuity after intersecting with domains of linearity.
+          \item Use limits of $C^t$ to draw the conclusion.
+        \end{itemize}
+      \item $\cP(\tilde\lambda)$ contains $\{\tilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
         \begin{itemize}
           \item $\delta$ spans the kernel of the Cartan companion $A$ of $B^+$ as well as any number of Coxeter mutations away
           \item after sufficiently many Coxeter mutations, the seed $t$ lies entirely on one side of the imaginary hyperplane and so the kernel $\kappa_t$ of the quasi-Cartan companion is sign coherent
 
             \emph{proof}: Since $A^t:=(C^{\vee,t})^T A_0 C^t$ then $G^t A^t (G^{\vee,t})^T:=A_0$. Since $G^t $ is invertible $A_0\cdot \delta = 0$ implies $A^t (G^{\vee,t})^T \cdot \delta = 0$ i.e. $(G^{\vee,t})^T \cdot \delta$ spans the kernel of $A^t$. After sufficiently many coxeter all the g-vectors at $t$ are on the positive side of $\delta^\perp$ and the result follows.
-          \item for $t'$ connected to $t$ by mutation in direction $k$, we want $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde B^{t'}\cdot\kappa_{t'}$
-          \item $\eta_k^{\tilde B^t}(\tilde B^t\cdot\kappa_t)=\tilde E^t_{k,\varepsilon}\tilde B^t\cdot\kappa_t=\tilde E^t_{k,\varepsilon}\tilde B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\cdot\kappa_t = \tilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t $ but $\kappa_{t'}= F^t_{k,\varepsilon_{trop}} \kappa_t$
+          \item for $t'$ connected to $t$ by mutation in direction $k$, we want $\eta_k^{\widetilde B^t}(\widetilde B^t\cdot\kappa_t)=\widetilde B^{t'}\cdot\kappa_{t'}$
+          \item $\eta_k^{\widetilde B^t}(\widetilde B^t\cdot\kappa_t)=\widetilde E^t_{k,\varepsilon}\widetilde B^t\cdot\kappa_t=\widetilde E^t_{k,\varepsilon}\widetilde B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\cdot\kappa_t = \widetilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t $ but $\kappa_{t'}= F^t_{k,\varepsilon_{trop}} \kappa_t$
           \item For Cambrian mutations, $\varepsilon_{trop}$ is always positive.
             This follows from the explicit formula for $\bfc$-vectors in \cite{cambrian frameworks} after Prop. 5.4.
           \item The $k$-th row of $F^t_{k,+}+F^t_{k,-}$ is the negative of the $k$-th row of the associated Cartan companion (not quasi)
-          \item The $k$-th row of $F^t_{k,-}-F^t_{k,+}$ is the $k$-th row of $\tilde B^t$
-          \item The $k$-th entries of $\tilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t$ and $\tilde B^{t'} \cdot \kappa_{t'}$ are the same
+          \item The $k$-th row of $F^t_{k,-}-F^t_{k,+}$ is the $k$-th row of $\widetilde B^t$
+          \item The $k$-th entries of $\widetilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t$ and $\widetilde B^{t'} \cdot \kappa_{t'}$ are the same
           \item $A^t:=(C^{\vee,t})^T A_0 C^t$
           \item $A^{t'}=F^{t,\vee}_{k,\varepsilon_{trop}} A_t F^t_{k,\varepsilon_{trop}}$
             \saySS{I think here we mean $A^{t'}=(F^{t,\vee}_{k,\varepsilon_{trop}})^T A_t F^t_{k,\varepsilon_{trop}}$}
         \end{itemize}
-      \item $\cP(\tilde\lambda)$ is contained in the ray $\{\tilde\lambda+r\tilde B^+\cdot\delta:r\ge 0\}$.
-        \begin{itemize}
-          \item Define green and red regions for real $\tilde\lambda$.
-          \item Compute the green and red regions as $\tilde\lambda \pm \tilde B^+\cdot C^t\cdot \RR_{\ge0}^n$.
-            Use $\tilde G^t\tilde B^t = \tilde B^+ C^t$.
-          \item Limits of regions make sense because of continuity after intersecting with domains of linearity.
-          \item Use limits of $C^t$ to draw the conclusion.
-        \end{itemize}
-      \item For (sufficiently) Cambrian seeds $t$, the sign of the $k$-th entry of $\tilde B^t (G^{\vee,t})^T \delta$ is the same as the sign of the $k$-th $\bfc$-vector since $\tilde B^t (G^{\vee,t})^T \delta=(C^{\vee,t})^T B^+ \delta = -2 (C^{\vee,t})^T \nu_c(\delta)$ and $\nu_c$ is given by the negative of the Euler matrix.
+      \item For (sufficiently) Cambrian seeds $t$, the sign of the $k$-th entry of $\widetilde B^t (G^{\vee,t})^T \delta$ is the same as the sign of the $k$-th $\bfc$-vector since $\widetilde B^t (G^{\vee,t})^T \delta=(C^{\vee,t})^T B^+ \delta = -2 (C^{\vee,t})^T \nu_c(\delta)$ and $\nu_c$ is given by the negative of the Euler matrix.
     \end{itemize}
 
   \end{proof}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%
-  \section{$\bfc$-vectors}
+  \section{$\bfc$-vectors and $\bfg$-vectors}
 
   Definition $\bfc$-matrices $C^t$, for $t\in\TT_n$, recursively as follows:
   \begin{itemize}
-    \item $C^{t_0} = \boldsymbol{1}_n$ is the $n\times n$ identity matrix;
+    \item $C^{t_+} = \bOne_n$ is the $n\times n$ identity matrix;
     \item when $t$ and $t'$ are joined by an edge labeled $k$, $C^{t'}=(c^{t'}_{ij})$ is related to $C^t=(c^t_{ij})$ by
-      \[ c^{t'}_{ij} = \begin{cases} -c^t_{ij} & \text{if $i=k$ or $j=k$;}\\ c^t_{ij} + [-\varepsilon c^t_{ik}]_+ b^t_{kj} + c^t_{ik} [\varepsilon b^t_{kj}]_+ & \text{otherwise;} \end{cases} \]
-        for any choice of sign $\varepsilon\in\{\pm1\}$.
+      \begin{equation}
+        \label{eq:c-matrix mutation}
+        c^{t'}_{ij} = \begin{cases} -c^t_{ij} & \text{if $i=k$ or $j=k$;}\\ c^t_{ij} + [-\varepsilon c^t_{ik}]_+ b^t_{kj} + c^t_{ik} [\varepsilon b^t_{kj}]_+ & \text{otherwise;} \end{cases}
+      \end{equation}
+      for any choice of sign $\varepsilon\in\{\pm1\}$.
   \end{itemize}
 
-  $C^t$ is $n\times n$
+  Following \cite{keller,ghkk} it is known that the column of $C^t$ are always \emph{sign-coherent}, i.e. all entries of each column $C^t_{\bullet k}$ are either all nonnegative or all nonpositive.
+  Write $\varepsilon^t_k$ for the sign of the nonzero entries of the $k$-th column of $C^t$.
+  Using this choice of sign, the expression in \eqref{eq:c-matrix mutation} simplifies to
+  \begin{equation}
+    \label{eq:reduced c-matrix mutation}
+    c^{t'}_{ij} = \begin{cases} -c^t_{ij} & \text{if $i=k$ or $j=k$;}\\ c^t_{ij} + c^t_{ik} [\varepsilon^t_k b^t_{kj}]_+ & \text{otherwise.} \end{cases}
+  \end{equation}
+
   \begin{lemma}
-    $C^t$ is a product of matrices $F^t_{k,\varepsilon}$ using tropical signs
+    \label{le:c-matrix factorization}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
+    Then $C^t$ can be factored as $F^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\cdots F^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}$.
   \end{lemma}
+  \begin{proof}
+    The recursion \eqref{eq:reduced c-matrix mutation} can be rewritten as $C^{t'}=C^t F^t_{k,-\varepsilon^t_k}$ and the claim follows by induction.
+  \end{proof}
 
-  Sign coherence?
+  Define $\bfg$-matrices $\widetilde G^t$, for $t\in\TT_n$, recursively as follows:
+  \begin{itemize}
+    \item $\widetilde G^{t_+} = \bOne_m$ is the $m\times m$ identity matrix;
+    \item when $t$ and $t'$ are joined by an edge labeled $k$, $\widetilde G^{t'}=(g^{t'}_{ij})$ is related to $\widetilde G^t=(g^t_{ij})$ by
+      \begin{equation}
+        \label{eq:g-matrix mutation}
+        g^{t'}_{ij} = \begin{cases} -g^t_{ik} + \sum\limits_{\ell=1}^m g^t_{i\ell} [-b^t_{\ell k} \varepsilon^t_k]_+ & \text{if $j=k$;}\\ g^t_{ij} & \text{otherwise.} \end{cases}
+      \end{equation}
+  \end{itemize}
+  Note that the $\bfg$-matrices can also be defined via an arbitrary sign $\varepsilon\in\{\pm 1\}$ as in \eqref{eq:c-matrix mutation}, however such a general expression is unnecessary for our purposes.
+  \begin{remark}
+    Since we only mutate in directions $k\in[1,n]$, $\widetilde G^t$ has the following block form:
+    \[\left[\begin{array}{cc} G^t & 0\\ * & \bOne_{m-n}\end{array}\right]\]
+    where $G^t$ is the $n\times n$ $\bfg$-matrix for the coefficient-free case.
+  \end{remark}
 
-
-
-  %%%%%%%%%%%%%%%%%%%%%%%%
-  \section{$\bfg$-vectors}
-  Definitions $G^t$ is $m\times m$
   \begin{lemma}
-    $G^t$ is a product of matrices $E^t_{k,\varepsilon}$ using tropical signs
+    \label{le:g-matrix factorization}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
+    Then $\widetilde G^t$ can be factored as $\widetilde E^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\cdots \widetilde E^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}$.
   \end{lemma}
+  \begin{proof}
+    The recursion \eqref{eq:g-matrix mutation} can be rewritten as $\widetilde G^{t'}=\widetilde G^t \widetilde E^t_{k,-\varepsilon^t_k}$ and the claim follows by induction.
+  \end{proof}
+  \begin{proof}
+    This is immediate from the definition \eqref{eq:g-matrix mutation}.
+  \end{proof}
+
+  \begin{corollary}
+    For any $t\in\TT_n$, we have
+    \[\widetilde G^t\widetilde B^t=\widetilde B^+ C^t.\]
+  \end{corollary}
+  \begin{proof}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
+    Then, by definition, we have
+    \[ \widetilde B^t = \mu_\bfk \widetilde B^+ = \widetilde E^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}\cdots E^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}} \widetilde B^+ F^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\cdots F^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}, \]
+    and the result follows from Lemma~\ref{le:c-matrix factorization} and Lemma~\ref{le:g-matrix factorization} using the identity $(E^t_{k,\varepsilon})^2=\bOne_m$.
+  \end{proof}
+
+  It will be convenient to introduce $m\times m$ matrices $\widetilde C^{\vee,t}$ and $n\times n$ matrices $G^{\vee,t}$ for $t\in\TT_n$ defined recursively by $\widetilde C^{\vee,t_+}=\bOne_m$, $G^{\vee,t_+}=\bOne_n$, and 
+  \begin{align}
+    \label{eq:dual c-matrix mutation}
+    c^{\vee,t'}_{ij} &= \begin{cases} -c^{\vee,t}_{ij} & \text{if $i=k$ or $j=k$;}\\ c^{\vee,t}_{ij} + c^{\vee,t}_{ik} [-b^t_{jk} \varepsilon^t_k]_+ & \text{otherwise;} \end{cases}\\
+    \label{eq:dual g-matrix mutation}
+    g^{\vee,t'}_{ij} &= \begin{cases} -g^{\vee,t}_{ik} + \sum\limits_{\ell=1}^n g^{\vee,t}_{i \ell} [\varepsilon^t_k b^t_{k \ell}]_+ & \text{if $j=k$;}\\ g^{\vee,t}_{ij} & \text{otherwise;} \end{cases}
+  \end{align}
+  whenever $\widetilde C^{\vee,t}=(c^{\vee,t}_{ij})$ (resp. $G^{\vee,t}=(g^{\vee,t}_{ij})$) is related to $\widetilde C^{\vee,t'}=(c^{\vee,t'}_{ij})$ (resp. $G^{\vee,t'}=(g^{\vee,t'}_{ij})$) by mutation in direction $k$.
+  \begin{remark}
+    Since we only mutate in directions $k\in[1,n]$, $\widetilde C^{\vee,t}$ has the following block form:
+    \[\left[\begin{array}{cc} C^{\vee,t} & *\\ 0 & \bOne_{m-n}\end{array}\right]\]
+    where $C^{\vee,t}$ is the $n\times n$ $\bfc$-matrix for $-B^T$.
+  \end{remark}
+  \begin{lemma}
+    For $1\le k,\ell\le n$, we have $d_k c^t_{k\ell} = c^{\vee,t}_{k\ell} d_\ell $ and $d_k g^t_{k\ell} = g^{\vee,t}_{k\ell} d_\ell$.
+    In particular, the first $n$ columns of $\widetilde C^{\vee,t}$ share the same tropical signs with the $n$ columns of $C^t$.
+  \end{lemma}
+  \begin{proof}
+    The first claim is an easy induction using \eqref{eq:reduced c-matrix mutation} and \eqref{eq:dual c-matrix mutation} or \eqref{eq:g-matrix mutation} and \eqref{eq:dual g-matrix mutation} together with the identity $d_k b^t_{k\ell} = - d_\ell b^t_{\ell k}$.
+    The second claim is an immediate consequence.
+  \end{proof}
+
+  \begin{lemma}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
+    Then the following hold.
+    \begin{enumerate}
+      \item $\widetilde C^{\vee,t}$ can be factored as $\big(\widetilde E^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\big)^T \cdots \big(\widetilde E^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}\big)^T$.
+        In particular, $\big(\widetilde C^{\vee,t}\big)^T=\big(\widetilde G^t\big)^{-1}$.
+      \item $G^{\vee,t}$ can be factored as $\big(F^{t_1}_{k_1,-\varepsilon^{t_1}_{k_1}}\big)^T \cdots \big(F^{t_N}_{k_N,-\varepsilon^{t_N}_{k_N}}\big)^T$.
+        In particular, $\big(G^{\vee,t}\big)^T=\big(C^t\big)^{-1}$.
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    The recursions \eqref{eq:dual c-matrix mutation} and \eqref{eq:dual g-matrix mutation} can be written as $\widetilde C^{\vee,t'}=\widetilde C^{\vee,t} \big(\widetilde E^t_{k,-\varepsilon^t_k}\big)^T$ and $G^{\vee,t'}=G^{\vee,t} \big(F^t_{k,-\varepsilon^t_k}\big)^T$ respectively.
+    The first claims then follow by induction.
+    The second claims follow from the identities $\big(\widetilde E^t_{k,-\varepsilon^t_k}\big)^2=\bOne_m$ and $\big(F^t_{k,-\varepsilon^t_k}\big)^2=\bOne_n$.
+  \end{proof}
+
+  \begin{corollary}
+    For any $t\in\TT_n$, we have
+    \[\widetilde B^t \big(G^{\vee,t}\big)^T=\big(\widetilde C^{\vee,t}\big)^T \widetilde B^+.\]
+  \end{corollary}
 
   There exists a rank 2 cluster algebra with frozen variables $\eta_i$, with $\bfg$-vectors $\bfg_k$ for $k\in\ZZ$.
   This gives real clusters $X_k:=\{\eta_1,\ldots,\eta_{n-2},\bfg_k,\bfg_{k+1}\}$ such that $\lim_{j\to\infty} c^{j\ell}\bfg_k=\nu_c(\delta)$.
@@ -331,10 +406,10 @@
   \section{Green and Red Regions}
 
   \begin{definition}
-    Consider real $\tilde \lambda$, say $\tilde \lambda\in \tilde K_t:= K_t\times \RR^{m-n}$.
+    Consider real $\tilde \lambda$, say $\tilde \lambda\in \widetilde K_t:= K_t\times \RR^{m-n}$.
     Let $t$ be connected to $t_+$ by a sequence of edges labeled by $\bfk^+=(k_N,\ldots k_1)$. 
-    Define the \emph{green cone} $S_\lambda^+:=S_{\bfk^+,\tilde\lambda}\cap\tilde K_t$.
-    Similarly, let $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$ and define the \emph{red cone} $S_\lambda^-:=S_{\bfk^-,\tilde\lambda}\cap\tilde K_t$.
+    Define the \emph{green cone} $S_\lambda^+:=S_{\bfk^+,\tilde\lambda}\cap\widetilde K_t$.
+    Similarly, let $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$ and define the \emph{red cone} $S_\lambda^-:=S_{\bfk^-,\tilde\lambda}\cap\widetilde K_t$.
   \end{definition}
 
   Define $S^\pm_\lambda:=\lim_{k\to\infty} S^\pm_{\lambda_k}$.
@@ -345,7 +420,7 @@
 
   \begin{lemma}
     Consider $\lambda$ inside the $\bfg$-vector fan, say $\lambda$ lies inside the cone spanned by $G_t$.
-    Then the intersection of $\phi_t^{-1} \cC_t(\phi_t \lambda)$ with this $\bfg$-cone is spanned by the columns of $\tilde B_0 C_t$.
+    Then the intersection of $\phi_t^{-1} \cC_t(\phi_t \lambda)$ with this $\bfg$-cone is spanned by the columns of $\widetilde B^+ C^t$.
   \end{lemma}
 
   \begin{lemma}
@@ -366,7 +441,7 @@
   \end{lemma}
 
   \begin{corollary}
-    Assume $\tilde B$ is affine.
+    Assume $\widetilde B$ is affine.
     For imaginary $\lambda$, $\cP(\lambda)$ is contained in the line through $\lambda$ in direction $\nu_c(\delta)$. 
   \end{corollary}
 
@@ -395,7 +470,7 @@
   \end{proof}
 
   \begin{proposition}
-    For acyclic $\tilde B$, the first $n$ entries of $-\tilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
+    For acyclic $\widetilde B$, the first $n$ entries of $-\widetilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
   \end{proposition}
   \begin{proof}
     $B+C$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
