@@ -368,7 +368,7 @@
   \begin{lemma}
     \label{le:tropical signs}
     For $1\le k,\ell\le n$, we have $d_k c^t_{k\ell} = c^{\vee,t}_{k\ell} d_\ell $ and $d_k g^t_{k\ell} = g^{\vee,t}_{k\ell} d_\ell$.
-    In particular, the first $n$ columns of $\widetilde C^{\vee,t}$ share the same tropical signs with the $n$ columns of $C^t$.
+    In particular, $D C^t = C^{\vee,t} D$ and so the first $n$ columns of $\widetilde C^{\vee,t}$ share the same tropical signs with the $n$ columns of $C^t$.
   \end{lemma}
   \begin{proof}
     The first claim is an easy induction using \eqref{eq:reduced c-matrix mutation} and \eqref{eq:dual c-matrix mutation} or \eqref{eq:g-matrix mutation} and \eqref{eq:dual g-matrix mutation} together with the identity $d_k b^t_{k\ell} = - d_\ell b^t_{\ell k}$.
@@ -422,8 +422,16 @@
       &= \big(\widetilde C^{\vee,t'_r}\big)^T \widetilde B^+ \delta.
     \end{align*}
     Following Remark~\ref{rem:dual c-matrix structure}, the principal signs are only computed from the product $\big(C^{\vee,t'_r}\big)^T B^+ \delta$.
-    Since $\big(C^{\vee,t'_r}\big)^T B^+ \delta = \big(C^{\vee,t'_r}\big)^T (B^+ + A) \, \delta$, Lemma~\ref{???} shows that these signs correspond to the Euler pairing of the dual $\bfc$-vectors and $\delta$.
-    By definition of $t'_r$, the sign of the pairing between $C^{\vee,t'_r}_{\bullet k_r}$ and $\delta$ coincides with the tropical sign of $C^{\vee,t'_r}_{\bullet k_r}$, which is $\varepsilon^{t'_r}_{k_r}$ by Lemma~\ref{le:tropical signs}.
+    Since 
+    \begin{align*}
+      \big(C^{\vee,t'_r}\big)^T B^+ \delta 
+      &= \big(C^{\vee,t'_r}\big)^T (B^+ + A) \, \delta\\
+      &= \big(D^{-1} C^{\vee,t'_r}\big)^T D(B^+ + A) \, \delta\\
+      &= \big(C^{t'_r} D^{-1}\big)^T D(B^+ + A) \, \delta\\
+      &= D^{-1} \big(C^{t'_r}\big)^T D(B^+ + A) \, \delta,
+    \end{align*}
+    Lemma~\ref{???} shows that these signs correspond to those of the Euler pairing of the $\bfc$-vectors and $\delta$.
+    By definition of $t'_r$, these are precisely the $\varepsilon^{t'_r}_k$, the tropical signs at seed $t'_r$.
 
     To conclude, we are now able to compute 
     \begin{align*}
