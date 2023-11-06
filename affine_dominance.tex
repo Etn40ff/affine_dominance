@@ -190,7 +190,29 @@
     \item if $s$ is initial in $c$ and $\ell(sw)>\ell(w)$, then $w$ is $c$-sortable if and only if $w\in W_{[s]}$ is $sc$-sortable.
   \end{itemize}
 
+  Statement about constructing $C(v)$ from skips.
 
+  \begin{lemma}
+    \label{le:coxeter power}
+    There exists $r>0$ so that $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ has full support for any $p\ge r$ and any $\ell$.
+  \end{lemma}
+  \begin{proof}
+    By \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, the set $\{c^q s_n \ldots s_{\ell+1} \alpha_\ell:q\in\ZZ\}$ is infinite.
+    On the other hand, there are only finitely many roots without full support.
+  \end{proof}
+  
+  \begin{proposition}
+    For any $c$-sortable element $v$ whose sorting word starts with $c^r$ for $r$ as in Lemma~\ref{le:coxeter power}, the set $C(v)$ does not contain any positive root of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$.  
+  \end{proposition}
+  \begin{proof}
+    Let $\beta$ be a positive root in $C(v)$.
+    Since $c^p$ is reduced for any $p$, the first skip will be unforced, skipping letter $k$.
+    If $\beta$ arises from the first skip, then $\beta$ is of the form $c^q s_1 \cdots s_{k-1} \alpha_k$ and, following \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, it is not of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$. 
+    We can therefore assume $\beta$ arises from at least two skips.
+    Then $\beta$ is of the form $c^q s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ for $q\ge r$ with $k\ne b_j$ for any $j$.
+    If $\beta$ were of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$, then $c^{-p-q} s_n \ldots s_{\ell+1} \alpha_\ell=s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ would be a root without full support.
+    But $p+q\ge r$, contradicting Lemma~\ref{le:coxeter power}.
+  \end{proof}
   
   
 
