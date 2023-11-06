@@ -151,20 +151,20 @@
   Given $\bfk=(k_N,\ldots,k_1)$ and any $\widetilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\widetilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\widetilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\widetilde{B}\;\nu])$.
   Note that $\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\widetilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
 
-  For $\tilde\lambda\in\RR^m$ and $\bfk=(k_N,\ldots,k_1)$, define $S_{\bfk,\tilde\lambda}=\left\{\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}\big(\eta^{\widetilde B^{t_+}}_\bfk(\tilde\lambda)+\widetilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
+  For $\widetilde\lambda\in\RR^m$ and $\bfk=(k_N,\ldots,k_1)$, define $S_{\bfk,\widetilde\lambda}=\left\{\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}\big(\eta^{\widetilde B^{t_+}}_\bfk(\widetilde\lambda)+\widetilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
   
   \begin{definition}
-    For $\tilde\lambda\in\RR^m$, define the \emph{dominance region} 
+    For $\widetilde\lambda\in\RR^m$, define the \emph{dominance region} 
     \[
-      \cP(\tilde\lambda) = \bigcap_\bfk S_{\bfk,\tilde\lambda}.
+      \cP(\widetilde\lambda) = \bigcap_\bfk S_{\bfk,\widetilde\lambda}.
     \]
-    When $\tilde\mu\in\cP(\tilde\lambda)$, we say \emph{$\tilde\lambda$ dominates $\tilde\mu$}.
-    Write $\cP_\ZZ(\tilde\lambda):=\cP(\tilde\lambda)\cap \widetilde B^+ \cdot \ZZ_{\ge0}^n$. 
+    When $\widetilde\mu\in\cP(\widetilde\lambda)$, we say \emph{$\widetilde\lambda$ dominates $\widetilde\mu$}.
+    Write $\cP_\ZZ(\widetilde\lambda):=\cP(\widetilde\lambda)\cap \widetilde B^+ \cdot \ZZ_{\ge0}^n$. 
   \end{definition}
 
   \begin{theorem}
     \cite{qin}
-    $\cP_\ZZ(\lambda)$ controls the deformations of a basis element pointed at $\tilde\lambda$.
+    $\cP_\ZZ(\lambda)$ controls the deformations of a basis element pointed at $\widetilde\lambda$.
   \end{theorem}
 
 
@@ -232,33 +232,35 @@
   
   c-sortable elements
   
-  after Prop. 5.4 in \cite{combinatorial frameworks} gives C-matrices explicitly
+  after Prop. 5.4 in \cite{combinatorial_frameworks} gives C-matrices explicitly
   
   -> quasi-Cartan companions, kernels of those
 
   \begin{theorem}
-    Let $\tilde\lambda$ be imaginary with $s$ minimal such that $\tilde\lambda+s\widetilde B^+\cdot\delta$ is real.
-    Then the dominance region $\cP_{\tilde\lambda}$ is the segment $\{\tilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
+    Let $\widetilde\lambda$ be imaginary with $s$ minimal such that $\widetilde\lambda+s\widetilde B^+\cdot\delta$ is real.
+    \saySS{We need to say why such an $s$ exists.}
+    Then the dominance region $\cP(\widetilde\lambda)$ is the segment $\{\widetilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
   \end{theorem}
   \begin{remark}
-    When $\widetilde B^+$ is full rank, $\cP_\ZZ(\tilde\lambda)$ contains points of the form $\tilde\lambda+r\widetilde B^+\cdot\delta$ with $r\in\ZZ_{\ge0}$.
+    When $\widetilde B^+$ is full rank, $\cP_\ZZ(\widetilde\lambda)$ contains points of the form $\widetilde\lambda+r\widetilde B^+\cdot\delta$ with $r\in\ZZ_{\ge0}$.
     Without the full rank assumption, this no longer has to hold.
   \end{remark}
   \begin{proof}
+  $ $
     \begin{itemize}
-      \item $\cP(\tilde\lambda)$ is contained in the imaginary cone.
-        $\cP(\tilde\lambda)$ is contained in $\tilde\lambda + \widetilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\widetilde B^+$ is full rank.
-        In particular, for sufficiently large $r$, $\cP(\tilde\lambda)$ doesn't contain $-r \widetilde B^+\cdot \delta$.
-        Then for any point $\tilde\mu$ outside the closure of the imaginary cone, for sufficiently large $\ell$ the vector $c^\ell \tilde\mu$ has large magnitude and is arbitrarily close the imaginary ray.
-      \item $\cP(\tilde\lambda)$ is contained in the ray $\{\tilde\lambda+r\widetilde B^+\cdot\delta:r\ge 0\}$.
+      \item[\checkmark] $\cP(\widetilde\lambda)$ is contained in the imaginary cone.
+        $\cP(\widetilde\lambda)$ is contained in $\widetilde\lambda + \widetilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\widetilde B^+$ is full rank.
+        In particular, for sufficiently large $r$, $\cP(\widetilde\lambda)$ doesn't contain $-r \widetilde B^+\cdot \delta$.
+        Then for any point $\widetilde\mu$ outside the closure of the imaginary cone, for sufficiently large $\ell$ the vector $c^\ell \widetilde\mu$ has large magnitude and is arbitrarily close the imaginary ray.
+      \item $\cP(\widetilde\lambda)$ is contained in the ray $\{\widetilde\lambda+r\widetilde B^+\cdot\delta:r\ge 0\}$.
         \begin{itemize}
-          \item Define green and red regions for real $\tilde\lambda$.
-          \item Compute the green and red regions as $\tilde\lambda \pm \widetilde B^+\cdot C^t\cdot \RR_{\ge0}^n$.
+          \item Define green and red regions for real $\widetilde\lambda$.
+          \item Compute the green and red regions as $\widetilde\lambda \pm \widetilde B^+\cdot C^t\cdot \RR_{\ge0}^n$.
             Use $\widetilde G^t\widetilde B^t = \widetilde B^+ C^t$.
           \item Limits of regions make sense because of continuity after intersecting with domains of linearity.
           \item Use limits of $C^t$ to draw the conclusion.
         \end{itemize}
-      \item $\cP(\tilde\lambda)$ contains $\{\tilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
+      \item $\cP(\widetilde\lambda)$ contains $\{\widetilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
         \begin{itemize}
           \item $\delta$ spans the kernel of the Cartan companion $A$ of $B^+$ as well as any number of Coxeter mutations away
           \item after sufficiently many Coxeter mutations, the seed $t$ lies entirely on one side of the imaginary hyperplane and so the kernel $\kappa_t$ of the quasi-Cartan companion is sign coherent
@@ -267,7 +269,7 @@
           \item for $t'$ connected to $t$ by mutation in direction $k$, we want $\eta_k^{\widetilde B^t}(\widetilde B^t\cdot\kappa_t)=\widetilde B^{t'}\cdot\kappa_{t'}$
           \item $\eta_k^{\widetilde B^t}(\widetilde B^t\cdot\kappa_t)=\widetilde E^t_{k,\varepsilon}\widetilde B^t\cdot\kappa_t=\widetilde E^t_{k,\varepsilon}\widetilde B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon}\cdot\kappa_t = \widetilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t $ but $\kappa_{t'}= F^t_{k,\varepsilon_{trop}} \kappa_t$
           \item For Cambrian mutations, $\varepsilon_{trop}$ is always positive.
-            This follows from the explicit formula for $\bfc$-vectors in \cite{cambrian frameworks} after Prop. 5.4.
+            This follows from the explicit formula for $\bfc$-vectors in \cite{cambrian_frameworks} after Prop. 5.4.
           \item The $k$-th row of $F^t_{k,+}+F^t_{k,-}$ is the negative of the $k$-th row of the associated Cartan companion (not quasi)
           \item The $k$-th row of $F^t_{k,-}-F^t_{k,+}$ is the $k$-th row of $\widetilde B^t$
           \item The $k$-th entries of $\widetilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t$ and $\widetilde B^{t'} \cdot \kappa_{t'}$ are the same
@@ -280,6 +282,18 @@
 
   \end{proof}
 
+  \begin{lemma}
+    If $\widetilde \lambda$ is imaginary then $\cP(\widetilde\lambda)\subseteq \cI$.
+    \saySS{Define the imaginary cone $\cI$.}
+  \end{lemma}
+  \begin{proof}
+    By definition $\cP(\widetilde\lambda)$ is contained in $\widetilde\lambda + \widetilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\widetilde B^+$ is full rank.
+    In particular, for sufficiently large $r$, $\cP(\widetilde\lambda)$ does not contain a tubular neighbourhood $U$ of the half-line $\{-s\widetilde B^+\delta: s\ge r\}$.
+  Suppose by contraddiction that there exists some point $\widetilde \lambda' \in \cP(\widetilde\lambda)\setminus \cI$.
+  Since $\cP(\widetilde\lambda)$ is stable under mutations $\eta_{\bfc^k}^{\widetilde B^+}(\widetilde\lambda')\in \cP(\widetilde\lambda)$ for any $k$.
+  \saySS{Define $\bfc^k$ to be the sequence $n\dots,1,n,1,\dots$ of the appropriate lenght or find a better notation for this. Note that we might have to rethink the order in which we apply mutation maps.}
+  On the other hand, since $\widetilde\lambda'$ is not in $\cI$, for sufficiently large $k$ we have $\eta_{\bfc^k}^{\widetilde B^+}(\widetilde\lambda')\in U$ contraddicting our previous observation.
+  \end{proof}
 
   %%%%%%%%%%%%%%%%%%%%%%%%
   \section{$\bfc$-vectors and $\bfg$-vectors}
@@ -458,10 +472,10 @@
   \section{Green and Red Regions}
 
   \begin{definition}
-    Consider real $\tilde \lambda$, say $\tilde \lambda\in \widetilde K_t:= K_t\times \RR^{m-n}$.
+    Consider real $\widetilde \lambda$, say $\widetilde \lambda\in \widetilde K_t:= K_t\times \RR^{m-n}$.
     Let $t$ be connected to $t_+$ by a sequence of edges labeled by $\bfk^+=(k_N,\ldots k_1)$. 
-    Define the \emph{green cone} $S_\lambda^+:=S_{\bfk^+,\tilde\lambda}\cap\widetilde K_t$.
-    Similarly, let $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$ and define the \emph{red cone} $S_\lambda^-:=S_{\bfk^-,\tilde\lambda}\cap\widetilde K_t$.
+    Define the \emph{green cone} $S_\lambda^+:=S_{\bfk^+,\widetilde\lambda}\cap\widetilde K_t$.
+    Similarly, let $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$ and define the \emph{red cone} $S_\lambda^-:=S_{\bfk^-,\widetilde\lambda}\cap\widetilde K_t$.
   \end{definition}
 
   Define $S^\pm_\lambda:=\lim_{k\to\infty} S^\pm_{\lambda_k}$.
@@ -534,7 +548,7 @@
   Consider $B^t$ mutation equivalent to $B$ and $C^t$ the associated $\bfc$-matrix.
 
   Let $A_0$ denote the Cartan companion of $B$ and write $\delta_0$ for the positive vector spanning the kernel of $A_0$.
-  For $t\in\TT_n$, let $A^t:=(C^{\vee,t})^T A_0 C^t$ denote the Reading-Speyer quasi-Cartan companion of $B^t$ \cite[Cor. 3.29]{Combinatorial Frameworks for Cluster Algebras}.
+  For $t\in\TT_n$, let $A^t:=(C^{\vee,t})^T A_0 C^t$ denote the Reading-Speyer quasi-Cartan companion of $B^t$ \cite[Cor. 3.29]{Combinatorial_Frameworks_for_Cluster_Algebras}.
   \begin{theorem}
     Let $\delta^t$ be the absolute value of the kernel of $A^t$.
     Then the primitive purely imaginary $\bfg$-vector direction at the seed $t$ is $-B^t\delta^t/2$.
