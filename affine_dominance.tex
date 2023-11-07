@@ -433,6 +433,37 @@
     \[\widetilde B^t \big(G^{\vee,t}\big)^T=\big(\widetilde C^{\vee,t}\big)^T \widetilde B^+.\]
   \end{corollary}
 
+  The following is a well-known result from representation theory of associative algebras concerning the Euler paring that we recast here to save on notation; see \cite{dlab_ringel?} for the details.
+  \begin{lemma}
+    \label{le:euler pairing}
+    For any root $\beta$ the product $(\beta^\vee)^T B^+ \delta$ is
+    \begin{itemize}
+      \item positive if $\beta = c^p s_1\dots s_{k-1}\alpha_k$ for some $p\in\ZZ$ and some $k$,
+      \item negative if $\beta = c^{-p} s_n\dots s_{k+1}\alpha_k$ for some $p\in\ZZ$ and some $k$,
+      \item zero otherwise.
+    \end{itemize}
+  \end{lemma}
+
+  \begin{proof}
+    Begin by observing that the product $(\beta^\vee)^T B^+ \gamma$ is invariant under source-sink moves.
+    Indeed, $(s_1\beta^\vee)^T B^+ (s_1\gamma) = (\beta^\vee)^T (E_{1,-} B^+ F_{1,-}) \gamma = (\beta^\vee)^T \mu_1(B^+) \gamma$ and similarly for $s_n$.
+
+    Using this invariance it sufficies to establish the first claim for $p=0$ and $k=1$.
+    Since $\delta$ is in the kernel of $A$, we have that $(\alpha_1^\vee)^T B^+ \delta$ = $(\alpha_1^\vee)^T (A+B^+) \delta$.
+    The result then follows immediately from the observation that $A + B^+$ is a lower-triangular matrix with positive entries on the diagonal and that $\delta$ has full support.
+
+    Similarly it suffices to establish the second claim only for $p=1$ and $k=1$.
+    By the same computation we just did we have $(-\alpha_1^\vee)^T B^+ \delta$ = $-(\alpha_1^\vee)^T (A+B^+) \delta <0$.
+
+    For the remaining case, since $B^+$ is skew-symmetrizable, $(\delta^\vee)^T B^+ \delta = 0$.
+    By assumption the root $\beta$ is in a finite $c$-orbit so that there is a positive $\ell$ such that $\sum_{i=0}^\ell c^i \beta = q \delta$ for some $q\neq 0$ (cf. \cite{afforb}).
+    By the invariance under source-sink moves we have that $(c\beta^\vee)^T B^+ \delta = (\beta^\vee)^T B^+ \delta$ and we can compute
+    \[
+      0 = q\, (\delta^\vee)^T B^+ \delta = \left(\sum_{i=0}^\ell c^i \beta^\vee\right)^T B^+ \delta = \ell\, (\beta^\vee)^T B^+ \delta
+    \]
+  to conclude that $(\beta^\vee)^T B^+ \delta = 0$.
+  \end{proof}
+
   \begin{lemma}
     Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_{N+1}=t$.
     Consider seeds $t'_1,\ldots,t'_{N+1}$ with $t'_{r+1}$ obtained from $t'_r$ by mutation in direction $k_r$ and $t'_1$ obtained from $t_+$ by mutating along the sequence $(n,\ldots,1)$ sufficiently many times that $\big(G^{\vee,t'_r}\big)^T \delta$ is a nonnegative vector for every $r$. 
