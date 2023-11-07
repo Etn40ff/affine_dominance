@@ -84,15 +84,17 @@
   \end{abstract}
   \maketitle
 
-
+  \saySS{define imaginary, real, and the imaginary cone $\cI$, $\widetilde B^+$, $\delta$}
   \begin{theorem}
     \label{thm:main}
-    Let $\lambda$ be imaginary \saySS{define imaginary, real, and the imaginary cone $\cI$, $\widetilde B^+$, $\delta$} with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
+    Given $\lambda \in \RR^m$ let $z\ge 0$ be the minimum value such that $\lambda+z\widetilde B^+\delta$ is real.
     \saySS{We need to say why such an $z$ existsi, i.e. $-\widetilde B^+\delta$ positively spans the imaginary ray.}
-    Then the dominance region $\cP_\lambda$ is the segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
+    Then the dominance region $\cP_\lambda$ is the line segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
   \end{theorem}
 
-  The proof of Theorem~\ref{thm:main} is divided into several intermediate claims; we begin by showing that $\cP_\lambda \subseteq \cI$.
+  The uniform formulation of Theorem~\ref{thm:main} hides in itself two cases: if $\lambda$ is real then $z=0$ and $\cP_\lambda$ is just the point $\lambda$; otherwise $z>0$ and $\cP_\lambda$ is a proper line segment.
+  The former case was already established in \cite{qin} in complete generality; we will reprove it here by elementary means as a corollary of a result needed in the proof of the latter case.
+  The proof of Theorem~\ref{thm:main} is divided into several intermediate claims; we begin by showing that, for imaginary $\lambda$, $\cP_\lambda \subseteq \cI$.
 
   \begin{lemma}
     If $\lambda$ is imaginary then $\cP_\lambda\subseteq \cI$.
@@ -101,7 +103,7 @@
     By definition $\cP_\lambda$ is contained in $\{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$ which is a proper cone since $\widetilde B^+$ is full rank.
     In particular, for sufficiently large $z$, the dominance region $\cP_\lambda$ does not contain a small enough tubular neighbourhood $U$ of the half-line $\{-x\widetilde B^+\delta: x\ge z\}$.
   Suppose by contraddiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
-  Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any for any sequence of indices $\bfk$.
+  Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
   \saySS{Define mutation maps. of course we already knew this was to be done!}
   Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in U$ contraddicting our previous observation.
   \saySS{Do we want to say more here concerning the limiting behaviour along coxeter mutations?}
