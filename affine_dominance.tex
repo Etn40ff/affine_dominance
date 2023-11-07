@@ -84,6 +84,60 @@
   \end{abstract}
   \maketitle
 
+
+  \begin{theorem}
+    \label{thm:main}
+    Let $\lambda$ be imaginary \saySS{define imaginary, real, and the imaginary cone $\cI$, $\widetilde B^+$, $\delta$} with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
+    \saySS{We need to say why such an $z$ existsi, i.e. $-\widetilde B^+\delta$ positively spans the imaginary ray.}
+    Then the dominance region $\cP_\lambda$ is the segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
+  \end{theorem}
+
+  The proof of Theorem~\ref{thm:main} is divided into several intermediate claims; we begin by showing that $\cP_\lambda \subseteq \cI$.
+
+  \begin{lemma}
+    If $\lambda$ is imaginary then $\cP_\lambda\subseteq \cI$.
+  \end{lemma}
+  \begin{proof}
+    By definition $\cP_\lambda$ is contained in $\{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$ which is a proper cone since $\widetilde B^+$ is full rank.
+    In particular, for sufficiently large $z$, the dominance region $\cP_\lambda$ does not contain a small enough tubular neighbourhood $U$ of the half-line $\{-x\widetilde B^+\delta: x\ge z\}$.
+  Suppose by contraddiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
+  Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any for any sequence of indices $\bfk$.
+  \saySS{Define mutation maps. of course we already knew this was to be done!}
+  Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in U$ contraddicting our previous observation.
+  \saySS{Do we want to say more here concerning the limiting behaviour along coxeter mutations?}
+  \end{proof}
+
+  \begin{proposition}
+    \label{prop:ray upperbound}
+    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
+    Then $\cP_\lambda$ is contained in the half line $\{\lambda+x\widetilde B^+\delta: x\le z\}$.
+  \end{proposition}
+  \begin{proof}
+  \end{proof}
+  
+  From Proposition~\ref{prop:ray upperbound}, from the fact that $\cP_\lambda\subseteq \{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$, and from the fact that $\widetilde B^+$ is full rank  we deduce immediately the following upper bound for $\cP_\lambda$.
+  \begin{corollary}
+    \label{cor:upperbound}
+    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
+    Then $\cP_\lambda$ is contained in the line segment $\{\lambda+x\widetilde B^+\delta: 0\le x\le z\}$
+  \end{corollary}
+
+  \begin{proposition}
+    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
+    Then $\cP_\lambda$ contains the segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
+  \end{proposition}
+  \begin{proof}
+  \end{proof}
+
+  This concludes the proof of Theorem~\ref{thm:main}.
+$ $ 
+
+\hrule
+
+$ $
+
+Below here is the stuff we wrote so far.
+
   %%%%%%%%%%%%%%%%%%%%%%
   \section{Introduction}
   Cluster algebras are recursively defined commutative rings.
@@ -302,19 +356,6 @@
       \item For (sufficiently) Cambrian seeds $t$, the sign of the $k$-th entry of $\widetilde B^t (G^{\vee,t})^T \delta$ is the same as the sign of the $k$-th $\bfc$-vector since $\widetilde B^t (G^{\vee,t})^T \delta=(C^{\vee,t})^T B^+ \delta = -2 (C^{\vee,t})^T \nu_c(\delta)$ and $\nu_c$ is given by the negative of the Euler matrix.
     \end{itemize}
 
-  \end{proof}
-
-  \begin{lemma}
-    If $\widetilde \lambda$ is imaginary then $\cP(\widetilde\lambda)\subseteq \cI$.
-    \saySS{Define the imaginary cone $\cI$.}
-  \end{lemma}
-  \begin{proof}
-    By definition $\cP(\widetilde\lambda)$ is contained in $\widetilde\lambda + \widetilde B^+ \cdot \RR_{\ge0}^n$ which is a proper cone since $\widetilde B^+$ is full rank.
-    In particular, for sufficiently large $r$, $\cP(\widetilde\lambda)$ does not contain a tubular neighbourhood $U$ of the half-line $\{-s\widetilde B^+\delta: s\ge r\}$.
-  Suppose by contraddiction that there exists some point $\widetilde \lambda' \in \cP(\widetilde\lambda)\setminus \cI$.
-  Since $\cP(\widetilde\lambda)$ is stable under mutations $\eta_{\bfc^k}^{\widetilde B^+}(\widetilde\lambda')\in \cP(\widetilde\lambda)$ for any $k$.
-  \saySS{Define $\bfc^k$ to be the sequence $n\dots,1,n,1,\dots$ of the appropriate lenght or find a better notation for this. Note that we might have to rethink the order in which we apply mutation maps.}
-  On the other hand, since $\widetilde\lambda'$ is not in $\cI$, for sufficiently large $k$ we have $\eta_{\bfc^k}^{\widetilde B^+}(\widetilde\lambda')\in U$ contraddicting our previous observation.
   \end{proof}
 
   %%%%%%%%%%%%%%%%%%%%%%%%
