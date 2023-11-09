@@ -101,12 +101,13 @@
   \end{lemma}
   \begin{proof}
     By definition $\cP_\lambda$ is contained in $\{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$ which is a proper cone since $\widetilde B^+$ is full rank.
-    In particular, for sufficiently large $z$, the dominance region $\cP_\lambda$ does not contain a small enough tubular neighbourhood $U$ of the half-line $\{-x\widetilde B^+\delta: x\ge z\}$.
-  Suppose by contraddiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
+    In particular, for sufficiently large $z$, the dominance region $\cP_\lambda$ does not intersect the halfspace $H = \{ \lambda' : \langle -B^+\delta, \lambda' \rangle \ge z \}$.
+    \saySS{Think about how to write this better.}
+  Suppose by contradiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
   Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
   \saySS{Define mutation maps. of course we already knew this was to be done!}
-  Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in U$ contraddicting our previous observation.
-  \saySS{Do we want to say more here concerning the limiting behaviour along coxeter mutations?}
+  Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contraddicting our previous observation.
+\saySS{We need to say much more about this: explain finite/infinite c-orbits and how limits work.}
   \end{proof}
 
   \begin{proposition}
@@ -124,11 +125,128 @@
     Then $\cP_\lambda$ is contained in the line segment $\{\lambda+x\widetilde B^+\delta: 0\le x\le z\}$
   \end{corollary}
 
+  \begin{lemma}
+    \label{le:coxeter power}
+    There exists $r>0$ so that $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ has full support for any $p\ge r$ and any $\ell$.
+  \end{lemma}
+  \begin{proof}
+    By \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, the set $\{c^q s_n \ldots s_{\ell+1} \alpha_\ell:q\in\ZZ\}$ is infinite.
+    On the other hand, there are only finitely many roots without full support.
+  \end{proof}
+  
   \begin{proposition}
-    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
-    Then $\cP_\lambda$ contains the segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
+    \label{prop:no postinjectives}
+    For any $c$-sortable element $v$ whose sorting word starts with $c^r$ for $r$ as in Lemma~\ref{le:coxeter power}, the set $C(v)$ does not contain any positive root of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$.  
+    \saySS{Change this statement to hide Cambrian stuff} 
   \end{proposition}
   \begin{proof}
+    Let $\beta$ be a positive root in $C(v)$.
+    Since $c^p$ is reduced for any $p$, the first skip will be unforced, skipping letter $k$.
+    If $\beta$ arises from the first skip, then $\beta$ is of the form $c^q s_1 \cdots s_{k-1} \alpha_k$ and, following \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, it is not of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$. 
+    We can therefore assume $\beta$ arises from at least two skips.
+    Then $\beta$ is of the form $c^q s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ for $q\ge r$ with $k\ne b_j$ for any $j$.
+    If $\beta$ were of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$, then $c^{-p-q} s_n \ldots s_{\ell+1} \alpha_\ell=s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ would be a root without full support.
+    But $p+q\ge r$, contradicting Lemma~\ref{le:coxeter power}.
+  \end{proof}
+
+  \begin{lemma}
+    \label{le:euler pairing}
+    For any root $\beta$ the product $(\beta^\vee)^T B^+ \delta$ is
+    \begin{itemize}
+      \item positive if $\beta = c^p s_1\dots s_{k-1}\alpha_k$ for some $p\in\ZZ$ and some $k$,
+      \item negative if $\beta = c^{-p} s_n\dots s_{k+1}\alpha_k$ for some $p\in\ZZ$ and some $k$,
+      \item zero otherwise.
+    \end{itemize}
+  \end{lemma}
+
+  \begin{proof}
+    Begin by observing that the product $(\beta^\vee)^T B^+ \gamma$ is invariant under source-sink moves.
+    Indeed, $(s_1\beta^\vee)^T B^+ (s_1\gamma) = (\beta^\vee)^T (E^{t_+}_{1,-} B^+ F^{t_+}_{1,-}) \gamma = (\beta^\vee)^T \mu_1(B^+) \gamma$ and similarly for $s_n$.
+
+    Using this invariance it sufficies to establish the first claim for $p=0$ and $k=1$.
+    Since $\delta$ is in the kernel of $A$, we have that $(\alpha_1^\vee)^T B^+ \delta$ = $(\alpha_1^\vee)^T (A+B^+) \delta$.
+    The result then follows immediately from the observation that $A + B^+$ is a lower-triangular matrix with positive entries on the diagonal and that $\delta$ has full support.
+
+    Similarly it suffices to establish the second claim only for $p=1$ and $k=1$.
+    By the same computation we just did we have $(-\alpha_1^\vee)^T B^+ \delta$ = $-(\alpha_1^\vee)^T (A+B^+) \delta <0$.
+
+    For the remaining case, since $B^+$ is skew-symmetrizable, $(\delta^\vee)^T B^+ \delta = 0$.
+    By assumption the root $\beta$ is in a finite $c$-orbit \saySS{again explain c-orbits} so that there is a positive $\ell$ such that $\sum_{i=0}^\ell c^i \beta = q \delta$ for some $q\neq 0$ (cf. \cite{afforb}).
+    By the invariance under source-sink moves we have that $(c\beta^\vee)^T B^+ \delta = (\beta^\vee)^T B^+ \delta$ and we can compute
+    \[
+      0 = q\, (\delta^\vee)^T B^+ \delta = \left(\sum_{i=0}^\ell c^i \beta^\vee\right)^T B^+ \delta = \ell\, (\beta^\vee)^T B^+ \delta
+    \]
+  to conclude that $(\beta^\vee)^T B^+ \delta = 0$.
+  \end{proof}
+
+
+  \begin{lemma}
+    \label{le:imaginary direction mutation}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through the seeds $t_+=t_1,\ldots,t_{N+1}=t$.
+    Consider seeds $t'_1,\ldots,t'_{N+1}$ with $t'_{i+1}$ obtained from $t'_i$ by mutation in direction $k_i$ and $t'_1$ obtained from $t_+$ by mutating along the sequence $(n,\ldots,1)$ sufficiently many times that $\big(G^{\vee,t'_i}\big)^T \delta$ is a nonnegative vector for every $i$. 
+    \saySS{i.e. on the positive side of $\delta^\perp$. This sentence needs to be justified; somewhere we need to discuss the plane $\delta^\perp$ and how it cuts the g-ector fan.}
+    \sayDR{Think about $\vee$ or no $\vee$ in the $G$ matrix here.}
+    
+    For $1\le i\le N$, let $\varepsilon_i$ be the opposite of the sign of the $k_i$-th column of $C^{\vee,t'_i}$.
+    Set $\delta_1=\delta$ and define $\delta_{i+1} = F^{t_i}_{k_i,\varepsilon_i} \cdots F^{t_1}_{k_1,\varepsilon_1} \delta$.
+    Then the following hold.
+    \begin{enumerate}
+      \item $\delta_i$ is a nonnegative vector for $1\le i\le N+1$;
+      \item For $1\le i\le N$, if the $k_i$-th entry of $-\widetilde B^{t_i} \delta_i$ is nonzero then its sign is $\varepsilon_i$.
+      \item $\eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)=-\widetilde B^t \delta_{N+1}$.
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    First observe that $F^{t_i}_{k_i,\varepsilon_i}=F^{t'_i}_{k_i,\varepsilon_i}$ for each $i$.
+    By Lemma~\ref{le:factorize dual matrices}, $F^{t'_i}_{k_i,\varepsilon_i} \cdots F^{t'_1}_{k_1,\varepsilon_1}=(G^{\vee,t'_{i+1}})^T M$ for some matrix $M$ such that $M\delta=\delta$ since $t'_1$ is obtained from $t_+$ by repeatedly mutating along the sequence $(n,\ldots,1)$.
+    Therefore $\delta_i = (G^{\vee,t'_i})^T \delta$ is a nonnegative vector by assumption.
+
+    Now $\widetilde B^{t_i}$ and $\widetilde B^{t'_i}$ have the same principal $n\times n$ submatrix so to understand the first $n$ signs of $\widetilde B^{t_i} \delta_i$ it is equivalent to consider the first $n$ signs of $\widetilde B^{t'_i} \delta_i$.
+    \saySS{I think here we can take a shortcut here and say that it suffices to look at the coefficient-free case. I am not sure about notation though}
+    We apply Corollary~\ref{cor:dual BG=CB} to get
+    \[
+      \widetilde B^{t'_i} \delta_i 
+      = \widetilde B^{t'_i} (G^{\vee,t'_i})^T \delta
+      = \big(\widetilde C^{\vee,t'_i}\big)^T \widetilde B^+ \delta.
+    \]
+    Following Remark~\ref{rem:dual c-matrix structure}, the first $n$ signs are only computed from the product $\big(C^{\vee,t'_i}\big)^T B^+ \delta$.
+    Redefining the seeds $t_i'$, if needed, to ensure that the hypotheses of Proposition~\ref{prop:no postinjectives} are satisfied and using Lemma~\ref{le:euler pairing} we see that the $k_i$-th sign of $B^{t'_i} \delta_i$ weakly agrees with the sign of the $k_i$-th column of $C^{\vee,t'_i}$.
+
+    To conclude, we are now able to compute 
+    \begin{align*}
+      \eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)
+      &= - \widetilde E^{t_N}_{k_N,\varepsilon_N} \cdots \widetilde E^{t_1}_{k_1,\varepsilon_1} \widetilde B^+ \delta\\
+      &= - \widetilde B^t F^{t_N}_{k_N,\varepsilon_N} \cdots F^{t_1}_{k_1,\varepsilon_1} \delta\\
+      &= - \widetilde B^t \delta_{N+1}.
+    \end{align*}
+  \end{proof}
+
+  \begin{proposition}
+    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
+    Then $\cP_\lambda$ contains the line segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
+  \end{proposition}
+  \begin{proof}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk$.
+    To establish the claim we need to show that, for $0\le x\le z$, 
+    \[
+      \eta_{\bfk}^{\widetilde B^+}(\lambda + x\widetilde B^+\delta) 
+      \in
+      \{\eta_{\bfk}^{\widetilde B^+}(\lambda) + \widetilde B^{t}\alpha : \alpha\in  \RR^n_{\ge 0}\}.
+    \]
+    Since the vectors $\lambda$, $\lambda + x\widetilde B^+\delta$, and $-\widetilde B^+\delta$ all live in the same cone of the mutation fan, \saySS{we need to decide which presentation we will use and quote afftheta} we have that
+    \[
+      \eta_{\bfk}^{\widetilde B^+}(\lambda + x\widetilde B^+\delta)
+      =
+      \eta_{\bfk}^{\widetilde B^+}(\lambda) -x \eta_{\bfk}^{\widetilde B^+}(-\widetilde B^+\delta)
+    \]
+    and our task reduces to showing that 
+    \[
+      \eta_{\bfk}^{\widetilde B^+}(-\widetilde B^+\delta)
+      = 
+      -\widetilde B^{t}\alpha
+    \]
+    for some positive vector $\alpha\in\RR^n_{\ge 0}$.
+    Lemma~\ref{le:imaginary direction mutation} gives an explicit formula for such a vector $\alpha$ and completes the proof.
   \end{proof}
 
   This concludes the proof of Theorem~\ref{thm:main}.
@@ -248,27 +366,6 @@ Below here is the stuff we wrote so far.
 
   Statement about constructing $C(v)$ from skips.
 
-  \begin{lemma}
-    \label{le:coxeter power}
-    There exists $r>0$ so that $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ has full support for any $p\ge r$ and any $\ell$.
-  \end{lemma}
-  \begin{proof}
-    By \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, the set $\{c^q s_n \ldots s_{\ell+1} \alpha_\ell:q\in\ZZ\}$ is infinite.
-    On the other hand, there are only finitely many roots without full support.
-  \end{proof}
-  
-  \begin{proposition}
-    For any $c$-sortable element $v$ whose sorting word starts with $c^r$ for $r$ as in Lemma~\ref{le:coxeter power}, the set $C(v)$ does not contain any positive root of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$.  
-  \end{proposition}
-  \begin{proof}
-    Let $\beta$ be a positive root in $C(v)$.
-    Since $c^p$ is reduced for any $p$, the first skip will be unforced, skipping letter $k$.
-    If $\beta$ arises from the first skip, then $\beta$ is of the form $c^q s_1 \cdots s_{k-1} \alpha_k$ and, following \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, it is not of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$. 
-    We can therefore assume $\beta$ arises from at least two skips.
-    Then $\beta$ is of the form $c^q s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ for $q\ge r$ with $k\ne b_j$ for any $j$.
-    If $\beta$ were of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$, then $c^{-p-q} s_n \ldots s_{\ell+1} \alpha_\ell=s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ would be a root without full support.
-    But $p+q\ge r$, contradicting Lemma~\ref{le:coxeter power}.
-  \end{proof}
   
   
 
@@ -455,6 +552,7 @@ Below here is the stuff we wrote so far.
   \end{proof}
 
   \begin{lemma}
+    \label{le:factorize dual matrices}
     Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
     Then the following hold.
     \begin{enumerate}
@@ -477,81 +575,6 @@ Below here is the stuff we wrote so far.
   \end{corollary}
 
   The following is a well-known result from representation theory of associative algebras concerning the Euler paring that we recast here to save on notation; see \cite{dlab_ringel?} for the details.
-  \begin{lemma}
-    \label{le:euler pairing}
-    For any root $\beta$ the product $(\beta^\vee)^T B^+ \delta$ is
-    \begin{itemize}
-      \item positive if $\beta = c^p s_1\dots s_{k-1}\alpha_k$ for some $p\in\ZZ$ and some $k$,
-      \item negative if $\beta = c^{-p} s_n\dots s_{k+1}\alpha_k$ for some $p\in\ZZ$ and some $k$,
-      \item zero otherwise.
-    \end{itemize}
-  \end{lemma}
-
-  \begin{proof}
-    Begin by observing that the product $(\beta^\vee)^T B^+ \gamma$ is invariant under source-sink moves.
-    Indeed, $(s_1\beta^\vee)^T B^+ (s_1\gamma) = (\beta^\vee)^T (E_{1,-} B^+ F_{1,-}) \gamma = (\beta^\vee)^T \mu_1(B^+) \gamma$ and similarly for $s_n$.
-
-    Using this invariance it sufficies to establish the first claim for $p=0$ and $k=1$.
-    Since $\delta$ is in the kernel of $A$, we have that $(\alpha_1^\vee)^T B^+ \delta$ = $(\alpha_1^\vee)^T (A+B^+) \delta$.
-    The result then follows immediately from the observation that $A + B^+$ is a lower-triangular matrix with positive entries on the diagonal and that $\delta$ has full support.
-
-    Similarly it suffices to establish the second claim only for $p=1$ and $k=1$.
-    By the same computation we just did we have $(-\alpha_1^\vee)^T B^+ \delta$ = $-(\alpha_1^\vee)^T (A+B^+) \delta <0$.
-
-    For the remaining case, since $B^+$ is skew-symmetrizable, $(\delta^\vee)^T B^+ \delta = 0$.
-    By assumption the root $\beta$ is in a finite $c$-orbit so that there is a positive $\ell$ such that $\sum_{i=0}^\ell c^i \beta = q \delta$ for some $q\neq 0$ (cf. \cite{afforb}).
-    By the invariance under source-sink moves we have that $(c\beta^\vee)^T B^+ \delta = (\beta^\vee)^T B^+ \delta$ and we can compute
-    \[
-      0 = q\, (\delta^\vee)^T B^+ \delta = \left(\sum_{i=0}^\ell c^i \beta^\vee\right)^T B^+ \delta = \ell\, (\beta^\vee)^T B^+ \delta
-    \]
-  to conclude that $(\beta^\vee)^T B^+ \delta = 0$.
-  \end{proof}
-
-  \begin{lemma}
-    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_{N+1}=t$.
-    Consider seeds $t'_1,\ldots,t'_{N+1}$ with $t'_{r+1}$ obtained from $t'_r$ by mutation in direction $k_r$ and $t'_1$ obtained from $t_+$ by mutating along the sequence $(n,\ldots,1)$ sufficiently many times that $\big(G^{\vee,t'_r}\big)^T \delta$ is a nonnegative vector for every $r$. 
-    \saySS{This sentence needs to be justified; somewhere we need to discuss the plane $\delta^\perp$ and how it cuts the g-ector fan.}
-    \sayDR{Think about $\vee$ or no $\vee$ in the $G$ matrix here.}
-    For $0\le r\le N$, define $\delta_r = F^{t_r}_{k_r,-\varepsilon^{t'_r}_{k_r}} \cdots F^{t_1}_{k_1,-\varepsilon^{t'_1}_{k_1}} \cdot \delta$.
-    Then the following hold.
-    \begin{enumerate}
-      \item $\delta_r$ is a nonnegative vector for $0\le r\le N$;
-      \item For $1\le r\le N+1$, the sign of the $k_r$-th entry of $\widetilde B^{t_r} \delta_{r-1}$ is $\varepsilon^{t'_r}_{k_r}$.
-      \item $\eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)=-\widetilde B^t \delta_N$.
-    \end{enumerate}
-  \end{lemma}
-  \begin{proof}
-    First observe that $F^{t_r}_{k_r,-\varepsilon^{t'_r}_{k_r}}=F^{t'_r}_{k_r,-\varepsilon^{t'_r}_{k_r}}$ for each $r$.
-    But $F^{t'_r}_{k_r,-\varepsilon^{t'_r}_{k_r}} \cdots F^{t'_1}_{k_1,-\varepsilon^{t'_1}_{k_1}}=(G^{\vee,t'_{r+1}})^T M$ for some matrix $M$ such that $M\cdot \delta=\delta$ since $t'_1$ is obtained from $t_+$ by repeatedly mutating along the sequence $(n,\ldots,1)$.
-    Therefore $\delta_r = (G^{\vee,t'_{r+1}})^T \cdot \delta$ is a nonnegative vector by assumption.
-
-    Now $\widetilde B^{t_r}$ and $\widetilde B^{t'_r}$ have the same principal $n\times n$ submatrix so to understand the principal signs appearing in $\widetilde B^{t_r} \delta_{r-1}$ it is equivalent to consider the principal signs appearing in $\widetilde B^{t'_r} \delta_{r-1}$.
-    Since $\delta_{r-1} = (G^{\vee,t'_r})^T \delta$, we apply Corollary~\ref{cor:dual BG=CB} to get
-    \begin{align*}
-      \widetilde B^{t'_r} \delta_{r-1} 
-      &= \widetilde B^{t'_r} (G^{\vee,t'_r})^T \delta\\
-      &= \big(\widetilde C^{\vee,t'_r}\big)^T \widetilde B^+ \delta.
-    \end{align*}
-    Following Remark~\ref{rem:dual c-matrix structure}, the principal signs are only computed from the product $\big(C^{\vee,t'_r}\big)^T B^+ \delta$.
-    Since 
-    \begin{align*}
-      \big(C^{\vee,t'_r}\big)^T B^+ \delta 
-      &= \big(C^{\vee,t'_r}\big)^T (B^+ + A) \, \delta\\
-      &= \big(D^{-1} C^{\vee,t'_r}\big)^T D(B^+ + A) \, \delta\\
-      &= \big(C^{t'_r} D^{-1}\big)^T D(B^+ + A) \, \delta\\
-      &= D^{-1} \big(C^{t'_r}\big)^T D(B^+ + A) \, \delta,
-    \end{align*}
-    Lemma~\ref{???} shows that these signs correspond to those of the Euler pairing of the $\bfc$-vectors and $\delta$.
-    By definition of $t'_r$, these are precisely the $\varepsilon^{t'_r}_k$, the tropical signs at seed $t'_r$.
-
-    To conclude, we are now able to compute 
-    \begin{align*}
-      \eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)
-      &= - \widetilde E^{t_N}_{k_N,-\varepsilon^{t'_N}_{k_N}} \cdots \widetilde E^{t_1}_{k_1,-\varepsilon^{t'_1}_{k_1}} \widetilde B^+ \delta\\
-      &= - \widetilde B^t F^{t_N}_{k_N,-\varepsilon^{t'_N}_{k_N}} \cdots F^{t_1}_{k_1,-\varepsilon^{t'_1}_{k_1}} \delta\\
-      &= - \widetilde B^t \delta_N.
-    \end{align*}
-  \end{proof}
   \begin{remark}
     Say something about quasi-Cartan companions.
   \end{remark}
