@@ -210,17 +210,16 @@
     First observe that $F^{t_i}_{k_i,\varepsilon_i}=F^{t'_i}_{k_i,\varepsilon_i}$ for each $i$.
     By Lemma~\ref{le:factorize dual matrices}, $F^{t'_i}_{k_i,\varepsilon_i} \cdots F^{t'_1}_{k_1,\varepsilon_1}=(G^{\vee,t'_{i+1}})^T M$ for some matrix $M$ such that $M\delta=\delta$ since $t'_1$ is obtained from $t_+$ by repeatedly mutating along the sequence $(n,\ldots,1)$.
     Therefore $\delta_i = (G^{\vee,t'_i})^T \delta$ is a nonnegative vector by assumption.
-
-    Now $\widetilde B^{t_i}$ and $\widetilde B^{t'_i}$ have the same principal $n\times n$ submatrix so to understand the first $n$ signs of $\widetilde B^{t_i} \delta_i$ it is equivalent to consider the first $n$ signs of $\widetilde B^{t'_i} \delta_i$.
-    \saySS{I think here we can take a shortcut here and say that it suffices to look at the coefficient-free case. I am not sure about notation though}
+    
+    The first $n$ entries of $\widetilde B^{t_i} \delta_i$ coincide with the entries of $B^{t_i} \delta_i$.
     We apply Corollary~\ref{cor:dual BG=CB} to get
     \[
-      \widetilde B^{t'_i} \delta_i 
-      = \widetilde B^{t'_i} (G^{\vee,t'_i})^T \delta
-      = \big(\widetilde C^{\vee,t'_i}\big)^T \widetilde B^+ \delta.
+      B^{t_i} \delta_i 
+      = B^{t'_i} \delta_i 
+      = B^{t'_i} (G^{\vee,t'_i})^T \delta
+      = \big(C^{\vee,t'_i}\big)^T B^+ \delta.
     \]
-    Following Remark~\ref{rem:dual c-matrix structure}, the first $n$ signs are only computed from the product $\big(C^{\vee,t'_i}\big)^T B^+ \delta$.
-    Redefining the seeds $t_i'$, if needed, to ensure that the hypotheses of Proposition~\ref{prop:no postinjectives} are satisfied and combining Lemma~\ref{le:euler pairing} with Lemma~\ref{prop:no postinjectives} we see that the $k_i$-th sign of $B^{t'_i} \delta_i$ weakly agrees with the sign of the $k_i$-th column of $C^{\vee,t'_i}$.
+    Redefining the seeds $t_i'$, if needed, to ensure that the hypotheses of Proposition~\ref{prop:no postinjectives} are satisfied and combining Lemma~\ref{le:euler pairing} with Lemma~\ref{prop:no postinjectives} we see that the $k_i$-th sign of $\widetilde B^{t_i} \delta_i$ weakly agrees with the sign of the $k_i$-th column of $C^{\vee,t'_i}$.
 
     To conclude, we are now able to compute 
     \begin{align*}
@@ -445,7 +444,7 @@ Below here is the stuff we wrote so far.
           \item Limits of regions make sense because of continuity after intersecting with domains of linearity.
           \item Use limits of $C^t$ to draw the conclusion.
         \end{itemize}
-      \item $\cP(\widetilde\lambda)$ contains $\{\widetilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
+      \item[\checkmark] $\cP(\widetilde\lambda)$ contains $\{\widetilde\lambda+r\widetilde B^+\cdot\delta:0\le r\le s\}$.
         \begin{itemize}
           \item $\delta$ spans the kernel of the Cartan companion $A$ of $B^+$ as well as any number of Coxeter mutations away
           \item after sufficiently many Coxeter mutations, the seed $t$ lies entirely on one side of the imaginary hyperplane and so the kernel $\kappa_t$ of the quasi-Cartan companion is sign coherent
