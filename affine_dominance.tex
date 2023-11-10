@@ -87,7 +87,7 @@
   \saySS{define imaginary, real, and the imaginary cone $\cI$, $\widetilde B^+$, $\delta$}
   \begin{theorem}
     \label{thm:main}
-    Given $\lambda \in \RR^m$ let $z\ge 0$ be the minimum value such that $\lambda+z\widetilde B^+\delta$ is real.
+    Given $\lambda \in \RR^m$, let $z\ge 0$ be the minimum value such that $\lambda+z\widetilde B^+\delta$ is real.
     \saySS{We need to say why such an $z$ existsi, i.e. $-\widetilde B^+\delta$ positively spans the imaginary ray.}
     Then the dominance region $\cP_\lambda$ is the line segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
   \end{theorem}
@@ -97,17 +97,17 @@
   The proof of Theorem~\ref{thm:main} is divided into several intermediate claims; we begin by showing that, for imaginary $\lambda$, $\cP_\lambda \subseteq \cI$.
 
   \begin{lemma}
-    If $\lambda$ is imaginary then $\cP_\lambda\subseteq \cI$.
+    If $\lambda$ is imaginary, then $\cP_\lambda\subseteq \cI$.
   \end{lemma}
   \begin{proof}
-    By definition $\cP_\lambda$ is contained in $\{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$ which is a proper cone since $\widetilde B^+$ is full rank.
-    In particular, for sufficiently large $z$, the dominance region $\cP_\lambda$ does not intersect the halfspace $H = \{ \lambda' : \langle -B^+\delta, \lambda' \rangle \ge z \}$.
+    By definition, $\cP_\lambda$ is contained in $\{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$ which is a proper cone since $\widetilde B^+$ is full rank.
+    In particular, for sufficiently large $z$, the dominance region $\cP_\lambda$ does not intersect the half space $H = \{ \lambda' : \langle -B^+\delta, \lambda' \rangle \ge z \}$.
     \saySS{Think about how to write this better.}
-  Suppose by contradiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
-  Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
-  \saySS{Define mutation maps. of course we already knew this was to be done!}
-  Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contraddicting our previous observation.
-\saySS{We need to say much more about this: explain finite/infinite c-orbits and how limits work.}
+    Suppose by contradiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
+    Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
+    \saySS{Define mutation maps. of course we already knew this was to be done!}
+    Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contradicting our previous observation.
+    \saySS{We need to say much more about this: explain finite/infinite c-orbits and how limits work.}
   \end{proof}
 
   \begin{proposition}
@@ -118,7 +118,7 @@
   \begin{proof}
   \end{proof}
   
-  From Proposition~\ref{prop:ray upperbound}, from the fact that $\cP_\lambda\subseteq \{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$, and from the fact that $\widetilde B^+$ is full rank  we deduce immediately the following upper bound for $\cP_\lambda$.
+  Using Proposition~\ref{prop:ray upperbound}, the fact that $\cP_\lambda\subseteq \{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$, and the fact that $\widetilde B^+$ is full rank, we deduce immediately the following upper bound for $\cP_\lambda$.
   \begin{corollary}
     \label{cor:upperbound}
     Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
@@ -168,7 +168,7 @@
     Begin by observing that the product $(\beta^\vee)^T B^+ \gamma$ is invariant under source-sink moves.
     Indeed, $(s_1\beta^\vee)^T B^+ (s_1\gamma) = (\beta^\vee)^T (E^{t_+}_{1,-} B^+ F^{t_+}_{1,-}) \gamma = (\beta^\vee)^T \mu_1(B^+) \gamma$ and similarly for $s_n$.
 
-    Using this invariance it sufficies to establish the first claim for $p=0$ and $k=1$.
+    Using this invariance, it suffices to establish the first claim for $p=0$ and $k=1$.
     Since $\delta$ is in the kernel of $A$, we have that $(\alpha_1^\vee)^T B^+ \delta$ = $(\alpha_1^\vee)^T (A+B^+) \delta$.
     The result then follows immediately from the observation that $A + B^+$ is a lower-triangular matrix with positive entries on the diagonal and that $\delta$ has full support.
 
@@ -176,7 +176,7 @@
     By the same computation we just did we have $(-\alpha_1^\vee)^T B^+ \delta$ = $-(\alpha_1^\vee)^T (A+B^+) \delta <0$.
 
     For the remaining case, since $B^+$ is skew-symmetrizable, $(\delta^\vee)^T B^+ \delta = 0$.
-    By assumption the root $\beta$ is in a finite $c$-orbit \saySS{again explain c-orbits} so that there is a positive $\ell$ such that $\sum_{i=0}^\ell c^i \beta = q \delta$ for some $q\neq 0$ (cf. \cite{afforb}).
+    By assumption, the root $\beta$ is in a finite $c$-orbit (c.f. \cite[Proposition 1.9 and Section 1, final Remark]{Dlab-Ringel}) so that there is a positive $\ell$ such that $\sum_{i=0}^\ell c^i \beta = q \delta$ for some $q\neq 0$ (cf. \cite{afforb}).
     By the invariance under source-sink moves we have that $(c\beta^\vee)^T B^+ \delta = (\beta^\vee)^T B^+ \delta$ and we can compute
     \[
       0 = q\, (\delta^\vee)^T B^+ \delta = \left(\sum_{i=0}^\ell c^i \beta^\vee\right)^T B^+ \delta = \ell\, (\beta^\vee)^T B^+ \delta
@@ -454,8 +454,7 @@ Below here is the stuff we wrote so far.
           \item The $k$-th row of $F^t_{k,-}-F^t_{k,+}$ is the $k$-th row of $\widetilde B^t$
           \item The $k$-th entries of $\widetilde B^{t'} \cdot F^t_{k,\varepsilon} \kappa_t$ and $\widetilde B^{t'} \cdot \kappa_{t'}$ are the same
           \item $A^t:=(C^{\vee,t})^T A_0 C^t$
-          \item $A^{t'}=F^{t,\vee}_{k,\varepsilon_{trop}} A_t F^t_{k,\varepsilon_{trop}}$
-            \saySS{I think here we mean $A^{t'}=(F^{t,\vee}_{k,\varepsilon_{trop}})^T A_t F^t_{k,\varepsilon_{trop}}$}
+          \item $A^{t'}=(F^{t,\vee}_{k,\varepsilon_{trop}})^T A_t F^t_{k,\varepsilon_{trop}}$
         \end{itemize}
       \item For (sufficiently) Cambrian seeds $t$, the sign of the $k$-th entry of $\widetilde B^t (G^{\vee,t})^T \delta$ is the same as the sign of the $k$-th $\bfc$-vector since $\widetilde B^t (G^{\vee,t})^T \delta=(C^{\vee,t})^T B^+ \delta = -2 (C^{\vee,t})^T \nu_c(\delta)$ and $\nu_c$ is given by the negative of the Euler matrix.
     \end{itemize}
