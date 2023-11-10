@@ -202,6 +202,10 @@
       \item $\eta_\bfk^{\widetilde B^+}\left(-\widetilde B^+\delta\right)=-\widetilde B^t \delta_{N+1}$.
     \end{enumerate}
   \end{lemma}
+  \begin{remark}
+    Something about $\big(G^{\vee,t'_i}\big)^T \delta$ being the absolute value of the kernel of the quasi-Cartan companion $A^{t_N}$.
+    Maybe mention something about companion bases not existing in affine types.
+  \end{remark}
   \begin{proof}
     First observe that $F^{t_i}_{k_i,\varepsilon_i}=F^{t'_i}_{k_i,\varepsilon_i}$ for each $i$.
     By Lemma~\ref{le:factorize dual matrices}, $F^{t'_i}_{k_i,\varepsilon_i} \cdots F^{t'_1}_{k_1,\varepsilon_1}=(G^{\vee,t'_{i+1}})^T M$ for some matrix $M$ such that $M\delta=\delta$ since $t'_1$ is obtained from $t_+$ by repeatedly mutating along the sequence $(n,\ldots,1)$.
@@ -284,7 +288,7 @@ Below here is the stuff we wrote so far.
  
   For $b\in\RR$, write $[b]_+=\max(b,0)$.
   %Similarly, given a vector $\bfb\in\RR^m$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
-  Given a sign $\varepsilon\in\{\pm1\}$ and $1\le k\le n$, define an $m\times m$ matrix $\widetilde E_{k,\varepsilon}=(e_{ij})$ with
+  Given a sign $\varepsilon\in\{\pm\}$ and $1\le k\le n$, define an $m\times m$ matrix $\widetilde E_{k,\varepsilon}=(e_{ij})$ with
   \begin{equation}
     \label{eq:left mutation matrix}
     e_{ij}=\begin{cases} 1 & \text{if $i=j\ne k$;}\\ -1 & \text{if $i=j=k$;}\\ [\varepsilon b_{ik}]_+ & \text{if $i\ne j=k$;}\\ 0 & \text{otherwise;} \end{cases}
@@ -636,35 +640,8 @@ Below here is the stuff we wrote so far.
   \end{corollary}
 
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \section{Quasi-Cartan Companions}
-
-  \begin{lemma}
-    For any $t\in\TT_n$, there exists a quasi-Cartan companion $A^t$ of corank 1 for $B^t$ such that $\ker A_t$ is spanned by a positive primitive vector $\delta_t$.
-  \end{lemma}
-  \begin{proof}
-    Move from $t$ to $t'$ with $B^t=B^{t'}$ such that $G^{t'}\cdots\RR^n$ lies entirely on one side of the imaginary hyperplane.
-  \end{proof}
-
   %%%%%%%%%%%%%%%%%%%%%
   \section{Affine Type}
-  
-  \begin{proposition}
-    The dominance region for an imaginary $\bfg$-vector $\lambda$ does not intersect the interior of the $\bfg$-vector fan.
-  \end{proposition}
-  \begin{proof}
-    Anything in the interior of the $\bfg$-vector fan is a part of a single cluster.
-    Moreover, it contains a preprojective or postinjective summand.
-    It follows that a sufficiently high power of $\tau$ or $\tau^{-1}$ will move the $\bfg$-vector for that summand far away from the origin and close to the boundary of the $\bfg$-vector fan.
-    Thus it cannot lie in the $B$-cone pointed at $\lambda$.
-  \end{proof}
-
-  \begin{proposition}
-    For acyclic $\widetilde B$, the first $n$ entries of $-\widetilde B\cdot\delta$ is twice the $\bfg$-vector of $\delta$.
-  \end{proposition}
-  \begin{proof}
-    $B+A$ is twice the Euler matrix, multiplying by $\delta$ gives the result.
-  \end{proof}
 
 
   Let $B$ be an acyclic exchange matrix of affine type with $DB$ skew-symmetric.
@@ -691,27 +668,7 @@ Below here is the stuff we wrote so far.
   \begin{lemma}
     With respect to the seed $t$, the $\bfd$-vector of the imaginary theta basis element $\vartheta_{\zeta^t}$ is $\delta^t$. 
   \end{lemma}
-
-  Define the (opposite) defect vector of signs $\boldsymbol{\varepsilon}^t=(\varepsilon^t_1,\ldots,\varepsilon^t_n)$ where $\varepsilon^t_i=\sgn\,\langle \bfg^{\vee,t}_i,\delta\rangle$ is (the negative of) the defect of the representation of $Q$ with $\bfg$-vector $\bfg^t_i$.
-  Let $\kappa^t$ denote the vector $(G^{\vee,t})^T\delta_0$ which spans the kernel of $A^t$.
-  \begin{align*}
-    E_{k,\varepsilon}^t B^t \boldsymbol{\varepsilon}^t \kappa^t
-    &=
-    E_{k,\varepsilon}^t B^t F^t_{k,\varepsilon} F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t\\
-    &=
-    B^{t'} F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t\\
-    &\stackrel{?}{=} B^{t'} \boldsymbol{\varepsilon}^{t'} \kappa^{t'}
-  \end{align*}
-  \begin{align*}
-    A^t\kappa^t=0=(F^{\vee,t}_{k,\varepsilon_{trop}})^T A^t F^t_{k,\varepsilon_{trop}} F^t_{k,\varepsilon_{trop}} \kappa^t=A^{t'} F^t_{k,\varepsilon_{trop}} \kappa^t
-  \end{align*}
-  so $\kappa^{t'}=F^t_{k,\varepsilon_{trop}} \kappa^t$
-
-  \begin{lemma}
-    $F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t = \boldsymbol{\varepsilon}^{t'} F^t_{k,\varepsilon_{trop}} \kappa^t$
-  \end{lemma}
-  \[F^t_{k,\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t - F^t_{k,-\varepsilon} \boldsymbol{\varepsilon}^t \kappa^t=-\varepsilon B^t_{k\bullet} \boldsymbol{\varepsilon}^t \kappa^t \le 0\]
-  since $\varepsilon$ is the sign of the $k$-th entry of $B^t \boldsymbol{\varepsilon}^t \kappa^t$
+  \sayDR{Is this worth keeping}
 
 
 \bibliographystyle{amsalpha}
