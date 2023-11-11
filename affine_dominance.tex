@@ -140,7 +140,7 @@
     Then the columns of $C^t$ are not roots of the form $\pm c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ with $p\ge 0$.
   \end{proposition}
   \begin{proof}
-    The construction of Cambrian frameworks in \cite{Combinatorial_frameworks_for_cluster_algebras} provides the following description of the columns of $C^t$.
+    The construction of Cambrian frameworks in \cite{Combinatorial_frameworks_for_cluster_algebras} \sayDR{after Prop 5.4} provides the following description of the columns of $C^t$.
     Let $s_{a_1}\dots s_{a_N}$ be the $c$-sorting word of $v$. 
     For an index $i$ consider the longest prefix $s_{a_1} \dots s_{a_p}$ of $s_{a_1}\dots s_{a_N}$ such that any instance of $s_i$ in the corresponding prefix of $c^\infty$ is also in $s_{a_1} \dots s_{a_p}$.
     Then the $i$-th column of $C^t$ is the root $s_{a_1} \dots s_{a_p}\alpha_i$.
@@ -153,6 +153,39 @@
     Suppose that one such root were also of the form $\pm c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$ and some index $\ell$.
     Then $\pm c^{-p-q} s_n \ldots s_{\ell+1} \alpha_\ell=s_{b_1} \cdots s_{b_{i-1}} \alpha_{b_i}$ would be a root without full support.
     But $p+q\ge r$, contradicting Lemma~\ref{le:coxeter power}.
+  \end{proof}
+
+  \begin{proposition}
+    Let $t$ be the seed associated to $c^r$ for $r$ as in Lemma~\ref{le:coxeter power}. 
+    Then $C^t$ contains at least one column of the form $c^q s_1 \cdots s_{k-1} \alpha_k$ and at least one column of the form $-c^q s_1 \cdots s_{k-1} \alpha_k$.
+    The remaining columns that are not of the form $\pm c^q s_1 \cdots s_{k-1} \alpha_k$ lie in finite $c$-orbits.
+  \end{proposition}
+  \begin{proof}
+    The first column of $C^t$ is $c^r \alpha_1$ and the last column of $C^t$ is $c^r\alpha_n=-c^{r-1} s_1\cdots s_{n-1} \alpha_n$.
+    By Proposition~\ref{prop:no postinjectives}, any column of $C^t$ which is not of the form $\pm c^q s_1 \cdots s_{k-1} \alpha_k$ must lie in a finite $c$-orbit.
+  \end{proof}
+
+  For $t\in\TT_n$, define $K^t:=\{G_t\alpha:\alpha\in\RR_{\ge0}^n\}$.
+  For $\lambda \in \widetilde K^t := K^t \times \RR^{m-n}$, set 
+  \[\Lambda^t_\pm:=\{\lambda \pm \widetilde B^t C^t\alpha:\alpha\in\RR_{\ge0}^n\}.\]
+  \begin{lemma}
+    Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$.
+    Set $\bfk^-=(k_N,\ldots,k_1,n,\ldots,1)$.
+    Then for $\lambda\in \widetilde K^t$, we have $\cP_\lambda\cap \widetilde K^t\subset \Lambda^t_+,\Lambda^t_-$.
+  \end{lemma}
+  \begin{proof}
+    First observe using Lemma~\ref{le:factorize dual matrices} that $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde K^t$.
+    It follows that
+    \begin{align*}
+      S_{\bfk^+,\lambda}\cap \widetilde K^t
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left\{\big(\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
+      &= \widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
+      &= \left\{\lambda+\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left\{\lambda+\widetilde B^{t_+} C^t \alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &\subseteq \Lambda^t_+,
+    \end{align*}
+    where the last equality uses Corollary~\ref{cor:GB=BC}.
   \end{proof}
 
   \begin{lemma}
@@ -184,7 +217,6 @@
     \]
   to conclude that $(\beta^\vee)^T B^+ \delta = 0$.
   \end{proof}
-
 
   \begin{lemma}
     \label{le:imaginary direction mutation}
@@ -289,7 +321,7 @@ Below here is the stuff we wrote so far.
   %Similarly, given a vector $\bfb\in\RR^m$, let $[\bfb]_+$ denote the vector in $\RR_{\ge0}^n$ obtained by applying $[-]_+$ to each entry.
   Given a sign $\varepsilon\in\{\pm\}$ and $1\le k\le n$, define an $m\times m$ matrix $\widetilde E_{k,\varepsilon}=(e_{ij})$ with
   \begin{equation}
-    \label{eq:left mutation matrix}
+    \label{e:left mutation matrix}
     e_{ij}=\begin{cases} 1 & \text{if $i=j\ne k$;}\\ -1 & \text{if $i=j=k$;}\\ [\varepsilon b_{ik}]_+ & \text{if $i\ne j=k$;}\\ 0 & \text{otherwise;} \end{cases}
   \end{equation}
   and an $n\times n$ matrix $F_{k,\varepsilon}=(f_{ij})$ with
@@ -334,15 +366,16 @@ Below here is the stuff we wrote so far.
   Given $\bfk=(k_N,\ldots,k_1)$ and any $\widetilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\widetilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\widetilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\widetilde{B}\;\nu])$.
   Note that $\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\widetilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
 
-  For $\widetilde\lambda\in\RR^m$ and $\bfk=(k_N,\ldots,k_1)$, define $S_{\bfk,\widetilde\lambda}=\left\{\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}\big(\eta^{\widetilde B^{t_+}}_\bfk(\widetilde\lambda)+\widetilde{B}^{t_+}\alpha\big):\alpha\in\RR^n_{\ge0}\right\}$.
+  For $\lambda\in\RR^m$ and a sequence $\bfk=(k_N,\ldots,k_1)$ of mutations from $t_+$ to $t$, define 
+  \[S_{\bfk,\lambda}:=\left\{\left(\eta^{\widetilde B^{t_+}}_\bfk\right)^{-1}\big(\eta^{\widetilde B^{t_+}}_\bfk(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}.\]
   
   \begin{definition}
-    For $\widetilde\lambda\in\RR^m$, define the \emph{dominance region} 
+    For $\lambda\in\RR^m$, define the \emph{dominance region} 
     \[
-      \cP(\widetilde\lambda) = \bigcap_\bfk S_{\bfk,\widetilde\lambda}.
+      \cP_\lambda = \bigcap_\bfk S_{\bfk,\lambda}.
     \]
-    When $\widetilde\mu\in\cP(\widetilde\lambda)$, we say \emph{$\widetilde\lambda$ dominates $\widetilde\mu$}.
-    Write $\cP_\ZZ(\widetilde\lambda):=\cP(\widetilde\lambda)\cap \widetilde B^+ \cdot \ZZ_{\ge0}^n$. 
+    When $\mu\in\cP_\lambda$, we say \emph{$\lambda$ dominates $\mu$}.
+    Write $\cP_\lambda^\ZZ:=\cP_\lambda\cap \widetilde B^+ \cdot \ZZ_{\ge0}^n$. 
   \end{definition}
 
   \begin{theorem}
@@ -414,11 +447,7 @@ Below here is the stuff we wrote so far.
 
   Part of $\cF_{B^+}$ is the Cambrian fan
   
-  c-sortable elements
-  
   after Prop. 5.4 in \cite{combinatorial_frameworks} gives C-matrices explicitly
-  
-  -> quasi-Cartan companions, kernels of those
 
   \begin{theorem}
     Let $\widetilde\lambda$ be imaginary with $s$ minimal such that $\widetilde\lambda+s\widetilde B^+\cdot\delta$ is real.
@@ -525,6 +554,7 @@ Below here is the stuff we wrote so far.
   \end{proof}
 
   \begin{corollary}
+    \label{cor:GB=BC}
     For any $t\in\TT_n$, we have
     \[\widetilde G^t\widetilde B^t=\widetilde B^+ C^t.\]
   \end{corollary}
