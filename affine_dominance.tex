@@ -167,14 +167,22 @@
 
   For $t\in\TT_n$, define $K^t:=\{G_t\alpha:\alpha\in\RR_{\ge0}^n\}$.
   For $\lambda \in \widetilde K^t := K^t \times \RR^{m-n}$, set 
-  \[\Lambda^t_\pm:=\{\lambda \pm \widetilde B^t C^t\alpha:\alpha\in\RR_{\ge0}^n\}.\]
+  \[L^t_{\lambda,\pm}:=\{\lambda \pm \widetilde B^{t_+} C^t\alpha:\alpha\in\RR_{\ge0}^n\}.\]
   \begin{lemma}
-    Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$.
-    Set $\bfk^-=(k_N,\ldots,k_1,n,\ldots,1)$.
-    Then for $\lambda\in \widetilde K^t$, we have $\cP_\lambda\cap \widetilde K^t\subset \Lambda^t_+,\Lambda^t_-$.
+    For $\lambda\in \widetilde K^t$, we have $\cP_\lambda\cap \widetilde K^t\subseteq L^t_{\lambda,+}\cap L^t_{\lambda,-}$.
   \end{lemma}
   \begin{proof}
-    First observe using Lemma~\ref{le:factorize dual matrices} that $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde K^t$.
+    Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
+    Set $\bfk^-=(k_N,\ldots,k_1,n,\ldots,1)$.
+
+    First observe that $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}$ acts linearly on $\RR_{\ge0}^n\times \RR^{m-n}$.
+    Then, since $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}=\eta^{\widetilde B^t}_{(\bfk^+)^{op}}$, we see from \cite[Equation (1.13)]{nakanishi-zelevinsky} that the action on $\RR_{\ge0}^n\times \RR^{m-n}$ is given by the matrix $\widetilde G^t$, i.e. 
+    \[\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde K^t.\]
+    Similarly, we have $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}(\RR_{\le0}^n\times \RR^{m-n})=-\widetilde G^t(\RR_{\le0}^n\times \RR^{m-n})=\widetilde K^t$.
+
+
+    First observe that $\eta^{\widetilde B^{t_+}}_{\bfk^+}$ acts on $\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})$ via $\widetilde E^{t_N}_{k_N,-\varepsilon_N} \cdots \widetilde E^{t_1}_{k_1,-\varepsilon_1}$, where $\varepsilon_i$ is the sign of the $i$-th row of $\tilde G^{t_{N+2-i}}$. 
+
     It follows that
     \begin{align*}
       S_{\bfk^+,\lambda}\cap \widetilde K^t
@@ -183,9 +191,20 @@
       &= \widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
       &= \left\{\lambda+\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
       &= \left\{\lambda+\widetilde B^{t_+} C^t \alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
-      &\subseteq \Lambda^t_+,
+      &\subseteq L^t_{\lambda,+},
     \end{align*}
     where the last equality uses Corollary~\ref{cor:GB=BC}.
+    Similarly, we have
+    \begin{align*}
+      S_{\bfk^-,\lambda}\cap \widetilde K^t
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left\{\big(\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
+      &= -\widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
+      &= \left\{\lambda-\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left\{\lambda-\widetilde B^{t_+} C^t \alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &\subseteq L^t_{\lambda,-}.
+    \end{align*}
+    Since $\cP_\lambda\subseteq S_{\bfk^\pm,\lambda}$, the claim follows.
   \end{proof}
 
   \begin{lemma}
