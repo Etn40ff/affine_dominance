@@ -172,18 +172,19 @@
     For $\lambda\in \widetilde K^t$, we have $\cP_\lambda\cap \widetilde K^t\subseteq L^t_{\lambda,+}\cap L^t_{\lambda,-}$.
   \end{lemma}
   \begin{proof}
-    Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$ passing through $t_+=t_1,\ldots,t_N,t_{N+1}=t$.
-    Set $\bfk^-=(k_N,\ldots,k_1,n,\ldots,1)$.
+    Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$.
+    Set $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$.
 
     First observe that $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}$ acts linearly on $\RR_{\ge0}^n\times \RR^{m-n}$.
     Then, since $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}=\eta^{\widetilde B^t}_{(\bfk^+)^{op}}$, we see from \cite[Equation (1.13)]{nakanishi-zelevinsky} that the action on $\RR_{\ge0}^n\times \RR^{m-n}$ is given by the matrix $\widetilde G^t$, i.e. 
     \[\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde K^t.\]
-    Similarly, we have $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}(\RR_{\le0}^n\times \RR^{m-n})=-\widetilde G^t(\RR_{\le0}^n\times \RR^{m-n})=\widetilde K^t$.
+    By Lemma~\ref{le:mutation maps}, we have $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}=\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\eta^{\widetilde B^t}_{(n,\cdots,1)}\right)^{-1}$.
+    But $\eta^{\widetilde B^t}_{(n,\cdots,1)}(\RR_{\ge0}^n\times \RR^{m-n})\stackrel{?}{=}(\RR_{\le0}^n\times \RR^{m-n})$ and so $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}(\RR_{\le0}^n\times \RR^{m-n})=-\widetilde G^t(\RR_{\le0}^n\times \RR^{m-n})=\widetilde K^t$.
 
     It follows that
     \begin{align*}
       S_{\bfk^+,\lambda}\cap \widetilde K^t
-      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left\{\big(\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
       &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
       &= \widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
       &= \left\{\lambda+\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
@@ -194,9 +195,9 @@
     Similarly, we have
     \begin{align*}
       S_{\bfk^-,\lambda}\cap \widetilde K^t
-      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left\{\big(\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
-      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
-      &= -\widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left\{\big(\eta^{\widetilde B^{t_+}}_{\bfk^-}(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^-}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
+      &= -\widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^-}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
       &= \left\{\lambda-\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
       &= \left\{\lambda-\widetilde B^{t_+} C^t \alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
       &\subseteq L^t_{\lambda,-}.
@@ -380,7 +381,14 @@ Below here is the stuff we wrote so far.
   This provides a Coxeter element $c=s_1\cdots s_n$ in the Weyl group associated to $A$.
   
   Given $\bfk=(k_N,\ldots,k_1)$ and any $\widetilde B$, define the piecewise-linear \emph{mutation map} $\eta^{\widetilde B}_\bfk:\RR^m\to\RR^m$ where $\eta^{\widetilde B}_\bfk(\nu)$ is the last column of $\mu_\bfk([\widetilde{B}\;\nu])$.
-  Note that $\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\widetilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
+  \begin{lemma}\mbox{}
+    \label{le:mutation maps}
+    \begin{enumerate}
+      \item $\left(\eta^{\widetilde{B}}_\bfk\right)^{-1}=\eta^{\mu_\bfk\widetilde{B}}_{\bfk^{op}}$, where $\bfk^{op}:=(k_1,\ldots,k_N)$.
+      \item Consider a sequence of mutations $\bfk=\bfk''\bfk'$ where $\mu_{\bfk'}$ goes from $t_+$ to $t'$ and $\bfk''$ goes from $t'$ to $t''$.
+        Then $\eta^{\widetilde B^{t_+}}_\bfk = \eta^{\widetilde B^{t'}}_{\bfk''}\eta^{\widetilde B^{t_+}}_{\bfk'}$.
+    \end{enumerate}
+  \end{lemma}
 
   For $\lambda\in\RR^m$ and a sequence $\bfk=(k_N,\ldots,k_1)$ of mutations from $t_+$ to $t$, define 
   \[S_{\bfk,\lambda}:=\left\{\left(\eta^{\widetilde B^{t_+}}_\bfk\right)^{-1}\big(\eta^{\widetilde B^{t_+}}_\bfk(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}.\]
