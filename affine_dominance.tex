@@ -105,6 +105,7 @@
     \saySS{Think about how to write this better.}
     Suppose by contradiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
     Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
+    \saySS{WARNING: do this only for sequences fixing $\lambda$.}
     \saySS{Define mutation maps. of course we already knew this was to be done!}
     Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contradicting our previous observation.
     \saySS{We need to say much more about this: explain finite/infinite c-orbits and how limits work.}
@@ -133,19 +134,23 @@
     By \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, the set $\{c^q s_n \ldots s_{\ell+1} \alpha_\ell:q\in\ZZ\}$ is infinite.
     On the other hand, there are only finitely many roots without full support.
   \end{proof}
-  
+
+  Suppose $t$ is a seed corresponding to a $c$-sortable element $v$.
+  The construction of Cambrian frameworks in \cite{Combinatorial_frameworks_for_cluster_algebras} \sayDR{after Prop 5.4} provides the following description of the columns of $C^t$.
+  Let $s_{a_1}\dots s_{a_N}$ be the $c$-sorting word of $v$. 
+  For an index $i$ consider the longest prefix $s_{a_1} \dots s_{a_p}$ of $s_{a_1}\dots s_{a_N}$ such that any instance of $s_i$ in the corresponding prefix of $c^\infty$ is also in $s_{a_1} \dots s_{a_p}$.
+  Then the $i$-th column of $C^t$ is the root $s_{a_1} \dots s_{a_p}\alpha_i$.
+  This root is positive if and only if the word $s_{a_1} \dots s_{a_p} s_i$ is reduced.
+
+  This description of $C^t$ is instrumental in proving the next two results.
+
+ 
   \begin{proposition}
     \label{prop:no postinjectives}
     Let $t$ be a seed corresponding to a $c$-sortable element $v$\saySS{Explain this correspondence} whose $c$-sorting word starts with $c^r$ for $r$ as in Lemma~\ref{le:coxeter power}.
     Then the columns of $C^t$ are not roots of the form $\pm c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ with $p\ge 0$.
   \end{proposition}
   \begin{proof}
-    The construction of Cambrian frameworks in \cite{Combinatorial_frameworks_for_cluster_algebras} \sayDR{after Prop 5.4} provides the following description of the columns of $C^t$.
-    Let $s_{a_1}\dots s_{a_N}$ be the $c$-sorting word of $v$. 
-    For an index $i$ consider the longest prefix $s_{a_1} \dots s_{a_p}$ of $s_{a_1}\dots s_{a_N}$ such that any instance of $s_i$ in the corresponding prefix of $c^\infty$ is also in $s_{a_1} \dots s_{a_p}$.
-    Then the $i$-th column of $C^t$ is the root $s_{a_1} \dots s_{a_p}\alpha_i$.
-    This root is positive if and only if the word $s_{a_1} \dots s_{a_p} s_i$ is reduced.
-
     Let $k$ be the index such that $s_k$ is the leftmost reflection of $c^\infty$ omitted in $s_{a_1}\dots s_{a_N}$.
     Since \saySS{do we need a reference for this?}  $c^p$ is reduced for any $p$, the $k$-th column of $C^t$ is a positive root of the form $c^q s_1 \cdots s_{k-1} \alpha_k$ and, following \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, it is not of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$. 
 
