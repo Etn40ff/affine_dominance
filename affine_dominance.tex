@@ -21,17 +21,18 @@
 
 \numberwithin{theorem}{section}
 
-\newcommand{\bfb}{\boldsymbol{b}}
-\newcommand{\bfc}{\boldsymbol{c}}
-\newcommand{\bfd}{\boldsymbol{d}}
-\newcommand{\bfe}{\boldsymbol{e}}
-\newcommand{\bfg}{\boldsymbol{g}}
+\newcommand{\bfb}{{\boldsymbol{b}}}
+\newcommand{\bfc}{{\boldsymbol{c}}}
+\newcommand{\bfd}{{\boldsymbol{d}}}
+\newcommand{\bfe}{{\boldsymbol{e}}}
+\newcommand{\bfg}{{\boldsymbol{g}}}
 \newcommand{\bfk}{{\boldsymbol{k}}}
-\newcommand{\bfn}{\boldsymbol{n}}
-\newcommand{\bfr}{\boldsymbol{r}}
-\newcommand{\bfu}{\boldsymbol{u}}
-\newcommand{\bfx}{\boldsymbol{x}}
-\newcommand{\bfy}{\boldsymbol{y}}
+\newcommand{\bfl}{{\boldsymbol{\ell}}}
+\newcommand{\bfn}{{\boldsymbol{n}}}
+\newcommand{\bfr}{{\boldsymbol{r}}}
+\newcommand{\bfu}{{\boldsymbol{u}}}
+\newcommand{\bfx}{{\boldsymbol{x}}}
+\newcommand{\bfy}{{\boldsymbol{y}}}
 
 \newcommand{\cA}{\mathcal{A}}
 \newcommand{\cC}{\mathcal{C}}
@@ -125,6 +126,102 @@
     Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
     Then $\cP_\lambda$ is contained in the line segment $\{\lambda+x\widetilde B^+\delta: 0\le x\le z\}$
   \end{corollary}
+
+\hrule  
+For $j\in\ZZ$ let 
+\[
+  \bfk_j = 
+  \begin{cases}
+    (1,\dots,n)^{-j} & \mbox{if } j<0\\
+    ()               & \mbox{if } j=0\\
+    (n,\dots,1)^{j}  & \mbox{if } j>0.\\
+  \end{cases}
+\]
+Denote by $t_j$ the seed obtained from $t_+$ mutating along the sequence $\bfk_j$.
+\begin{remark}
+  If $j\geq 0$ the seed $t_j$ corresponds to the $c$-sorting word $c^j$.
+  If $j<0$ the seed $t_j$ corresponds to the $c^{-1}$-sorting word $c^{j+1}$.
+\end{remark}
+Set $\cP_{\lambda,j}= \left(\eta^{\widetilde B^{t_+}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk_j}(\lambda)+ \mu_{\bfk_j}(\widetilde B^{t_+})\alpha:\alpha\in\RR^n_{\ge0}\right\}\right)$; then $\cP_\lambda\subseteq \bigcap_{j\in\ZZ} \cP_{\lambda,j}$.
+
+\begin{lemma}
+  For any $j\geq 0$, there exists a full-dimensional subset $L_j$ of $\RR^m$ such that $\cI \subseteq L_j$ and, for any $\lambda\in\cI$,
+  \[
+    \cP_{\lambda,j}\cap L_j = \left\{\lambda + \widetilde B^{t_+} C^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \]
+\end{lemma}
+\begin{proof}
+  Let $\bfl$ be any suffix of $\bfk_j$ and suppose that its first letter is $i$ ($0$ if $\bfl$ is empty).
+  Then, counting modulo $n$, the $(i+1)$-st coordinate of $\eta^{\widetilde B^{t_+}}_{\bfl}(\lambda)$ is non-positive. 
+  Indeed, since $\eta^{\widetilde B^{t_+}}_{\bfl}(\lambda)\in \mu_\bfl(\cI)$, it is of the form $M v$ for some non-negative vector $v$ and some matrix $M$ whose $(i+1)$-st row is a negative  elementary unit vector ($M$ is the matrix of the change of coordinates in between positive $\bfd$-vectors and non-initial $\bfg$-vectors).
+  \saySS{I am trying very hard not to mention the Euler matrix here nor source-sink moves if possible}
+  In particular $\eta^{\widetilde B^{t_+}}_{\bfk_j}$ acts on $\cI$ as $\widetilde E^{t_{nj-1}}_{n,-} \cdots \widetilde E^{t_0}_{1,-}$
+
+  Let $L_j$ be the maximal cone on which $\eta^{\widetilde B^{t_+}}_{\bfk_j}$ and $\widetilde E^{t_{nj-1}}_{n,-} \cdots \widetilde E^{t_0}_{1,-}$ agree. 
+  \saySS{Should we something to explain why this is not just $\cI$?}
+  We compute
+  \begin{align*}
+    \cP_{\lambda,j}\cap L_j 
+    & = \left(\eta^{\widetilde B^{t_+}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk_j}(\lambda)+ \mu_{\bfk_j}(\widetilde B^{t_+})\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left(\widetilde E^{t_{nj-1}}_{n,-} \cdots \widetilde E^{t_0}_{1,-}\right)^{-1}\left(\left\{\widetilde E^{t_{nj-1}}_{n,-} \cdots \widetilde E^{t_0}_{1,-}(\lambda)+ \mu_{\bfk_j}(\widetilde B^{t_+})\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left\{\lambda + \widetilde E^{t_0}_{1,-} \cdots \widetilde E^{t_{nj-1}}_{n,-}\mu_{\bfk_j}(\widetilde B^{t_+})\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_+} F^{t_0}_{1,-} \cdots F^{t_{nj-1}}_{n,-}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_+} C^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j
+  \end{align*}
+  where the last identity follows from Lemma~\ref{le:c-matrix factorization} and the observation that the $(i+1)$-st $\bfc$-vector in the seed mutating from $t^+$ along $\bfl$ is positive (it is the leftmost skip for the corresponding $c$-sorting word).
+\end{proof}
+
+\begin{lemma}
+  For any $j< 0$, there exists a full-dimensional subset $L_j$ of $\RR^m$ such that $\cI \subseteq L_j$ and, for any $\lambda\in\cI$,
+  \[
+    \cP_{\lambda,j}\cap L_j = \left\{\lambda - \widetilde B^{t_+} C^{t_{\bfk_{j-1}}}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \]
+\end{lemma}
+\hrule
+For $j\in\ZZ$, let $\langle j\rangle$ be the element of $[1,n]$ congruent to $j$ mod $n$.
+If $j>0$ let $\bfk_j$ be the sequence $(\langle j \rangle, \langle j-1 \rangle,\dots,\langle 1\rangle)$; it has length $j$.
+Let $\bfk_0$ denote the empty sequence.
+If $j<0$ let $\bfk_j$ be the sequence $(\langle j+1 \rangle, \langle j+2 \rangle, \dots, \langle 0 \rangle)$; it has length $-j$.
+
+Denote by $t_j$ the seed obtained from $t_0$ mutating along the sequence $\bfk_j$.
+\begin{remark}
+  If $j \geq 0$ the seed $t_j$ corresponds to the $c$-sorting element whose $c$-sorting word is the prefix of $c^{\infty}$ of length $j$.
+  If $j\leq -n$ the seed $t_j$ corresponds to the $c^{-1}$-sorting element whose $c^{-1}$-sorting word is the prefix of  $c^{-\infty}$ of length $n-j$.
+\end{remark}
+Set $\cP_{\lambda,j}= \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)+ \widetilde B^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\}\right)$; then $\cP_\lambda\subseteq \bigcap_{j\in\ZZ} \cP_{\lambda,j}$.
+
+\begin{lemma}
+  For any $j\geq 0$, there exists a full-dimensional subset $L_j$ of $\RR^m$ such that $\cI \subseteq L_j$ and, for any $\lambda\in\cI$,
+  \[
+    \cP_{\lambda,j}\cap L_j = \left\{\lambda + \widetilde B^{t_0} C^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \]
+\end{lemma}
+\begin{proof}
+  First observe that the $\langle j+1\rangle$-st coordinate of $\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)$ is non-positive for every $j\geq 0$.
+  Indeed, since $\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)\in \mu_{\bfk_j}(\cI)$, it is of the form $M v$ for some non-negative vector $v$ and some matrix $M$ whose $\langle j+1\rangle$-st row is a negative  elementary unit vector ($M$ is the matrix of the change of coordinates in between positive $\bfd$-vectors and non-initial $\bfg$-vectors).
+  \saySS{I am trying very hard not to mention the Euler matrix here nor source-sink moves if possible}
+  In particular $\eta^{\widetilde B^{t_0}}_{\bfk_j}$ acts on $\cI$ as $\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}$
+
+  Let $L_j$ be the maximal cone on which $\eta^{\widetilde B^{t_0}}_{\bfk_j}$ and $\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}$ agree. 
+  \saySS{Should we something to explain why this is not just $\cI$?}
+  We compute
+  \begin{align*}
+    \cP_{\lambda,j}\cap L_j 
+    & = \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)+ \widetilde B^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left(\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}\right)^{-1}\left(\left\{\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}(\lambda)+ \mu_{\bfk_j}(\widetilde B^{t_0})\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left\{\lambda + \widetilde E^{t_0}_{1,-} \cdots \widetilde E^{t_{j-1}}_{\langle j \rangle,-}\mu_{\bfk_j}(\widetilde B^{t_+})\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_0} F^{t_0}_{1,-} \cdots F^{t_{j-1}}_{\langle j \rangle,-}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_0} C^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j
+  \end{align*}
+  where the last identity follows from Lemma~\ref{le:c-matrix factorization} and the observation that the $\langle j+1\rangle$-st $\bfc$-vector in the seed $t_j$ is positive (it is the leftmost skip for the corresponding $c$-sorting word).
+\end{proof}
+
+\begin{lemma}
+  For any $j< 0$, there exists a full-dimensional subset $L_j$ of $\RR^m$ such that $\cI \subseteq L_j$ and, for any $\lambda\in\cI$,
+  \[
+    \cP_{\lambda,j}\cap L_j = \left\{\lambda - \widetilde B^{t_+} C^{t_{\bfk_{j-1}}}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \]
+\end{lemma}
 
   \begin{lemma}
     \label{le:coxeter power}
@@ -294,7 +391,7 @@
     \[
       \eta_{\bfk}^{\widetilde B^+}(\lambda + x\widetilde B^+\delta) 
       \in
-      \{\eta_{\bfk}^{\widetilde B^+}(\lambda) + \widetilde B^{t}\alpha : \alpha\in  \RR^n_{\ge 0}\}.
+      \left\{\eta_{\bfk}^{\widetilde B^+}(\lambda) + \widetilde B^{t}\alpha : \alpha\in  \RR^n_{\ge 0}\right\}.
     \]
     Since the vectors $\lambda$, $\lambda + x\widetilde B^+\delta$, and $-\widetilde B^+\delta$ all live in the same cone of the mutation fan, \saySS{we need to decide which presentation we will use and quote afftheta} we have that
     \[
