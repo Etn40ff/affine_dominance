@@ -21,18 +21,18 @@
 
 \numberwithin{theorem}{section}
 
-\newcommand{\bfb}{\boldsymbol{b}}
-\newcommand{\bfc}{\boldsymbol{c}}
-\newcommand{\bfd}{\boldsymbol{d}}
-\newcommand{\bfe}{\boldsymbol{e}}
-\newcommand{\bfg}{\boldsymbol{g}}
+\newcommand{\bfb}{{\boldsymbol{b}}}
+\newcommand{\bfc}{{\boldsymbol{c}}}
+\newcommand{\bfd}{{\boldsymbol{d}}}
+\newcommand{\bfe}{{\boldsymbol{e}}}
+\newcommand{\bfg}{{\boldsymbol{g}}}
 \newcommand{\bfk}{{\boldsymbol{k}}}
 \newcommand{\bfl}{{\boldsymbol{\ell}}}
-\newcommand{\bfn}{\boldsymbol{n}}
-\newcommand{\bfr}{\boldsymbol{r}}
-\newcommand{\bfu}{\boldsymbol{u}}
-\newcommand{\bfx}{\boldsymbol{x}}
-\newcommand{\bfy}{\boldsymbol{y}}
+\newcommand{\bfn}{{\boldsymbol{n}}}
+\newcommand{\bfr}{{\boldsymbol{r}}}
+\newcommand{\bfu}{{\boldsymbol{u}}}
+\newcommand{\bfx}{{\boldsymbol{x}}}
+\newcommand{\bfy}{{\boldsymbol{y}}}
 
 \newcommand{\cA}{\mathcal{A}}
 \newcommand{\cC}{\mathcal{C}}
@@ -116,6 +116,7 @@
   The proof of Theorem~\ref{thm:main} is divided into several intermediate claims; we begin by showing that, for imaginary $\lambda$, $\cP_\lambda \subseteq \cI$.
 
   \begin{lemma}
+    \label{lemma:P in I}
     If $\lambda$ is imaginary, then $\cP_\lambda\subseteq \cI$.
   \end{lemma}
   \begin{proof}
@@ -124,17 +125,110 @@
     \saySS{Think about how to write this better.}
     Suppose by contradiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
     Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
+    \saySS{WARNING: do this only for sequences fixing $\lambda$.}
     \saySS{Define mutation maps. of course we already knew this was to be done!}
     Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $r$ the sequence $\bfk = (n,\dots,1)^r$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contradicting our previous observation.
     \saySS{We need to say much more about this: explain finite/infinite c-orbits and how limits work.}
   \end{proof}
 
+For $j\in\ZZ$, let $\langle j\rangle$ be the element of $[1,n]$ congruent to $j$ mod $n$.
+If $j>0$ let $\bfk_j$ be the sequence $(\langle j \rangle, \langle j-1 \rangle,\dots,\langle 1\rangle)$; it has length $j$.
+Let $\bfk_0$ denote the empty sequence.
+If $j<0$ let $\bfk_j$ be the sequence $(\langle j+1 \rangle, \langle j+2 \rangle, \dots, \langle 0 \rangle)$; it has length $-j$.
+
+Denote by $t_j$ the seed obtained from $t_0$ mutating along the sequence $\bfk_j$.
+\begin{remark}
+  \label{rk:seed to sorting}
+  If $j \geq 0$ the seed $t_j$ corresponds to the $c$-sorting element whose $c$-sorting word is the prefix of $c^{\infty}$ of length $j$.
+  If $j\leq -n$ the seed $t_j$ corresponds to the $c^{-1}$-sorting element whose $c^{-1}$-sorting word is the prefix of  $c^{-\infty}$ of length $n-j$.
+\end{remark}
+Set $\cP_{\lambda,j}= \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)+ \widetilde B^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\}\right)$; then $\cP_\lambda\subseteq \bigcap_{j\in\ZZ} \cP_{\lambda,j}$.
+
+\begin{lemma}
+  \label{lemma:Pj positive}
+  For any $j\geq 0$, there exists a full-dimensional subset $L_j$ of $\RR^m$ such that $\cI \subseteq L_j$ and, for any $\lambda\in\cI$,
+  \[
+    \cP_{\lambda,j}\cap L_j = \left\{\lambda + \widetilde B^{t_0} C^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \]
+\end{lemma}
+\begin{proof}
+  First observe that the $\langle i+1\rangle$-st coordinate of $\eta^{\widetilde B^{t_0}}_{\bfk_i}(\lambda)$ is non-positive for every $i\in\ZZ$.
+  Indeed, since $\eta^{\widetilde B^{t_0}}_{\bfk_i}(\lambda)\in \mu_{\bfk_i}(\cI)$, it is of the form $M v$ for some non-negative vector $v$ and some matrix $M$ whose $\langle i+1\rangle$-st row is a negative  elementary unit vector ($M$ is the matrix of the change of coordinates in between positive $\bfd$-vectors and non-initial $\bfg$-vectors).
+  \saySS{I am trying very hard not to mention the Euler matrix here nor source-sink moves if possible}
+  In particular $\eta^{\widetilde B^{t_0}}_{\bfk_j}$ acts on $\cI$ as $\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}$
+
+  Let $L_j$ be the maximal cone on which $\eta^{\widetilde B^{t_0}}_{\bfk_j}$ and $\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}$ agree. 
+  \saySS{Should we something to explain why this is not just $\cI$?}
+  We compute
+  \begin{align*}
+    \cP_{\lambda,j}\cap L_j 
+    & = \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)+ \widetilde B^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left(\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}\right)^{-1}\left(\left\{\widetilde E^{t_{j-1}}_{\langle j \rangle,-} \cdots \widetilde E^{t_0}_{1,-}(\lambda)+ \mu_{\bfk_j}(\widetilde B^{t_0})\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left\{\lambda + \widetilde E^{t_0}_{1,-} \cdots \widetilde E^{t_{j-1}}_{\langle j \rangle,-}\mu_{\bfk_j}(\widetilde B^{t_0})\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_0} F^{t_0}_{1,-} \cdots F^{t_{j-1}}_{\langle j \rangle,-}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_0} C^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j
+  \end{align*}
+  where the last identity follows from Lemma~\ref{le:c-matrix factorization} and the observation that the $\langle i+1\rangle$-st $\bfc$-vector in the seed $t_i$ is positive (it is the leftmost skip for the corresponding $c$-sorting word).
+\end{proof}
+
+\begin{lemma}
+  \label{lemma:Pj negative}
+  For any $j\leq 0$, there exists a full-dimensional subset $L_j$ of $\RR^m$ such that $\cI \subseteq L_j$ and, for any $\lambda\in\cI$,
+  \[
+    \cP_{\lambda,j}\cap L_j = \left\{\lambda - \widetilde B^{t_0} C^{t_{j-n}}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \]
+\end{lemma}
+\begin{proof}
+  The proof of this lemma follows closely the proof of the previous one with some important distinctions.
+
+  For any $i\in\ZZ$ the $\langle i \rangle$-th coordinate of $\eta^{\widetilde B^{t_0}}_{\bfk_i}(\lambda)$ is non-negative. 
+  Indeed since $\lambda$ and $-\frac{1}{2}\widetilde B^{t_0}\delta$ belong to the same maximal cone, the $\langle i\rangle$-th coordinates of $\eta^{\widetilde B^{t_0}}_{\bfk_i}(\lambda)$ and $\eta^{\widetilde B^{t_0}}_{\bfk_i}(-\frac{1}{2}\widetilde B^{t_0}\delta)=-\frac{1}{2}\widetilde B^{t_i}\delta$ weekly agree in sign.
+  But the $\langle i \rangle$-th row of $\widetilde B^{t_i}$ contains only non-positive integers  while $\delta$ is a vector of positive integers and the claim follows.
+  \saySS{Maybe we should use this argument also in the other proposition to avoid talking about the Euler matrix.}
+  In particular $\eta^{\widetilde B^{t_0}}_{\bfk_j}$ acts on $\cI$ as $\widetilde E^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots \widetilde E^{t_0}_{n,+}$.
+  Let $L_j$ be the maximal cone on which $\eta^{\widetilde B^{t_0}}_{\bfk_j}$ and $\widetilde E^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots \widetilde E^{t_0}_{n,+}$ agree.
+  As before we compute 
+  \begin{align*}
+    \cP_{\lambda,j}\cap L_j 
+    & = \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_0}}_{\bfk_j}(\lambda)+ \widetilde B^{t_j}\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left(\widetilde E^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots \widetilde E^{t_0}_{n,+}\right)^{-1}\left(\left\{\widetilde E^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots \widetilde E^{t_0}_{n,+}(\lambda)+ \mu_{\bfk_j}(\widetilde B^{t_0})\alpha:\alpha\in\RR^n_{\ge0}\right\}\right) \cap L_j \\
+    & = \left\{\lambda + \widetilde E^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots \widetilde E^{t_0}_{n,+}\mu_{\bfk_j}(\widetilde B^{t_+})\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j \\
+    & = \left\{\lambda + \widetilde B^{t_0} F^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots F^{t_0}_{n,+}\alpha:\alpha\in\RR^n_{\ge0}\right\} \cap L_j.
+  \end{align*}
+  Now observe that the first $n$ $\bfc$-vectors encountered while mutating along $\bfk_j$ are positive while the remaining ones are negative.
+  (Provided that $j<-n$, otherwise they are all positive.)
+  Note also that $F^{t_{1-n}}_{1,-} \cdots F^{t_0}_{n,-}=-1$ and that $F^{t_{i}}_{\langle i \rangle,\varepsilon} = F^{t_{i-n}}_{\langle i-n \rangle,\varepsilon}$ for any $i$ and $\varepsilon$.
+  We get
+  \[
+    F^{t_{j+1}}_{\langle j+1 \rangle,+} \cdots F^{t_0}_{n,+}
+    =
+    F^{t_{j-n+1}}_{\langle j-n+1 \rangle,+} \cdots F^{t_-n}_{n,+} 
+    =
+    - F^{t_{j-n+1}}_{\langle j-n+1 \rangle,+} \cdots F^{t_{-n}}_{n,+} F^{t_{1-n}}_{1,-} \cdots F^{t_0}_{n,-}
+    =
+    - C^{t_{j-n}}
+  \]
+  again by Lemma~\ref{le:c-matrix factorization} and we are done.
+\end{proof}
+\saySS{Note to self: if $\lambda$ is a cluster monomial in $t$ then exactly the same argument shows that $\cP_{\lambda,j}\cap K_t$ has the same expression. This should imply that $\cP_\lambda\cap K_t$ is just the point $\lambda$ but it is not enough to conclude that $\cP_\lambda=\lambda$ because we do not know that $\cP_\lambda$ is connected.}
+
   \begin{proposition}
     \label{prop:ray upperbound}
-    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
-    Then $\cP_\lambda$ is contained in the half line $\{\lambda+x\widetilde B^+\delta: x\le z\}$.
+    Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^{t_0}\delta$ is real.
+    Then $\cP_\lambda$ is contained in the half line $\{\lambda+x\widetilde B^{t_0}\delta: x\le z\}$.
   \end{proposition}
   \begin{proof}
+    Since $\cP_\lambda\subseteq \bigcap_{j\in\ZZ}\cP_{\lambda,nj}$ it suffices to show that $\bigcap_{j\in\ZZ}\cP_{\lambda,nj}$ is a half line.
+    Moreover, since by Lemma~\ref{lemma:P in I} $\cP_\lambda\subseteq \cI$, it suffices to show that $\bigcap_{j\in\ZZ}\left(\cP_{\lambda,nj}\cap L_j\right)$ is a half line.
+    In view of Lemmas~\ref{lemma:Pj positive}~and~\ref{lemma:Pj negative}, since $\widetilde B^{t_0}$ has full rank, it sufficies to show that 
+    \[
+      \bigcap_{j\in\ZZ}\left\{(-1)^{\sgn(j)} C^{t_{nj}}\alpha:\alpha\in\RR^n_{\ge0}\right\}
+    \]
+    is the line spanned by $\delta$.
+
+    By Remark~\ref{rk:seed to sorting}, if $j\geq 0$ the $i$-th column of $C^{t_{nj}}$ is the root $c^j \alpha_i$.
+    Similarly, if $j\leq -1$ the $i$-th column of $-C^{t_j}$ is the root $c^{j+1} \alpha_i$.
+    AAARGHHH This screws everything up, we cant use it to show that if $c^j\alpha_i$ is in a finite orbit then there is a $j'<0$ such that $-c^j\alpha_i\in -C^{t_{nj'}}$!!!!!!
   \end{proof}
   
   Using Proposition~\ref{prop:ray upperbound}, the fact that $\cP_\lambda\subseteq \{\lambda + \widetilde B^+ \alpha : \alpha \in  \RR_{\ge0}^n\}$, and the fact that $\widetilde B^+$ is full rank, we deduce immediately the following upper bound for $\cP_\lambda$.
@@ -144,6 +238,7 @@
     Then $\cP_\lambda$ is contained in the line segment $\{\lambda+x\widetilde B^+\delta: 0\le x\le z\}$
   \end{corollary}
 
+
   \begin{lemma}
     \label{le:coxeter power}
     There exists $r>0$ so that $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ has full support for any $p\ge r$ and any $\ell$.
@@ -152,19 +247,23 @@
     By \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, the set $\{c^q s_n \ldots s_{\ell+1} \alpha_\ell:q\in\ZZ\}$ is infinite.
     On the other hand, there are only finitely many roots without full support.
   \end{proof}
-  
+
+  Suppose $t$ is a seed corresponding to a $c$-sortable element $v$.
+  The construction of Cambrian frameworks in \cite{Combinatorial_frameworks_for_cluster_algebras} \sayDR{after Prop 5.4} provides the following description of the columns of $C^t$.
+  Let $s_{a_1}\dots s_{a_N}$ be the $c$-sorting word of $v$. 
+  For an index $i$ consider the longest prefix $s_{a_1} \dots s_{a_p}$ of $s_{a_1}\dots s_{a_N}$ such that any instance of $s_i$ in the corresponding prefix of $c^\infty$ is also in $s_{a_1} \dots s_{a_p}$.
+  Then the $i$-th column of $C^t$ is the root $s_{a_1} \dots s_{a_p}\alpha_i$.
+  This root is positive if and only if the word $s_{a_1} \dots s_{a_p} s_i$ is reduced.
+
+  This description of $C^t$ is instrumental in proving the next two results.
+
+ 
   \begin{proposition}
     \label{prop:no postinjectives}
     Let $t$ be a seed corresponding to a $c$-sortable element $v$\saySS{Explain this correspondence} whose $c$-sorting word starts with $c^r$ for $r$ as in Lemma~\ref{le:coxeter power}.
     Then the columns of $C^t$ are not roots of the form $\pm c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ with $p\ge 0$.
   \end{proposition}
   \begin{proof}
-    The construction of Cambrian frameworks in \cite{Combinatorial_frameworks_for_cluster_algebras} \sayDR{after Prop 5.4} provides the following description of the columns of $C^t$.
-    Let $s_{a_1}\dots s_{a_N}$ be the $c$-sorting word of $v$. 
-    For an index $i$ consider the longest prefix $s_{a_1} \dots s_{a_p}$ of $s_{a_1}\dots s_{a_N}$ such that any instance of $s_i$ in the corresponding prefix of $c^\infty$ is also in $s_{a_1} \dots s_{a_p}$.
-    Then the $i$-th column of $C^t$ is the root $s_{a_1} \dots s_{a_p}\alpha_i$.
-    This root is positive if and only if the word $s_{a_1} \dots s_{a_p} s_i$ is reduced.
-
     Let $k$ be the index such that $s_k$ is the leftmost reflection of $c^\infty$ omitted in $s_{a_1}\dots s_{a_N}$.
     Since \saySS{do we need a reference for this?}  $c^p$ is reduced for any $p$, the $k$-th column of $C^t$ is a positive root of the form $c^q s_1 \cdots s_{k-1} \alpha_k$ and, following \cite[Theorem 1.2(1)]{Reading-Stella} and \cite[Section 1]{Dlab-Ringel}, it is not of the form $c^{-p} s_n \ldots s_{\ell+1} \alpha_\ell$ for $p\ge0$. 
 
@@ -309,7 +408,7 @@
     \[
       \eta_{\bfk}^{\widetilde B^+}(\lambda + x\widetilde B^+\delta) 
       \in
-      \{\eta_{\bfk}^{\widetilde B^+}(\lambda) + \widetilde B^{t}\alpha : \alpha\in  \RR^n_{\ge 0}\}.
+      \left\{\eta_{\bfk}^{\widetilde B^+}(\lambda) + \widetilde B^{t}\alpha : \alpha\in  \RR^n_{\ge 0}\right\}.
     \]
     Since the vectors $\lambda$, $\lambda + x\widetilde B^+\delta$, and $-\widetilde B^+\delta$ all live in the same cone of the mutation fan, \saySS{we need to decide which presentation we will use and quote afftheta} we have that
     \[
@@ -333,6 +432,47 @@ $ $
 \hrule
 
 $ $
+Some old stuff we no longer need
+
+  For $t\in\TT_n$, define $K^t:=\{G_t\alpha:\alpha\in\RR_{\ge0}^n\}$.
+  For $\lambda \in \widetilde K^t := K^t \times \RR^{m-n}$, set 
+  \[L^t_{\lambda,\pm}:=\{\lambda \pm \widetilde B^{t_+} C^t\alpha:\alpha\in\RR_{\ge0}^n\}.\]
+  \begin{lemma}
+    For $\lambda\in \widetilde K^t$, we have $\cP_\lambda\cap \widetilde K^t\subseteq L^t_{\lambda,+}\cap L^t_{\lambda,-}$.
+  \end{lemma}
+  \begin{proof}
+    Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$.
+    Set $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$.
+
+    First observe that $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}$ acts linearly on $\RR_{\ge0}^n\times \RR^{m-n}$.
+    Then, since $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}=\eta^{\widetilde B^t}_{(\bfk^+)^{op}}$, we see from \cite[Equation (1.13)]{nakanishi-zelevinsky} that the action on $\RR_{\ge0}^n\times \RR^{m-n}$ is given by the matrix $\widetilde G^t$, i.e. 
+    \[\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde K^t.\]
+    By Lemma~\ref{le:mutation maps}, we have $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}=\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\eta^{\widetilde B^t}_{(n,\cdots,1)}\right)^{-1}$.
+    But $\eta^{\widetilde B^t}_{(n,\cdots,1)}(\RR_{\ge0}^n\times \RR^{m-n})\stackrel{?}{=}(\RR_{\le0}^n\times \RR^{m-n})$ and so $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}(\RR_{\le0}^n\times \RR^{m-n})=-\widetilde G^t(\RR_{\le0}^n\times \RR^{m-n})=\widetilde K^t$.
+
+    It follows that
+    \begin{align*}
+      S_{\bfk^+,\lambda}\cap \widetilde K^t
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
+      &= \widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^+}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\ge0}^n\times \RR^{m-n}\big)\right)\\
+      &= \left\{\lambda+\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left\{\lambda+\widetilde B^{t_+} C^t \alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &\subseteq L^t_{\lambda,+},
+    \end{align*}
+    where the last equality uses Corollary~\ref{cor:GB=BC}.
+    Similarly, we have
+    \begin{align*}
+      S_{\bfk^-,\lambda}\cap \widetilde K^t
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left\{\big(\eta^{\widetilde B^{t_+}}_{\bfk^-}(\lambda)+\widetilde B^t\alpha\big):\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}\left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^-}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
+      &= -\widetilde G^t \left(\left\{\eta^{\widetilde B^{t_+}}_{\bfk^-}(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \big( \RR_{\le0}^n\times \RR^{m-n}\big)\right)\\
+      &= \left\{\lambda-\widetilde G^t \widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &= \left\{\lambda-\widetilde B^{t_+} C^t \alpha:\alpha\in\RR^n_{\ge0}\right\}\cap \widetilde K^t\\
+      &\subseteq L^t_{\lambda,-}.
+    \end{align*}
+    Since $\cP_\lambda\subseteq S_{\bfk^\pm,\lambda}$, the claim follows.
+  \end{proof}
 
 Below here is the stuff we wrote so far.
 
