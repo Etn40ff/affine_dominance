@@ -27,6 +27,7 @@
 \newcommand{\bfe}{\boldsymbol{e}}
 \newcommand{\bfg}{\boldsymbol{g}}
 \newcommand{\bfk}{{\boldsymbol{k}}}
+\newcommand{\bfl}{{\boldsymbol{\ell}}}
 \newcommand{\bfn}{\boldsymbol{n}}
 \newcommand{\bfr}{\boldsymbol{r}}
 \newcommand{\bfu}{\boldsymbol{u}}
@@ -42,6 +43,7 @@
 \newcommand{\cP}{\mathcal{P}}
 \newcommand{\cQ}{\mathcal{Q}}
 
+\newcommand{\fd}{\mathfrak{d}}
 \newcommand{\fp}{\mathfrak{p}}
 
 \newcommand{\CC}{\mathbb{C}}
@@ -84,11 +86,28 @@
   \end{abstract}
   \maketitle
 
+  Let $\lambda$ be an imaginary $\bfg$-vector.
+  \begin{enumerate}
+    \item What is the condition that determines whether the separating hyperplane for a mutation map cuts between two imaginary domains of linearity?
+    \item The intersection of $P_\lambda$ with each cone corresponding to an imaginary cluster is convex.
+      Indeed, for any seed $t$, consider the mutation of that cone along the sequence $\bfk$ corresponding to $t$.
+      Intersecting this cone with $\eta^{\widetilde B^{t_+}}_\bfk(\lambda)+\widetilde B^t \RR_{\ge0}^n$ produces a convex region which mutates back to a convex region under $\left(\eta^{\widetilde B^{t_+}}_\bfk\right)^{-1}$.
+    \item $\lambda$ does not dominate $c^r\lambda$ for any $r\in\ZZ$ unless $c^r\lambda=\lambda$.
+      Indeed, if there existed an $r$ so that $\lambda$ dominates $c^r\lambda$ for all imaginary $\lambda$, then by repeatedly applying $c^r$ we would see that $c^r\lambda$ also dominates $\lambda$ which is impossible unless $\lambda=c^r\lambda$.
+    \item For $\lambda\in\RR^m$ and sequences $\bfk=(k_N,\ldots,k_1)$ of mutations from $t_+$ to $t$, define 
+      \[
+        \cP^{t_+}_\lambda = \bigcap_\bfk \left(\eta^{\widetilde B^{t_+}}_\bfk\right)^{-1}\big(\left\{\eta^{\widetilde B^{t_+}}_\bfk(\lambda)+\widetilde B^t\alpha:\alpha\in\RR^n_{\ge0}\right\}\big).
+      \]
+      Then for any sequence $\bfl$ joining $t_+$ to $t'_+$, we have $\eta^{\widetilde B^{t_+}}_\bfl \cP^{t_+}_\lambda=\cP^{t'_+}_{\lambda'}$ where $\lambda'=\eta^{\widetilde B^{t_+}}_\bfl(\lambda)$.
+  \end{enumerate}
+
+  For $j\ge 1$, we have $(\eta_{c^j}^{\widetilde B})^{-1}\left(\{\eta_{c^j}^{\widetilde B}(\lambda)+\mu_{c^j}\widetilde B \alpha\}\right) = \{\lambda - \widetilde B C_{c^{j+1}} \alpha \}$ and $(\eta_{c^{-j}}^{\widetilde B})^{-1}\left(\{\eta_{c^{-j}}^{\widetilde B}(\lambda)+\mu_{c^{-j}}\widetilde B \alpha\}\right) = \{\lambda + \widetilde B C_{c^{-j}} \alpha \}$ for $\lambda$ sufficiently near $\fd_\infty$.
+
   \saySS{define imaginary, real, and the imaginary cone $\cI$, $\widetilde B^+$, $\delta$}
   \begin{theorem}
     \label{thm:main}
     Given $\lambda \in \RR^m$, let $z\ge 0$ be the minimum value such that $\lambda+z\widetilde B^+\delta$ is real.
-    \saySS{We need to say why such an $z$ existsi, i.e. $-\widetilde B^+\delta$ positively spans the imaginary ray.}
+    \saySS{We need to say why such an $z$ exists, i.e. $-\widetilde B^+\delta$ positively spans the imaginary ray.}
     Then the dominance region $\cP_\lambda$ is the line segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
   \end{theorem}
 
@@ -106,7 +125,7 @@
     Suppose by contradiction that there exists some point $\lambda' \in \cP_\lambda\setminus\, \cI$.
     Since $\cP_\lambda$ is stable under mutations $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in \cP_\lambda$ for any sequence of indices $\bfk$.
     \saySS{Define mutation maps. of course we already knew this was to be done!}
-    Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $\ell$ the sequence $\bfk = (n,\dots,1)^\ell$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contradicting our previous observation.
+    Moreover, since $\lambda'$ is not in $\cI$, for sufficiently large $r$ the sequence $\bfk = (n,\dots,1)^r$ satisfies $\eta_{\bfk}^{\widetilde B^+}(\lambda')\in H$ contradicting our previous observation.
     \saySS{We need to say much more about this: explain finite/infinite c-orbits and how limits work.}
   \end{proof}
 
@@ -173,13 +192,14 @@
   \end{lemma}
   \begin{proof}
     Suppose $t$ is obtained from $t^+$ by mutating along the sequence $\bfk^+=(k_N,\ldots,k_1)$.
-    Set $\bfk^-=(n,\ldots,1,k_N,\ldots,k_1)$.
+    Let $\bfl$ denote a red-to-green sequence for $B^t$, it exists following \cite[Corollary 3.2.2]{muller} since $B^{t_+}$ is acyclic and hence has a maximal green sequence.
+    Write  $\bfk^-$ for the concatenation of $\bfl$ and $\bfk^+$.
 
     First observe that $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}$ acts linearly on $\RR_{\ge0}^n\times \RR^{m-n}$.
     Then, since $\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}=\eta^{\widetilde B^t}_{(\bfk^+)^{op}}$, we see from \cite[Equation (1.13)]{nakanishi-zelevinsky} that the action on $\RR_{\ge0}^n\times \RR^{m-n}$ is given by the matrix $\widetilde G^t$, i.e. 
     \[\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde G^t(\RR_{\ge0}^n\times \RR^{m-n})=\widetilde K^t.\]
-    By Lemma~\ref{le:mutation maps}, we have $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}=\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\eta^{\widetilde B^t}_{(n,\cdots,1)}\right)^{-1}$.
-    But $\eta^{\widetilde B^t}_{(n,\cdots,1)}(\RR_{\ge0}^n\times \RR^{m-n})\stackrel{?}{=}(\RR_{\le0}^n\times \RR^{m-n})$ and so $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}(\RR_{\le0}^n\times \RR^{m-n})=-\widetilde G^t(\RR_{\le0}^n\times \RR^{m-n})=\widetilde K^t$.
+    By Lemma~\ref{le:mutation maps}, we have $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}=\left(\eta^{\widetilde B^{t_+}}_{\bfk^+}\right)^{-1}\left(\eta^{\widetilde B^t}_\bfl\right)^{-1}$.
+    But $\eta^{\widetilde B^t}_\bfl(\RR_{\ge0}^n\times \RR^{m-n})=(\RR_{\le0}^n\times \RR^{m-n})$ and so $\left(\eta^{\widetilde B^{t_+}}_{\bfk^-}\right)^{-1}(\RR_{\le0}^n\times \RR^{m-n})=-\widetilde G^t(\RR_{\le0}^n\times \RR^{m-n})=\widetilde K^t$.
 
     It follows that
     \begin{align*}
