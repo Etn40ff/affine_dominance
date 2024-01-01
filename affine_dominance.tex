@@ -398,6 +398,17 @@ Set $\cP_{\lambda,j}= \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(
     \end{align*}
   \end{proof}
 
+  \begin{corollary}
+    Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through the seeds $t_+=t_1,\ldots,t_{N+1}=t$.
+    Then the imaginary cone at $t_{N+1}$ is contained in the hyperplane orthogonal to $\delta_{N+1}$.
+  \end{corollary}
+  \begin{proof}
+    We work by induction on $N$, the claim being known for $N=0$.
+    Observe that $-B^{t_N}\delta_N$ is contained in each domain of linearity for the mutation maps.
+    This can only happen if either the entire imaginary cone is contained in a single domain of linearity for the mutation in direction $k_N$ and so the claim holds, or $-B^{t_N}\delta_N$ has entry in position $k_N$ equal to zero.
+    In that case, $F_{k_N,+}^{t_N}\delta_N=F_{k_N,-}^{t_N}\delta_N=\delta_{N+1}$ and so the equality $\langle\delta_N,\lambda-\mu\rangle=0$ mutates to the equality $\langle\delta_{N+1},\lambda-\mu\rangle=0$.
+  \end{proof}
+
   \begin{proposition}
     Let $\lambda$ be imaginary with $z$ minimal such that $\lambda+z\widetilde B^+\delta$ is real.
     Then $\cP_\lambda$ contains the line segment $\{\lambda+x\widetilde B^+\delta:0\le x\le z\}$.
