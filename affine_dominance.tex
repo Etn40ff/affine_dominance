@@ -400,15 +400,50 @@ Set $\cP_{\lambda,j}= \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(
 
   \begin{corollary}
     Suppose $t$ is obtained from $t_+$ by mutating along the sequence $\bfk=(k_N,\ldots,k_1)$ passing through the seeds $t_+=t_1,\ldots,t_{N+1}=t$.
-    Then the imaginary cone at $t_{N+1}$ is contained in the hyperplane orthogonal to $\delta_{N+1}$.
+    Then the imaginary cone at $t_{N+1}$ is contained in the hyperplane orthogonal to $\widetilde \delta_{N+1}$.
   \end{corollary}
   \begin{proof}
     We work by induction on $N$, the claim being known for $N=0$.
-    Observe that $-B^{t_N}\delta_N$ is contained in each domain of linearity for the mutation maps.
-    This can only happen if either the entire imaginary cone is contained in a single domain of linearity for the mutation in direction $k_N$ and so the claim holds, or $-B^{t_N}\delta_N$ has entry in position $k_N$ equal to zero.
-    In that case, $F_{k_N,+}^{t_N}\delta_N=F_{k_N,-}^{t_N}\delta_N=\delta_{N+1}$ since the $k_N$-th row of $-B^{t_N}$ is equal to the $k_N$-th row of $F_{k_N,+}^{t_N}-F_{k_N,-}^{t_N}$.
-    It follows that the equality $\langle\delta_N,\lambda-\mu\rangle=0$ mutates to the equality $\langle\delta_{N+1},\lambda-\mu\rangle=0$.
-    \sayDR{This is only immediately true in the symmetric case where $(E_{k_N,\pm}^{t_N})^T=F_{k_N,\mp}^{t_N}$, otherwise some manipulations with symmetrizers is necessary to relate $(E_{k_N,pm}^{t_N})^T$ to $F_{k_N,\mp}^{t_N}$.}
+    Recall that $\cI^{t_N}$
+    \saySS{This should be defined}
+    \saySS{do we want to change notation: $\fd_\infty$ instead of $\cI$?}
+    is cut into (finitely many) domains of linearity for the mutation maps and that $-B^{t_N}\delta_N$ is contained in each of them.
+    Therefore the $k_N$-th coordinate of any $\lambda\in\cI^{t_N}$ weekly agrees in sign with the $k_N$-th coordinate of $-B^{t_N}\delta_N$.
+
+    If the $k_N$-th entry of $-B^{t_N}\delta_N$ is nonzero it must have sign $\varepsilon_N$, then for any $\lambda\in\cI^{t_N}$ we have  $\eta_{k_N}^{\widetilde B^{t_N}}(\lambda) = \widetilde E^{t_N}_{k_N,\varepsilon_N} \lambda$ and we compute
+    \begin{align*}
+      \langle \widetilde \delta_{N+1}, \eta_{k_N}^{\widetilde B^{t_N}}(\lambda) \rangle 
+      & =
+      \langle \widetilde F_{k_N,\varepsilon_N}^{t_N} \widetilde \delta_N, \widetilde E^{t_N}_{k_N,\varepsilon_N} \lambda \rangle\\
+      & =
+      \left(  \widetilde F_{k_N,\varepsilon_N}^{t_N} \widetilde \delta_N \right) ^T \widetilde D \widetilde E^{t_N}_{k_N,\varepsilon_N} \lambda \\
+      & =
+      \widetilde \delta_N^T \left( \widetilde F_{k_N,\varepsilon_N}^{t_N} \right) ^T \widetilde D \widetilde E^{t_N}_{k_N,\varepsilon_N} \lambda \\
+      & =
+      \widetilde \delta_N^T \widetilde D \widetilde E^{t_N}_{k_N,\varepsilon_N} \widetilde E^{t_N}_{k_N,\varepsilon_N} \lambda \\
+      & =
+      \widetilde \delta_N^T \widetilde D \lambda \\
+      & =
+      \langle \delta_N, \lambda \rangle \\
+      &=
+      0
+    \end{align*}
+    where we used the definition of pairing and the fact that, for any $t$, $k$, and $\varepsilon$,  $\left(\widetilde F_{k,\varepsilon}^t \right) ^T \widetilde D = \widetilde D \widetilde E^t_{k,\varepsilon}$.
+    \saySS{Note to self: The symmetrized $D$ is there because the dual basis to weights is coroots}
+
+    If instead the $k_N$-th entry of $-B^{t_N}\delta_N$ is zero then $\widetilde F_{k_N,+}^{t_N}\widetilde \delta_N=\widetilde \delta_{N+1}=\widetilde F_{k_N,-}^{t_N}\widetilde\delta_N$ since the $k_N$-th row of $-B^{t_N}$ is equal to the $k_N$-th row of $F_{k_N,+}^{t_N}-F_{k_N,-}^{t_N}$.
+    For $\lambda\in\cI^{t_N}$ let $\varepsilon$ the sign such that $\eta_{k_N}^{\widetilde B^{t_N}}(\lambda) = \widetilde E^{t_N}_{k_N,\varepsilon} \lambda$ and compute as before
+    \[
+      \langle \widetilde \delta_{N+1}, \eta_{k_N}^{\widetilde B^{t_N}}(\lambda) \rangle 
+      =
+      \langle \widetilde F_{k_N,\varepsilon}^{t_N} \widetilde \delta_N, \widetilde E^{t_N}_{k_N,\varepsilon} \lambda \rangle
+      =
+      \langle \widetilde \delta_N, \widetilde E_{k_N,\varepsilon}^{t_N} \widetilde E^{t_N}_{k_N,\varepsilon} \lambda \rangle
+      =
+      \langle \widetilde \delta_N, \lambda \rangle
+      =
+      0.
+    \]
   \end{proof}
 
   \begin{proposition}
