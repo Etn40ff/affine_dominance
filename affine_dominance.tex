@@ -406,7 +406,9 @@ Set $\cP_{\lambda,j}= \left(\eta^{\widetilde B^{t_0}}_{\bfk_j}\right)^{-1}\left(
     We work by induction on $N$, the claim being known for $N=0$.
     Observe that $-B^{t_N}\delta_N$ is contained in each domain of linearity for the mutation maps.
     This can only happen if either the entire imaginary cone is contained in a single domain of linearity for the mutation in direction $k_N$ and so the claim holds, or $-B^{t_N}\delta_N$ has entry in position $k_N$ equal to zero.
-    In that case, $F_{k_N,+}^{t_N}\delta_N=F_{k_N,-}^{t_N}\delta_N=\delta_{N+1}$ and so the equality $\langle\delta_N,\lambda-\mu\rangle=0$ mutates to the equality $\langle\delta_{N+1},\lambda-\mu\rangle=0$.
+    In that case, $F_{k_N,+}^{t_N}\delta_N=F_{k_N,-}^{t_N}\delta_N=\delta_{N+1}$ since the $k_N$-th row of $-B^{t_N}$ is equal to the $k_N$-th row of $F_{k_N,+}^{t_N}-F_{k_N,-}^{t_N}$.
+    It follows that the equality $\langle\delta_N,\lambda-\mu\rangle=0$ mutates to the equality $\langle\delta_{N+1},\lambda-\mu\rangle=0$.
+    \sayDR{This is only immediately true in the symmetric case where $(E_{k_N,\pm}^{t_N})^T=F_{k_N,\mp}^{t_N}$, otherwise some manipulations with symmetrizers is necessary to relate $(E_{k_N,pm}^{t_N})^T$ to $F_{k_N,\mp}^{t_N}$.}
   \end{proof}
 
   \begin{proposition}
