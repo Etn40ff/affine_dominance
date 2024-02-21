@@ -1,0 +1,665 @@
+%!TEX TS-program =  arara 
+% arara: pdflatex
+% arara: bibtex
+
+%Changes since the initial arXiv submission are marked:
+%SinceArXiv:  
+
+\documentclass{amsart}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{graphicx,verbatim, amsmath, amssymb, amsthm, amsfonts, epsfig, amsxtra,ifthen,mathtools,epstopdf,caption,enumerate,hyperref,hhline,bbm,capt-of,longtable}	
+\usepackage[usenames]{color}
+\usepackage[capitalize]{cleveref}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathAccent{\widebar}{0}{mathx}{"73}
+\epstopdfsetup{suffix=}
+\DeclareGraphicsExtensions{.ps}
+\DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
+
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{corollary}[proposition]{Corollary}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{thm}[proposition]{Theorem}
+\newtheorem{conj}[proposition]{Conjecture}
+\newtheorem{phen}{Phenomenon}
+
+\renewcommand\thephen{\Roman{phen}}
+
+\theoremstyle{definition}
+\newtheorem{example}[proposition]{Example}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{question}[proposition]{Question}
+
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem{problem}[proposition]{Problem}
+
+\numberwithin{equation}{section}
+
+
+% This is for setting off words we define in a separate typeface.
+\newcommand{\newword}[1]{\textbf{\emph{#1}}}
+
+\newcommand{\integers}{\mathbb Z}
+\newcommand{\rationals}{\mathbb Q}
+\newcommand{\naturals}{\mathbb N}
+\newcommand{\reals}{\mathbb R}
+
+\newcommand{\edge}{\,\,\rule[2.7pt]{20pt}{0.5pt}\,\,}
+
+\newcommand{\ep}{\varepsilon}
+\newcommand{\thet}{\vartheta}
+\newcommand{\col}{\operatorname{col}}
+\newcommand{\cut}{\operatorname{cut}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\op}{\operatorname{op}}
+\newcommand{\JIrr}{\operatorname{JIrr}}
+\newcommand{\ji}{\operatorname{ji}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\Wall}{\operatorname{Wall}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\cw}{\operatorname{cw}}
+\newcommand{\ccw}{\operatorname{ccw}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\vsgn}{\mathbf{sgn}}
+\newcommand{\Seed}{\operatorname{Seed}}
+%\newcommand{\Sh}{{\mathcal Sh}}
+\newcommand{\posspan}{\!\tiny\begin{array}{c}\mathbf{pos}\\\mathbf{span}\end{array}\!\!}
+%\newcommand{\posspan}{\underset{\text{span}}{\overset{\text{pos}}{}}}
+%\newcommand{\posspan}{\mathbf{span_+}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\geom}{{\operatorname{geom}}}
+\newcommand{\mon}{{\operatorname{mon}}}
+\newcommand{\Ray}{{\operatorname{Ray}}}
+\newcommand{\Ram}{{\operatorname{Ram}}}
+\newcommand{\uf}{{\operatorname{uf}}}
+\newcommand{\fr}{{\operatorname{fr}}}
+\newcommand{\Geom}{{\operatorname{\textbf{Geom}}}}
+\newcommand{\gFan}{\g\!\operatorname{Fan}}
+\newcommand{\Cg}{\mbox{{\rm Cg}}}
+\newcommand{\Con}{\mbox{{\rm Con}}}
+\newcommand{\Irr}{\mbox{{\rm Irr}}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\fs}{\mathrm{fs}}
+\newcommand{\ufs}{\mathrm{ufs}}
+\newcommand{\covers}{{\,\,\,\cdot\!\!\!\! >\,\,}}
+\newcommand{\covered}{{\,\,<\!\!\!\!\cdot\,\,\,}}
+\newcommand{\set}[1]{{\left\lbrace #1 \right\rbrace}}
+\newcommand{\pidown}{\pi_\downarrow}
+\newcommand{\piup}{\pi^\uparrow}
+\newcommand{\br}[1]{{\langle #1 \rangle}}
+\newcommand{\brr}[1]{{\bigl\langle #1 \bigr\rangle}}
+\newcommand{\brrr}[1]{{\Bigl\langle #1 \Bigr\rangle}}
+\newcommand{\brrrr}[1]{{\biggl\langle #1 \biggr\rangle}}
+\newcommand{\brrrrr}[1]{{\Biggl\langle #1 \Biggr\rangle}}
+\newcommand{\A}{{\mathcal A}}
+\newcommand{\EL}{{\mathcal L}}
+\newcommand{\F}{{\mathcal F}}
+\newcommand{\D}{{\mathfrak D}}
+\newcommand{\N}{{\mathcal N}}
+\newcommand{\p}{{\mathfrak p}}
+\newcommand{\X}{{\mathcal X}}
+\newcommand{\W}{{\mathcal W}}
+\newcommand{\join}{\vee}
+\newcommand{\meet}{\wedge}
+\renewcommand{\Join}{\bigvee}
+\newcommand{\Meet}{\bigwedge}
+\newcommand{\bigmeet}{\Meet}
+\newcommand{\bigjoin}{\Join}
+\newcommand{\leftq}[2]{\!\!\phantom{.}^{#1} {#2}}
+\newcommand{\closeleftq}[2]{\!\!\phantom{.}^{#1}\! {#2}}
+\newcommand{\Pge}{{\Phi_{\ge -1}}}
+%\newcommand{\ck}{^\vee}
+%\newcommand{\ck}{^{\scalebox{0.5}[0.5]{$\vee$}}}
+\newcommand{\ck}{\spcheck}
+\newcommand{\letw}{\le_{\mathrm{tw}}}
+\newcommand{\Alg}{\mathrm{Alg}}
+\newcommand{\toname}[1]{\overset{#1}{\longrightarrow}}
+\newcommand{\dashname}[1]{\overset{#1}{\mbox{---\!---}}}
+\newcommand{\st}{^\mathrm{st}}
+\renewcommand{\th}{^\text{th}}
+\newcommand{\nd}{^\text{nd}}
+\newcommand{\rd}{^\text{rd}}
+\newcommand{\0}{{\mathbf{0}}}
+\newcommand{\Vol}{\mathrm{Vol}}
+\newcommand{\lleq}{\le\!\!\!\le}
+\newcommand{\notlleq}{\le\!\!\!\!\not\,\le}
+\newcommand{\ggeq}{\ge\!\!\!\ge}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Tits}{\mathrm{Tits}}
+\newcommand{\Cone}{\mathrm{Cone}}
+\newcommand{\Star}{\mathrm{Star}}
+\newcommand{\Lin}{\mathrm{Lin}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Proj}{\mathrm{Proj}}
+\newcommand{\relint}{\mathrm{relint}}
+\newcommand{\Clust}{\mathrm{Clust}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\equivalent}{\Longleftrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\isomorph}{\cong}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Asym}{A_{\mathrm{sym}}}
+\newcommand{\Cox}{\mathrm{Cox}}
+\newcommand{\Des}{\mathrm{Des}}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inv}{inv}
+\newcommand{\odd}{\mathrm{odd}}
+\newcommand{\g}{\mathbf{g}}
+\newcommand{\s}{\mathbf{s}}
+\newcommand{\m}{\mathbf{m}}
+\renewcommand{\c}{\mathbf{c}}
+\renewcommand{\b}{\mathbf{b}}
+\renewcommand{\k}{\mathbbm{k}}
+\newcommand{\kk}{\mathbf{k}}
+\renewcommand{\ll}{{\boldsymbol\ell}}
+\newcommand{\ks}{\mathbf{k}}
+\renewcommand{\a}{\mathbf{a}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
+\renewcommand{\t}{\mathbf{t}}
+\renewcommand{\v}{\mathbf{v}}
+\renewcommand{\u}{\mathbf{u}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\tB}{{\tilde{B}}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\ZP}{\mathbb{ZP}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\R}{\mathcal{R}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\U}{\mathcal{U}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\H}{\mathcal{H}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Rel}{\operatorname{Rel}}
+\newcommand{\Trop}{\operatorname{Trop}}
+\newcommand{\pr}{{\operatorname{pr}}}
+\newcommand{\bB}{\widebar{B}}
+\renewcommand{\S}{\mathbf{S}}
+\newcommand{\Clear}{\operatorname{Clear}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Scat}{\operatorname{Scat}}
+\newcommand{\Fan}{\operatorname{Fan}}
+\newcommand{\ScatFan}{\operatorname{ScatFan}}
+\newcommand{\ClusFan}{\operatorname{ClusFan}}
+\newcommand{\CambScat}{\operatorname{CambScat}}
+\newcommand{\ChamberFan}{\operatorname{ChamberFan}}
+\newcommand{\Nar}{\operatorname{Nar}}
+\newcommand{\can}{\operatorname{can}}
+\renewcommand{\mid}{\operatorname{mid}}
+\newcommand{\re}{\mathrm{re}}
+\newcommand{\im}{\mathrm{im}}
+%\newcommand{\init}{\mathrm{in}}
+\renewcommand{\d}{{\mathfrak d}}
+%\newcommand{\f}{{\mathfrak f}}
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\hy}{\hat{y}}
+\newcommand{\ab}{\uparrow}
+\newcommand{\bel}{\downarrow}
+
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\Up}{\Upsilon}
+\newcommand{\tUp}{\widetilde\Upsilon}
+\newcommand{\cm}[3]{(#1\Vert#2)_{#3}}
+\newcommand{\Cm}[3]{\bigl(#1\big\Vert#2\bigr)_{#3}}
+\newcommand{\CM}[3]{\Bigl(#1\Big\Vert#2\Bigr)_{#3}}
+\newcommand{\cmrarrow}{{\small{\rightarrow}}}
+\newcommand{\cmlarrow}{{\small{\leftarrow}}}
+\newcommand{\cmcircarrow}{{\small{\circlearrowright}}}
+\newcommand{\cmr}[3]{(#1\cmrarrow#2)_{#3}}
+\newcommand{\Cmr}[3]{\bigl(#1\cmrarrow#2\bigr)_{#3}}
+\newcommand{\CMr}[3]{\Bigl(#1\cmrarrow#2\Bigr)_{#3}}
+\newcommand{\cml}[3]{(#1\cmlarrow#2)_{#3}}
+\newcommand{\Cml}[3]{\bigl(#1\cmlarrow#2\bigr)_{#3}}
+\newcommand{\CMl}[3]{\Bigl(#1\cmltarrow#2\Bigr)_{#3}}
+\newcommand{\cmcirc}[3]{(#1\,\cmcircarrow\,#2)_{#3}}
+\newcommand{\Cmcirc}[3]{\bigl(#1\,\cmcircarrow\,#2\bigr)_{#3}}
+\newcommand{\CMcirc}[3]{\Bigl(#1\,\cmcircarrow\,#2\Bigr)_{#3}}
+\newcommand{\intnum}[2]{(#1\,|\,#2)}
+\newcommand{\Phire}{\Phi^{\operatorname{re}}}
+\newcommand{\dist}{\operatorname{dist}}
+\renewcommand{\c}{{\mathbf c}}
+\newcommand{\dd}{{\mathbf d}}
+\newcommand{\aff}{\mathrm{aff}}
+\newcommand{\fin}{\mathrm{fin}}
+\renewcommand{\th}{^\text{th}}
+%\newcommand{\laff}{<}
+%\newcommand{\gaff}{>}
+\newcommand{\laff}{\triangleleft}
+\newcommand{\gaff}{\triangleright}
+\newcommand{\DF}{{\mathcal {DF}}}
+\newcommand{\DCScat}{{\operatorname{DCScat}}}
+\newcommand{\adj}[2]{\operatorname{adj}_{#1}(#2)}
+\newcommand{\Lower}{\operatorname{Lower}}
+\newcommand{\Upper}{\operatorname{Upper}}
+
+
+% Notation mess
+% the space of eigenvectors of c
+\newcommand{\eigenspace}[1]{U^{#1}}
+% the full root system
+\newcommand{\RSChar}{\Phi}
+\newcommand{\RS}{\RSChar}
+\newcommand{\RSre}{\RS^\re}
+\newcommand{\RSpos}{\RS^+}
+\newcommand{\RSneg}{\RS^-}
+\newcommand{\RSfin}{\RS_\fin}
+\newcommand{\RSfinpos}{\RSfin^+}
+\newcommand{\RSfinneg}{\RSfin^-}
+% simples in \RS
+\newcommand{\SimplesChar}{\Pi}
+\newcommand{\Simples}{\SimplesChar}
+\newcommand{\simple}{\alpha}
+% the root subsystem in \eigenspace (T is for "tubes")
+\newcommand{\RSTChar}{\Upsilon}
+\newcommand{\RST}[1]{\RSTChar^{#1}}
+\newcommand{\RSTfin}[1]{\RST{#1}_\fin}
+% simples in \RST
+\newcommand{\SimplesTChar}{\Xi}
+\newcommand{\SimplesT}[1]{\SimplesTChar^{#1}}
+\newcommand{\simpleT}{\beta}
+% Supports
+\newcommand{\Supp}{\operatorname{Supp}_\SimplesChar}
+\newcommand{\SuppT}{\operatorname{Supp}_\SimplesTChar}
+% traversals for \tau-orbits
+\newcommand{\TravInfChar}{\Psi}
+\newcommand{\TravInf}[1]{\TravInfChar^{#1}}
+\newcommand{\proj}{\to}
+\newcommand{\TravProj}[1]{\overrightarrow{\TravInfChar}^{#1}}
+\newcommand{\inj}{\leftarrow}
+\newcommand{\TravInj}[1]{\overleftarrow{\TravInfChar}^{#1}}
+%\newcommand{\proj}{\medvertdot}
+%\newcommand{\TravProj}[1]{\TravInfChar^{#1}_\proj}
+%\newcommand{\inj}{\dotmedvert}
+%\newcommand{\TravInj}[1]{\TravInfChar^{#1}_\inj}
+\newcommand{\TravRegChar}{\Omega}
+\newcommand{\TravReg}[1]{\TravRegChar^{#1}}
+% Schur roots
+\newcommand{\AP}[1]{\RS_{#1}}
+\newcommand{\APre}[1]{\AP{#1}^\re}
+%\newcommand{\APT}[1]{\RST{#1}_{#1}}           % THIS NEEDS A BETTER NOTATION possibly \Lambda_c
+%\newcommand{\APTre}[1]{\RST{#1;\re}_{#1}}     % THIS NEEDS A BETTER NOTATION possibly \Lambda_c^\re
+\newcommand{\APTChar}{\Lambda}
+\newcommand{\APT}[1]{\APTChar_{#1}}      
+\newcommand{\APTre}[1]{\APT{#1}^\re}     
+
+
+\newcommand{\fakesubsec}[1]{\medskip\noindent\textbf{#1.}}  %unnumbered
+
+%\allowdisplaybreaks
+
+%  Uncomment the following to remove all figures (useful for checking how many pages are taken up by figures)
+%\usepackage{comment}
+%\excludecomment{figure}
+%\let\endfigure\relax
+
+
+
+
+
+
+
+% Commands for marginal notes below
+\usepackage[draft]{say}
+\newcommand{\sayS}[1]{\say[S]{#1}}
+\newcommand{\sayN}[1]{\say[N]{#1}}
+\newcommand{\margin}[1]{\say[N]{#1}}
+% control the width of your comments
+\addtolength{\marginparwidth}{3mm}
+
+%  If you want to switch which margin you're using, do the command  \switchmargin before your marginal comment.
+% But it won't let you switch which margin you use in the middle of a paragraph of the main text.
+% Also, you can only switch if there is room on the other margin.  (I.e. if you switch too often, things may overlap
+\makeatletter
+\newcommand{\switchmargin}{
+\if@reversemargin
+\normalmarginpar
+\else
+\reversemarginpar
+\fi
+}
+\makeatother
+
+%\newcommand{\response}[2]{{\color{red}#1:--}#2{\color{red}--:#1}}
+\newcommand{\response}[2]{ {\color{red}#1:}~#2}
+\newcommand{\rn}[1]{\response{NR}{#1}}
+\newcommand{\rs}[1]{\response{SS}{#1}}
+
+\newcommand{\ok}[1]{ {\color{blue}#1: OK }}
+\newcommand{\okn}{\ok{NR}}
+\newcommand{\oks}{\ok{SS}}
+
+% A quick way to get rid of the red text.
+%\renewcommand{\textcolor}[2]{}
+
+
+\author{Nathan Reading}
+\author{Dylan Rupel}
+\author{Salvatore Stella}
+\title{Dominance Regions for Affine Cluster Algebras}
+\address[N. Reading]{Department of Mathematics, North Carolina State University, Raleigh, NC, USA}
+\address[D. Rupel]{NEED THIS}
+\address[S. Stella]{NEED THIS}
+%\keywords{}
+\thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608.
+Dylan Rupel was partially supported by ????.  
+Salvatore Stella was partially supported by ????.  }
+%\received{}
+%\revised{}
+%\accepted{}
+
+\begin{document}
+
+\begin{abstract}
+NEED THIS
+\end{abstract}
+
+\maketitle
+
+\vspace{-8pt}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\margin{Check specific references to {scatfan}, {scatcomb}, and {affscat}.}
+
+
+
+
+\section{Background}
+Given a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
+That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
+We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
+
+Given an exchange matrix $B$, the \newword{mutation map} $\eta:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix.
+In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors, and also, the mutation maps we need use transposes $B^T$ of exchange matrices.
+Thus we write maps $\eta_\kk^{B^T}$.
+This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
+
+For seeds $t_0$ and $t$ and an exchange matrix $B$, let $C_t^{B;t_0}$ be the matrix whose columns are the $C$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
+Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the same sign.
+(This is ``sign-coherence of $C$-vectors'' which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
+Thus we will refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
+For $\kk=k_m\cdots k_1$, define seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$.
+The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_\ell$ of $C_{t_{\ell-1}}^{B;t_0}$ is \emph{positive} for all $\ell$ with $1\le\ell<m$.
+
+
+
+Let $G_t^{B;t_0}$ be the matrix whose columns are the $\g$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
+Let $\Cone^{B;t_0}_t$ be the nonnegative linear span of the columns of $G_t^{B;t_0}$.
+For each $k\in\set{1,\ldots,n}$, the entries in the $k\th$ row of $G_t^{B;t_0}$ are not all zero and the nonzero entries have the same sign.
+(This is ``sign-coherence of $\g$-vectors'', conjectured as \cite[Conjecture~6.13]{ca4} and proved as \cite[Theorem 5.11]{GHKK}.)
+Thus all vectors in $\Cone^{B;t_0}_t$ all have weakly the same sign in the $k\th$ position.
+The inverse of $G_t^{B;t_0}$ is $\bigl(C_t^{-B^T_0;t_0}\bigr)^T$.
+(This is \cite[Theorem~1.2]{NZ} or \cite[Theorem~1.1]{framework} and \cite[Theorem~3.30]{framework}.)
+Thus $\Cone^{B;t_0}_t=\set{x\in\reals^n:x^TC_t^{-B^T;t_0}\ge0}$, where $0$ is a row vector and ``$\ge$'' means componentwise comparison. 
+
+We will need to relate the cones $\Cone^{B;t_0}_t$ and $\Cone^{-B^T;t_0}_t$.
+It is immediate from \cite[Proposition~7.5]{universal} and the skew-symmetry of $B$ that $-B^T$ is a \newword{rescaling} of $B$, meaning that there is a diagonal matrix $\Sigma$ with positive entries on the diagonal such that $-B^T=\Sigma^{-1}B\Sigma$.
+Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a scalar positive multiple of the $i\th$ column of $\Sigma G_t^{B;t_0}$.
+(In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
+Thus we have the following fact.
+\begin{lemma}\label{B or -BT}
+The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
+\end{lemma}
+
+
+For $k\in\set{1,\ldots,n}$, let $J_k$ be the $n\times n$ matrix that agrees with the identity matrix except that $J_k$ has $-1$ in position $kk$.
+For an $n\times n$ matrix $M$ and $k\in\set{1,\ldots,n}$, let $M^{\bullet k}$ be the matrix that agrees with $M$ in column $k$ and has zeros everywhere outside of column $k$.
+Let $M^{k\bullet}$ be the matrix that agrees with $M$ in row $k$ and has zeros everywhere outside of row $k$.
+
+Given a real number $a$, let $[a]_+$ denote $\max(a,0)$.
+Given a matrix $M=[m_{ij}]$, define $[M]_+$ to be the matrix whose $ij$-entry is $[m_{ij}]_+$.
+Given an exchange matrix $B$, an index $k\in\set{1,\ldots,n}$ and a sign $\ep\in\set{\pm1}$, define matrices
+\begin{align*}
+E_{\ep,k}^B&=J_k+[\ep B]_+^{\bullet k}\\
+F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
+\end{align*}
+Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
+The following is essentially a result of \cite{NZ}, although it is not stated there in this form.  \margin{Do I have this attribution right?}
+\begin{lemma}\label{EBF trick}
+For any $k\in\set{1,\ldots,n}$ and $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
+\end{lemma}
+\begin{proof}
+We expand the product $(J_k+[\ep B]_+^{\bullet k})B(J_k+[-\ep B]_+^{k\bullet})$ to four terms.
+The term $[\ep B]_+^{\bullet k}B[-\ep B]_+^{k\bullet}$ is zero because $b_{kk}=0$.
+The term $[\ep B]_+^{\bullet k}BJ_k$ is $[\ep B]_+^{\bullet k}B^{k\bullet}J_k$, which equals $[\ep B]_+^{\bullet k}B^{k\bullet}$.
+Similarly, the term $J_kB[-\ep B]_+^{k\bullet}$ equals $B^{\bullet k}[-\ep B]_+^{k\bullet}$
+%\begin{align*}
+%(J_k+[\ep B]_+^{\bullet k})B(J_k+[-\ep B]_+^{k\bullet})
+%&=J_kBJ_k+J_kB[-\ep B]_+^{k\bullet}+[\ep B]_+^{\bullet k}BJ_k+[\ep B]_+^{\bullet k}B[-\ep B]_+^{k\bullet}.
+%\end{align*}
+Both 
+Thus the $ij$-entry of $E_{\ep,k}^BBF_{\ep,k}^B$ is 
+\[
+\left\{\begin{aligned}
+-b_{ij}&\quad\text{if }k\in\set{i,j}\\
+b_{ij}&\quad\text{otherwise}
+\end{aligned}\right\}
++
+\left\{\begin{aligned}
+|b_{ik}|b_{kj}&\quad\text{if }\sgn b_{ik}=\ep\\
+0&\quad\text{otherwise}
+\end{aligned}\right\}
++
+\left\{\begin{aligned}
+b_{ik}|b_{kj}|&\quad\text{if }\sgn b_{kj}=-\ep\\
+0&\quad\text{otherwise}
+\end{aligned}\right\}.
+\]
+This coincides with the $ij$-entry of $\mu_k(B)$.
+\end{proof}
+
+Given a matrix $M$, write $M_{\col(i)}$ for the $i\th$ column of $M$.
+We observe that $(MN)_{\col i}=M(N)_{\col i}$.
+\begin{lemma}\label{columns lem}
+Suppose $B=[b_{ij}]$ is an exchange matrix, let $k\in\set{1,\ldots,n}$, and choose a sign $\ep\in\set{\pm1}$.
+\begin{enumerate}[\quad\bf1.]
+\item \label{col i}
+$(E_{\ep,k}^BB)_{\col i}=J_k(B)_{\col i}+b_{ki}([\ep B]_+)_{\col k}$.
+\item \label{col k}
+$(E_{\ep,k}^BB)_{\col k}=(E_{-\ep,k}^BB)_{\col k}=B_{\col k}$.
+\item \label{cols k}
+$(E_{-\ep,k}^BB)_{\col i}=(E_{\ep,k}^BB)_{\col i}-\ep b_{ki}B_{\col k}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+The first two assertions follow immediately from the fact that $(MN)_{\col i}=M(N)_{\col i}$ and the fact that $b_{kk}=0$.
+The first assertion (for $\ep$ and $-\ep$) implies that $(E_{-\ep,k}^BB)_{\col i}=(E_{\ep,k}^BB)_{\col i}-b_{ki}([\ep B]_+-[-\ep B]_+)_{\col k}$.  
+The third assertion follows.
+\end{proof}
+
+We will also need the following simple fact about nonnegative linear spans.
+Given a set $S$ of vectors, let $\posspan(S)$ denote the nonnegative linear span of $S$.
+For $k\in\set{1,\ldots,n}$ and $\ep\in\set{\pm1}$, let $S_{k,\ep}$ be the set of vectors in $S$ whose $k\th$ entry has sign strictly agreeing with $\ep$.
+
+\begin{lemma}\label{ps lemma}
+Suppose $\lambda$ is a vector in $\reals^n$ whose $k\th$ $\lambda_k$ has $\ep\lambda_k\le0$.
+Then %any vector in $\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:\sgn x_k=\ep}$ can be written as a vector in $\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:x_k=0}$ plus a vector in $posspan(S_{k,\ep})$.
+\begin{multline*}
+\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:\ep x_k\ge0}\\
+=\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:x_k=0}+\posspan(S_{k,\ep}).
+\end{multline*}
+\end{lemma}
+\begin{proof}
+The set on the right side is certainly contained in the set on the right side.
+If $x$ is an element of the left side, then $x$ is $\lambda$ plus a nonzero element $y$ of $\posspan(S_{k,\ep})$ plus an element $z$ of $\posspan(S\setminus S_{k,\ep})$.
+Since the sign of $\ep x\ge0$ and $\ep\lambda\le0$, there exists~$t$ with $0\le t\le1$ such that $\lambda+ty+z$ has $k\th$ entry $0$.
+We see that ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
+\end{proof}
+
+
+
+\section{First main result}
+Let $B_0$ be an exchange matrix.
+For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Given a vector $\lambda\in\reals^n$, we want to understand $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
+Our first main result is about $\P^{B_0}_{\lambda,\kk}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$ for some sequence $\kk$.
+
+The map $\eta_{\kk^{-1}}^{B_t^T}$ is linear on the cone $\left(\reals_{\ge0}\right)^n$. \margin{Probably need to explain why.  $B$-cones and such.}
+Let $D$ be the domain of linearity of $\eta_{\kk^{-1}}^{B_t^T}$ containing $\left(\reals_{\ge0}\right)^n$ and let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$D$.
+
+\begin{theorem}\label{eta in L}
+Suppose $\kk=k_m\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Let $\lambda\in\Cone^{B_0;t_0}_t$.
+If $\kk^{-1}=k_1\cdots k_m$ is a green sequence for $-B_t$, then 
+\[\P_{\lambda,\kk}\subseteq\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}.\]
+\end{theorem}
+
+Moving towards the proof of \cref{eta in L}, we first determine the matrix for $\L_{\kk^{-1}}^{B_t^T}$ acting on column vectors.
+By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$.
+Thus $\eta_\kk^{B_0^T}\left(\Cone^{B_0;t_0}_t\right)=\left(\reals_{\ge0}\right)^n$.
+The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence $\kk$ of mutations.
+Thus we have the following proposition.
+
+\begin{proposition}\label{L mat}
+The matrix for $\L_{\kk^{-1}}^{B_t^T}$, acting on column vectors, is $G_t^{B_0;t_0}$.
+\end{proposition}
+
+\begin{remark}\label{conditional}
+As written, \cite[Proposition~8.13]{universal} is conditional on ``sign-coherence of $C$-vectors'', which was a conjecture but is now a theorem \cite[Corollary~5.5]{GHKK}.
+\end{remark}
+
+We now apply a result of \cite{NZ}, namely that $G_t^{B_0;t_0}B_t=B_0C_t^{B_0;t_0}$.
+This fact follows from the proof of \cite[Proposition~1.3]{NZ}, or from \cite[(6.14)]{ca4}, as explained in \cite[Remark~2.1]{NZ}.
+Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, we rewrite the right side of the containment in \cref{eta in L} as follows.
+
+\begin{proposition}\label{B0C}
+$\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$.
+\end{proposition}
+
+\cref{B0C} immediately implies the following statement that is weaker than \cref{eta in L}.
+
+\begin{proposition}\label{on domain}
+$\P_{\lambda,\kk}\cap D=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\cap D$.
+\end{proposition}
+
+We now prove our first main result.
+
+\begin{proof}[Proof of \cref{eta in L}]
+In light of \cref{B0C}, the theorem is equivalent to 
+\[\P_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
+Now \cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$.  
+(The hypothesis that $\kk^{-1}$ is a green sequence for $-B_t$ determines $\ep$, but we leave $\ep$ unspecified for now in order to highlight later where this hypothesis is relevant.)
+By \cref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$ are their own inverses,
+\begin{equation}\label{ind B0C}\begin{aligned}
+\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}
+&=\set{\lambda+B_0F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}\alpha:\alpha\ge0}\\
+&=\set{\lambda+E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\\
+&=E^{B_1}_{\ep,k_1}\set{E^{B_1}_{\ep,k_1}\lambda+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.
+\end{aligned}\end{equation}
+
+The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$.  \margin{Probably need to explain this too.}
+This map is $\eta_{\kk}^{B_0^T}={\eta_{k_m}^{B_{m-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
+Since $\eta_{k_2\cdots k_m}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)=\Cone^{B_1;t_1}_t$ (again by \cite[Proposition~8.13]{universal}), we see that $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B_1;t_1}$.
+The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
+
+We claim that $E^{B_1}_{\ep,k_1}$ is the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
+Since $E^{B_1}_{\ep,k_1}$ is its own inverse, the claim is equivalent to saying that implies that $E^{B_1}_{\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_0^T}$ on $\Cone_t^{B_0;t_0}$.
+
+By \cite[(1.13)]{NZ}, $\ep$ is the sign of the $k_1$-column of $\bigl(G_t^{-B_1^T;t_1}\bigr)^T$.
+That is, $\ep$ is the sign of the $k_1$-row of $G_t^{-B_1^T;t_1}$, or in other words, the sign of the $k_1$-entry of vectors in $\Cone_t^{-B^T_1;t_1}$.
+By \cref{B or -BT}, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{B_1;t_1}$, which is the sign that determines how $\eta_{k_1}^{B_1^T}$ acts on $\Cone_t^{B_1;t_1}$.
+We now easily check that the action of $\eta_{k_1}^{B_1^T}$ on vectors whose $k_1$-entry has sign $\ep$ is precisely the action of $E^{B_1}_{\ep,k_1}$.
+%It negates the $k_1$ entry.
+%The $i\th$ ($i\neq k$) entry gets sent to itself plus the $k_1$ entry times $(B_1)_{ik}$ times $\ep$, if $(B_1)_{ik}$ also has sign $\ep$.
+
+Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$, so that $\lambda'\in\Cone_t^{B_1;t_1}$ and $\lambda'=E^{B_1}_{\ep,k_1}\lambda$.
+By induction on $m$, 
+\[\eta_{k_2\cdots k_m}^{B_t^T}\set{\eta_{k_m\cdots k_2}^{B_1^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+Applying the homeomorphism $\eta_{k_1}^{B_1^T}$ to both sides, we obtain
+\[\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+In light of \eqref{ind B0C}, we can complete the proof by showing that
+\[\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq E^{B_1}_{\ep,k_1}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+
+We have seen that $E^{B_1}_{\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_1^T}$ on the set $\set{x\in\reals^n:\sgn x_{k_1}=\ep}$.
+We can similarly check that $E^{B_1}_{-\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_1^T}$ on $\set{x\in\reals^n:\sgn x_{k_1}=-\ep}$.
+Thus $\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}$ is
+\[(U\cap\set{x\in\reals^n:\sgn x_{k_1}=-\ep})\cup(V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}),\]
+where 
+{\small
+\begin{align*}
+U&=E^{B_1}_{\ep,k_1}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{\ep,k_1}\lambda'+\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n\\
+V&=E^{B_1}_{-\ep,k_1}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{-\ep,k_1}\lambda'+\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n,
+\end{align*}
+}
+where $\posspan$ denotes the nonnegative linear span of a set of vectors.
+
+We need to show that $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}\subseteq U$.
+Since $\eta_{k_1}^{B_1^T}$ is a homeomorphism, $U\cap\set{x\in\reals^n:x_{k_1}=0}=V\cap\set{x\in\reals^n:x_{k_1}=0}$.
+By \cref{ps lemma}, any vector in $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}$ equals a vector in $V\cap\set{x\in\reals^n:x_{k_1}=0}$ plus a positive combination of vectors $\left(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}$ whose $k_1$-entry has sign $\ep$.
+Therefore, it suffices to show that every vector $\left(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}$ whose $k_1$-entry has sign~$\ep$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$.
+
+As a temporary shorthand, write $b_{ij}$ for the entries of $B_1$ and write $k$ for $k_1$.
+Suppose $v_i=\left(E^{B_1}_{-\ep,k}B_1C_t^{B_1;t_1}\right)_{\col i}$ for some~$i$ and suppose the $k$-entry of $v_i$ has sign $\ep$.
+Write $M$ for $E^{B_1}_{-\ep,k}B_1$ and write $N$ for $E^{B_1}_{\ep,k}B_1$.
+\cref{columns lem}.\ref{col i} implies that $M_{kj}=-b_{kj}$ for all~$j$.
+\cref{columns lem}.\ref{cols k} implies that if $\ep M_{kj}\ge0$, then $M_{\col j}=N_{\col j}+|b_{kj}|N_{\col k}$.
+Similarly, if $\ep M_{kj}\le0$, then $M_{\col j}=N_{\col j}-|b_{kj}|N_{\col k}$.
+
+Now $v_i=E^{B_1}_{-\ep,k}B_1\left(C_t^{B_1;t_1}\right)_{\col i}$, and $\left(C_t^{B_1;t_1}\right)_{\col i}$ has a sign $\delta\in\set{\pm1}$, meaning that it is not zero and all of its nonzero entries have sign $\delta$.
+(This is ``sign-coherence of $C$-vectors''.  
+See Remark~\ref{conditional}.)
+Thus there are nonnegative numbers $\gamma_j$ such that $v_i=\delta\sum_{j=1}^n\gamma_jM_{\col j}$.
+Write $\set{1,\ldots,n}=S\cup T$ with $S\cup T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
+Then
+\begin{align*}
+v_i
+&=\delta\sum_{j\in S}\gamma_jM_{\col j}+\delta\sum_{j\in T}\gamma_jM_{\col j}\\
+&=\delta\sum_{j\in S}\gamma_j(N_{\col j}+|b_{kj}|N_{\col k})+\delta\sum_{j\in T}\gamma_j(N_{\col j}-|b_{kj}|N_{\col k})\\
+&=\delta\sum_{j=1}^n\gamma_jN_{\col j}-\delta\sum_{j=1}^n\ep\gamma_jb_{kj}N_{\col k}\\
+&=N\left(C_t^{B_1;t_1}\right)_{\col j}+\delta\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
+&=N\left(C_t^{B_1;t_1}\right)_{\col j}+\sigma N_{\col k}.\\
+\end{align*}
+where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\delta\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
+
+As noted above, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{-B_1^T;t_1}$.
+Since $\Cone^{-B_1^T;t_0}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_0}\ge0}$, the rows of $\left(C_t^{B_1;t_0}\right)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
+In particular $\left(C_t^{B_1;t_0}\right)^{-1}(\ep e_k)$ has nonnegative entries.
+Thus $C_t^{B_1;t_0}\left(C_t^{B_1;t_0}\right)^{-1}(\ep e_k)=\ep e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
+
+Now, the hypothesis that $\kk^{-1}$ is a green sequence for $-B_t$ says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
+Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_0}$.
+We have shown that $v_i=N\left(C_t^{B_1;t_1}\right)_{\col j}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_0}$.
+In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
+\end{proof}
+
+
+%keller defined green sequences (unfortunately for quivers): 
+%https://arxiv.org/abs/1102.4148
+%
+%I was grateful to seven for writing the skew-symetrizable case:
+%https://www.sciencedirect.com/science/article/pii/S0024379513006381
+%
+%https://mathoverflow.net/questions/269275/which-cluster-algebras-where-the-existence-of-maximal-green-sequences-is-still-u
+
+% bibliography
+\bibliographystyle{plain}
+\bibliography{bibliography}
+\vspace{-0.175 em}
+
+
+\end{document}
+
