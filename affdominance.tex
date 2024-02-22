@@ -404,8 +404,9 @@ Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the 
 Thus we will refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
 For $\kk=k_m\cdots k_1$, define seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$.
 The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_\ell$ of $C_{t_{\ell-1}}^{B;t_0}$ is \emph{positive} for all $\ell$ with $1\le\ell<m$.
-
-
+We will call the sequence $\kk$ a \newword{red sequence} for $B$ if it is a green sequence for $-B$.
+(A red sequence relates to antiprincipal coefficients: 
+If we were to define the $C$-vectors recursively starting with the negative of the identity matrix, the requirement for a red sequence is that the $k_\ell$ column is negative at every step.)
 
 Let $G_t^{B;t_0}$ be the matrix whose columns are the $\g$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
 Let $\Cone^{B;t_0}_t$ be the nonnegative linear span of the columns of $G_t^{B;t_0}$.
@@ -516,19 +517,49 @@ We see that ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
 Let $B_0$ be an exchange matrix.
 For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
 Given a vector $\lambda\in\reals^n$, we want to understand $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
+
+\noindent
+START ALTERNATIVE WORDING
+
+There may be more than one sequence connecting $t_0$ to $t$.
+
+\noindent
+NOT TRUE:\\
+The mutation map $\eta_\kk^{B_0^T}$ depends only on $t$, not on the choice of $\kk$.
+
+\noindent
+HOWEVER, we can rescue the following (by showing that different $\kk$s with the same $t$ are related by a global permutation of rows/coumns):\\
+Thus we define $\P^{B_0}_{\lambda,t}$ to be $\P^{B_0}_{\lambda,\kk}$ for any sequence $\kk=k_m\cdots k_1$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Our first main result is about $\P^{B_0}_{\lambda,t}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$.
+
 Our first main result is about $\P^{B_0}_{\lambda,\kk}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$ for some sequence $\kk$.
+
+
+\begin{theorem}\label{P in B0C}
+Fix an exchange pattern with $B_0$ at $t_0$.
+For some vertex $t$, suppose there exists a red sequence for $B_t$ that ends at $t_0$.
+Then for $\lambda\in\Cone^{B_0;t_0}_t$,
+\[\P^{B_0}_{\lambda,t}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
+\end{theorem}
+
+\noindent
+END ALTERNATIVE WORDING
+
+
 
 The map $\eta_{\kk^{-1}}^{B_t^T}$ is linear on the cone $\left(\reals_{\ge0}\right)^n$. \margin{Probably need to explain why.  $B$-cones and such.}
 Let $D$ be the domain of linearity of $\eta_{\kk^{-1}}^{B_t^T}$ containing $\left(\reals_{\ge0}\right)^n$ and let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$D$.
 
-\begin{theorem}\label{eta in L}
+
+
+\begin{theorem}\label{P in B0C}
 Suppose $\kk=k_m\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
 Let $\lambda\in\Cone^{B_0;t_0}_t$.
-If $\kk^{-1}=k_1\cdots k_m$ is a green sequence for $-B_t$, then 
-\[\P_{\lambda,\kk}\subseteq\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}.\]
+If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then 
+\[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
 \end{theorem}
 
-Moving towards the proof of \cref{eta in L}, we first determine the matrix for $\L_{\kk^{-1}}^{B_t^T}$ acting on column vectors.
+Moving towards the proof of \cref{P in B0C}, we first determine the matrix for $\L_{\kk^{-1}}^{B_t^T}$ acting on column vectors.
 By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$.
 Thus $\eta_\kk^{B_0^T}\left(\Cone^{B_0;t_0}_t\right)=\left(\reals_{\ge0}\right)^n$.
 The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence $\kk$ of mutations.
@@ -544,25 +575,26 @@ As written, \cite[Proposition~8.13]{universal} is conditional on ``sign-coherenc
 
 We now apply a result of \cite{NZ}, namely that $G_t^{B_0;t_0}B_t=B_0C_t^{B_0;t_0}$.
 This fact follows from the proof of \cite[Proposition~1.3]{NZ}, or from \cite[(6.14)]{ca4}, as explained in \cite[Remark~2.1]{NZ}.
-Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, we rewrite the right side of the containment in \cref{eta in L} as follows.
+Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, we rewrite the right side of the containment in \cref{P in B0C} as follows.
 
 \begin{proposition}\label{B0C}
 $\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$.
 \end{proposition}
 
-\cref{B0C} immediately implies the following statement that is weaker than \cref{eta in L}.
+In light of \cref{B0C}, \cref{P in B0C} is equivalent to
+\[\P^{B_0}_{\lambda,\kk}\subseteq\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}.\]
+
+\cref{B0C} also immediately implies the following statement that is weaker than \cref{P in B0C}.
 
 \begin{proposition}\label{on domain}
-$\P_{\lambda,\kk}\cap D=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\cap D$.
+$\P^{B_0}_{\lambda,\kk}\cap D=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\cap D$.
 \end{proposition}
 
 We now prove our first main result.
 
-\begin{proof}[Proof of \cref{eta in L}]
-In light of \cref{B0C}, the theorem is equivalent to 
-\[\P_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
-Now \cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$.  
-(The hypothesis that $\kk^{-1}$ is a green sequence for $-B_t$ determines $\ep$, but we leave $\ep$ unspecified for now in order to highlight later where this hypothesis is relevant.)
+\begin{proof}[Proof of \cref{P in B0C}]
+\cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$.  
+(The hypothesis that $\kk^{-1}$ is a red sequence for $B_t$ determines $\ep$, but we leave $\ep$ unspecified for now in order to highlight later where this hypothesis is relevant.)
 By \cref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$ are their own inverses,
 \begin{equation}\label{ind B0C}\begin{aligned}
 \set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}
@@ -640,11 +672,22 @@ Since $\Cone^{-B_1^T;t_0}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_0}\ge0}$, the rows o
 In particular $\left(C_t^{B_1;t_0}\right)^{-1}(\ep e_k)$ has nonnegative entries.
 Thus $C_t^{B_1;t_0}\left(C_t^{B_1;t_0}\right)^{-1}(\ep e_k)=\ep e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
 
-Now, the hypothesis that $\kk^{-1}$ is a green sequence for $-B_t$ says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
+Now, the hypothesis that $\kk^{-1}$ is a red sequence for $B_t$, or equivalently a green sequence for $-B_t$, says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
 Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_0}$.
 We have shown that $v_i=N\left(C_t^{B_1;t_1}\right)_{\col j}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_0}$.
 In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
+
+
+WHERE TO PUT THIS?
+(define maximal green sequence)
+(define $\P_\lambda$)
+
+\begin{corollary}\label{P point}
+Suppose $t'$ is a seed in the exchange graph for $B;t$ and take $\lambda\in\Cone^{B;t}_{t'}$.
+If there exists a maximal green sequence for $B$, then $\P^B_\lambda=\set{\lambda}$.
+\end{corollary}
+
 
 
 %keller defined green sequences (unfortunately for quivers): 
