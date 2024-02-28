@@ -101,6 +101,8 @@
 \newcommand{\brrrr}[1]{{\biggl\langle #1 \biggr\rangle}}
 \newcommand{\brrrrr}[1]{{\Biggl\langle #1 \Biggr\rangle}}
 \newcommand{\A}{{\mathcal A}}
+\newcommand{\GG}{{\mathbf G}}
+\newcommand{\CC}{{\mathbf C}}
 \newcommand{\EL}{{\mathcal L}}
 \newcommand{\F}{{\mathcal F}}
 \newcommand{\D}{{\mathfrak D}}
@@ -133,14 +135,6 @@
 \newcommand{\lleq}{\le\!\!\!\le}
 \newcommand{\notlleq}{\le\!\!\!\!\not\,\le}
 \newcommand{\ggeq}{\ge\!\!\!\ge}
-\newcommand{\FF}{\mathcal{F}}
-\newcommand{\ZZ}{\mathbb{Z}}
-\newcommand{\QQ}{\mathbb{Q}}
-\newcommand{\RR}{\mathbb{R}}
-\newcommand{\CC}{\mathbb{C}}
-\newcommand{\PP}{\mathbb{P}}
-\newcommand{\GL}{\mathrm{GL}}
-\newcommand{\Tits}{\mathrm{Tits}}
 \newcommand{\Cone}{\mathrm{Cone}}
 \newcommand{\Star}{\mathrm{Star}}
 \newcommand{\Lin}{\mathrm{Lin}}
@@ -183,6 +177,7 @@
 \newcommand{\ZP}{\mathbb{ZP}}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\B}{\mathcal{B}}
+\newcommand{\BB}{\mathbf{B}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\R}{\mathcal{R}}
 \renewcommand{\L}{\mathcal{L}}
@@ -388,6 +383,7 @@ NEED THIS
 
 
 \section{Background}
+We assume the basic definitions of exchange matrices and of matrix mutation.
 Given a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
 We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
@@ -399,9 +395,9 @@ Thus we write maps $\eta_\kk^{B^T}$.
 This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 
 Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\left(\eta_{\kk}^{B^T}\right)^{-1}\set{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
-Define $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
+Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
-If $\lambda'=\eta^{B^T}_\kk$ and $B'=\mu_\kk(B)$, then $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
+If $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$, then $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
 \end{lemma}
 \begin{proof}
 For any $\ll$,
@@ -762,6 +758,66 @@ SS HOMEWORK:  Prove that the imaginary cone is in the domain of linearity when $
 THEN:  We use the EBF trick again to rewrite $B_0C$ as $GB_t$. 
 
 Paper this spring.
+
+\section{Extending to extended exchange matrices}
+We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
+We will also consider $m\times m$ matrices related to $\tB$:
+Writing $\tB$ in block form $\begin{bsmallmatrix}B\\E\end{bsmallmatrix}$, let $\BB$ be the matrix with block form $\begin{bsmallmatrix}B&-E^T\\E&0\end{bsmallmatrix}$.
+Most importantly, $\BB$ is skew-symmetrizable and agrees with $\tB$ in columns $1$ to $n$.
+Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
+
+The matrix $\BB$ defines mutation maps $\eta_\kk^{\BB^T}$ that act on $\reals^m$ rather than $\reals^n$, but without exception we will only consider mutations in positions $1,\ldots,n$.
+Also, given $\BB$, a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$, there are associated matrices of $\g$-vectors and $C$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
+Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have block forms
+\[
+\GG_t^{\BB;t_0}=\begin{bsmallmatrix}G_t^{B;t_0}&0\\ *&I_{m-n}\end{bsmallmatrix}
+\quad\text{ and }\quad
+\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix},
+\]
+where $I_{m-n}$ is the identity matrix.
+
+Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\left(\eta_{\kk}^{\BB^T}\right)^{-1}\!\!\set{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^m,\alpha\ge0}$.
+Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^B_{\lambda,\kk}$ all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
+
+Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
+Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is the set of vectors whose projection to $\reals^n$ (ignoring the last $m-n$ entries) is a domain of definition of $\eta_\kk^{B^T}$.
+
+To understand dominance regions $\P^\tB_\lambda$, it is enough to consider the case where $\lambda$ has nonzero entries only in positions $1,\ldots,n$.
+Other dominance regions are obtained by translation, as explained in the following lemma.
+The lemma is an immediate consequence of the fact that domains of definition of $\eta_\kk^{\BB^T}$ depend only on the first $n$ coordinates.
+\begin{lemma}\label{after all coefficients are just coefficients}
+If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n$ coordinates, then $\P^\tB_{\lambda'}=\P^\tB_\lambda-\lambda+\lambda'$.
+\end{lemma}
+
+\cref{shift} immediately implies the following lemma.
+\begin{lemma}\label{shift extended}
+If $\lambda'=\eta^{\BB^T}_\kk$ and $\tB'=\mu_\kk(\tB)$, then $\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)=\P^{\tB'}_{\lambda'}$.
+\end{lemma}
+
+We will prove the following extension of \cref{P in B0C}.
+
+\begin{theorem}\label{P in B0C extended}
+Suppose $\kk=k_m\cdots k_1$ is a sequence of indices in $\set{1,\ldots, n}$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
+\[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_t\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
+\end{theorem}
+\begin{proof}
+First, we notice that $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $\BB_t$, or in other words, $\kk$ is a green sequence for $-\BB_t$.
+Indeed, since $\CC_{t_{\ell-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{\ell-1}}^{-\BB;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_\ell$ of $\CC_{t_{\ell-1}}^{-\BB;t_0}$ equals the sign of column $k_\ell$ of $C_{t_{\ell-1}}^{-\BB;t_0}$ whenever $1\le\ell<k$.
+Thus \cref{P in B0C} says that
+\[\P^{\BB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\BB_t\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
+The assertion of \cref{P in B0C extended} is that the same holds even when, in each term, the conditions $\alpha\in\reals^m,\alpha\ge0$ are strengthened by requiring that $\alpha$ is zero in coordinates $n+1,\ldots,m$.
+
+Thus we run through the proof of \cref{P in B0C} with $\BB$ replacing $B$ and $m$ replacing $n$ throughout and these additional conditions on $\alpha$ in all relevant expressions.
+There is no effect on the argument until the point of showing that $V\cap\set{x\in\reals^m:\sgn x_{k_1}=\ep}\subseteq U$.
+Here, we need to show that every vector $\left(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is in $\posspan\set{\left(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}}_{i=1}^n$.
+
+HERE
+
+\end{proof}
+
+
+
 
 
 
