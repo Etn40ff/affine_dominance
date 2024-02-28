@@ -363,7 +363,7 @@
 \address[D. Rupel]{NEED THIS}
 \address[S. Stella]{NEED THIS}
 %\keywords{}
-\thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608.
+\thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608 and by the National Science Foundation under award number DMS-2054489.
 Dylan Rupel was partially supported by ????.  
 Salvatore Stella was partially supported by ????.  }
 %\received{}
@@ -383,7 +383,6 @@ NEED THIS
 \setcounter{tocdepth}{2}
 \tableofcontents
 
-\margin{Check specific references to {scatfan}, {scatcomb}, and {affscat}.}
 
 
 
@@ -392,19 +391,42 @@ NEED THIS
 Given a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
 We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
+Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
 
-Given an exchange matrix $B$, the \newword{mutation map} $\eta:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix.
+Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix.
 In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors, and also, the mutation maps we need use transposes $B^T$ of exchange matrices.
 Thus we write maps $\eta_\kk^{B^T}$.
 This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 
+Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\left(\eta_{\kk}^{B^T}\right)^{-1}\set{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
+Define $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
+\begin{lemma}\label{shift}
+If $\lambda'=\eta^{B^T}_\kk$ and $B'=\mu_\kk(B)$, then $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
+\end{lemma}
+\begin{proof}
+For any $\ll$,
+\begin{align*}
+\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})
+&=\eta^{B^T}_\kk\!\!\left(\left(\eta_{\ll}^{B^T}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\right)\\
+%&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
+&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
+%&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
+&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+B_t\alpha:\alpha\ge0}.
+\end{align*}
+Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
+\end{proof}
+
+
 For seeds $t_0$ and $t$ and an exchange matrix $B$, let $C_t^{B;t_0}$ be the matrix whose columns are the $C$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
 Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the same sign.
-(This is ``sign-coherence of $C$-vectors'' which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
+(This is ``sign-coherence of $C$-vectors'', which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
 Thus we will refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
 For $\kk=k_m\cdots k_1$, define seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$.
 The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_\ell$ of $C_{t_{\ell-1}}^{B;t_0}$ is \emph{positive} for all $\ell$ with $1\le\ell<m$.
-We will call the sequence $\kk$ a \newword{red sequence} for $B$ if it is a green sequence for $-B$.
+A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
+That is, the sequence $\kk$ is a maximal green sequence if every column of $C_{t_m}^{B;t_0}$ is \emph{negative}.
+We will call $\kk$ a \newword{red sequence} for~$B$ if it is a green sequence for $-B$.
+A \newword{maximal red sequence} is a red sequence that cannot be extended.
 (A red sequence relates to antiprincipal coefficients: 
 If we were to define the $C$-vectors recursively starting with the negative of the identity matrix, the requirement for a red sequence is that the $k_\ell$ column is negative at every step.)
 
@@ -413,19 +435,38 @@ Let $\Cone^{B;t_0}_t$ be the nonnegative linear span of the columns of $G_t^{B;t
 For each $k\in\set{1,\ldots,n}$, the entries in the $k\th$ row of $G_t^{B;t_0}$ are not all zero and the nonzero entries have the same sign.
 (This is ``sign-coherence of $\g$-vectors'', conjectured as \cite[Conjecture~6.13]{ca4} and proved as \cite[Theorem 5.11]{GHKK}.)
 Thus all vectors in $\Cone^{B;t_0}_t$ all have weakly the same sign in the $k\th$ position.
-The inverse of $G_t^{B;t_0}$ is $\bigl(C_t^{-B^T_0;t_0}\bigr)^T$.
+The inverse of $G_t^{B;t_0}$ is $\bigl(C_t^{-B^T;t_0}\bigr)^T$.
 (This is \cite[Theorem~1.2]{NZ} or \cite[Theorem~1.1]{framework} and \cite[Theorem~3.30]{framework}.)
 Thus $\Cone^{B;t_0}_t=\set{x\in\reals^n:x^TC_t^{-B^T;t_0}\ge0}$, where $0$ is a row vector and ``$\ge$'' means componentwise comparison. 
 
+Given $\kk$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$, let $B_i$ be the exchange matrix at~$t_i$, so that in particular, $B_0=B$.
+The map $\eta_{\kk}^{B^T}$ is ${\eta_{k_m}^{B_{m-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
+The definition of each $\eta_{k_i}^{B_{i-1}^T}$ has two cases, separated by the hyperplane $x_{k_i}=0$.
+Two vectors are in the same \newword{domain of definition} of $\eta_\kk^{B^T}$ if, at every step, the same case applies for the two vectors.
+(Both cases apply on the hyperplane, so domains of definition are closed.)
+In particular, $\eta_\kk^{B^T}$ is linear in each of its domains of definition, but the domains of linearity of $\eta_\kk^{B^T}$ can be larger than its domains of definition.
+
+There is a fan $\F_{B^T}$ called the \newword{mutation fan} for $B^T$ \cite[Definition~5.12]{universal}.
+We will not need the details of the definition, but roughly, the cones of $\F_{B^T}$ are the intersections of domains of definition of all mutation maps $\eta_\kk^{B^T}$, as $\kk$ varies.
+Thus for each $\kk$, each cone of $\F_{B^T}$ is contained in a domain of definition of $\eta_\kk^{B^T}$, and the mutation map $\eta_\kk^{B^T}$ is linear on every cone of $\F_{B^T}$ \cite[Proposition~5.3]{universal}.
+Every cone $\Cone^{B;t_0}_t$ is a maximal cone in the mutation fan $\F_{B^T}$ \cite[Proposition~8.13]{universal}.
+Thus in particular, the mutation map $\eta_\kk^{B^T}$ is linear on every cone $\Cone^{B;t_0}_t$.
+Furthermore, $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\left(\Cone_t^{B;t_0}\right)$ for every seed~$t$.
+(This amounts to the initial seed mutation formula for $\g$-vectors, conjectured as \cite[Conjecture~7.12]{ca4} and shown in \cite[Proposition~4.2(v)]{NZ} to follow from sign-coherence of $C$-vectors.
+The restatement in terms of mutation maps is \cite[Conjecture~8.11]{universal}.)
+
+\begin{remark}\label{conditional}
+As written, \cite[Proposition~8.13]{universal} is conditional on ``sign-coherence of $C$-vectors'', which was a conjecture but is now a theorem \cite[Corollary~5.5]{GHKK}.
+\end{remark}
+
 We will need to relate the cones $\Cone^{B;t_0}_t$ and $\Cone^{-B^T;t_0}_t$.
 It is immediate from \cite[Proposition~7.5]{universal} and the skew-symmetry of $B$ that $-B^T$ is a \newword{rescaling} of $B$, meaning that there is a diagonal matrix $\Sigma$ with positive entries on the diagonal such that $-B^T=\Sigma^{-1}B\Sigma$.
-Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a scalar positive multiple of the $i\th$ column of $\Sigma G_t^{B;t_0}$.
+Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\Sigma G_t^{B;t_0}$.
 (In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
 Thus we have the following fact.
 \begin{lemma}\label{B or -BT}
 The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
 \end{lemma}
-
 
 For $k\in\set{1,\ldots,n}$, let $J_k$ be the $n\times n$ matrix that agrees with the identity matrix except that $J_k$ has $-1$ in position $kk$.
 For an $n\times n$ matrix $M$ and $k\in\set{1,\ldots,n}$, let $M^{\bullet k}$ be the matrix that agrees with $M$ in column $k$ and has zeros everywhere outside of column $k$.
@@ -433,7 +474,7 @@ Let $M^{k\bullet}$ be the matrix that agrees with $M$ in row $k$ and has zeros e
 
 Given a real number $a$, let $[a]_+$ denote $\max(a,0)$.
 Given a matrix $M=[m_{ij}]$, define $[M]_+$ to be the matrix whose $ij$-entry is $[m_{ij}]_+$.
-Given an exchange matrix $B$, an index $k\in\set{1,\ldots,n}$ and a sign $\ep\in\set{\pm1}$, define matrices
+Given an exchange matrix~$B$, an index $k\in\set{1,\ldots,n}$ and a sign $\ep\in\set{\pm1}$, define matrices
 \begin{align*}
 E_{\ep,k}^B&=J_k+[\ep B]_+^{\bullet k}\\
 F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
@@ -441,7 +482,7 @@ F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
 Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
 The following is essentially a result of \cite{NZ}, although it is not stated there in this form.  \margin{Do I have this attribution right?}
 \begin{lemma}\label{EBF trick}
-For any $k\in\set{1,\ldots,n}$ and $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
+For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
 \end{lemma}
 \begin{proof}
 We expand the product $(J_k+[\ep B]_+^{\bullet k})B(J_k+[-\ep B]_+^{k\bullet})$ to four terms.
@@ -516,83 +557,93 @@ We see that ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
 \section{First main result}
 Let $B_0$ be an exchange matrix.
 For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Given a vector $\lambda\in\reals^n$, we want to understand $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
-
-\noindent
-START ALTERNATIVE WORDING
-
-There may be more than one sequence connecting $t_0$ to $t$.
-
-\noindent
-NOT TRUE:\\
-The mutation map $\eta_\kk^{B_0^T}$ depends only on $t$, not on the choice of $\kk$.
-
-\noindent
-HOWEVER, we can rescue the following (by showing that different $\kk$s with the same $t$ are related by a global permutation of rows/coumns):\\
-Thus we define $\P^{B_0}_{\lambda,t}$ to be $\P^{B_0}_{\lambda,\kk}$ for any sequence $\kk=k_m\cdots k_1$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Our first main result is about $\P^{B_0}_{\lambda,t}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$.
-
-Our first main result is about $\P^{B_0}_{\lambda,\kk}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$ for some sequence $\kk$.
-
-
-\begin{theorem}\label{P in B0C}
-Fix an exchange pattern with $B_0$ at $t_0$.
-For some vertex $t$, suppose there exists a red sequence for $B_t$ that ends at $t_0$.
-Then for $\lambda\in\Cone^{B_0;t_0}_t$,
-\[\P^{B_0}_{\lambda,t}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
-\end{theorem}
-
-\noindent
-END ALTERNATIVE WORDING
-
-
-
-The map $\eta_{\kk^{-1}}^{B_t^T}$ is linear on the cone $\left(\reals_{\ge0}\right)^n$. \margin{Probably need to explain why.  $B$-cones and such.}
-Let $D$ be the domain of linearity of $\eta_{\kk^{-1}}^{B_t^T}$ containing $\left(\reals_{\ge0}\right)^n$ and let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$D$.
-
-
+We will prove the following theorem and corollary.
+%
+%\noindent
+%START ALTERNATIVE WORDING
+%
+%There may be more than one sequence connecting $t_0$ to $t$.
+%
+%\noindent
+%NOT TRUE:\\
+%The mutation map $\eta_\kk^{B_0^T}$ depends only on $t$, not on the choice of $\kk$.
+%
+%\noindent
+%HOWEVER, we can rescue the following (by showing that different $\kk$s with the same $t$ are related by a global permutation of rows/coumns):\\
+%AFTER MORE THOUGHT:  I think that's probably true, but there are some issues.
+%It would come down to showing that there is only one automorphism of the mutation fan that fixes the positive cone pointwise, and that's probably true, but would take some thought, and it's not really necessary for what we're trying to accomplish this spring.
+%(And actually, it's not true as I just stated it... Think about Markov.  
+%But for piecewise linear automorphisms of the mutation fan with the pieces separated by codim-1 cones that contain codim-1 faces of the fan, it's probable true.
+%That's the kind of complication we would need to deal with.
+%
+%Thus we define $\P^{B_0}_{\lambda,t}$ to be $\P^{B_0}_{\lambda,\kk}$ for any sequence $\kk=k_m\cdots k_1$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+%Our first main result is about $\P^{B_0}_{\lambda,t}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$.
+%
+%Our first main result is about $\P^{B_0}_{\lambda,\kk}$ in the case where $\lambda$ is in $\Cone^{B_0;t_0}_t$ for some sequence $\kk$.
+%
+%
+%\begin{theorem}\label{P in B0C}
+%Fix an exchange pattern with $B_0$ at $t_0$.
+%For some vertex $t$, suppose there exists a red sequence for $B_t$ that ends at $t_0$.
+%Then for $\lambda\in\Cone^{B_0;t_0}_t$,
+%\[\P^{B_0}_{\lambda,t}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
+%\end{theorem}
+%
+%\noindent
+%END ALTERNATIVE WORDING
+%
 
 \begin{theorem}\label{P in B0C}
 Suppose $\kk=k_m\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Let $\lambda\in\Cone^{B_0;t_0}_t$.
-If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then 
-\[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
+If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{B_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
+\[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
 \end{theorem}
 
-Moving towards the proof of \cref{P in B0C}, we first determine the matrix for $\L_{\kk^{-1}}^{B_t^T}$ acting on column vectors.
-By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$.
-Thus $\eta_\kk^{B_0^T}\left(\Cone^{B_0;t_0}_t\right)=\left(\reals_{\ge0}\right)^n$.
-The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence $\kk$ of mutations.
-Thus we have the following proposition.
+\begin{corollary}\label{P point}
+Suppose $t$ is a seed in the exchange graph for $B_0;t_0$ and take $\lambda\in\Cone^{B_0;t_0}_t$.
+If there exists a maximal red sequence for $B_t$, then $\P^{B_0}_\lambda=\set{\lambda}$.
+\end{corollary}
+
+Since $\left(\eta_{\kk}^{B_0^T}\right)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
+Let $D$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
+Then $\eta_{\kk^{-1}}^{B_t^T}$ is linear on $\eta_{\kk}^{B_0^T}(D)$.
+Let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$\eta_{\kk}^{B_0^T}(D)$.
 
 \begin{proposition}\label{L mat}
 The matrix for $\L_{\kk^{-1}}^{B_t^T}$, acting on column vectors, is $G_t^{B_0;t_0}$.
 \end{proposition}
-
-\begin{remark}\label{conditional}
-As written, \cite[Proposition~8.13]{universal} is conditional on ``sign-coherence of $C$-vectors'', which was a conjecture but is now a theorem \cite[Corollary~5.5]{GHKK}.
-\end{remark}
+\begin{proof}
+By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$, and therefore also ${\eta_\kk^{B_0^T}\left(\Cone^{B_0;t_0}_t\right)=\left(\reals_{\ge0}\right)^n}$.
+The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence $\kk$ of mutations.
+\end{proof}
 
 We now apply a result of \cite{NZ}, namely that $G_t^{B_0;t_0}B_t=B_0C_t^{B_0;t_0}$.
 This fact follows from the proof of \cite[Proposition~1.3]{NZ}, or from \cite[(6.14)]{ca4}, as explained in \cite[Remark~2.1]{NZ}.
-Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, we rewrite the right side of the containment in \cref{P in B0C} as follows.
+Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, we have the following \lcnamecref{B0C}.
 
 \begin{proposition}\label{B0C}
-$\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$.
+\begin{align*}
+\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}
+&=\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\ge0}\\
+&=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.
+\end{align*}
 \end{proposition}
 
-In light of \cref{B0C}, \cref{P in B0C} is equivalent to
+In light of \cref{B0C}, the conclusion of \cref{P in B0C} is equivalent to
 \[\P^{B_0}_{\lambda,\kk}\subseteq\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}.\]
 
-\cref{B0C} also immediately implies the following statement that is weaker than \cref{P in B0C}.
+%% Don't really care about this any more.  Also, if we keep it, the meaning of $D$ has changed, so we would have to rephrase it.
+%\cref{B0C} also immediately implies the following statement that is weaker than \cref{P in B0C}.
+%
+%\begin{proposition}\label{on domain}
+%$\P^{B_0}_{\lambda,\kk}\cap D=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\cap D$.
+%\end{proposition}
 
-\begin{proposition}\label{on domain}
-$\P^{B_0}_{\lambda,\kk}\cap D=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\cap D$.
-\end{proposition}
-
-We now prove our first main result.
 
 \begin{proof}[Proof of \cref{P in B0C}]
+We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$, by induction on $m$ (the length of $\kk$).
+The base case, where $\kk=\emptyset$, is true because $C_{t_0}^{B_0;t_0}$ is the identity matrix and $\P_{\lambda,\emptyset}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
+ 
 \cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$.  
 (The hypothesis that $\kk^{-1}$ is a red sequence for $B_t$ determines $\ep$, but we leave $\ep$ unspecified for now in order to highlight later where this hypothesis is relevant.)
 By \cref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$ are their own inverses,
@@ -603,22 +654,21 @@ By \cref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$ are 
 &=E^{B_1}_{\ep,k_1}\set{E^{B_1}_{\ep,k_1}\lambda+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.
 \end{aligned}\end{equation}
 
-The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$.  \margin{Probably need to explain this too.}
+The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$.  
 This map is $\eta_{\kk}^{B_0^T}={\eta_{k_m}^{B_{m-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
-Since $\eta_{k_2\cdots k_m}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)=\Cone^{B_1;t_1}_t$ (again by \cite[Proposition~8.13]{universal}), we see that $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B_1;t_1}$.
+The map $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B_1;t_1}$.
 The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
-
 We claim that $E^{B_1}_{\ep,k_1}$ is the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
 Since $E^{B_1}_{\ep,k_1}$ is its own inverse, the claim is equivalent to saying that implies that $E^{B_1}_{\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_0^T}$ on $\Cone_t^{B_0;t_0}$.
 
 By \cite[(1.13)]{NZ}, $\ep$ is the sign of the $k_1$-column of $\bigl(G_t^{-B_1^T;t_1}\bigr)^T$.
 That is, $\ep$ is the sign of the $k_1$-row of $G_t^{-B_1^T;t_1}$, or in other words, the sign of the $k_1$-entry of vectors in $\Cone_t^{-B^T_1;t_1}$.
 By \cref{B or -BT}, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{B_1;t_1}$, which is the sign that determines how $\eta_{k_1}^{B_1^T}$ acts on $\Cone_t^{B_1;t_1}$.
-We now easily check that the action of $\eta_{k_1}^{B_1^T}$ on vectors whose $k_1$-entry has sign $\ep$ is precisely the action of $E^{B_1}_{\ep,k_1}$.
+One easily checks that the action of $\eta_{k_1}^{B_1^T}$ on vectors whose $k_1$-entry has sign $\ep$ is precisely the action of $E^{B_1}_{\ep,k_1}$.
 %It negates the $k_1$ entry.
 %The $i\th$ ($i\neq k$) entry gets sent to itself plus the $k_1$ entry times $(B_1)_{ik}$ times $\ep$, if $(B_1)_{ik}$ also has sign $\ep$.
 
-Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$, so that $\lambda'\in\Cone_t^{B_1;t_1}$ and $\lambda'=E^{B_1}_{\ep,k_1}\lambda$.
+Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$, so that $\lambda'$ is in the same domain of definition of $\eta_{k_m\cdots k_2}^{B_1^T}$ as $\Cone_t^{B_1;t_1}$ and so that $\lambda'=E^{B_1}_{\ep,k_1}\lambda$.
 By induction on $m$, 
 \[\eta_{k_2\cdots k_m}^{B_t^T}\set{\eta_{k_m\cdots k_2}^{B_1^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 Applying the homeomorphism $\eta_{k_1}^{B_1^T}$ to both sides, we obtain
@@ -678,15 +728,27 @@ We have shown that $v_i=N\left(C_t^{B_1;t_1}\right)_{\col j}+\sigma N_{\col k}$ 
 In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
 
+\begin{proof}[Proof of \cref{P point}]
+Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
+There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\edge}t'_1\overset{\ell_2}{\edge}\,\cdots\,\overset{\ell_q}{\edge}t'_q=t'$.
+Let $\lambda'=\eta^{B_0^T}_\ll\!(\lambda)$.
+\cref{shift} says $\eta^{B_0^T}_\ll\!(\P^{B_0}_\lambda)=\P^{B_{t'}}_{\lambda'}$.
+Thus it is enough to prove that $\P^{B_{t'}}_{\lambda'}=\set{\lambda'}$.
+Since $\eta_\ll^{B_0^T}\left(\Cone_t^{B_0;t_0}\right)=\Cone_t^{B_{t'};t'}$, we have reduced the proof to the case where there is a maximal red sequence for $B_t$ starting from $t$ and ending at $t_0$.
 
-WHERE TO PUT THIS?
-(define maximal green sequence)
-(define $\P_\lambda$)
+Working in that reduction, let $\kk=k_m\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Then \cref{P in B0C} says that $\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$.
 
-\begin{corollary}\label{P point}
-Suppose $t'$ is a seed in the exchange graph for $B;t$ and take $\lambda\in\Cone^{B;t}_{t'}$.
-If there exists a maximal green sequence for $B$, then $\P^B_\lambda=\set{\lambda}$.
-\end{corollary}
+Since $\kk^{-1}$ is a maximal red sequence for $B_t$, or in other words a maximal green sequence for $-B_t$, every column of $C_{t_0}^{-B_t;t}$ has negative sign, so $\Cone_{t_0}^{B_t^T;t}=\set{x\in\reals^n:x^TC_{t_0}^{-B_t;t}\ge0}$ consists of vectors with nonpositive entries.
+Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_{-B_t}$ (for example, combining \cite[Proposition~7.1]{universal}, \cite[Proposition~8.9]{universal}, and sign-coherence of $C$-vectors) and also $\Cone_{t_0}^{B_t^T;t}$ is a cone in $\F_{-B_t}$, we see that $\Cone_{t_0}^{B_t^T;t}=\left(\reals_{\le0}\right)^n$.
+Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identity matrix.
+We see that $\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda-B_0\alpha:\alpha\ge0}$.
+
+Since also $\P^{B_0}_{\lambda,\emptyset}\set{\lambda+B_0\alpha:\alpha\ge0}$, and since the columns of $B_0$ are linearly independent,   \margin{Need at least the hypothesis that span of $B_t$ does not contain a line! Here I have just taken "linearly independent columns".  We will need to do extended matrices in some form.  :(}
+we conclude that $\P^{B_0}_\lambda=\set{\lambda}$.
+\end{proof}
+
+
 
 
 BIG QUESTION:
