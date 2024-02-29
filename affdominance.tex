@@ -173,6 +173,8 @@
 \renewcommand{\u}{\mathbf{u}}
 \newcommand{\w}{\mathbf{w}}
 \newcommand{\tB}{{\tilde{B}}}
+\newcommand{\tM}{{\widetilde{M}}}
+\newcommand{\tN}{{\tilde{N}}}
 \newcommand{\T}{\mathbb{T}}
 \newcommand{\ZP}{\mathbb{ZP}}
 \newcommand{\C}{\mathcal{C}}
@@ -553,7 +555,7 @@ We see that ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
 \section{First main result}
 Let $B_0$ be an exchange matrix.
 For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-We will prove the following theorem and corollary.
+We will prove the following theorem.
 %
 %\noindent
 %START ALTERNATIVE WORDING
@@ -594,11 +596,6 @@ Suppose $\kk=k_m\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\
 If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{B_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}.\]
 \end{theorem}
-
-\begin{corollary}\label{P point}
-Suppose $t$ is a seed in the exchange graph for $B_0;t_0$ and take $\lambda\in\Cone^{B_0;t_0}_t$.
-If there exists a maximal red sequence for $B_t$, then $\P^{B_0}_\lambda=\set{\lambda}$.
-\end{corollary}
 
 Since $\left(\eta_{\kk}^{B_0^T}\right)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
 Let $D$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
@@ -708,56 +705,21 @@ v_i
 &=\delta\sum_{j\in S}\gamma_jM_{\col j}+\delta\sum_{j\in T}\gamma_jM_{\col j}\\
 &=\delta\sum_{j\in S}\gamma_j(N_{\col j}+|b_{kj}|N_{\col k})+\delta\sum_{j\in T}\gamma_j(N_{\col j}-|b_{kj}|N_{\col k})\\
 &=\delta\sum_{j=1}^n\gamma_jN_{\col j}-\delta\sum_{j=1}^n\ep\gamma_jb_{kj}N_{\col k}\\
-&=N\left(C_t^{B_1;t_1}\right)_{\col j}+\delta\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
-&=N\left(C_t^{B_1;t_1}\right)_{\col j}+\sigma N_{\col k}.\\
+&=N\left(C_t^{B_1;t_1}\right)_{\col i}+\delta\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
+&=N\left(C_t^{B_1;t_1}\right)_{\col i}+\sigma N_{\col k}.\\
 \end{align*}
 where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\delta\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
 
 As noted above, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{-B_1^T;t_1}$.
-Since $\Cone^{-B_1^T;t_0}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_0}\ge0}$, the rows of $\left(C_t^{B_1;t_0}\right)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
-In particular $\left(C_t^{B_1;t_0}\right)^{-1}(\ep e_k)$ has nonnegative entries.
-Thus $C_t^{B_1;t_0}\left(C_t^{B_1;t_0}\right)^{-1}(\ep e_k)=\ep e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
+Since $\Cone^{-B_1^T;t_1}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_1}\ge0}$, the rows of $\left(C_t^{B_1;t_1}\right)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
+In particular $\left(C_t^{B_1;t_1}\right)^{-1}(\ep e_k)$ has nonnegative entries.
+Thus $C_t^{B_1;t_1}\left(C_t^{B_1;t_1}\right)^{-1}(\ep e_k)=\ep e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
 
-Now, the hypothesis that $\kk^{-1}$ is a red sequence for $B_t$, or equivalently a green sequence for $-B_t$, says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_0}$.
-Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_0}$.
-We have shown that $v_i=N\left(C_t^{B_1;t_1}\right)_{\col j}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_0}$.
+Now, the hypothesis that $\kk^{-1}$ is a red sequence for $B_t$, or equivalently a green sequence for $-B_t$, says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
+Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
+We have shown that $v_i=N\left(C_t^{B_1;t_1}\right)_{\col i}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
 In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
-
-\begin{proof}[Proof of \cref{P point}]
-Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
-There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\edge}t'_1\overset{\ell_2}{\edge}\,\cdots\,\overset{\ell_q}{\edge}t'_q=t'$.
-Let $\lambda'=\eta^{B_0^T}_\ll\!(\lambda)$.
-\cref{shift} says $\eta^{B_0^T}_\ll\!(\P^{B_0}_\lambda)=\P^{B_{t'}}_{\lambda'}$.
-Thus it is enough to prove that $\P^{B_{t'}}_{\lambda'}=\set{\lambda'}$.
-Since $\eta_\ll^{B_0^T}\left(\Cone_t^{B_0;t_0}\right)=\Cone_t^{B_{t'};t'}$, we have reduced the proof to the case where there is a maximal red sequence for $B_t$ starting from $t$ and ending at $t_0$.
-
-Working in that reduction, let $\kk=k_m\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Then \cref{P in B0C} says that $\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$.
-
-Since $\kk^{-1}$ is a maximal red sequence for $B_t$, or in other words a maximal green sequence for $-B_t$, every column of $C_{t_0}^{-B_t;t}$ has negative sign, so $\Cone_{t_0}^{B_t^T;t}=\set{x\in\reals^n:x^TC_{t_0}^{-B_t;t}\ge0}$ consists of vectors with nonpositive entries.
-Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_{-B_t}$ (for example, combining \cite[Proposition~7.1]{universal}, \cite[Proposition~8.9]{universal}, and sign-coherence of $C$-vectors) and also $\Cone_{t_0}^{B_t^T;t}$ is a cone in $\F_{-B_t}$, we see that $\Cone_{t_0}^{B_t^T;t}=\left(\reals_{\le0}\right)^n$.
-Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identity matrix.
-We see that $\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda-B_0\alpha:\alpha\ge0}$.
-
-Since also $\P^{B_0}_{\lambda,\emptyset}\set{\lambda+B_0\alpha:\alpha\ge0}$, and since the columns of $B_0$ are linearly independent,   \margin{Need at least the hypothesis that span of $B_t$ does not contain a line! Here I have just taken "linearly independent columns".  We will need to do extended matrices in some form.  :(}
-we conclude that $\P^{B_0}_\lambda=\set{\lambda}$.
-\end{proof}
-
-
-
-
-BIG QUESTION:
-
-Does this work whenever $\lambda$ is in the domain of linearity containing $\Cone_t^{B_0;t^0}$, or do you really need $\lambda\in\Cone_t^{B_0;t^0}$?
-
-NR HOMEWORK:  Prove that this works.
-
-SS HOMEWORK:  Prove that the imaginary cone is in the domain of linearity when $t$ is a ``neighboring'' seed.
-
-THEN:  We use the EBF trick again to rewrite $B_0C$ as $GB_t$. 
-
-Paper this spring.
 
 \section{Extending to extended exchange matrices}
 We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
@@ -781,6 +743,8 @@ Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect
 
 Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
 Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is the set of vectors whose projection to $\reals^n$ (ignoring the last $m-n$ entries) is a domain of definition of $\eta_\kk^{B^T}$.
+Accordingly, we define $\Cone_t^{\tB;t_0}$ to be %the nonnegative span of the columns of $\GG_t^{\BB;t_0}$ and the columns of $\begin{bsmallmatrix}0\\-I_{m-n}\end{bsmallmatrix}$.
+the set of vectors in $\reals^m$ whose projection to $\reals^n$ is in $\Cone_t^{B;t_0}$.
 
 To understand dominance regions $\P^\tB_\lambda$, it is enough to consider the case where $\lambda$ has nonzero entries only in positions $1,\ldots,n$.
 Other dominance regions are obtained by translation, as explained in the following lemma.
@@ -794,7 +758,7 @@ If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n
 If $\lambda'=\eta^{\BB^T}_\kk$ and $\tB'=\mu_\kk(\tB)$, then $\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)=\P^{\tB'}_{\lambda'}$.
 \end{lemma}
 
-We will prove the following extension of \cref{P in B0C}.
+We will prove the following extension of \cref{P in B0C} and an important corollary.
 
 \begin{theorem}\label{P in B0C extended}
 Suppose $\kk=k_m\cdots k_1$ is a sequence of indices in $\set{1,\ldots, n}$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
@@ -810,24 +774,46 @@ The assertion of \cref{P in B0C extended} is that the same holds even when, in e
 
 Thus we run through the proof of \cref{P in B0C} with $\BB$ replacing $B$ and $m$ replacing $n$ throughout and these additional conditions on $\alpha$ in all relevant expressions.
 There is no effect on the argument until the point of showing that $V\cap\set{x\in\reals^m:\sgn x_{k_1}=\ep}\subseteq U$.
-Here, we need to show that every vector $\left(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is in $\posspan\set{\left(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}}_{i=1}^n$.
+Here, we need to show that every vector $v_i=\left(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is contained in $\posspan\set{\left(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}}_{i=1}^n$.
+We argue as in the proof of \cref{P in B0C} that $v_i=N\left(\CC_t^{\BB_1;t_1}\right)_{\col i}+\sigma N_{\col k}$ and that $\ep e_k$ is a nonnegative linear combination of columns of~$\CC_t^{\BB_1;t_1}$.
+Since $\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, we conclude that $\ep e_k$ is a nonnegative linear combination of columns $1$ through $n$ of~$\CC_t^{\BB_1;t_1}$.
+Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\CC_t^{\BB_1;t_1}$ as desired.
+\end{proof}
+
+\begin{corollary}\label{P point}
+Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
+Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
+If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
+\end{corollary}
 
 HERE
 
+
+
+
+
+\begin{proof}%[Proof of \cref{P point}]
+Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
+There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\edge}t'_1\overset{\ell_2}{\edge}\,\cdots\,\overset{\ell_q}{\edge}t'_q=t'$.
+Let $\lambda'=\eta^{B_0^T}_\ll\!(\lambda)$.
+\cref{shift} says $\eta^{B_0^T}_\ll\!(\P^{B_0}_\lambda)=\P^{B_{t'}}_{\lambda'}$.
+Thus it is enough to prove that $\P^{B_{t'}}_{\lambda'}=\set{\lambda'}$.
+Since $\eta_\ll^{B_0^T}\left(\Cone_t^{B_0;t_0}\right)=\Cone_t^{B_{t'};t'}$, we have reduced the proof to the case where there is a maximal red sequence for $B_t$ starting from $t$ and ending at $t_0$.
+
+Working in that reduction, let $\kk=k_m\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Then \cref{P in B0C} says that $\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$.
+
+Since $\kk^{-1}$ is a maximal red sequence for $B_t$, or in other words a maximal green sequence for $-B_t$, every column of $C_{t_0}^{-B_t;t}$ has negative sign, so $\Cone_{t_0}^{B_t^T;t}=\set{x\in\reals^n:x^TC_{t_0}^{-B_t;t}\ge0}$ consists of vectors with nonpositive entries.
+Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_{-B_t}$ (for example, combining \cite[Proposition~7.1]{universal}, \cite[Proposition~8.9]{universal}, and sign-coherence of $C$-vectors) and also $\Cone_{t_0}^{B_t^T;t}$ is a cone in $\F_{-B_t}$, we see that $\Cone_{t_0}^{B_t^T;t}=\left(\reals_{\le0}\right)^n$.
+Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identity matrix.
+We see that $\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda-B_0\alpha:\alpha\ge0}$.
+
+Since also $\P^{B_0}_{\lambda,\emptyset}\set{\lambda+B_0\alpha:\alpha\ge0}$, and since the columns of $B_0$ are linearly independent,   \margin{Need at least the hypothesis that span of $B_t$ does not contain a line! Here I have just taken "linearly independent columns".  We will need to do extended matrices in some form.  :(}
+we conclude that $\P^{B_0}_\lambda=\set{\lambda}$.
 \end{proof}
 
 
 
-
-
-
-%keller defined green sequences (unfortunately for quivers): 
-%https://arxiv.org/abs/1102.4148
-%
-%I was grateful to seven for writing the skew-symetrizable case:
-%https://www.sciencedirect.com/science/article/pii/S0024379513006381
-%
-%https://mathoverflow.net/questions/269275/which-cluster-algebras-where-the-existence-of-maximal-green-sequences-is-still-u
 
 % bibliography
 \bibliographystyle{plain}
