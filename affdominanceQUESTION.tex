@@ -414,13 +414,7 @@ Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\left(\eta_{\kk}
 When we can do so without confusion, we will omit the explicit statement that $\alpha\in\reals^n$ or $\alpha\in\reals^m$.)
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
-If $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$, then 
-\begin{enumerate}[\quad\bf1.]
-\item \label{shift all}
-$\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
-\item \label{shift one}
-$\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
-\end{enumerate}
+If $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$, then $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
 \end{lemma}
 \begin{proof}
 For any $\ll$,
@@ -430,8 +424,7 @@ For any $\ll$,
 %&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
 &=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
 %&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
-&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+B_t\alpha:\alpha\ge0}\\
-&=\P^{B'}_{\lambda',\ll\kk^{-1}}.
+&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+B_t\alpha:\alpha\ge0}.
 \end{align*}
 Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
 \end{proof}
@@ -754,11 +747,11 @@ The matrix $\BB$ defines mutation maps $\eta_\kk^{\BB^T}$ that act on $\reals^m$
 Also, given $\BB$, a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$, there are associated matrices of $\g$-vectors and $C$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
 Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have block forms
 \[
-\GG_t^{\BB;t_0}=\begin{bsmallmatrix}G_t^{B;t_0}&0\\H_t^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}
+\GG_t^{\BB;t_0}=\begin{bsmallmatrix}G_t^{B;t_0}&0\\ *&I_{m-n}\end{bsmallmatrix}
 \quad\text{ and }\quad
-\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&D_t^{\tB;t_0}\\0&I_{m-n}\end{bsmallmatrix},
+\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix},
 \]
-where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $D_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
+where $I_{m-n}$ is the identity matrix.
 
 Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\left(\eta_{\kk}^{\BB^T}\right)^{-1}\!\!\set{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^B_{\lambda,\kk}$ all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
@@ -779,16 +772,8 @@ If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n
 
 \cref{shift} immediately implies the following lemma.
 \begin{lemma}\label{shift extended}
-If $\lambda'=\eta^{\BB^T}_\kk$ and $\tB'=\mu_\kk(\tB)$, then 
-\begin{enumerate}[\quad\bf1.]
-\item \label{shift all}
-$\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)=\P^{\tB'}_{\lambda'}$.
-\item \label{shift one}
-$\eta^{\BB^T}_\kk\!\!(\P^\tB_{\lambda,\ll})=\P^{\tB'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
-\end{enumerate}
+If $\lambda'=\eta^{\BB^T}_\kk$ and $\tB'=\mu_\kk(\tB)$, then $\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)=\P^{\tB'}_{\lambda'}$.
 \end{lemma}
-
-
 
 We will prove the following extension of \cref{P in B0C} and an important corollary.
 
@@ -837,6 +822,8 @@ We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in
 Since also $\P^{\tB_0}_{\lambda,\emptyset}\set{\lambda+\tB_0\alpha:\alpha\ge0}$, and since the columns of $\tB_0$ are linearly independent, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{proof}
 
+\pagebreak
+
 \section{Affine type}
 Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
 Then $n(n-1)\cdots1$ is a maximal green sequence for $B_0$ and $12\cdots n$ is a maximal red sequence for $B_0$.
@@ -847,135 +834,12 @@ Let $\kk=k_m\cdots k_1$ be a sequence such that $t_0\overset{k_1}{\edge}t_1\over
 
 Let $\tB_0$ be an extension of $B_0$ that has linearly independent columns.
 Computations show that 
-
 \[\P_{\lambda,\kk}^{\tB_0}\cap\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\cap\d_\infty=\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty.\]
-
-Let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$ and let $\lambda_u$ be $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\lambda)$.
-\cref{shift extended} says that $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_u,\kk12\cdots n}^{\tB_u}$ and
-\[\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_u,\kk n\cdots11\cdots n}^{\tB_u}=\P_{\lambda_u,\kk}^{\tB_u}.\]
-The map $\eta_{n(n-1)\cdots1}^{\BB_0^T}$ is linear on $\d_\infty$ and maps $-\tB_0\delta$ to $\tB_u\delta$, so it maps the set $\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty$ to $\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty$.
-Thus we will show that 
-\[\P_{\lambda_u,\kk}^{\tB_u}\cap\P_{\lambda_u,\kk12\cdots n}^{\tB_u}\cap\d_\infty=\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty.\]
-
-Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1$ or in other words, the seed reached from $u$ by the sequence $\kk$.
-Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
-\begin{multline*}
-\P_{\lambda_u,\kk}^{\tB_u}
-\cap
-\P_{\lambda_u,\kk12\cdots n}^{\tB_u}
-\cap
-\d_\infty\\
-\begin{aligned}
-&=
-\left(\eta_{\kk}^{\BB_u^T}\right)^{-1}\!\!\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
-\cap
-\left(\eta_{\kk1\cdots n}^{\BB_u^T}\right)^{-1}\!\!\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda)+\tB_t\alpha}
-\cap
-\d_\infty\\&=
-\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
-\cap
-\eta_{n\cdots1\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda_u)+\tB_t\alpha}
-\cap
-\d_\infty\\&=
-\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
-\cap
-\eta_{n\cdots1}^{\BB_0^T}\left(\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda_u)+\tB_t\alpha}\right)
-\cap
-\d_\infty %\\&=
-\end{aligned}
-\end{multline*}
+Either that or it's 
+\[\P_{\lambda,\kk}^{\tB_0}\cap\P_{\lambda,\kk12\cdots n}^{\tB_0}\cap\d_\infty=\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty.\]
+Which is it?
 
 
-
-
-
-Now, writing $\tB_u=\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}$, we have 
-\margin{If we use this, we need to put the $\GG B C$ thing in the background.}
-\begin{align*}
-\tB_t=\mu_\kk(\mu_{1\cdots n}(\tB_u))=\mu_\kk(\tB_0)
-&=\mu_\kk\left((\GG_{t_0}^{B_u;u})^{-1}\tB_uC_{t_0}^{B_u;u}\right)\\
-&=\mu_\kk\left(\begin{bsmallmatrix}G_{t_0}^{B_u;i}&0\\ H_{t_0}^{\tB_u;u}&I_{m-n}\end{bsmallmatrix}^{-1}\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}C_{t_0}^{B_u;u}\right)\\
-&=\mu_\kk\left(\begin{bsmallmatrix}(G_{t_0}^{B_u;u})^{-1}&0\\-H_{t_0}^{\tB_u;u}(G_{t_0}^{B_u;u})^{-1}&I_{m-n}\end{bsmallmatrix}\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}C_{t_0}^{B_u;u}\right)\\
-&=\mu_\kk\left(\begin{bsmallmatrix}B_0\\-H_{t_0}^{\tB_u;u}B_0+E_uC_{t_0}^{B_u;u}\end{bsmallmatrix}\right)\\
-\end{align*}
-We compute that $B_0=B_u$ and that $C_{t_0}^{B_u;u}=-I_n$.
-So $\tB_t=\mu_\kk\left(\begin{bsmallmatrix}B_u\\-H_{t_0}^{\tB_u;u}B_u-E_u\end{bsmallmatrix}\right)$.
-On the other hand, $\tB_{t'}=\mu_\kk(\tB_u)=\mu_\kk\left(\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}\right)$.
-
-
-KEY POINT:  On $\d_\infty$, the map $\eta_{n\cdots1}^{\BB_0^T}$ is linear, and agrees with $c$ or $c^{-1}$ or something.
-So there is just a chance that we know something.
-
-
-%Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
-%Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
-%\begin{multline*}
-%\P_{\lambda,\kk}^{\tB_0}
-%\cap
-%\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\\
-%\begin{aligned}
-%&=
-%\left(\eta_{\kk}^{\BB_0^T}\right)^{-1}\!\!\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
-%\cap
-%\left(\eta_{\kk n\cdots1}^{\BB_0^T}\right)^{-1}\!\!\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
-%\\&=
-%\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
-%\cap
-%\eta_{1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
-%\\&=
-%\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
-%\cap
-%\eta_{1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
-%\end{aligned}
-%\end{multline*}
-%
-%Now, writing $\tB_0=\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}$, we have 
-%\margin{If we use this, we need to put the $\GG B C$ thing in the background.}
-%\begin{align*}
-%\tB_{t'}=\mu_\kk(\mu_{n\cdots1}(\tB_0))=\mu_\kk(\tB_u)
-%&=\mu_\kk\left((\GG_u^{B_0;t_0})^{-1}\tB_0C_u^{B_0;t_0}\right)\\
-%&=\mu_\kk\left(\begin{bsmallmatrix}G_u^{B_0;t_0}&0\\ H_u^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}^{-1}\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}C_u^{B_0;t_0}\right)\\
-%&=\mu_\kk\left(\begin{bsmallmatrix}(G_u^{B_0;t_0})^{-1}&0\\-H_u^{\tB;t_0}(G_u^{B;t_0})^{-1}&I_{m-n}\end{bsmallmatrix}\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}C_u^{B_0;t_0}\right)\\
-%&=\mu_\kk\left(\begin{bsmallmatrix}B_u\\-H_u^{\tB;t_0}B_u+E_0C_u^{B_0;t_0}\end{bsmallmatrix}\right)\\
-%\end{align*}
-%We compute that $C $
-
-
-
-
-
-
-%What does \cref{P in B0C extended} say?
-%Assuming the appropriate sequences are red, and that $\lambda$ is in the right domain of definition, 
-%\[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_t\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\]
-%\[\P^{\tB_0}_{\lambda,\kk n(n-1)\cdots1}\subseteq\set{\lambda+\GG_{t'}^{\BB_0;t_0}\tB_{t'}\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_{t'}^{B_0;t_0}\alpha:\alpha\ge0},\]
-%where $t'$ is the seed obtained from $t_0$ by $\kk n(n-1)\cdots1$.
-
-%Let $\lambda'=\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}$.
-%\cref{shift extended} says that $\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda',\kk12\cdots n\kk^{-1}}^{\tB_{t'}}$ and
-%\[\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda',\kk n\cdots11\cdots n \kk^{-1}}^{\tB_{t'}}=\P_{\lambda',\emptyset}^{\tB_{t'}}=\set{\lambda'+\tB_{t'}\alpha:\alpha\ge0}.\]
-
-%Let $\lambda_0=\eta_\kk^{\BB_0^T}$.
-%\cref{shift extended} says that  $\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}$.
-%Also, 
-%\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}=\P_{\lambda_0,\emptyset}^{\tB_t}=\set{\lambda_0+\tB_t\alpha:\alpha\ge0}.\]
-%
-%Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1\kk^{-1}$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
-%Now, leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
-%\begin{multline*}
-%\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}\cap\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}\\
-%\begin{aligned}
-%&=\left(\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}\right)^{-1}\!\!\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}
-%\cap
-%\left(\eta_{\kk\kk^{-1}}^{\BB_t^T}\right)^{-1}\!\!\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\\
-%&=\eta_{\kk1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}
-%\cap
-%\eta_{\kk\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\\
-%&=\eta_{\kk1\cdots n}^{\BB_{u}^T}\left(\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}\right)
-%\cap
-%\eta_{\kk}^{\BB_0^T}\left(\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\right)\\
-%\end{aligned}
-%\end{multline*}
 
 
 
