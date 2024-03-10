@@ -839,25 +839,26 @@ Since also $\P^{\tB_0}_{\lambda,\emptyset}\set{\lambda+\tB_0\alpha:\alpha\ge0}$,
 
 \section{Affine type}
 Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
-Then $n(n-1)\cdots1$ is a maximal green sequence for $B_0$ and $12\cdots n$ is a maximal red sequence for $B_0$.
+%Or is this backwards?:
+%Then $n(n-1)\cdots1$ is a maximal green sequence for $B_0$ and $12\cdots n$ is a maximal red sequence for $B_0$.
 Take $\lambda$ in the imaginary cone.
 Let $t$ be any seed such that $\Cone_t^{B_0;t_0}$ has $n-2$ rays on the boundary of the imaginary wall $\d_\infty$ such that $\lambda$ is in the imaginary cone spanned by those $n-2$ rays and the imaginary ray.
 Let $\kk=k_m\cdots k_1$ be a sequence such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-(Probably we need to address greenness or redness of this sequence, which we can presumably do pretty easily with the sortable elements stuff.)
+%(Probably we need to address greenness or redness of this sequence, which we can presumably do pretty easily with the sortable elements stuff.)
 
 Let $\tB_0$ be an extension of $B_0$ that has linearly independent columns.
-Computations show that 
+Computations show that  \margin{Probably need more specific notation about $\d_\infty$.}
 
 \[\P_{\lambda,\kk}^{\tB_0}\cap\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\cap\d_\infty=\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty.\]
 
 Let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$ and let $\lambda_u$ be $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\lambda)$.
 \cref{shift extended} says that $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_u,\kk12\cdots n}^{\tB_u}$ and
 \[\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_u,\kk n\cdots11\cdots n}^{\tB_u}=\P_{\lambda_u,\kk}^{\tB_u}.\]
-The map $\eta_{n(n-1)\cdots1}^{\BB_0^T}$ is linear on $\d_\infty$ and maps $-\tB_0\delta$ to $\tB_u\delta$, so it maps the set $\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty$ to $\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty$.
+The map $\eta_{n(n-1)\cdots1}^{\BB_0^T}$ is linear on $\d_\infty$ and maps $-\tB_0\delta$ to $-\tB_u\delta$, so it maps the set $\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty$ to $\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty$.
 Thus we will show that 
 \[\P_{\lambda_u,\kk}^{\tB_u}\cap\P_{\lambda_u,\kk12\cdots n}^{\tB_u}\cap\d_\infty=\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty.\]
 
-Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1$ or in other words, the seed reached from $u$ by the sequence $\kk$.
+Let $t'$ be the seed reached from $t_0$ by the sequence $\kk n(n-1)\cdots1$ or in other words, the seed reached from $u$ by the sequence $\kk$.
 Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
 \begin{multline*}
 \P_{\lambda_u,\kk}^{\tB_u}
@@ -907,6 +908,9 @@ KEY POINT:  On $\d_\infty$, the map $\eta_{n\cdots1}^{\BB_0^T}$ is linear, and a
 So there is just a chance that we know something.
 
 
+
+\subsection{Other ideas}
+
 %Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
 %Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
 %\begin{multline*}
@@ -955,11 +959,16 @@ So there is just a chance that we know something.
 %\cref{shift extended} says that $\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda',\kk12\cdots n\kk^{-1}}^{\tB_{t'}}$ and
 %\[\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda',\kk n\cdots11\cdots n \kk^{-1}}^{\tB_{t'}}=\P_{\lambda',\emptyset}^{\tB_{t'}}=\set{\lambda'+\tB_{t'}\alpha:\alpha\ge0}.\]
 
-%Let $\lambda_0=\eta_\kk^{\BB_0^T}$.
-%\cref{shift extended} says that  $\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}$.
-%Also, 
-%\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}=\P_{\lambda_0,\emptyset}^{\tB_t}=\set{\lambda_0+\tB_t\alpha:\alpha\ge0}.\]
-%
+Let $\lambda_0=\eta_\kk^{\BB_0^T}$.
+\cref{shift extended} says that  
+\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}=\left(\eta^{\BB_t}_{\kk n\cdots1\kk^{-1}}\right)^{-1}\set{\eta^{\BB_t}_{\kk n\cdots1\kk^{-1}}(\lambda_0)+\tB_{t'}\alpha:\alpha\ge0}.\]
+Also, 
+\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}=\P_{\lambda_0,\emptyset}^{\tB_t}=\set{\lambda_0+\tB_t\alpha:\alpha\ge0}.\]
+
+We believe we could prove that $\P_{\lambda,\kk}$ only depends on the seed that $\kk$ leads to, not the specific $\kk$.
+So does it make sense to consider the sequence (maximal red or maximal green) that connects $t$ and $t'$.
+
+
 %Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1\kk^{-1}$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
 %Now, leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
 %\begin{multline*}
@@ -979,6 +988,45 @@ So there is just a chance that we know something.
 
 
 
+\section{An outline of a plan}
+We have a characterization of the exchange matrices of \newword{neighboring seeds} (seeds that have $n-2$ $\g$-vectors in the imaginary wall.
+I \emph{think} we know that this characterization is ``if and only if'', i.e.\ an exchange matrix in an affine exchange pattern has that form if and only if it belongs to a neighboring seed.
+So we'll call these exchange matrices \newword{neighboring exchange matrices}.
+
+\begin{enumerate}[\bf1.]
+\item
+To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-B exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
+So we'll call it the \newword{type-B companion}.
+\item
+We need to show that the intersection of the nonnegative span of $B$ intersected with the appropriate $\delta^\perp$ is the nonnegative span of $-\delta$ and the columns of the type-B companion.
+ (OK, not really $\delta$, but I mean the hyperplane containing the imaginary wall and the direction of the imaginary ray.  This is terrible notation but you know what I mean.)
+\item
+Call the indices of the last column/row of each $B_{ii}$ for $i=1,2,3$ (if they exist) the \newword{special indices} and call the two indices of $B_{44}$ the \newword{affine indices}.
+(But really, we won't assume that we re-indexed everything to separate the blocks and put the affine indices last.
+Even so, we can identify special and affine indices.)
+We need to show that mutating $B$ in non-special indices commutes with mutating the type-B companion in the corresponding indices.
+(We think of the type-B companion as being indexed by the non-affine indices of $B$.)
+I think this should just be straightforward.
+\item \label{not finally}
+We then need to show that for each special index $i$, there is a sequence of mutations of $B$ in $i$ and the affine indices that yields a neighboring seed, and that the type-B companions of these two neighboring seeds are related by mutation at $i$.
+We probably need to show this case-by-case in the sense of the table in affine\_dominance, but this seems actually doable and possibly not very long.  
+(Exhibiting one sequence and checking will do.)
+I think that this will change which of the three is special and which are affine.
+\item \label{finally}
+Finally, we need to check that the mutation maps for all of these mutations (in non-affine indices), as they act on the imaginary wall, are the same as the mutation maps for the type-B companion.
+That is, the mutation maps for B send the imaginary ray to the new imaginary ray and act on the boundary of the imaginary wall just as the mutation maps for the type-B companion act on an $(n-2)$-dimensional plane.
+Again, we should be able to do this by checking case-by-case in the table.
+\end{enumerate}
+If we have all that, then I think we're done.  
+Because we would know that the type-B companion has mutation sequences that reduce its dominance regions to points, and the corresponding mutation sequences for $B$ would reduce dominance regions in the imaginary wall to the appropriate line segment.
+
+Idea what the type-B companion might be:
+Simply scale the special columns by $2$ and delete the affine columns and rows.
+(Or maybe it should be the rows? Or maybe either would work?  Or maybe it depends on the type in the table?)
+Maybe it can't be that simple, but I kinda think it has to be.
+
+Somehow \cref{finally} is really just the same as \cref{not finally}.  
+In either case, the point is to see what happens to a column that is not $i$ and not affine.
 
 
 % bibliography
