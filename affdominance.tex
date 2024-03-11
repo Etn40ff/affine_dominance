@@ -998,8 +998,7 @@ So we'll call these exchange matrices \newword{neighboring exchange matrices}.
 To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-B exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
 So we'll call it the \newword{type-B companion}.
 \item
-We need to show that the intersection of the nonnegative span of $B$ intersected with the appropriate $\delta^\perp$ is the nonnegative span of $-\delta$ and the columns of the type-B companion.
- (OK, not really $\delta$, but I mean the hyperplane containing the imaginary wall and the direction of the imaginary ray.  This is terrible notation but you know what I mean.)
+We need to show that the intersection of the nonnegative span of $B$ intersected with the hyperplane containing the imaginary wall is contained in the nonnegative span of $\pm$ the imaginary ray and the columns of the type-B companion.
 \item
 Call the indices of the last column/row of each $B_{ii}$ for $i=1,2,3$ (if they exist) the \newword{special indices} and call the two indices of $B_{44}$ the \newword{affine indices}.
 (But really, we won't assume that we re-indexed everything to separate the blocks and put the affine indices last.
@@ -1027,6 +1026,113 @@ Maybe it can't be that simple, but I kinda think it has to be.
 
 Somehow \cref{finally} is really just the same as \cref{not finally}.  
 In either case, the point is to see what happens to a column that is not $i$ and not affine.
+
+\subsection{This works for blocks $A_2^{(1)}$}
+Starting with the block in the table of size $A_2^{(1)}$, consider these mutations:
+\[
+\begin{bsmallmatrix*}[r]
+0&1&-1\\
+-1&0&2\\
+1&-2&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&-1&\,\,\,1\\
+1&0&1\\
+-1&-1&0
+\end{bsmallmatrix*}
+\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&\,\,\,1&1\\
+-1&0&-1\\
+-1&1&0
+\end{bsmallmatrix*}
+\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&2&-1\\
+-2&0&1\\
+1&-1&0
+\end{bsmallmatrix*}.
+\]
+We will apply the corresponding mutations to the matrix $B$ for the neighboring seed.
+It suffices to consider only one of the blocks $B_{11}$, $B_{22}$ or $B_{33}$, without loss of generality $B_{33}$.
+To compute the mutations, we take representative entries of $B$ as follows:
+\begin{itemize}
+\item $a_ij$ is an entry in $B_{33}$ with $i$ and $j$ \emph{non-special} or an entry (again, with $i$ nonspecial) in a column adjoined to $B$ in computing a mutation map $\eta^{B^T}$.
+\item
+$x_i$ is the entry in row $i$ (again non-special) of the special column of $B_{33}$.
+\item
+$y_j$ is the entry in column $j$ (again non-special) of the special row of $B_{33}$ or the special-index-entry in a column adjoined to $B$.
+\end{itemize}
+We use the notation 
+\[m(a,b)=\begin{cases}
+ab&\text{if }\sgn(a)=\sgn(b)=+\\
+-ab&\text{if }\sgn(a)=\sgn(b)=0\\
+0&\text{otherwise}.
+\end{cases}\]
+Writing $1$ for the special index in $B_{33}$ and $2$ and $3$ for the affine indices, the mutations proceed as follows.
+We use the identity $m(a,1)+m(a,-1)=a$ several times.
+\begin{align*}
+\begin{bsmallmatrix*}[r]
+a_{ij}&x_i&0&0\\
+y_j&0&1&-1\\
+0&-1&0&2\\
+0&1&-2&0
+\end{bsmallmatrix*}
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j)&-x_i&m(x_i,1)&m(x_i,-1)\\
+-y_j&0&-1&1\\
+m(y_j,-1)&1&0&1\\
+m(y_j,1)&-1&-1&0
+\end{bsmallmatrix*}\\
+&\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j)&-x_i+m(x_i,1)&-m(x_i,1)&x_i\\
+-y_j+m(y_j,1)&0&\,\,\,1&1\\
+-m(y_j,-1)&-1&0&-1\\
+y_j&-1&1&0
+\end{bsmallmatrix*}\\
+&\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+2m(x_i,y_j)&0&0&-x_i\\
+0&0&2&-1\\
+0&-2&0&1\\
+-y_j&1&-1&0
+\end{bsmallmatrix*}.
+\end{align*}
+
+The type-B companion of $B$ is obtained by deleting the affine rows and columns and scaling each special column by $2$.
+OK, I actually don't know whether this is type-B, but Salvatore (and Tomoki) know, right?
+There are probably weaker things we could use if wee don't have this.
+
+Each non-affine column of $B$ agrees with the corresponding column of the type-B companion except that (for the special columns) there are multiples of the direction of the imaginary ray.
+In particular, these non-affine columns of $B$ are already in the hyperplane containing the imaginary wall.  Furthermore, while the affine columns are not in that hyperplane, there is positive linear combination of them that is (either their sum or a two-to-one ratio), and this positive linear combination is in the direction of the imaginary ray.
+
+If we mutate the type-B companion in the special index, we have
+\[
+\begin{bsmallmatrix*}
+a_{ij}&2x_i\\
+y_j&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(2x_i,y_j)&-2x_i\\
+-y_j&0
+\end{bsmallmatrix*}
+\]
+
+That works!  
+
+If we mutate in a non-special index in $B_{33}$, we don't have to worry about anything outside $B_{33}$, and also, this mutation certainly commutes with scaling the special column by $2$.
+
+Seems like everything works in this case.
+The other cases should be similar.
+
+
+ 
+
+
 
 
 % bibliography
