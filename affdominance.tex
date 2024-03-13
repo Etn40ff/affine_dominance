@@ -995,31 +995,31 @@ So we'll call these exchange matrices \newword{neighboring exchange matrices}.
 
 \begin{enumerate}[\bf1.]
 \item
-To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-B exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
-So we'll call it the \newword{type-B companion}.
+To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-C exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
+So we'll call it the \newword{type-C companion}.
 \item
-We need to show that the intersection of the nonnegative span of $B$ intersected with the hyperplane containing the imaginary wall is contained in the nonnegative span of $\pm$ the imaginary ray and the columns of the type-B companion.
+We need to show that the intersection of the nonnegative span of $B$ intersected with the hyperplane containing the imaginary wall is contained in the nonnegative span of $\pm$ the imaginary ray and the columns of the type-C companion.
 \item
 Call the indices of the last column/row of each $B_{ii}$ for $i=1,2,3$ (if they exist) the \newword{special indices} and call the two indices of $B_{44}$ the \newword{affine indices}.
 (But really, we won't assume that we re-indexed everything to separate the blocks and put the affine indices last.
 Even so, we can identify special and affine indices.)
-We need to show that mutating $B$ in non-special indices commutes with mutating the type-B companion in the corresponding indices.
-(We think of the type-B companion as being indexed by the non-affine indices of $B$.)
+We need to show that mutating $B$ in non-special indices commutes with mutating the type-C companion in the corresponding indices.
+(We think of the type-C companion as being indexed by the non-affine indices of $B$.)
 I think this should just be straightforward.
 \item \label{not finally}
-We then need to show that for each special index $i$, there is a sequence of mutations of $B$ in $i$ and the affine indices that yields a neighboring seed, and that the type-B companions of these two neighboring seeds are related by mutation at $i$.
+We then need to show that for each special index $i$, there is a sequence of mutations of $B$ in $i$ and the affine indices that yields a neighboring seed, and that the type-C companions of these two neighboring seeds are related by mutation at $i$.
 We probably need to show this case-by-case in the sense of the table in affine\_dominance, but this seems actually doable and possibly not very long.  
 (Exhibiting one sequence and checking will do.)
 I think that this will change which of the three is special and which are affine.
 \item \label{finally}
-Finally, we need to check that the mutation maps for all of these mutations (in non-affine indices), as they act on the imaginary wall, are the same as the mutation maps for the type-B companion.
-That is, the mutation maps for B send the imaginary ray to the new imaginary ray and act on the boundary of the imaginary wall just as the mutation maps for the type-B companion act on an $(n-2)$-dimensional plane.
+Finally, we need to check that the mutation maps for all of these mutations (in non-affine indices), as they act on the imaginary wall, are the same as the mutation maps for the type-C companion.
+That is, the mutation maps for B send the imaginary ray to the new imaginary ray and act on the boundary of the imaginary wall just as the mutation maps for the type-C companion act on an $(n-2)$-dimensional plane.
 Again, we should be able to do this by checking case-by-case in the table.
 \end{enumerate}
 If we have all that, then I think we're done.  
-Because we would know that the type-B companion has mutation sequences that reduce its dominance regions to points, and the corresponding mutation sequences for $B$ would reduce dominance regions in the imaginary wall to the appropriate line segment.
+Because we would know that the type-C companion has mutation sequences that reduce its dominance regions to points, and the corresponding mutation sequences for $B$ would reduce dominance regions in the imaginary wall to the appropriate line segment.
 
-Idea what the type-B companion might be:
+Idea what the type-C companion might be:
 Simply scale the special columns by $2$ and delete the affine columns and rows.
 (Or maybe it should be the rows? Or maybe either would work?  Or maybe it depends on the type in the table?)
 Maybe it can't be that simple, but I kinda think it has to be.
@@ -1102,14 +1102,14 @@ a_{ij}+2m(x_i,y_j)&0&0&-x_i\\
 \end{bsmallmatrix*}.
 \end{align*}
 
-The type-B companion of $B$ is obtained by deleting the affine rows and columns and scaling each special column by $2$.
-OK, I actually don't know whether this is type-B, but Salvatore (and Tomoki) know, right?
+The type-C companion of $B$ is obtained by deleting the affine rows and columns and scaling each special column by $2$.
+OK, I actually don't know whether this is type-C, but Salvatore (and Tomoki) know, right?
 There are probably weaker things we could use if wee don't have this.
 
-Each non-affine column of $B$ agrees with the corresponding column of the type-B companion except that (for the special columns) there are multiples of the direction of the imaginary ray.
+Each non-affine column of $B$ agrees with the corresponding column of the type-C companion except that (for the special columns) there are multiples of the direction of the imaginary ray.
 In particular, these non-affine columns of $B$ are already in the hyperplane containing the imaginary wall.  Furthermore, while the affine columns are not in that hyperplane, there is positive linear combination of them that is (either their sum or a two-to-one ratio), and this positive linear combination is in the direction of the imaginary ray.
 
-If we mutate the type-B companion in the special index, we have
+If we mutate the type-C companion in the special index, we have
 \[
 \begin{bsmallmatrix*}
 a_{ij}&2x_i\\
@@ -1130,9 +1130,16 @@ Seems like everything works in this case.
 The other cases should be similar.
 
 
- 
+\subsection{This works for blocks $C_2^{(1)}$}
+Sequence should be $1,2,3,1$.
+
+(or $1,3,2,1$)
+
+Also for $D_2^{(2)}$ and both $A_4^{(2)}$.
 
 
+\subsection{This works for blocks $G_2^{(1)}$}
+$1,3,1,2,3,1$
 
 
 % bibliography
