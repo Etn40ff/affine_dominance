@@ -335,6 +335,7 @@
 \usepackage[draft]{say}
 \newcommand{\sayS}[1]{\say[S]{#1}}
 \newcommand{\sayN}[1]{\say[N]{#1}}
+\newcommand{\sayD}[1]{\say[D]{#1}}
 \newcommand{\margin}[1]{\say[N]{#1}}
 % control the width of your comments
 \addtolength{\marginparwidth}{3mm}
@@ -1054,6 +1055,7 @@ Starting with the block in the table of size $A_2^{(1)}$, consider these mutatio
 1&-1&0
 \end{bsmallmatrix*}.
 \]
+\sayD{We could use the mutations sequence $1,3,1,2,1$ like in the $C_2^{(1)}$ case to have the last two columns remain the affine entries.}
 We will apply the corresponding mutations to the matrix $B$ for the neighboring seed.
 It suffices to consider only one of the blocks $B_{11}$, $B_{22}$ or $B_{33}$, without loss of generality $B_{33}$.
 To compute the mutations, we take representative entries of $B$ as follows:
@@ -1067,11 +1069,11 @@ $y_j$ is the entry in column $j$ (again non-special) of the special row of $B_{3
 We use the notation 
 \[m(a,b)=\begin{cases}
 ab&\text{if }\sgn(a)=\sgn(b)=+\\
--ab&\text{if }\sgn(a)=\sgn(b)=0\\
+-ab&\text{if }\sgn(a)=\sgn(b)=-\\
 0&\text{otherwise}.
 \end{cases}\]
 Writing $1$ for the special index in $B_{33}$ and $2$ and $3$ for the affine indices, the mutations proceed as follows.
-We use the identity $m(a,1)+m(a,-1)=a$ several times.
+We use the identity $m(a,b)+m(a,-b)=ab$ for $b>0$ several times.
 \begin{align*}
 \begin{bsmallmatrix*}[r]
 a_{ij}&x_i&0&0\\
@@ -1089,7 +1091,7 @@ m(y_j,1)&-1&-1&0
 &\overset{2}{\longrightarrow}
 \begin{bsmallmatrix*}
 a_{ij}+m(x_i,y_j)&-x_i+m(x_i,1)&-m(x_i,1)&x_i\\
--y_j+m(y_j,1)&0&\,\,\,1&1\\
+-y_j+m(y_j,-1)&0&\,\,\,1&1\\
 -m(y_j,-1)&-1&0&-1\\
 y_j&-1&1&0
 \end{bsmallmatrix*}\\
@@ -1129,17 +1131,196 @@ If we mutate in a non-special index in $B_{33}$, we don't have to worry about an
 Seems like everything works in this case.
 The other cases should be similar.
 
-
 \subsection{This works for blocks $C_2^{(1)}$}
-Sequence should be $1,2,3,1$.
 
-(or $1,3,2,1$)
+Since $\mu_k(DBD^{-1})=D\mu_k(B)D^{-1}$ for any positive diagonal matrix $D$, it suffices to only consider the cases $C_2^{(1)}$, which implies both $A_4^{(2)}$ cases and $D_3^{(2)}$, and $G_2^{(1)}$, which implies $D_4^{(3)}$.
+(Let $B'=DBD^{-1}$, then $E'=DED^{-1}$ and $F'=DFD^{-1}$ so that $D(EBF)D^{-1}=E'B'F'$.)
 
-Also for $D_2^{(2)}$ and both $A_4^{(2)}$.
+Starting with the block in the table of size $C_2^{(1)}$, consider these mutations:
+\[
+\begin{bsmallmatrix*}[r]
+0&2&-2\\
+-1&0&2\\
+1&-2&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&-2&\,\,\,2\\
+1&0&0\\
+-1&0&0
+\end{bsmallmatrix*}
+\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&-2&\,\,\,-2\\
+1&0&0\\
+1&0&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&2&\,\,\,2\\
+-1&0&0\\
+-1&0&0
+\end{bsmallmatrix*}
+\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&-2&\,\,\,2\\
+1&0&0\\
+-1&0&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&2&-2\\
+-1&0&2\\
+1&-2&0
+\end{bsmallmatrix*}.
+\]
 
+Then
+\begin{align*}
+\begin{bsmallmatrix*}[r]
+a_{ij}&x_i&0&0\\
+y_j&0&2&-2\\
+0&-1&0&2\\
+0&1&-2&0
+\end{bsmallmatrix*}
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j)&-x_i&m(x_i,2)&m(x_i,-2)\\
+-y_j&0&-2&2\\
+m(y_j,-1)&1&0&0\\
+m(y_j,1)&-1&0&0
+\end{bsmallmatrix*}\\
+&\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j)&-x_i+m(x_i,-2)&m(x_i,2)&-m(x_i,-2)\\
+-y_j+2m(y_j,1)&0&-2&-2\\
+m(y_j,-1)&1&0&0\\
+-m(y_j,1)&1&0&0
+\end{bsmallmatrix*}\\
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j)&x_i-m(x_i,-2)&m(x_i,-2)&-2x_i+m(x_i,-2)\\
+y_j-2m(y_j,1)&0&2&2\\
+m(y_j,1)&-1&0&0\\
+-y_j+m(y_j,1)&-1&0&0
+\end{bsmallmatrix*}\\
+&\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j)&x_i&-m(x_i,-2)&-2x_i+m(x_i,-2)\\
+y_j&0&-2&2\\
+-m(y_j,1)&1&0&0\\
+-y_j+m(y_j,1)&-1&0&0
+\end{bsmallmatrix*}\\
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+2m(x_i,y_j)&-x_i&0&0\\
+-y_j&0&2&-2\\
+0&-1&0&2\\
+0&1&-2&0
+\end{bsmallmatrix*}
+\end{align*}
+where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-2)$ is always non-positive and $-y_j+2m(y_j,1)$ is always non-negative.
 
 \subsection{This works for blocks $G_2^{(1)}$}
-$1,3,1,2,3,1$
+
+Starting with the block in the table of size $G_2^{(1)}$, consider these mutations:
+\[
+\begin{bsmallmatrix*}[r]
+0&3&-3\\
+-1&0&2\\
+1&-2&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&-3&3\\
+1&0&-1\\
+-1&1&0
+\end{bsmallmatrix*}
+\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&0&-3\\
+0&0&1\\
+1&-1&0
+\end{bsmallmatrix*}
+\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&0&-3\\
+0&0&-1\\
+1&1&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&0&3\\
+0&0&-1\\
+-1&1&0
+\end{bsmallmatrix*}
+\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&3&-3\\
+-1&0&1\\
+1&-1&0
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&-3&3\\
+1&0&-2\\
+-1&2&0
+\end{bsmallmatrix*}.
+\]
+
+Then
+\begin{align*}
+\begin{bsmallmatrix*}[r]
+a_{ij}&x_i&0&0\\
+y_j&0&3&-3\\
+0&-1&0&2\\
+0&1&-2&0
+\end{bsmallmatrix*}
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j) & -x_i & m(x_i,3) & m(x_i,-3)\\
+-y_j & 0 & -3 & 3\\
+m(y_j,-1) & 1 & 0 & -1\\
+m(y_j,1) & -1 & 1 & 0
+\end{bsmallmatrix*}\\
+&\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j) & -x_i+m(x_i,-3) & m(x_i,3) & -m(x_i,-3)\\
+-y_j+3m(y_j,1) & 0 & 0 & -3\\
+m(y_j,-1) & 0 & 0 & 1\\
+-m(y_j,1) & 1 & -1 & 0
+\end{bsmallmatrix*}\\
+&\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j) & -x_i+m(x_i,-3) & -m(x_i,3) & m(x_i,3)-m(x_i,-3)\\
+-y_j+3m(y_j,1) & 0 & 0 & -3\\
+-m(y_j,-1) & 0 & 0 & -1\\
+m(y_j,-1)-m(y_j,1) & 1 & 1 & 0
+\end{bsmallmatrix*}\\
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j) & x_i-m(x_i,-3) & -m(x_i,3) & m(x_i,-3)\\
+y_j-3m(y_j,1) & 0 & 0 & 3\\
+-m(y_j,-1) & 0 & 0 & -1\\
+m(y_j,1) & -1 & 1 & 0
+\end{bsmallmatrix*}\\
+&\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+m(x_i,y_j) & x_i & -m(x_i,3) & -m(x_i,-3)\\
+y_j & 0 & 3 & -3\\
+-m(y_j,-1) & -1 & 0 & 1\\
+-m(y_j,1) & 1 & -1 & 0
+\end{bsmallmatrix*}\\
+&\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+a_{ij}+2m(x_i,y_j) & -x_i & 0 & 0\\
+-y_j & 0 & -3 & 3\\
+0 & 1 & 0 & -2\\
+0 & -1 & 2 & 0
+\end{bsmallmatrix*}
+\end{align*}
+where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-3)$ is always non-positive and $-y_j+3m(y_j,1)$ is always non-negative.
+ 
 
 
 % bibliography
