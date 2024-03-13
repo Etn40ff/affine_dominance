@@ -2308,6 +2308,40 @@
   \end{proof}
 \end{landscape}
 
+\section{Rank 2 Mutation Subsequences (Principal Coefficients Case)}
+  Let $\tilde B=\left[\begin{array}{c} B\\ I\end{array}\right]$ with $B=(b_{ij})$ an $n\times n$ skew-symmetrizable matrix, say $DB$ is skew-symmetric for $D=\diag(d_1,\ldots,d_n)$ with $d_i\in\ZZ_{>0}$.
+  Extend the notation $b_{ij}$ to the lower $n\times n$ submatrix by setting $b_{ij}=\delta_{i-n,j}$ for $i \ge n+1$.
+  Define $B^{(0)}:=B$ and define $t_k\in\TT_n$ recursively by joining 
+  \begin{itemize}
+    \item $t_{2s}$ to $t_{2s+1}$ by an edge labeled $1$;
+    \item $t_{2s-1}$ to $t_{2s}$ by an edge labeled $2$.
+  \end{itemize}
+  Then define $B^{(k)}=(b_{ij}^{(k)})$ recursively by $B^{(k)}:=\mu_\ell B^{(k-1)}$ for $k=2s+\ell$ with $1\le\ell\le 2$.
+  Note that we make no assumptions in general on the signs inside $B$, however assume that $-b_{12}b_{21} \ge 4$ with $b_{12}>0$.
+
+  For $k\in\ZZ$ and $\varepsilon=\pm1$, define $u_k^\varepsilon$ recursively by
+  \[u_0^\varepsilon = 1, \quad u_1^\varepsilon = 1, \quad u_{k+1}^\varepsilon=\begin{cases} b_{12} u_k^{-\varepsilon} - u_{k-1}^\varepsilon & \text{if $\varepsilon=1$;}\\ -b_{21} u_k^{-\varepsilon} - u_{k-1}^\varepsilon & \text{if $\varepsilon=-1$.} \end{cases}\]
+
+  
+  \begin{lemma}
+    \mbox{}
+    \begin{enumerate}
+      \item $b_{ij}^{(1)} = \begin{cases} -b_{ij} & \text{if $i=1$ or $j=1$;}\\ \end{cases}$
+      \item For $s \ge 1$, we have
+        \begin{align*}
+          b_{ij}^{(2s)} &= \begin{cases} b_{ij} & \text{if $\{i,j\}=\{1,2\}$;}\\ -b_{1j} u_{2s-1}^+ - b_{2j} u_{2s-2}^+ & \text{if $i=1$, $j\notin\{1,2\}$, and $b_{1j},b_{2j} \ge 0$;}\\ \end{cases}\\
+          b_{ij}^{(2s+1)} &= \begin{cases} -b_{ij} & \text{if $\{i,j\}=\{1,2\}$;}\\ \end{cases}
+        \end{align*}
+      \item For $s \le -1$, we have
+        \begin{align*}
+          b_{ij}^{(2s+1)} &= \begin{cases} -b_{ij} & \text{if $\{i,j\}=\{1,2\}$;}\\ \end{cases}\\
+          b_{ij}^{(2s)} &= \begin{cases} b_{ij} & \text{if $\{i,j\}=\{1,2\}$;}\\ \end{cases}
+        \end{align*}
+    \end{enumerate}
+  \end{lemma}
+
+
+
 \section{Rank 2 Subsequences in Rank 3}
 
   \subsection{Source mutations}
