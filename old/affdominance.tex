@@ -81,7 +81,7 @@
 \newcommand{\vsgn}{\mathbf{sgn}}
 \newcommand{\Seed}{\operatorname{Seed}}
 %\newcommand{\Sh}{{\mathcal Sh}}
-\newcommand{\posspan}{\!\!\tiny\begin{array}{c}\mathbf{pos}\\\mathbf{span}\end{array}\!\!}
+\newcommand{\posspan}{\!\tiny\begin{array}{c}\mathbf{pos}\\\mathbf{span}\end{array}\!\!}
 %\newcommand{\posspan}{\underset{\text{span}}{\overset{\text{pos}}{}}}
 %\newcommand{\posspan}{\mathbf{span_+}}
 \newcommand{\lcm}{\operatorname{lcm}}
@@ -114,7 +114,6 @@
 \newcommand{\brrrr}[1]{{\biggl\langle #1 \biggr\rangle}}
 \newcommand{\brrrrr}[1]{{\Biggl\langle #1 \Biggr\rangle}}
 \newcommand{\A}{{\mathcal A}}
-\newcommand{\I}{{\mathcal I}}
 \newcommand{\GG}{{\mathbf G}}
 \newcommand{\CC}{{\mathbf C}}
 \newcommand{\EL}{{\mathcal L}}
@@ -224,7 +223,6 @@
 \newcommand{\im}{\mathrm{im}}
 %\newcommand{\init}{\mathrm{in}}
 \renewcommand{\d}{{\mathfrak d}}
-\newcommand{\bfd}{{\mathbf d}}
 %\newcommand{\f}{{\mathfrak f}}
 \newcommand{\seg}[1]{\overline{#1}}
 \newcommand{\hy}{\hat{y}}
@@ -329,14 +327,12 @@
 
 
 
-\newcommand{\afftype}[1]{{\widetilde{\raisebox{0pt}[6pt][0pt]{#1}}}}
 
 
 
 
 % Commands for marginal notes below
 \usepackage[draft]{say}
-\newcommand{\saySS}[1]{\say[S]{#1}}
 \newcommand{\sayS}[1]{\say[S]{#1}}
 \newcommand{\sayN}[1]{\say[N]{#1}}
 \newcommand{\sayD}[1]{\say[D]{#1}}
@@ -399,20 +395,10 @@ NEED THIS
 \tableofcontents
 
 
-\section{Introduction}
-
-...
-
-The first part of this paper contains a short proof of the first key fact about dominance regions due to Fan Qin:
-Under certain hypotheses, if $\lambda$ is the $\g$-vector of a cluster monomial with respect to an initial extended exchange matrix $\tB$, then the dominance region $\P^\tB_\lambda$ is $\set\lambda$.
-(Qin's result is an immediate consequence of combining parts (1) and (3) of \cite[Theorem~1.2.1]{FanQin}.)
-Our proof takes stronger hypotheses than Qin's, but is sufficient for the purposes of the paper, uses only the basic discrete geometry of matrix mutation, and is short and self-contained.
-The first part of the paper also introduces much of the background that will be used later.
-
-\section{Dominance regions}
 
 
-\subsection{Definitions and background}\label{def sec}
+
+\section{Background}
 We assume the basic definitions of exchange matrices and of matrix mutation.
 Given a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
@@ -424,7 +410,7 @@ In this paper, it is convenient to think of vectors in $\reals^n$ as column vect
 Thus we write maps $\eta_\kk^{B^T}$.
 This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 
-Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\set{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
+Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\left(\eta_{\kk}^{B^T}\right)^{-1}\set{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
 (Throughout the paper, we will define sets indexed by vectors $\alpha\in\reals^n$ with $\alpha\ge0$, or sometimes $\alpha\in\reals^m$ with $\alpha\ge0$.
 When we can do so without confusion, we will omit the explicit statement that $\alpha\in\reals^n$ or $\alpha\in\reals^m$.)
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
@@ -441,7 +427,7 @@ $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any 
 For any $\ll$,
 \begin{align*}
 \eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})
-&=\eta^{B^T}_\kk\!\!\left(\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\right)\\
+&=\eta^{B^T}_\kk\!\!\left(\left(\eta_{\ll}^{B^T}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\right)\\
 %&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
 &=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
 %&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
@@ -486,7 +472,7 @@ We will not need the details of the definition, but roughly, the cones of $\F_{B
 Thus for each $\kk$, each cone of $\F_{B^T}$ is contained in a domain of definition of $\eta_\kk^{B^T}$, and the mutation map $\eta_\kk^{B^T}$ is linear on every cone of $\F_{B^T}$ \cite[Proposition~5.3]{universal}.
 Every cone $\Cone^{B;t_0}_t$ is a maximal cone in the mutation fan $\F_{B^T}$ \cite[Proposition~8.13]{universal}.
 Thus in particular, the mutation map $\eta_\kk^{B^T}$ is linear on every cone $\Cone^{B;t_0}_t$.
-Furthermore, $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$.
+Furthermore, $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\left(\Cone_t^{B;t_0}\right)$ for every seed~$t$.
 (This amounts to the initial seed mutation formula for $\g$-vectors, conjectured as \cite[Conjecture~7.12]{FZ07} and shown in \cite[Proposition~4.2(v)]{NZ12} to follow from sign-coherence of $C$-vectors.
 The restatement in terms of mutation maps is \cite[Conjecture~8.11]{universal}.)
 
@@ -587,13 +573,9 @@ Since the sign of $\ep x\ge0$ and $\ep\lambda\le0$, there exists~$t$ with $0\le 
 We see that ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
 \end{proof}
 
-\subsection{Linearizing the dominance region}\label{lin sec}
-The difficult thing about computing the regions $\P^B_{\lambda,\kk}$ whose intersection is the dominance region $\P^B_\lambda$ is applying the piecewise linear map $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$, because the number of its domains of linearity may grow without bound as the length of $\kk$ increases.
-In this section, we will describe, in some cases, the cones (pointed at $\lambda$) that coincide with $\P^B_{\lambda,\kk}$ inside a domain of linearity of $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$ containing~$\lambda$.
-For convenience, we work here with square exchange matrices.
-In \cref{ext sec}, we extend the result to tall extended exchange matrices.
-%As an application, we prove in \cref{ext sec} that (when $B$ is replaced by an extended exchange matrix with linearly independent columns) that the dominance region of a point $\lambda$ in the $\g$-vector fan... hypotheses... never mind
 
+
+\section{First main result}
 Let $B_0$ be an exchange matrix.
 For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
 We will prove the following theorem.
@@ -638,7 +620,7 @@ If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ 
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 
-Since $\bigl(\eta_{\kk}^{B_0^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
+Since $\left(\eta_{\kk}^{B_0^T}\right)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
 Let $D$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
 Then $\eta_{\kk^{-1}}^{B_t^T}$ is linear on $\eta_{\kk}^{B_0^T}(D)$.
 Let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$\eta_{\kk}^{B_0^T}(D)$.
@@ -647,7 +629,7 @@ Let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^
 The matrix for $\L_{\kk^{-1}}^{B_t^T}$, acting on column vectors, is $G_t^{B_0;t_0}$.
 \end{proposition}
 \begin{proof}
-By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$, and therefore also ${\eta_\kk^{B_0^T}\bigl(\Cone^{B_0;t_0}_t\bigr)=\left(\reals_{\ge0}\right)^n}$.
+By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$, and therefore also ${\eta_\kk^{B_0^T}\left(\Cone^{B_0;t_0}_t\right)=\left(\reals_{\ge0}\right)^n}$.
 The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence $\kk$ of mutations.
 \end{proof}
 
@@ -725,17 +707,17 @@ where $\posspan$ denotes the nonnegative linear span of a set of vectors.
 
 We need to show that $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}\subseteq U$.
 Since $\eta_{k_1}^{B_1^T}$ is a homeomorphism, $U\cap\set{x\in\reals^n:x_{k_1}=0}=V\cap\set{x\in\reals^n:x_{k_1}=0}$.
-By \cref{ps lemma}, any vector in $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}$ equals a vector in $V\cap\set{x\in\reals^n:x_{k_1}=0}$ plus a positive combination of vectors $\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ whose $k_1$-entry has sign $\ep$.
-Therefore, it suffices to show that every vector $\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ whose $k_1$-entry has sign~$\ep$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$.
+By \cref{ps lemma}, any vector in $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}$ equals a vector in $V\cap\set{x\in\reals^n:x_{k_1}=0}$ plus a positive combination of vectors $\left(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}$ whose $k_1$-entry has sign $\ep$.
+Therefore, it suffices to show that every vector $\left(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}$ whose $k_1$-entry has sign~$\ep$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$.
 
 As a temporary shorthand, write $b_{ij}$ for the entries of $B_1$ and write $k$ for $k_1$.
-Suppose $v_i=\bigl(E^{B_1}_{-\ep,k}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ for some~$i$ and suppose the $k$-entry of $v_i$ has sign $\ep$.
+Suppose $v_i=\left(E^{B_1}_{-\ep,k}B_1C_t^{B_1;t_1}\right)_{\col i}$ for some~$i$ and suppose the $k$-entry of $v_i$ has sign $\ep$.
 Write $M$ for $E^{B_1}_{-\ep,k}B_1$ and write $N$ for $E^{B_1}_{\ep,k}B_1$.
 \cref{columns lem}.\ref{col i} implies that $M_{kj}=-b_{kj}$ for all~$j$.
 \cref{columns lem}.\ref{cols k} implies that if $\ep M_{kj}\ge0$, then $M_{\col j}=N_{\col j}+|b_{kj}|N_{\col k}$.
 Similarly, if $\ep M_{kj}\le0$, then $M_{\col j}=N_{\col j}-|b_{kj}|N_{\col k}$.
 
-Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, and $\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$ has a sign $\delta\in\set{\pm1}$, meaning that it is not zero and all of its nonzero entries have sign $\delta$.
+Now $v_i=E^{B_1}_{-\ep,k}B_1\left(C_t^{B_1;t_1}\right)_{\col i}$, and $\left(C_t^{B_1;t_1}\right)_{\col i}$ has a sign $\delta\in\set{\pm1}$, meaning that it is not zero and all of its nonzero entries have sign $\delta$.
 (This is ``sign-coherence of $C$-vectors''.  
 See Remark~\ref{conditional}.)
 Thus there are nonnegative numbers $\gamma_j$ such that $v_i=\delta\sum_{j=1}^n\gamma_jM_{\col j}$.
@@ -746,23 +728,23 @@ v_i
 &=\delta\sum_{j\in S}\gamma_jM_{\col j}+\delta\sum_{j\in T}\gamma_jM_{\col j}\\
 &=\delta\sum_{j\in S}\gamma_j(N_{\col j}+|b_{kj}|N_{\col k})+\delta\sum_{j\in T}\gamma_j(N_{\col j}-|b_{kj}|N_{\col k})\\
 &=\delta\sum_{j=1}^n\gamma_jN_{\col j}-\delta\sum_{j=1}^n\ep\gamma_jb_{kj}N_{\col k}\\
-&=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\delta\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
-&=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k},
+&=N\left(C_t^{B_1;t_1}\right)_{\col i}+\delta\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
+&=N\left(C_t^{B_1;t_1}\right)_{\col i}+\sigma N_{\col k}.\\
 \end{align*}
 where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\delta\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
 
 As noted above, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{-B_1^T;t_1}$.
-Since $\Cone^{-B_1^T;t_1}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_1}\ge0}$, the rows of $\bigl(C_t^{B_1;t_1}\bigr)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
-In particular $\bigl(C_t^{B_1;t_1}\bigr)^{-1}(\ep e_k)$ has nonnegative entries.
-Thus $C_t^{B_1;t_1}\bigl(C_t^{B_1;t_1}\bigr)^{-1}(\ep e_k)=\ep e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
+Since $\Cone^{-B_1^T;t_1}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_1}\ge0}$, the rows of $\left(C_t^{B_1;t_1}\right)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
+In particular $\left(C_t^{B_1;t_1}\right)^{-1}(\ep e_k)$ has nonnegative entries.
+Thus $C_t^{B_1;t_1}\left(C_t^{B_1;t_1}\right)^{-1}(\ep e_k)=\ep e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
 
 Now, the hypothesis that $\kk^{-1}$ is a red sequence for $B_t$, or equivalently a green sequence for $-B_t$, says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
 Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
-We have shown that $v_i=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
+We have shown that $v_i=N\left(C_t^{B_1;t_1}\right)_{\col i}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
 In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
 
-\subsection{Extending to extended exchange matrices}\label{ext sec}
+\section{Extending to extended exchange matrices}
 We follow \cite{FZ07} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider $m\times m$ matrices related to $\tB$:
 Writing $\tB$ in block form $\begin{bsmallmatrix}B\\E\end{bsmallmatrix}$, let $\BB$ be the matrix with block form $\begin{bsmallmatrix}B&-E^T\\E&0\end{bsmallmatrix}$.
@@ -779,28 +761,14 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $D_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
-Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\set{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^\tB_{\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
-
-We relate the dominance region $\P_\lambda^\tB$ with respect to the extended exchange matrix $\tB$ to the dominance region $\P_\lambda^B$ with respect to the (non-extended) exchange matrix $B$.
-Let $\Proj_n$ be the projection from $\reals^m$ to $\reals^n$ that ignores the last $m-n$ coordinates.
-
-\begin{proposition}\label{contains proj}
-Let $\tB$ be an extended exchange matrix with underlying exchange matrix $B$.
-If $\lambda\in\reals^m$ and $\lambda'=\Proj_n\lambda\in\reals^n$, then $\Proj_n(\P_\lambda^\tB)\subseteq\P_{\lambda'}^B$.
-\end{proposition}
-\begin{proof}
-It is apparent that $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ as maps on $\reals^n$, for any sequence $\kk$ of indices in $\set{1,\ldots,n}$.
-Since $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{\mu_\kk(\BB)^T}$, the analogous fact is true for $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}$.
-Also, $\Proj_n\set{\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-The \lcnamecref{contains proj} follows.
-\end{proof}
+Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\left(\eta_{\kk}^{\BB^T}\right)^{-1}\!\!\set{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^B_{\lambda,\kk}$ all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
 
 Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
 Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is the set of vectors whose projection to $\reals^n$ (ignoring the last $m-n$ entries) is a domain of definition of $\eta_\kk^{B^T}$.
 Accordingly, we define $\Cone_t^{\tB;t_0}$ to be %the nonnegative span of the columns of $\GG_t^{\BB;t_0}$ and the columns of $\begin{bsmallmatrix}0\\-I_{m-n}\end{bsmallmatrix}$.
 the set of vectors in $\reals^m$ whose projection to $\reals^n$ is in $\Cone_t^{B;t_0}$.
-Since $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_m;t_m}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$
+Since $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\left(\Cone_t^{B;t_0}\right)$ for every seed~$t$, also $\Cone_t^{\tB_m;t_m}=\eta_\kk^{\BB^T}\left(\Cone_t^{\tB;t_0}\right)$ for every seed~$t$
 
 
 To understand dominance regions $\P^\tB_\lambda$, it is enough to consider the case where $\lambda$ has nonzero entries only in positions $1,\ldots,n$.
@@ -839,8 +807,8 @@ The assertion of \cref{P in B0C extended} is that the same holds even when, in e
 
 Thus we run through the proof of \cref{P in B0C} with $\BB$ replacing $B$ and $m$ replacing $n$ throughout and these additional conditions on $\alpha$ in all relevant expressions.
 There is no effect on the argument until the point of showing that $V\cap\set{x\in\reals^m:\sgn x_{k_1}=\ep}\subseteq U$.
-Here, we need to show that every vector $v_i=\bigl(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\bigr)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is contained in $\posspan\set{\left(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}}_{i=1}^n$.
-We argue as in the proof of \cref{P in B0C} that $v_i=N\bigl(\CC_t^{\BB_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ and that $\ep e_k$ is a nonnegative linear combination of columns of~$\CC_t^{\BB_1;t_1}$.
+Here, we need to show that every vector $v_i=\left(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is contained in $\posspan\set{\left(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}}_{i=1}^n$.
+We argue as in the proof of \cref{P in B0C} that $v_i=N\left(\CC_t^{\BB_1;t_1}\right)_{\col i}+\sigma N_{\col k}$ and that $\ep e_k$ is a nonnegative linear combination of columns of~$\CC_t^{\BB_1;t_1}$.
 Since $\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, we conclude that $\ep e_k$ is a nonnegative linear combination of columns $1$ through $n$ of~$\CC_t^{\BB_1;t_1}$.
 Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\CC_t^{\BB_1;t_1}$ as desired.
 \end{proof}
@@ -857,7 +825,7 @@ There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\
 Let $\lambda'=\eta^{\BB_0^T}_\ll\!(\lambda)$.
 \cref{shift extended} says $\eta^{\BB_0^T}_\ll\!(\P^{\tB_0}_\lambda)=\P^{\tB_{t'}}_{\lambda'}$.
 Thus it is enough to prove that $\P^{\tB_{t'}}_{\lambda'}=\set{\lambda'}$.
-Since $\eta_\ll^{\BB_0^T}\bigl(\Cone_t^{\tB_0;t_0}\bigr)=\Cone_t^{\tB_{t'};t'}$, we have reduced the proof to the case where there is a maximal red sequence for $B_t$ starting from $t$ and ending at $t_0$.
+Since $\eta_\ll^{\BB_0^T}\left(\Cone_t^{\tB_0;t_0}\right)=\Cone_t^{\tB_{t'};t'}$, we have reduced the proof to the case where there is a maximal red sequence for $B_t$ starting from $t$ and ending at $t_0$.
 
 Working in that reduction, let $\kk=k_m\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
 Then \cref{P in B0C extended} says that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}$.
@@ -870,438 +838,161 @@ We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in
 Since also $\P^{\tB_0}_{\lambda,\emptyset}\set{\lambda+\tB_0\alpha:\alpha\ge0}$, and since the columns of $\tB_0$ are linearly independent, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{proof}
 
-%\section{Affine type}
-%Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
-%%Or is this backwards?:
-%%Then $n(n-1)\cdots1$ is a maximal green sequence for $B_0$ and $12\cdots n$ is a maximal red sequence for $B_0$.
-%Take $\lambda$ in the imaginary cone.
-%Let $t$ be any seed such that $\Cone_t^{B_0;t_0}$ has $n-2$ rays on the boundary of the imaginary wall $\d_\infty$ such that $\lambda$ is in the imaginary cone spanned by those $n-2$ rays and the imaginary ray.
-%Let $\kk=k_m\cdots k_1$ be a sequence such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-%%(Probably we need to address greenness or redness of this sequence, which we can presumably do pretty easily with the sortable elements stuff.)
-%
-%Let $\tB_0$ be an extension of $B_0$ that has linearly independent columns.
-%Computations show that  \margin{Probably need more specific notation about $\d_\infty$.}
-%
-%\[\P_{\lambda,\kk}^{\tB_0}\cap\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\cap\d_\infty=\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty.\]
-%
-%Let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$ and let $\lambda_u$ be $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\lambda)$.
-%\cref{shift extended} says that $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_u,\kk12\cdots n}^{\tB_u}$ and
-%\[\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_u,\kk n\cdots11\cdots n}^{\tB_u}=\P_{\lambda_u,\kk}^{\tB_u}.\]
-%The map $\eta_{n(n-1)\cdots1}^{\BB_0^T}$ is linear on $\d_\infty$ and maps $-\tB_0\delta$ to $-\tB_u\delta$, so it maps the set $\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty$ to $\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty$.
-%Thus we will show that 
-%\[\P_{\lambda_u,\kk}^{\tB_u}\cap\P_{\lambda_u,\kk12\cdots n}^{\tB_u}\cap\d_\infty=\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty.\]
-%
-%Let $t'$ be the seed reached from $t_0$ by the sequence $\kk n(n-1)\cdots1$ or in other words, the seed reached from $u$ by the sequence $\kk$.
+\section{Affine type}
+Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
+%Or is this backwards?:
+%Then $n(n-1)\cdots1$ is a maximal green sequence for $B_0$ and $12\cdots n$ is a maximal red sequence for $B_0$.
+Take $\lambda$ in the imaginary cone.
+Let $t$ be any seed such that $\Cone_t^{B_0;t_0}$ has $n-2$ rays on the boundary of the imaginary wall $\d_\infty$ such that $\lambda$ is in the imaginary cone spanned by those $n-2$ rays and the imaginary ray.
+Let $\kk=k_m\cdots k_1$ be a sequence such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+%(Probably we need to address greenness or redness of this sequence, which we can presumably do pretty easily with the sortable elements stuff.)
+
+Let $\tB_0$ be an extension of $B_0$ that has linearly independent columns.
+Computations show that  \margin{Probably need more specific notation about $\d_\infty$.}
+
+\[\P_{\lambda,\kk}^{\tB_0}\cap\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\cap\d_\infty=\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty.\]
+
+Let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$ and let $\lambda_u$ be $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\lambda)$.
+\cref{shift extended} says that $\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_u,\kk12\cdots n}^{\tB_u}$ and
+\[\eta_{n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_u,\kk n\cdots11\cdots n}^{\tB_u}=\P_{\lambda_u,\kk}^{\tB_u}.\]
+The map $\eta_{n(n-1)\cdots1}^{\BB_0^T}$ is linear on $\d_\infty$ and maps $-\tB_0\delta$ to $-\tB_u\delta$, so it maps the set $\set{\lambda+x\tB_0\delta:x\in\reals}\cap\d_\infty$ to $\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty$.
+Thus we will show that 
+\[\P_{\lambda_u,\kk}^{\tB_u}\cap\P_{\lambda_u,\kk12\cdots n}^{\tB_u}\cap\d_\infty=\set{\lambda_u+x\tB_u\delta:x\in\reals}\cap\d_\infty.\]
+
+Let $t'$ be the seed reached from $t_0$ by the sequence $\kk n(n-1)\cdots1$ or in other words, the seed reached from $u$ by the sequence $\kk$.
+Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
+\begin{multline*}
+\P_{\lambda_u,\kk}^{\tB_u}
+\cap
+\P_{\lambda_u,\kk12\cdots n}^{\tB_u}
+\cap
+\d_\infty\\
+\begin{aligned}
+&=
+\left(\eta_{\kk}^{\BB_u^T}\right)^{-1}\!\!\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
+\cap
+\left(\eta_{\kk1\cdots n}^{\BB_u^T}\right)^{-1}\!\!\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda)+\tB_t\alpha}
+\cap
+\d_\infty\\&=
+\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
+\cap
+\eta_{n\cdots1\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda_u)+\tB_t\alpha}
+\cap
+\d_\infty\\&=
+\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
+\cap
+\eta_{n\cdots1}^{\BB_0^T}\left(\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda_u)+\tB_t\alpha}\right)
+\cap
+\d_\infty %\\&=
+\end{aligned}
+\end{multline*}
+
+
+
+
+
+Now, writing $\tB_u=\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}$, we have 
+\margin{If we use this, we need to put the $\GG B C$ thing in the background.}
+\begin{align*}
+\tB_t=\mu_\kk(\mu_{1\cdots n}(\tB_u))=\mu_\kk(\tB_0)
+&=\mu_\kk\left((\GG_{t_0}^{B_u;u})^{-1}\tB_uC_{t_0}^{B_u;u}\right)\\
+&=\mu_\kk\left(\begin{bsmallmatrix}G_{t_0}^{B_u;i}&0\\ H_{t_0}^{\tB_u;u}&I_{m-n}\end{bsmallmatrix}^{-1}\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}C_{t_0}^{B_u;u}\right)\\
+&=\mu_\kk\left(\begin{bsmallmatrix}(G_{t_0}^{B_u;u})^{-1}&0\\-H_{t_0}^{\tB_u;u}(G_{t_0}^{B_u;u})^{-1}&I_{m-n}\end{bsmallmatrix}\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}C_{t_0}^{B_u;u}\right)\\
+&=\mu_\kk\left(\begin{bsmallmatrix}B_0\\-H_{t_0}^{\tB_u;u}B_0+E_uC_{t_0}^{B_u;u}\end{bsmallmatrix}\right)\\
+\end{align*}
+We compute that $B_0=B_u$ and that $C_{t_0}^{B_u;u}=-I_n$.
+So $\tB_t=\mu_\kk\left(\begin{bsmallmatrix}B_u\\-H_{t_0}^{\tB_u;u}B_u-E_u\end{bsmallmatrix}\right)$.
+On the other hand, $\tB_{t'}=\mu_\kk(\tB_u)=\mu_\kk\left(\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}\right)$.
+
+
+KEY POINT:  On $\d_\infty$, the map $\eta_{n\cdots1}^{\BB_0^T}$ is linear, and agrees with $c$ or $c^{-1}$ or something.
+So there is just a chance that we know something.
+
+
+
+\subsection{Other ideas}
+
+%Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
 %Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
 %\begin{multline*}
-%\P_{\lambda_u,\kk}^{\tB_u}
+%\P_{\lambda,\kk}^{\tB_0}
 %\cap
-%\P_{\lambda_u,\kk12\cdots n}^{\tB_u}
-%\cap
-%\d_\infty\\
+%\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\\
 %\begin{aligned}
 %&=
-%\left(\eta_{\kk}^{\BB_u^T}\right)^{-1}\!\!\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
+%\left(\eta_{\kk}^{\BB_0^T}\right)^{-1}\!\!\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
 %\cap
-%\left(\eta_{\kk1\cdots n}^{\BB_u^T}\right)^{-1}\!\!\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda)+\tB_t\alpha}
+%\left(\eta_{\kk n\cdots1}^{\BB_0^T}\right)^{-1}\!\!\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
+%\\&=
+%\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
 %\cap
-%\d_\infty\\&=
-%\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
+%\eta_{1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
+%\\&=
+%\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
 %\cap
-%\eta_{n\cdots1\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda_u)+\tB_t\alpha}
-%\cap
-%\d_\infty\\&=
-%\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk}^{\BB_u^T}(\lambda_u)+\tB_{t'}\alpha}
-%\cap
-%\eta_{n\cdots1}^{\BB_0^T}\left(\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk1\cdots n}^{\BB_u^T}(\lambda_u)+\tB_t\alpha}\right)
-%\cap
-%\d_\infty %\\&=
+%\eta_{1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
 %\end{aligned}
 %\end{multline*}
 %
-%
-%
-%
-%
-%Now, writing $\tB_u=\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}$, we have 
+%Now, writing $\tB_0=\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}$, we have 
 %\margin{If we use this, we need to put the $\GG B C$ thing in the background.}
 %\begin{align*}
-%\tB_t=\mu_\kk(\mu_{1\cdots n}(\tB_u))=\mu_\kk(\tB_0)
-%&=\mu_\kk\left((\GG_{t_0}^{B_u;u})^{-1}\tB_uC_{t_0}^{B_u;u}\right)\\
-%&=\mu_\kk\left(\begin{bsmallmatrix}G_{t_0}^{B_u;i}&0\\ H_{t_0}^{\tB_u;u}&I_{m-n}\end{bsmallmatrix}^{-1}\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}C_{t_0}^{B_u;u}\right)\\
-%&=\mu_\kk\left(\begin{bsmallmatrix}(G_{t_0}^{B_u;u})^{-1}&0\\-H_{t_0}^{\tB_u;u}(G_{t_0}^{B_u;u})^{-1}&I_{m-n}\end{bsmallmatrix}\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}C_{t_0}^{B_u;u}\right)\\
-%&=\mu_\kk\left(\begin{bsmallmatrix}B_0\\-H_{t_0}^{\tB_u;u}B_0+E_uC_{t_0}^{B_u;u}\end{bsmallmatrix}\right)\\
+%\tB_{t'}=\mu_\kk(\mu_{n\cdots1}(\tB_0))=\mu_\kk(\tB_u)
+%&=\mu_\kk\left((\GG_u^{B_0;t_0})^{-1}\tB_0C_u^{B_0;t_0}\right)\\
+%&=\mu_\kk\left(\begin{bsmallmatrix}G_u^{B_0;t_0}&0\\ H_u^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}^{-1}\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}C_u^{B_0;t_0}\right)\\
+%&=\mu_\kk\left(\begin{bsmallmatrix}(G_u^{B_0;t_0})^{-1}&0\\-H_u^{\tB;t_0}(G_u^{B;t_0})^{-1}&I_{m-n}\end{bsmallmatrix}\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}C_u^{B_0;t_0}\right)\\
+%&=\mu_\kk\left(\begin{bsmallmatrix}B_u\\-H_u^{\tB;t_0}B_u+E_0C_u^{B_0;t_0}\end{bsmallmatrix}\right)\\
 %\end{align*}
-%We compute that $B_0=B_u$ and that $C_{t_0}^{B_u;u}=-I_n$.
-%So $\tB_t=\mu_\kk\left(\begin{bsmallmatrix}B_u\\-H_{t_0}^{\tB_u;u}B_u-E_u\end{bsmallmatrix}\right)$.
-%On the other hand, $\tB_{t'}=\mu_\kk(\tB_u)=\mu_\kk\left(\begin{bsmallmatrix}B_u\\E_u\end{bsmallmatrix}\right)$.
-%
-%
-%KEY POINT:  On $\d_\infty$, the map $\eta_{n\cdots1}^{\BB_0^T}$ is linear, and agrees with $c$ or $c^{-1}$ or something.
-%So there is just a chance that we know something.
-%
-%
-%
-%\subsection{Other ideas}
-%
-%%Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
-%%Leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
-%%\begin{multline*}
-%%\P_{\lambda,\kk}^{\tB_0}
-%%\cap
-%%\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0}\\
-%%\begin{aligned}
-%%&=
-%%\left(\eta_{\kk}^{\BB_0^T}\right)^{-1}\!\!\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
-%%\cap
-%%\left(\eta_{\kk n\cdots1}^{\BB_0^T}\right)^{-1}\!\!\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
-%%\\&=
-%%\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
-%%\cap
-%%\eta_{1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
-%%\\&=
-%%\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk}^{\BB_0^T}(\lambda)+\tB_t\alpha}
-%%\cap
-%%\eta_{1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1}^{\BB_0^T}(\lambda)+\tB_{t'}\alpha}
-%%\end{aligned}
-%%\end{multline*}
-%%
-%%Now, writing $\tB_0=\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}$, we have 
-%%\margin{If we use this, we need to put the $\GG B C$ thing in the background.}
-%%\begin{align*}
-%%\tB_{t'}=\mu_\kk(\mu_{n\cdots1}(\tB_0))=\mu_\kk(\tB_u)
-%%&=\mu_\kk\left((\GG_u^{B_0;t_0})^{-1}\tB_0C_u^{B_0;t_0}\right)\\
-%%&=\mu_\kk\left(\begin{bsmallmatrix}G_u^{B_0;t_0}&0\\ H_u^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}^{-1}\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}C_u^{B_0;t_0}\right)\\
-%%&=\mu_\kk\left(\begin{bsmallmatrix}(G_u^{B_0;t_0})^{-1}&0\\-H_u^{\tB;t_0}(G_u^{B;t_0})^{-1}&I_{m-n}\end{bsmallmatrix}\begin{bsmallmatrix}B_0\\E_0\end{bsmallmatrix}C_u^{B_0;t_0}\right)\\
-%%&=\mu_\kk\left(\begin{bsmallmatrix}B_u\\-H_u^{\tB;t_0}B_u+E_0C_u^{B_0;t_0}\end{bsmallmatrix}\right)\\
-%%\end{align*}
-%%We compute that $C $
-%
-%
-%
-%
-%
-%
-%%What does \cref{P in B0C extended} say?
-%%Assuming the appropriate sequences are red, and that $\lambda$ is in the right domain of definition, 
-%%\[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_t\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\]
-%%\[\P^{\tB_0}_{\lambda,\kk n(n-1)\cdots1}\subseteq\set{\lambda+\GG_{t'}^{\BB_0;t_0}\tB_{t'}\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_{t'}^{B_0;t_0}\alpha:\alpha\ge0},\]
-%%where $t'$ is the seed obtained from $t_0$ by $\kk n(n-1)\cdots1$.
-%
-%%Let $\lambda'=\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}$.
-%%\cref{shift extended} says that $\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda',\kk12\cdots n\kk^{-1}}^{\tB_{t'}}$ and
-%%\[\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda',\kk n\cdots11\cdots n \kk^{-1}}^{\tB_{t'}}=\P_{\lambda',\emptyset}^{\tB_{t'}}=\set{\lambda'+\tB_{t'}\alpha:\alpha\ge0}.\]
-%
-%Let $\lambda_0=\eta_\kk^{\BB_0^T}$.
-%\cref{shift extended} says that  
-%\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}=\left(\eta^{\BB_t}_{\kk n\cdots1\kk^{-1}}\right)^{-1}\set{\eta^{\BB_t}_{\kk n\cdots1\kk^{-1}}(\lambda_0)+\tB_{t'}\alpha:\alpha\ge0}.\]
-%Also, 
-%\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}=\P_{\lambda_0,\emptyset}^{\tB_t}=\set{\lambda_0+\tB_t\alpha:\alpha\ge0}.\]
-%
-%We believe we could prove that $\P_{\lambda,\kk}$ only depends on the seed that $\kk$ leads to, not the specific $\kk$.
-%So does it make sense to consider the sequence (maximal red or maximal green) that connects $t$ and $t'$.
-%
-%
-%%Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1\kk^{-1}$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
-%%Now, leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
-%%\begin{multline*}
-%%\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}\cap\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}\\
-%%\begin{aligned}
-%%&=\left(\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}\right)^{-1}\!\!\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}
-%%\cap
-%%\left(\eta_{\kk\kk^{-1}}^{\BB_t^T}\right)^{-1}\!\!\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\\
-%%&=\eta_{\kk1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}
-%%\cap
-%%\eta_{\kk\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\\
-%%&=\eta_{\kk1\cdots n}^{\BB_{u}^T}\left(\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}\right)
-%%\cap
-%%\eta_{\kk}^{\BB_0^T}\left(\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\right)\\
-%%\end{aligned}
-%%\end{multline*}
-%
+%We compute that $C $
 
 
-\section{Dominance regions in affine type}
-We will say that the cluster algebra is of \newword{affine type} if it contains a seed with an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
-Beyond rank $2$, the notion of affine type has the following intrinsic characterization.
-The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
-Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
 
 
 
 
+%What does \cref{P in B0C extended} say?
+%Assuming the appropriate sequences are red, and that $\lambda$ is in the right domain of definition, 
+%\[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_t\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\]
+%\[\P^{\tB_0}_{\lambda,\kk n(n-1)\cdots1}\subseteq\set{\lambda+\GG_{t'}^{\BB_0;t_0}\tB_{t'}\alpha:\alpha\ge0}=\set{\lambda+\tB_0C_{t'}^{B_0;t_0}\alpha:\alpha\ge0},\]
+%where $t'$ is the seed obtained from $t_0$ by $\kk n(n-1)\cdots1$.
 
-\begin{theorem}\label{affine main}
-Suppose $\tB$ is an extended exchange matrix of full rank whose underlying exchange matrix $B$ is of affine type.
-Suppose $\lambda$ is contained in the imaginary wall~$\d^\tB_\infty$.
-Then the dominance region $\P^\tB_\lambda$ the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the boundary $\d^\tB_\infty$.
-\end{theorem}
+%Let $\lambda'=\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}$.
+%\cref{shift extended} says that $\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda',\kk12\cdots n\kk^{-1}}^{\tB_{t'}}$ and
+%\[\eta_{\kk n(n-1)\cdots1}^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda',\kk n\cdots11\cdots n \kk^{-1}}^{\tB_{t'}}=\P_{\lambda',\emptyset}^{\tB_{t'}}=\set{\lambda'+\tB_{t'}\alpha:\alpha\ge0}.\]
 
-In preparation for the proof of \cref{affine main}, we quote some known results about the affine case and prove some new ones.
-It is convenient to separate these results according to classes of affine seeds.
+Let $\lambda_0=\eta_\kk^{\BB_0^T}$.
+\cref{shift extended} says that  
+\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk n(n-1)\cdots1}^{\tB_0})=\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}=\left(\eta^{\BB_t}_{\kk n\cdots1\kk^{-1}}\right)^{-1}\set{\eta^{\BB_t}_{\kk n\cdots1\kk^{-1}}(\lambda_0)+\tB_{t'}\alpha:\alpha\ge0}.\]
+Also, 
+\[\eta_\kk^{\BB_0^T}(\P_{\lambda,\kk}^{\tB_0})=\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}=\P_{\lambda_0,\emptyset}^{\tB_t}=\set{\lambda_0+\tB_t\alpha:\alpha\ge0}.\]
 
-\subsection{Acyclic seeds}\label{acyc sec}
-Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has an acyclic seed whose exchange matrix is an orientation of a Cartan matrix of affine type.
-(Indeed, the same can be said about cluster algebras of finite type.)
-The associated Cartan matrix of affine type allows us to model $\g$-vectors, $\d$-vectors, and the mutation fan by almost-positive Schur roots model, sortable elements and (doubled) Cambrian fans.
-We now quote some useful results in this setting and prove some additional facts.
-More details can be found in \cite{affdenom,afframe,affscat}.
+We believe we could prove that $\P_{\lambda,\kk}$ only depends on the seed that $\kk$ leads to, not the specific $\kk$.
+So does it make sense to consider the sequence (maximal red or maximal green) that connects $t$ and $t'$.
 
-Let $B$ be an acyclic $n\times n$ exchange matrix in a cluster algebra of affine type, indexed so that $b_{ij}\ge0$ whenever $i<j$.
-Let $\tB$ be an extension with linearly independent columns.
-Let $A$ be the Cartan matrix underlying $B$, so that $A$ is of affine type.
-Let $\delta$ be the shortest positive imaginary root in the root system $\RS$ associated to $A$.
-Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples$ be the simple roots of $\RS$.
-The \newword{support} of a root is the set of simple roots appearing in an expression for the roots as a linear combination of simple roots.
 
-Let $V$ be the real vector space spanned by the positive roots and let $V^*$ be the dual space.
-We will identify $V^*$ with the vector space $\reals^n$ that appears elsewhere in the paper by identifying the dual basis of the simple co-roots with the standard unit basis vectors of $\reals^n$.
+%Let $t'$ be the seed reached from $t$ by the sequence $\kk n(n-1)\cdots1\kk^{-1}$ and let $u$ be the seed reached from $t_0$ by the sequence $n(n-1)\cdots1$.
+%Now, leaving out repetitions of ``$\alpha\ge0$'' for reasons of space,
+%\begin{multline*}
+%\P_{\lambda_0,\kk n(n-1)\cdots1\kk^{-1}}^{\tB_t}\cap\P_{\lambda_0,\kk\kk^{-1}}^{\tB_t}\\
+%\begin{aligned}
+%&=\left(\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}\right)^{-1}\!\!\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}
+%\cap
+%\left(\eta_{\kk\kk^{-1}}^{\BB_t^T}\right)^{-1}\!\!\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\\
+%&=\eta_{\kk1\cdots n\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}
+%\cap
+%\eta_{\kk\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\\
+%&=\eta_{\kk1\cdots n}^{\BB_{u}^T}\left(\eta_{\kk^{-1}}^{\BB_{t'}^T}\set{\eta_{\kk n\cdots1\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_{t'}\alpha}\right)
+%\cap
+%\eta_{\kk}^{\BB_0^T}\left(\eta_{\kk^{-1}}^{\BB_t^T}\set{\eta_{\kk\kk^{-1}}^{\BB_t^T}(\lambda_0)+\tB_t\alpha}\right)\\
+%\end{aligned}
+%\end{multline*}
 
-Let $c$ be the Coxeter element that can be read from $B$ by multiplying the simple reflections with $s_i$ preceding $s_j$ whenever $b_{ij}>0$.
-Because we have indexed $B$ so that $b_{ij}\ge0$ whenever $i<j$, we have $c=s_1\cdots s_n$.
-Let $\RST{c}$ be the set of roots in $\RS$ that are in finite $c$-orbits.
-These form a subsystem of $\RS$, in the sense that the set of real roots in $\RST{c}$ are closed under the reflections they define, and all imaginary roots are in $\RST{c}$.
-But $\RST{c}$ might not be a root system in the usual (Kac-Moody) sense.
-Rather, it is the product of $1$, $2$, or $3$ affine root systems of type $\afftype{A}$, living in a vector space that may be smaller than the sum of the ranks of the irreducible components ($0$, $1$, or $2$ dimensions smaller):
-Each factor has a shortest positive imaginary root, and all of these are identified with $\delta$.
-(Thus $\RST{c}$ is a Kac-Moody root system only in the case where it has one of these components.)
 
-Let $\APTre{c}$ be the set of positive roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.
-Let $\APT{c}=\APTre{c}\cup\set\delta$.
-The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
-The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables, with respect to the initial exchange matrix $B$.
-There is a notion \cite[Definition~4.3]{affdenom} of $c$-compatibility of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
-Thus almost positive real Schur roots and $c$-compatibility model the $\d$-vector fan (the fan obtained by replacing each cluster with the nonnegative linear span of its $\d$-vectors).
-In addition to these $\d$-vector cones, there are cones spanned by pairwise $c$-compatible sets that contain~$\delta$.
-The set of all these cones is a complete fan $\Fan_c(\RS)$ in $V$ called the \newword{affine generalized associahedron fan}.
 
-%There is a piecewise-linear map $\tau_c$ that induces an automorphism of $\Fan_c(\RS)$.
-%The map $\tau_c$ that agrees with $c$ on all but finitely many almost positive Schur roots and in particular agrees with $c$ on all roots in $\APT{c}$.
-%For every almost positive Schur root $\beta$ not in $\APT{c}$ (i.e.\ every $\beta\in{-\Simples\cup(\RSpos\setminus\RST{c})}$), $\tau_c^k\beta$ approaches the direction of $\delta$ as $k\to\infty$.
-%More precisely, as $k\to\infty$, $\tau_c^k\beta$ is eventually of the form $\beta'+m\delta$, where $\beta'\in\RSfin$ continues to vary with $k$ and $m\to\infty$ as $k\to\infty$.
-
-There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
-The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B$, which coincides in this case with the cluster scattering fan of $B$ and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}.
-The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to cones of $\nu_c(\Fan_c(\RS))$ that comprise the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call that \newword{imaginary wall}~$\delta_\infty$.
-The nonzero maximal cones of $\nu_c(\Fan_c(\RS))$ that are contained in $\delta_\infty$ are called the \newword{imaginary cones}.
-The vector $\nu_c(\delta)$ spans a ray called the \newword{imaginary ray} that is in every imaginary cone.
-The following is \cite[Proposition~7.31(4)]{affscat}.
-
-\begin{proposition}\label{eta on dinf}
-The map $\eta^{B^T}_{12\cdots n}$ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
-\end{proposition}
-
-The following is \sayN{hopefully}
-\cite[Proposition~7.32]{affscat}.
-
-\begin{proposition}\label{delta limit eta}
-For any $x\in V^*\setminus\d_\infty$, there exist integers $m$ and $I$ and a positive real number $a$ such that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i\ge I$.
-%Thus 
-%\[\lim_{i\to\infty}\frac{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)}{\bigl|\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)\bigr|}=\frac{\nu_c(\delta)}{|\nu_c(\delta)|}\]
-\end{proposition}
-
-The following is \cite[Lemma~5.9]{affscat}, written in different notation.
-(There is a bilinear form $\omega_c(\,\cdot\,,\,\cdot\,)$ on $V$ whose matrix is $B$ with respect to the simple coroots basis on the left and the simple root basis on the right.
-The statement in \cite{affscat} refers to $\omega_c(\,\cdot\,,\delta)$, which, in the basis dual to the simple co-roots, is $B\delta$.)
-
-\begin{lemma}\label{nu delta}  
-$\nu_c(\delta)=-\frac12B\delta$.
-\end{lemma}
-
-We now prove our first preliminary result about dominance regions in the affine case.
-
-\begin{lemma}\label{P in dinf}
-If $\lambda\in\delta_\infty$, then $\P^B_\lambda\subseteq\delta_\infty$.
-\end{lemma}
-\begin{proof}
-By definition, $\P^B_\lambda\subseteq\P^B_{\lambda,\emptyset}=\set{\lambda+B\alpha:\alpha\ge0}$.
-Write the entries of $\lambda$ as $\lambda_1,\ldots,\lambda_n$.
-Since $B$ is acyclic and its $1\st$ row has nonnegative entries, in particular every point in $\P^B_\lambda$ has $1\st$ coordinate greater than or equal to $\lambda_1$.
-Also, since $\delta$ has all entries positive and the first row of $B$ is nonzero, $B\delta$ has $1\st$ coordinate strictly positive.
-
-In \cref{delta limit eta}, we can take $m$ such that $\bigl(\eta^{B^T}_{12\cdots n}\bigr)^m$ fixes $\d_\infty$ pointwise (replacing $m$ with the least common multiple of $m$ and the order of $c$ on $\d_\infty$).
-Since $\mu_{12\cdots n}(B)=B$, \cref{shift}.\ref{shift all} says that $\bigl(\eta^{B^T}_{12\cdots n}\bigr)^m(\P_\lambda^B)=P_\lambda^B$.
-
-Now suppose $\P^B_\lambda$ contains a point $x\not\in\delta_\infty$.
-Applying \cref{delta limit eta}, we find a sequence of points in $\P^B_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
-By \cref{nu delta}, and the fact that $B\delta$ has $1\st$ coordinate strictly positive, we conclude that $\P^B_\lambda$ contains points with $1\st$ coordinate strictly \emph{negative}.
-This contradiction shows that $\P^B_\lambda\subseteq\delta_\infty$.
-\end{proof}
-
-
-\sayN{We are going to use \cref{contains proj} to turn this into a statement about $\P^\tB_\lambda$, but we don't yet have a definition of $\d_\infty$ in the extended-exchange matrix sense.}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{General seeds}
-
-imaginary ray 
-imaginary wall $\d^\tB$
-
-
-
-
-\subsection{Neighboring seeds}
-A seed \newword{neighboring the imaginary wall} (usually shortened to a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
-The designation of a seed as neighboring is independent of the choice of initial seed.
-In this section, we characterize the exchange matrices of neighboring seeds, taking advantage of facts that can be obtained in the almost positive Schur roots model.
-We will call these exchange matrices \newword{neighboring exchange matrices}.
-
-Fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type and extend it to $\tB_0$ so that the rank of $\tB_0$ is $n$.
-Let $c$ be the corresponding Coxeter element.
-Let $t$ be a neighboring seed in the exchange pattern.
-Thus $G_t^{B;t_0}$ has $n-2$ columns that are in finite $c$-orbits.
-
-
-
-
-
-
-  Let $\lambda$ be a $\g$-vector in the interior of $\I$ and let $t$ be any seed adjacent to the imaginary cluster containing $\lambda$ i.e. suppose that the cluster expansion of $\lambda$ is $\sum_{i=1}^{n-2} a_i \xi_i -a_0 B_{t_0} \delta$ (with $\xi_i$ in a finite $c$-orbit,  $a_i\geq 0$ for all $i\geq 1$, and $a_0>0$) and that the $\g$-vectors at $t$ are $\{\xi_1,\dots,\xi_n\}$.
-  We now describe the exchange matrix at $t$.
-  
-  First observe that, $\{\xi_i\}_{i\in[1,n-2]}$ are $\g$-vectors in finite $c$-orbits and $\{\xi_{n-1},\xi_n\}$ are $\g$-vectors in infinite orbits.
-  Since $\lambda$ is in the interior of $\I$ the set $\{\xi_i\}_{i\in[1,n-2]}$ must contain at least one $\g$-vector from the top layer in each tube and if a tube has size $\ell$ then it must contain precisely $\ell-1$ $\g$-vectors from it. 
-  Since $\g$-vectors from the top layer of a tube are incompatible with one another, the set $\{\xi_i\}_{i\in[1,n-2]}$ must contain exactly one $\g$-vector from the top layer in each tube.
-  Let $p_i+1$ be the size of the $i$-th tube (so that $p_1+p_2+p_3 = n-2$).
-  To fix ideas we assume that $0\leq p_1\leq p_2 \leq p_3$.
-  Up to relabelling we can assume that each subset $\{\xi_1,\dots,\xi_{p_1}\}$, $\{\xi_{p_1+1},\dots,\xi_{p_1+p_2}\}$, and $\{\xi_{p_1+p_2+1},\dots,\xi_{p_1+p_2+p_3}\}$ consists of $\g$-vectors from the same tube and that $\xi_{p_1}$, $\xi_{p_1+p_2}$, and $\xi_{p_1+p_2+p_3}$ are the $\g$-vectors in the top layer of each. 
-  We will therefore consider the decomposition of the exchange matrix at $t$ in blocks $B_{ij}$ given by the partition $(p_1,p_2,p_3,2)\vdash n$.
-
-  We claim that the block $B_{ii}$ is an exchange matrix of type $A_{p_i}$ for all $i\in[1,2,3]$.
-  Indeed observe first that any tube is of type $A$ (c.f. \cite{afforb}[Proposition 4.4 (2)]) hence the corresponding symmetrizer is constant so that $B_{ii}$ is symmetric.
-  Moreover the (coefficient-free) exchange relations for $j< n-2$, $i\neq p_1,p_1+p_2$ are of the form
-  \begin{equation}
-    \label{eq:tube_rels}
-    x_{\xi_j} x_\zeta = x_{\xi_j+\zeta} + x_{\xi_j\uplus\zeta}
-  \end{equation}
-  for some $\zeta$ the $\g$-vector of a cluster variable, and $\xi_j\uplus\zeta$ (the symmetric difference of $\xi_j$ and $\zeta$\saySS{The standard notation for symmetric difference would have been $\Delta$ but it is definitely an overloaded symbol. I decided to follow CFZ's notation for the finite type case of which this is an instance I guess}) the $\g$-vector of a cluster monoimial, both in the same tube where $\xi_j$ lives.
-  Finally, the exchange relations among those listed in (\ref{eq:tube_rels}) that are supported on the $i$-th tube coincide with those in a cluster algebra of finite type $A_{p_i}$ in which one cluster variable has been frozen (the bijection being given by the identification of the $\bfd$-vectors with respect to the simples at the base of the tube with the $\bfd$-vectors with respect to the fan triangulation of a $(p_i+3)$-gon).
-  Our claim follows.
-
-  Equation (\ref{eq:tube_rels}) together with sign-skew-symmetry also imply that the blocks $B_{ij}$ with $i\neq j\in[1,2,3]$ can only have a non-zero entry in the bottom right corner.
-  
-  Similarly blocks $B_{i4}$ for $i\in[1,2,3]$  can only be non-zero in the last row and blocks $B_{4j}$ for $j\in[1,2,3]$  can only be non-zero in the last column.
-  Since the exchanges of $\xi_{p_1}$, $\xi_{p_1+p_2}$, and $\xi_{p_1+p_2+p_3}$ are not imaginary each of these matrices has at least one non-zero entry.
-  
-  Next we claim that $B_{44}$, up to a possible relabelling, is of the form
-    \[
-      \left[
-      \begin{array}{cc} 
-        0 & a \\ 
-        -b & 0 \\
-      \end{array}
-      \right]
-    \] 
-  with $a>0$, $b>0$ and $ab=4$.
-  This follows from the observation that the subalgebra generated by the cluster variables in all seeds containig $\{x_{\xi_i}\}_{i\in[1,n-2]}$ is an affine cluster algebra of rank 2.
-  Indeed let $\ell$ be the minimum positive power such that $c^\ell$ fixes pointwise $\I$.
-  Then the collection 
-  \[
-    \left\{x_{c^{j\ell} \xi_i}\right\}_{j\in\integers,i\in[1,n]}
-  \]
-  is infinite (because both $\xi_{n-1}$ and $\xi_n$ are in infinite $c$-orbits) and it is contained in the subalgebra which thus contains infinitely many cluster variables. 
-  Since it is a subalgebra of an affine type cluster algebra it is also affine and our claim follows.
-
-  For each $i\in[p_1,p_1+p_2,p_1+p_2+p_3]$ consider now the submatrix of the exchange matrix at $t$ consisting of the rows and columns $i,n-1,n$.
-  As its $2\times 2$ submatrix on rows and columns $n-1$ and $n$ is affine all of its non-diagonal entries must be non-zero.
-  Otherwise it would be an exchange matrix of wild type.
-  By direct inspection we see that the only possibilities are then those in Table~\ref{tab:possible_submatrices}.
-	Note that, as the sign patterns are the same regardless of the chosen tube mutating in directions $n-1$ and $n$ do not affect the exchange matrix at $t$ outside of rows and columns $n-1$ and $t$.
-	Moreover, by direct inspection, it is easy to see that these two mutations only change the signs in both the last two columns and the last two rows.
-
-  Some further considerations on the root lengths, together with \cite{affdenom}[Table 1], show that submatrices of types $A_{4}^{(2)}$, $G_{2}^{(1)}$, and $D_{4}^{(3)}$ can only appear in cases having a single tube so that the exchange matrix at $t$ is completely determined in these cases.
-  It remains to consider the possibly non-zero entries in the matrices $B_{ij}$ with $i\neq j\in[1,2,3]$ in the other cases.
-  By taking the $4\times 4$ submatrix consisting of the rows and columns corresponding to indices of the $\g$-vectors in the top layer of the $i$-th and $j$-th tube together with $n-1$ and $n$ we see directly that a non-zero entry in $B_{ij}$ would produce a cluster algebra of wild type.
-
-	\begin{table}
-	\caption{Possible submatrices}
-	\label{tab:possible_submatrices}	
-	\begin{center}
-	\begin{tabular}{|ll|ll|ll|}
-	Type & matrix & Type & matrix \\
-	\hline & & & \\[-1ex]
-	$A_{2}^{(1)}$ & $\left[\begin{array}{rrr}
-	0 & 1 & -1 \\
-	-1 & 0 & 2 \\
-	1 & -2 & 0
-	\end{array}\right]$ & & \\[4ex]
-	$C_{2}^{(1)}$ & $\left[\begin{array}{rrr}
-	0 & 2 & -2 \\
-	-1 & 0 & 2 \\
-	1 & -2 & 0
-	\end{array}\right]$ &
-	$D_{3}^{(2)}$ & $\left[\begin{array}{rrr}
-	0 & 1 & -1 \\
-	-2 & 0 & 2 \\
-	2 & -2 & 0
-	\end{array}\right]$ \\[4ex]
-	$G_2^{(1)}$ & $\left[\begin{array}{rrr}
-	0 & 3 & -3 \\
-	-1 & 0 & 2 \\
-	1 & -2 & 0
-	\end{array}\right]$ &
-	$D_4^{(3)}$ & $\left[\begin{array}{rrr}
-	0 & 1 & -1 \\
-	-3 & 0 & 2 \\
-	3 & -2 & 0
-	\end{array}\right]$ \\[4ex]
-	$A_{4}^{(2)}$ & $\left[\begin{array}{rrr}
-	0 & 1 & -2 \\
-	-2 & 0 & 4 \\
-	1 & -1 & 0
-	\end{array}\right]$ &
-	$A_{4}^{(2)}$ & $\left[\begin{array}{rrr}
-	0 & 2 & -1 \\
-	-1 & 0 & 1 \\
-	2 & -4 & 0
-	\end{array}\right]$ 
-	\end{tabular}
-	\end{center}	
-	\end{table}
-
-  To summarize, the exchange matrix at $t$, after relabelling, is of the form
-    \[
-      \left[
-      \begin{array}{cccc} 
-        B_{11} & 0 & 0 & B_{14} \\ 
-        0 & B_{22} & 0 & B_{24} \\
-        0 & 0 & B_{33} & B_{34} \\
-        B_{41} & B_{42} & B_{43} & B_{44}
-      \end{array}
-      \right]
-    \] 
-    with $B_{11}, B_{22}, B_{33}$ of finite type $A$, $B_{i4}$ non zero only in the last row, $B_{4j}$ non zero only in the last column, and such that the non-zero rows and columns in 
-    \[
-      \left[
-      \begin{array}{cc} 
-        0 & B_{i4} \\ 
-        B_{4i} & B_{44}
-      \end{array}
-      \right]
-    \] 
-    form one of the matrices from Table~\ref{tab:possible_submatrices}.
-
-
-
-
-
-
-\subsection{Type-C companions}
-
-
+\section{An outline of a plan}
+We have a characterization of the exchange matrices of \newword{neighboring seeds} (seeds that have $n-2$ $\g$-vectors in the imaginary wall.
+I \emph{think} we know that this characterization is ``if and only if'', i.e.\ an exchange matrix in an affine exchange pattern has that form if and only if it belongs to a neighboring seed.
+So we'll call these exchange matrices \newword{neighboring exchange matrices}.
 
 \begin{enumerate}[\bf1.]
 \item
