@@ -150,6 +150,7 @@
 \newcommand{\notlleq}{\le\!\!\!\!\not\,\le}
 \newcommand{\ggeq}{\ge\!\!\!\ge}
 \newcommand{\Cone}{\mathrm{Cone}}
+\newcommand{\Comp}{\mathrm{Comp}_C}
 \newcommand{\Star}{\mathrm{Star}}
 \newcommand{\Lin}{\mathrm{Lin}}
 \newcommand{\Ker}{\mathrm{Ker}}
@@ -340,6 +341,7 @@
 \newcommand{\sayS}[1]{\say[S]{#1}}
 \newcommand{\sayN}[1]{\say[N]{#1}}
 \newcommand{\sayD}[1]{\say[D]{#1}}
+\newcommand{\sayDR}[1]{\say[D]{#1}}
 \newcommand{\margin}[1]{\say[N]{#1}}
 % control the width of your comments
 \addtolength{\marginparwidth}{3mm}
@@ -384,6 +386,9 @@ Salvatore Stella was partially supported by ????.  }
 %\received{}
 %\revised{}
 %\accepted{}
+
+\allowdisplaybreaks
+
 
 \begin{document}
 
@@ -489,6 +494,8 @@ Thus in particular, the mutation map $\eta_\kk^{B^T}$ is linear on every cone $\
 Furthermore, $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$.
 (This amounts to the initial seed mutation formula for $\g$-vectors, conjectured as \cite[Conjecture~7.12]{FZ07} and shown in \cite[Proposition~4.2(v)]{NZ12} to follow from sign-coherence of $C$-vectors.
 The restatement in terms of mutation maps is \cite[Conjecture~8.11]{universal}.)
+A similar fact applies to the entire mutation fan:
+For any sequence $\kk$, the map $\eta_\kk^{B^T}$ induces an isomorphism of fans from $\F_{B^T}$ to $\F_{\mu_\kk(B)^T}$.
 
 \begin{remark}\label{conditional}
 As written, \cite[Proposition~8.13]{universal} is conditional on ``sign-coherence of $C$-vectors'', which was a conjecture but is now a theorem \cite[Corollary~5.5]{GHKK18}.
@@ -502,6 +509,15 @@ Thus we have the following fact.
 \begin{lemma}\label{B or -BT}
 The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
 \end{lemma}
+%Therefore, \cite[Proposition~8.20]{universal} implies the following lemma.
+%(In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
+%\begin{lemma}\label{SigmaG}
+%For $i=1,\ldots,n$, the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\Sigma G_t^{B;t_0}$.
+%\end{lemma}
+%The following lemma is an immediate consequence.
+%\begin{lemma}\label{B or -BT}
+%The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
+%\end{lemma}
 
 For $k\in\set{1,\ldots,n}$, let $J_k$ be the $n\times n$ matrix that agrees with the identity matrix except that $J_k$ has $-1$ in position $kk$.
 For an $n\times n$ matrix $M$ and $k\in\set{1,\ldots,n}$, let $M^{\bullet k}$ be the matrix that agrees with $M$ in column $k$ and has zeros everywhere outside of column $k$.
@@ -515,6 +531,7 @@ E_{\ep,k}^B&=J_k+[\ep B]_+^{\bullet k}\\
 F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
 \end{align*}
 Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
+We note that $(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}$.
 The following is essentially a result of \cite{NZ12}, although it is not stated there in this form.  \margin{Do I have this attribution right?}
 \begin{lemma}\label{EBF trick}
 For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
@@ -651,9 +668,23 @@ By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T
 The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence $\kk$ of mutations.
 \end{proof}
 
-We now apply a result of \cite{NZ12}, namely that $G_t^{B_0;t_0}B_t=B_0C_t^{B_0;t_0}$.
-This fact follows from the proof of \cite[Proposition~1.3]{NZ12}, or from \cite[(6.14)]{FZ07}, as explained in \cite[Remark~2.1]{NZ12}.
-Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, we have the following \lcnamecref{B0C}.
+The following is a result of \cite{NZ12}.
+It follows from the proof of \cite[Proposition~1.3]{NZ12}, or from \cite[(6.14)]{FZ07}, as explained in \cite[Remark~2.1]{NZ12}.
+
+\begin{proposition}\label{GBBC}
+$G_t^{B_0;t_0}B_t=B_0C_t^{B_0;t_0}$.
+\end{proposition}
+
+We can rewrite \cref{GBBC} as follows.
+
+\begin{proposition}\label{BGCB}
+$B_t\bigl(G_t^{-B_0^T;t_0}\bigr)^T=\bigl(C_t^{-B_0^T;t_0}\bigr)^TB_0$.
+\end{proposition}
+\begin{proof}
+Starting with \cref{GBBC}, we use \cite[Theorem~1.2]{NZ} to rewrite $G_t^{B_0;t_0}$ as $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}$ and $C_t^{B_0;t_0}$ as $\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$, so $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}B_t=B_0\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$.
+\end{proof}
+
+Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, the following result is immediate from \cref{GBBC}.
 
 \begin{proposition}\label{B0C}
 \begin{align*}
@@ -762,7 +793,7 @@ We have shown that $v_i=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ i
 In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
 
-\subsection{Extending to extended exchange matrices}\label{ext sec}
+\subsection{Extended exchange matrices}\label{ext sec}
 We follow \cite{FZ07} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider $m\times m$ matrices related to $\tB$:
 Writing $\tB$ in block form $\begin{bsmallmatrix}B\\E\end{bsmallmatrix}$, let $\BB$ be the matrix with block form $\begin{bsmallmatrix}B&-E^T\\E&0\end{bsmallmatrix}$.
@@ -797,11 +828,13 @@ The \lcnamecref{contains proj} follows.
 \end{proof}
 
 Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
-Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is the set of vectors whose projection to $\reals^n$ (ignoring the last $m-n$ entries) is a domain of definition of $\eta_\kk^{B^T}$.
+Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is $\Proj_n^{-1}D$ for some domain $D$ of definition of $\eta_\kk^{B^T}$.
 Accordingly, we define $\Cone_t^{\tB;t_0}$ to be %the nonnegative span of the columns of $\GG_t^{\BB;t_0}$ and the columns of $\begin{bsmallmatrix}0\\-I_{m-n}\end{bsmallmatrix}$.
-the set of vectors in $\reals^m$ whose projection to $\reals^n$ is in $\Cone_t^{B;t_0}$.
-Since $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_m;t_m}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$
+$\Proj_n^{-1}\Cone_t^{B;t_0}$.
+Since $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_m;t_m}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$.
 
+Similarly, we define the mutation fan for $\tB^T$ to be the set $\F_{\tB^T}$ of cones $\Proj_n^{-1}C$ such that $C$ is a cone in the mutation fan $\F_{B^T}$.
+Since $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ for sequences $\kk$ of indices in $\set{1,\ldots,n}$, the map $\eta_\kk^{\BB^T}$ is linear on every cone of $\F_{\tB^T}$ and acts as an isomorphism of fans from $\F_{\tB^T}$ to $\F_{\mu_\kk(\tB)^T}$.
 
 To understand dominance regions $\P^\tB_\lambda$, it is enough to consider the case where $\lambda$ has nonzero entries only in positions $1,\ldots,n$.
 Other dominance regions are obtained by translation, as explained in the following lemma.
@@ -845,8 +878,8 @@ Since $\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallma
 Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\CC_t^{\BB_1;t_1}$ as desired.
 \end{proof}
 
-\begin{corollary}\label{P point}
-Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
+\begin{corollary}\label{P point}  
+Suppose $\tB_0$ is an extended exchange matrix and suppose that the nonnegative linear span of the columns of $\tB_0$ contains no line.
 Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
 If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{corollary}
@@ -867,8 +900,47 @@ Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_{-B_t}$ (
 Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identity matrix.
 We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
-Since also $\P^{\tB_0}_{\lambda,\emptyset}\set{\lambda+\tB_0\alpha:\alpha\ge0}$, and since the columns of $\tB_0$ are linearly independent, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
+Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since the nonnegative linear span of the columns of $\tB_0$ contains no line, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{proof}
+
+The hypothesis that the nonnegative linear span of the columns of $\tB_0$ contains no line is strictly weaker than requiring that the columns of $\tB_0$ are linearly independent.
+We have the following further corollaries.
+
+An exchange matrix $B=[b_{ij}]$ determines a directed graph with vertices $\set{1,\ldots,n}$ and edges $i\to j$ whenever $b_{ij}>0$.
+We say that $B$ is \newword{bipartite} if there is a bipartition $\set{1,\ldots,n}=P\cup N$ such that $i\to j$ implies $i\in P$ and $j\in N$.
+If $B$ is bipartite, then the nonnegative linear span of the columns of $B$ contains no line, because every vector $\begin{bsmallmatrix}x_1\\\vdots\\x_n\end{bsmallmatrix}$ in the nonnegative linear span has $x_i\ge0$ if $i\in P$ and $x_i\le0$ if $i\in N$.
+
+\begin{corollary}\label{finite P point}  
+Suppose $B$ is an exchange matrix of finite type.
+Then $\P^{\tB_0}_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
+\end{corollary}
+\begin{proof}
+Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented tree.
+Source-sink mutations on this tree give a bipartite exchange matrix $B_0$, so that the nonnegative linear span of the columns of $B_0$ contains no line.
+Suppose $\kk$ is a sequence of indices such that $\mu_\kk(B_0)=B$.
+For any $\lambda\in\reals$, the dominance region $\P_\lambda^B$ is $\eta_\kk^{B_0^T}(\P_{\lambda'}^{B_0})$ for $\lambda'=\eta_\kk^{B_0^T}(\lambda)$.
+Every exchange matrix of finite type admits a maximal red sequence, so \cref{P point} applies to say that $\P_{\lambda'}^{B_0}=\set{\lambda'}$, so $\P_\lambda^B=\set{\lambda}$.
+\end{proof}
+
+An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
+
+\begin{corollary}\label{tree P point}  
+Suppose $B$ is an exchange matrix of affine type.
+If $t$ is a seed in the exchange graph for $\tB_0;t_0$ and $\lambda\in\Cone^{\tB_0;t_0}_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
+\end{corollary}
+\begin{proof}
+We first construct an exchange matrix $B_0$ mutation equivalent to $B$ such that the nonnegative linear span of the columns of $B_0$ contains no line.
+Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
+When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
+Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B_0$ whose oriented graph has exactly one source and exactly one sink.
+
+I THINK we can show that for this $B_0$ also, the nonnegative linear span of the columns of $B_0$ contains no line.
+Assuming we can, finish this like the finite type case.
+
+\end{proof}
+
+
+
 
 %\section{Affine type}
 %Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
@@ -1022,19 +1094,14 @@ Since also $\P^{\tB_0}_{\lambda,\emptyset}\set{\lambda+\tB_0\alpha:\alpha\ge0}$,
 
 
 \section{Dominance regions in affine type}
-We will say that the cluster algebra is of \newword{affine type} if it contains a seed with an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
+As before, an exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
 Beyond rank $2$, the notion of affine type has the following intrinsic characterization.
 The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
 Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
 
-
-
-
-
 \begin{theorem}\label{affine main}
-Suppose $\tB$ is an extended exchange matrix of full rank whose underlying exchange matrix $B$ is of affine type.
-Suppose $\lambda$ is contained in the imaginary wall~$\d^\tB_\infty$.
-Then the dominance region $\P^\tB_\lambda$ the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the boundary $\d^\tB_\infty$.
+Suppose $B$ is an exchange matrix of affine type.
+If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
 In preparation for the proof of \cref{affine main}, we quote some known results about the affine case and prove some new ones.
@@ -1043,37 +1110,142 @@ It is convenient to separate these results according to classes of affine seeds.
 \subsection{Acyclic seeds}\label{acyc sec}
 Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has an acyclic seed whose exchange matrix is an orientation of a Cartan matrix of affine type.
 (Indeed, the same can be said about cluster algebras of finite type.)
-The associated Cartan matrix of affine type allows us to model $\g$-vectors, $\d$-vectors, and the mutation fan by almost-positive Schur roots model, sortable elements and (doubled) Cambrian fans.
+The associated Cartan matrix of affine type allows us to model $\g$-vectors, $\dd$-vectors, and the mutation fan by almost-positive Schur roots model, sortable elements and (doubled) Cambrian fans.
 We now quote some useful results in this setting and prove some additional facts.
-More details can be found in \cite{affdenom,afframe,affscat}.
+More details can be found in \cite{affdenom,framework,afframe,affscat}.
 
-Let $B$ be an acyclic $n\times n$ exchange matrix in a cluster algebra of affine type, indexed so that $b_{ij}\ge0$ whenever $i<j$.
-Let $\tB$ be an extension with linearly independent columns.
-Let $A$ be the Cartan matrix underlying $B$, so that $A$ is of affine type.
+Let $B_0$ be an acyclic $n\times n$ exchange matrix in a cluster algebra of affine type, indexed so that $b_{ij}\ge0$ whenever $i<j$.
+%Let $\tB_0$ be an extension with linearly independent columns.
+Let $A_0$ be the Cartan matrix underlying $B_0$, so that $A_0$ is of affine type.
 Let $\delta$ be the shortest positive imaginary root in the root system $\RS$ associated to $A$.
-Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples$ be the simple roots of $\RS$.
+Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples=\set{\alpha_1,\ldots,\alpha_n}$ be the simple roots of $\RS$.
 The \newword{support} of a root is the set of simple roots appearing in an expression for the roots as a linear combination of simple roots.
 
-Let $V$ be the real vector space spanned by the positive roots and let $V^*$ be the dual space.
-We will identify $V^*$ with the vector space $\reals^n$ that appears elsewhere in the paper by identifying the dual basis of the simple co-roots with the standard unit basis vectors of $\reals^n$.
+The matrix $B_0$ is skew-symmetrizable, meaning that there exist positive constants $d_1,\ldots,d_n$ such that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$.
+These constants also symmetrize $A_0$, meaning that the entries $a_{ij}$ of $A_0$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$.
+The \newword{(skew-)symmetrizing matrix} is the diagonal matrix $D$ with diagonal entries $d_1,\ldots,d_n$.
+The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
+Thus the matrix $D$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+Furthermore, the matrix $DBD^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $DBD^{-1}=-B^T$.
+Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B^T}=DF_{\ep,k}^BD^{-1}$.
 
-Let $c$ be the Coxeter element that can be read from $B$ by multiplying the simple reflections with $s_i$ preceding $s_j$ whenever $b_{ij}>0$.
-Because we have indexed $B$ so that $b_{ij}\ge0$ whenever $i<j$, we have $c=s_1\cdots s_n$.
+Let $V$ be the real vector space spanned by the roots and let $V^*$ be the dual space.
+The simple co-roots $\Simples\ck$ are also in $V$ (each being a positive scaling of the corresponding simple root).
+Given $\beta\in V$, the notation $\beta^\perp$ indicates the set of vectors in $V^*$ that pair to $0$ with $\beta$. 
+We will identify $V^*$ with the vector space $\reals^n$ that appears elsewhere in the paper by identifying the dual basis of the simple co-roots (the \newword{fundamental weights}) with the standard unit basis vectors of $\reals^n$.
+
+The Cartan matrix $A_0$ is the matrix of a bilinear form on $V$, in the simple-roots basis on the right and the simple-co-roots basis on the left.
+Each real root defines a reflection that negates the root and fixes the hyperplane that is orthogonal to the root (with orthogonality defined in terms of $K$).
+Let $W$ be the Weyl group generated by these reflections (an affine Coxeter  group with simple reflections $s_1,\ldots,s_n$).
+The action of $W$ on $V$ fixes~$\delta$.
+Let $c$ be the Coxeter element that can be read from $B_0$ by multiplying the simple reflections with $s_i$ preceding $s_j$ whenever $b_{ij}>0$.
+Because we have indexed $B_0$ so that its $ij$-entry is nonnegative whenever $i<j$, we have $c=s_1\cdots s_n$.
+Define
+\begin{align}
+\label{rep->}
+\TravProj{c}&:=\set{\alpha_1,s_1\alpha_2,\ldots,s_1\cdots s_{n-1}\alpha_n},\\
+\label{rep<-}
+\TravInj{c}&:=\set{\alpha_n,s_n\alpha_{n-1},\ldots,s_n\cdots s_2\alpha_1},
+\end{align}%
+Continuing under the assumption that $A_0$ is of affine type, the sets $\TravProj{c}$ and $\TravInj{c}$ are disjoint, and the union $\TravProj{c}\cup\TravInj{c}$ contains one representative of each of the $2n$ infinite $c$-orbits of roots.
+(See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2]{afforb}.)
+The following lemma is \cite[Lemma~1.6]{Dlab-Ringel} or \cite[Lemma~4.1]{afforb}.
+
+\begin{lemma}\label{c to pos}
+Suppose $\RS$ is a root system of affine type and $\beta$ is a positive root in~$\RS$. 
+Then $c\beta$ is negative if and only if $\beta\in\TravInj{c}$, in which case $-c\beta\in\TravProj{c}$.
+Also $c^{-1}\beta$ is negative if and only if $\beta\in\TravProj{c}$, in which case $-c^{-1}\beta\in\TravInj{c}$.
+\end{lemma}
+
+\cref{c to pos} leads immediately to the following result.
+\begin{proposition}\label{who is pos}
+Suppose $\RS$ is a root system of affine type and $\beta\in\RS$ is in an infinite $c$-orbit.
+Then $c^i\beta$ is a positive root for all $i\ge0$ if and only if $\beta=c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$.
+\end{proposition}
+
+We define a bilinear form $\omega_c$ on $V$ whose matrix, in simple co-root coordinates on the left and simple root coordinates on the right is~$B$.
+This bilinear form is skew-symmetric because $B$ is skew-symmetrizable and the skew-symmetrizing constants are also the scaling factors between simple roots and simple co-roots.
+The following lemma is a version of \cite[Lemma~3.8]{typefree}.
+
+\begin{lemma}\label{omega s}
+$\omega_{s_1cs_1}(s_1x,s_1y)=\omega_c(x,c)=\omega_{s_ncs_n}(s_nx,s_ny)$ for any $x$ and $y$ in $V$.
+\end{lemma}
+
+Applying \cref{omega s} $n$ times, we obtain the following lemma.
+
+\begin{lemma}\label{omega c}
+$\omega_c(x,c)=\omega_c(cx,cy)$ for any $x$ and $y$ in $V$.
+\end{lemma}
+
+\begin{proposition}\label{om del}
+Suppose $\RS$ is of affine type.
+If $\beta=c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$, then $\omega_c(\beta,\delta)\ge0$. 
+\end{proposition}
+\begin{proof}
+The hypothesis is that $\beta=(s_1\cdots s_n)^ps_1\cdots s_{k-1}\alpha_k$ for some $k\in\set{1,\ldots,n}$.
+We argue by induction on $np+k$.
+If $p=0$ and $k=1$, then $\beta=\alpha_1$ and $\omega_c(\alpha_1,\delta)\ge0$ because every entry of $B$ in row $1$ is nonnegative with at least one positive entry and $\delta$ has all simple root coordinates positive.
+Otherwise $s\beta=(s_2\cdots s_ns_1)^ps_2\cdots s_{k-1}\alpha_k$ if $k>1$ or $s\beta=(s_2\cdots s_ns_1)^{p-1}s_2\cdots s_n\alpha_1$ if $k=1$.
+In either case, $s\beta$ is of the form $(scs)^{p'}\gamma'$ for $\gamma'\in\TravProj{scs}$.
+By induction, $\omega_{scs}(s\beta,\delta)\ge0$, and since $s\delta=\delta$, \cref{omega s} completes the proof.
+\end{proof}
+
+Every finite $c$-orbit of roots consists entirely of positive roots or entirely of negative roots.
+(See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2(5)]{afforb}.)
+
+\begin{proposition}\label{om del fin}
+Suppose $\RS$ is of affine type and suppose $\beta\in\RS$ is in a finite $c$-orbit.
+Then $\omega_c(\beta,\delta)=0$.
+\end{proposition}
+\begin{proof}
+Suppose the orbit of $\beta$ has $k$ elements.
+The sum $\beta+c\beta+\cdots+c^{k-1}\beta$ of all roots in the $c$-orbit of $\beta$ is fixed by the action of $c$ and is nonzero, because all elements of the orbit have the same sign (positive or negative).
+Thus the sum is an eigenvector of $c$, and thus a scalar multiple of $\delta$.
+Because $\omega_c$ is skew-symmetric, $\omega_c(\beta+c\beta+\cdots+c^{k-1}\beta,\delta)=0$.
+Now \cref{omega c} says that $k\omega_c(\beta,\delta)=0$.
+\end{proof}
+
 Let $\RST{c}$ be the set of roots in $\RS$ that are in finite $c$-orbits.
 These form a subsystem of $\RS$, in the sense that the set of real roots in $\RST{c}$ are closed under the reflections they define, and all imaginary roots are in $\RST{c}$.
 But $\RST{c}$ might not be a root system in the usual (Kac-Moody) sense.
-Rather, it is the product of $1$, $2$, or $3$ affine root systems of type $\afftype{A}$, living in a vector space that may be smaller than the sum of the ranks of the irreducible components ($0$, $1$, or $2$ dimensions smaller):
+Rather, it is the product of $1$, $2$, or $3$ affine root systems of type $\afftype{A}$, living in a vector space that may be smaller than the sum of the ranks of the irreducible factor ($0$, $1$, or $2$ dimensions smaller):
 Each factor has a shortest positive imaginary root, and all of these are identified with $\delta$.
 (Thus $\RST{c}$ is a Kac-Moody root system only in the case where it has one of these components.)
+The set of simple roots of $\RST{c}$ is written as $\SimplesT{c}$.
+The total number of roots in $\SimplesT{c}$ is $n-2$ plus the number of factors of $\RST{c}$.
+If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{c}$, then $\beta_0+\cdots+\beta_k=\delta$.
+These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
 
 Let $\APTre{c}$ be the set of positive roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.
 Let $\APT{c}=\APTre{c}\cup\set\delta$.
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
-The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables, with respect to the initial exchange matrix $B$.
+The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables, with respect to the initial exchange matrix $B_0$.
 There is a notion \cite[Definition~4.3]{affdenom} of $c$-compatibility of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
-Thus almost positive real Schur roots and $c$-compatibility model the $\d$-vector fan (the fan obtained by replacing each cluster with the nonnegative linear span of its $\d$-vectors).
-In addition to these $\d$-vector cones, there are cones spanned by pairwise $c$-compatible sets that contain~$\delta$.
+Thus almost positive real Schur roots and $c$-compatibility model the $\dd$-vector fan (the fan obtained by replacing each cluster with the nonnegative linear span of its $\dd$-vectors).
+In addition to these $\dd$-vector cones, there are cones spanned by pairwise $c$-compatible sets that contain~$\delta$.
 The set of all these cones is a complete fan $\Fan_c(\RS)$ in $V$ called the \newword{affine generalized associahedron fan}.
+
+Just as in finite type \cite{ga}, the notion of $c$-compatibility is a simplification of $c$-compatibility degree, which assigns an integer to any pair of almost-positive Schur roots.
+(Two roots are $c$-compatible if and only if their $c$-compatibility degree is~$0$.)
+We will not need the definition of $c$-compatibility, but we give some of its crucial properties, particularly as it relates to roots in $\APT{c}$.
+The following proposition is \cite[Proposition~5.6]{affdenom}.
+
+\begin{proposition}\label{delta c compat}
+A root $\alpha\in\APre{c}$ is $c$-compatible with~$\delta$ if and only if $\alpha\in\APTre{c}$.
+\end{proposition}
+
+Two roots $\alpha,\beta\in\APTre{c}$ are called \newword{nested} if $\SuppT(\alpha)\subseteq\SuppT(\beta)$ or if $\SuppT(\beta)\subseteq\SuppT(\alpha)$ or \newword{spaced} if $[\SuppT(c^{-1}\alpha)\cup\SuppT(\alpha)\cup\SuppT(c\alpha)]\cap\SuppT(\beta)=\emptyset$.
+The following proposition is \cite[Proposition~5.12]{affdenom}.
+
+\begin{proposition}\label{compatible in tubes}
+Two distinct roots $\alpha$ and $\beta$ in $\APTre{c}$ are $c$-compatible if and only if they are nested or spaced.
+\end{proposition}
+
+Thus roots $\alpha,\beta\in\APTre{c}$ are $c$-compatible if they are in different factors of $\RST{c}$, while
+$c$-compatibility of roots in the same factor can be understood by picturing their supports on a cycle.
+(The cycle consists of the simple roots the factor with edges connecting each $\beta$ to $c\beta$.)
+The roots appear as ``tubes'' in the cycle, and $c$-compatibility is the usual compatibility of tubes:
+Either the tubes are nested or there is at least one vertex between them on both sides.
 
 %There is a piecewise-linear map $\tau_c$ that induces an automorphism of $\Fan_c(\RS)$.
 %The map $\tau_c$ that agrees with $c$ on all but finitely many almost positive Schur roots and in particular agrees with $c$ on all roots in $\APT{c}$.
@@ -1081,156 +1253,320 @@ The set of all these cones is a complete fan $\Fan_c(\RS)$ in $V$ called the \ne
 %More precisely, as $k\to\infty$, $\tau_c^k\beta$ is eventually of the form $\beta'+m\delta$, where $\beta'\in\RSfin$ continues to vary with $k$ and $m\to\infty$ as $k\to\infty$.
 
 There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
-The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B$, which coincides in this case with the cluster scattering fan of $B$ and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}.
-The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to cones of $\nu_c(\Fan_c(\RS))$ that comprise the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call that \newword{imaginary wall}~$\delta_\infty$.
-The nonzero maximal cones of $\nu_c(\Fan_c(\RS))$ that are contained in $\delta_\infty$ are called the \newword{imaginary cones}.
+The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, which coincides in this case with the transposed cluster scattering fan of $B_0$ and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}.
+The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to cones of $\nu_c(\Fan_c(\RS))$ that comprise the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call that \newword{imaginary wall}~$\d_\infty$.
+The imaginary wall is contained in $\delta^\perp$.
+The nonzero maximal cones of $\nu_c(\Fan_c(\RS))$ that are contained in $\d_\infty$ are called the \newword{imaginary cones}.
 The vector $\nu_c(\delta)$ spans a ray called the \newword{imaginary ray} that is in every imaginary cone.
-The following is \cite[Proposition~7.31(4)]{affscat}.
+This is the only ray of $\nu_c(\Fan_c(\RS))$ that is not spanned by the $\g$-vector of a cluster variable.
+
+Since $\mu_{12\cdots n}(B)=B$, the map $\eta^{B_0^T}_{12\cdots n}$ is an automorphism of the fan and separately of the $\g$-vector fan.
+The following propositions are part of \cite[Proposition~7.31(4)]{affscat} and \cite[Proposition~7.32]{affscat}
 
 \begin{proposition}\label{eta on dinf}
-The map $\eta^{B^T}_{12\cdots n}$ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
+Suppose $B_0$ is an acyclic $n\times n$ exchange matrix of affine type.
+The map $\eta^{B_0^T}_{12\cdots n}$ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
 \end{proposition}
-
-The following is \sayN{hopefully}
-\cite[Proposition~7.32]{affscat}.
 
 \begin{proposition}\label{delta limit eta}
-For any $x\in V^*\setminus\d_\infty$, there exist integers $m$ and $I$ and a positive real number $a$ such that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i\ge I$.
+Suppose $x\in V^*\setminus\d_\infty$.
+Then for large enough $i$, the action of $\eta_{12\cdots n}^{B^T}$ on $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ is the same as the action of~$c$.
+Also, $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$ for large enough $i$.
+There exist integers $m$ and $I$ and a positive real number $a$ such that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i\ge I$.
 %Thus 
-%\[\lim_{i\to\infty}\frac{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)}{\bigl|\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)\bigr|}=\frac{\nu_c(\delta)}{|\nu_c(\delta)|}\]
+%\[\lim_{i\to\infty}\frac{\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)}{\bigl|\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)\bigr|}=\frac{\nu_c(\delta)}{|\nu_c(\delta)|}\]
 \end{proposition}
 
-The following is \cite[Lemma~5.9]{affscat}, written in different notation.
-(There is a bilinear form $\omega_c(\,\cdot\,,\,\cdot\,)$ on $V$ whose matrix is $B$ with respect to the simple coroots basis on the left and the simple root basis on the right.
-The statement in \cite{affscat} refers to $\omega_c(\,\cdot\,,\delta)$, which, in the basis dual to the simple co-roots, is $B\delta$.)
+The following \lcnamecref{nu delta} is \cite[Lemma~5.9]{affscat}, written in different notation.
+(There is a bilinear form $\omega_c(\,\cdot\,,\,\cdot\,)$ on $V$ whose matrix is $B_0$ with respect to the simple coroots basis on the left and the simple root basis on the right.
+The statement in \cite{affscat} is phrased in terms of $\omega_c(\,\cdot\,,\delta)$.
 
 \begin{lemma}\label{nu delta}  
-$\nu_c(\delta)=-\frac12B\delta$.
+$\nu_c(\delta)=-\frac12B_0\delta$.
 \end{lemma}
 
 We now prove our first preliminary result about dominance regions in the affine case.
 
 \begin{lemma}\label{P in dinf}
-If $\lambda\in\delta_\infty$, then $\P^B_\lambda\subseteq\delta_\infty$.
+Suppose $B_0$ is acyclic of affine type.
+If $\lambda\in\d_\infty$, then $\P^{B_0}_\lambda\subseteq\d_\infty$.
 \end{lemma}
 \begin{proof}
-By definition, $\P^B_\lambda\subseteq\P^B_{\lambda,\emptyset}=\set{\lambda+B\alpha:\alpha\ge0}$.
-Write the entries of $\lambda$ as $\lambda_1,\ldots,\lambda_n$.
-Since $B$ is acyclic and its $1\st$ row has nonnegative entries, in particular every point in $\P^B_\lambda$ has $1\st$ coordinate greater than or equal to $\lambda_1$.
-Also, since $\delta$ has all entries positive and the first row of $B$ is nonzero, $B\delta$ has $1\st$ coordinate strictly positive.
+By definition, $\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
+Write the entries of $\lambda$ as $(\lambda_1,\ldots,\lambda_n)$.
+Since $B_0$ is acyclic and its $1\st$ row has nonnegative entries, in particular every point in $\P^{B_0}_\lambda$ has $1\st$ coordinate greater than or equal to $\lambda_1$.
+Also, since $\delta$ has all entries positive and the first row of $B_0$ is nonzero, $B_0\delta$ has $1\st$ coordinate strictly positive.
 
-In \cref{delta limit eta}, we can take $m$ such that $\bigl(\eta^{B^T}_{12\cdots n}\bigr)^m$ fixes $\d_\infty$ pointwise (replacing $m$ with the least common multiple of $m$ and the order of $c$ on $\d_\infty$).
-Since $\mu_{12\cdots n}(B)=B$, \cref{shift}.\ref{shift all} says that $\bigl(\eta^{B^T}_{12\cdots n}\bigr)^m(\P_\lambda^B)=P_\lambda^B$.
+In \cref{delta limit eta}, we can take $m$ such that $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m$ fixes $\d_\infty$ pointwise (replacing $m$ with the least common multiple of $m$ and the order of $c$ on $\d_\infty$).
+Since $\mu_{12\cdots n}(B_0)=B_0$, \cref{shift}.\ref{shift all} says that $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m(\P_\lambda^{B_0})=P_\lambda^{B_0}$.
 
-Now suppose $\P^B_\lambda$ contains a point $x\not\in\delta_\infty$.
-Applying \cref{delta limit eta}, we find a sequence of points in $\P^B_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
-By \cref{nu delta}, and the fact that $B\delta$ has $1\st$ coordinate strictly positive, we conclude that $\P^B_\lambda$ contains points with $1\st$ coordinate strictly \emph{negative}.
-This contradiction shows that $\P^B_\lambda\subseteq\delta_\infty$.
+Now suppose $\P^{B_0}_\lambda$ contains a point $x\not\in\d_\infty$.
+Applying \cref{delta limit eta}, we find a sequence of points in $\P^{B_0}_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
+By \cref{nu delta}, and the fact that $B_0\delta$ has $1\st$ coordinate strictly positive, we conclude that $\P^{B_0}_\lambda$ contains points with $1\st$ coordinate strictly \emph{negative}.
+This contradiction shows that $\P^{B_0}_\lambda\subseteq\d_\infty$.
+\end{proof}
+
+We conclude this section with a very brief discussion of $c$-sortable elements.  \sayN{We'll say more if we actually need a lot of details.}
+Recalling that $c=s_1\cdots s_n$, write $c^\infty$ for the infinite word $s_1\cdots s_n|s_1\cdots s_n|s_1\cdots s_n|\cdots$.
+(The symbols ``$|$'' are not considered as letters of the word, but are \newword{dividers} placed in the word for convenience.)
+Every element $w$ of the group $W$ can be written (in many ways) as a subword of $c^\infty$.
+Each subword is specified by a finite sequence of positions in $c^\infty$.
+Out of all those subwords, the \newword{$c$-sorting word} for $w$ is the subword with the \emph{lexicographically leftmost} sequence of positions.
+The $c$-sorting word for $w$ is also specified by a finite sequence of nonempty subsets of $\set{s_1,\ldots,s_n}$, namely the set of letters of the $c$-sorting word that are before the first divider, the set of letters between the first and second dividers, between the second and third dividers, etc.
+The element $w$ is \newword{$c$-sortable} if this sequence of subsets is weakly decreasing.
+(In other words, working from left to right, once a letter $s_i$ of $c^\infty$ is skipped in the $c$-sorting word, it never appears afterwards.)
+
+The following lemma is immediate from the definition.
+\begin{lemma}\label{any prefix}
+If $a_1\ldots a_m$ is the $c$-sorting word for a $c$-sortable element, then for any $k\in\set{0,1,\ldots,m}$, the prefix $a_1\cdots a_k$ is the $c$-sorting word for a $c$-sortable element.
+\end{lemma}
+
+
+The $c$-sortable elements and their $c$-sorting words contain a lot of combinatorial data about the mutation fan.
+%Each $c$-sortable element determines an $n$-dimensional cone $\Cone_c(v)$ in $V^*$ whose inward-facing normals are certain roots or co-roots in $\RS\subset V$ determined by the $c$-sorting word as follows.
+Given a $c$-sortable element $v$ and an index $i\in\set{1,\ldots,n}$, let $a_1\cdots a_k$ be the prefix of the $c$-sorting word for $v$ consisting of all the letters before the first place where $s_i$ is skipped in the $c$-sorting word.
+Define $C_c^i(v)$ to be the root $a_1\cdots a_k\alpha_i$ and define $C_c^i(v)\ck$ to be the corresponding co-root $a_1\cdots a_k\alpha\ck_i$.
+The skip of $s_i$ in the $c$-sorting word is \newword{unforced} if $a_1\cdots a_ks_i$ is a reduced word.
+Otherwise, it is \newword{forced}.
+The root $C_c^i(v)$ is positive if and only if the skip is unforced.
+
+For each $c$-sortable element $v$, define a cone  
+\[\Cone_c(v)=\bigcap_{\beta \in C_c(v)}\set{x\in V^*:\br{x,\beta} \geq 0}.\]
+%(Since each $C_c^i(v)\ck$ is a scaling of $C_c^i(v)$, we could equally well write $\bigcap_{\beta\ck\in C_c(v)\ck}\set{x\in V^*:\br{x,\beta\ck} \geq 0}$).
+In general acyclic (but not necessarily affine) type, the union of these cones $\Cone_c(v)$ and their faces, over all $c$-sortable elements $v$, is a fan called the \newword{$c$-Cambrian fan}, which is a subfan of the $\g$-vector fan in $V^*$.
+In particular, each $c$-sortable element $v$ specifies a unique seed.
+The $C$-vectors of this seed are encoded in the $c$-sorting word for~$v$.
+Specifically, the $C$-vector in position $i$ is the integer vector given by the simple-root coordinates of $C_c^i(v)$.
+(See \cite[Therem~1.1]{framework} and \cite[Theorem~5.12]{framework}.)
+The simple co-root coordinates of $C_c^i(v)\ck$ give the $C$-vector of the seed specified by~$v$ in the cluster algebra with initial exchange matrix $-B^T$.
+Thus by \cite[Theorem~1.1]{framework}, the exchange matrix at the seed associated to $v$ has $ij$-entry $\omega_c(C_c^i(v)\ck,C_c^j(v))$.
+
+When $B$ is of finite type (equivalently, when $W$ is finite), the $c$-Cambrian fan coincides with the $\g$-vector fan, but otherwise (when $W$ is infinite), the $c$-Cambrian fan is not complete and is a proper subfan of the $\g$-vector fan.
+When $B$ is of affine type (equivalently, when $W$ is of affine type), the $\g$-vector fan is the \newword{doubled $c$-Cambrian fan}: the union of the $c$-Cambrian fan and the image of the $c^{-1}$-Cambrian fan under the antipodal fan. % (more briefly, the Cambrian fan and the \newword{opposite Cambrian fan}).
+
+\begin{proposition}\label{tack on c}
+Suppose $W$ is of affine type and suppose $v$ is a $c$-sortable element whose $c$-sorting word starts with $s_1\cdots s_n$.
+Then $cv$ is $c$-sortable and its $c$-sorting word is $s_1\cdots s_n$ followed by the $c$-sorting word for~$v$.
+\end{proposition}
+\begin{proof}
+Let $a_1\cdots a_m$ be the $c$-sorting word for $v$.
+We first show that $s_na_1\cdots a_m$ is reduced.
+The amounts to showing that $\alpha_n\not\in\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,m}$.
+Suppose to the contrary that $\alpha_n=a_1\cdots a_{k-1}\alpha(a_k)$ for some~$k$, where $\alpha(a_k)$ is the simple root associated to the simple reflection~$a_k$.
+Since $\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,n}$ equals $\TravProj{c}$ and $\alpha_n\in \TravInj{c}$, we must have $k>n$.
+But then \cref{c to pos} says that $a_{n+1}\cdots a_{k-1}\alpha(a_k)$ is negative, contradicting the fact that $a_{n+1}\cdots a_m$ is reduced.
+
+We conclude that $s_na_1\cdots a_m$ is reduced.
+Therefore, we see that $s_na_1\cdots a_m$ is the $(s_ncs_n)$-sorting word for $s_nv$ and that $s_nv$ is $(s_ncs_n)$-sortable.
+Applying that fact $n$ times implies the proposition.
+\end{proof}
+
+\begin{proposition}\label{any B is sort}
+Suppose $B_0$ is an acyclic $n\times n$ exchange matrix of affine type and suppose $B$ is mutation equivalent to $B_0$.
+Then there exists a $c$-sortable element whose associated seed has exchange matrix $B$.
+\end{proposition}
+\begin{proof}
+Since $B$ is mutation equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t$ with $B$ as exchange matrix.
+Taking $x$ in the interior of $\Cone^{B_0;t_0}_t$, \cref{delta limit eta} says that $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$  for large enough $i$.
+That is, the automorphism $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ of $\nu_c(\Fan_c(\RS))$ maps $\Cone^{B_0;t_0}_t$ to $\Cone^{B_0;t_0}_{t'}$, where~$t'$ is a new seed associated with a $c$-sortable element.
+The map $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ acts as an initial seed mutation and thus $t'$ has the same exchange matrix $B$ as~$t$.
+\end{proof}
+
+\subsection{General seeds}
+We now prove some facts about exchange matrices of affine type, without the requirement of acyclicity.
+Let $B$ be an exchange matrix of affine type.
+Then $B$ is mutation equivalent to some acyclic exchange matrix $B_0$ of affine type.
+Mutation maps $\eta_\kk^{B^T}$ are homeomorphisms and isomorphisms of mutation fans and also constitute initial seed mutations of $\g$-vectors.
+Thus the following structure carries over from the acyclic seed:
+There is a unique \newword{imaginary ray}, the unique ray of the mutation fan that is not spanned by the $\g$-vector of a cluster variable.
+An \newword{imaginary cone} of $\F_{B^T}$ is a cone containing the imaginary ray.
+The maximal imaginary cones have codimension~$1$.
+The mutation fan $\F_{B^T}$ consists of the $\g$-vector fan of $B$ and the imaginary cones.
+Write $\d^B_\infty$ for the union of the imaginary cones.
+This is a finite union of cones of codimension $1$, but it is not clear \textit{a priori} that $\d^B_\infty$ is a convex cone.
+We will establish this fact below \sayN{I hope...}
+and thus will again call $\d^B_\infty$ the \newword{imaginary wall}.
+In this section, we make some general statements about the imaginary ray and the imaginary wall.
+
+First, $\d^B_\infty$ is the image of $\d_\infty$ under the fan isomorphism $\eta_\kk^{B^T}$.
+Thus, the following lemma is immediate from \cref{shift,P in dinf}.
+
+\begin{lemma}\label{P in dBinf}
+Suppose $B$ is of affine type.
+If $\lambda\in\d^B_\infty$, then $\P^B_\lambda\subseteq\d^B_\infty$.
+\end{lemma}
+
+Let $B_0$ be an acyclic exchange matrix that is mutation-equivalent to $B$ and consider the cluster pattern with $B_0$ the seed at $t_0$.
+We will construct a seed $t$ with exchange matrix $B$ and a green sequence $\kk=k_m\cdots k_1$ for $B_0$ such that $\mu_\kk(B_0)=B$ and then establish some additional properties of $\kk$.
+
+\cref{any B is sort} says there exists a $c$-sortable element $v$ whose associated seed has exchange matrix $B$.
+Let $\kk=k_m\cdots k_1$ be the \emph{reverse} of the sequence of indices in the $c$-sorting word for $v$.
+Then $\kk$ describes mutation from the initial seed $t_0$ to the seed $t$ associated to~$v$.
+Sorting words have the property that each prefix of the $c$-sorting word for a $c$-sortable element is itself the $c$-sorting word of a $c$-sortable element.
+Thus each $t_i$ is associated to a $c$-sortable element.
+Each $t_{i+1}$ is obtained from $t_i$ by mutating in position $k_{i+1}$, the last letter of the $c$-sorting word associated to $t_{i+1}$.
+Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k_{i+1}}$ is unforced, and thus the $k_{i+1}$-entry of the $C$-vector at $t_i$ is \emph{positive}.
+In other words,~$\kk$ is a green sequence for $B_0$.
+
+Write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+We will show that we can choose $v$ so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j=0,\ldots,m$, where $\delta$ is the imaginary root associated to~$B_0$.
+To do this, we apply \cref{tack on c} to replace $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.  
+Since $\mu_{1\cdots n}(B_0)=B_0$, $c^iv$ also has exchange matrix $B$ for~$i\ge0$.
+The corresponding sequence is $\kk(n\cdots1)^i$.
+By \cite[Proposition~4.6]{afframe}, there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_j}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta<0}}$. 
+Thus we can choose $i$ large enough so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j\ge in$.
+But for $0\le j\le in$, it is apparent from the characterization of $C$-vectors in terms of skips that the columns of $C_{t_j}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $v$ to the dominant chamber.
+Now \cite[Theorem~1.2]{NZ} says that $\bigl(C_t^{B_0;t_0}\bigr)^{-1}=\bigl(G_t^{-B_0^T;t_0}\bigr)^T$, so this cone is spanned by the columns of $G_{t_j}^{-B_0^T;t_0}$.
+Since the cone is contained in the Tits cone, the columns of $G_{t_j}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
+
+For this seed $t$ and green sequence $\kk$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.
+The following proposition in particular implies that $\delta^B$ is well defined, in the sense that it depends only on $B$ and not on the specific choices we made.
+
+\begin{proposition}\label{delta is the man}
+Suppose $B$ is an exchange matrix of affine type.
+\begin{enumerate}[\quad\bf1.]
+\item \label{im ray pos}
+$\delta^B$ has nonnegative entries.
+\item \label{im ray}
+$-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray of $\F_{B^T}$.
+\item \label{im hyp}
+All imaginary cones in $\F_{B^T}$ are contained in $(\delta^B)^\perp$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}%[Proof of \cref{delta is the man}]
+Assertion~\ref{im ray pos} is true because we chose $t$ to make it true.
+
+Let $a_1\cdots a_m$ be the $c$-sorting word for $v$.
+\cref{any prefix} says that for any $\ell\in{0,1,\ldots,m}$, the prefix $a_1\cdots a_\ell$ is the $c$-sorting word for another $c$-sortable element $v_\ell$.
+The corresponding postfix of $\kk$ and the corresponding seed $t_\ell$ have the same properties we used to define $\delta^B$, so taking $B_\ell$ to be the exchange matrix at $t_\ell$, we can use $t_\ell$ to define $\delta^{B_\ell}$.
+Thus we can argue by induction on $m$ for the remaining assertions.
+
+Assertion~\ref{im ray} is true by \cref{nu delta} when $m=0$ (so that $t=t_0$ and $B=B_0$) because then $\delta^B=\delta$.
+By induction, $-B_{m-1}\delta^{B_{m-1}}$ is the shortest integer vector in the imaginary ray of $\F_{B_{m-1}^T}$.
+The mutation map $\eta_{k_m}^{B_{m-1}^T}$ takes the shortest integer vector in the imaginary ray of $\F_{B_{m-1}^T}$ to the shortest integer vector in the imaginary ray of $\F_{B^T}$. 
+Thus we check that $\eta_{k_m}^{B_{m-1}^T}(-B_{m-1}\delta^{B_{m-1}})=-B\delta^{B}$.
+
+We first appeal to \cite[Proposition~1.3]{NZ} to say that 
+\[\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta=\bigl(G_{t_{m-1}}^{-B_0^T;t_0}E_{+,k_m}^{B_{m-1}^T}\bigr)^T\delta=F_{-,k_m}^{B_{m-1}}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta,\]
+because $\kk$ is a green sequence, so that column $k_m$ of $C_{t_{m-1}}^{-B_0^T;t_0}$ is positive.
+Now \cref{EBF trick} says that $B=E_{-,k_m}^{B_{m-1}}B_{m-1}F_{-,k_m}^{B_{m-1}}$.
+Thus since $F_{-,k_m}^{B_{m-1}}$ is its own inverse, 
+\[-B\delta^B=-E_{-,k_m}^{B_{m-1}}B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta=E_{-,k_m}^{B_{m-1}}(-B_{m-1}\delta^{B_{m-1}}).\]
+Showing that $\eta_{k_m}^{B_{m-1}^T}(-B_{m-1}\delta^{B_{m-1}})=E_{-,k_m}^{B_{m-1}}(-B_{m-1}\delta^{B_{m-1}})$ amounts to showing that the $k_m$-entry of $-B_{m-1}\delta^{B_{m-1}}$ is nonpositive.
+
+We use \cref{BGCB} to rewrite $-B_{m-1}\delta^{B_{m-1}}=-B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta$ as $\bigl(C_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T(-B_0\delta)$.
+Thus we must show that $\omega_c(C^{k_m}_c(v_{m-1})\ck,\delta)\ge0$. 
+Since $C^{k_m}_c(v_{m-1})\ck$ is a positive scalar multiple of $C^{k_m}_c(v_{m-1})$, we need to check that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
+
+In the definition of $\delta^B$, we replaced a $c$-sortable element $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.
+We can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$.
+In particular, $c^jC^{k_m}_c(v_{m-1})=C^{k_m}_c(c^jv_{m-1})$ is a positive root for any $j\ge0$.
+Thus \cref{who is pos} says that either $C^{k_m}_c(v_{m-1})$ is $c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$ or $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
+Thus \cref{om del} or \cref{om del fin} says that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
+We have proved Assertion~\ref{im ray}.
+
+Assertion~\ref{im hyp} is also true when $m=0$.
+If $m>0$, then by induction, all imaginary cones in $\F_{B_{m-1}^T}$ are contained in $(\delta^{B_{m-1}})^\perp$.
+The imaginary cones in $\F_{B^T}$ are the images, under $\eta^{B^T_{m-1}}_{k_m}$, of the imaginary cones in $\F_{B_{m-1}^T}$.
+Every imaginary cone in $\F_{B_{m-1}^T}$ contains the imaginary ray, spanned by $-B_{m-1}\delta^B_{m-1}$.
+We have previously shown that the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is nonpositive.
+%More specifically, we showed that it is strictly negative unless $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
+Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{m-1}^T}$.
+
+If the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is strictly negative, then the $k_m$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{m-1}}_{k_m}$ acts on $\lambda$ by the same linear map as is acts on $-B_{m-1}\delta^B_{m-1}$, given, in the basis of fundamental weights, by the matrix $E_{-,k_m}^{B_{m-1}}$.
+The map taking $\delta^{B_{m-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_m}^{B_{m-1}}$.
+Recall that the fundamental weights are dual to the simple \emph{co-roots}.
+Recall also that the matrix $D$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+We compute
+\begin{align*}
+\br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}
+&=\br{E_{-,k_m}^{B_{m-1}}\lambda,F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}}\\
+&=(E_{-,k_m}^{B_{m-1}}\lambda)^TDF_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
+&=\lambda^T(E_{-,k_m}^{B_{m-1}})^TDF_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
+&=\lambda^TDF_{-,k_m}^{B_{m-1}}F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}=\lambda^TD\delta^{B_{m-1}}=\br{\lambda,\delta^{B_{m-1}}}=0.
+\end{align*}
+
+If instead the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is zero then either linear map associated to $\eta^{B^T_{m-1}}_{k_m}$ takes $-B_{m-1}\delta^B_{m-1}$ to $-B\delta^B$, namely $E_{\ep,k_m}^{B_{m-1}}$ for $\ep\in\set{+,-}$.
+Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above with the sign $\ep$ replacing the sign~$-$, to obtain $\br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}=0$.
+\end{proof}
+
+\cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ has codimension at most~$1$, and this exactly $1$, since it is a union of codimension-$1$ cones.
+
+\begin{proposition}\label{dBinf conv}
+If $B$ is of affine type, then $\d^B_\infty$ is a convex cone.
+\end{proposition}
+\begin{proof}
+CAN WE DO THIS?  Not sure.
+
+DO WE NEED TO DO THIS?  Not sure.
+
+But it probably will be useful somewhere.
+
+If we don't do it, update the prose above.
 \end{proof}
 
 
-\sayN{We are going to use \cref{contains proj} to turn this into a statement about $\P^\tB_\lambda$, but we don't yet have a definition of $\d_\infty$ in the extended-exchange matrix sense.}
+\begin{lemma}\label{P in dinf}
+If $\lambda\in\d_\infty$, then $\P^{B_0}_\lambda\subseteq\d_\infty$.
+\end{lemma}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-\subsection{General seeds}
-
-imaginary ray 
-imaginary wall $\d^\tB$
-
-
-
-
+%\subsection{Neighboring exchange matrices}
 \subsection{Neighboring seeds}
 A seed \newword{neighboring the imaginary wall} (usually shortened to a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
 The designation of a seed as neighboring is independent of the choice of initial seed.
 In this section, we characterize the exchange matrices of neighboring seeds, taking advantage of facts that can be obtained in the almost positive Schur roots model.
 We will call these exchange matrices \newword{neighboring exchange matrices}.
 
-Fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type and extend it to $\tB_0$ so that the rank of $\tB_0$ is $n$.
-Let $c$ be the corresponding Coxeter element.
-Let $t$ be a neighboring seed in the exchange pattern.
-Thus $G_t^{B;t_0}$ has $n-2$ columns that are in finite $c$-orbits.
+We will call column $i$ of an exchange matrix $B$ a \newword{quasi-leaf} if column $i$ has at most two nonzero entries, and, if column $i$ has nonzero entries in distinct indices $j$ and $k$, then the restriction of $B$ to rows and columns $i$, $j$, and $k$ is $\pm\begin{bsmallmatrix*}[r]0&1&-1\\-1&0&1\\1&-1&0\end{bsmallmatrix*}$.
+It will also be convenient, in describing block decompositions of matrices, to allow \newword{empty matrices}, meaning matrices that have $0$ columns and/or $0$ rows while possibly formally having a nonzero number of rows or columns.
+Thus, for example, a ``$0\times 2$ matrix''.)
 
-
-
-
-
-
-  Let $\lambda$ be a $\g$-vector in the interior of $\I$ and let $t$ be any seed adjacent to the imaginary cluster containing $\lambda$ i.e. suppose that the cluster expansion of $\lambda$ is $\sum_{i=1}^{n-2} a_i \xi_i -a_0 B_{t_0} \delta$ (with $\xi_i$ in a finite $c$-orbit,  $a_i\geq 0$ for all $i\geq 1$, and $a_0>0$) and that the $\g$-vectors at $t$ are $\{\xi_1,\dots,\xi_n\}$.
-  We now describe the exchange matrix at $t$.
-  
-  First observe that, $\{\xi_i\}_{i\in[1,n-2]}$ are $\g$-vectors in finite $c$-orbits and $\{\xi_{n-1},\xi_n\}$ are $\g$-vectors in infinite orbits.
-  Since $\lambda$ is in the interior of $\I$ the set $\{\xi_i\}_{i\in[1,n-2]}$ must contain at least one $\g$-vector from the top layer in each tube and if a tube has size $\ell$ then it must contain precisely $\ell-1$ $\g$-vectors from it. 
-  Since $\g$-vectors from the top layer of a tube are incompatible with one another, the set $\{\xi_i\}_{i\in[1,n-2]}$ must contain exactly one $\g$-vector from the top layer in each tube.
-  Let $p_i+1$ be the size of the $i$-th tube (so that $p_1+p_2+p_3 = n-2$).
-  To fix ideas we assume that $0\leq p_1\leq p_2 \leq p_3$.
-  Up to relabelling we can assume that each subset $\{\xi_1,\dots,\xi_{p_1}\}$, $\{\xi_{p_1+1},\dots,\xi_{p_1+p_2}\}$, and $\{\xi_{p_1+p_2+1},\dots,\xi_{p_1+p_2+p_3}\}$ consists of $\g$-vectors from the same tube and that $\xi_{p_1}$, $\xi_{p_1+p_2}$, and $\xi_{p_1+p_2+p_3}$ are the $\g$-vectors in the top layer of each. 
-  We will therefore consider the decomposition of the exchange matrix at $t$ in blocks $B_{ij}$ given by the partition $(p_1,p_2,p_3,2)\vdash n$.
-
-  We claim that the block $B_{ii}$ is an exchange matrix of type $A_{p_i}$ for all $i\in[1,2,3]$.
-  Indeed observe first that any tube is of type $A$ (c.f. \cite{afforb}[Proposition 4.4 (2)]) hence the corresponding symmetrizer is constant so that $B_{ii}$ is symmetric.
-  Moreover the (coefficient-free) exchange relations for $j< n-2$, $i\neq p_1,p_1+p_2$ are of the form
-  \begin{equation}
-    \label{eq:tube_rels}
-    x_{\xi_j} x_\zeta = x_{\xi_j+\zeta} + x_{\xi_j\uplus\zeta}
-  \end{equation}
-  for some $\zeta$ the $\g$-vector of a cluster variable, and $\xi_j\uplus\zeta$ (the symmetric difference of $\xi_j$ and $\zeta$\saySS{The standard notation for symmetric difference would have been $\Delta$ but it is definitely an overloaded symbol. I decided to follow CFZ's notation for the finite type case of which this is an instance I guess}) the $\g$-vector of a cluster monoimial, both in the same tube where $\xi_j$ lives.
-  Finally, the exchange relations among those listed in (\ref{eq:tube_rels}) that are supported on the $i$-th tube coincide with those in a cluster algebra of finite type $A_{p_i}$ in which one cluster variable has been frozen (the bijection being given by the identification of the $\bfd$-vectors with respect to the simples at the base of the tube with the $\bfd$-vectors with respect to the fan triangulation of a $(p_i+3)$-gon).
-  Our claim follows.
-
-  Equation (\ref{eq:tube_rels}) together with sign-skew-symmetry also imply that the blocks $B_{ij}$ with $i\neq j\in[1,2,3]$ can only have a non-zero entry in the bottom right corner.
-  
-  Similarly blocks $B_{i4}$ for $i\in[1,2,3]$  can only be non-zero in the last row and blocks $B_{4j}$ for $j\in[1,2,3]$  can only be non-zero in the last column.
-  Since the exchanges of $\xi_{p_1}$, $\xi_{p_1+p_2}$, and $\xi_{p_1+p_2+p_3}$ are not imaginary each of these matrices has at least one non-zero entry.
-  
-  Next we claim that $B_{44}$, up to a possible relabelling, is of the form
-    \[
-      \left[
-      \begin{array}{cc} 
-        0 & a \\ 
-        -b & 0 \\
-      \end{array}
-      \right]
-    \] 
-  with $a>0$, $b>0$ and $ab=4$.
-  This follows from the observation that the subalgebra generated by the cluster variables in all seeds containig $\{x_{\xi_i}\}_{i\in[1,n-2]}$ is an affine cluster algebra of rank 2.
-  Indeed let $\ell$ be the minimum positive power such that $c^\ell$ fixes pointwise $\I$.
-  Then the collection 
-  \[
-    \left\{x_{c^{j\ell} \xi_i}\right\}_{j\in\integers,i\in[1,n]}
-  \]
-  is infinite (because both $\xi_{n-1}$ and $\xi_n$ are in infinite $c$-orbits) and it is contained in the subalgebra which thus contains infinitely many cluster variables. 
-  Since it is a subalgebra of an affine type cluster algebra it is also affine and our claim follows.
-
-  For each $i\in[p_1,p_1+p_2,p_1+p_2+p_3]$ consider now the submatrix of the exchange matrix at $t$ consisting of the rows and columns $i,n-1,n$.
-  As its $2\times 2$ submatrix on rows and columns $n-1$ and $n$ is affine all of its non-diagonal entries must be non-zero.
-  Otherwise it would be an exchange matrix of wild type.
-  By direct inspection we see that the only possibilities are then those in Table~\ref{tab:possible_submatrices}.
-	Note that, as the sign patterns are the same regardless of the chosen tube mutating in directions $n-1$ and $n$ do not affect the exchange matrix at $t$ outside of rows and columns $n-1$ and $t$.
-	Moreover, by direct inspection, it is easy to see that these two mutations only change the signs in both the last two columns and the last two rows.
-
-  Some further considerations on the root lengths, together with \cite{affdenom}[Table 1], show that submatrices of types $A_{4}^{(2)}$, $G_{2}^{(1)}$, and $D_{4}^{(3)}$ can only appear in cases having a single tube so that the exchange matrix at $t$ is completely determined in these cases.
-  It remains to consider the possibly non-zero entries in the matrices $B_{ij}$ with $i\neq j\in[1,2,3]$ in the other cases.
-  By taking the $4\times 4$ submatrix consisting of the rows and columns corresponding to indices of the $\g$-vectors in the top layer of the $i$-th and $j$-th tube together with $n-1$ and $n$ we see directly that a non-zero entry in $B_{ij}$ would produce a cluster algebra of wild type.
-
+\begin{theorem}\label{neigh B}
+Suppose $B$ is an exchange matrix of affine type.
+Then the following conditions are equivalent.
+\begin{enumerate}[\quad\rm(i)]
+\item \label{neigh}
+$B$ is a neighboring exchange matrix.
+\item \label{aff 2}
+There exist indices $i$ and $j$ such that $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type.
+\item \label{neigh detailed}
+Up to relabeling, $B$ is of the form 
+    $
+      \begin{bsmallmatrix}
+        B_{11} 	& 0 		& 0 		& B_{14} \\ 
+        0 		& B_{22} 	& 0 		& B_{24} \\
+        0 		& 0 		& B_{33} 	& B_{34} \\
+        B_{41} 	& B_{42} 	& B_{43} 	& B_{44}
+      \end{bsmallmatrix}
+    $ 
+where $B_{44}=\begin{bsmallmatrix} 0 & a \\ -b & 0 \\\end{bsmallmatrix}$ with $a,b>0$ and $ab=4$,
+satisfying the following conditions for $\ell\in\set{1,2,3}$:
+\begin{itemize}
+\item
+$B_{\ell\ell}$ is either a $0\times0$ block or an exchange matrix of finite type A; % (indexed with $B_{11}$, $B_{22}$, and $B_{33}$ in order of increasing size),
+\item
+If $B_{\ell\ell}$ is nonempty, then its last column is a quasi-leaf;
+\item
+If $B_{\ell4}$ is nonempty, then it is nonzero only in the last row;
+\item
+If $B_{4j\ell}$ is nonempty, then it is nonzero only in the last column; and
+\item
+If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in Table~\ref{tab:possible_submatrices}.
+\end{itemize}
+The labeling can be taken so that the blocks $B_{11}$, $B_{22}$, and $B_{33}$ are in order of increasing size. 
+A submatrix in Table~\ref{tab:possible_submatrices} of types $A_{4}^{(2)}$, $G_{2}^{(1)}$, and $D_{4}^{(3)}$ can only appear when $B_{11}$ and $B_{22}$ are empty.
+\end{enumerate}
+\end{theorem}
 	\begin{table}
 	\caption{Possible submatrices}
 	\label{tab:possible_submatrices}	
 	\begin{center}
-	\begin{tabular}{|ll|ll|ll|}
+	\begin{tabular}{|cc|cc|}
 	Type & matrix & Type & matrix \\
 	\hline & & & \\[-1ex]
 	$A_{2}^{(1)}$ & $\left[\begin{array}{rrr}
@@ -1272,6 +1608,181 @@ Thus $G_t^{B;t_0}$ has $n-2$ columns that are in finite $c$-orbits.
 	\end{center}	
 	\end{table}
 
+%We now prepare to prove \cref{neigh B} as a series of propositions.  
+Fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type that is mutation equivalent to $B$ and let $c$ be the corresponding Coxeter element.
+It is apparent that condition~\eqref{neigh detailed} implies condition~\eqref{aff 2} in \cref{neigh B}, and the following proposition proves that condition~\eqref{aff 2} implies condition~\eqref{neigh}.
+\begin{proposition}\label{aff 2 block}
+If $B$ is of affine type and there are indices $i$ and $j$ such that $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type, then $B$ is a neighboring exchange matrix.
+\end{proposition}
+
+\begin{proof}
+We use \cite[Corollary~4.18]{afframe}, which applies to the acyclic affine exchange matrix $B_0$.
+The notation $\DF_c$ in \cite{afframe} refers to the doubled Cambrian fan, which coincides with the $\g$-vector fan \cite[Corollary~1.3]{afframe}.
+\cite[Corollary~4.18]{afframe} says, among other things, that if an $(n-2)$-dimensional cone $F$ of the $\g$-vector fan of $B_0$ is contained in infinitely many maximal cones of the $\g$-vector fan, then $F$ is in the boundary of the support of the $\g$-vector fan.
+Thus $F$ is also in the imaginary wall $\d$, and since $F$ is a cone in the $\g$-vector fan, it is in the \emph{boundary} of~$\d$.
+
+Now, suppose some $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type (and in particular of infinite type).
+Then, in the $\g$-vector fan of $B$, there are infinitely many maximal cones of the $\g$-vector fan that contain the cone $F$ spanned by the $\g$-vectors $\set{\e_k:k\not\in\set{i,j}}$.
+There is a mutation map $\eta$ that is an isomorphism from the $\g$-vector fan for $B$ to the $\g$-vector fan for $B_0$.
+The image of the positive cone under $\eta$ is a maximal cone in the $\g$-vector fan for $B_0$ whose associated seed $t$ has exchange matrix $B$.
+The image of $F$ under $\eta$ is an $(n-2)$-dimensional cone in the $\g$-vector fan for $B_0$ that is contained in infinitely many maximal cones of the $\g$-vector fan.
+Thus the image of $F$ is in the boundary of the imaginary wall.
+Since the image of the positive cone contains the image of $F$, we conclude that $t$ is a neighboring seed, so that $B$ is a neighboring exchange matrix.
+\end{proof}
+
+It remains to show that condition~\eqref{neigh} implies condition~\eqref{neigh detailed}.
+Assume that $B$ is neighboring.
+Then there is a seed $t$ with exchange matrix $B$ such that $n-2$ of the $\g$-vectors at $t$ are in the boundary of $\d$.
+We use \cref{any B is sort} to choose a seed $t$ that corresponds to a $c$-sortable element~$v$.
+(There is a subtle point that we might worry about here:
+Conceivably, there exists $t$ with $\g$-vectors as described, but the seed $t'$ produced by \cref{any B is sort} does not have $\g$-vectors as described.
+However, in the proof of  \cref{any B is sort}, $t'$ is obtained from $t$ by applying automorphisms of the mutation fan, and therefore preserves the property that $\Cone_t^{B_0;t_0}$ has $(n-2)$-dimensional intersection with the imaginary wall.
+
+We reindex the rows and columns of $B_0$ so that $\set{\xi_i:i\in[1,n-2]}$ are the $\g$-vectors in the boundary of $\d$ and $\set{\xi_{n-1},\xi_n}$ are the $\g$-vectors not contained in~$\d$.
+Thus the vectors $\set{\xi_i:i\in[1,n-2]}\cup\set{-B_0\delta}$ span an imaginary cone in $\F_{B_0^T}$.
+
+There are vectors $\gamma_1,\ldots,\gamma_n\in\APre{c}$ such that $\nu_c(\gamma_i)=\xi_i$ for $i=1,\ldots,n$.
+The vectors $\gamma_1,\ldots,\gamma_{n-2}$ are in $\APTre{c}$.
+These roots are pairwise $c$-compatible and $\set{\gamma_1,\ldots,\gamma_{n-2}}\cup\set{\delta}$ is an imaginary $c$-cluster.
+In particular,  $\gamma_1,\ldots,\gamma_{n-2}$ are all in $\RST{c}$.
+Choose integers $0\leq p_1\leq p_2 \leq p_3$ such that the nonzero values $p_\ell$ record the components of $\RST{c}$, with a component of rank $p_\ell+1$ for each nonzero $p_\ell$.
+As a consequence of \cref{compatible in tubes}, we see that $\set{\gamma_1,\ldots,\gamma_{n-2}}$ consists of $p_\ell$ roots from the $\ell\th$ component for each $\ell=1,2,3$.
+We further reindex the rows and columns of $B$ so that each subset $\{\gamma_1,\dots,\gamma_{p_1}\}$, $\{\gamma_{p_1+1},\dots,\gamma_{p_1+p_2}\}$, and $\{\gamma_{p_1+p_2+1},\dots,\gamma_{p_1+p_2+p_3}\}$ consists of roots from the same component of $\RST{c}$.
+Furthermore, if $p_1>0$, then there is a unique root in $\{\gamma_1,\dots,\gamma_{p_1}\}$ that is a sum of $p_1$ elements of $\SimplesT{c}$, and we give this the index $p_1$.
+Similarly, if $p_2>0$, we make $p_1+p_2$ the index of the unique root in $\{\gamma_{p_1+1},\dots,\gamma_{p_1+p_2}\}$ that is a sum of $p_2$ elements of $\SimplesT{c}$.
+In any case, we make $p_1+p_2+p_3=n-2$ the index of the root in $\{\gamma_{p_1+p_2+1},\dots,\gamma_{p_1+p_2+p_3}\}$ that is a sum of $p_3$ elements of $\SimplesT{c}$.
+After this reindexing, we consider the decomposition of $B$ into blocks $B_{ij}$ given by the composition $(p_1+p_2+p_3+2)$ of $n$.
+
+We define some terminology.
+A \newword{special index} is the index of the last column/row of $B$ (if $B_{\ell\ell}$ is nonempty) for $\ell=1,2,3$.
+There are $1$, $2$, or $3$ special indices, namely whichever of $p_1$, $p_1+p_2$ and $p_1+p_2+p_3=n-2$ are nonzero.
+The two indices of $B_{44}$ are the \newword{affine indices} and call $B_{44}$ the \newword{affine submatrix} of~$B$.
+%The \newword{tube components} of $\set{1,\ldots,n}$ are whichever of the sets $\set{1,\ldots,p_1}$, $\set{p_1+1,\ldots,p_1+p_2}$, and $\set{p_1+p_2+1,\ldots,n-2}$ are nonempty.
+
+
+
+\begin{lemma}\label{C good}
+Given $i\in\set{1,\ldots,n-2}$, the root $C^i_c(v)$ is in a finite $c$-orbit and is in the same component of $\RST{c}$ as $\gamma_i$.
+\end{lemma}
+\begin{proof}
+We prove the equivalent statement about co-roots $C^i_c(v)\ck$.
+(The two statements are equivalent because $C^i_c(v)\ck$ is a positive scalar multiple of $C^i_c(v)$.)
+The $\g$-vectors $\xi_1,\ldots,\xi_n$ at the seed $t$ are the basis of $V^*$ that is dual to $C^1_c(v)\ck,\ldots C^n_c(v)\ck$.
+(Recall that the basis of fundamental weights in $V^*$ is dual to the basis of simple co-roots in $V$.)
+\cref{eta on dinf} implies that $\x_1,\ldots,\x_{n-2}$ are in finite $c$-orbits.
+
+
+
+
+
+\cref{tack on c} and the definition of $C^i_c(v)\ck$ let us apply positive powers of $c$ to $C^i_c(v)\ck$ by replacing $v$ with $c^kv$ for $k>0$.
+
+Since the $\g$-vectors 
+
+FINISH CHECKING that it's in a finite $c$-orbit!
+
+
+Having proved that $C^i_c(v)\ck$ is in a finite $c$-orbit (and thus $C^i_c(v)\ck$ is in a finite $c$-orbit), we now check that it is in the same component of $\RST{c}$ as $\gamma_i$.
+Real roots in different components are orthogonal in the sense of the bilinear form $K$ (determined by the Cartan matrix $A_0$).
+
+
+
+
+\end{proof}
+
+
+We now prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell}$ is skew-symmetric.
+First, \cref{C good} implies that all indices $i$ of $B_{\ell\ell}$ have $C^i_c(v)$ in the same component of $\RST{c}$.
+Since each component of $\RST{c}$ is of affine type A, in particular all of the roots $C^i_c(v)$ for indices $i$ of $B_{\ell\ell}$ are the same length, so the associated co-roots $C^i_c(v)\ck$ are obtained from $C^i_c(v)$ by the same scale factor.
+The entries of $B_{\ell\ell}$ are $\omega_c(C_c^i(v)\ck,C_c^j(v))$, and skew-symmetry follows.
+
+We next prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of type $A_{p_\ell}$.
+We do that by comparing the combinatorics of exchange relations described by $B_{\ell\ell}$ with the combinatorics of triangulated polygons.
+
+Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these $\beta$ that does not occur in the support of $\gamma_i$ for any index $i$ of $B_{\ell\ell}$. 
+Then every root $\gamma_i$ is $\beta_q+\beta_{q+1}+\cdots+\beta_r$ for some $1\le q\le r\le p_\ell$.
+For the special index $i$, $\gamma_i$ is $\beta_1+\beta_2+\cdots+\beta_{p_\ell}$.
+%\cref{compatible in tubes} says that roots
+
+On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation, take all diagonals with an endpoint at $p_\ell+2$.
+The roots $\gamma_i$ specify a triangulation that doesn't contain any of these initial arcs:
+Each $\gamma_i=\beta_q+\beta_{q+1}+\cdots+\beta_r$ corresponds to the diagonal that crosses the initial diagonals with endpoints $q,q+1,\ldots,r$ and no other initial diagonals.  
+
+
+
+
+
+Triangulations that don't contain any of these initial arcs correspond to 
+
+
+
+
+The $\dd$-vectors with respect to that initial triangulation agree with the $\dd$-vectors $\gamma_i$, and the exchange relations agree.
+We conclude that the non-special columns of $B_{\ell\ell}$ in this agree with this setup, which agrees with type A where one 
+
+
+
+
+
+
+
+The point:  
+The exchange relations, exchanging out anything but the highest root in the cluster, are exactly the exchange relations you would get in a 
+
+
+
+
+  
+  
+  
+  Moreover the (coefficient-free) exchange relations for $j< n-2$, $j\neq p_1,p_1+p_2$ are of the form
+  \begin{equation}
+    \label{eq:tube_rels}
+    x_{\xi_j} x_\zeta = x_{\xi_j+\zeta} + x_{\xi_j\uplus\zeta}
+  \end{equation}
+If $\xi_j$ is not at the top layer, this is just affdenom facts...  
+  
+  for some $\zeta$ the $\g$-vector of a cluster variable, and $\xi_j\uplus\zeta$ (the symmetric difference of $\xi_j$ and $\zeta$\saySS{The standard notation for symmetric difference would have been $\Delta$ but it is definitely an overloaded symbol. I decided to follow CFZ's notation for the finite type case of which this is an instance I guess}) the $\g$-vector of a cluster monoimial, both in the same tube where $\xi_j$ lives.
+  Finally, the exchange relations among those listed in (\ref{eq:tube_rels}) that are supported on the $i$-th tube coincide with those in a cluster algebra of finite type $A_{p_i}$ in which one cluster variable has been frozen (the bijection being given by the identification of the $\bfd$-vectors with respect to the simples at the base of the tube with the $\bfd$-vectors with respect to the fan triangulation of a $(p_i+3)$-gon).
+  Our claim follows.
+  
+
+  Equation (\ref{eq:tube_rels}) together with sign-skew-symmetry also imply that the blocks $B_{ij}$ with $i\neq j\in[1,2,3]$ can only have a non-zero entry in the bottom right corner.
+  
+  Similarly blocks $B_{i4}$ for $i\in[1,2,3]$  can only be non-zero in the last row and blocks $B_{4j}$ for $j\in[1,2,3]$  can only be non-zero in the last column.
+  Since the exchanges of $\xi_{p_1}$, $\xi_{p_1+p_2}$, and $\xi_{p_1+p_2+p_3}$ are not imaginary each of these matrices has at least one non-zero entry.
+  
+  Next we claim that $B_{44}$, up to a possible relabelling, is of the form
+    \[
+      \left[
+      \begin{array}{cc} 
+        0 & a \\ 
+        -b & 0 \\
+      \end{array}
+      \right]
+    \] 
+  with $a>0$, $b>0$ and $ab=4$.
+  This follows from the observation that the subalgebra generated by the cluster variables in all seeds containig $\{x_{\xi_i}\}_{i\in[1,n-2]}$ is an affine cluster algebra of rank 2.
+  Indeed let $\ell$ be the minimum positive power such that $c^\ell$ fixes pointwise $\I$.
+  Then the collection 
+  \[
+    \left\{x_{c^{j\ell} \xi_i}\right\}_{j\in\integers,i\in[1,n]}
+  \]
+  is infinite (because both $\xi_{n-1}$ and $\xi_n$ are in infinite $c$-orbits) and it is contained in the subalgebra which thus contains infinitely many cluster variables. 
+  Since it is a subalgebra of an affine type cluster algebra it is also affine and our claim follows.
+
+  For each $i\in[p_1,p_1+p_2,p_1+p_2+p_3]$ consider now the submatrix of the exchange matrix at $t$ consisting of the rows and columns $i,n-1,n$.
+  As its $2\times 2$ submatrix on rows and columns $n-1$ and $n$ is affine all of its non-diagonal entries must be non-zero.
+  Otherwise it would be an exchange matrix of wild type.
+  By direct inspection we see that the only possibilities are then those in Table~\ref{tab:possible_submatrices}.
+	Note that, as the sign patterns are the same regardless of the chosen tube mutating in directions $n-1$ and $n$ do not affect the exchange matrix at $t$ outside of rows and columns $n-1$ and $t$.
+	Moreover, by direct inspection, it is easy to see that these two mutations only change the signs in both the last two columns and the last two rows.
+
+  Some further considerations on the root lengths, together with \cite{affdenom}[Table 1], show that submatrices of types $A_{4}^{(2)}$, $G_{2}^{(1)}$, and $D_{4}^{(3)}$ can only appear in cases having a single tube so that the exchange matrix at $t$ is completely determined in these cases.
+  It remains to consider the possibly non-zero entries in the matrices $B_{ij}$ with $i\neq j\in[1,2,3]$ in the other cases.
+  By taking the $4\times 4$ submatrix consisting of the rows and columns corresponding to indices of the $\g$-vectors in the top layer of the $i$-th and $j$-th tube together with $n-1$ and $n$ we see directly that a non-zero entry in $B_{ij}$ would produce a cluster algebra of wild type.
+
+
   To summarize, the exchange matrix at $t$, after relabelling, is of the form
     \[
       \left[
@@ -1295,326 +1806,666 @@ Thus $G_t^{B;t_0}$ has $n-2$ columns that are in finite $c$-orbits.
     form one of the matrices from Table~\ref{tab:possible_submatrices}.
 
 
+****
 
+ASSUMING that we have proved \cref{neigh B}, we continue.
 
-
-
-\subsection{Type-C companions}
-
-
-
-\begin{enumerate}[\bf1.]
+\begin{proposition}\label{neigh delta}
+Suppose $B$ is a neighboring exchange matrix.
+Then $\delta^B$ is zero in all non-affine indices.
+Its affine entries are
+\begin{itemize}
 \item
-To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-C exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
-So we'll call it the \newword{type-C companion}.
+$1,1$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$,
 \item
-We need to show that the intersection of the nonnegative span of $B$ intersected with the hyperplane containing the imaginary wall is contained in the nonnegative span of $\pm$ the imaginary ray and the columns of the type-C companion.
+$2,1$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$, or
 \item
-Call the indices of the last column/row of each $B_{ii}$ for $i=1,2,3$ (if they exist) the \newword{special indices} and call the two indices of $B_{44}$ the \newword{affine indices}.
-(But really, we won't assume that we re-indexed everything to separate the blocks and put the affine indices last.
-Even so, we can identify special and affine indices.)
-We need to show that mutating $B$ in non-special indices commutes with mutating the type-C companion in the corresponding indices.
-(We think of the type-C companion as being indexed by the non-affine indices of $B$.)
-I think this should just be straightforward.
-\item \label{not finally}
-We then need to show that for each special index $i$, there is a sequence of mutations of $B$ in $i$ and the affine indices that yields a neighboring seed, and that the type-C companions of these two neighboring seeds are related by mutation at $i$.
-We probably need to show this case-by-case in the sense of the table in affine\_dominance, but this seems actually doable and possibly not very long.  
-(Exhibiting one sequence and checking will do.)
-I think that this will change which of the three is special and which are affine.
-\item \label{finally}
-Finally, we need to check that the mutation maps for all of these mutations (in non-affine indices), as they act on the imaginary wall, are the same as the mutation maps for the type-C companion.
-That is, the mutation maps for B send the imaginary ray to the new imaginary ray and act on the boundary of the imaginary wall just as the mutation maps for the type-C companion act on an $(n-2)$-dimensional plane.
-Again, we should be able to do this by checking case-by-case in the table.
-\end{enumerate}
-If we have all that, then I think we're done.  
-Because we would know that the type-C companion has mutation sequences that reduce its dominance regions to points, and the corresponding mutation sequences for $B$ would reduce dominance regions in the imaginary wall to the appropriate line segment.
+$1,2$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$.
+\end{itemize}
+%If the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$, then $\delta^B$ has entries $1,1$ in the affine indices. 
+%If the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, then $\delta^B$ has entries $2,1$ or $1,2$ respectively in the affine indices.
+\end{proposition}
+\begin{proof}
+Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall.
+Thus \cref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
+Furthermore, \cref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
-Idea what the type-C companion might be:
-Simply scale the special columns by $2$ and delete the affine columns and rows.
-(Or maybe it should be the rows? Or maybe either would work?  Or maybe it depends on the type in the table?)
-Maybe it can't be that simple, but I kinda think it has to be.
+What about the exact affine entries?
+THIS IS TRICKY.  WHAT LEVERAGE DO WE HAVE?
 
-Somehow \cref{finally} is really just the same as \cref{not finally}.  
-In either case, the point is to see what happens to a column that is not $i$ and not affine.
+But it's definitely what we need.
 
-\subsection{This works for blocks $A_2^{(1)}$}
-Starting with the block in the table of size $A_2^{(1)}$, consider these mutations:
-\[
+\end{proof}
+
+As an immediate consequence of \cref{neigh delta}, we have the following proposition.
+
+\begin{proposition}\label{neigh im ray}
+Suppose $B$ is a neighboring exchange matrix.
+The vector $-\frac12B\delta^B$ (the shortest integer vector that spans the imaginary ray) is zero in all non-affine entries.
+Its affine entries are
+\begin{itemize}
+\item
+$-1,1$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$,
+\item
+$-2,1$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$, or
+\item
+$-1,2$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$.
+\end{itemize}
+\end{proposition}
+
+% JUST KEEPING this old version, in case it is helpful...
+%\begin{enumerate}[\bf1.]
+%\item
+%To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-C exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
+%So we'll call it the \newword{type-C companion}.
+%\item
+%We need to show that the intersection of the nonnegative span of $B$ intersected with the hyperplane containing the imaginary wall is contained in the nonnegative span of $\pm$ the imaginary ray and the columns of the type-C companion.
+%\item
+%Call the indices of the last column/row of each $B_{ii}$ for $i=1,2,3$ (if they exist) the \newword{special indices} and call the two indices of $B_{44}$ the \newword{affine indices}.
+%(But really, we won't assume that we re-indexed everything to separate the blocks and put the affine indices last.
+%Even so, we can identify special and affine indices.)
+%We need to show that mutating $B$ in non-special indices commutes with mutating the type-C companion in the corresponding indices.
+%(We think of the type-C companion as being indexed by the non-affine indices of $B$.)
+%I think this should just be straightforward.
+%\item \label{not finally}
+%We then need to show that for each special index $i$, there is a sequence of mutations of $B$ in $i$ and the affine indices that yields a neighboring seed, and that the type-C companions of these two neighboring seeds are related by mutation at $i$.
+%We probably need to show this case-by-case in the sense of the table in affine\_dominance, but this seems actually doable and possibly not very long.  
+%(Exhibiting one sequence and checking will do.)
+%I think that this will change which of the three is special and which are affine.
+%\item \label{finally}
+%Finally, we need to check that the mutation maps for all of these mutations (in non-affine indices), as they act on the imaginary wall, are the same as the mutation maps for the type-C companion.
+%That is, the mutation maps for B send the imaginary ray to the new imaginary ray and act on the boundary of the imaginary wall just as the mutation maps for the type-C companion act on an $(n-2)$-dimensional plane.
+%Again, we should be able to do this by checking case-by-case in the table.
+%\end{enumerate}
+%If we have all that, then I think we're done.  
+%Because we would know that the type-C companion has mutation sequences that reduce its dominance regions to points, and the corresponding mutation sequences for $B$ would reduce dominance regions in the imaginary wall to the appropriate line segment.
+%
+%Idea what the type-C companion might be:
+%Simply scale the special columns by $2$ and delete the affine columns and rows.
+%(Or maybe it should be the rows? Or maybe either would work?  Or maybe it depends on the type in the table?)
+%Maybe it can't be that simple, but I kinda think it has to be.
+%
+%Somehow \cref{finally} is really just the same as \cref{not finally}.  
+%In either case, the point is to see what happens to a column that is not $i$ and not affine.
+
+
+\subsection{Type-C companions of neighboring exchange matrices}
+To each neighboring exchange matrix $B$, we now associate an $(n-2)\times(n-2)$ exchange matrix called the \newword{type-C companion} of $B$ and written $\Comp(B)$.
+The type-C companion $\Comp(B)$ agrees with the \emph{non-affine} rows and columns of $B$, except that all entries in \emph{special columns} are multiplied by $2$.
+
+\begin{proposition}\label{Comp is C}
+Given a neighboring exchange matrix $B$, its type-B companion $\Comp(B)$ has a diagonal block decomposition with $1$, $2$, or $3$ diagonal blocks, each of finite type C, and having the same sizes as the blocks $B_{11}$, $B_{22}$, and/or $B_{33}$ of~$B$.
+\end{proposition}
+\begin{proof}
+This should just be Salvatore and Tomoki's characterizations of type C exchange matrices, together with the quasi-leaf part of \cref{neigh B}\eqref{neigh detailed}.
+
+\end{proof}
+
+In the following proposition, we think of the columns of $\Comp(B)$ as vectors in $\reals^n$ by considering them to have entries $0$ in the affine indices.
+
+\begin{proposition}\label{Comp span}
+Suppose $B$ is a neighboring exchange matrix.
+Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative linear span of the columns of $B$ is contained in the nonnegative linear span of $\frac12B\delta^B$ and the columns of $\Comp(B)$.
+\end{proposition}
+\begin{proof}
+By inspection of Table~\ref{tab:possible_submatrices} and in light of \cref{neigh delta,neigh im ray}, we observe the following facts:
+First, the vector $-\frac12B\delta^B$ spanning the affine ray is a \emph{negative} linear combinatiion of the last two columns of $B$.
+Second, the linear span of the last two columns of $B$ intersected with the hyperplane $(\delta^B)^\perp$ is the line spanned by $\frac12B\delta^B$.
+Third, $\frac12B\delta^B$ has nonzero entries only in the affine indices, and those entries are $1,-1$ unless the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, in which case, those entries are $2,-1$ or $1,-2$ respectively.
+Fourth, each non-affine column of $B$ equals the corresponding column of $\Comp(B)$ plus a nonnegative multiple of $-\frac12B\delta^B$. 
+(This multiple is zero unless the column is a special column.)
+The proposition follows.
+\end{proof}
+
+\begin{proposition}\label{nonspecial mut}
+Suppose $B$ is a neighboring exchange matrix and $k$ is a non-special, non-affine index of~$B$.
+Then 
+\begin{itemize}
+\item
+$\mu_k(B)$ is neighboring,
+\item
+$\Comp(\mu_k(B))=\mu_k(\Comp(B))$,
+\item
+the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
+\item
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Mutating at $k$ means replacing the root $\gamma_k$ in the real $c$-cluster $\set{\gamma_1,\ldots,\gamma_n}$.
+Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root in $\APTre{c}$.
+Thus $\xi_k$ is replaced by another vector in $\d_\infty$.
+We see that $\mu_k(B)$ is neighboring.
+
+Furthermore, since $k$ is not special and not affine, column $k$ only has nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
+Thus mutating $B$ at $k$ amounts to replacing $B_{\ell\ell}$ by $\mu_k(B_{\ell\ell})$.
+The fact that $\Comp(\mu_k(B))=\mu_k(\Comp(B))$ now follows from the easy observation that mutating $B_{\ell\ell}$ at $k$ commutes with applying a positive scaling to a column of $B_{\ell\ell}$ other than~$k$.
+
+\cref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
+Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
+Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
+Thus if $x$ is a vector whose affine entries are zero, so that $\eta^{\Comp(B)^T}_k(x)$ makes sense, we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+\end{proof}
+
+\begin{proposition}\label{special mut}
+Suppose $B$ is a neighboring exchange matrix and $k$ is a special index of~$B$.
+Then there exists a sequence $\kk$ of indices in $\set{k,n-1,n}$ such that 
+\begin{itemize}
+\item
+$\mu_\kk(B)$ is neighboring,
+\item
+$\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$,
+\item
+the mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise, and 
+\item
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+The special index $k$, together with the affine indices, determines a $3\times3$ submatrix of $B$ that agrees with one of the entries in Table~\ref{tab:possible_submatrices}.
+For convenience in the rest of the proof, we call this $3\times3$ submatrix merely ``the submatrix'' and refer to the labels in the table as ``the type'' of the submatrix.
+We argue separately for the different cases in the table, but are able to combine some cases that are related by scaling.
+
+\medskip
+
+\noindent
+\textbf{Case 1.}
+The submatrix is of type $A_2^{(1)}$.
+The sequence $\kk$ is $k(n-1)knk$.
+Recalling that mutations in the sequence are applied from right to left, mutation by this sequence acts on the submatrix as
+%\[
+%\begin{bsmallmatrix*}[r]
+%0&1&-1\\
+%-1&0&2\\
+%1&-2&0
+%\end{bsmallmatrix*}
+%\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&-1&\,\,\,1\\
+%1&0&1\\
+%-1&-1&0
+%\end{bsmallmatrix*}
+%\overset{n-1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&\,\,\,1&1\\
+%-1&0&-1\\
+%-1&1&0
+%\end{bsmallmatrix*}
+%\overset{n}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&2&-1\\
+%-2&0&1\\
+%1&-1&0
+%\end{bsmallmatrix*}.
+%\]
+\begin{multline*}
 \begin{bsmallmatrix*}[r]
 0&1&-1\\
 -1&0&2\\
 1&-2&0
 \end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&-1&\,\,\,1\\
 1&0&1\\
 -1&-1&0
 \end{bsmallmatrix*}
-\overset{2}{\longrightarrow}
-\begin{bsmallmatrix*}[r]
-0&\,\,\,1&1\\
--1&0&-1\\
--1&1&0
-\end{bsmallmatrix*}
-\overset{3}{\longrightarrow}
-\begin{bsmallmatrix*}[r]
-0&2&-1\\
--2&0&1\\
-1&-1&0
-\end{bsmallmatrix*}.
-\]
-\sayD{We could use the mutations sequence $1,3,1,2,1$ like in the $C_2^{(1)}$ case to have the last two columns remain the affine entries.}
-\[
-\begin{bsmallmatrix*}[r]
-0&1&-1\\
--1&0&2\\
-1&-2&0
-\end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
-\begin{bsmallmatrix*}[r]
-0&-1&\,\,\,1\\
-1&0&1\\
--1&-1&0
-\end{bsmallmatrix*}
-\overset{3}{\longrightarrow}
+\overset{n}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&-1&\,\,\,-1\\
 1&0&-1\\
 1&1&0
-\end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\end{bsmallmatrix*}\\
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&1&\,\,\,1\\
 -1&0&-1\\
 -1&1&0
 \end{bsmallmatrix*}
-\overset{2}{\longrightarrow}
+\overset{n-1}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&-1&\,\,\,1\\
 1&0&1\\
 -1&-1&0
 \end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&1&\,\,\,-1\\
 -1&0&2\\
 1&-2&0
 \end{bsmallmatrix*}.
-\]
-We will apply the corresponding mutations to the matrix $B$ for the neighboring seed.
-It suffices to consider only one of the blocks $B_{11}$, $B_{22}$ or $B_{33}$, without loss of generality $B_{33}$.
-To compute the mutations, we take representative entries of $B$ as follows:
-\begin{itemize}
-\item $a_ij$ is an entry in $B_{33}$ with $i$ and $j$ \emph{non-special} or an entry (again, with $i$ nonspecial) in a column adjoined to $B$ in computing a mutation map $\eta^{B^T}$.
-\item
-$x_i$ is the entry in row $i$ (again non-special) of the special column of $B_{33}$.
-\item
-$y_j$ is the entry in column $j$ (again non-special) of the special row of $B_{33}$ or the special-index-entry in a column adjoined to $B$.
-\end{itemize}
+\end{multline*}
+In particular, $\mu_\kk(B)$ restricts, in its affine indices, to an affine exchange matrix of rank~$2$,
+so \cref{neigh B} implies that it is neighboring.
+
+To compute the remaining entries of $\mu_\kk(B)$, we consider each $4\times4$ submatrix whose rows are indexed by $i,k,n-1,n$ and whose columns are indexed by $j,k,n-1,n$, for arbitrary $i,j\not\in\set{k,n-1,n}$.
+%To make the notation more compact, we use $p$ to stand for $n-1$.
 We use the notation 
 \[m(a,b)=\begin{cases}
 ab&\text{if }\sgn(a)=\sgn(b)=+\\
 -ab&\text{if }\sgn(a)=\sgn(b)=-\\
-0&\text{otherwise}.
+0&\text{otherwise},
 \end{cases}\]
-Writing $1$ for the special index in $B_{33}$ and $2$ and $3$ for the affine indices, the mutations proceed as follows.
-We use the identity $m(a,b)+m(a,-b)=ab$ for $b>0$ several times.
+and we will use the identity $m(a,b)+m(a,-b)=ab$ for $b>0$ several times.
+We will also use the facts (from \cref{neigh B}) that $b_{(n-1)j}=-b_{nj}\le0$, and $b_{i(n-1)}=-b_{in}\ge0$.
 \begin{align*}
 \begin{bsmallmatrix*}[r]
-a_{ij}&x_i&0&0\\
-y_j&0&1&-1\\
-0&-1&0&2\\
-0&1&-2&0
+b_{ij}&b_{ik}&-b_{in}&b_{in}\\
+b_{kj}&0&1&-1\\
+-b_{nj}&-1&0&2\\
+b_{nj}&1&-2&0
 \end{bsmallmatrix*}
-&\overset{1}{\longrightarrow}
+&\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j)&-x_i&m(x_i,1)&m(x_i,-1)\\
--y_j&0&-1&1\\
-m(y_j,-1)&1&0&1\\
-m(y_j,1)&-1&-1&0
+b_{ij}+m(b_{ik},b_{kj}) & -b_{ik} & -b_{in}+m(b_{ik},1) & b_{in}+m(b_{ik},-1)\\
+-b_{kj} & 0 & -1 & 1\\
+-b_{nj}+m(b_{kj},-1) & 1 & 0 & 1\\
+b_{nj}+m(b_{kj},1) & -1 & -1 & 0
 \end{bsmallmatrix*}\\
-&\overset{2}{\longrightarrow}
+&\overset{n}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j)&-x_i+m(x_i,1)&-m(x_i,1)&x_i\\
--y_j+m(y_j,-1)&0&\,\,\,1&1\\
--m(y_j,-1)&-1&0&-1\\
-y_j&-1&1&0
+b_{ij}+m(b_{ik},b_{kj}) & b_{in}-m(b_{ik},1) & b_{ik} & -b_{in}-m(b_{ik},-1)\\
+b_{nj}-m(b_{kj},-1) & 0 & -1 & -1\\
+b_{kj} & 1 & 0 & -1\\
+-b_{nj}-m(b_{kj},1) & 1 & 1 & 0
 \end{bsmallmatrix*}\\
-&\overset{3}{\longrightarrow}
+&\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+2m(x_i,y_j)&0&0&-x_i\\
-0&0&2&-1\\
-0&-2&0&1\\
--y_j&1&-1&0
+b_{ij}+m(b_{ik},b_{kj}) & -b_{in}+m(b_{ik},1) & b_{in}+m(b_{ik},-1) & -b_{ik}\\
+-b_{nj}+m(b_{kj},-1) & 0 & 1 & 1\\
+b_{nj}+m(b_{kj},1)  & -1 & 0 & -1\\
+-b_{kj}& -1 & 1 & 0
+\end{bsmallmatrix*}\\
+&\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}
+b_{ij}+m(b_{ik},b_{kj}) & b_{ik} & -b_{in}-m(b_{ik},-1) & b_{in}-m(b_{ik},1)\\
+b_{kj}& 0 & -1 & 1\\
+-b_{nj}-m(b_{kj},1)& 1 & 0 & 1\\
+b_{nj}-m(b_{kj},-1) & -1 & -1 & 0
+\end{bsmallmatrix*}\\
+&\overset{k}{\longrightarrow}
+\begin{bsmallmatrix*}
+b_{ij}+2m(b_{ik},b_{kj}) & -b_{ik} & -b_{in} & b_{in}\\
+-b_{kj} & 0 & 1 & -1\\
+-b_{nj} & -1 & 0 & 2\\
+b_{nj} & 1 & -2 & 0
 \end{bsmallmatrix*}.
 \end{align*}
-\begin{align*}
-\begin{bsmallmatrix*}[r]
-a_{ij}&x_i&0&0\\
-y_j&0&1&-1\\
-0&-1&0&2\\
-0&1&-2&0
-\end{bsmallmatrix*}
-&\overset{1}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & -x_i & m(x_i,1) & m(x_i,-1)\\
--y_j & 0 & -1 & 1\\
-m(y_j,-1) & 1 & 0 & 1\\
-m(y_j,1) & -1 & -1 & 0
-\end{bsmallmatrix*}\\
-&\overset{3}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & -x_i+m(x_i,-1) & x_i & -m(x_i,-1)\\
--y_j+m(y_j,1) & 0 & -1 & -1\\
-y_j & 1 & 0 & -1\\
--m(y_j,1) & 1 & 1 & 0
-\end{bsmallmatrix*}\\
-&\overset{1}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & x_i-m(x_i,-1) & m(x_i,-1) & -x_i+m(x_i,-1)-m(x_i,-1)\\
-y_j-m(y_j,1) & 0 & 1 & 1\\
-m(y_j,1) & -1 & 0 & -1\\
--y_j+m(y_j,1)-m(y_j,1) & -1 & 1 & 0
-\end{bsmallmatrix*}\\
-&\overset{2}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & x_i & -m(x_i,-1) & -x_i+m(x_i,-1)\\
-y_j & 0 & -1 & 1\\
--m(y_j,1) & 1 & 0 & 1\\
--y_j+m(y_j,1) & -1 & -1 & 0
-\end{bsmallmatrix*}\\
-&\overset{1}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+2m(x_i,y_j) & -x_i & 0 & 0\\
--y_j & 0 & 1 & -1\\
-0 & -1 & 0 & 2\\
-0 & 1 & -2 & 0
-\end{bsmallmatrix*}\\
-\end{align*}
-where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-1)$ is always non-positive and $-y_j+m(y_j,1)$ is always non-negative.
 
-The type-C companion of $B$ is obtained by deleting the affine rows and columns and scaling each special column by $2$.
-OK, I actually don't know whether this is type-C, but Salvatore (and Tomoki) know, right?
-There are probably weaker things we could use if wee don't have this.
+%ASIDE:
+%Trying this with fewer assumptions, specifically ditching the assumption that $b_{(n-1)j}=-b_{nj}\le0$ and using $p$ to stand for $n-1$.
+%UPDATE:  It's awful, because you don't know what sign anything is...  
+%ONLY CHANGED the first two matrices.
+%\begin{align*}
+%\begin{bsmallmatrix*}[r]
+%b_{ij}&b_{ik}&b_{ip}&b_{in}\\
+%b_{kj}&0&1&-1\\
+%-b_{nj}&-1&0&2\\
+%b_{nj}&1&-2&0
+%\end{bsmallmatrix*}
+%&\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%b_{ij}+m(b_{ik},b_{kj}) & -b_{ik} & b_{ip}+m(b_{ik},1) & b_{in}+m(b_{ik},-1)\\
+%-b_{kj} & 0 & -1 & 1\\
+%-b_{nj}+m(b_{kj},-1) & 1 & 0 & 1\\
+%b_{nj}+m(b_{kj},1) & -1 & -1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{n}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%b_{ij}+m(b_{ik},b_{kj}) & b_{in}-m(b_{ik},1) & b_{ik} & -b_{in}-m(b_{ik},-1)\\
+%b_{nj}-m(b_{kj},-1) & 0 & -1 & -1\\
+%b_{kj} & 1 & 0 & -1\\
+%-b_{nj}-m(b_{kj},1) & 1 & 1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%b_{ij}+m(b_{ik},b_{kj}) & -b_{in}+m(b_{ik},1) & b_{in}+m(b_{ik},-1) & -b_{ik}\\
+%-b_{nj}+m(b_{kj},-1) & 0 & 1 & 1\\
+%b_{nj}+m(b_{kj},1)  & -1 & 0 & -1\\
+%-b_{kj}& -1 & 1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{n-1}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%b_{ij}+m(b_{ik},b_{kj}) & b_{ik} & -b_{in}-m(b_{ik},-1) & b_{in}-m(b_{ik},1)\\
+%b_{kj}& 0 & -1 & 1\\
+%-b_{nj}-m(b_{kj},1)& 1 & 0 & 1\\
+%b_{nj}-m(b_{kj},-1) & -1 & -1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%b_{ij}+2m(b_{ik},b_{kj}) & -b_{ik} & -b_{in} & b_{in}\\
+%-b_{kj} & 0 & 1 & -1\\
+%-b_{nj} & -1 & 0 & 2\\
+%b_{nj} & 1 & -2 & 0
+%\end{bsmallmatrix*}.
+%\end{align*}
 
-Each non-affine column of $B$ agrees with the corresponding column of the type-C companion except that (for the special columns) there are multiples of the direction of the imaginary ray.
-In particular, these non-affine columns of $B$ are already in the hyperplane containing the imaginary wall.  Furthermore, while the affine columns are not in that hyperplane, there is positive linear combination of them that is (either their sum or a two-to-one ratio), and this positive linear combination is in the direction of the imaginary ray.
 
-If we mutate the type-C companion in the special index, we have
+%\begin{align*}
+%\begin{bsmallmatrix*}[r]
+%a_{ij}&x_i&0&0\\
+%y_j&0&1&-1\\
+%0&-1&0&2\\
+%0&1&-2&0
+%\end{bsmallmatrix*}
+%&\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j) & -x_i & m(x_i,1) & m(x_i,-1)\\
+%-y_j & 0 & -1 & 1\\
+%m(y_j,-1) & 1 & 0 & 1\\
+%m(y_j,1) & -1 & -1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{3}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j) & -x_i+m(x_i,-1) & x_i & -m(x_i,-1)\\
+%-y_j+m(y_j,1) & 0 & -1 & -1\\
+%y_j & 1 & 0 & -1\\
+%-m(y_j,1) & 1 & 1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j) & x_i-m(x_i,-1) & m(x_i,-1) & -x_i+m(x_i,-1)-m(x_i,-1)\\
+%y_j-m(y_j,1) & 0 & 1 & 1\\
+%m(y_j,1) & -1 & 0 & -1\\
+%-y_j+m(y_j,1)-m(y_j,1) & -1 & 1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{2}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j) & x_i & -m(x_i,-1) & -x_i+m(x_i,-1)\\
+%y_j & 0 & -1 & 1\\
+%-m(y_j,1) & 1 & 0 & 1\\
+%-y_j+m(y_j,1) & -1 & -1 & 0
+%\end{bsmallmatrix*}\\
+%&\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+2m(x_i,y_j) & -x_i & 0 & 0\\
+%-y_j & 0 & 1 & -1\\
+%0 & -1 & 0 & 2\\
+%0 & 1 & -2 & 0
+%\end{bsmallmatrix*}\\
+%\end{align*}
+%where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-1)$ is always non-positive and $-y_j+m(y_j,1)$ is always non-negative.
+
+It is much easier to find the $ij$-entry of $\mu_k(\Comp(B))$.
+We compute
 \[
 \begin{bsmallmatrix*}
-a_{ij}&2x_i\\
-y_j&0
+b_{ij}&2b_{ik}\\
+b_{kj}&0
 \end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(2x_i,y_j)&-2x_i\\
--y_j&0
+b_{ij}+m(2b_{ik},b_{kj})&-2b_{ik}\\
+-b_{kj}&0
 \end{bsmallmatrix*}
 \]
+and we conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
 
-That works!  
+The computations above can be reused to prove the assertions about $\eta^{B^T}_\kk$.
+%also let us determine mutation maps by taking $j$ to index a new column that has been used to extend $B$ but still taking $i$ to be a non-affine index in~$\set{1,\ldots,n}$.
+\cref{neigh im ray} says that the vector $-\frac12B\delta^B$ that spans the imaginary ray is zero in non-affine entries and has affine entries $-1,1$.
+This, the computations above are valid, replacing the $i\th$ column of $B$ in the calculations with $-\frac12B\delta^B$.
+Specifically, we replace $b_{ij}$ and $b_{kj}$ with $0$ and replace $b_{nj}$ with $1$, and the computations show that $\eta^{B^T}_\kk$ fixes $-\frac12B\delta^B$.
 
-If we mutate in a non-special index in $B_{33}$, we don't have to worry about anything outside $B_{33}$, and also, this mutation certainly commutes with scaling the special column by $2$.
+Similarly, if $x$ is a vector whose affine entries are zero, it can take the place of the $j\th$ column of $B$ in the above calculations, and will satisfy the requirements $b_{(n-1)j}=-b_{nj}\le0$, and $b_{i(n-1)}=-b_{in}\ge0$ that were used in the calculation.  
+Therefore, we see that $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+We have proved the \lcnamecref{special mut} in this case.
 
-Seems like everything works in this case.
-The other cases should be similar.
-
-\subsection{This works for blocks $C_2^{(1)}$}
-
-Since $\mu_k(DBD^{-1})=D\mu_k(B)D^{-1}$ for any positive diagonal matrix $D$, it suffices to only consider the cases $C_2^{(1)}$, which implies both $A_4^{(2)}$ cases and $D_3^{(2)}$, and $G_2^{(1)}$, which implies $D_4^{(3)}$.
-(Let $B'=DBD^{-1}$, then $E'=DED^{-1}$ and $F'=DFD^{-1}$ so that $D(EBF)D^{-1}=E'B'F'$.)
-
-Starting with the block in the table of size $C_2^{(1)}$, consider these mutations:
-\[
+\noindent
+\textbf{Case 2.}
+The submatrix is of type $C_2^{(1)}$ or $A_4^{(2)}$.
+We first consider the case of $C_2^{(1)}$.
+The sequence $\kk$ is again $k(n-1)knk$, and mutation acts on the submatrix as shown here:
+%Since $\mu_k(DBD^{-1})=D\mu_k(B)D^{-1}$ for any positive diagonal matrix $D$, it suffices to only consider the cases $C_2^{(1)}$, which implies both $A_4^{(2)}$ cases. % and $D_3^{(2)}$, and $G_2^{(1)}$, which implies $D_4^{(3)}$.
+%(Let $B'=DBD^{-1}$, then $E'=DED^{-1}$ and $F'=DFD^{-1}$ so that $D(EBF)D^{-1}=E'B'F'$.)
+\begin{multline*}
 \begin{bsmallmatrix*}[r]
 0&2&-2\\
 -1&0&2\\
 1&-2&0
 \end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&-2&\,\,\,2\\
 1&0&0\\
 -1&0&0
 \end{bsmallmatrix*}
-\overset{3}{\longrightarrow}
+\overset{n}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&-2&\,\,\,-2\\
 1&0&0\\
 1&0&0
-\end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\end{bsmallmatrix*}\\
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&2&\,\,\,2\\
 -1&0&0\\
 -1&0&0
 \end{bsmallmatrix*}
-\overset{2}{\longrightarrow}
+\overset{n-1}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&-2&\,\,\,2\\
 1&0&0\\
 -1&0&0
 \end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&2&-2\\
 -1&0&2\\
 1&-2&0
 \end{bsmallmatrix*}.
-\]
+\end{multline*}
+Again, \cref{neigh B} implies that $\mu_\kk(B)$ is neighboring.
 
-Then
+We again compute the remaining entries of $\mu_\kk(B)$ by considering each $4\times4$ submatrix with rows indexed by $i,k,n-1,n$ and columns indexed by $j,k,n-1,n$, for arbitrary $i,j\not\in\set{k,n-1,n}$.
+Again, we have $b_{(n-1)j}=-b_{nj}\le0$, and $b_{i(n-1)}=-b_{in}\ge0$.
+We again use the identity $m(a,b)+m(a,-b)=ab$ for $b\ge0$ and now also use the identity $m(a,b)-m(a,-b)=|a|b$ for $b\ge0$ and $m(a,pb)=pm(a,b)$ for $p\ge0$.
 \begin{align*}
 \begin{bsmallmatrix*}[r]
-a_{ij}&x_i&0&0\\
-y_j&0&2&-2\\
-0&-1&0&2\\
-0&1&-2&0
+b_{ij}&b_{ik}&-b_{in}&b_{in}\\
+b_{kj}&0&2&-2\\
+-b_{nj}&-1&0&2\\
+b_{nj}&1&-2&0
 \end{bsmallmatrix*}
-&\overset{1}{\longrightarrow}
+&\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j)&-x_i&m(x_i,2)&m(x_i,-2)\\
--y_j&0&-2&2\\
-m(y_j,-1)&1&0&0\\
-m(y_j,1)&-1&0&0
+b_{ij}+m(b_{ik},b_{kj}) & -b_{ik} & -b_{in}+m(b_{ik},2) & b_{in}+m(b_{ik},-2)\\
+-b_{kj} & 0 & -2 & 2\\
+-b_{nj}+m(b_{kj},-1) & 1 & 0 & 0\\
+b_{nj}+m(b_{kj},1) & -1 & 0 & 0
 \end{bsmallmatrix*}\\
-&\overset{3}{\longrightarrow}
+&\overset{n}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j)&-x_i+m(x_i,-2)&m(x_i,2)&-m(x_i,-2)\\
--y_j+2m(y_j,1)&0&-2&-2\\
-m(y_j,-1)&1&0&0\\
--m(y_j,1)&1&0&0
+b_{ij}+m(b_{ik},b_{kj}) & b_{in}-|b_{ik}| & -b_{in}+m(b_{ik},2) & -b_{in}-m(b_{ik},-2)\\
+2b_{nj}+|b_{kj}| & 0 & -2 & -2\\
+-b_{nj}+m(b_{kj},-1) & 1 & 0 & 0\\
+-b_{nj}-m(b_{kj},1) & 1 & 0 & 0
 \end{bsmallmatrix*}\\
-&\overset{1}{\longrightarrow}
+&\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j)&x_i-m(x_i,-2)&m(x_i,-2)&-2x_i+m(x_i,-2)\\
-y_j-2m(y_j,1)&0&2&2\\
-m(y_j,1)&-1&0&0\\
--y_j+m(y_j,1)&-1&0&0
+b_{ij}+m(b_{ik},b_{kj}) & -b_{in}+|b_{ik}| & b_{in}+m(b_{ik},-2) & b_{in}-m(b_{ik},2)\\
+-2b_{nj}+|b_{kj}| & 0 & 2 & 2\\
+b_{nj}+m(b_{kj},1)  & -1 & 0 & 0\\
+b_{nj}-m(b_{kj},-1)& -1 & 0 & 0
 \end{bsmallmatrix*}\\
-&\overset{2}{\longrightarrow}
+&\overset{n-1}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j)&x_i&-m(x_i,-2)&-2x_i+m(x_i,-2)\\
-y_j&0&-2&2\\
--m(y_j,1)&1&0&0\\
--y_j+m(y_j,1)&-1&0&0
+b_{ij}+m(b_{ik},b_{kj}) & b_{ik} & -b_{in}-m(b_{ik},-2) & b_{in}-m(b_{ik},2)\\
+b_{kj}& 0 & -2 & 2\\
+-b_{nj}-m(b_{kj},1)& 1 & 0 & 0\\
+b_{nj}-m(b_{kj},-1) & -1 & 0 & 0
 \end{bsmallmatrix*}\\
-&\overset{1}{\longrightarrow}
+&\overset{k}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+2m(x_i,y_j)&-x_i&0&0\\
--y_j&0&2&-2\\
-0&-1&0&2\\
-0&1&-2&0
-\end{bsmallmatrix*}
+b_{ij}+2m(b_{ik},b_{kj}) & -b_{ik} & -b_{in} & b_{in}\\
+-b_{kj} & 0 & 2 & -2\\
+-b_{nj} & -1 & 0 & 2\\
+b_{nj} & 1 & -2 & 0
+\end{bsmallmatrix*}.
 \end{align*}
-where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-2)$ is always non-positive and $-y_j+2m(y_j,1)$ is always non-negative.
 
-\subsection{This works for blocks $G_2^{(1)}$}
+%\begin{align*}
+%\begin{bsmallmatrix*}[r]
+%b_{ij}&b_{ik}&-b_{in}&b_{in}\\
+%b_{kj}&0&2&-2\\
+%-b_{nj}&-1&0&2\\
+%b_{nj}&1&-2&0
+%\end{bsmallmatrix*}
+%&\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j)&-x_i&m(x_i,2)&m(x_i,-2)\\
+%-y_j&0&-2&2\\
+%m(y_j,-1)&1&0&0\\
+%m(y_j,1)&-1&0&0
+%\end{bsmallmatrix*}\\
+%&\overset{n}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j)&-x_i+m(x_i,-2)&m(x_i,2)&-m(x_i,-2)\\
+%-y_j+2m(y_j,1)&0&-2&-2\\
+%m(y_j,-1)&1&0&0\\
+%-m(y_j,1)&1&0&0
+%\end{bsmallmatrix*}\\
+%&\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j)&x_i-m(x_i,-2)&m(x_i,-2)&-2x_i+m(x_i,-2)\\
+%y_j-2m(y_j,1)&0&2&2\\
+%m(y_j,1)&-1&0&0\\
+%-y_j+m(y_j,1)&-1&0&0
+%\end{bsmallmatrix*}\\
+%&\overset{n-1}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+m(x_i,y_j)&x_i&-m(x_i,-2)&-2x_i+m(x_i,-2)\\
+%y_j&0&-2&2\\
+%-m(y_j,1)&1&0&0\\
+%-y_j+m(y_j,1)&-1&0&0
+%\end{bsmallmatrix*}\\
+%&\overset{k}{\longrightarrow}
+%\begin{bsmallmatrix*}
+%a_{ij}+2m(x_i,y_j)&-x_i&0&0\\
+%-y_j&0&2&-2\\
+%0&-1&0&2\\
+%0&1&-2&0
+%\end{bsmallmatrix*}
+%\end{align*}
+%where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-2)$ is always non-positive and $-y_j+2m(y_j,1)$ is always non-negative.
 
-Starting with the block in the table of size $G_2^{(1)}$, consider these mutations:
-\[
+The computation of the $ij$-entry of $\mu_k(\Comp(B))$ is the same as in Case~1, and we again conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
+The assertions about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
+We have proved the \lcnamecref{special mut} in the case of type $C_2^{(1)}$.
+
+The matrices of type $A_4^{(2)}$ shown in Table~\ref{tab:possible_submatrices} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
+Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
+
+\noindent
+\textbf{Case 3.}
+The submatrix is of type  $G_2^{(1)}$ or $D_4^{(3)}$.
+In these cases, the associated root system has roots whose squared lengths are related by a factor of $3$.
+The classification of affine root systems thus implies that $n=3$, so that $B$ in fact it equals one of the submatrices shown in Table~\ref{tab:possible_submatrices}.
+For that reason, the computation is smaller in this case, and the indices $k,(n-1),n$ are $1,2,3$.
+
+We begin with type $G_2^{(1)}$.
+%The sequence $\kk$ is $132131$, and the mutation acts on $B$ as shown here.
+%\begin{multline*}
+%\begin{bsmallmatrix*}[r]
+%0&3&-3\\
+%-1&0&2\\
+%1&-2&0
+%\end{bsmallmatrix*}
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&-3&3\\
+%1&0&-1\\
+%-1&1&0
+%\end{bsmallmatrix*}\\
+%\overset{3}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&-3\\
+%0&0&1\\
+%1&-1&0
+%\end{bsmallmatrix*}
+%\overset{2}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&-3\\
+%0&0&-1\\
+%1&1&0
+%\end{bsmallmatrix*}
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&3\\
+%0&0&-1\\
+%-1&1&0
+%\end{bsmallmatrix*}\\
+%\overset{3}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&3&-3\\
+%-1&0&1\\
+%1&-1&0
+%\end{bsmallmatrix*}
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&-3&3\\
+%1&0&-2\\
+%-1&2&0
+%\end{bsmallmatrix*}.
+%\end{multline*}
+%The sequence $\kk$ is $13121231$, and the mutation acts on $B$ as shown here.
+%\begin{multline*}
+%\begin{bsmallmatrix*}[r]
+%0&3&-3\\
+%-1&0&2\\
+%1&-2&0
+%\end{bsmallmatrix*}
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&-3&3\\
+%1&0&-1\\
+%-1&1&0
+%\end{bsmallmatrix*}
+%\overset{3}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&-3\\
+%0&0&1\\
+%1&-1&0
+%\end{bsmallmatrix*}\\
+%\overset{2}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&-3\\
+%0&0&-1\\
+%1&1&0
+%\end{bsmallmatrix*}
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&3\\
+%0&0&-1\\
+%-1&1&0
+%\end{bsmallmatrix*}
+%\overset{2}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&3\\
+%0&0&1\\
+%-1&-1&0
+%\end{bsmallmatrix*}\\
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&0&-3\\
+%0&0&1\\
+%1&-1&0
+%\end{bsmallmatrix*}
+%\overset{3}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&-3&3\\
+%1&0&-1\\
+%-1&1&0
+%\end{bsmallmatrix*}
+%\overset{1}{\longrightarrow}
+%\begin{bsmallmatrix*}[r]
+%0&3&-3\\
+%-1&0&2\\
+%1&-2&0
+%\end{bsmallmatrix*}.
+%\end{multline*}
+The sequence $\kk$ is $1313231$, and the mutation acts on $B$ as shown here.
+\begin{multline*}
 \begin{bsmallmatrix*}[r]
 0&3&-3\\
 -1&0&2\\
@@ -1632,85 +2483,181 @@ Starting with the block in the table of size $G_2^{(1)}$, consider these mutatio
 0&0&1\\
 1&-1&0
 \end{bsmallmatrix*}
-\overset{2}{\longrightarrow}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+0&0&3\\
+0&0&1\\
+-1&-1&0
+\end{bsmallmatrix*}\\
+\overset{3}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
 0&0&-3\\
 0&0&-1\\
 1&1&0
 \end{bsmallmatrix*}
-\overset{1}{\longrightarrow}
+\overset{2}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
-0&0&3\\
-0&0&-1\\
--1&1&0
+0&0&-3\\
+0&0&1\\
+1&-1&0
 \end{bsmallmatrix*}
 \overset{3}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
-0&3&-3\\
--1&0&1\\
-1&-1&0
+0&-3&3\\
+1&0&-1\\
+-1&1&0
 \end{bsmallmatrix*}
 \overset{1}{\longrightarrow}
 \begin{bsmallmatrix*}[r]
-0&-3&3\\
-1&0&-2\\
--1&2&0
+0&3&-3\\
+-1&0&2\\
+1&-2&0
 \end{bsmallmatrix*}.
-\]
+\end{multline*}
+Once again, \cref{neigh B} implies that $\mu_\kk(B)$ is neighboring.
 
-Then
-\begin{align*}
-\begin{bsmallmatrix*}[r]
-a_{ij}&x_i&0&0\\
-y_j&0&3&-3\\
-0&-1&0&2\\
-0&1&-2&0
+There are no additional entries of $\mu_\kk(B)$ to compute, and $\Comp(B)$ is $[0]$, so we see that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
+
+To prove the assertions about mutation maps, we consider adding an extra column with entries $c_1,c_2,c_3$ with $c_3=-c_2\ge0$.
+\begin{multline*}
+\begin{bsmallmatrix*}
+0&3&-3&c_1\\
+-1&0&2&c_2\\
+1&-2&0&-c_2
 \end{bsmallmatrix*}
-&\overset{1}{\longrightarrow}
+\overset{1}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & -x_i & m(x_i,3) & m(x_i,-3)\\
--y_j & 0 & -3 & 3\\
-m(y_j,-1) & 1 & 0 & -1\\
-m(y_j,1) & -1 & 1 & 0
+0&-3&3&-c_1\\
+1&0&-1&c_2+m(c_1,-1)\\
+-1&1&0&-c_2+m(c_1,1)
 \end{bsmallmatrix*}\\
-&\overset{3}{\longrightarrow}
+\overset{3}{\longrightarrow}
 \begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & -x_i+m(x_i,-3) & m(x_i,3) & -m(x_i,-3)\\
--y_j+3m(y_j,1) & 0 & 0 & -3\\
-m(y_j,-1) & 0 & 0 & 1\\
--m(y_j,1) & 1 & -1 & 0
-\end{bsmallmatrix*}\\
-&\overset{2}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & -x_i+m(x_i,-3) & -m(x_i,3) & m(x_i,3)-m(x_i,-3)\\
--y_j+3m(y_j,1) & 0 & 0 & -3\\
--m(y_j,-1) & 0 & 0 & -1\\
-m(y_j,-1)-m(y_j,1) & 1 & 1 & 0
-\end{bsmallmatrix*}\\
-&\overset{1}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & x_i-m(x_i,-3) & -m(x_i,3) & m(x_i,-3)\\
-y_j-3m(y_j,1) & 0 & 0 & 3\\
--m(y_j,-1) & 0 & 0 & -1\\
-m(y_j,1) & -1 & 1 & 0
-\end{bsmallmatrix*}\\
-&\overset{3}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+m(x_i,y_j) & x_i & -m(x_i,3) & -m(x_i,-3)\\
-y_j & 0 & 3 & -3\\
--m(y_j,-1) & -1 & 0 & 1\\
--m(y_j,1) & 1 & -1 & 0
-\end{bsmallmatrix*}\\
-&\overset{1}{\longrightarrow}
-\begin{bsmallmatrix*}
-a_{ij}+2m(x_i,y_j) & -x_i & 0 & 0\\
--y_j & 0 & -3 & 3\\
-0 & 1 & 0 & -2\\
-0 & -1 & 2 & 0
+0&0&-3&-3c_2+|c_1|+m(c_1,1)\\
+0&0&1&c_2+m(c_1,-1)\\
+1&-1&0&c_2-m(c_1,1)
 \end{bsmallmatrix*}
-\end{align*}
-where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-3)$ is always non-positive and $-y_j+3m(y_j,1)$ is always non-negative.
- 
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+0&0&3&3c_2-|c_1|-m(c_1,1)\\
+0&0&1&c_2+m(c_1,-1)\\
+-1&-1&0&-2c_2+|c_1|
+\end{bsmallmatrix*}\\
+\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}
+0&0&-3&-3c_2+2|c_1|-m(c_1,1)\\
+0&0&-1&-c_2+m(c_1,1)\\
+1&1&0&2c_2-|c_1|
+\end{bsmallmatrix*}
+\overset{2}{\longrightarrow}
+\begin{bsmallmatrix*}
+0&0&-3&-3c_2+2|c_1|-m(c_1,1)\\
+0&0&1&c_2-m(c_1,1)\\
+1&-1&0&c_2+m(c_1,-1)
+\end{bsmallmatrix*}\\
+\overset{3}{\longrightarrow}
+\begin{bsmallmatrix*}
+0&-3&3&c_1\\
+1&0&-1&c_2-m(c_1,1)\\
+-1&1&0&-c_2-m(c_1,-1)
+\end{bsmallmatrix*}
+\overset{1}{\longrightarrow}
+\begin{bsmallmatrix*}
+0&3&-3&-c_1\\
+-1&0&2&c_2\\
+1&-2&0&-c_2
+\end{bsmallmatrix*}.
+\end{multline*}
+The imaginary ray is spanned by the vector with entries $c_1=0$, $c_2=-1$, $c_3=1$, and we see that $\eta^{B^T}_\kk$ fixes that vector.
+We also see that if $x$ is a vector with entries $c_1,0,0$, then $\eta_\kk^{B^T}(x)$ has entries $-c_1,0,0$.
+We compute $\eta_1^{\Comp(B)^T}$ by mutating $[0\,\,c_1]\overset{1}{\longrightarrow}[0\,\,-c_1]$, so $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$ as desired.
+
+The matrix of type $D_4^{(3)}$ in Table~\ref{tab:possible_submatrices} is obtained from the matrix of type $G_2{(1)}$ by conjugating by a diagonal matrix with diagonal entries $3,1,1$.
+Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the case of type $D_4^{(3)}$.
+\end{proof}
+
+\cref{nonspecial mut,special mut} allow us to prove the following key fact.
+
+\begin{proposition}\label{neigh im wall}
+Suppose $B$ is neighboring and is indexed as in \cref{neigh B}.
+Then $\d^B_\infty$ is the half-hyperplane contained in $(\delta^B)^\perp$, containing the vector $-\frac12B\delta^B$, with relative boundary the codimension-$2$ space consisting of vectors that are zero in the affine indices.
+\end{proposition}
+\begin{proof}
+Suppose $\kk$ is a sequence of non-affine indices.  
+Let $\ll$ be the corresponding sequence where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in \cref{special mut}.
+\cref{nonspecial mut,special mut} combine to say that 
+\begin{itemize}
+\item
+$\Comp(\mu_\ll(B))=\mu_\kk(\Comp(B))$,
+\item
+the mutation map $\eta^{B^T}_\ll$ fixes the imaginary ray pointwise, and 
+\item
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\ll(x)=\eta^{\Comp(B)^T}_\kk(x)$.
+\end{itemize}
+(The fact, in each of \cref{nonspecial mut,special mut}, that the mutated matrix is neighboring is crucial to concluding these facts for $\ll$.)
+
+Since $\Comp(B)$ is of finite type, $\F_{\Comp(B)^T}$ is finite and complete.
+We consider the mutation fan $\F_{\Comp(B)^T}$ as a complete fan in the subspace of $\reals^n$ consisting of vectors whose affine entries are zero. 
+(We refer to this subspace as $\reals^{n-2}$.)
+Every maximal cone of $\F_{\Comp(B)^T}$ is the image of the positive cone in $\reals^{n-2}$ under some mutation map $\eta^{(B')^T}_{\kk^{-1}}$, where $B'=\mu_\kk(\Comp(B))$ and $\kk$ is a sequence of non-affine indices.
+The considerations of the paragraph above imply that $B'$ is the type-C companion of $\mu_\ll(B)$.
+
+Let $U$ be any maximal cone in $\F_{\Comp(B)^T}$ and let $\kk$ be the sequence such that $U$ is the image of the positive cone in $\reals^{n-2}$ under $\eta^{(B')^T}_{\kk^{-1}}$, for $B'$ as above.
+There is an imaginary cone in $\F_{\mu_ll(B)^T}$ that is the nonnegative linear span of the imaginary ray and the positive cone in $\reals^{n-2}$.
+Since $\eta^{\mu_ll(B)^T}_{\ell^{-1}}$ is an isomorphism from $\F_{\mu_ll(B)^T}$ to $\F_{B^T}$, the results above imply that the positive span of $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
+We see that the imaginary cones in $\F_{B^T}$ fill the half-hyperplane described in the \lcnamecref{neigh im wall}.
+Since the imaginary ray is in the relative interior of that half-hyperplane, there are no other imaginary cones.
+\end{proof}
+
+We now prove the main theorem.
+
+\begin{proof}[Proof of \cref{affine main}]
+Given $B$ of affine type, let $\lambda$ be in the imaginary wall $\d_\infty^B$.
+Let $\kk$ be a sequence of indices in $\set{1,\ldots,n}$ and write $B'$ for $\mu_\kk(B)$ and $\lambda'$ for $\eta_\kk^{B^T}(\lambda)$.
+The mutation map $\eta_\kk^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\kk(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\kk(B)\delta^{\mu_\kk(B)}$.
+Furthermore, $\eta_\kk^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that \cref{affine main} claims is equal to $\P_\lambda^B$ to the analogous line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
+Now \cref{shift} implies that it is enough to prove the \lcnamecref{affine main} for any one $B$ in the exchange pattern.
+We choose $B$ to be a neighboring exchange matrix.
+
+Now suppose $\kk$ is a sequence of \emph{non-affine} indices and, as before, let $\ll$ be the corresponding sequence where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in \cref{special mut}.
+
+
+\cref{Comp span} implies that
+$\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^B)^\perp\subseteq$
+
+
+We will show that 
+
+
+ $\P^B_{\lambda,\ll}=\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$
+
+
+
+
+\cref{P point finite} says that the intersection of 
+
+
+
+
+\end{proof}
+
+
+
+
+
+\subsection{Extended exchange matrices of affine type}
+
+Let $B$ be an exchange matrix of affine type and let $\tB$ be an extension of $B$ with linearly independent columns.
+
+
+\sayN{We are going to use \cref{contains proj} to turn \cref{P in dinf} into a statement about $\P^\tB_\lambda$, but we don't yet have a definition of $\d_\infty$ in the extended-exchange matrix sense.}
+
+
+imaginary ray 
+imaginary wall $\d^\tB$
+
+
+
 
 
 % bibliography
