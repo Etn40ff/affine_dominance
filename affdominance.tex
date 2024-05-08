@@ -411,7 +411,8 @@ NEED THIS
 The first part of this paper contains a short proof of the first key fact about dominance regions due to Fan Qin:
 Under certain hypotheses, if $\lambda$ is the $\g$-vector of a cluster monomial with respect to an initial extended exchange matrix $\tB$, then the dominance region $\P^\tB_\lambda$ is $\set\lambda$.
 (Qin's result is an immediate consequence of combining parts (1) and (3) of \cite[Theorem~1.2.1]{FanQin}.)
-Our proof takes stronger hypotheses than Qin's, but is sufficient for the purposes of the paper, uses only the basic discrete geometry of matrix mutation, and is short and self-contained.
+Our proof takes stronger hypotheses than Qin's, \sayN{UPDATE:  Some versions of our proof take *weaker* hypotheses, specifically in finite type, we don't need $B$ to be full rank to get the coefficient-free result!}
+but is sufficient for the purposes of the paper, uses only the basic discrete geometry of matrix mutation, and is short and self-contained.
 The first part of the paper also introduces much of the background that will be used later.
 
 \section{Dominance regions}
@@ -912,7 +913,7 @@ If $B$ is bipartite, then the nonnegative linear span of the columns of $B$ cont
 
 \begin{corollary}\label{finite P point}  
 Suppose $B$ is an exchange matrix of finite type.
-Then $\P^{\tB_0}_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
+Then $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
 \end{corollary}
 \begin{proof}
 Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented tree.
@@ -924,19 +925,32 @@ Every exchange matrix of finite type admits a maximal red sequence, so \cref{P p
 
 An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
 
-\begin{corollary}\label{tree P point}  
+\begin{corollary}\label{affine P point}  
 Suppose $B$ is an exchange matrix of affine type.
-If $t$ is a seed in the exchange graph for $\tB_0;t_0$ and $\lambda\in\Cone^{\tB_0;t_0}_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
+If $t$ is a seed in the exchange graph for $B;t_0$ and $\lambda\in\Cone^{B;t_0}_t$, then $\P^B_\lambda=\set{\lambda}$.
 \end{corollary}
 \begin{proof}
 We first construct an exchange matrix $B_0$ mutation equivalent to $B$ such that the nonnegative linear span of the columns of $B_0$ contains no line.
 Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
 When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
+
 Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B_0$ whose oriented graph has exactly one source and exactly one sink.
+For convenience, we can reindex $B_0$ so that the source is $1$, the sink is $n$, and the directed graph for $B_0$ has $1\to2\to\cdots\to k\to n$ and $1\to k+1\to k+2\to\cdots\to n$ for some $k$ with $1\le k<n$.
+Then any vector $x$ in the nonnegative span of the columns of $B$ has 
+
+
 
 I THINK we can show that for this $B_0$ also, the nonnegative linear span of the columns of $B_0$ contains no line.
 Assuming we can, finish this like the finite type case.
 
+NO, this doesn't work.
+$B_0=\begin{bsmallmatrix*}[r]0&1&1&0\\-1&0&0&1\\-1&0&0&1\\0&-1&-1&0\end{bsmallmatrix*}$
+
+
+CAN I USE the neighboring seed thing to get the right orientation?
+
+Computations show that the nonnegative linear span of the columns of $B_0$ contains no line in all cases except where $n$ and $k$ are both even.  
+Only one of those cases is bipartite (the case $k=\frac n2$) and I don't know right now what to do in the other cases.
 \end{proof}
 
 
@@ -1099,6 +1113,8 @@ Beyond rank $2$, the notion of affine type has the following intrinsic character
 The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
 Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
 
+The main results of this paper are the following theorem and a version (\cref{affine main extended}) for extended exchange matrices. \sayN{hopefully}
+
 \begin{theorem}\label{affine main}
 Suppose $B$ is an exchange matrix of affine type.
 If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
@@ -1109,7 +1125,7 @@ It is convenient to separate these results according to classes of affine seeds.
 
 \subsection{Acyclic seeds}\label{acyc sec}
 Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has an acyclic seed whose exchange matrix is an orientation of a Cartan matrix of affine type.
-(Indeed, the same can be said about cluster algebras of finite type.)
+(Indeed, the analogous observation is true for cluster algebras of finite type.)
 The associated Cartan matrix of affine type allows us to model $\g$-vectors, $\dd$-vectors, and the mutation fan by almost-positive Schur roots model, sortable elements and (doubled) Cambrian fans.
 We now quote some useful results in this setting and prove some additional facts.
 More details can be found in \cite{affdenom,framework,afframe,affscat}.
@@ -1174,7 +1190,7 @@ $\omega_{s_1cs_1}(s_1x,s_1y)=\omega_c(x,c)=\omega_{s_ncs_n}(s_nx,s_ny)$ for any 
 Applying \cref{omega s} $n$ times, we obtain the following lemma.
 
 \begin{lemma}\label{omega c}
-$\omega_c(x,c)=\omega_c(cx,cy)$ for any $x$ and $y$ in $V$.
+$\omega_c(x,y)=\omega_c(cx,cy)$ for any $x$ and $y$ in $V$.
 \end{lemma}
 
 \begin{proposition}\label{om del}
@@ -1192,18 +1208,19 @@ By induction, $\omega_{scs}(s\beta,\delta)\ge0$, and since $s\delta=\delta$, \cr
 
 Every finite $c$-orbit of roots consists entirely of positive roots or entirely of negative roots.
 (See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2(5)]{afforb}.)
+The following \lcnamecref{om del fin} is an immediate consequence of \cite[Proposition~2.16]{affdenom}, because the bilinear form $E_c$ in \cite[Proposition~2.16]{affdenom} satisfies $\omega_c(\beta,\beta')=E_c(\beta,\beta')-E_c(\beta',\beta)$.
 
 \begin{proposition}\label{om del fin}
 Suppose $\RS$ is of affine type and suppose $\beta\in\RS$ is in a finite $c$-orbit.
 Then $\omega_c(\beta,\delta)=0$.
 \end{proposition}
-\begin{proof}
-Suppose the orbit of $\beta$ has $k$ elements.
-The sum $\beta+c\beta+\cdots+c^{k-1}\beta$ of all roots in the $c$-orbit of $\beta$ is fixed by the action of $c$ and is nonzero, because all elements of the orbit have the same sign (positive or negative).
-Thus the sum is an eigenvector of $c$, and thus a scalar multiple of $\delta$.
-Because $\omega_c$ is skew-symmetric, $\omega_c(\beta+c\beta+\cdots+c^{k-1}\beta,\delta)=0$.
-Now \cref{omega c} says that $k\omega_c(\beta,\delta)=0$.
-\end{proof}
+%\begin{proof}
+%Suppose the orbit of $\beta$ has $k$ elements.
+%The sum $\beta+c\beta+\cdots+c^{k-1}\beta$ of all roots in the $c$-orbit of $\beta$ is fixed by the action of $c$ and is nonzero, because all elements of the orbit have the same sign (positive or negative).
+%Thus the sum is an eigenvector of $c$, and thus a scalar multiple of $\delta$.
+%Because $\omega_c$ is skew-symmetric, $\omega_c(\beta+c\beta+\cdots+c^{k-1}\beta,\delta)=0$.
+%Now \cref{omega c} says that $k\omega_c(\beta,\delta)=0$.
+%\end{proof}
 
 Let $\RST{c}$ be the set of roots in $\RS$ that are in finite $c$-orbits.
 These form a subsystem of $\RS$, in the sense that the set of real roots in $\RST{c}$ are closed under the reflections they define, and all imaginary roots are in $\RST{c}$.
@@ -1259,6 +1276,14 @@ The imaginary wall is contained in $\delta^\perp$.
 The nonzero maximal cones of $\nu_c(\Fan_c(\RS))$ that are contained in $\d_\infty$ are called the \newword{imaginary cones}.
 The vector $\nu_c(\delta)$ spans a ray called the \newword{imaginary ray} that is in every imaginary cone.
 This is the only ray of $\nu_c(\Fan_c(\RS))$ that is not spanned by the $\g$-vector of a cluster variable.
+The following \lcnamecref{nu delta} is \cite[Lemma~5.9]{affscat}, written in different notation.
+(There is a bilinear form $\omega_c(\,\cdot\,,\,\cdot\,)$ on $V$ whose matrix is $B_0$ with respect to the simple coroots basis on the left and the simple root basis on the right.
+The statement in \cite{affscat} is phrased in terms of $\omega_c(\,\cdot\,,\delta)$.)
+
+\begin{lemma}\label{nu delta}  
+Suppose $B_0$ is an acyclic exchange matrix of affine type.
+The vector~$\nu_c(\delta)$ spanning the imaginary ray is $-\frac12B_0\delta$.
+\end{lemma}
 
 Since $\mu_{12\cdots n}(B)=B$, the map $\eta^{B_0^T}_{12\cdots n}$ is an automorphism of the fan and separately of the $\g$-vector fan.
 The following propositions are part of \cite[Proposition~7.31(4)]{affscat} and \cite[Proposition~7.32]{affscat}
@@ -1276,14 +1301,6 @@ There exist integers $m$ and $I$ and a positive real number $a$ such that $\bigl
 %Thus 
 %\[\lim_{i\to\infty}\frac{\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)}{\bigl|\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)\bigr|}=\frac{\nu_c(\delta)}{|\nu_c(\delta)|}\]
 \end{proposition}
-
-The following \lcnamecref{nu delta} is \cite[Lemma~5.9]{affscat}, written in different notation.
-(There is a bilinear form $\omega_c(\,\cdot\,,\,\cdot\,)$ on $V$ whose matrix is $B_0$ with respect to the simple coroots basis on the left and the simple root basis on the right.
-The statement in \cite{affscat} is phrased in terms of $\omega_c(\,\cdot\,,\delta)$.
-
-\begin{lemma}\label{nu delta}  
-$\nu_c(\delta)=-\frac12B_0\delta$.
-\end{lemma}
 
 We now prove our first preliminary result about dominance regions in the affine case.
 
@@ -1306,7 +1323,7 @@ By \cref{nu delta}, and the fact that $B_0\delta$ has $1\st$ coordinate strictly
 This contradiction shows that $\P^{B_0}_\lambda\subseteq\d_\infty$.
 \end{proof}
 
-We conclude this section with a very brief discussion of $c$-sortable elements.  \sayN{We'll say more if we actually need a lot of details.}
+We conclude this section with a brief discussion of $c$-sortable elements.  
 Recalling that $c=s_1\cdots s_n$, write $c^\infty$ for the infinite word $s_1\cdots s_n|s_1\cdots s_n|s_1\cdots s_n|\cdots$.
 (The symbols ``$|$'' are not considered as letters of the word, but are \newword{dividers} placed in the word for convenience.)
 Every element $w$ of the group $W$ can be written (in many ways) as a subword of $c^\infty$.
@@ -1383,9 +1400,8 @@ An \newword{imaginary cone} of $\F_{B^T}$ is a cone containing the imaginary ray
 The maximal imaginary cones have codimension~$1$.
 The mutation fan $\F_{B^T}$ consists of the $\g$-vector fan of $B$ and the imaginary cones.
 Write $\d^B_\infty$ for the union of the imaginary cones.
-This is a finite union of cones of codimension $1$, but it is not clear \textit{a priori} that $\d^B_\infty$ is a convex cone.
-We will establish this fact below \sayN{I hope...}
-and thus will again call $\d^B_\infty$ the \newword{imaginary wall}.
+This is a finite union of cones of codimension $1$, and we will show that it is contained in a hyperplane.
+Thus we will again call $\d^B_\infty$ the \newword{imaginary wall}.
 In this section, we make some general statements about the imaginary ray and the imaginary wall.
 
 First, $\d^B_\infty$ is the image of $\d_\infty$ under the fan isomorphism $\eta_\kk^{B^T}$.
@@ -1408,6 +1424,7 @@ Each $t_{i+1}$ is obtained from $t_i$ by mutating in position $k_{i+1}$, the las
 Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k_{i+1}}$ is unforced, and thus the $k_{i+1}$-entry of the $C$-vector at $t_i$ is \emph{positive}.
 In other words,~$\kk$ is a green sequence for $B_0$.
 
+\sayN{I feel like we ought to be able to say something simpler, because $\delta^B$ should depend only on $B$, not on a particular seed associated to $B$.  Is it true that $\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ for any $t$ with $B_t=B$?  Even if we have to go through all this to get the properties we want, that would be a much nicer definition of $\delta^B$!}
 Write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
 We will show that we can choose $v$ so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j=0,\ldots,m$, where $\delta$ is the imaginary root associated to~$B_0$.
 To do this, we apply \cref{tack on c} to replace $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.  
@@ -1419,7 +1436,7 @@ But for $0\le j\le in$, it is apparent from the characterization of $C$-vectors 
 Now \cite[Theorem~1.2]{NZ} says that $\bigl(C_t^{B_0;t_0}\bigr)^{-1}=\bigl(G_t^{-B_0^T;t_0}\bigr)^T$, so this cone is spanned by the columns of $G_{t_j}^{-B_0^T;t_0}$.
 Since the cone is contained in the Tits cone, the columns of $G_{t_j}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
 
-For this seed $t$ and green sequence $\kk$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.
+For this seed $t$ and green sequence $\kk$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.  \sayN{I feel like we ought to be able to say something simpler, because $\delta^B$ should depend only on $B$, not on a particular seed associated to $B$.  Is it true that $\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ for any $t$ with $B_t=B$?  Even if we have to go through all this to get the properties we want, that would be a much nicer definition of $\delta^B$.}
 The following proposition in particular implies that $\delta^B$ is well defined, in the sense that it depends only on $B$ and not on the specific choices we made.
 
 \begin{proposition}\label{delta is the man}
@@ -1491,25 +1508,40 @@ If instead the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is zero then either linea
 Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above with the sign $\ep$ replacing the sign~$-$, to obtain $\br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}=0$.
 \end{proof}
 
-\cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ has codimension at most~$1$, and this exactly $1$, since it is a union of codimension-$1$ cones.
 
-\begin{proposition}\label{dBinf conv}
-If $B$ is of affine type, then $\d^B_\infty$ is a convex cone.
+%\begin{proposition}\label{dBinf conv}
+%If $B$ is of affine type, then $\d^B_\infty$ is a convex cone.
+%\end{proposition}
+%\begin{proof}
+%CAN WE DO THIS?  Not sure.
+%
+%DO WE NEED TO DO THIS?  Not sure.
+%
+%But it probably will be useful somewhere.
+%
+%If we don't do it, update the prose above.
+%\end{proof}4
+
+\cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ is contained in a hyperplane.
+\cref{delta is the man} also allows us to prove one containment in \cref{affine main}.
+
+\begin{proposition}\label{affine main partial}
+Suppose $B$ is an exchange matrix of affine type.
+If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ \emph{contains} the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{proposition}
 \begin{proof}
-CAN WE DO THIS?  Not sure.
-
-DO WE NEED TO DO THIS?  Not sure.
-
-But it probably will be useful somewhere.
-
-If we don't do it, update the prose above.
+Suppose $\kk$ is a sequence of indices in $\set{1,\ldots,n}$ and let $B'=\mu_\kk(B)$.
+Then the mutation map $\eta^{B^T}_\kk$ takes the imaginary ray in~$\F_{B^T}$ to the imaginary ray in~$\F_{(B')^T}$ and takes the imaginary cone of $\F_{B^T}$ containing $\lambda$ to an imaginary cone in~$\F_{(B')^T}$.
+Since $\delta^{B'}$ has nonnegative entries, the ray $\set{\eta^{B^T}_\kk(\lambda)+aB'\delta^{B'}:a\ge0}$ is contained in $\set{\eta^{B^T}_\kk(\lambda)+B'\alpha:\alpha\ge0}$.
+Since $(\eta_\kk^{B^T})^{-1}$ is linear on each imaginary cone and takes the direction $-B'\delta^{B'}$ of the imaginary ray in $\F_{(B')^T}$ to the direction $-B\delta^B$ of the imaginary ray in $\F_{B^T}$, we see that 
+\begin{multline*}
+\P^B_{\lambda,\kk}=(\eta_\kk^{B^T})^{-1}\set{\eta^{B^T}_\kk(\lambda)+B'\alpha:\alpha\ge0}\\
+\supseteq(\eta_\kk^{B^T})^{-1}\set{\eta^{B^T}_\kk(\lambda)+aB'\delta^{B'}:a\ge0}\cap\d^B_\infty\\
+=\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty. 
+\end{multline*}
+This is true for all $\kk$, so $\P^B_\lambda\supseteq\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty$, as desired.
 \end{proof}
 
-
-\begin{lemma}\label{P in dinf}
-If $\lambda\in\d_\infty$, then $\P^{B_0}_\lambda\subseteq\d_\infty$.
-\end{lemma}
 
 
 
@@ -1535,17 +1567,16 @@ $B$ is a neighboring exchange matrix.
 \item \label{aff 2}
 There exist indices $i$ and $j$ such that $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type.
 \item \label{neigh detailed}
-Up to relabeling, $B$ is of the form 
+Up to relabeling, $B$ is
     $
       \begin{bsmallmatrix}
         B_{11} 	& 0 		& 0 		& B_{14} \\ 
         0 		& B_{22} 	& 0 		& B_{24} \\
         0 		& 0 		& B_{33} 	& B_{34} \\
         B_{41} 	& B_{42} 	& B_{43} 	& B_{44}
-      \end{bsmallmatrix}
+      \end{bsmallmatrix},
     $ 
-where $B_{44}=\begin{bsmallmatrix} 0 & a \\ -b & 0 \\\end{bsmallmatrix}$ with $a,b>0$ and $ab=4$,
-satisfying the following conditions for $\ell\in\set{1,2,3}$:
+where $B_{44}$ is a rank-$2$ exchange matrix of affine type and the following conditions hold for ${\ell\in\set{1,2,3}}$:
 \begin{itemize}
 \item
 $B_{\ell\ell}$ is either a $0\times0$ block or an exchange matrix of finite type A; % (indexed with $B_{11}$, $B_{22}$, and $B_{33}$ in order of increasing size),
@@ -1554,12 +1585,12 @@ If $B_{\ell\ell}$ is nonempty, then its last column is a quasi-leaf;
 \item
 If $B_{\ell4}$ is nonempty, then it is nonzero only in the last row;
 \item
-If $B_{4j\ell}$ is nonempty, then it is nonzero only in the last column; and
+If $B_{4\ell}$ is nonempty, then it is nonzero only in the last column; and
 \item
-If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in Table~\ref{tab:possible_submatrices}.
+If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{tab:possible_submatrices}.
 \end{itemize}
 The labeling can be taken so that the blocks $B_{11}$, $B_{22}$, and $B_{33}$ are in order of increasing size. 
-A submatrix in Table~\ref{tab:possible_submatrices} of types $A_{4}^{(2)}$, $G_{2}^{(1)}$, and $D_{4}^{(3)}$ can only appear when $B_{11}$ and $B_{22}$ are empty.
+A submatrix in \cref{tab:possible_submatrices} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_{4}^{(3)}$ can only appear when $B_{11}$ and $B_{22}$ are empty.
 \end{enumerate}
 \end{theorem}
 	\begin{table}
@@ -1708,11 +1739,13 @@ On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots
 The roots $\gamma_i$ specify a triangulation that doesn't contain any of these initial arcs:
 Each $\gamma_i=\beta_q+\beta_{q+1}+\cdots+\beta_r$ corresponds to the diagonal that crosses the initial diagonals with endpoints $q,q+1,\ldots,r$ and no other initial diagonals.  
 
-
-
-
-
 Triangulations that don't contain any of these initial arcs correspond to 
+
+...STUCK from here...  
+
+Some of the stuff below is copy-paste from the other notes.
+
+
 
 
 
@@ -1774,7 +1807,7 @@ If $\xi_j$ is not at the top layer, this is just affdenom facts...
   For each $i\in[p_1,p_1+p_2,p_1+p_2+p_3]$ consider now the submatrix of the exchange matrix at $t$ consisting of the rows and columns $i,n-1,n$.
   As its $2\times 2$ submatrix on rows and columns $n-1$ and $n$ is affine all of its non-diagonal entries must be non-zero.
   Otherwise it would be an exchange matrix of wild type.
-  By direct inspection we see that the only possibilities are then those in Table~\ref{tab:possible_submatrices}.
+  By direct inspection we see that the only possibilities are then those in \cref{tab:possible_submatrices}.
 	Note that, as the sign patterns are the same regardless of the chosen tube mutating in directions $n-1$ and $n$ do not affect the exchange matrix at $t$ outside of rows and columns $n-1$ and $t$.
 	Moreover, by direct inspection, it is easy to see that these two mutations only change the signs in both the last two columns and the last two rows.
 
@@ -1803,16 +1836,139 @@ If $\xi_j$ is not at the top layer, this is just affdenom facts...
       \end{array}
       \right]
     \] 
-    form one of the matrices from Table~\ref{tab:possible_submatrices}.
+    form one of the matrices from \cref{tab:possible_submatrices}.
 
 
 ****
 
 ASSUMING that we have proved \cref{neigh B}, we continue.
 
-\begin{proposition}\label{neigh delta}
+\cref{neigh B} lets us prove the following useful fact.
+
+\begin{lemma}\label{affine mut}
+Suppose $B$ is a neighboring exchange matrix and let $\kk$ be a $2$-element sequence consisting of the two affine indices. 
+Then $\mu_\kk(B)=B$.
+\end{lemma}
+\begin{proof}
+\cref{neigh B} implies that most entries of $B$ are fixed under mutation in an affine position.
+The only entries that might not be fixed are entries $b_{ij}$ where one of $i$ or $j$ is affine and the other is affine or special and entries $B_{ii}$ where $i$ is special.
+Thus we only need to check the submatrices shown in \cref{tab:possible_submatrices}.
+In each case, we see that mutation in one of the affine entries has the effect of negating the submatrix.
+An additional mutation in the other affine index still fixes all entries of $B$ except those described above and again negates the submatrix, so that $\mu_\kk(B)=B$.  \sayN{Maybe we'll leave out these computations, which are really easy?}
+\begin{align*}
+&\begin{bsmallmatrix*}[r]
+	0 & 1 & -1 \\
+	-1 & 0 & 2 \\
+	1 & -2 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & -1 & 1 \\
+	1 & 0 & -2 \\
+	-1 & 2 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & 1 & -1 \\
+	-1 & 0 & 2 \\
+	1 & -2 & 0
+\end{bsmallmatrix*}\\
+&\begin{bsmallmatrix*}[r]
+	0 & 2 & -2 \\
+	-1 & 0 & 2 \\
+	1 & -2 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & -2 & 2 \\
+	1 & 0 & -2 \\
+	-1 & 2 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & 2 & -2 \\
+	-1 & 0 & 2 \\
+	1 & -2 & 0
+\end{bsmallmatrix*}\\
+&\begin{bsmallmatrix*}[r]
+	0 & 1 & -1 \\
+	-2 & 0 & 2 \\
+	2 & -2 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & -1 & 1 \\
+	2 & 0 & -2 \\
+	-2 & 2 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & 1 & -1 \\
+	-2 & 0 & 2 \\
+	2 & -2 & 0
+\end{bsmallmatrix*}\\
+&\begin{bsmallmatrix*}[r]
+	0 & 3 & -3 \\
+	-1 & 0 & 2 \\
+	1 & -2 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & -3 & 3 \\
+	1 & 0 & -2 \\
+	-1 & 2 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & 3 & -3 \\
+	-1 & 0 & 2 \\
+	1 & -2 & 0
+\end{bsmallmatrix*}\\
+&\begin{bsmallmatrix*}[r]
+	0 & 1 & -1 \\
+	-3 & 0 & 2 \\
+	3 & -2 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & -1 & 1 \\
+	3 & 0 & -2 \\
+	-3 & 2 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & 1 & -1 \\
+	-3 & 0 & 2 \\
+	3 & -2 & 0
+\end{bsmallmatrix*}\\ 
+&\begin{bsmallmatrix*}[r]
+	0 & 1 & -2 \\
+	-2 & 0 & 4 \\
+	1 & -1 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & -1 & 2 \\
+	2 & 0 & -4 \\
+	-1 & 1 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}[r]
+	0 & 1 & -2 \\
+	-2 & 0 & 4 \\
+	1 & -1 & 0
+\end{bsmallmatrix*}\\ 
+&\begin{bsmallmatrix*}[r]
+	0 & 2 & -1 \\
+	-1 & 0 & 1 \\
+	2 & -4 & 0
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow} 
+\begin{bsmallmatrix*}[r]
+	0 & -2 & 1 \\
+	1 & 0 & -1 \\
+	-2 & 4 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow} 
+\begin{bsmallmatrix*}[r]
+	0 & 2 & -1 \\
+	-1 & 0 & 1 \\
+	2 & -4 & 0
+\end{bsmallmatrix*} \qedhere
+\end{align*}
+\end{proof}
+
+\begin{proposition}\label{neigh good stuff}
 Suppose $B$ is a neighboring exchange matrix.
-Then $\delta^B$ is zero in all non-affine indices.
+\begin{enumerate}[\quad\bf1.]
+\item\label{neigh delta}
+The vector $\delta^B$ is zero in all non-affine indices.
 Its affine entries are
 \begin{itemize}
 \item
@@ -1824,23 +1980,7 @@ $1,2$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{b
 \end{itemize}
 %If the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$, then $\delta^B$ has entries $1,1$ in the affine indices. 
 %If the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, then $\delta^B$ has entries $2,1$ or $1,2$ respectively in the affine indices.
-\end{proposition}
-\begin{proof}
-Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall.
-Thus \cref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
-Furthermore, \cref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
-
-What about the exact affine entries?
-THIS IS TRICKY.  WHAT LEVERAGE DO WE HAVE?
-
-But it's definitely what we need.
-
-\end{proof}
-
-As an immediate consequence of \cref{neigh delta}, we have the following proposition.
-
-\begin{proposition}\label{neigh im ray}
-Suppose $B$ is a neighboring exchange matrix.
+\item\label{neigh im ray}
 The vector $-\frac12B\delta^B$ (the shortest integer vector that spans the imaginary ray) is zero in all non-affine entries.
 Its affine entries are
 \begin{itemize}
@@ -1851,55 +1991,119 @@ $-2,1$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{
 \item
 $-1,2$ if the affine submatrix of $B$ is $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$.
 \end{itemize}
+\end{enumerate}
 \end{proposition}
+\begin{proof}
+We state these assertions about $\delta^B$ and $-\frac12B\delta^B$ together because the proofs of the assertions are intertwined.
 
-% JUST KEEPING this old version, in case it is helpful...
-%\begin{enumerate}[\bf1.]
-%\item
-%To each neighboring exchange matrix, we need to associate an exchange matrix of rank $n-2$ and show that it is a product of finite type-C exchange matrices of the same sizes as the type-A blocks in the neighboring exchange matrix.
-%So we'll call it the \newword{type-C companion}.
-%\item
-%We need to show that the intersection of the nonnegative span of $B$ intersected with the hyperplane containing the imaginary wall is contained in the nonnegative span of $\pm$ the imaginary ray and the columns of the type-C companion.
-%\item
-%Call the indices of the last column/row of each $B_{ii}$ for $i=1,2,3$ (if they exist) the \newword{special indices} and call the two indices of $B_{44}$ the \newword{affine indices}.
-%(But really, we won't assume that we re-indexed everything to separate the blocks and put the affine indices last.
-%Even so, we can identify special and affine indices.)
-%We need to show that mutating $B$ in non-special indices commutes with mutating the type-C companion in the corresponding indices.
-%(We think of the type-C companion as being indexed by the non-affine indices of $B$.)
-%I think this should just be straightforward.
-%\item \label{not finally}
-%We then need to show that for each special index $i$, there is a sequence of mutations of $B$ in $i$ and the affine indices that yields a neighboring seed, and that the type-C companions of these two neighboring seeds are related by mutation at $i$.
-%We probably need to show this case-by-case in the sense of the table in affine\_dominance, but this seems actually doable and possibly not very long.  
-%(Exhibiting one sequence and checking will do.)
-%I think that this will change which of the three is special and which are affine.
-%\item \label{finally}
-%Finally, we need to check that the mutation maps for all of these mutations (in non-affine indices), as they act on the imaginary wall, are the same as the mutation maps for the type-C companion.
-%That is, the mutation maps for B send the imaginary ray to the new imaginary ray and act on the boundary of the imaginary wall just as the mutation maps for the type-C companion act on an $(n-2)$-dimensional plane.
-%Again, we should be able to do this by checking case-by-case in the table.
-%\end{enumerate}
-%If we have all that, then I think we're done.  
-%Because we would know that the type-C companion has mutation sequences that reduce its dominance regions to points, and the corresponding mutation sequences for $B$ would reduce dominance regions in the imaginary wall to the appropriate line segment.
-%
-%Idea what the type-C companion might be:
-%Simply scale the special columns by $2$ and delete the affine columns and rows.
-%(Or maybe it should be the rows? Or maybe either would work?  Or maybe it depends on the type in the table?)
-%Maybe it can't be that simple, but I kinda think it has to be.
-%
-%Somehow \cref{finally} is really just the same as \cref{not finally}.  
-%In either case, the point is to see what happens to a column that is not $i$ and not affine.
+Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall~$\d^B_\infty$.
+Thus \cref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
+Furthermore, \cref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
+Before determining the entries of $\delta^B$ in the two affine positions, we determine some entries of $-\frac12B\delta^B$.
+\cref{neigh B} and the fact that $\delta^B$ is zero in all non-affine positions implies that $-\frac12B\delta^B$ is zero in non-special non-affine positions.
+Since $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray, \cref{affine mut} implies that it is fixed under $\eta^{B^T}_\kk$, where $\kk$ is a $2$-element sequence consisting of the two affine indices. 
+We use the fact that $-\frac12B\delta^B$ is fixed under $\eta^{B^T}_\kk$ to determine its affine entries $r_{n-1}$, and $r_n$.
+%We need only consider the submatrices shown in \cref{tab:possible_submatrices}.
+%The mutations are computed below, where the entries $r_k$ (for special~$k$), $r_{n-1}$, and $r_n$ denote entries in $-\frac12B\delta^B$.
+To make the notation more compact, we use $p$ to stand for $n-1$.
+We use the notation 
+\[m(a,b)=\begin{cases}
+ab&\text{if }\sgn(a)=\sgn(b)=+\\
+-ab&\text{if }\sgn(a)=\sgn(b)=-\\
+0&\text{otherwise}.
+\end{cases}\]
+To determine the affine entries, we need only the $2\times2$ affine submatrices of $B$.
+In the most common case from \cref{tab:possible_submatrices}, the mutations are as follows:
+\[
+\begin{bsmallmatrix*}
+0 & 2 & r_p\\
+-2 & 0 & r_n
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}
+0 & -2 & -r_p\\
+2 & 0 & r_n+m(r_p,-2)
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}
+0 & 2 & -r_p+m(r_n+m(r_p,-2),-2)\\
+-2 & 0 & -r_n-m(r_p,-2)
+\end{bsmallmatrix*}
+\]
+We see that $r_n=-r_n-m(r_p,-2)$ and $r_p=-r_p+m(r_n+m(r_p,-2),-2)$, which can be rewritten $r_p=-r_p+m(-r_n,-2)$.
+If $r_p$ is positive, then $r_n$ is zero, and thus also $r_p$ is zero.
+By this contradiction, we see that $r_p$ is nonpositive.
+Similarly, we see that $r_n$ is nonnegative.
+%If $r_n$ is negative, then $r_p$ is zero, and thus also $r_n$ is zero, and we see that $r_n$ is nonnegative.
+Thus both equations say $r_n=-r_p$.
+
+Let $d_p$ and $d_n$ be the entries of $\delta^B$ in its affine positions.
+Since $\delta^B$ is zero in its non-affine positions and since $r_p$ and $r_n$ are the affine entries of $-\frac12B\delta^B$, we compute that $r_p=-d_n$ and $r_n=d_p$.
+Therefore $d_p=d_n$, and since $\delta^B$ is the smallest nonzero integer vector in the ray it spans, we see that $d_p=d_n=1$, as desired.
+From there, we see that the special entries of $-\frac12B\delta^B$ are also zero and that $r_n=1=-r_p$ as desired.
+
+In the next case from \cref{tab:possible_submatrices}, the mutations are
+\[\begin{bsmallmatrix*}
+0 & 4 & r_p\\
+-1 & 0 &r_n
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\begin{bsmallmatrix*}
+0 & -4 & -r_p\\
+1 & 0 &r_n+m(r_p,-1)
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}
+0 & 4 &-r_p+m(r_n+m(r_p,-1),-4)\\
+-1 & 0 &-r_n-m(r_p,-1)
+\end{bsmallmatrix*}
+\]
+%We see that $r_n=-r_n-m(r_p,-1)$ and $r_p=-r_p+m(r_n+m(r_p,-1),-4)$, which can be rewritten $r_p=-r_p+m(-r_n,-4)$.
+%If $r_p$ is positive, then $r_n$ is zero, and thus also $r_p$ is zero.
+%By this contradiction, we see that $r_p$ is nonpositive.
+%Similarly, we see that $r_n$ is nonnegative.
+%If $r_n$ is negative, then $r_p$ is zero, and thus also $r_n$ is zero, and we see that $r_n$ is nonnegative.
+%One equation says $2r_n=-r_p$ and the other says $2r_p=-4r_n$.
+Arguing as before, we see that $r_n$ is nonnegative and $2r_n=-r_p$.
+Again taking $d_p$ and $d_n$ to be the affine entries of $\delta^B$, we also find that $d_p=2r_n=-r_p=2d_n$, so that $d_p=2$, $d_n=1$, $r_p=-2$, and $r_n=1$ as desired.
+Again, we easily compute that the special entries of $-\frac12B\delta^B$ are zero.
+%Since $\delta^B$ is zero in its non-affine positions and since $r_p$ and $r_n$ are the affine entries of $-\frac12B\delta^B$, we compute that $r_p=-2d_n$ and $r_n=\frac12d_p$.
+%Therefore $d_p=2r_n=-r_p=2d_n$,...
+
+In the final case, the mutations are
+\[\begin{bsmallmatrix*}
+0 & 1 & r_p\\
+-4 & 0 &r_n
+\end{bsmallmatrix*}\overset{n-1}{\longrightarrow} 
+\begin{bsmallmatrix*}
+0 & -1 & -r_p\\
+4 & 0 &r_n+m(r_p,-4)
+\end{bsmallmatrix*}\overset{n}{\longrightarrow} 
+\begin{bsmallmatrix*}
+0 & 1 &-r_p+m(r_n+m(r_p,-4),-1)\\
+-4 & 0 &-r_n-m(r_p,-4)
+\end{bsmallmatrix*}
+\]
+Arguing as before, we see that $r_n=-2r_p\ge0$ and $2d_p=r_n=-2r_p=d_n$, so that $d_p=1$, $d_n=2$, $r_p=-1$, and $r_n=2$ as desired, and compute that the special entries of $-\frac12B\delta^B$ are zero.
+%We see that $r_n=-r_n-m(r_p,-4)$ and $r_p=-r_p+m(r_n+m(r_p,-4),-1)$, which can be rewritten $r_p=-r_p+m(-r_n,-1)$.
+%If $r_p$ is positive, then $r_n$ is zero, and thus also $r_p$ is zero.
+%By this contradiction, we see that $r_p$ is nonpositive.
+%Similarly, we see that $r_n$ is nonnegative.
+%If $r_n$ is negative, then $r_p$ is zero, and thus also $r_n$ is zero, and we see that $r_n$ is nonnegative.
+%One equation says $2r_n=-4r_p$ and the other says $2r_p=-r_n$.
+%Since $\delta^B$ is zero in its non-affine positions and since $r_p$ and $r_n$ are the affine entries of $-\frac12B\delta^B$, we compute that $r_p=-\frac12d_n$ and $r_n=2d_p$.
+%Therefore $2d_p=r_n=-2r_p=d_n$, ...
+\end{proof}
 
 \subsection{Type-C companions of neighboring exchange matrices}
 To each neighboring exchange matrix $B$, we now associate an $(n-2)\times(n-2)$ exchange matrix called the \newword{type-C companion} of $B$ and written $\Comp(B)$.
 The type-C companion $\Comp(B)$ agrees with the \emph{non-affine} rows and columns of $B$, except that all entries in \emph{special columns} are multiplied by $2$.
+The following \lcnamecref{Comp is C} is immediate from \cref{neigh B} and \cite[Proposition~3.3]{NakanishiStella}.
 
 \begin{proposition}\label{Comp is C}
 Given a neighboring exchange matrix $B$, its type-B companion $\Comp(B)$ has a diagonal block decomposition with $1$, $2$, or $3$ diagonal blocks, each of finite type C, and having the same sizes as the blocks $B_{11}$, $B_{22}$, and/or $B_{33}$ of~$B$.
 \end{proposition}
-\begin{proof}
-This should just be Salvatore and Tomoki's characterizations of type C exchange matrices, together with the quasi-leaf part of \cref{neigh B}\eqref{neigh detailed}.
-
-\end{proof}
+%\begin{proof}
+%This should just be Salvatore and Tomoki's characterizations of type C exchange matrices, together with the quasi-leaf part of \cref{neigh B}\eqref{neigh detailed}.
+%
+%\end{proof}
 
 In the following proposition, we think of the columns of $\Comp(B)$ as vectors in $\reals^n$ by considering them to have entries $0$ in the affine indices.
 
@@ -1908,11 +2112,11 @@ Suppose $B$ is a neighboring exchange matrix.
 Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative linear span of the columns of $B$ is contained in the nonnegative linear span of $\frac12B\delta^B$ and the columns of $\Comp(B)$.
 \end{proposition}
 \begin{proof}
-By inspection of Table~\ref{tab:possible_submatrices} and in light of \cref{neigh delta,neigh im ray}, we observe the following facts:
+By inspection of \cref{tab:possible_submatrices} and in light of \cref{neigh good stuff}, we observe the following facts:
 First, the vector $-\frac12B\delta^B$ spanning the affine ray is a \emph{negative} linear combinatiion of the last two columns of $B$.
 Second, the linear span of the last two columns of $B$ intersected with the hyperplane $(\delta^B)^\perp$ is the line spanned by $\frac12B\delta^B$.
 Third, $\frac12B\delta^B$ has nonzero entries only in the affine indices, and those entries are $1,-1$ unless the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, in which case, those entries are $2,-1$ or $1,-2$ respectively.
-Fourth, each non-affine column of $B$ equals the corresponding column of $\Comp(B)$ plus a nonnegative multiple of $-\frac12B\delta^B$. 
+Fourth, each non-affine column of $B$ is half the corresponding column of $\Comp(B)$ plus a nonnegative multiple of $-\frac12B\delta^B$. 
 (This multiple is zero unless the column is a special column.)
 The proposition follows.
 \end{proof}
@@ -1937,14 +2141,15 @@ Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root 
 Thus $\xi_k$ is replaced by another vector in $\d_\infty$.
 We see that $\mu_k(B)$ is neighboring.
 
-Furthermore, since $k$ is not special and not affine, column $k$ only has nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
-Thus mutating $B$ at $k$ amounts to replacing $B_{\ell\ell}$ by $\mu_k(B_{\ell\ell})$.
-The fact that $\Comp(\mu_k(B))=\mu_k(\Comp(B))$ now follows from the easy observation that mutating $B_{\ell\ell}$ at $k$ commutes with applying a positive scaling to a column of $B_{\ell\ell}$ other than~$k$.
+Furthermore, since $k$ is not special and not affine, row $k$ and column $k$ only have nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
+Thus mutating~$B$ at~$k$ amounts to replacing $B_{\ell\ell}$ by $\mu_k(B_{\ell\ell})$.
+Mutating $B_{\ell\ell}$ at $k$ commutes with applying a positive scaling to a column of $B_{\ell\ell}$ other than~$k$.
+Thus ${\Comp(\mu_k(B))=\mu_k(\Comp(B))}$.
 
-\cref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
+\cref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
-Thus if $x$ is a vector whose affine entries are zero, so that $\eta^{\Comp(B)^T}_k(x)$ makes sense, we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense) we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{proof}
 
 \begin{proposition}\label{special mut}
@@ -1962,7 +2167,7 @@ If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{
 \end{itemize}
 \end{proposition}
 \begin{proof}
-The special index $k$, together with the affine indices, determines a $3\times3$ submatrix of $B$ that agrees with one of the entries in Table~\ref{tab:possible_submatrices}.
+The special index $k$, together with the affine indices, determines a $3\times3$ submatrix of $B$ that agrees with one of the entries in \cref{tab:possible_submatrices}.
 For convenience in the rest of the proof, we call this $3\times3$ submatrix merely ``the submatrix'' and refer to the labels in the table as ``the type'' of the submatrix.
 We argue separately for the different cases in the table, but are able to combine some cases that are related by scaling.
 
@@ -2040,13 +2245,13 @@ so \cref{neigh B} implies that it is neighboring.
 
 To compute the remaining entries of $\mu_\kk(B)$, we consider each $4\times4$ submatrix whose rows are indexed by $i,k,n-1,n$ and whose columns are indexed by $j,k,n-1,n$, for arbitrary $i,j\not\in\set{k,n-1,n}$.
 %To make the notation more compact, we use $p$ to stand for $n-1$.
-We use the notation 
-\[m(a,b)=\begin{cases}
-ab&\text{if }\sgn(a)=\sgn(b)=+\\
--ab&\text{if }\sgn(a)=\sgn(b)=-\\
-0&\text{otherwise},
-\end{cases}\]
-and we will use the identity $m(a,b)+m(a,-b)=ab$ for $b>0$ several times.
+%We use the notation 
+%\[m(a,b)=\begin{cases}
+%ab&\text{if }\sgn(a)=\sgn(b)=+\\
+%-ab&\text{if }\sgn(a)=\sgn(b)=-\\
+%0&\text{otherwise},
+%\end{cases}\]
+We continue the notation $m(a,b)$ from the proof of \cref{neigh good stuff} and we will use the identity $m(a,b)+m(a,-b)=ab$ for $b>0$ several times.
 We will also use the facts (from \cref{neigh B}) that $b_{(n-1)j}=-b_{nj}\le0$, and $b_{i(n-1)}=-b_{in}\ge0$.
 \begin{align*}
 \begin{bsmallmatrix*}[r]
@@ -2203,7 +2408,7 @@ and we conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
 
 The computations above can be reused to prove the assertions about $\eta^{B^T}_\kk$.
 %also let us determine mutation maps by taking $j$ to index a new column that has been used to extend $B$ but still taking $i$ to be a non-affine index in~$\set{1,\ldots,n}$.
-\cref{neigh im ray} says that the vector $-\frac12B\delta^B$ that spans the imaginary ray is zero in non-affine entries and has affine entries $-1,1$.
+\cref{neigh good stuff}.\ref{neigh im ray} says that the vector $-\frac12B\delta^B$ that spans the imaginary ray is zero in non-affine entries and has affine entries $-1,1$.
 This, the computations above are valid, replacing the $i\th$ column of $B$ in the calculations with $-\frac12B\delta^B$.
 Specifically, we replace $b_{ij}$ and $b_{kj}$ with $0$ and replace $b_{nj}$ with $1$, and the computations show that $\eta^{B^T}_\kk$ fixes $-\frac12B\delta^B$.
 
@@ -2353,14 +2558,14 @@ The computation of the $ij$-entry of $\mu_k(\Comp(B))$ is the same as in Case~1,
 The assertions about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
 We have proved the \lcnamecref{special mut} in the case of type $C_2^{(1)}$.
 
-The matrices of type $A_4^{(2)}$ shown in Table~\ref{tab:possible_submatrices} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
+The matrices of type $A_4^{(2)}$ shown in \cref{tab:possible_submatrices} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
 Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
 
 \noindent
 \textbf{Case 3.}
 The submatrix is of type  $G_2^{(1)}$ or $D_4^{(3)}$.
 In these cases, the associated root system has roots whose squared lengths are related by a factor of $3$.
-The classification of affine root systems thus implies that $n=3$, so that $B$ in fact it equals one of the submatrices shown in Table~\ref{tab:possible_submatrices}.
+The classification of affine root systems thus implies that $n=3$, so that $B$ in fact it equals one of the submatrices shown in \cref{tab:possible_submatrices}.
 For that reason, the computation is smaller in this case, and the indices $k,(n-1),n$ are $1,2,3$.
 
 We begin with type $G_2^{(1)}$.
@@ -2572,7 +2777,7 @@ The imaginary ray is spanned by the vector with entries $c_1=0$, $c_2=-1$, $c_3=
 We also see that if $x$ is a vector with entries $c_1,0,0$, then $\eta_\kk^{B^T}(x)$ has entries $-c_1,0,0$.
 We compute $\eta_1^{\Comp(B)^T}$ by mutating $[0\,\,c_1]\overset{1}{\longrightarrow}[0\,\,-c_1]$, so $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$ as desired.
 
-The matrix of type $D_4^{(3)}$ in Table~\ref{tab:possible_submatrices} is obtained from the matrix of type $G_2{(1)}$ by conjugating by a diagonal matrix with diagonal entries $3,1,1$.
+The matrix of type $D_4^{(3)}$ in \cref{tab:possible_submatrices} is obtained from the matrix of type $G_2{(1)}$ by conjugating by a diagonal matrix with diagonal entries $3,1,1$.
 Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the case of type $D_4^{(3)}$.
 \end{proof}
 
@@ -2612,6 +2817,9 @@ Since the imaginary ray is in the relative interior of that half-hyperplane, the
 We now prove the main theorem.
 
 \begin{proof}[Proof of \cref{affine main}]
+\cref{affine main partial} says that $\P_\lambda^B$ contains the line segment described in the \lcnamecref{affine main}.
+We need to show the opposite containment.
+
 Given $B$ of affine type, let $\lambda$ be in the imaginary wall $\d_\infty^B$.
 Let $\kk$ be a sequence of indices in $\set{1,\ldots,n}$ and write $B'$ for $\mu_\kk(B)$ and $\lambda'$ for $\eta_\kk^{B^T}(\lambda)$.
 The mutation map $\eta_\kk^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\kk(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\kk(B)\delta^{\mu_\kk(B)}$.
@@ -2621,24 +2829,26 @@ We choose $B$ to be a neighboring exchange matrix.
 
 Now suppose $\kk$ is a sequence of \emph{non-affine} indices and, as before, let $\ll$ be the corresponding sequence where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in \cref{special mut}.
 
-
-\cref{Comp span} implies that
-$\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^B)^\perp\subseteq$
-
-
-We will show that 
-
-
- $\P^B_{\lambda,\ll}=\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$
-
-
-
-
-\cref{P point finite} says that the intersection of 
-
-
-
-
+By \cref{neigh im wall}, we can write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$.
+\cref{nonspecial mut,special mut} imply that $\Comp(B')=\mu_\kk(\Comp(B))$ and $\eta_\ll^{B^T}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty$.
+\cref{Comp span} implies that 
+\begin{multline*}
+\set{B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^{B'})^\perp\\
+\subseteq\set{\Comp(B')\alpha+B'\delta^{B'}a:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}.
+\end{multline*}
+We see that 
+\begin{multline*}
+\set{\eta_\ll^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\d^{B'}_\infty\\
+\begin{aligned}
+&\subseteq\set{\eta_\ll^{B^T}(\lambda)+\Comp(B')\alpha+B'\delta^{B'}p:\alpha\in\reals^{n-2},\alpha\ge0,p\ge0}\cap\d^{B'}_\infty\\
+&=\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}+\set{q\lambda_\infty:0\le q\le1}.
+\end{aligned}
+\end{multline*}
+Now applying $(\eta_\ll^{B^T})^{-1}$ to both sides of the containment, we see that 
+\[\P^B_{\lambda,\ell}\subseteq\P^{\Comp(B)}_{\lambda_0,\kk}+\set{q\lambda_\infty:0\le q\le1}.\]
+\cref{finite P point} says that $\P^{\Comp(B)}_{\lambda_0}$ (the intersection of the $\P^{\Comp(B)}_{\lambda_0,\kk}$ over all sequences $\kk$) equals $\set{\lambda_0}$.
+\cref{P in dBinf} says that $\P^B_\lambda\subseteq\d^B_\infty$.
+Thus $\P^B_{\lambda}$ (the intersection of the $\P^B_{\lambda,\ll}$ over all sequences $\ll$) is contained in $\P^{\Comp(B)}_{\lambda_0,\kk}+\set{q\lambda_\infty:0\le q\le1}$, which equals $\set{\lambda-q\lambda_\infty:0\le q\le1}$.
 \end{proof}
 
 
