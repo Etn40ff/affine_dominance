@@ -1,0 +1,40 @@
+# Trying to automate testing the linear independence of columns in affine type Atilde.
+# It is known that every exchange matrix of type Atilde is mutation equivalent to a 
+# quiver whose underlying undirected graph is a cycle and that has exactly one source 
+# and one sink.  We can index this so that the source is 1 and the sink is n, with 
+# directed paths 1 -> 2-> ... -> k -> n and 1 -> k+1 -> k+2 -> ... -> n for 1 ≤ k < n.
+# The following produces the exchange matrix for given k and n.
+
+with(LinearAlgebra):
+
+B:=proc(n,k) local i,Bout;
+	Bout:=Matrix(n);
+	for i from 2 to k do
+		Bout[i-1,i]:=1;
+	od;
+	for i from k+1 to n-1 do
+		Bout[i,i+1]:=1;
+	od;
+	Bout[k,n]:=1;
+	Bout[1,k+1]:=1;
+	Bout:=Bout-Transpose(Bout);	
+end proc;
+
+# determines whether, for the given matrix, the nonnegative span of its columns has a line
+
+
+has_line:=proc(B) local n,m,ineqsa,i,ineqsb,veca,vecb,Bveca,Bvecb,eqs;
+	n:=ColumnDimension(B);
+	m:=RowDimension(B);
+	ineqsa:=seq(cat('a',i)>=0,i=1..n);
+	ineqsb:=seq(cat('b',i)>=0,i=1..n);
+	veca:=Vector([seq(cat('a',i),i=1..n)]);
+	vecb:=Vector([seq(cat('b',i),i=1..n)]);
+	Bveca:=B.veca;
+	Bvecb:=B.vecb;
+	eqs:=seq(Bveca[i]=-Bvecb[i],i=1..m);
+	solve({ineqsa,ineqsb,eqs});
+end proc;
+
+
+# n:=6:for k from 1 to n-1 do has_line(B(n,k)) od;
