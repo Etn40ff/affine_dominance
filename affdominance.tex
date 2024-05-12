@@ -1731,15 +1731,26 @@ We next prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell\ell}$ is an e
 We do that by comparing the combinatorics of exchange relations described by $B_{\ell\ell}$ with the combinatorics of triangulated polygons.
 
 Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these $\beta$ that does not occur in the support of $\gamma_i$ for any index $i$ of $B_{\ell\ell}$. 
-Then every root $\gamma_i$ is $\beta_q+\beta_{q+1}+\cdots+\beta_r$ for some $1\le q\le r\le p_\ell$.
+Then every root $\gamma_i$ is $\beta_{q_i}+\beta_{q_i+1}+\cdots+\beta_{r_i}$ for some $1\le q_i\le r_i\le p_\ell$.
 For the special index $i$, $\gamma_i$ is $\beta_1+\beta_2+\cdots+\beta_{p_\ell}$.
 %\cref{compatible in tubes} says that roots
 
+To describe the mutation for $\gamma_i$, we consider $j\ne i$ such that $\gamma_j$ has the smallest support which contains the support of $\gamma_i$.
+Note that this implies $q_i=q_j$ or $r_i=r_j$, without loss of generality we assume $q_i=q_j$.
+Consider $j'$ such that $r_{j'}=r_i$ and $\gamma_{j'}$ has the largest support which is properly contained in the support of $\gamma_i$, where we take $q_{j'}=r_i$, $r_{j'}=r_i-1$, and set $\gamma_{j'}=0$ if no such $\gamma_{j'}$ exists.
+Consider $k$ such that $q_k=q_i$ and $\gamma_k$ has the largest support which is properly contained in the support of $\gamma_i$, where we take $q_k=q_i+1$, $r_k=q_i$, and set $\gamma_k=0$ if no such $\gamma_k$ exists.
+Lastly, consider $k'$ such that $r_{k'}=r_j$ and $\gamma_{k'}$ has the largest support which is properly contained in the support of $\gamma_j$, where we take $q_{k'}=r_j$, $r_{k'}=r_j-1$, and set $\gamma_{k'}=0$ if no such $\gamma_{k'}$ exists.
+Set $\gamma'_i=\beta_{q_{j'}}+\beta_{q_{j'}+1}+\cdots+\beta_{r_j}$.
+With this notation, we have the exchange relation (proper notation needed):
+\[x_{\gamma_i} x_{\gamma'_i} = x_{\gamma_j} x_{\gamma_{j'}} + x_{\gamma_k} x_{\gamma_{k'}},\]
+where we take $x_0=1$.
+
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation, take all diagonals with an endpoint at $p_\ell+2$.
 The roots $\gamma_i$ specify a triangulation that doesn't contain any of these initial arcs:
-Each $\gamma_i=\beta_q+\beta_{q+1}+\cdots+\beta_r$ corresponds to the diagonal that crosses the initial diagonals with endpoints $q,q+1,\ldots,r$ and no other initial diagonals.  
-
-Triangulations that don't contain any of these initial arcs correspond to 
+Each $\gamma_i=\beta_{q_i}+\beta_{q_i+1}+\cdots+\beta_{r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e. that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
+Note that $\gamma_{j'}$, $\gamma_k$, and $\gamma_{k'}$ correspond to boundary arcs when these did not exist above.
+Then observe that the diagonals corresponding to $\gamma_j$, $\gamma_k$, $\gamma_{j'}$, and $\gamma_{k'}$ form a quadrilateral with diagonal corresponding to $\gamma_i$.
+The opposite diagonal is precisely that associated to $\gamma'_i$ and thus we have type $A$ exchange relations.
 
 ...STUCK from here...  
 
