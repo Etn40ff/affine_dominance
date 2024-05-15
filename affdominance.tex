@@ -977,6 +977,7 @@ But $N$ is a monomial in the coefficient variables times a cluster monomial, and
 
 \begin{remark}\label{4.3}
 It appears that, to extend \cref{exch ind} to arbitrary coefficients, one needs \cite[Conjecture~4.3]{ca4}, which says that the exchange graph does not depend on the choice of coefficients.
+\sayN{As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? (Is it worth trying to prove it for affine type??}
 \end{remark}
 
 \subsection{Mutation-finite exchange matrices}\label{mut fin sec}
@@ -1008,6 +1009,19 @@ If $B$ is mutation-finite then, for every subset $I$ of $\set{1,\ldots,n}$, the 
 %Then the same submatrix occurs in $\mu_\kk(B)$, and thus $B$ is not mutation-finite.
 %\end{proof}
 
+\subsection{Growth of cluster algebras}\label{growth sec}
+The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
+Some facts about growth will be useful.
+
+First, beyond rank $2$, the notion of affine type has the following intrinsic characterization.
+Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
+%Growth rate of cluster algebras
+%Anna Felikson, Michael Shapiro, Hugh Thomas and Pavel Tumarkin
+
+Second, given an $n\times n$ exchange matrix $B=[b_{ij}]$ and a subset $I\subseteq\set{1,\ldots,n}$, if the submatrix $[b_{ij}]_{i,j\in I}$ has exponential growth, it is immediate that that $B$ has exponential growth as well.
+
+Finally, we will need that fact that non-acyclic skew-symmetrizable $3\times3$ exchange matrices with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ have exponential growth.
+One can check that such matrices have the property that every single step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
 
 
 
@@ -1164,10 +1178,6 @@ If $B$ is mutation-finite then, for every subset $I$ of $\set{1,\ldots,n}$, the 
 
 \section{Dominance regions in affine type}
 As before, an exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
-Beyond rank $2$, the notion of affine type has the following intrinsic characterization.
-The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
-Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
-
 The main results of this paper are the following theorem and a version (\cref{affine main extended}) for extended exchange matrices. \sayN{hopefully}
 
 \begin{theorem}\label{affine main}
@@ -1658,15 +1668,15 @@ If $B_{\ell4}$ is nonempty, then it is nonzero only in the last row;
 \item
 If $B_{4\ell}$ is nonempty, then it is nonzero only in the last column; and
 \item
-If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{tab:possible_submatrices}.
+If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{submat tab}.
 \end{itemize}
 The labeling can be taken so that the blocks $B_{11}$, $B_{22}$, and $B_{33}$ are in order of increasing size. 
-A submatrix in \cref{tab:possible_submatrices} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_{4}^{(3)}$ can only appear when $B_{11}$ and $B_{22}$ are empty.
+A submatrix in \cref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_{4}^{(3)}$ can only appear when $B_{11}$ and $B_{22}$ are empty.
 \end{enumerate}
 \end{theorem}
 	\begin{table}
 	\caption{Possible submatrices}
-	\label{tab:possible_submatrices}	
+	\label{submat tab}	
 	\begin{center}
 	\begin{tabular}{|cc|cc|}
 	Type & matrix & Type & matrix \\
@@ -1893,8 +1903,8 @@ That submatrix has a pair of opposite off-diagonal entries whose product is $-4$
 \cref{acyc mut fin} thus says that the submatrix is not acyclic.
 In other words, $b_{kp}>0$ and $b_{kn}<0$, and therefore $b_{pk}<0$ and $b_{nk}>0$.
 By \cref{mut fin 2x2}, each of these entries has absolute value $1$, $2$, $3$, or~$4$.
-Finally, skew-symmetrizability of $B$ implies that $\frac{-b_{pk}}{b_{kp}}=\frac{-b_{nk}}{b_{kn}}$.
 
+We deal with the case where the affine submatrix has entries $\pm2$.
 Below, we display some mutations of the submatrix.
 We will derive some inequalities from the fact that each of the mutations must also be non-acyclic and have opposite off-diagonal entries with products at least $-4$.
 \begin{multline*}
@@ -1922,38 +1932,23 @@ We will derive some inequalities from the fact that each of the mutations must a
 	2b_{pk}+b_{nk} & -2-(2b_{pk}+b_{nk})(3b_{kp}+2b_{kn})& 0
 \end{bsmallmatrix*}
 \end{multline*}
-%\begin{align*}
-%&\begin{bsmallmatrix*}
-%	0 & b_{kp} & b_{kn} \\
-%	b_{pk} & 0 & 2 \\
-%	b_{nk} & -2 & 0
-%\end{bsmallmatrix*}\overset{p}{\longrightarrow}
-%\begin{bsmallmatrix*}
-%	0 & -b_{kp} & 2b_{kp}+b_{kn} \\
-%	-b_{pk} & 0 & -2 \\
-%	2b_{pk}+b_{nk}& 2 & 0
-%\end{bsmallmatrix*}\overset{n}{\longrightarrow}
-%\begin{bsmallmatrix*}
-%	0 & 3b_{kp}+2b_{kn} & -2b_{kp}-b_{kn} \\
-%	3b_{pk}+2b_{nk} & 0 & 2 \\
-%	-2b_{pk}-b_{nk} & -2 & 0
-%\end{bsmallmatrix*}\\
-%&\begin{bsmallmatrix*}
-%	0 & b_{kp} & b_{kn} \\
-%	b_{pk} & 0 & 2 \\
-%	b_{nk} & -2 & 0
-%\end{bsmallmatrix*}\overset{n}{\longrightarrow}
-%\begin{bsmallmatrix*}
-%	0 & b_{kp}+2b_{kn} & -b_{kn} \\
-%	b_{pk}+2b_{nk} & 0 & -2 \\
-%	-b_{nk} & 2 & 0
-%\end{bsmallmatrix*}\overset{p}{\longrightarrow}
-%\begin{bsmallmatrix*}
-%	0 & -b_{kp}-2b_{kn} & 2b_{kp}+3b_{kn} \\
-%	-b_{pk}-2b_{nk} & 0 & 2 \\
-%	2b_{pk}+3b_{nk} & -2 & 0
-%\end{bsmallmatrix*}
-%\end{align*}
+\begin{multline*}
+\begin{bsmallmatrix*}
+	0 & b_{kp} & b_{kn} \\
+	b_{pk} & 0 & 2 \\
+	b_{nk} & -2 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}
+	0 & b_{kp}+2b_{kn} & -b_{kn} \\
+	b_{pk}+2b_{nk} & 0 & -2 \\
+	-b_{nk} & 2 & 0
+\end{bsmallmatrix*}\overset{p}{\longrightarrow}
+\begin{bsmallmatrix*}
+	0 & -b_{kp}-2b_{kn} & 2b_{kp}+3b_{kn} \\
+	-b_{pk}-2b_{nk} & 0 & 2 \\
+	2b_{pk}+3b_{nk} & -2 & 0
+\end{bsmallmatrix*}
+\end{multline*}
 The fact that each of these matrices are non-acyclic determines the sign of each entry.
 Two of these inequalities are shown here, with an inequality that follows:
 \[
@@ -1961,55 +1956,85 @@ Two of these inequalities are shown here, with an inequality that follows:
 \]
 This rules out all pairs $(b_{kp},b_{kn})$ except $(1,-1)$, $(2,-2)$, $(3,-3)$, $(3,-4)$, and $(4,-4)$.
 If $b_{kn}=-4$, then $b_{nk}=1$, and also $b_{kp}\ge3$ so also $b_{pk}=-1$.
-The fact that $\frac{-b_{pk}}{b_{kp}}=\frac{-b_{nk}}{b_{kn}}$ now rules out the possibility that $(b_{kp},b_{kn})=(3,-4)$.
+Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=\frac{b_{nk}}{b_{kn}}$, which rules out the possibility that $(b_{kp},b_{kn})=(3,-4)$.
+Similar considerations starting with the inequalities $3b_{pk}+2b_{nk}<0$ and $2b_{pk}+3b_{nk}>0$ rule out all pairs $(b_{pk},b_{nk})$ except $(-1,1)$, $(-2,2)$, $(-3,3)$, and $(-4,4)$.
 
-We want to rule out the possibility that $(b_{kp},b_{kn})=(4,-4)$.
-\[
-\begin{bsmallmatrix*}[r]
-	0 & 4 & -4 \\
-	-1 & 0 & 2 \\
-	1 & -2 & 0
+We see that, in every case, $b_{kp}=-b_{kn}>0$ and $b_{pk}=-b_{nk}<0$.
+To verify that all possibilities are listed in \cref{submat tab}, it remains to rule out the cases where $(b_{kp},b_{kn},b_{pk},b_{nk})$ are $(1,-1,-4,4)$, $(2,-2,-2,2)$, or $(4,-4,-1,1)$.
+None of these three cases are possible because, as explained in \cref{growth sec}, these submatrices would  have exponential growth and thus contradict the fact that $B$ has linear growth.
+
+Next, we deal with the case where the affine submatrix has entries $-1$ and $4$.
+\begin{multline*}
+\begin{bsmallmatrix*}
+	0 & b_{kp} & b_{kn} \\
+	b_{pk} & 0 & 4	 \\
+	b_{nk} & -1 & 0
 \end{bsmallmatrix*}
 \overset{p}{\longrightarrow}
-\begin{bsmallmatrix*}[r]
-	0 & -4 & 4 \\
-	1 & 0 & -2 \\
-	-1& 2 & 0
+\begin{bsmallmatrix*}
+	0 & -b_{kp} & 4b_{kp}+b_{kn} \\
+	-b_{pk} & 0 & -4 \\
+	b_{pk}+b_{nk}& 1 & 0
 \end{bsmallmatrix*}
 \overset{n}{\longrightarrow}
-\begin{bsmallmatrix*}[r]
-	0 & 4 & -4 \\
-	-1 & 0 & 2 \\
-	1 & -2 & 0
-\end{bsmallmatrix*}
+\begin{bsmallmatrix*}
+	0 & 3b_{kp}+b_{kn}& -4b_{kp}-b_{kn} \\
+	3b_{pk}+4b_{nk} & 0 & 4 \\
+	-b_{pk}-b_{nk}& -1 & 0
+\end{bsmallmatrix*}\\
 \overset{k}{\longrightarrow}
-\begin{bsmallmatrix*}[r]
-	0 & -4 & 4 \\
-	1 & 0 & -2 \\
-	-1 & 2 & 0
+\begin{bsmallmatrix*}
+	0 & -3b_{kp}-b_{kn}& 4b_{kp}+b_{kn} \\
+	-3b_{pk}-4b_{nk} & 0 & 4+(3b_{pk}+4b_{nk})(4b_{kp}+b_{kn}) \\
+	b_{pk}+b_{nk}& -1-(b_{pk}+b_{nk})(3b_{kp}+b_{kn}) & 0
 \end{bsmallmatrix*}
+\end{multline*}
+\begin{multline*}
+\begin{bsmallmatrix*}
+	0 & b_{kp} & b_{kn} \\
+	b_{pk} & 0 & 4	 \\
+	b_{nk} & -1 & 0
+\end{bsmallmatrix*}\overset{n}{\longrightarrow}
+\begin{bsmallmatrix*}
+	0 & b_{kp}+b_{kn} & -b_{kn} \\
+	b_{pk}+4b_{nk} & 0 & -4	 \\
+	-b_{nk} & 1 & 0
+\end{bsmallmatrix*}\overset{p}{\longrightarrow}
+\begin{bsmallmatrix*}
+	0 & -b_{kp}-b_{kn} & 4b_{kp}+3b_{kn} \\
+	-b_{pk}-4b_{nk} & 0 & 4	 \\
+	b_{pk}+3b_{nk} & -1 & 0
+\end{bsmallmatrix*}
+\end{multline*}
+These matrices determine inequalities, including
+\[
+3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-\frac32b_{kp}>\frac94b_{kn},\\
 \]
+which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
+If $b_{kn}=-4$, then $b_{nk}=1$, and also $b_{kp}\ge3$ so also $b_{pk}=-1$.
+In this case, skew-symmetrizability of $B$ says that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which rules out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
+Similar considerations starting with $b_{pk}+3b_{nk}>0$ and $3b_{pk}+4b_{nk}<0$ rule out all pairs $(b_{pk},b_{nk})$ except $(-2,1)$ and $(-4,2)$.
+The remaining possibilities for $(b_{kp},b_{kn},b_{pk},b_{nk})$ are $(1,-2,-2,1)$, $(1,-2,-4,2)$, and $(2,-4,-2,1)$, but we rule out the second and third possibilities because they would imply exponential growth.
+
+The last case, where the affine submatrix has entries $-4$ and $1$, is related to the previous case by passing to the negative transpose, so the same calculations lead to the desired result.
+
+If the submatrix is of type $A_{4}^{(2)}$ in \cref{submat tab}, then the underlying Cartan matrix defines a root system with 3 distinct root lengths, and thus $\RS$ is of type $A_{2l}^{(2)}$ in the notation of \cite[Chapter~4]{Kac}.
+In this case, the root system can be rescaled to be of type $C^{(1)}$, and therefore $\RST{c}$ has only one component (see \cite[Table 1]{affdenom}).
+If the submatrix is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, then there are pairs of roots whose lengths are related by a factor of $\sqrt(3)$, and thus $\RS$ is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$m so again $\RST{c}$ has only one component (and indeed the submatrix is all of $B$).
+In these cases, we are done.
+
+In the remaining cases, the situation is as follows.
+We have showed that there is a special index $k$ such that $b_{k{n-1}}$ and/or $b_{kn}$ is nonzero, and we have shown, for any such $k$, the submatrix determined by indices $k,(n-1),n$ is one of the top three matrices on \cref{submat tab}.
 
 
 
-HERE
 
-Also rule out the skew-symmetric Markov.
-
-
-
-Don't forget the cases where the affine entries are 1 and 4.
-
-
-
-
-Since the exchanges of $\xi_{p_1}$, $\xi_{p_1+p_2}$, and $\xi_{p_1+p_2+p_3}$ are not imaginary each of these matrices has at least one non-zero entry.
   
 
   For each $i\in[p_1,p_1+p_2,p_1+p_2+p_3]$ consider now the submatrix of the exchange matrix at $t$ consisting of the rows and columns $i,n-1,n$.
   As its $2\times 2$ submatrix on rows and columns $n-1$ and $n$ is affine all of its non-diagonal entries must be non-zero.
   Otherwise it would be an exchange matrix of wild type.
-  By direct inspection we see that the only possibilities are then those in \cref{tab:possible_submatrices}.
+  By direct inspection we see that the only possibilities are then those in \cref{submat tab}.
 	Note that, as the sign patterns are the same regardless of the chosen tube mutating in directions $n-1$ and $n$ do not affect the exchange matrix at $t$ outside of rows and columns $n-1$ and $t$.
 	Moreover, by direct inspection, it is easy to see that these two mutations only change the signs in both the last two columns and the last two rows.
 
@@ -2037,7 +2062,7 @@ Then $\mu_\kk(B)=B$.
 \begin{proof}
 \cref{neigh B} implies that most entries of $B$ are fixed under mutation in an affine position.
 The only entries that might not be fixed are entries $b_{ij}$ where one of $i$ or $j$ is affine and the other is affine or special and entries $B_{ii}$ where $i$ is special.
-Thus we only need to check the submatrices shown in \cref{tab:possible_submatrices}.
+Thus we only need to check the submatrices shown in \cref{submat tab}.
 In each case, we see that mutation in one of the affine entries has the effect of negating the submatrix.
 An additional mutation in the other affine index still fixes all entries of $B$ except those described above and again negates the submatrix, so that $\mu_\kk(B)=B$.  \sayN{Maybe we'll leave out these computations, which are really easy?}
 \begin{align*}
@@ -2189,7 +2214,7 @@ Before determining the entries of $\delta^B$ in the two affine positions, we det
 \cref{neigh B} and the fact that $\delta^B$ is zero in all non-affine positions implies that $-\frac12B\delta^B$ is zero in non-special non-affine positions.
 Since $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray, \cref{affine mut} implies that it is fixed under $\eta^{B^T}_\kk$, where $\kk$ is a $2$-element sequence consisting of the two affine indices. 
 We use the fact that $-\frac12B\delta^B$ is fixed under $\eta^{B^T}_\kk$ to determine its affine entries $r_{n-1}$, and $r_n$.
-%We need only consider the submatrices shown in \cref{tab:possible_submatrices}.
+%We need only consider the submatrices shown in \cref{submat tab}.
 %The mutations are computed below, where the entries $r_k$ (for special~$k$), $r_{n-1}$, and $r_n$ denote entries in $-\frac12B\delta^B$.
 To make the notation more compact, we use $p$ to stand for $n-1$.
 We use the notation 
@@ -2199,7 +2224,7 @@ ab&\text{if }\sgn(a)=\sgn(b)=+\\
 0&\text{otherwise}.
 \end{cases}\]
 To determine the affine entries, we need only the $2\times2$ affine submatrices of $B$.
-In the most common case from \cref{tab:possible_submatrices}, the mutations are as follows:
+In the most common case from \cref{submat tab}, the mutations are as follows:
 \[
 \begin{bsmallmatrix*}
 0 & 2 & r_p\\
@@ -2226,7 +2251,7 @@ Since $\delta^B$ is zero in its non-affine positions and since $r_p$ and $r_n$ a
 Therefore $d_p=d_n$, and since $\delta^B$ is the smallest nonzero integer vector in the ray it spans, we see that $d_p=d_n=1$, as desired.
 From there, we see that the special entries of $-\frac12B\delta^B$ are also zero and that $r_n=1=-r_p$ as desired.
 
-In the next case from \cref{tab:possible_submatrices}, the mutations are
+In the next case from \cref{submat tab}, the mutations are
 \[\begin{bsmallmatrix*}
 0 & 4 & r_p\\
 -1 & 0 &r_n
@@ -2297,7 +2322,7 @@ Suppose $B$ is a neighboring exchange matrix.
 Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative linear span of the columns of $B$ is contained in the nonnegative linear span of $\frac12B\delta^B$ and the columns of $\Comp(B)$.
 \end{proposition}
 \begin{proof}
-By inspection of \cref{tab:possible_submatrices} and in light of \cref{neigh good stuff}, we observe the following facts:
+By inspection of \cref{submat tab} and in light of \cref{neigh good stuff}, we observe the following facts:
 First, the vector $-\frac12B\delta^B$ spanning the affine ray is a \emph{negative} linear combinatiion of the last two columns of $B$.
 Second, the linear span of the last two columns of $B$ intersected with the hyperplane $(\delta^B)^\perp$ is the line spanned by $\frac12B\delta^B$.
 Third, $\frac12B\delta^B$ has nonzero entries only in the affine indices, and those entries are $1,-1$ unless the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, in which case, those entries are $2,-1$ or $1,-2$ respectively.
@@ -2352,7 +2377,7 @@ If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{
 \end{itemize}
 \end{proposition}
 \begin{proof}
-The special index $k$, together with the affine indices, determines a $3\times3$ submatrix of $B$ that agrees with one of the entries in \cref{tab:possible_submatrices}.
+The special index $k$, together with the affine indices, determines a $3\times3$ submatrix of $B$ that agrees with one of the entries in \cref{submat tab}.
 For convenience in the rest of the proof, we call this $3\times3$ submatrix merely ``the submatrix'' and refer to the labels in the table as ``the type'' of the submatrix.
 We argue separately for the different cases in the table, but are able to combine some cases that are related by scaling.
 
@@ -2743,14 +2768,14 @@ The computation of the $ij$-entry of $\mu_k(\Comp(B))$ is the same as in Case~1,
 The assertions about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
 We have proved the \lcnamecref{special mut} in the case of type $C_2^{(1)}$.
 
-The matrices of type $A_4^{(2)}$ shown in \cref{tab:possible_submatrices} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
+The matrices of type $A_4^{(2)}$ shown in \cref{submat tab} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
 Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
 
 \noindent
 \textbf{Case 3.}
 The submatrix is of type  $G_2^{(1)}$ or $D_4^{(3)}$.
 In these cases, the associated root system has roots whose squared lengths are related by a factor of $3$.
-The classification of affine root systems thus implies that $n=3$, so that $B$ in fact it equals one of the submatrices shown in \cref{tab:possible_submatrices}.
+The classification of affine root systems thus implies that $n=3$, so that $B$ in fact it equals one of the submatrices shown in \cref{submat tab}.
 For that reason, the computation is smaller in this case, and the indices $k,(n-1),n$ are $1,2,3$.
 
 We begin with type $G_2^{(1)}$.
@@ -2962,7 +2987,7 @@ The imaginary ray is spanned by the vector with entries $c_1=0$, $c_2=-1$, $c_3=
 We also see that if $x$ is a vector with entries $c_1,0,0$, then $\eta_\kk^{B^T}(x)$ has entries $-c_1,0,0$.
 We compute $\eta_1^{\Comp(B)^T}$ by mutating $[0\,\,c_1]\overset{1}{\longrightarrow}[0\,\,-c_1]$, so $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$ as desired.
 
-The matrix of type $D_4^{(3)}$ in \cref{tab:possible_submatrices} is obtained from the matrix of type $G_2{(1)}$ by conjugating by a diagonal matrix with diagonal entries $3,1,1$.
+The matrix of type $D_4^{(3)}$ in \cref{submat tab} is obtained from the matrix of type $G_2{(1)}$ by conjugating by a diagonal matrix with diagonal entries $3,1,1$.
 Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the case of type $D_4^{(3)}$.
 \end{proof}
 
