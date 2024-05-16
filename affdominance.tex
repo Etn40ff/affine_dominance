@@ -2024,17 +2024,22 @@ The last case, where the affine submatrix has entries $-4$ and $1$, is related t
 
 If the submatrix is of type $A_{4}^{(2)}$ in \cref{submat tab}, then the underlying Cartan matrix defines a root system with 3 distinct root lengths, and thus $\RS$ is of type $A_{2l}^{(2)}$ in the notation of \cite[Chapter~4]{Kac}.
 In this case, the root system can be rescaled to be of type $C^{(1)}$, and therefore $\RST{c}$ has only one component (see \cite[Table 1]{affdenom}).
-If the submatrix is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, then there are pairs of roots whose lengths are related by a factor of $\sqrt(3)$, and thus $\RS$ is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$m so again $\RST{c}$ has only one component (and indeed the submatrix is all of $B$).
+If the submatrix is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, then there are pairs of roots whose lengths are related by a factor of $\sqrt(3)$, and thus $\RS$ is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, so again $\RST{c}$ has only one component (and indeed the submatrix is all of $B$).
 In these cases, we are done.
 
 In the remaining cases, the situation is as follows.
 We have showed that for every special index $k$, the submatrix determined by indices $k,(n-1),n$ is one of the top three matrices on \cref{submat tab}.
 It remains only to show that the matrices $B_{12}$, $B_{13}$, $B_{23}$, $B_{21}$, $B_{31}$, and $B_{32}$, are zero.
 We have already established that every entry is zero except possibly the entry indexed by the two special indices, so it remains to show that, for any two distinct special indices $j$ and $k$, the entry $b_{jk}$ is zero.
-To show that, we consider mutations of the submatrix of $B$ indexed by $j,k,(n-1),n$, again writing $p$ for $n-1$.
-We again compute three cases, based on what the affine submatrix is.
-In the first case, $b_{jp}=-b_{jn}>0$, $b_{kp}=-b_{kn}>0$, $b_{pj}=-b_{nj}<0$, and $b_{pk}=-b_{nk}<0$.
 
+Suppose distinct special indices $j$ and $k$ have $b_{jk}\neq0$.
+We may as well choose $j$ and $k$ such that $b_{jk}>0$.
+We consider the $4\times4$ submatrix of $B$ with rows and columns indexed by $j,k,p,n$.
+In all the remaining cases, the affine submatrix is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$.
+Thus $b_{jp}=-b_{jn}>0$, $b_{kp}=-b_{kn}>0$, $b_{pj}=-b_{nj}<0$, and $b_{pk}=-b_{nk}<0$.
+%WON'T BE NECESSARY:
+%Also, skew-symmetrizability of $B$ implies that $b_{kj}=-\frac{b_{nj}b_{kn}}{b_{jn}b_{nk}}b_{jk}<0$.
+We compute the mutation in direction $j$.
 \begin{align*}
 \begin{bsmallmatrix*}
 0&b_{jk}&-b_{jn}&b_{jn}\\
@@ -2042,24 +2047,20 @@ b_{kj}&0&-b_{kn}&b_{kn}\\
 -b_{nj}&-b_{nk}&0&2\\
 b_{nj}&b_{nk}&-2&0
 \end{bsmallmatrix*}
-&\overset{k}{\longrightarrow}
+&\overset{j}{\longrightarrow}
 \begin{bsmallmatrix*}
 0&-b_{jk}&b_{jn}&-b_{jn}\\
--b_{kj}&0&-b_{kn}&b_{kn}+b_{kj}b_{jn}\\
-b_{nj}&-b_{nk}&0&2\\
--b_{nj}&b_{nk}&-2&0
+-b_{kj}&0&-b_{kn}&b_{kn}-b_{kj}b_{jn}\\
+b_{nj}&-b_{nk}&0&2+b_{jn}b_{nj}\\
+-b_{nj}&b_{nk}+b_{nj}b_{jk}&-2-b_{jn}b_{nj}&0
 \end{bsmallmatrix*}\\
 \end{align*}
-
-DO THAT
-
-OLD:  By taking the $4\times 4$ submatrix consisting of the rows and columns corresponding to indices of the $\g$-vectors in the top layer of the $i$-th and $j$-th tube together with $n-1$ and $n$ we see directly that a non-zero entry in $B_{ij}$ would produce a cluster algebra of wild type.
-
-
-
-
-
-
+Since $b_{jk}$, $b_{nj}$, and $b_{nk}$ are all strictly positive $b_{nk}+b_{nj}b_{jk}\ge2$.
+Similarly, $b_{kn}$, $b_{kj}$, and $b_{jn}$ are strictly negative, so $b_{kn}-b_{kj}b_{jn}\le-2$.
+Both of these inequalities must be equality, and we see that $b_{jk}=b_{nj}=b_{nk}=1$ and $b_{kn}=b_{kj}=b_{jn}=-1$, and we have determined all entries of the $4\times 4$ submatrix.
+One easily verifies that the submatrix has the property that every mutation agrees with some permutation of the row/column indices.  
+Therefore, we see that this submatrix is not on the list exchange matrices of sub-exponential growth in \cite[Theorem~1.1]{FeShThTu12}.
+Therefore $B$ has exponential growth, and by this contradiction, we conclude that $b_{jk}=0$.
 
 We have proved \cref{neigh B}.
 We conclude this section with some useful facts that can be proved using the \lcnamecref{neigh B}.
