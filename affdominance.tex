@@ -992,7 +992,7 @@ This theorem is useful to us because all cluster algebras of affine type are mut
 In fact, the following stronger statement holds \cite[Theorem~3.5]{Seven} \sayN{Cluster algebras and semipositive symmetrizable matrices}
 
 \begin{theorem}\label{acyc mut fin}
-An acyclic $n\times n$ exchange matrix with $n\ge3$ is mutation finite if and only if its underlying Cartan matrix is of affine type.
+An acyclic $n\times n$ exchange matrix with $n\ge3$ is mutation finite if and only if its underlying Cartan matrix is of finite or affine type.
 \end{theorem}
 
 We also point out a well-known fact.  \sayN{Surely this is well known!  Reference?}
@@ -1887,19 +1887,23 @@ We have shown that $B_{\ell\ell}$ is of finite type~A.
 %We next prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of type $A_{p_\ell}$.
 %We do that by comparing the combinatorics of exchange relations described by $B_{\ell\ell}$ with the combinatorics of triangulated polygons.
 
-Since the exchange relations to exchange out the cluster variable non-special indices in $B_{\ell\ell}$ only involve cluster variables indexed indices in $B_{\ell\ell}$, we see that $b_{ij}=0$ whenever one of $i$ or $j$ is a non-special index in $B_{\ell\ell}$ and the other is not an index in $B_{\ell\ell}$.
+Since the exchange relations to exchange out the cluster variable with non-special indices in $B_{\ell\ell}$ only involve cluster variables associated to indices in $B_{\ell\ell}$, we see that $b_{ij}=0$ whenever one of $i$ or $j$ is a non-special index in $B_{\ell\ell}$ and the other is not an index in $B_{\ell\ell}$.
 In other words, the blocks $B_{k\ell}$ with $k\neq\ell\in[1,2,3]$ can only have a non-zero entry in the bottom right corner (indexed by the two special indices).
 Similarly blocks $B_{\ell4}$ for $\ell\in[1,2,3]$ can only be non-zero in the last row and blocks $B_{4\ell}$ for $\ell\in\set{1,2,3}$ can only be non-zero in the last column.
 
+We show that if $B_{\ell4}$ is nonempty, then it is nonzero, and equivalently $B_{4\ell}$ is nonzero.
+Let $k$ be the special index associated to $B_{\ell\ell}$.
+Continuing notation from above, $\SuppT(\gamma_k)$ is $\set{\beta_1,\ldots,\beta_{p_\ell}}$, so \cite[Theorem~7.2]{affdenom} says that the cluster variable $x_{1p_\ell}$ for $\xi_k$ is not exchangeable with any other cluster variable whose $\g$-vector is in the imaginary wall $\d^B_\infty$.
+(In the language of that theorem, if $\gamma_k$ is $c$-exchangeable with any other root in $\APTre{c}$, then that root has $\beta_0$ is its support, and therefore is not $c$-real-exchangeable with $\gamma_k$.)
+Therefore the exchange relation for $x_{1p_\ell}$ exchanges it with a cluster variable whose $\g$-vector is not in $\d^B_\infty$.  
+In particular, the right side of that exchange relation can't involve only cluster variables in indexed by non-affine indices, and therefore $B_{\ell4}$ has at least one nonzero entry in column $k$.
+
+We now show that submatrix with rows and columns indexed by $k,n-1,n$ is mutation-finite.
 To make the notation more compact, we use $p$ to stand for $n-1$.
-There is at least one $\ell\in\set{1,2,3}$ such that $B_{\ell4}$ is nonzero, and equivalently $B_{4\ell}$ is nonzero.
-(Otherwise, $B$ has a diagonal block decomposition where the affine indices are a block.
-This diagonal block form would persist under mutation, but $B_0$ does not have a diagonal block decomposition.)
-Therefore, let $k$ be a special index such that $b_{kp}$ and/or $b_{kn}$ is nonzero.
 Since $B$ is of affine type, it is mutation finite.
 Therefore \cref{mut fin sub} says that the submatrix with rows and columns indexed by $k,p,n$ is mutation-finite.
-That submatrix has a pair of opposite off-diagonal entries whose product is $-4$, so its underlying Cartan matrix is not of affine type.
-(There are no $3\times3$ affine Cartan matrices with opposite off-diagonal entries whose product is $4$.)
+That submatrix has a pair of opposite off-diagonal entries whose product is $-4$, so its underlying Cartan matrix is not of finite or affine type.
+(There are no $3\times3$ Cartan matrices of finite or affine type with opposite off-diagonal entries whose product is $4$.)
 \cref{acyc mut fin} thus says that the submatrix is not acyclic.
 In other words, $b_{kp}>0$ and $b_{kn}<0$, and therefore $b_{pk}<0$ and $b_{nk}>0$.
 By \cref{mut fin 2x2}, each of these entries has absolute value $1$, $2$, $3$, or~$4$.
@@ -2024,33 +2028,38 @@ If the submatrix is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, then there are pairs
 In these cases, we are done.
 
 In the remaining cases, the situation is as follows.
-We have showed that there is a special index $k$ such that $b_{k{n-1}}$ and/or $b_{kn}$ is nonzero, and we have shown, for any such $k$, the submatrix determined by indices $k,(n-1),n$ is one of the top three matrices on \cref{submat tab}.
+We have showed that for every special index $k$, the submatrix determined by indices $k,(n-1),n$ is one of the top three matrices on \cref{submat tab}.
+It remains only to show that the matrices $B_{12}$, $B_{13}$, $B_{23}$, $B_{21}$, $B_{31}$, and $B_{32}$, are zero.
+We have already established that every entry is zero except possibly the entry indexed by the two special indices, so it remains to show that, for any two distinct special indices $j$ and $k$, the entry $b_{jk}$ is zero.
+To show that, we consider mutations of the submatrix of $B$ indexed by $j,k,(n-1),n$, again writing $p$ for $n-1$.
+We again compute three cases, based on what the affine submatrix is.
+In the first case, $b_{jp}=-b_{jn}>0$, $b_{kp}=-b_{kn}>0$, $b_{pj}=-b_{nj}<0$, and $b_{pk}=-b_{nk}<0$.
+
+\begin{align*}
+\begin{bsmallmatrix*}
+0&b_{jk}&-b_{jn}&b_{jn}\\
+b_{kj}&0&-b_{kn}&b_{kn}\\
+-b_{nj}&-b_{nk}&0&2\\
+b_{nj}&b_{nk}&-2&0
+\end{bsmallmatrix*}
+&\overset{k}{\longrightarrow}
+\begin{bsmallmatrix*}
+0&-b_{jk}&b_{jn}&-b_{jn}\\
+-b_{kj}&0&-b_{kn}&b_{kn}+b_{kj}b_{jn}\\
+b_{nj}&-b_{nk}&0&2\\
+-b_{nj}&b_{nk}&-2&0
+\end{bsmallmatrix*}\\
+\end{align*}
+
+DO THAT
+
+OLD:  By taking the $4\times 4$ submatrix consisting of the rows and columns corresponding to indices of the $\g$-vectors in the top layer of the $i$-th and $j$-th tube together with $n-1$ and $n$ we see directly that a non-zero entry in $B_{ij}$ would produce a cluster algebra of wild type.
 
 
 
 
-  
-
-  For each $i\in[p_1,p_1+p_2,p_1+p_2+p_3]$ consider now the submatrix of the exchange matrix at $t$ consisting of the rows and columns $i,n-1,n$.
-  As its $2\times 2$ submatrix on rows and columns $n-1$ and $n$ is affine all of its non-diagonal entries must be non-zero.
-  Otherwise it would be an exchange matrix of wild type.
-  By direct inspection we see that the only possibilities are then those in \cref{submat tab}.
-	Note that, as the sign patterns are the same regardless of the chosen tube mutating in directions $n-1$ and $n$ do not affect the exchange matrix at $t$ outside of rows and columns $n-1$ and $t$.
-	Moreover, by direct inspection, it is easy to see that these two mutations only change the signs in both the last two columns and the last two rows.
-
-  Some further considerations on the root lengths, together with \cite{affdenom}[Table 1], show that submatrices of types $A_{4}^{(2)}$, $G_{2}^{(1)}$, and $D_{4}^{(3)}$ can only appear in cases having a single tube so that the exchange matrix at $t$ is completely determined in these cases.
-  It remains to consider the possibly non-zero entries in the matrices $B_{ij}$ with $i\neq j\in[1,2,3]$ in the other cases.
-  By taking the $4\times 4$ submatrix consisting of the rows and columns corresponding to indices of the $\g$-vectors in the top layer of the $i$-th and $j$-th tube together with $n-1$ and $n$ we see directly that a non-zero entry in $B_{ij}$ would produce a cluster algebra of wild type.
 
 
-
-
-
-
-
-
-
-****
 
 We have proved \cref{neigh B}.
 We conclude this section with some useful facts that can be proved using the \lcnamecref{neigh B}.
