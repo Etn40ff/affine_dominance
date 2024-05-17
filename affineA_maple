@@ -20,8 +20,22 @@ B:=proc(n,k) local i,Bout;
 	Bout:=Bout-Transpose(Bout);	
 end proc;
 
-# determines whether, for the given matrix, the nonnegative span of its columns has a line
+# This produces the matrix that is just like B except with row and column n negated.
+# This amounts to mutating B in position n.
 
+M:=proc(n,k) local output,i;
+	output:=B(n,k);
+	for i from 1 to n do
+		output[i,n]:=-output[i,n];
+		output[n,i]:=-output[n,i];
+	od;
+	output;	
+end proc;
+
+
+
+# determines whether, for the given matrix, the nonnegative span of its columns has a line
+# Negative answers look like the solution to equations, saying that all the ai and bi are 0.
 
 has_line:=proc(B) local n,m,ineqsa,i,ineqsb,veca,vecb,Bveca,Bvecb,eqs;
 	n:=ColumnDimension(B);
