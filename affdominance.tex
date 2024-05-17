@@ -879,8 +879,15 @@ Since $\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallma
 Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\CC_t^{\BB_1;t_1}$ as desired.
 \end{proof}
 
+Say an extended exchange matrix $\tB$ is \newword{salient} if the nonnegative linear span of the columns of $\tB$ contains no line.
+(This term is a reference to convex geometry, where a closed cone is called salient if and only if it contains no line.)
+The hypothesis that the $\tB_0$ is salient is strictly weaker than requiring that the columns of $\tB_0$ are linearly independent.
+One can show the $\tB_0$ is salient by exhibiting a vector $x\in\reals^m$ whose dot product is strictly positive with every nonzero column of $\tB_0$.
+For us, the crucial fact \sayN{the ``salient point''?}
+about a salient extended exchange matrix $\tB$ is that the intersection of the nonnegative linear span of the columns of $\tB$ with the nonpositive linear span of the columns of $\tB$ is $\set{0}$.
+
 \begin{corollary}\label{P point}  
-Suppose $\tB_0$ is an extended exchange matrix and suppose that the nonnegative linear span of the columns of $\tB_0$ contains no line.
+Suppose $\tB_0$ is a salient extended exchange matrix.
 Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
 If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{corollary}
@@ -901,15 +908,15 @@ Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_{-B_t}$ (
 Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identity matrix.
 We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
-Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since the nonnegative linear span of the columns of $\tB_0$ contains no line, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
+Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is salient, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{proof}
 
-The hypothesis that the nonnegative linear span of the columns of $\tB_0$ contains no line is strictly weaker than requiring that the columns of $\tB_0$ are linearly independent.
-We have the following further corollaries.
+We use \cref{P point} to prove a result about dominance regions in the coefficient-free finite-type case.
 
 An exchange matrix $B=[b_{ij}]$ determines a directed graph with vertices $\set{1,\ldots,n}$ and edges $i\to j$ whenever $b_{ij}>0$.
 We say that $B$ is \newword{bipartite} if there is a bipartition $\set{1,\ldots,n}=P\cup N$ such that $i\to j$ implies $i\in P$ and $j\in N$.
-If $B$ is bipartite, then the nonnegative linear span of the columns of $B$ contains no line, because every vector $\begin{bsmallmatrix}x_1\\\vdots\\x_n\end{bsmallmatrix}$ in the nonnegative linear span has $x_i\ge0$ if $i\in P$ and $x_i\le0$ if $i\in N$.
+If $B$ is bipartite, then $B$ is salient.
+(Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions $N$ has strictly positive dot product with every nonzero column of $B$.)
 
 \begin{corollary}\label{finite P point}  
 Suppose $B$ is an exchange matrix of finite type.
@@ -917,40 +924,10 @@ Then $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
 \end{corollary}
 \begin{proof}
 Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented tree.
-Source-sink mutations on this tree give a bipartite exchange matrix $B_0$, so that the nonnegative linear span of the columns of $B_0$ contains no line.
+Source-sink mutations on this tree give a bipartite exchange matrix $B_0$, so that $B_0$ is salient.
 Suppose $\kk$ is a sequence of indices such that $\mu_\kk(B_0)=B$.
 For any $\lambda\in\reals$, the dominance region $\P_\lambda^B$ is $\eta_\kk^{B_0^T}(\P_{\lambda'}^{B_0})$ for $\lambda'=\eta_\kk^{B_0^T}(\lambda)$.
 Every exchange matrix of finite type admits a maximal red sequence, so \cref{P point} applies to say that $\P_{\lambda'}^{B_0}=\set{\lambda'}$, so $\P_\lambda^B=\set{\lambda}$.
-\end{proof}
-
-An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
-
-\begin{corollary}\label{affine P point}  
-Suppose $B$ is an exchange matrix of affine type.
-If $t$ is a seed in the exchange graph for $B;t_0$ and $\lambda\in\Cone^{B;t_0}_t$, then $\P^B_\lambda=\set{\lambda}$.
-\end{corollary}
-\begin{proof}
-We first construct an exchange matrix $B_0$ mutation equivalent to $B$ such that the nonnegative linear span of the columns of $B_0$ contains no line.
-Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
-When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
-
-Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B_0$ whose oriented graph has exactly one source and exactly one sink.
-For convenience, we can reindex $B_0$ so that the source is $1$, the sink is $n$, and the directed graph for $B_0$ has $1\to2\to\cdots\to k\to n$ and $1\to k+1\to k+2\to\cdots\to n$ for some $k$ with $1\le k<n$.
-Then any vector $x$ in the nonnegative span of the columns of $B$ has 
-
-
-
-I THINK we can show that for this $B_0$ also, the nonnegative linear span of the columns of $B_0$ contains no line.
-Assuming we can, finish this like the finite type case.
-
-NO, this doesn't work.
-$B_0=\begin{bsmallmatrix*}[r]0&1&1&0\\-1&0&0&1\\-1&0&0&1\\0&-1&-1&0\end{bsmallmatrix*}$
-
-
-CAN I USE the neighboring seed thing to get the right orientation?
-
-Computations show that the nonnegative linear span of the columns of $B_0$ contains no line in all cases except where $n$ and $k$ are both even.  
-Only one of those cases is bipartite (the case $k=\frac n2$) and I don't know right now what to do in the other cases.
 \end{proof}
 
 \subsection{Exchange relations in the principal coefficients case}\label{exch rel sec}
@@ -1177,15 +1154,20 @@ One can check that such matrices have the property that every single step mutati
 
 
 \section{Dominance regions in affine type}
-As before, an exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
+An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
 The main results of this paper are the following theorem and a version (\cref{affine main extended}) for extended exchange matrices. \sayN{hopefully}
+
+\begin{theorem}\label{affine P point}  
+Suppose $B$ is an exchange matrix of affine type.
+If $t$ is a seed in the exchange graph for $B;t_0$ and $\lambda\in\Cone^{B;t_0}_t$, then $\P^B_\lambda=\set{\lambda}$.
+\end{theorem}
 
 \begin{theorem}\label{affine main}
 Suppose $B$ is an exchange matrix of affine type.
 If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
-In preparation for the proof of \cref{affine main}, we quote some known results about the affine case and prove some new ones.
+In preparation for the proof of these theorems, we quote some known results about the affine case and prove some new ones.
 It is convenient to separate these results according to classes of affine seeds.
 
 \subsection{Acyclic seeds}\label{acyc sec}
@@ -1589,6 +1571,60 @@ Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above
 %\end{proof}4
 
 \cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ is contained in a hyperplane.
+We will use that fact to prove a useful proposition.
+
+\begin{proposition}\label{aff red}
+Suppose $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
+\end{proposition}
+\begin{proof}
+The matrix $B$ is of affine type if and only if $-B$ is of affine type, so it is enough to prove that every $B$ of affine type admits a maximal green sequence.
+The imaginary wall $\d^B_\infty$ is a union of convex cones, is contained in the hyperplane $\delta^B)^perp$, but is strictly smaller than that hyperplane.
+(If the imaginary wall were the whole hyperplane, the $\g$-vector fan would be contained in a halfspace, but in the case where $B$ is acyclic, the $\g$-vector fan is dense in the whole space, and that property is preserved by mutation maps.) 
+For that reason, we can construct a maximal green sequence as follows:
+For any point $x$ in the positive cone, the line segment connecting $x$ to its negative~$-x$ goes through $0$, and thus we can move the segment an arbitrarily small amount to obtain a line segment from the positive cone to the negative cone that is contained in the interior of the $\g$-vector fan and doesn't pass through any codimension-$2$ faces of the $\g$-vector fan.
+The $\g$-vector cones visited by this define a maximal green sequence.
+\end{proof}
+
+
+\begin{proof}[Proof of \cref{affine P point}]
+We first construct a salient exchange matrix $B_0$ mutation equivalent to $B$.
+Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
+When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
+
+Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B'_0$ whose oriented graph has exactly one source and exactly one sink.
+For convenience, we can reindex $B'_0$ so that its source is $1$, the sink is $n$, and the directed graph for $B'_0$ has ${1\to2\to\cdots\to k\to n}$ and $1\to k+1\to k+2\to\cdots\to n$ for some $k$ with $1\le k<n$.
+The matrix $B'_0$ is also salient except when $n$ and $k$ are both even, but we perform one mutation on $B'_0$ to obtain a matrix that is salient for all $n$ and $k$.
+
+Let $B_0$ be obtained from $B_0'$ by mutating at the sink.
+Thus the directed graph for $B_0$ has ${1\to2\to\cdots\to k\leftarrow n}$ and $1\to k+1\to k+2\to\cdots\to n-1\leftarrow n$ for some $k$ with $1\le k<n$.
+(If $k=1$ or $k=n-1$, then the  arrows are $1\leftarrow n$ and $1\to2\to\cdots\to n-1\leftarrow n$.)
+
+To show that $B_0$ is salient, we wish to find a vector $x\in\reals^n$ whose dot product is strictly positive with each column of $B_0$.
+Each column of $B_0$ contains exactly two nonzero entries, so each column constrains $x$ by a strict inequality relating two of its entries.
+%Thus the desired vector $x$ exists if and only if these strict inequalities do contradict each other.
+The inequalities that appear depend on the parity of $k$ and of $n-k$.
+\begin{align*}
+k\text{ odd:}\qquad
+&x_1>x_3>\cdots>x_k>-x_{n-1}\\
+&-x_{k+1}>x_2>x_4>\cdots>x_{k-1}>-x_n\\
+k\text{ even:}\qquad
+&x_1>x_3>\cdots>x_{k-1}>-x_n\\
+&-x_{k+1}>x_2>x_4>\cdots>x_k>-x_{n-1}\\
+n-k\text{ odd:}\qquad
+&x_1>x_{k+2}>x_{k+4}\cdots>x_{n-1}>-x_k\\
+&-x_2>x_{k+1}>x_{k+3}>\cdots>x_{n-2}>-x_n\\
+n-k\text{ even:}\qquad
+&x_1>x_{k+2}>x_{k+4}\cdots>x_{n-2}>-x_n\\
+&-x_2>x_{k+1}>x_{k+3}>\cdots>x_{n-1}>-x_k\\
+\end{align*}
+We see that for any combination of the parities of $k$ and $n-k$, the inequalities can all be satisfied, and we conclude that $B_0$ is salient in every case.
+
+We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} to see that every exchange matrix of affine type admits a maximal red sequence,
+\end{proof}
+
+
+
+
 \cref{delta is the man} also allows us to prove one containment in \cref{affine main}.
 
 \begin{proposition}\label{affine main partial}
