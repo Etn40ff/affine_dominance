@@ -794,7 +794,7 @@ We have shown that $v_i=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ i
 In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
 
-\subsection{Extended exchange matrices}\label{ext sec}
+\subsection{Dominance regions for extended exchange matrices}\label{ext sec}
 We follow \cite{FZ07} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider $m\times m$ matrices related to $\tB$:
 Writing $\tB$ in block form $\begin{bsmallmatrix}B\\E\end{bsmallmatrix}$, let $\BB$ be the matrix with block form $\begin{bsmallmatrix}B&-E^T\\E&0\end{bsmallmatrix}$.
@@ -879,6 +879,11 @@ Since $\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallma
 Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\CC_t^{\BB_1;t_1}$ as desired.
 \end{proof}
 
+\subsection{Criteria for the dominance region to be a point}\label{point sec}
+We now use the tools developed so far to give sufficient conditions for the dominance region to be a point.
+We use this criterion to show that the dominance region is always a point in finite type in both the coefficient-free case and when the extended exchange matrix has full rank (or satisfied a weaker condition that we describe below).
+Later, we prove similar results for affine type.
+
 Say an extended exchange matrix $\tB$ is \newword{salient} if the nonnegative linear span of the columns of $\tB$ contains no line.
 (This term is a reference to convex geometry, where a closed cone is called salient if and only if it contains no line.)
 The hypothesis that the $\tB_0$ is salient is strictly weaker than requiring that the columns of $\tB_0$ are linearly independent.
@@ -929,77 +934,6 @@ Suppose $\kk$ is a sequence of indices such that $\mu_\kk(B_0)=B$.
 For any $\lambda\in\reals$, the dominance region $\P_\lambda^B$ is $\eta_\kk^{B_0^T}(\P_{\lambda'}^{B_0})$ for $\lambda'=\eta_\kk^{B_0^T}(\lambda)$.
 Every exchange matrix of finite type admits a maximal red sequence, so \cref{P point} applies to say that $\P_{\lambda'}^{B_0}=\set{\lambda'}$, so $\P_\lambda^B=\set{\lambda}$.
 \end{proof}
-
-\subsection{Exchange relations in the principal coefficients case}\label{exch rel sec}
-We pause to prove a necessary fact about exchange relations, assuming basic background from \cite[Sections~2 \&~3]{ca4}.
-%For a moment we work in the most general setting of (normalized) cluster algebras in the sense of \cite[Definition~2.3]{ca4}.
-%(See also \cite[Remark~2.7]{ca4}.)
-Two cluster variables $x$ and $x'$ in a cluster pattern of rank $n$  are \newword{exchangeable} if there is no cluster containing both $x$ and $x'$ but there exists a set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x}$ is a cluster and $\Gamma\cup\set{x'}$ is a cluster.
-The exchange relation relating $x$ and $x'$ might, in principle, depend on $\Gamma$, but we show that, in the case of principal coefficients, it only depends on $x$ and $x'$.
-
-\begin{lemma}\label{exch ind}  \sayN{More generally, we may as well state this for signed nondegenerating coefficients, if we define that term.}
-Suppose $x$ and $x'$ are exchangeable cluster variables in a cluster pattern with principal coefficients.
-Then every exchange relation for $x$ and $x'$ is the same:
-It involves the same two cluster monomials with the same coefficients.
-\end{lemma}
-\begin{proof}
-Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
-Sign-coherence of $C$-vectors (explained earlier in \cref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
-This is a cluster monomial, and it is known that different cluster monomials have different $\g$-vectors (as conjectured in \cite[Conjecture~7.10]{ca4} and proved as \cite[Theorem~2.13]{GHKK}).
-We see that $M$ is the same cluster monomial in 
-Thus any exchange relation for $x$ and $x'$ writes $xx'$ as $M$ plus another monomial $N$.
-But then $N=xx'-M$, so every exchange relation for $x$ and $x'$ also has the same~$N$.
-But $N$ is a monomial in the coefficient variables times a cluster monomial, and again, it is the same cluster monomial in any exchange relation and the same coefficient monomial.
-\end{proof}
-
-\begin{remark}\label{4.3}
-It appears that, to extend \cref{exch ind} to arbitrary coefficients, one needs \cite[Conjecture~4.3]{ca4}, which says that the exchange graph does not depend on the choice of coefficients.
-\sayN{As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? (Is it worth trying to prove it for affine type??}
-\end{remark}
-
-\subsection{Mutation-finite exchange matrices}\label{mut fin sec}
-An exchange matrix $B$ is \newword{mutation-finite} if only finitely matrices can be obtained by $B$ arbitrary sequences of mutations.
-The following \lcnamecref{mut fin 2x2} is \cite[Theorem~2.8]{FeShTu}.  \sayN{Cluster algebras of finite mutation type via unfoldings}
-
-\begin{theorem}\label{mut fin 2x2}
-An $n\times n$ exchange matrix $B$ with $n\ge3$ is mutation finite if and only if, for every sequence $\kk$ of indices in $\set{1,\ldots,n}$, the exchange matrix $B'=\mu_\kk(B)$ satisfies $b'_{ij}b'_{ji}\ge-4$ for all indices $i$ and $j$.
-\end{theorem}
-
-This theorem is useful to us because all cluster algebras of affine type are mutation-finite.
-In fact, the following stronger statement holds \cite[Theorem~3.5]{Seven} \sayN{Cluster algebras and semipositive symmetrizable matrices}
-
-\begin{theorem}\label{acyc mut fin}
-An acyclic $n\times n$ exchange matrix with $n\ge3$ is mutation finite if and only if its underlying Cartan matrix is of finite or affine type.
-\end{theorem}
-
-We also point out a well-known fact.  \sayN{Surely this is well known!  Reference?}
-The \lcnamecref{mut fin sub} holds because, for any subset $I$ of $\set{1,\ldots,n}$, and any sequence $\kk$ of indices in $I$, if $B'=[b'_{ij}]=\mu_\kk(B)$, then $\mu_\kk([b_{ij}]_{i,j\in I})=[b'_{ij}]_{i,j\in I}$.
-(The analogous fact for 
-
-\begin{proposition}\label{mut fin sub}
-Suppose $B$ is an $n\times n$ exchange matrix.
-If $B$ is mutation-finite then, for every subset $I$ of $\set{1,\ldots,n}$, the submatrix $[b_{ij}]_{i,j\in I}$ is mutation-finite.
-\end{proposition}
-%\begin{proof}
-%Suppose $B'=[b_{ij}]_{i,j\in I}$ is not mutation-finite.
-%Then \cref{mut fin 2x2} says that there is some sequence $\kk$ of indices in $I$ such that $\mu_\kk(B')$ has a $2\times2$ submatrix failing the condition of \cref{mut fin 2x2}.
-%Then the same submatrix occurs in $\mu_\kk(B)$, and thus $B$ is not mutation-finite.
-%\end{proof}
-
-\subsection{Growth of cluster algebras}\label{growth sec}
-The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
-Some facts about growth will be useful.
-
-First, beyond rank $2$, the notion of affine type has the following intrinsic characterization.
-Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
-%Growth rate of cluster algebras
-%Anna Felikson, Michael Shapiro, Hugh Thomas and Pavel Tumarkin
-
-Second, given an $n\times n$ exchange matrix $B=[b_{ij}]$ and a subset $I\subseteq\set{1,\ldots,n}$, if the submatrix $[b_{ij}]_{i,j\in I}$ has exponential growth, it is immediate that that $B$ has exponential growth as well.
-
-Finally, we will need that fact that non-acyclic skew-symmetrizable $3\times3$ exchange matrices with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ have exponential growth.
-One can check that such matrices have the property that every single step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
-
 
 
 %\section{Affine type}
@@ -1167,10 +1101,93 @@ Suppose $B$ is an exchange matrix of affine type.
 If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
-In preparation for the proof of these theorems, we quote some known results about the affine case and prove some new ones.
-It is convenient to separate these results according to classes of affine seeds.
+To prove these theorems, we quote some known results about the affine case and prove some new ones.
+We begin with some tools to show that a given matrix is not of affine type and to determine exchange relations.
+Then we quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
 
-\subsection{Acyclic seeds}\label{acyc sec}
+\subsection{Some tools}
+We now gather some tools that will be useful in the rest of the section.
+These tools include ways to show that certain exchange matrices are not of affine type by considering some small submatrices, as well as some details about exchange relations with principal coefficients.
+
+\subsubsection{Mutation-finite exchange matrices}\label{mut fin sec}
+An exchange matrix $B$ is \newword{mutation-finite} if only finitely matrices can be obtained by $B$ arbitrary sequences of mutations.
+The following \lcnamecref{mut fin 2x2} is \cite[Theorem~2.8]{FeShTu}.  \sayN{Cluster algebras of finite mutation type via unfoldings}
+
+\begin{theorem}\label{mut fin 2x2}
+An $n\times n$ exchange matrix $B$ with $n\ge3$ is mutation-finite if and only if, for every sequence $\kk$ of indices in $\set{1,\ldots,n}$, the exchange matrix $B'=\mu_\kk(B)$ satisfies $b'_{ij}b'_{ji}\ge-4$ for all indices $i$ and $j$.
+\end{theorem}
+
+This theorem is useful to us because all cluster algebras of affine type are mutation-finite.
+In fact, the following stronger statement holds \cite[Theorem~3.5]{Seven} \sayN{Cluster algebras and semipositive symmetrizable matrices}
+
+\begin{theorem}\label{acyc mut fin}
+An acyclic $n\times n$ exchange matrix with $n\ge3$ is mutation-finite if and only if its underlying Cartan matrix is of finite or affine type.
+\end{theorem}
+
+We also point out a well-known fact.  \sayN{Surely this is well known!  Reference?}
+The \lcnamecref{mut fin sub} holds because, for any subset $I$ of $\set{1,\ldots,n}$, and any sequence $\kk$ of indices in $I$, if $B'=[b'_{ij}]=\mu_\kk(B)$, then $\mu_\kk([b_{ij}]_{i,j\in I})=[b'_{ij}]_{i,j\in I}$.
+(The analogous fact for 
+
+\begin{proposition}\label{mut fin sub}
+Suppose $B$ is an $n\times n$ exchange matrix.
+If $B$ is mutation-finite then, for every subset $I$ of $\set{1,\ldots,n}$, the submatrix $[b_{ij}]_{i,j\in I}$ is mutation-finite.
+\end{proposition}
+%\begin{proof}
+%Suppose $B'=[b_{ij}]_{i,j\in I}$ is not mutation-finite.
+%Then \cref{mut fin 2x2} says that there is some sequence $\kk$ of indices in $I$ such that $\mu_\kk(B')$ has a $2\times2$ submatrix failing the condition of \cref{mut fin 2x2}.
+%Then the same submatrix occurs in $\mu_\kk(B)$, and thus $B$ is not mutation-finite.
+%\end{proof}
+
+\subsubsection{Growth of cluster algebras}\label{growth sec}
+The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
+Some facts about growth will be useful.
+
+First, beyond rank $2$, the notion of affine type has the following intrinsic characterization.
+Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see that a cluster algebra of rank at least $3$ is of affine type if and only if it is not of finite type but has linear growth.
+%Growth rate of cluster algebras
+%Anna Felikson, Michael Shapiro, Hugh Thomas and Pavel Tumarkin
+
+Second, given an $n\times n$ exchange matrix $B=[b_{ij}]$ and a subset $I\subseteq\set{1,\ldots,n}$, if the submatrix $[b_{ij}]_{i,j\in I}$ has exponential growth, it is immediate that that $B$ has exponential growth as well.
+
+Finally, we will need that fact that non-acyclic skew-symmetrizable $3\times3$ exchange matrices with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ have exponential growth.
+One can check that such matrices have the property that every single step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
+
+\subsubsection{Exchange relations in the principal coefficients case}\label{exch rel sec}
+We pause to prove a necessary fact about exchange relations, assuming basic background from \cite[Sections~2 \&~3]{ca4}.
+%For a moment we work in the most general setting of (normalized) cluster algebras in the sense of \cite[Definition~2.3]{ca4}.
+%(See also \cite[Remark~2.7]{ca4}.)
+Two cluster variables $x$ and $x'$ in a cluster pattern of rank $n$  are \newword{exchangeable} if there is no cluster containing both $x$ and $x'$ but there exists a set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x}$ is a cluster and $\Gamma\cup\set{x'}$ is a cluster.
+The exchange relation relating $x$ and $x'$ might, in principle, depend on $\Gamma$, but we show that, in the case of principal coefficients, it only depends on $x$ and $x'$.
+
+\begin{lemma}\label{exch ind}  \sayN{More generally, we may as well state this for signed nondegenerating coefficients, if we define that term.}
+Suppose $x$ and $x'$ are exchangeable cluster variables in a cluster pattern with principal coefficients.
+Then every exchange relation for $x$ and $x'$ is the same:
+It involves the same two cluster monomials with the same coefficients.
+\end{lemma}
+\begin{proof}
+Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
+Sign-coherence of $C$-vectors (explained earlier in \cref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
+This is a cluster monomial, and it is known that different cluster monomials have different $\g$-vectors (as conjectured in \cite[Conjecture~7.10]{ca4} and proved as \cite[Theorem~2.13]{GHKK}).
+We see that $M$ is the same cluster monomial in 
+Thus any exchange relation for $x$ and $x'$ writes $xx'$ as $M$ plus another monomial $N$.
+But then $N=xx'-M$, so every exchange relation for $x$ and $x'$ also has the same~$N$.
+But $N$ is a monomial in the coefficient variables times a cluster monomial, and again, it is the same cluster monomial in any exchange relation and the same coefficient monomial.
+\end{proof}
+
+\begin{remark}\label{4.3}
+It appears that, to extend \cref{exch ind} to arbitrary coefficients, one needs \cite[Conjecture~4.3]{ca4}, which says that the exchange graph does not depend on the choice of coefficients.
+\sayN{As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? (Is it worth trying to prove it for affine type??)}
+\end{remark}
+
+
+
+
+
+
+
+
+
+\subsection{Acyclic seeds of affine type}\label{acyc sec}
 Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has an acyclic seed whose exchange matrix is an orientation of a Cartan matrix of affine type.
 (Indeed, the analogous observation is true for cluster algebras of finite type.)
 The associated Cartan matrix of affine type allows us to model $\g$-vectors, $\dd$-vectors, and the mutation fan by almost-positive Schur roots model, sortable elements and (doubled) Cambrian fans.
@@ -1285,14 +1302,13 @@ Let $\APTre{c}$ be the set of positive roots in $\RST{c}$ whose support is stric
 Let $\APT{c}=\APTre{c}\cup\set\delta$.
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
 The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables, with respect to the initial exchange matrix $B_0$.
-There is a notion \cite[Definition~4.3]{affdenom} of $c$-compatibility of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
+There is a notion \cite[Definition~4.3]{affdenom} of \newword{$c$-compatibility} of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
 Thus almost positive real Schur roots and $c$-compatibility model the $\dd$-vector fan (the fan obtained by replacing each cluster with the nonnegative linear span of its $\dd$-vectors).
 In addition to these $\dd$-vector cones, there are cones spanned by pairwise $c$-compatible sets that contain~$\delta$.
 The set of all these cones is a complete fan $\Fan_c(\RS)$ in $V$ called the \newword{affine generalized associahedron fan}.
-
-Just as in finite type \cite{ga}, the notion of $c$-compatibility is a simplification of $c$-compatibility degree, which assigns an integer to any pair of almost-positive Schur roots.
-(Two roots are $c$-compatible if and only if their $c$-compatibility degree is~$0$.)
-We will not need the definition of $c$-compatibility, but we give some of its crucial properties, particularly as it relates to roots in $\APT{c}$.
+%Just as in finite type \cite{ga}, the notion of $c$-compatibility derives from a more detailed notion of $c$-compatibility degree, which assigns an integer to any pair of almost-positive Schur roots.
+%(Two roots are $c$-compatible if and only if their $c$-compatibility degree is~$0$.)
+%We will not need the definition of $c$-compatibility, but we give some of its crucial properties, particularly as it relates to roots in $\APT{c}$.
 The following proposition is \cite[Proposition~5.6]{affdenom}.
 
 \begin{proposition}\label{delta c compat}
@@ -1316,6 +1332,12 @@ Either the tubes are nested or there is at least one vertex between them on both
 %The map $\tau_c$ that agrees with $c$ on all but finitely many almost positive Schur roots and in particular agrees with $c$ on all roots in $\APT{c}$.
 %For every almost positive Schur root $\beta$ not in $\APT{c}$ (i.e.\ every $\beta\in{-\Simples\cup(\RSpos\setminus\RST{c})}$), $\tau_c^k\beta$ approaches the direction of $\delta$ as $k\to\infty$.
 %More precisely, as $k\to\infty$, $\tau_c^k\beta$ is eventually of the form $\beta'+m\delta$, where $\beta'\in\RSfin$ continues to vary with $k$ and $m\to\infty$ as $k\to\infty$.
+
+A maximal set of pairwise $c$-compatible roots in $\AP{c}$ is called a \newword{$c$-cluster}.
+A \newword{real $c$-cluster} is a $c$-cluster that does not contain $\delta$.
+Real $c$-clusters have $n$ roots and span maximal cones of the $\dd$-vector fan.
+An \newword{imaginary $c$-cluster} is a $c$-cluster that contains $\delta$.
+Imaginary $c$-clusters have $n-1$ roots and span cones outside the $\dd$-vector fan.
 
 There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
 The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, which coincides in this case with the transposed cluster scattering fan of $B_0$ and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}.
@@ -1437,7 +1459,7 @@ That is, the automorphism $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ of $\nu_c(\Fan
 The map $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ acts as an initial seed mutation and thus $t'$ has the same exchange matrix $B$ as~$t$.
 \end{proof}
 
-\subsection{General seeds}
+\subsection{General seeds of affine type}
 We now prove some facts about exchange matrices of affine type, without the requirement of acyclicity.
 Let $B$ be an exchange matrix of affine type.
 Then $B$ is mutation equivalent to some acyclic exchange matrix $B_0$ of affine type.
@@ -1571,7 +1593,7 @@ Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above
 %\end{proof}4
 
 \cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ is contained in a hyperplane.
-We will use that fact to prove a useful proposition.
+We will use that fact to prove a proposition that is used to prove \cref{affine P point}.
 
 \begin{proposition}\label{aff red}
 Suppose $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
@@ -1589,7 +1611,7 @@ The $\g$-vector cones visited by this define a maximal green sequence.
 \begin{proof}[Proof of \cref{affine P point}]
 We first construct a salient exchange matrix $B_0$ mutation equivalent to $B$.
 Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
-When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
+When this graph is an oriented tree, source-sink moves make a bipartite (and therefore salient) exchange matrix $B_0$ mutation equivalent to $B$.
 
 Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B'_0$ whose oriented graph has exactly one source and exactly one sink.
 For convenience, we can reindex $B'_0$ so that its source is $1$, the sink is $n$, and the directed graph for $B'_0$ has ${1\to2\to\cdots\to k\to n}$ and $1\to k+1\to k+2\to\cdots\to n$ for some $k$ with $1\le k<n$.
@@ -1615,11 +1637,11 @@ n-k\text{ odd:}\qquad
 &-x_2>x_{k+1}>x_{k+3}>\cdots>x_{n-2}>-x_n\\
 n-k\text{ even:}\qquad
 &x_1>x_{k+2}>x_{k+4}\cdots>x_{n-2}>-x_n\\
-&-x_2>x_{k+1}>x_{k+3}>\cdots>x_{n-1}>-x_k\\
+&-x_2>x_{k+1}>x_{k+3}>\cdots>x_{n-1}>-x_k
 \end{align*}
 We see that for any combination of the parities of $k$ and $n-k$, the inequalities can all be satisfied, and we conclude that $B_0$ is salient in every case.
 
-We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} to see that every exchange matrix of affine type admits a maximal red sequence,
+We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} to see that every exchange matrix of affine type admits a maximal red sequence.
 \end{proof}
 
 
@@ -1651,7 +1673,7 @@ This is true for all $\kk$, so $\P^B_\lambda\supseteq\set{\lambda+aB\delta^B:a\g
 
 %\subsection{Neighboring exchange matrices}
 \subsection{Neighboring seeds}
-A seed \newword{neighboring the imaginary wall} (usually shortened to a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
+In a cluster pattern of affine type, a seed \newword{neighboring the imaginary wall} (usually shortened to a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
 The designation of a seed as neighboring is independent of the choice of initial seed.
 In this section, we characterize the exchange matrices of neighboring seeds, taking advantage of facts that can be obtained in the almost positive Schur roots model.
 We will call these exchange matrices \newword{neighboring exchange matrices}.
@@ -1706,8 +1728,8 @@ If $B_{4\ell}$ is nonempty, then it is nonzero only in the last column; and
 \item
 If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{submat tab}.
 \end{itemize}
-The labeling can be taken so that the blocks $B_{11}$, $B_{22}$, and $B_{33}$ are in order of increasing size. 
-A submatrix in \cref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_{4}^{(3)}$ can only appear when $B_{11}$ and $B_{22}$ are empty.
+The blocks $B_{11}$, $B_{22}$, and $B_{33}$ are in order of increasing size. 
+If a submatrix in \cref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_{4}^{(3)}$ appears, then $B_{11}$ and $B_{22}$ are empty.
 \end{enumerate}
 \end{theorem}
 	\begin{table}
@@ -1780,58 +1802,69 @@ Since the image of the positive cone contains the image of $F$, we conclude that
 
 It remains to show that condition~\eqref{neigh} implies condition~\eqref{neigh detailed}.
 Assume that $B$ is neighboring.
-Then there is a seed $t$ with exchange matrix $B$ such that $n-2$ of the $\g$-vectors at $t$ are in the boundary of $\d$.
+We will establish some notation and then prove the various parts of condition~\eqref{neigh detailed} as a series of propositions.
+
+The fact that $B$ is neighboring means there is a seed $t$ with exchange matrix $B$ such that $n-2$ of the $\g$-vectors at $t$ are in the boundary of $\d$.
 We use \cref{any B is sort} to choose a seed $t$ that corresponds to a $c$-sortable element~$v$.
 (There is a subtle point that we might worry about here:
-Conceivably, there exists $t$ with $\g$-vectors as described, but the seed $t'$ produced by \cref{any B is sort} does not have $\g$-vectors as described.
-However, in the proof of  \cref{any B is sort}, $t'$ is obtained from $t$ by applying automorphisms of the mutation fan, and therefore preserves the property that $\Cone_t^{B_0;t_0}$ has $(n-2)$-dimensional intersection with the imaginary wall.
+Conceivably, there exists $t$ with $\g$-vectors as described, but the seed $t'$ produced in the proof of \cref{any B is sort} does not have $\g$-vectors as described.
+However, in that proof, $t'$ is obtained from $t$ by applying automorphisms of the mutation fan, and therefore preserves the property that $\Cone_t^{B_0;t_0}$ has $(n-2)$-dimensional intersection with the imaginary wall.)
 
 We reindex the rows and columns of $B_0$ so that $\set{\xi_i:i\in[1,n-2]}$ are the $\g$-vectors in the boundary of $\d$ and $\set{\xi_{n-1},\xi_n}$ are the $\g$-vectors not contained in~$\d$.
+If necessary, we reindex (swapping positions $n-1$ and $n$) so that $b_{(n-1)n}\ge0$.
 Thus the vectors $\set{\xi_i:i\in[1,n-2]}\cup\set{-B_0\delta}$ span an imaginary cone in $\F_{B_0^T}$.
 
-Consider the set of full-dimensional cones of $\F_{B_0^T}$ that have rays spanned by the vectors $\xi_1,\ldots,\xi_{n-2]}$. 
+\begin{proposition}\label{B44 aff}
+The submatrix of $B$ with rows and columns indexed by $n-1,n$ is a rank-$2$ exchange matrix of affine type.
+\end{proposition}
+\begin{proof}
+Consider the set of full-dimensional cones of $\F_{B_0^T}$ that have rays spanned by the vectors $\xi_1,\ldots,\xi_{n-2}$. 
 This set is infinite.
-(Perhaps the fastest way to see that:  If the set were finite, the union of these full-dimensional cones would intersect the relative interior of an imaginary cone, contradicting the fact that $\F_{-B_0^T}$ is a fan.)
+(If the set were finite, the union of these full-dimensional cones would intersect the relative interior of an imaginary cone, contradicting the fact that $\F_{-B_0^T}$ is a fan.)
 Thus the entries of $B$ satisfy $b_{(n-1)n}b_{n(n-1)}\le-4$.
-But also, $B$ is mutation finite, and therefore $b_{(n-1)n}b_{n(n-1)}\ge-4$.
-We see that $B_44$ is a rank-$2$ exchange matrix of affine type.
-If necessary, we reindex (swapping positions $n-1$ and $n$) so that $b_{(n-1)n}>0$.
+But also, $B$ is mutation-finite, so $b_{(n-1)n}b_{n(n-1)}\ge-4$ by \cref{mut fin 2x2}.
+\end{proof}
+
+
+
 
 There are vectors $\gamma_1,\ldots,\gamma_n\in\APre{c}$ such that $\nu_c(\gamma_i)=\xi_i$ for $i=1,\ldots,n$.
 The vectors $\gamma_1,\ldots,\gamma_{n-2}$ are in $\APTre{c}$.
 These roots are pairwise $c$-compatible and $\set{\gamma_1,\ldots,\gamma_{n-2}}\cup\set{\delta}$ is an imaginary $c$-cluster.
-In particular,  $\gamma_1,\ldots,\gamma_{n-2}$ are all in $\RST{c}$.
+In particular,  $\gamma_1,\ldots,\gamma_{n-2}$ are all in~$\RST{c}$.
 Choose integers $0\leq p_1\leq p_2 \leq p_3$ such that the nonzero values $p_\ell$ record the components of $\RST{c}$, with a component of rank $p_\ell+1$ for each nonzero $p_\ell$.
 As a consequence of \cref{compatible in tubes}, we see that $\set{\gamma_1,\ldots,\gamma_{n-2}}$ consists of $p_\ell$ roots from the $\ell\th$ component for each $\ell=1,2,3$.
-We further reindex the rows and columns of $B$ so that each subset $\{\gamma_1,\dots,\gamma_{p_1}\}$, $\{\gamma_{p_1+1},\dots,\gamma_{p_1+p_2}\}$, and $\{\gamma_{p_1+p_2+1},\dots,\gamma_{p_1+p_2+p_3}\}$ consists of roots from the same component of $\RST{c}$.
-Furthermore, if $p_1>0$, then there is a unique root in $\{\gamma_1,\dots,\gamma_{p_1}\}$ that is a sum of $p_1$ elements of $\SimplesT{c}$, and we give this the index $p_1$.
-Similarly, if $p_2>0$, we make $p_1+p_2$ the index of the unique root in $\{\gamma_{p_1+1},\dots,\gamma_{p_1+p_2}\}$ that is a sum of $p_2$ elements of $\SimplesT{c}$.
-In any case, we make $p_1+p_2+p_3=n-2$ the index of the root in $\{\gamma_{p_1+p_2+1},\dots,\gamma_{p_1+p_2+p_3}\}$ that is a sum of $p_3$ elements of $\SimplesT{c}$.
+Thus $p_1+p+2+p_3=n-2$.
+Define subsets $I_1=\set{1,\ldots,p_1}$, $I_2=\set{p_1+1,\ldots,p_1+p_2}$, and $I_3=\set{p_1+p_2+1,\ldots,n-2}$ of $\set{1,\ldots,n-2}$ and further reindex the rows and columns of $B$ so that each subset $\set{\gamma_i:i\in I_\ell}$ consists of consists of roots from the same component of $\RST{c}$, for $\ell=1,2,3$.
+Furthermore, if $p_1>0$, then there is a unique root in $\set{\gamma_i:i\in I_1}$ that is a sum of $p_1$ elements of $\SimplesT{c}$, and we give this the index $p_1$.
+Similarly, if $p_2>0$, we make $p_1+p_2$ the index of the unique root in $\set{\gamma_i:i\in I_2}$ that is a sum of $p_2$ elements of $\SimplesT{c}$.
+In any case, we make $p_1+p_2+p_3=n-2$ the index of the root in $\set{\gamma_i:i\in I_3}$ that is a sum of $p_3$ elements of $\SimplesT{c}$.
 After this reindexing, we consider the decomposition of $B$ into blocks $B_{ij}$ given by the composition $(p_1+p_2+p_3+2)$ of $n$.
 
-We define some terminology.
 A \newword{special index} is the index of the last column/row of $B$ (if $B_{\ell\ell}$ is nonempty) for $\ell=1,2,3$.
 There are $1$, $2$, or $3$ special indices, namely whichever of $p_1$, $p_1+p_2$ and $p_1+p_2+p_3=n-2$ are nonzero.
 The two indices of $B_{44}$ are the \newword{affine indices} and call $B_{44}$ the \newword{affine submatrix} of~$B$.  \sayS{I think that affine indices is a misleading terminology: it can be confusing
 with the affine index of the root system.}
 %The \newword{tube components} of $\set{1,\ldots,n}$ are whichever of the sets $\set{1,\ldots,p_1}$, $\set{p_1+1,\ldots,p_1+p_2}$, and $\set{p_1+p_2+1,\ldots,n-2}$ are nonempty.
 
-We next prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of finite type $A_{p_\ell}$ and the special index in $B_{\ell\ell}$ is a quasi-leaf.
-We do that by comparing the combinatorics of exchange relations described by $B_{\ell\ell}$ with the combinatorics of triangulated polygons.
-
-Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these $\beta$ that does not occur in the support of $\gamma_i$ for any index $i$ of $B_{\ell\ell}$. 
-Then every root $\gamma_i$ is $\beta_{q_ir_i}=\beta_{q_i}+\beta_{q_i+1}+\cdots+\beta_{r_i}$ for some $1\le q_i\le r_i\le p_\ell$.
-For the special index $i$, $\gamma_i$ is $\beta_{1\ell}$.
+\begin{proposition}\label{A and q-l}
+For $\ell=1,2,3$, if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of finite type $A_{p_\ell}$ and the special index in $B_{\ell\ell}$ is a quasi-leaf.
+\end{proposition}
+\begin{proof}
+Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these roots that does not occur in the support of $\gamma_i$ for any index $i$ of $B_{\ell\ell}$. 
+Write $\beta_{qr}$ for $\beta_q+\beta_{q+1}+\cdots+\beta_{r}$.
+Then every root $\gamma_i$ is $\beta_{q_ir_i}$ for some $1\le q_i\le r_i\le p_\ell$.
+If $i$ is the special index, then $\gamma_i$ is~$\beta_{1p_\ell}$.
 %\cref{compatible in tubes} says that roots
-We can represent each $\gamma_i$ pictorially as in \cref{tube fig 1}, by circling the nodes $q_i$ through $r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
+We can represent each $\gamma_i$ pictorially as in \cref{tube fig}, by circling the nodes $q_i$ through $r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
 
 We write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector $\beta_{qr}$.
 The denominator vector of $x_{qr}$ is $\beta_{qr}$, so the $\g$-vector of $x_{qr}$ is $\nu_c(\beta_{qr})$.
 The map $\nu_c$ is linear on the subspace spanned by roots in finite orbits.
 \cref{compatible in tubes} says that two of these cluster variables can be in the same cluster if and only if the corresonding roots are nested or spaced.
-There is a similar characterization of which pairs of these cluster variables are exchangeable.
-Since none of these roots have $\beta_0$ in their support, \cite[Theorem~7.2]{affdenom} says that the cluster variables associated to non-special indices in $B_{\ell\ell}$ are exchangeable if and only if the corresponding roots are adjacent or have overlapping support but are not nested.
-
+There is a similar characterization of which pairs of these cluster variables are exchangeable \cite[Theorem~7.2]{affdenom}:
+The cluster variables associated to non-special indices in $B_{\ell\ell}$ are exchangeable if and only if the corresponding roots are adjacent or have overlapping support but are not nested.
+(In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that none of these roots have $\beta_0$ in their support.)
 Thus two exchangeable cluster variables $x_{qr}$ and $x_{q'r'}$ have, without loss of generality, $q<q'<r$, $q<r<r'$, and $q'\le r+1$.
 In light of \cref{exch ind}, the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
 These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, or $r'\ge r+2$.
@@ -1854,7 +1887,9 @@ Thus because the exchange relation is homogeneous, the vector $(1+c^{-1})\phi$ e
 We conclude that $a=b=1$ and that $\phi=\beta_{q'(r+1)}$.
 
 We have written the exchange relation between for $x_{qr}$ and $x_{q'r'}$ as 
-\[x_{qr}x_{q'r'}=x_{qr'}x_{q'r}+y^{\beta_{q'(r+1)}}x_{q(q'-2)}x_{(r+2)r'}.\]
+\begin{equation}\label{exch rel eq}
+x_{qr}x_{q'r'}=x_{qr'}x_{q'r}+y^{\beta_{q'(r+1)}}x_{q(q'-2)}x_{(r+2)r'}.
+\end{equation}
 Up to a global change of sign, these exchange relations determine the entries $b_{ij}$ of $B_{\ell\ell}$ for non-special~$j$.
 Furthermore, appealing to \cref{neigh neg and T}, we know that $B^T$ is also neighboring.
 In particular, the argument to this point implies that the entries of $B_{\ell\ell}^T$ in non-special columns are $0$, $1$, or $-1$.
@@ -1877,74 +1912,60 @@ We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and 
 %BLACK=NEGATIVE if I take the LEFT RED!
 
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation $T_0$, take all diagonals with an endpoint at $p_\ell+2$.
-The roots $\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
+The roots~$\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
 For $i$ not special, $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e. the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
-The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$.
+The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in \cref{tri fig}.
 If the other diagonal is specified by $\gamma'_i$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
 We conclude that, up to a global sign, the entries of  $B_{\ell\ell}$ in non-special columns agree with the entries of the signed adjacency matrix of $T$.
 Since both matrices are skew-symmetric, they are therefore equal.
-We have shown that $B_{\ell\ell}$ is of finite type~A.
+We see that $B_{\ell\ell}$ is of type $A_{p_\ell}$.
 
-%\begin{lemma}\label{C good}
-%Given $i\in\set{1,\ldots,n-2}$, the root $C^i_c(v)$ is in a finite $c$-orbit and is in the same component of $\RST{c}$ as $\gamma_i$.
-%\end{lemma}
+In the triangulation $T$, there are two triangles containing the diagonal associated to $\beta_{1,p_\ell}$.
+One of these triangles also contains two segments of the boundary (the segments connecting $0$ to $1$ and $0$ to $p_\ell+2$).
+The other triangle contains zero, one, or two diagonals (non-boundary segments).
+Thus the column associated to the special index has at most two nonzero entries, and if there are two, then those two, together with the special index, induce the submatrix of $B$ that appears in the definition of a quasi-leaf.
+\end{proof}
+
+The following \lcnamecref{mostly zeros} is immediate from the fact that the exchange relations \eqref{exch rel eq} only involve cluster variables associated to indices in $B_{\ell\ell}$.
+
+\begin{proposition}\label{mostly zeros}
+For  $k\neq\ell\in\set{1,2,3}$, the block $B_{k\ell}$ is zero, except possibly the entry $b_{ij}$ where $i$ is the special index in $I_k$ and $j$ is the special index in $I_\ell$.
+For $\ell\in\set{1,2,3}$ and for $i$ the special index in $I_\ell$, the block $B_{\ell4}$ is zero except in row~$i$ and the block $B_{4\ell}$ is zero except in column~$i$.
+\end{proposition}
 %\begin{proof}
-%We prove the equivalent statement about co-roots $C^i_c(v)\ck$.
-%(The two statements are equivalent because $C^i_c(v)\ck$ is a positive scalar multiple of $C^i_c(v)$.)
-%The $\g$-vectors $\xi_1,\ldots,\xi_n$ at the seed $t$ are the basis of $V^*$ that is dual to $C^1_c(v)\ck,\ldots C^n_c(v)\ck$.
-%(Recall that the basis of fundamental weights in $V^*$ is dual to the basis of simple co-roots in $V$.)
-%\cref{eta on dinf} implies that $\x_1,\ldots,\x_{n-2}$ are in finite $c$-orbits.
-%
-%
-%
-%
-%
-%\cref{tack on c} and the definition of $C^i_c(v)\ck$ let us apply positive powers of $c$ to $C^i_c(v)\ck$ by replacing $v$ with $c^kv$ for $k>0$.
-%
-%Since the $\g$-vectors 
-%
-%FINISH CHECKING that it's in a finite $c$-orbit!
-%
-%
-%Having proved that $C^i_c(v)\ck$ is in a finite $c$-orbit (and thus $C^i_c(v)\ck$ is in a finite $c$-orbit), we now check that it is in the same component of $\RST{c}$ as $\gamma_i$.
-%Real roots in different components are orthogonal in the sense of the bilinear form $K$ (determined by the Cartan matrix $A_0$).
-%
-%
-%
-%
+%Since the exchange relations to exchange out the cluster variable with non-special indices in $B_{\ell\ell}$ only involve cluster variables associated to indices in $B_{\ell\ell}$, we see that $b_{ij}=0$ whenever one of $i$ or $j$ is a non-special index in $B_{\ell\ell}$ and the other is not an index in $B_{\ell\ell}$.
+%In other words, the blocks $B_{k\ell}$ with $k\neq\ell\in[1,2,3]$ can only have a non-zero entry in the bottom right corner (indexed by the two special indices).
+%Similarly blocks $B_{\ell4}$ for $\ell\in[1,2,3]$ can only be non-zero in the last row and blocks $B_{4\ell}$ for $\ell\in\set{1,2,3}$ can only be non-zero in the last column.
 %\end{proof}
-%
-%
-%We now prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell}$ is skew-symmetric.
-%First, \cref{C good} implies that all indices $i$ of $B_{\ell\ell}$ have $C^i_c(v)$ in the same component of $\RST{c}$.
-%Since each component of $\RST{c}$ is of affine type A, in particular all of the roots $C^i_c(v)$ for indices $i$ of $B_{\ell\ell}$ are the same length, so the associated co-roots $C^i_c(v)\ck$ are obtained from $C^i_c(v)$ by the same scale factor.
-%The entries of $B_{\ell\ell}$ are $\omega_c(C_c^i(v)\ck,C_c^j(v))$, and skew-symmetry follows.
-%
-%We next prove, for $\ell=1,2,3$, that if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of type $A_{p_\ell}$.
-%We do that by comparing the combinatorics of exchange relations described by $B_{\ell\ell}$ with the combinatorics of triangulated polygons.
 
-Since the exchange relations to exchange out the cluster variable with non-special indices in $B_{\ell\ell}$ only involve cluster variables associated to indices in $B_{\ell\ell}$, we see that $b_{ij}=0$ whenever one of $i$ or $j$ is a non-special index in $B_{\ell\ell}$ and the other is not an index in $B_{\ell\ell}$.
-In other words, the blocks $B_{k\ell}$ with $k\neq\ell\in[1,2,3]$ can only have a non-zero entry in the bottom right corner (indexed by the two special indices).
-Similarly blocks $B_{\ell4}$ for $\ell\in[1,2,3]$ can only be non-zero in the last row and blocks $B_{4\ell}$ for $\ell\in\set{1,2,3}$ can only be non-zero in the last column.
-
-We show that if $B_{\ell4}$ is nonempty, then it is nonzero, and equivalently $B_{4\ell}$ is nonzero.
-Let $k$ be the special index associated to $B_{\ell\ell}$.
-Continuing notation from above, $\SuppT(\gamma_k)$ is $\set{\beta_1,\ldots,\beta_{p_\ell}}$, so \cite[Theorem~7.2]{affdenom} says that the cluster variable $x_{1p_\ell}$ for $\xi_k$ is not exchangeable with any other cluster variable whose $\g$-vector is in the imaginary wall $\d^B_\infty$.
-(In the language of that theorem, if $\gamma_k$ is $c$-exchangeable with any other root in $\APTre{c}$, then that root has $\beta_0$ is its support, and therefore is not $c$-real-exchangeable with $\gamma_k$.)
+\begin{proposition}\label{not all zeros}
+For $\ell\in\set{1,2,3}$, if $B_{\ell4}$ is nonempty, then it is nonzero, and equivalently $B_{4\ell}$ is nonzero.
+\end{proposition}
+\begin{proof}
+Let $k$ be the special index in $I_\ell$.
+Continuing notation from the proof of \cref{A and q-l}, $\xi_k$ is not exchangeable with any other cluster variable whose $\g$-vector is in the imaginary wall $\d^B_\infty$.
+(This can be seen from the characterization of exchangeability in \cite[Theorem~7.2]{affdenom}.
+In the language of that theorem, if $\gamma_k$ is $c$-exchangeable with any other root in $\APTre{c}$, then that root has $\beta_0$ is its support.
+Since $\SuppT(\gamma_k)$ is $\set{\beta_1,\ldots,\beta_{p_\ell}}$, the union of the supports of the two roots is $\set{\beta_0,\ldots,\beta_{p_\ell}}$, so the two roots are not $c$-real-exchangeable.)
 Therefore the exchange relation for $x_{1p_\ell}$ exchanges it with a cluster variable whose $\g$-vector is not in $\d^B_\infty$.  
 In particular, the right side of that exchange relation can't involve only cluster variables in indexed by non-affine indices, and therefore $B_{\ell4}$ has at least one nonzero entry in column $k$.
+\end{proof}
 
-We now show that submatrix with rows and columns indexed by $k,n-1,n$ is mutation-finite.
+\begin{proposition}\label{not all zeros}
+For $\ell\in\set{1,2,3}$, if $B_{\ell4}$ is nonempty, then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{submat tab}.
+\end{proposition}
+\begin{proof}
+Let $k$ be the special index in $I_\ell$.
 To make the notation more compact, we use $p$ to stand for $n-1$.
-Since $B$ is of affine type, it is mutation finite.
-Therefore \cref{mut fin sub} says that the submatrix with rows and columns indexed by $k,p,n$ is mutation-finite.
-That submatrix has a pair of opposite off-diagonal entries whose product is $-4$, so its underlying Cartan matrix is not of finite or affine type.
+%Since $B$ is of affine type, it is mutation-finite.
+%Therefore \cref{mut fin sub} says that the submatrix with rows and columns indexed by $k,p,n$ is mutation-finite.
+The submatrix with rows and columns indexed by $k,p,n$ has a pair of opposite off-diagonal entries whose product is $-4$, so its underlying Cartan matrix is not of finite or affine type.
 (There are no $3\times3$ Cartan matrices of finite or affine type with opposite off-diagonal entries whose product is $4$.)
-\cref{acyc mut fin} thus says that the submatrix is not acyclic.
+Thus \cref{acyc mut fin} says that the submatrix is not acyclic.
 In other words, $b_{kp}>0$ and $b_{kn}<0$, and therefore $b_{pk}<0$ and $b_{nk}>0$.
 By \cref{mut fin 2x2}, each of these entries has absolute value $1$, $2$, $3$, or~$4$.
 
-We deal with the case where the affine submatrix has entries $\pm2$.
+We first deal with the case where the affine submatrix has entries $\pm2$.
 Below, we display some mutations of the submatrix.
 We will derive some inequalities from the fact that each of the mutations must also be non-acyclic and have opposite off-diagonal entries with products at least $-4$.
 \begin{multline*}
@@ -2001,7 +2022,7 @@ Similar considerations starting with the inequalities $3b_{pk}+2b_{nk}<0$ and $2
 
 We see that, in every case, $b_{kp}=-b_{kn}>0$ and $b_{pk}=-b_{nk}<0$.
 To verify that all possibilities are listed in \cref{submat tab}, it remains to rule out the cases where $(b_{kp},b_{kn},b_{pk},b_{nk})$ are $(1,-1,-4,4)$, $(2,-2,-2,2)$, or $(4,-4,-1,1)$.
-None of these three cases are possible because, as explained in \cref{growth sec}, these submatrices would  have exponential growth and thus contradict the fact that $B$ has linear growth.
+None of these three cases are possible because, as explained in \cref{growth sec}, in these cases, the submatrix would  have exponential growth and thus contradict the fact that $B$ has linear growth.
 
 Next, we deal with the case where the affine submatrix has entries $-1$ and $4$.
 \begin{multline*}
@@ -2057,22 +2078,30 @@ Similar considerations starting with $b_{pk}+3b_{nk}>0$ and $3b_{pk}+4b_{nk}<0$ 
 The remaining possibilities for $(b_{kp},b_{kn},b_{pk},b_{nk})$ are $(1,-2,-2,1)$, $(1,-2,-4,2)$, and $(2,-4,-2,1)$, but we rule out the second and third possibilities because they would imply exponential growth.
 
 The last case, where the affine submatrix has entries $-4$ and $1$, is related to the previous case by passing to the negative transpose, so the same calculations lead to the desired result.
+\end{proof}
 
-If the submatrix is of type $A_{4}^{(2)}$ in \cref{submat tab}, then the underlying Cartan matrix defines a root system with 3 distinct root lengths, and thus $\RS$ is of type $A_{2l}^{(2)}$ in the notation of \cite[Chapter~4]{Kac}.
+\begin{proposition}\label{one component}
+If the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ are of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_{4}^{(3)}$ appears, then $\ell=3$ and $B_{11}$ and $B_{22}$ are empty.
+\end{proposition}
+\begin{proof}
+If the submatrix is of type $A_{4}^{(2)}$, then the underlying Cartan matrix defines a root system with 3 distinct root lengths, and thus $\RS$ is of type $A_{2l}^{(2)}$ in the notation of \cite[Chapter~4]{Kac}.
 In this case, the root system can be rescaled to be of type $C^{(1)}$, and therefore $\RST{c}$ has only one component (see \cite[Table 1]{affdenom}).
 If the submatrix is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, then there are pairs of roots whose lengths are related by a factor of $\sqrt(3)$, and thus $\RS$ is of type $G_{2}^{(1)}$ or $D_{4}^{(3)}$, so again $\RST{c}$ has only one component (and indeed the submatrix is all of $B$).
-In these cases, we are done.
+\end{proof}
 
-In the remaining cases, the situation is as follows.
-We have showed that for every special index $k$, the submatrix determined by indices $k,(n-1),n$ is one of the top three matrices on \cref{submat tab}.
-It remains only to show that the matrices $B_{12}$, $B_{13}$, $B_{23}$, $B_{21}$, $B_{31}$, and $B_{32}$, are zero.
-We have already established that every entry is zero except possibly the entry indexed by the two special indices, so it remains to show that, for any two distinct special indices $j$ and $k$, the entry $b_{jk}$ is zero.
+\begin{proposition}\label{really zero}
+All entries in matrices $B_{12}$, $B_{13}$, $B_{23}$, $B_{21}$, $B_{31}$, and $B_{32}$ are zero.
+\end{proposition}
+\begin{proof}
+We can assume that, for every special index $k$, the submatrix determined by indices $k,(n-1),n$ is one of the top three matrices on \cref{submat tab}.
+(Otherwise, by \cref{one component}, all of the matrices are empty.)
+In particular, the affine submatrix is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$.
 
-Suppose distinct special indices $j$ and $k$ have $b_{jk}\neq0$.
+By \cref{mostly zeros}, it only remains to show that, for any two distinct special indices $j$ and $k$, the entry $b_{jk}$ is zero.
+Suppose to the contrary that distinct special indices $j$ and $k$ have $b_{jk}\neq0$.
 We may as well choose $j$ and $k$ such that $b_{jk}>0$.
 We consider the $4\times4$ submatrix of $B$ with rows and columns indexed by $j,k,p,n$.
-In all the remaining cases, the affine submatrix is $\begin{bsmallmatrix*}[r]0&2\\-2&0\end{bsmallmatrix*}$.
-Thus $b_{jp}=-b_{jn}>0$, $b_{kp}=-b_{kn}>0$, $b_{pj}=-b_{nj}<0$, and $b_{pk}=-b_{nk}<0$.
+We have $b_{jp}=-b_{jn}>0$, $b_{kp}=-b_{kn}>0$, $b_{pj}=-b_{nj}<0$, and $b_{pk}=-b_{nk}<0$.
 %WON'T BE NECESSARY:
 %Also, skew-symmetrizability of $B$ implies that $b_{kj}=-\frac{b_{nj}b_{kn}}{b_{jn}b_{nk}}b_{jk}<0$.
 We compute the mutation in direction $j$.
@@ -2097,6 +2126,7 @@ Both of these inequalities must be equality, and we see that $b_{jk}=b_{nj}=b_{n
 One easily verifies that the submatrix has the property that every mutation agrees with some permutation of the row/column indices.  
 Therefore, we see that this submatrix is not on the list exchange matrices of sub-exponential growth in \cite[Theorem~1.1]{FeShThTu12}.
 Therefore $B$ has exponential growth, and by this contradiction, we conclude that $b_{jk}=0$.
+\end{proof}
 
 We have proved \cref{neigh B}.
 We conclude this section with some useful facts that can be proved using the \lcnamecref{neigh B}.
