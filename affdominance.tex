@@ -81,9 +81,11 @@
 \newcommand{\vsgn}{\mathbf{sgn}}
 \newcommand{\Seed}{\operatorname{Seed}}
 %\newcommand{\Sh}{{\mathcal Sh}}
-\newcommand{\posspan}{\!\!\tiny\begin{array}{c}\mathbf{pos}\\\mathbf{span}\end{array}\!\!}
-%\newcommand{\posspan}{\underset{\text{span}}{\overset{\text{pos}}{}}}
-%\newcommand{\posspan}{\mathbf{span_+}}
+\newcommand{\nnspan}{{\!\!\tiny\begin{array}{r}\mathbf{span}\\\ge0\end{array}\hspace*{-0.57em}}}
+%\newcommand{\nnspan}{{\!\!\tiny\begin{array}{r}\mathbf{nonneg}\\\mathbf{span}\end{array}\hspace*{-0.57em}}}
+%\newcommand{\nnspan}{{\!\!\tiny\begin{array}{r}\mathbf{pos}\\\mathbf{span}\end{array}\hspace*{-0.57em}}}
+%\newcommand{\nnspan}{\underset{\text{span}}{\overset{\text{pos}}{}}}
+%\newcommand{\nnspan}{\mathbf{span_+}}
 \newcommand{\lcm}{\operatorname{lcm}}
 \newcommand{\rank}{\operatorname{rank}}
 \newcommand{\Int}{\operatorname{Int}}
@@ -105,7 +107,11 @@
 \newcommand{\ufs}{\mathrm{ufs}}
 \newcommand{\covers}{{\,\,\,\cdot\!\!\!\! >\,\,}}
 \newcommand{\covered}{{\,\,<\!\!\!\!\cdot\,\,\,}}
-\newcommand{\set}[1]{{\left\lbrace #1 \right\rbrace}}
+\newcommand{\set}[1]{{\lbrace #1 \rbrace}}
+\newcommand{\sett}[1]{{\bigl\lbrace #1 \bigr\rbrace}}
+\newcommand{\settt}[1]{{\Bigl\lbrace #1 \Bigr\rbrace}}
+\newcommand{\setttt}[1]{{\biggl\lbrace #1 \biggr\rbrace}}
+\newcommand{\settttt}[1]{{\Biggl\lbrace #1 \Biggr\rbrace}}
 \newcommand{\pidown}{\pi_\downarrow}
 \newcommand{\piup}{\pi^\uparrow}
 \newcommand{\br}[1]{{\langle #1 \rangle}}
@@ -416,10 +422,12 @@ but is sufficient for the purposes of the paper, uses only the basic discrete ge
 The first part of the paper also introduces much of the background that will be used later.
 
 \section{Dominance regions}
+In this section, we define dominance regions \sayN{except maybe that will be in the intro?} and prove some foundational facts about them.
+We assume the basic background on cluster algebras, following the approach of~\cite{ca4}.
+Also, throughout the section, we use results from~\cite{NZ}.
 
 
 \subsection{Definitions and background}\label{def sec}
-We assume the basic definitions of exchange matrices and of matrix mutation.
 Given a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
 We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
@@ -430,7 +438,7 @@ In this paper, it is convenient to think of vectors in $\reals^n$ as column vect
 Thus we write maps $\eta_\kk^{B^T}$.
 This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 
-Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\set{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
+Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
 (Throughout the paper, we will define sets indexed by vectors $\alpha\in\reals^n$ with $\alpha\ge0$, or sometimes $\alpha\in\reals^m$ with $\alpha\ge0$.
 When we can do so without confusion, we will omit the explicit statement that $\alpha\in\reals^n$ or $\alpha\in\reals^m$.)
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
@@ -447,11 +455,11 @@ $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any 
 For any $\ll$,
 \begin{align*}
 \eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})
-&=\eta^{B^T}_\kk\!\!\left(\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\right)\\
+&=\eta^{B^T}_\kk\!\!\left(\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\right)\\
 %&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
-&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
+&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
 %&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
-&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+B_t\alpha:\alpha\ge0}\\
+&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\settt{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+B_t\alpha:\alpha\ge0}\\
 &=\P^{B'}_{\lambda',\ll\kk^{-1}}.
 \end{align*}
 Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
@@ -465,11 +473,11 @@ Thus we will refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
 For $\kk=k_m\cdots k_1$, define seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$.
 The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_\ell$ of $C_{t_{\ell-1}}^{B;t_0}$ is \emph{positive} for all $\ell$ with $1\le\ell<m$.
 A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
-That is, the sequence $\kk$ is a maximal green sequence if every column of $C_{t_m}^{B;t_0}$ is \emph{negative}.
+That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_m}^{B;t_0}$ is \emph{negative}.
 We will call $\kk$ a \newword{red sequence} for~$B$ if it is a green sequence for $-B$.
 A \newword{maximal red sequence} is a red sequence that cannot be extended.
 (A red sequence relates to antiprincipal coefficients: 
-If we were to define the $C$-vectors recursively starting with the negative of the identity matrix, the requirement for a red sequence is that the $k_\ell$ column is negative at every step.)
+If we were to define a version of $C$-vectors recursively starting with the negative of the identity matrix, the requirement for a red sequence would be that the $k_\ell$ column is negative at every step.)
 
 Let $G_t^{B;t_0}$ be the matrix whose columns are the $\g$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
 Let $\Cone^{B;t_0}_t$ be the nonnegative linear span of the columns of $G_t^{B;t_0}$.
@@ -478,7 +486,7 @@ For each $k\in\set{1,\ldots,n}$, the entries in the $k\th$ row of $G_t^{B;t_0}$ 
 Thus all vectors in $\Cone^{B;t_0}_t$ all have weakly the same sign in the $k\th$ position.
 The inverse of $G_t^{B;t_0}$ is $\bigl(C_t^{-B^T;t_0}\bigr)^T$.
 (This is \cite[Theorem~1.2]{NZ12} or \cite[Theorem~1.1]{RS16} and \cite[Theorem~3.30]{RS16}.)
-Thus $\Cone^{B;t_0}_t=\set{x\in\reals^n:x^TC_t^{-B^T;t_0}\ge0}$, where $0$ is a row vector and ``$\ge$'' means componentwise comparison. 
+Thus $\Cone^{B;t_0}_t=\sett{x\in\reals^n:x^TC_t^{-B^T;t_0}\ge0}$, where $0$ is a row vector and ``$\ge$'' means componentwise comparison. 
 
 Given $\kk$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$, let $B_i$ be the exchange matrix at~$t_i$, so that in particular, $B_0=B$.
 The map $\eta_{\kk}^{B^T}$ is ${\eta_{k_m}^{B_{m-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
@@ -496,19 +504,19 @@ Furthermore, $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for e
 (This amounts to the initial seed mutation formula for $\g$-vectors, conjectured as \cite[Conjecture~7.12]{FZ07} and shown in \cite[Proposition~4.2(v)]{NZ12} to follow from sign-coherence of $C$-vectors.
 The restatement in terms of mutation maps is \cite[Conjecture~8.11]{universal}.)
 A similar fact applies to the entire mutation fan:
-For any sequence $\kk$, the map $\eta_\kk^{B^T}$ induces an isomorphism of fans from $\F_{B^T}$ to $\F_{\mu_\kk(B)^T}$.
+For any sequence $\kk$, the map $\eta_\kk^{B^T}$ induces an isomorphism of fans \cite[Proposition~7.3]{universal} from $\F_{B^T}$ to $\F_{\mu_\kk(B)^T}$.
 
 \begin{remark}\label{conditional}
-As written, \cite[Proposition~8.13]{universal} is conditional on ``sign-coherence of $C$-vectors'', which was a conjecture but is now a theorem \cite[Corollary~5.5]{GHKK18}.
+As written, \cite[Proposition~8.13]{universal} is conditional on the conjectured sign-coherence of $C$-vectors, which is now a theorem \cite[Corollary~5.5]{GHKK18}.
 \end{remark}
 
 We will need to relate the cones $\Cone^{B;t_0}_t$ and $\Cone^{-B^T;t_0}_t$.
-It is immediate from \cite[Proposition~7.5]{universal} and the skew-symmetry of $B$ that $-B^T$ is a \newword{rescaling} of $B$, meaning that there is a diagonal matrix $\Sigma$ with positive entries on the diagonal such that $-B^T=\Sigma^{-1}B\Sigma$.
+It is immediate from \cite[Proposition~7.5]{universal} that $-B^T$ is a \newword{rescaling} of $B$, meaning that there is a diagonal matrix $\Sigma$ with positive entries on the diagonal such that $-B^T=\Sigma^{-1}B\Sigma$.
 Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\Sigma G_t^{B;t_0}$.
-(In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
+(In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because in~\cite{universal}, the $\g$-vectors are row vectors rather than column vectors.)
 Thus we have the following fact.
 \begin{lemma}\label{B or -BT}
-The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
+For any $k$, the $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
 \end{lemma}
 %Therefore, \cite[Proposition~8.20]{universal} implies the following lemma.
 %(In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
@@ -523,10 +531,9 @@ The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\
 For $k\in\set{1,\ldots,n}$, let $J_k$ be the $n\times n$ matrix that agrees with the identity matrix except that $J_k$ has $-1$ in position $kk$.
 For an $n\times n$ matrix $M$ and $k\in\set{1,\ldots,n}$, let $M^{\bullet k}$ be the matrix that agrees with $M$ in column $k$ and has zeros everywhere outside of column $k$.
 Let $M^{k\bullet}$ be the matrix that agrees with $M$ in row $k$ and has zeros everywhere outside of row $k$.
-
 Given a real number $a$, let $[a]_+$ denote $\max(a,0)$.
 Given a matrix $M=[m_{ij}]$, define $[M]_+$ to be the matrix whose $ij$-entry is $[m_{ij}]_+$.
-Given an exchange matrix~$B$, an index $k\in\set{1,\ldots,n}$ and a sign $\ep\in\set{\pm1}$, define matrices
+Given an exchange matrix~$B$, an index $k\in\set{1,\ldots,n}$ and a sign $\ep\in\set{\pm1}$, define
 \begin{align*}
 E_{\ep,k}^B&=J_k+[\ep B]_+^{\bullet k}\\
 F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
@@ -539,14 +546,13 @@ For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation
 \end{lemma}
 \begin{proof}
 We expand the product $(J_k+[\ep B]_+^{\bullet k})B(J_k+[-\ep B]_+^{k\bullet})$ to four terms.
-The term $[\ep B]_+^{\bullet k}B[-\ep B]_+^{k\bullet}$ is zero because $b_{kk}=0$.
-The term $[\ep B]_+^{\bullet k}BJ_k$ is $[\ep B]_+^{\bullet k}B^{k\bullet}J_k$, which equals $[\ep B]_+^{\bullet k}B^{k\bullet}$.
-Similarly, the term $J_kB[-\ep B]_+^{k\bullet}$ equals $B^{\bullet k}[-\ep B]_+^{k\bullet}$
+The term $[\ep B]_+^{\bullet k}B[-\ep B]_+^{k\bullet}$ is zero because $B$ is skew-symmetric.
+The term $[\ep B]_+^{\bullet k}BJ_k$ is $[\ep B]_+^{\bullet k}B^{k\bullet}J_k$, which equals $[\ep B]_+^{\bullet k}B^{k\bullet}$ because $b_{kk}=0$.
+Similarly, the term $J_kB[-\ep B]_+^{k\bullet}$ equals $B^{\bullet k}[-\ep B]_+^{k\bullet}$.
 %\begin{align*}
 %(J_k+[\ep B]_+^{\bullet k})B(J_k+[-\ep B]_+^{k\bullet})
 %&=J_kBJ_k+J_kB[-\ep B]_+^{k\bullet}+[\ep B]_+^{\bullet k}BJ_k+[\ep B]_+^{\bullet k}B[-\ep B]_+^{k\bullet}.
 %\end{align*}
-Both 
 Thus the $ij$-entry of $E_{\ep,k}^BBF_{\ep,k}^B$ is 
 \[
 \left\{\begin{aligned}
@@ -567,54 +573,54 @@ b_{ik}|b_{kj}|&\quad\text{if }\sgn b_{kj}=-\ep\\
 This coincides with the $ij$-entry of $\mu_k(B)$.
 \end{proof}
 
-Given a matrix $M$, write $M_{\col(i)}$ for the $i\th$ column of $M$.
-We observe that $(MN)_{\col i}=M(N)_{\col i}$.
+Given a matrix $M$, write $M_{\col(j)}$ for the $j\th$ column of $M$.
+For matrices $M$ and~$N$ such that $MN$ is defined, we observe that $(MN)_{\col j}=M(N)_{\col j}$.
 \begin{lemma}\label{columns lem}
 Suppose $B=[b_{ij}]$ is an exchange matrix, let $k\in\set{1,\ldots,n}$, and choose a sign $\ep\in\set{\pm1}$.
 \begin{enumerate}[\quad\bf1.]
-\item \label{col i}
-$(E_{\ep,k}^BB)_{\col i}=J_k(B)_{\col i}+b_{ki}([\ep B]_+)_{\col k}$.
+\item \label{col j}
+$(E_{\ep,k}^BB)_{\col j}=J_k(B)_{\col j}+b_{kj}([\ep B]_+)_{\col k}$.
 \item \label{col k}
 $(E_{\ep,k}^BB)_{\col k}=(E_{-\ep,k}^BB)_{\col k}=B_{\col k}$.
 \item \label{cols k}
-$(E_{-\ep,k}^BB)_{\col i}=(E_{\ep,k}^BB)_{\col i}-\ep b_{ki}B_{\col k}$.
+$(E_{-\ep,k}^BB)_{\col j}=(E_{\ep,k}^BB)_{\col j}-\ep b_{kj}B_{\col k}$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-The first two assertions follow immediately from the fact that $(MN)_{\col i}=M(N)_{\col i}$ and the fact that $b_{kk}=0$.
-The first assertion (for $\ep$ and $-\ep$) implies that $(E_{-\ep,k}^BB)_{\col i}=(E_{\ep,k}^BB)_{\col i}-b_{ki}([\ep B]_+-[-\ep B]_+)_{\col k}$.  
+The first two assertions hold because $(MN)_{\col j}=M(N)_{\col j}$ and because $b_{kk}=0$.
+By the first assertion, $(E_{-\ep,k}^BB)_{\col j}=(E_{\ep,k}^BB)_{\col j}-b_{kj}([\ep B]_+-[-\ep B]_+)_{\col k}$.  
 The third assertion follows.
 \end{proof}
 
-We will also need the following simple fact about nonnegative linear spans.
-Given a set $S$ of vectors, let $\posspan(S)$ denote the nonnegative linear span of $S$.
-For $k\in\set{1,\ldots,n}$ and $\ep\in\set{\pm1}$, let $S_{k,\ep}$ be the set of vectors in $S$ whose $k\th$ entry has sign strictly agreeing with $\ep$.
+%We will also need the following simple fact about nonnegative linear spans.
+Let~$\nnspan(S)$ denote the nonnegative linear span of a set $S$ of vectors.
+For ${k\in\set{1,\ldots,n}}$ and $\ep\in\set{\pm1}$, let $S_{k,\ep}$ be the set of vectors in $S$ whose $k\th$ entry has sign strictly agreeing with $\ep$.
 
 \begin{lemma}\label{ps lemma}
-Suppose $\lambda$ is a vector in $\reals^n$ whose $k\th$ $\lambda_k$ has $\ep\lambda_k\le0$.
-Then %any vector in $\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:\sgn x_k=\ep}$ can be written as a vector in $\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:x_k=0}$ plus a vector in $posspan(S_{k,\ep})$.
+Suppose $\lambda$ is a vector in $\reals^n$ whose $k\th$ entry $\lambda_k$ has $\ep\lambda_k\le0$.
+Then %any vector in $\set{\lambda+\nnspan(S)}\cap\set{x\in\reals^n:\sgn x_k=\ep}$ can be written as a vector in $\set{\lambda+\nnspan(S)}\cap\set{x\in\reals^n:x_k=0}$ plus a vector in $nnspan(S_{k,\ep})$.
 \begin{multline*}
-\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:\ep x_k\ge0}\\
-=\set{\lambda+\posspan(S)}\cap\set{x\in\reals^n:x_k=0}+\posspan(S_{k,\ep}).
+\sett{\lambda+\nnspan(S)}\cap\set{x\in\reals^n:\ep x_k\ge0}\\
+=\bigl(\sett{\lambda+\nnspan(S)}\cap\set{x\in\reals^n:x_k=0}\bigr)+\nnspan(S_{k,\ep}).
 \end{multline*}
 \end{lemma}
 \begin{proof}
-The set on the right side is certainly contained in the set on the right side.
-If $x$ is an element of the left side, then $x$ is $\lambda$ plus a nonzero element $y$ of $\posspan(S_{k,\ep})$ plus an element $z$ of $\posspan(S\setminus S_{k,\ep})$.
-Since the sign of $\ep x\ge0$ and $\ep\lambda\le0$, there exists~$t$ with $0\le t\le1$ such that $\lambda+ty+z$ has $k\th$ entry $0$.
-We see that ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
+The set on the right side is certainly contained in the set on the left side.
+If~$x$ is an element of the left side, then $x$ is $\lambda$ plus a nonzero element $y$ of $\nnspan(S_{k,\ep})$ plus an element $z$ of $\nnspan(S\setminus S_{k,\ep})$.
+Since $\ep x_k\ge0$ and $\ep\lambda_k\le0$, there exists~$t$ with ${0\le t\le1}$ such that $\lambda+ty+z$ has $k\th$ entry $0$.
+Thus ${x=(\lambda+ty+z)+(1-t)y}$ is an element of the right side.
 \end{proof}
 
 \subsection{Linearizing the dominance region}\label{lin sec}
-The difficult thing about computing the regions $\P^B_{\lambda,\kk}$ whose intersection is the dominance region $\P^B_\lambda$ is applying the piecewise linear map $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$, because the number of its domains of linearity may grow without bound as the length of $\kk$ increases.
-In this section, we will describe, in some cases, the cones (pointed at $\lambda$) that coincide with $\P^B_{\lambda,\kk}$ inside a domain of linearity of $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$ containing~$\lambda$.
-For convenience, we work here with square exchange matrices.
+The difficult thing about computing the regions $\P^B_{\lambda,\kk}$ whose intersection is the dominance region $\P^B_\lambda$ is applying the piecewise linear map $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$, because the number of its domains of definition may grow without bound as the length of $\kk$ increases.
+In this section, we describe the cones (at $\lambda$) that coincide with $\P^B_{\lambda,\kk}$ inside a domain of definition of $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$ containing~$\lambda$ and show, in some cases, that these cones contain $\P^B_{\lambda,\kk}$.
+We work here with square exchange matrices.
 In \cref{ext sec}, we extend the result to tall extended exchange matrices.
 %As an application, we prove in \cref{ext sec} that (when $B$ is replaced by an extended exchange matrix with linearly independent columns) that the dominance region of a point $\lambda$ in the $\g$-vector fan... hypotheses... never mind
 
 Let $B_0$ be an exchange matrix.
 For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-We will prove the following theorem.
+We will prove the following \lcnamecref{P in B0C}.
 %
 %\noindent
 %START ALTERNATIVE WORDING
@@ -656,7 +662,7 @@ If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ 
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 
-Since $\bigl(\eta_{\kk}^{B_0^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
+Since $\bigl(\eta_{\kk}^{B_0^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\sett{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
 Let $D$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
 Then $\eta_{\kk^{-1}}^{B_t^T}$ is linear on $\eta_{\kk}^{B_0^T}(D)$.
 Let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$\eta_{\kk}^{B_0^T}(D)$.
@@ -682,32 +688,25 @@ We can rewrite \cref{GBBC} as follows.
 $B_t\bigl(G_t^{-B_0^T;t_0}\bigr)^T=\bigl(C_t^{-B_0^T;t_0}\bigr)^TB_0$.
 \end{proposition}
 \begin{proof}
-Starting with \cref{GBBC}, we use \cite[Theorem~1.2]{NZ} to rewrite $G_t^{B_0;t_0}$ as $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}$ and $C_t^{B_0;t_0}$ as $\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$, so $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}B_t=B_0\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$.
+We use \cite[Theorem~1.2]{NZ} to rewrite $G_t^{B_0;t_0}$ as $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}$ and $C_t^{B_0;t_0}$ as $\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$, so \cref{GBBC} says that $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}B_t=B_0\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$.
 \end{proof}
 
 Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_t^T}$ and since $\L_{\kk^{-1}}^{B_t^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, the following result is immediate from \cref{GBBC}.
 
 \begin{proposition}\label{B0C}
 \begin{align*}
-\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}
-&=\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}\\
-&=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.
+\L_{\kk^{-1}}^{B_t^T}\sett{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}
+&=\sett{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}\\
+&=\sett{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.
 \end{align*}
 \end{proposition}
 
 In light of \cref{B0C}, the conclusion of \cref{P in B0C} is equivalent to
-\[\P^{B_0}_{\lambda,\kk}\subseteq\L_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}.\]
-
-%% Don't really care about this any more.  Also, if we keep it, the meaning of $D$ has changed, so we would have to rephrase it.
-%\cref{B0C} also immediately implies the following statement that is weaker than \cref{P in B0C}.
-%
-%\begin{proposition}\label{on domain}
-%$\P^{B_0}_{\lambda,\kk}\cap D=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}\cap D$.
-%\end{proposition}
+\[\P^{B_0}_{\lambda,\kk}\subseteq\L_{\kk^{-1}}^{B_t^T}\sett{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}.\]
 
 
 \begin{proof}[Proof of \cref{P in B0C}]
-We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$, by induction on $m$ (the length of $\kk$).
+We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$ by induction on $m$ (the length of $\kk$).
 The base case, where $\kk=\emptyset$, is true because $C_{t_0}^{B_0;t_0}$ is the identity matrix and $\P_{\lambda,\emptyset}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
  
 \cite[Proposition~1.4]{NZ12} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$.  
@@ -730,7 +729,7 @@ Since $E^{B_1}_{\ep,k_1}$ is its own inverse, the claim is equivalent to saying 
 By \cite[(1.13)]{NZ12}, $\ep$ is the sign of the $k_1$-column of $\bigl(G_t^{-B_1^T;t_1}\bigr)^T$.
 That is, $\ep$ is the sign of the $k_1$-row of $G_t^{-B_1^T;t_1}$, or in other words, the sign of the $k_1$-entry of vectors in $\Cone_t^{-B^T_1;t_1}$.
 By \cref{B or -BT}, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{B_1;t_1}$, which is the sign that determines how $\eta_{k_1}^{B_1^T}$ acts on $\Cone_t^{B_1;t_1}$.
-One easily checks that the action of $\eta_{k_1}^{B_1^T}$ on vectors whose $k_1$-entry has sign $\ep$ is precisely the action of $E^{B_1}_{\ep,k_1}$.
+Now, one easily checks that the action of $\eta_{k_1}^{B_1^T}$ on vectors whose $k_1$-entry has sign $\ep$ is precisely the action of $E^{B_1}_{\ep,k_1}$.
 %It negates the $k_1$ entry.
 %The $i\th$ ($i\neq k$) entry gets sent to itself plus the $k_1$ entry times $(B_1)_{ik}$ times $\ep$, if $(B_1)_{ik}$ also has sign $\ep$.
 
@@ -740,30 +739,30 @@ By induction on $m$,
 Applying the homeomorphism $\eta_{k_1}^{B_1^T}$ to both sides, we obtain
 \[\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 In light of \eqref{ind B0C}, we can complete the proof by showing that
-\[\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq E^{B_1}_{\ep,k_1}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+\[\eta_{k_1}^{B_1^T}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq E^{B_1}_{\ep,k_1}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 
 We have seen that $E^{B_1}_{\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_1^T}$ on the set $\set{x\in\reals^n:\sgn x_{k_1}=\ep}$.
 We can similarly check that $E^{B_1}_{-\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_1^T}$ on $\set{x\in\reals^n:\sgn x_{k_1}=-\ep}$.
 Thus $\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}$ is
 \[(U\cap\set{x\in\reals^n:\sgn x_{k_1}=-\ep})\cup(V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}),\]
-where 
+where, writing $\nnspan$ for the nonnegative linear span of a set of vectors,
 {\small
 \begin{align*}
-U&=E^{B_1}_{\ep,k_1}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{\ep,k_1}\lambda'+\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n\\
-V&=E^{B_1}_{-\ep,k_1}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{-\ep,k_1}\lambda'+\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n,
+U&=E^{B_1}_{\ep,k_1}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{\ep,k_1}\lambda'+\nnspan\settt{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n\\
+V&=E^{B_1}_{-\ep,k_1}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{-\ep,k_1}\lambda'+\nnspan\settt{\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n.
 \end{align*}
 }
-where $\posspan$ denotes the nonnegative linear span of a set of vectors.
 
 We need to show that $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}\subseteq U$.
-Since $\eta_{k_1}^{B_1^T}$ is a homeomorphism, $U\cap\set{x\in\reals^n:x_{k_1}=0}=V\cap\set{x\in\reals^n:x_{k_1}=0}$.
+Since $\eta_{k_1}^{B_1^T}$ is a homeomorphism that fixes $\set{x\in\reals^n:x_{k_1}=0}$ pointwise, $U\cap\set{x\in\reals^n:x_{k_1}=0}$ equals $V\cap\set{x\in\reals^n:x_{k_1}=0}$.
 By \cref{ps lemma}, any vector in $V\cap\set{x\in\reals^n:\sgn x_{k_1}=\ep}$ equals a vector in $V\cap\set{x\in\reals^n:x_{k_1}=0}$ plus a positive combination of vectors $\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ whose $k_1$-entry has sign $\ep$.
-Therefore, it suffices to show that every vector $\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ whose $k_1$-entry has sign~$\ep$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$.
+%Write $v_i$ for the vector $\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$.
+Therefore, it suffices to show that every vector $\bigl(E^{B_1}_{-\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ whose $k_1$-entry has sign~$\ep$ is contained in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n$.
 
 As a temporary shorthand, write $b_{ij}$ for the entries of $B_1$ and write $k$ for $k_1$.
 Suppose $v_i=\bigl(E^{B_1}_{-\ep,k}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ for some~$i$ and suppose the $k$-entry of $v_i$ has sign $\ep$.
 Write $M$ for $E^{B_1}_{-\ep,k}B_1$ and write $N$ for $E^{B_1}_{\ep,k}B_1$.
-\cref{columns lem}.\ref{col i} implies that $M_{kj}=-b_{kj}$ for all~$j$.
+\cref{columns lem}.\ref{col j} implies that $M_{kj}=-b_{kj}$ for all~$j$.
 \cref{columns lem}.\ref{cols k} implies that if $\ep M_{kj}\ge0$, then $M_{\col j}=N_{\col j}+|b_{kj}|N_{\col k}$.
 Similarly, if $\ep M_{kj}\le0$, then $M_{\col j}=N_{\col j}-|b_{kj}|N_{\col k}$.
 
@@ -791,7 +790,7 @@ Thus $C_t^{B_1;t_1}\bigl(C_t^{B_1;t_1}\bigr)^{-1}(\ep e_k)=\ep e_k$ is a nonnega
 Now, the hypothesis that $\kk^{-1}$ is a red sequence for $B_t$, or equivalently a green sequence for $-B_t$, says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
 Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
 We have shown that $v_i=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
-In other words, $v_i$ is in $\posspan\set{\left(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\right)_{\col i}}_{i=1}^n$, as desired.
+In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
 
 \subsection{Dominance regions for extended exchange matrices}\label{ext sec}
@@ -811,7 +810,7 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $D_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
-Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\set{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^\tB_{\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
 
 We relate the dominance region $\P_\lambda^\tB$ with respect to the extended exchange matrix $\tB$ to the dominance region $\P_\lambda^B$ with respect to the (non-extended) exchange matrix $B$.
@@ -839,7 +838,7 @@ Since $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ for sequences $\
 
 To understand dominance regions $\P^\tB_\lambda$, it is enough to consider the case where $\lambda$ has nonzero entries only in positions $1,\ldots,n$.
 Other dominance regions are obtained by translation, as explained in the following lemma.
-The lemma is an immediate consequence of the fact that domains of definition of $\eta_\kk^{\BB^T}$ depend only on the first $n$ coordinates.
+The lemma is immediate, because the domains of definition of a mutation map $\eta_\kk^{\BB^T}$ depend only on the first $n$ coordinates and each $\eta_\kk^{\BB^T}$ is linear on each domain of definition.
 \begin{lemma}\label{after all coefficients are just coefficients}
 If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n$ coordinates, then $\P^\tB_{\lambda'}=\P^\tB_\lambda-\lambda+\lambda'$.
 \end{lemma}
@@ -855,47 +854,45 @@ $\eta^{\BB^T}_\kk\!\!(\P^\tB_{\lambda,\ll})=\P^{\tB'}_{\lambda',\ll\kk^{-1}}$ fo
 \end{enumerate}
 \end{lemma}
 
-
-
-We will prove the following extension of \cref{P in B0C} and an important corollary.
+We will prove the following extension of \cref{P in B0C}.
 
 \begin{theorem}\label{P in B0C extended}
 Suppose $\kk=k_m\cdots k_1$ is a sequence of indices in $\set{1,\ldots, n}$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
+If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{\tB_0;t_0}_t$,
 \[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 \begin{proof}
 First, we notice that $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $\BB_t$, or in other words, $\kk$ is a green sequence for $-\BB_t$.
-Indeed, since $\CC_{t_{\ell-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{\ell-1}}^{-\BB;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_\ell$ of $\CC_{t_{\ell-1}}^{-\BB;t_0}$ equals the sign of column $k_\ell$ of $C_{t_{\ell-1}}^{-\BB;t_0}$ whenever $1\le\ell<k$.
+Indeed, since $\CC_{t_{\ell-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{\ell-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_\ell$ of $\CC_{t_{\ell-1}}^{-\BB;t_0}$ equals the sign of column $k_\ell$ of $C_{t_{\ell-1}}^{-B;t_0}$ whenever $1\le\ell<m$.
 Thus \cref{P in B0C} says that
 \[\P^{\BB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\BB_t\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
 The assertion of \cref{P in B0C extended} is that the same holds even when, in each term, the conditions $\alpha\in\reals^m,\alpha\ge0$ are strengthened by requiring that $\alpha$ is zero in coordinates $n+1,\ldots,m$.
 
 Thus we run through the proof of \cref{P in B0C} with $\BB$ replacing $B$ and $m$ replacing $n$ throughout and these additional conditions on $\alpha$ in all relevant expressions.
 There is no effect on the argument until the point of showing that $V\cap\set{x\in\reals^m:\sgn x_{k_1}=\ep}\subseteq U$.
-Here, we need to show that every vector $v_i=\bigl(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\bigr)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is contained in $\posspan\set{\left(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\right)_{\col i}}_{i=1}^n$.
+Here, we need to show that every vector $v_i=\bigl(E^{\BB_1}_{-\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\bigr)_{\col i}$ with $i\in\set{1,\ldots,n}$ whose $k_1$-entry has sign~$\ep$ is contained in $\nnspan\sett{\bigl(E^{\BB_1}_{\ep,k_1}\BB_1\CC_t^{\BB_1;t_1}\bigr)_{\col i}}_{i=1}^n$.
 We argue as in the proof of \cref{P in B0C} that $v_i=N\bigl(\CC_t^{\BB_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ and that $\ep e_k$ is a nonnegative linear combination of columns of~$\CC_t^{\BB_1;t_1}$.
 Since $\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, we conclude that $\ep e_k$ is a nonnegative linear combination of columns $1$ through $n$ of~$\CC_t^{\BB_1;t_1}$.
 Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\CC_t^{\BB_1;t_1}$ as desired.
 \end{proof}
 
-\subsection{Criteria for the dominance region to be a point}\label{point sec}
+\subsection{Sufficient conditions for the dominance region to be a point}\label{point sec}
 We now use the tools developed so far to give sufficient conditions for the dominance region to be a point.
-We use this criterion to show that the dominance region is always a point in finite type in both the coefficient-free case and when the extended exchange matrix has full rank (or satisfied a weaker condition that we describe below).
+We use the conditions to show that the dominance region is always a point in finite type (except for exchange matrices with too many zero columns).
 Later, we prove similar results for affine type.
 
-Say an extended exchange matrix $\tB$ is \newword{salient} if the nonnegative linear span of the columns of $\tB$ contains no line.
-(This term is a reference to convex geometry, where a closed cone is called salient if and only if it contains no line.)
-The hypothesis that the $\tB_0$ is salient is strictly weaker than requiring that the columns of $\tB_0$ are linearly independent.
-One can show the $\tB_0$ is salient by exhibiting a vector $x\in\reals^m$ whose dot product is strictly positive with every nonzero column of $\tB_0$.
+Call an extended exchange matrix $\tB$ \newword{salient} if the nonnegative linear span of the columns of $\tB$ contains no line.
+(This term is a reference to convex geometry, where a cone is called salient if and only if there is no nonzero vector $x$ such that $x$ and $-x$ are contained in the cone.)
+The hypothesis that $\tB$ is salient is strictly weaker than requiring that the columns of $\tB$ are linearly independent.
+One can show that $\tB$ is salient by exhibiting a vector $x\in\reals^m$ whose dot product is strictly positive with every nonzero column of $\tB$.
 For us, the crucial fact \sayN{the ``salient point''?}
 about a salient extended exchange matrix $\tB$ is that the intersection of the nonnegative linear span of the columns of $\tB$ with the nonpositive linear span of the columns of $\tB$ is $\set{0}$.
 
-\begin{corollary}\label{P point}  
+\begin{theorem}\label{P point}  
 Suppose $\tB_0$ is a salient extended exchange matrix.
 Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
 If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
-\end{corollary}
+\end{theorem}
 
 \begin{proof}%[Proof of \cref{P point}]
 Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
@@ -916,23 +913,70 @@ We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in
 Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is salient, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{proof}
 
-We use \cref{P point} to prove a result about dominance regions in the coefficient-free finite-type case.
+Thinking quickly, one might guess that if an exchange matrix $B$ is salient, then every extension $\tB$ of $B$ is also salient.
+This is not true, but the failure of this implication does place some constraints on $B$.
+
+\begin{lemma}\label{extend salient}
+If $B$ is a salient exchange matrix and $\tB$ is an extension of $B$ that is not salient, then the kernel of $B$ contains two independent vectors, each with nonnegative entries.
+\end{lemma}
+\begin{proof}
+Suppose $B$ is salient and suppose $x$ and $-x$ are nonzero elements of the nonnegative span of the columns of $\tB$.
+Then $\Proj_n(x)$ and $\Proj_n(-x)$ are elements of the nonnegative span of the columns of $B$.
+These are therefore both zero, because $B$ is salient.
+Thus $x=\tB y$ for some nonzero $y\in\ker B$ with nonnegative entries and $x=\tB z$ for some nonzero $z\in\ker B$ with nonnegative entries.
+Since both $y$ and $z$ are nonzero and have nonnegative entries, if they and linearly dependent, then they are related by a positive scaling, contradicting the fact that $x=\tB y\neq0$ and $x=\tB z\neq0$.
+Thus $y$ and $z$ are linearly independent.
+\end{proof}
 
 An exchange matrix $B=[b_{ij}]$ determines a directed graph with vertices $\set{1,\ldots,n}$ and edges $i\to j$ whenever $b_{ij}>0$.
 We say that $B$ is \newword{bipartite} if there is a bipartition $\set{1,\ldots,n}=P\cup N$ such that $i\to j$ implies $i\in P$ and $j\in N$.
-If $B$ is bipartite, then $B$ is salient.
-(Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions $N$ has strictly positive dot product with every nonzero column of $B$.)
 
-\begin{corollary}\label{finite P point}  
-Suppose $B$ is an exchange matrix of finite type.
-Then $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
-\end{corollary}
+\begin{lemma}\label{bip sal}
+Suppose $B$ is a bipartite exchange matrix.
+Then $B$ is salient.
+Furthermore, if $B$ has at most one column that is zero, any extension $\tB$ of $B$ is also salient.
+\end{lemma}
 \begin{proof}
-Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented tree.
-Source-sink mutations on this tree give a bipartite exchange matrix $B_0$, so that $B_0$ is salient.
+Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions $N$ has strictly positive dot product with every nonzero column of $B$.
+Thus $B$ is salient.
+
+Suppose $y$ is an element of the kernel of $B$ with nonnegative entries.
+The fact that $B$ is bipartite means that every row of $B$ has either nonnegative entries (if the index of the row is in~$P$) or nonpositive entries (if the index of the row is in~$N$).
+Positions where the row is nonzero thus specify positions that must be zero in~$y$.
+If $B$ has at most one zero column, then $y$ is zero in every position except in that column (if it exists).
+Now \cref{extend salient} implies that any extension $\tB$ is salient.
+\end{proof}
+
+
+
+
+\begin{example}\label{0000 bad}
+The finite-type exchange matrix $B=\begin{bsmallmatrix}0&0\\0&0\end{bsmallmatrix}$ is salient, but the extended exchange matrix $\tB=\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}$ is not, because $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}1\\0\end{bsmallmatrix}=\begin{bsmallmatrix}0\\0\\1\end{bsmallmatrix}$ and $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}0\\1\end{bsmallmatrix}=\begin{bsmallmatrix*}[r]0\\0\\-1\end{bsmallmatrix*}$.
+One can check that $\P_\lambda^\tB=\settt{\lambda+a\begin{bsmallmatrix*}[r]0\\0\\1\end{bsmallmatrix*}:a\in\reals}$ for all $\lambda\in\reals^3$.
+\end{example}
+
+
+
+\begin{theorem}\label{finite P point}  
+Suppose $B$ is an $n\times n$ exchange matrix of finite type.
+Then 
+\begin{enumerate}[\quad\bf1.]
+\item $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
+\item If $B$ has at most one zero column, then $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented forest.
+Source-sink mutations on this forest yield a bipartite exchange matrix $B_0$, so that $B_0$ is salient by \cref{bip sal}.
 Suppose $\kk$ is a sequence of indices such that $\mu_\kk(B_0)=B$.
-For any $\lambda\in\reals$, the dominance region $\P_\lambda^B$ is $\eta_\kk^{B_0^T}(\P_{\lambda'}^{B_0})$ for $\lambda'=\eta_\kk^{B_0^T}(\lambda)$.
-Every exchange matrix of finite type admits a maximal red sequence, so \cref{P point} applies to say that $\P_{\lambda'}^{B_0}=\set{\lambda'}$, so $\P_\lambda^B=\set{\lambda}$.
+For any $\lambda\in\reals^n$, \cref{shift} says that $\P_\lambda^B$ is $\eta_\kk^{B_0^T}(\P_{\lambda'}^{B_0})$ for $\lambda'=\eta_\kk^{B_0^T}(\lambda)$.
+Every exchange matrix of finite type admits a maximal red sequence, so \cref{P point} applies to say that $\P_{\lambda'}^{B_0}=\set{\lambda'}$.
+Therefore $\P_\lambda^B=\set{\lambda}$.
+
+If $B$ has at most one column of zeros, then also $B_0$ has at most one column of zeros.
+Let $\tB$ be any extension of $B$ and let $\tB_0=\mu_\kk(\tB)$, which is salient by \cref{bip sal}.
+For any $\lambda\in\reals^m$, \cref{shift extended} says that $\P_\lambda^\tB$ is $\eta_\kk^{\BB_0^T}(\P_{\lambda'}^{\tB_0})$ for $\lambda'=\eta_\kk^{\BB_0^T}(\lambda)$.
+Again, \cref{P point} applies to say that $\P_{\lambda'}^{\tB_0}=\set{\lambda'}$, so $\P_\lambda^\tB=\set{\lambda}$.
 \end{proof}
 
 
@@ -1089,11 +1133,12 @@ Every exchange matrix of finite type admits a maximal red sequence, so \cref{P p
 
 \section{Dominance regions in affine type}
 An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
-The main results of this paper are the following theorem and a version (\cref{affine main extended}) for extended exchange matrices. \sayN{hopefully}
+We will prove the following theorems. \sayN{Probably should state versions for extended exchange matrices here.  If we get everything we want, we can say that these theorems completely characterize dominance regions in affine type.}
 
 \begin{theorem}\label{affine P point}  
-Suppose $B$ is an exchange matrix of affine type.
-If $t$ is a seed in the exchange graph for $B;t_0$ and $\lambda\in\Cone^{B;t_0}_t$, then $\P^B_\lambda=\set{\lambda}$.
+Suppose $\tB$ is an extended exchange matrix whose underlying exchange matrix $B$ is of affine type.
+%Suppose $B$ is an exchange matrix of affine type and suppose $\tB$ is any extension of $B$.
+If $\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_\lambda=\set{\lambda}$.
 \end{theorem}
 
 \begin{theorem}\label{affine main}
@@ -1101,16 +1146,13 @@ Suppose $B$ is an exchange matrix of affine type.
 If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
-To prove these theorems, we quote some known results about the affine case and prove some new ones.
-We begin with some tools to show that a given matrix is not of affine type and to determine exchange relations.
-Then we quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
+To prove these theorems, we first gather some assorted tools, and then quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
 
 \subsection{Some tools}
-We now gather some tools that will be useful in the rest of the section.
-These tools include ways to show that certain exchange matrices are not of affine type by considering some small submatrices, as well as some details about exchange relations with principal coefficients.
+In this section, we gather some tools that we will use later to show that certain exchange matrices are not of affine type and to determine certain exchange matrices.
 
 \subsubsection{Mutation-finite exchange matrices}\label{mut fin sec}
-An exchange matrix $B$ is \newword{mutation-finite} if only finitely matrices can be obtained by $B$ arbitrary sequences of mutations.
+An exchange matrix $B$ is \newword{mutation-finite} if only finitely many different matrices can be obtained from $B$ by arbitrary sequences of mutations.
 The following \lcnamecref{mut fin 2x2} is \cite[Theorem~2.8]{FeShTu}.  \sayN{Cluster algebras of finite mutation type via unfoldings}
 
 \begin{theorem}\label{mut fin 2x2}
@@ -1124,9 +1166,9 @@ In fact, the following stronger statement holds \cite[Theorem~3.5]{Seven} \sayN{
 An acyclic $n\times n$ exchange matrix with $n\ge3$ is mutation-finite if and only if its underlying Cartan matrix is of finite or affine type.
 \end{theorem}
 
-We also point out a well-known fact.  \sayN{Surely this is well known!  Reference?}
-The \lcnamecref{mut fin sub} holds because, for any subset $I$ of $\set{1,\ldots,n}$, and any sequence $\kk$ of indices in $I$, if $B'=[b'_{ij}]=\mu_\kk(B)$, then $\mu_\kk([b_{ij}]_{i,j\in I})=[b'_{ij}]_{i,j\in I}$.
-(The analogous fact for 
+We also point out the following well known fact,  \sayN{Surely this is well known!  Reference?}
+which holds because, for any subset $I$ of $\set{1,\ldots,n}$, and any sequence $\kk$ of indices in $I$, if $B'=[b'_{ij}]=\mu_\kk(B)$, then $\mu_\kk([b_{ij}]_{i,j\in I})=[b'_{ij}]_{i,j\in I}$.
+%(The analogous fact for 
 
 \begin{proposition}\label{mut fin sub}
 Suppose $B$ is an $n\times n$ exchange matrix.
@@ -1139,7 +1181,7 @@ If $B$ is mutation-finite then, for every subset $I$ of $\set{1,\ldots,n}$, the 
 %\end{proof}
 
 \subsubsection{Growth of cluster algebras}\label{growth sec}
-The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a fixed mutation distance from some initial seed.
+The \newword{growth} of a cluster algebra is the asymptotic behavior of the function that counts the number of seeds within a given mutation distance from some initial seed.
 Some facts about growth will be useful.
 
 First, beyond rank $2$, the notion of affine type has the following intrinsic characterization.
@@ -1149,14 +1191,14 @@ Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see t
 
 Second, given an $n\times n$ exchange matrix $B=[b_{ij}]$ and a subset $I\subseteq\set{1,\ldots,n}$, if the submatrix $[b_{ij}]_{i,j\in I}$ has exponential growth, it is immediate that that $B$ has exponential growth as well.
 
-Finally, we will need that fact that non-acyclic skew-symmetrizable $3\times3$ exchange matrices with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ have exponential growth.
-One can check that such matrices have the property that every single step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
+Finally, a non-acyclic skew-symmetrizable $3\times3$ exchange matrix with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ has exponential growth.
+To see why, one can check that such matrices have the property that every single-step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
 
 \subsubsection{Exchange relations in the principal coefficients case}\label{exch rel sec}
-We pause to prove a necessary fact about exchange relations, assuming basic background from \cite[Sections~2 \&~3]{ca4}.
+%We pause to prove a necessary fact about exchange relations, assuming basic background from \cite[Sections~2 \&~3]{ca4}.
 %For a moment we work in the most general setting of (normalized) cluster algebras in the sense of \cite[Definition~2.3]{ca4}.
 %(See also \cite[Remark~2.7]{ca4}.)
-Two cluster variables $x$ and $x'$ in a cluster pattern of rank $n$  are \newword{exchangeable} if there is no cluster containing both $x$ and $x'$ but there exists a set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x}$ is a cluster and $\Gamma\cup\set{x'}$ is a cluster.
+Two cluster variables~$x$ and $x'$ in a cluster pattern of rank $n$  are \newword{exchangeable} if there is no cluster containing both $x$ and $x'$ but there exists a set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x}$ is a cluster and $\Gamma\cup\set{x'}$ is a cluster.
 The exchange relation relating $x$ and $x'$ might, in principle, depend on $\Gamma$, but we show that, in the case of principal coefficients, it only depends on $x$ and $x'$.
 
 \begin{lemma}\label{exch ind}  \sayN{More generally, we may as well state this for signed nondegenerating coefficients, if we define that term.}
@@ -1168,10 +1210,10 @@ It involves the same two cluster monomials with the same coefficients.
 Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
 Sign-coherence of $C$-vectors (explained earlier in \cref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
 This is a cluster monomial, and it is known that different cluster monomials have different $\g$-vectors (as conjectured in \cite[Conjecture~7.10]{ca4} and proved as \cite[Theorem~2.13]{GHKK}).
-We see that $M$ is the same cluster monomial in 
-Thus any exchange relation for $x$ and $x'$ writes $xx'$ as $M$ plus another monomial $N$.
+We see that $M$ is the same cluster monomial in every exchange relation for $x$ and~$x'$.
+Any exchange relation for $x$ and $x'$ writes $xx'$ as $M$ plus another monomial $N$.
 But then $N=xx'-M$, so every exchange relation for $x$ and $x'$ also has the same~$N$.
-But $N$ is a monomial in the coefficient variables times a cluster monomial, and again, it is the same cluster monomial in any exchange relation and the same coefficient monomial.
+Now $N$ is a monomial in the coefficient variables times a cluster monomial, and again, it is the same cluster monomial in any exchange relation and the same coefficient monomial.
 \end{proof}
 
 \begin{remark}\label{4.3}
@@ -1180,17 +1222,10 @@ It appears that, to extend \cref{exch ind} to arbitrary coefficients, one needs 
 \end{remark}
 
 
-
-
-
-
-
-
-
 \subsection{Acyclic seeds of affine type}\label{acyc sec}
 Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has an acyclic seed whose exchange matrix is an orientation of a Cartan matrix of affine type.
 (Indeed, the analogous observation is true for cluster algebras of finite type.)
-The associated Cartan matrix of affine type allows us to model $\g$-vectors, $\dd$-vectors, and the mutation fan by almost-positive Schur roots model, sortable elements and (doubled) Cambrian fans.
+The associated Cartan matrix of affine type allows us to model $\dd$-vectors, $\g$-vectors, and the mutation fan by almost-positive Schur roots, sortable elements and (doubled) Cambrian fans.
 We now quote some useful results in this setting and prove some additional facts.
 More details can be found in \cite{affdenom,framework,afframe,affscat}.
 
@@ -1201,23 +1236,21 @@ Let $\delta$ be the shortest positive imaginary root in the root system $\RS$ as
 Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples=\set{\alpha_1,\ldots,\alpha_n}$ be the simple roots of $\RS$.
 The \newword{support} of a root is the set of simple roots appearing in an expression for the roots as a linear combination of simple roots.
 
-The matrix $B_0$ is skew-symmetrizable, \sayN{Already used this concept earlier without defining it.}
-meaning that there exist positive constants $d_1,\ldots,d_n$ such that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$.
-These constants also symmetrize $A_0$, meaning that the entries $a_{ij}$ of $A_0$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$.
-The \newword{(skew-)symmetrizing matrix} is the diagonal matrix $D$ with diagonal entries $d_1,\ldots,d_n$.
+We write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
+These constants also symmetrize~$A_0$ (meaning that the entries $a_{ij}$ of $A_0$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
 The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
-Thus the matrix $D$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
-Furthermore, the matrix $DBD^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $DBD^{-1}=-B^T$.
-Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B^T}=DF_{\ep,k}^BD^{-1}$.
+Thus the diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+Furthermore, the matrix $\Sigma B\Sigma^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $\Sigma B\Sigma^{-1}=-B^T$.
+Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B^T}=\Sigma F_{\ep,k}^B\Sigma^{-1}$.
 
 Let $V$ be the real vector space spanned by the roots and let $V^*$ be the dual space.
 The simple co-roots $\Simples\ck$ are also in $V$ (each being a positive scaling of the corresponding simple root).
 Given $\beta\in V$, the notation $\beta^\perp$ indicates the set of vectors in $V^*$ that pair to $0$ with $\beta$. 
-We will identify $V^*$ with the vector space $\reals^n$ that appears elsewhere in the paper by identifying the dual basis of the simple co-roots (the \newword{fundamental weights}) with the standard unit basis vectors of $\reals^n$.
+We will identify $V^*$ with the vector space $\reals^n$ that appears elsewhere in the paper by identifying the \newword{fundamental weights} (the dual basis to the simple co-roots) with the standard unit basis vectors of $\reals^n$.
 
 The Cartan matrix $A_0$ is the matrix of a bilinear form on $V$, in the simple-roots basis on the right and the simple-co-roots basis on the left.
 Each real root defines a reflection that negates the root and fixes the hyperplane that is orthogonal to the root (with orthogonality defined in terms of $K$).
-Let $W$ be the Weyl group generated by these reflections (an affine Coxeter  group with simple reflections $s_1,\ldots,s_n$).
+Let $W$ be the Weyl group generated by these reflections (an affine Coxeter  group with simple reflections $s_1,\ldots,s_n$ corresponding to the simple roots $\alpha_1,\ldots,\alpha_n$).
 The action of $W$ on $V$ fixes~$\delta$.
 Let $c$ be the Coxeter element that can be read from $B_0$ by multiplying the simple reflections with $s_i$ preceding $s_j$ whenever $b_{ij}>0$.
 Because we have indexed $B_0$ so that its $ij$-entry is nonnegative whenever $i<j$, we have $c=s_1\cdots s_n$.
@@ -1249,7 +1282,7 @@ This bilinear form is skew-symmetric because $B$ is skew-symmetrizable and the s
 The following lemma is a version of \cite[Lemma~3.8]{typefree}.
 
 \begin{lemma}\label{omega s}
-$\omega_{s_1cs_1}(s_1x,s_1y)=\omega_c(x,c)=\omega_{s_ncs_n}(s_nx,s_ny)$ for any $x$ and $y$ in $V$.
+$\omega_{s_1cs_1}(s_1x,s_1y)=\omega_c(x,c)=\omega_{s_ncs_n}(s_nx,s_ny)$ for any $x$ and $y$ in~$V$.
 \end{lemma}
 
 Applying \cref{omega s} $n$ times, we obtain the following lemma.
@@ -1564,7 +1597,7 @@ Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{m-1}^T}$.
 If the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is strictly negative, then the $k_m$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{m-1}}_{k_m}$ acts on $\lambda$ by the same linear map as is acts on $-B_{m-1}\delta^B_{m-1}$, given, in the basis of fundamental weights, by the matrix $E_{-,k_m}^{B_{m-1}}$.
 The map taking $\delta^{B_{m-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_m}^{B_{m-1}}$.
 Recall that the fundamental weights are dual to the simple \emph{co-roots}.
-Recall also that the matrix $D$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+Recall also that the diagonal matrix $\Sigma$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
 We compute
 \begin{align*}
 \br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}
@@ -1609,9 +1642,12 @@ The $\g$-vector cones visited by this define a maximal green sequence.
 
 
 \begin{proof}[Proof of \cref{affine P point}]
-We first construct a salient exchange matrix $B_0$ mutation equivalent to $B$.
+We first construct a salient exchange matrix $B_0$ mutation equivalent to $B$ such that any extension of $B_0$ is salient.
+
 Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
-When this graph is an oriented tree, source-sink moves make a bipartite (and therefore salient) exchange matrix $B_0$ mutation equivalent to $B$.
+When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
+Since Cartan matrices of affine type have connected Dynkin diagrams, $B$ has no zero columns, and therefore $B_0$ has no zero columns.
+\cref{bip sal} says that any extension of $B_0$ is salient.
 
 Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B'_0$ whose oriented graph has exactly one source and exactly one sink.
 For convenience, we can reindex $B'_0$ so that its source is $1$, the sink is $n$, and the directed graph for $B'_0$ has ${1\to2\to\cdots\to k\to n}$ and $1\to k+1\to k+2\to\cdots\to n$ for some $k$ with $1\le k<n$.
@@ -1639,7 +1675,12 @@ n-k\text{ even:}\qquad
 &x_1>x_{k+2}>x_{k+4}\cdots>x_{n-2}>-x_n\\
 &-x_2>x_{k+1}>x_{k+3}>\cdots>x_{n-1}>-x_k
 \end{align*}
-We see that for any combination of the parities of $k$ and $n-k$, the inequalities can all be satisfied, and we conclude that $B_0$ is salient in every case.
+We see that for any combination of the parities of $k$ and $n-k$, the inequalities can all be satisfied, and we conclude that $B_0$ is salient for every choice of $n$ and~$k$.
+
+Since $B_0$ is skew-symmetric, the equations describing its kernel are exactly the same as the inequalities above, but with equality replacing strict inequality everywhere.
+By inspection of those equations, we see that every nonzero element of the kernel of $B_0$ has entries with opposite signs.
+Thus there is no nonzero element of the kernel with nonnegative entries.
+\cref{extend salient} says that every extension of $B_0$ is salient.
 
 We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} to see that every exchange matrix of affine type admits a maximal red sequence.
 \end{proof}
@@ -2845,13 +2886,13 @@ The assertions about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
 We have proved the \lcnamecref{special mut} in the case of type $C_2^{(1)}$.
 
 The matrices of type $A_4^{(2)}$ shown in \cref{submat tab} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
-Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
+Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
 
 \noindent
 \textbf{Case 3.}
 The submatrix is of type  $G_2^{(1)}$ or $D_4^{(3)}$.
 In these cases, the associated root system has roots whose squared lengths are related by a factor of $3$.
-The classification of affine root systems thus implies that $n=3$, so that $B$ in fact it equals one of the submatrices shown in \cref{submat tab}.
+The classification of affine root systems thus implies that $n=3$, so that $B$ in fact equals one of the submatrices shown in \cref{submat tab}.
 For that reason, the computation is smaller in this case, and the indices $k,(n-1),n$ are $1,2,3$.
 
 We begin with type $G_2^{(1)}$.
@@ -3064,7 +3105,7 @@ We also see that if $x$ is a vector with entries $c_1,0,0$, then $\eta_\kk^{B^T}
 We compute $\eta_1^{\Comp(B)^T}$ by mutating $[0\,\,c_1]\overset{1}{\longrightarrow}[0\,\,-c_1]$, so $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$ as desired.
 
 The matrix of type $D_4^{(3)}$ in \cref{submat tab} is obtained from the matrix of type $G_2{(1)}$ by conjugating by a diagonal matrix with diagonal entries $3,1,1$.
-Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix $D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the case of type $D_4^{(3)}$.
+Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the case of type $D_4^{(3)}$.
 \end{proof}
 
 \cref{nonspecial mut,special mut} allow us to prove the following key fact.
