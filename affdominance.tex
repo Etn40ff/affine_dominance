@@ -1296,16 +1296,14 @@ Suppose $\RS$ is of affine type.
 If $\beta=c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$, then $\omega_c(\beta,\delta)\ge0$. 
 \end{proposition}
 \begin{proof}
-The hypothesis is that $\beta=(s_1\cdots s_n)^ps_1\cdots s_{k-1}\alpha_k$ for some $k\in\set{1,\ldots,n}$.
+The hypothesis is that $\beta=(s_1\cdots s_n)^ps_1\cdots s_{k-1}\alpha_k$ for some $k\in\set{1,\ldots,n}$ and $p\ge0$.
 We argue by induction on $np+k$.
 If $p=0$ and $k=1$, then $\beta=\alpha_1$ and $\omega_c(\alpha_1,\delta)\ge0$ because every entry of $B$ in row $1$ is nonnegative with at least one positive entry and $\delta$ has all simple root coordinates positive.
-Otherwise $s\beta=(s_2\cdots s_ns_1)^ps_2\cdots s_{k-1}\alpha_k$ if $k>1$ or $s\beta=(s_2\cdots s_ns_1)^{p-1}s_2\cdots s_n\alpha_1$ if $k=1$.
-In either case, $s\beta$ is of the form $(scs)^{p'}\gamma'$ for $\gamma'\in\TravProj{scs}$.
-By induction, $\omega_{scs}(s\beta,\delta)\ge0$, and since $s\delta=\delta$, \cref{omega s} completes the proof.
+Otherwise ${s\beta=(s_2\cdots s_ns_1)^ps_2\cdots s_{k-1}\alpha_k}$ if $k>1$ or $s\beta=(s_2\cdots s_ns_1)^{p-1}s_2\cdots s_n\alpha_1$ if $k=1$.
+In either case, $s_1\beta$ is of the form $(s_1cs_1)^{p'}\gamma'$ for $\gamma'\in\TravProj{s_1cs_1}$.
+By induction, $\omega_{s_1cs_1}(s_1\beta,\delta)\ge0$, and since $s_1\delta=\delta$, \cref{omega s} completes the proof.
 \end{proof}
 
-Every finite $c$-orbit of roots consists entirely of positive roots or entirely of negative roots.
-(See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2(5)]{afforb}.)
 %The following \lcnamecref{om del fin} is an immediate consequence of \cite[Proposition~2.16]{affdenom}, because the bilinear form $E_c$ in \cite[Proposition~2.16]{affdenom} satisfies $\omega_c(\beta,\beta')=E_c(\beta,\beta')-E_c(\beta',\beta)$.
 
 \begin{proposition}\label{om del fin}
@@ -1320,13 +1318,17 @@ Now \cref{omega c} says that $k\omega_c(x,\delta)=0$.
 The subspace consisting of vectors $x$ such that $\omega_c(x,\delta)=0$ has dimension $n-1$, and the subspace consisting of vectors in finite $c$-orbits also has dimension $n-1$ (for example, it contains $n-1$ linearly independent roots).
 \end{proof}
 
-Let $\RST{c}$ be the set of roots in $\RS$ that are in finite $c$-orbits.
+
+Every finite $c$-orbit of roots consists entirely of positive roots or entirely of negative roots.
+(See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2(5)]{afforb}.)
+Let $\RST{c}$ be the set of roots in~$\RS$ that are in finite $c$-orbits.
 These form a subsystem of $\RS$, in the sense that the set of real roots in $\RST{c}$ are closed under the reflections they define, and all imaginary roots are in $\RST{c}$.
 But $\RST{c}$ might not be a root system in the usual (Kac-Moody) sense.
 Rather, it is the product of $1$, $2$, or $3$ affine root systems of type $\afftype{A}$, living in a vector space that may be smaller than the sum of the ranks of the irreducible factor ($0$, $1$, or $2$ dimensions smaller):
 Each factor has a shortest positive imaginary root, and all of these are identified with $\delta$.
 (Thus $\RST{c}$ is a Kac-Moody root system only in the case where it has one of these components.)
 The set of simple roots of $\RST{c}$ is written as $\SimplesT{c}$.
+Any real root $\beta\in\RST{c}$ admits a unique expression as a linear combination of elements of $\SimplesT{c}$ and thus a well defined support $\SuppT(\beta)$ as a subset of $\SimplesT{c}$.
 The total number of roots in $\SimplesT{c}$ is $n-2$ plus the number of factors of $\RST{c}$.
 If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{c}$, then $\beta_0+\cdots+\beta_k=\delta$.
 These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
@@ -1334,7 +1336,7 @@ These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots
 Let $\APTre{c}$ be the set of positive roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.
 Let $\APT{c}=\APTre{c}\cup\set\delta$.
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
-The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables, with respect to the initial exchange matrix $B_0$.
+The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables \cite[Theorem~1.2]{affdenom}, with respect to the initial exchange matrix $B_0$.
 There is a notion \cite[Definition~4.3]{affdenom} of \newword{$c$-compatibility} of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
 Thus almost positive real Schur roots and $c$-compatibility model the $\dd$-vector fan (the fan obtained by replacing each cluster with the nonnegative linear span of its $\dd$-vectors).
 In addition to these $\dd$-vector cones, there are cones spanned by pairwise $c$-compatible sets that contain~$\delta$.
@@ -1358,8 +1360,10 @@ Two distinct roots $\alpha$ and $\beta$ in $\APTre{c}$ are $c$-compatible if and
 Thus roots $\alpha,\beta\in\APTre{c}$ are $c$-compatible if they are in different factors of $\RST{c}$, while
 $c$-compatibility of roots in the same factor can be understood by picturing their supports on a cycle.
 (The cycle consists of the simple roots the factor with edges connecting each $\beta$ to $c\beta$.)
-The roots appear as ``tubes'' in the cycle, and $c$-compatibility is the usual compatibility of tubes:
+The roots appear as ``tubes'' in the cycle (in the sense of graph associahedra), and $c$-compatibility is the usual compatibility of tubes:
 Either the tubes are nested or there is at least one vertex between them on both sides.
+%However, the representation theory literature uses the term ``tubes'' for the components
+However, this terminology conflicts with the representation theory literature use of the term ``tubes'', so we will avoid the term altogether.
 
 %There is a piecewise-linear map $\tau_c$ that induces an automorphism of $\Fan_c(\RS)$.
 %The map $\tau_c$ that agrees with $c$ on all but finitely many almost positive Schur roots and in particular agrees with $c$ on all roots in $\APT{c}$.
@@ -1373,15 +1377,14 @@ An \newword{imaginary $c$-cluster} is a $c$-cluster that contains $\delta$.
 Imaginary $c$-clusters have $n-1$ roots and span cones outside the $\dd$-vector fan.
 
 There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
-The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, which coincides in this case with the transposed cluster scattering fan of $B_0$ and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}.
-The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to cones of $\nu_c(\Fan_c(\RS))$ that comprise the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call that \newword{imaginary wall}~$\d_\infty$.
+The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}.
+The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to the \newword{imaginary cones} of $\nu_c(\Fan_c(\RS))$.
+These cover the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call that \newword{imaginary wall}~$\d_\infty$.
 The imaginary wall is contained in $\delta^\perp$.
-The nonzero maximal cones of $\nu_c(\Fan_c(\RS))$ that are contained in $\d_\infty$ are called the \newword{imaginary cones}.
 The vector $\nu_c(\delta)$ spans a ray called the \newword{imaginary ray} that is in every imaginary cone.
 This is the only ray of $\nu_c(\Fan_c(\RS))$ that is not spanned by the $\g$-vector of a cluster variable.
 The following \lcnamecref{nu delta} is \cite[Lemma~5.9]{affscat}, written in different notation.
-(There is a bilinear form $\omega_c(\,\cdot\,,\,\cdot\,)$ on $V$ whose matrix is $B_0$ with respect to the simple coroots basis on the left and the simple root basis on the right.
-The statement in \cite{affscat} is phrased in terms of $\omega_c(\,\cdot\,,\delta)$.)
+(The statement in \cite{affscat} is phrased in terms of $\omega_c(\,\cdot\,,\delta)$.)
 
 \begin{lemma}\label{nu delta}  
 Suppose $B_0$ is an acyclic exchange matrix of affine type.
@@ -1395,6 +1398,9 @@ The following propositions are part of \cite[Proposition~7.31(4)]{affscat} and \
 Suppose $B_0$ is an acyclic $n\times n$ exchange matrix of affine type.
 The map $\eta^{B_0^T}_{12\cdots n}$ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
 \end{proposition}
+
+\sayN{I inserted the following (and something else, I can't remember) into \{affscat\} after we submitted it to CR.  It costs us just over a page there but would be a huge pain to do it here.  Hopefully the CR people don't get bent out of shape about it, or maybe they reject it before we even tell them.  :)}
+
 
 \begin{proposition}\label{delta limit eta}
 Suppose $x\in V^*\setminus\d_\infty$.
@@ -1454,7 +1460,7 @@ For each $c$-sortable element $v$, define a cone
 \[\Cone_c(v)=\bigcap_{\beta \in C_c(v)}\set{x\in V^*:\br{x,\beta} \geq 0}.\]
 %(Since each $C_c^i(v)\ck$ is a scaling of $C_c^i(v)$, we could equally well write $\bigcap_{\beta\ck\in C_c(v)\ck}\set{x\in V^*:\br{x,\beta\ck} \geq 0}$).
 In general acyclic (but not necessarily affine) type, the union of these cones $\Cone_c(v)$ and their faces, over all $c$-sortable elements $v$, is a fan called the \newword{$c$-Cambrian fan}, which is a subfan of the $\g$-vector fan in $V^*$.
-In particular, each $c$-sortable element $v$ specifies a unique seed.
+In particular, each $c$-sortable element~$v$ specifies a unique seed.
 The $C$-vectors of this seed are encoded in the $c$-sorting word for~$v$.
 Specifically, the $C$-vector in position $i$ is the integer vector given by the simple-root coordinates of $C_c^i(v)$.
 (See \cite[Therem~1.1]{framework} and \cite[Theorem~5.12]{framework}.)
@@ -1462,7 +1468,8 @@ The simple co-root coordinates of $C_c^i(v)\ck$ give the $C$-vector of the seed 
 Thus by \cite[Theorem~1.1]{framework}, the exchange matrix at the seed associated to $v$ has $ij$-entry $\omega_c(C_c^i(v)\ck,C_c^j(v))$.
 
 When $B$ is of finite type (equivalently, when $W$ is finite), the $c$-Cambrian fan coincides with the $\g$-vector fan, but otherwise (when $W$ is infinite), the $c$-Cambrian fan is not complete and is a proper subfan of the $\g$-vector fan.
-When $B$ is of affine type (equivalently, when $W$ is of affine type), the $\g$-vector fan is the \newword{doubled $c$-Cambrian fan}: the union of the $c$-Cambrian fan and the image of the $c^{-1}$-Cambrian fan under the antipodal fan. % (more briefly, the Cambrian fan and the \newword{opposite Cambrian fan}).
+When $B$ is of affine type (equivalently, when $W$ is of affine type), the $\g$-vector fan is the \newword{doubled $c$-Cambrian fan}: the union of the \mbox{$c$-Cambrian} fan and the image of the \mbox{$c^{-1}$-Cambrian} fan under the antipodal fan. % (more briefly, the Cambrian fan and the \newword{opposite Cambrian fan}).
+In particular, the $c$-Cambrian fan covers the open halfspace $\set{x\in V^*:\br{x,\delta}>0}$.
 
 \begin{proposition}\label{tack on c}
 Suppose $W$ is of affine type and suppose $v$ is a $c$-sortable element whose $c$-sorting word starts with $s_1\cdots s_n$.
@@ -1471,7 +1478,7 @@ Then $cv$ is $c$-sortable and its $c$-sorting word is $s_1\cdots s_n$ followed b
 \begin{proof}
 Let $a_1\cdots a_m$ be the $c$-sorting word for $v$.
 We first show that $s_na_1\cdots a_m$ is reduced.
-The amounts to showing that $\alpha_n\not\in\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,m}$.
+The means showing that $\alpha_n\not\in\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,m}$.
 Suppose to the contrary that $\alpha_n=a_1\cdots a_{k-1}\alpha(a_k)$ for some~$k$, where $\alpha(a_k)$ is the simple root associated to the simple reflection~$a_k$.
 Since $\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,n}$ equals $\TravProj{c}$ and $\alpha_n\in \TravInj{c}$, we must have $k>n$.
 But then \cref{c to pos} says that $a_{n+1}\cdots a_{k-1}\alpha(a_k)$ is negative, contradicting the fact that $a_{n+1}\cdots a_m$ is reduced.
@@ -1481,34 +1488,67 @@ Therefore, we see that $s_na_1\cdots a_m$ is the $(s_ncs_n)$-sorting word for $s
 Applying that fact $n$ times implies the proposition.
 \end{proof}
 
-\begin{proposition}\label{any B is sort}
-Suppose $B_0$ is an acyclic $n\times n$ exchange matrix of affine type and suppose $B$ is mutation equivalent to $B_0$.
-Then there exists a $c$-sortable element whose associated seed has exchange matrix $B$.
+\begin{proposition}\label{sort green}
+Suppose $B_0$ is an acyclic $n\times n$ exchange matrix of affine type.
+Let $v$ be a $c$-sortable element and let $\kk=k_m\cdots k_1$ be the \emph{reverse} of the sequence of indices in the $c$-sorting word for $v$.
+Then $\kk$ is a green sequence for $B_0$.
 \end{proposition}
 \begin{proof}
-Since $B$ is mutation equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t$ with $B$ as exchange matrix.
-Taking $x$ in the interior of $\Cone^{B_0;t_0}_t$, \cref{delta limit eta} says that $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$  for large enough $i$.
-That is, the automorphism $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ of $\nu_c(\Fan_c(\RS))$ maps $\Cone^{B_0;t_0}_t$ to $\Cone^{B_0;t_0}_{t'}$, where~$t'$ is a new seed associated with a $c$-sortable element.
-The map $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ acts as an initial seed mutation and thus $t'$ has the same exchange matrix $B$ as~$t$.
+Write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+\cref{any prefix} implies that each $t_i$ is associated to a $c$-sortable element.
+Each $t_{i+1}$ is obtained from $t_i$ by mutating in position $k_{i+1}$, the last letter of the $c$-sorting word associated to $t_{i+1}$.
+Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k_{i+1}}$ is unforced, and thus the $C$-vector at $t_i$ indexed by $k_{i+1}$ is positive.
 \end{proof}
+
+
+
+
+\begin{proposition}\label{any B is sort}
+Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
+Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.
+For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
+Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$.
+\end{proposition}
+\begin{proof}
+Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
+Taking $x$ in the interior of $\Cone^{B_0;t_0}_{t'}$, \cref{delta limit eta} says that $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$  for large enough~$i$.
+Thus $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ is in the $c$-Cambrian fan, and thus $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i\bigl(\Cone^{B_0;t_0}_{t'}\bigr)$ is a cone $\Cone^{B_0;t_0}_t$ for some seed $t$ associated to a $c$-sortable element $v$.
+The automorphism $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ of $\nu_c(\Fan_c(\RS))$ maps $\Cone^{B_0;t_0}_t$ to $\Cone^{B_0;t_0}_{t'}$.
+The map $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ acts as an initial seed mutation $\mu_{(12\cdots n)^i}$, which fixes $B_0$.
+If $\ll$ is the sequence of indices that mutates $t_0$ to $t'$, then $\ll(12\cdots n)^i$ mutates $t_0$ to $t$.
+We see that the exchange matrix at $t$ is $\mu_{\ll(12\cdots n)^i}(B_0)=\mu_\ll(B_0)=B$.
+
+Increasing $i$ in the previous paragraph means using \cref{tack on c} to replace~$v$ by a $c$-sortable element~$c^pv$.
+It is known \cite[Proposition~4.6]{afframe} that there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_j}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta<0}}$. 
+Thus we choose $i$ large enough (i.e. choose $p$ large enough) so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j\ge pn$.
+But for $0\le j\le pn$, the the prefix $a_1\cdots a_j$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
+By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_j}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_j$ to the positive cone.
+The resulting cone $\Cone^{B_0;t_0}_{t_j}$ is therefore contained in the Tits cone, so that every nonzero vector in $\Cone^{B_0;t_0}_{t_j}$ pairs strictly positively with $\delta$.
+The cone $\Cone^{B_0;t_0}_{t_j}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
+We see that the columns of $G_{t_j}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
+\end{proof}
+
+
+
 
 \subsection{General seeds of affine type}
 We now prove some facts about exchange matrices of affine type, without the requirement of acyclicity.
+\sayN{Also write what parts of the theorems we pro
+
+ve here... Not doing it yet because I hope there is still a coefficientful version of the line segment result.}
+
 Let $B$ be an exchange matrix of affine type.
-Then $B$ is mutation equivalent to some acyclic exchange matrix $B_0$ of affine type.
-Mutation maps $\eta_\kk^{B^T}$ are homeomorphisms and isomorphisms of mutation fans and also constitute initial seed mutations of $\g$-vectors.
+Then $B$ is mutation-equivalent to some acyclic exchange matrix $B_0$ of affine type.
+Mutation maps $\eta_\kk^{B^T}$ are homeomorphisms $V^*$ and isomorphisms of mutation fans and also constitute initial seed mutations of $\g$-vectors.
 Thus the following structure carries over from the acyclic seed:
-There is a unique \newword{imaginary ray}, the unique ray of the mutation fan that is not spanned by the $\g$-vector of a cluster variable.
+There is an \newword{imaginary ray}, the unique ray of the mutation fan that is not spanned by the $\g$-vector of a cluster variable.
 An \newword{imaginary cone} of $\F_{B^T}$ is a cone containing the imaginary ray.
 The maximal imaginary cones have codimension~$1$.
 The mutation fan $\F_{B^T}$ consists of the $\g$-vector fan of $B$ and the imaginary cones.
 Write $\d^B_\infty$ for the union of the imaginary cones.
 This is a finite union of cones of codimension $1$, and we will show that it is contained in a hyperplane.
 Thus we will again call $\d^B_\infty$ the \newword{imaginary wall}.
-In this section, we make some general statements about the imaginary ray and the imaginary wall.
-
-First, $\d^B_\infty$ is the image of $\d_\infty$ under the fan isomorphism $\eta_\kk^{B^T}$.
-Thus, the following lemma is immediate from \cref{shift,P in dinf}.
+Since $\d^B_\infty$ is the image of $\d_\infty$ under the fan isomorphism $\eta_\kk^{B^T}$, the following lemma is immediate from \cref{shift,P in dinf}.
 
 \begin{lemma}\label{P in dBinf}
 Suppose $B$ is of affine type.
@@ -1516,31 +1556,13 @@ If $\lambda\in\d^B_\infty$, then $\P^B_\lambda\subseteq\d^B_\infty$.
 \end{lemma}
 
 Let $B_0$ be an acyclic exchange matrix that is mutation-equivalent to $B$ and consider the cluster pattern with $B_0$ the seed at $t_0$.
-We will construct a seed $t$ with exchange matrix $B$ and a green sequence $\kk=k_m\cdots k_1$ for $B_0$ such that $\mu_\kk(B_0)=B$ and then establish some additional properties of $\kk$.
+We will construct a particular seed $t$ with exchange matrix $B$ and a green sequence $\kk=k_m\cdots k_1$ for $B_0$ that mutates $t_0$ to $t$ and then establish some additional properties of $\kk$.
 
 \cref{any B is sort} says there exists a $c$-sortable element $v$ whose associated seed has exchange matrix $B$.
-Let $\kk=k_m\cdots k_1$ be the \emph{reverse} of the sequence of indices in the $c$-sorting word for $v$.
-Then $\kk$ describes mutation from the initial seed $t_0$ to the seed $t$ associated to~$v$.
-Sorting words have the property that each prefix of the $c$-sorting word for a $c$-sortable element is itself the $c$-sorting word of a $c$-sortable element.
-Thus each $t_i$ is associated to a $c$-sortable element.
-Each $t_{i+1}$ is obtained from $t_i$ by mutating in position $k_{i+1}$, the last letter of the $c$-sorting word associated to $t_{i+1}$.
-Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k_{i+1}}$ is unforced, and thus the $k_{i+1}$-entry of the $C$-vector at $t_i$ is \emph{positive}.
-In other words,~$\kk$ is a green sequence for $B_0$.
-
-\sayN{I feel like we ought to be able to say something simpler, because $\delta^B$ should depend only on $B$, not on a particular seed associated to $B$.  Is it true that $\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ for any $t$ with $B_t=B$?  Even if we have to go through all this to get the properties we want, that would be a much nicer definition of $\delta^B$!}
-Write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-We will show that we can choose $v$ so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j=0,\ldots,m$, where $\delta$ is the imaginary root associated to~$B_0$.
-To do this, we apply \cref{tack on c} to replace $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.  
-Since $\mu_{1\cdots n}(B_0)=B_0$, $c^iv$ also has exchange matrix $B$ for~$i\ge0$.
-The corresponding sequence is $\kk(n\cdots1)^i$.
-By \cite[Proposition~4.6]{afframe}, there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_j}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta<0}}$. 
-Thus we can choose $i$ large enough so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j\ge in$.
-But for $0\le j\le in$, it is apparent from the characterization of $C$-vectors in terms of skips that the columns of $C_{t_j}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $v$ to the dominant chamber.
-Now \cite[Theorem~1.2]{NZ} says that $\bigl(C_t^{B_0;t_0}\bigr)^{-1}=\bigl(G_t^{-B_0^T;t_0}\bigr)^T$, so this cone is spanned by the columns of $G_{t_j}^{-B_0^T;t_0}$.
-Since the cone is contained in the Tits cone, the columns of $G_{t_j}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
-
-For this seed $t$ and green sequence $\kk$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.  \sayN{I feel like we ought to be able to say something simpler, because $\delta^B$ should depend only on $B$, not on a particular seed associated to $B$.  Is it true that $\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ for any $t$ with $B_t=B$?  Even if we have to go through all this to get the properties we want, that would be a much nicer definition of $\delta^B$.}
-The following proposition in particular implies that $\delta^B$ is well defined, in the sense that it depends only on $B$ and not on the specific choices we made.
+Let $\kk$ be the reverse of the sequence of indices in the $c$-sorting word for $v$ and write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+\cref{any B is sort} says further that $v$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j=0,\ldots,m$.
+\cref{sort green} says that $\kk$ is a green sequence for $B_0$.
+For such a choice of $v$ and $t$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.  The following proposition in particular implies that $\delta^B$ is well defined, in the sense that it depends only on $B$ and not on the specific choices we made.
 
 \begin{proposition}\label{delta is the man}
 Suppose $B$ is an exchange matrix of affine type.
@@ -1555,12 +1577,12 @@ All imaginary cones in $\F_{B^T}$ are contained in $(\delta^B)^\perp$.
 \end{proposition}
 
 \begin{proof}%[Proof of \cref{delta is the man}]
-Assertion~\ref{im ray pos} is true because we chose $t$ to make it true.
+Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries.
 
-Let $a_1\cdots a_m$ be the $c$-sorting word for $v$.
-\cref{any prefix} says that for any $\ell\in{0,1,\ldots,m}$, the prefix $a_1\cdots a_\ell$ is the $c$-sorting word for another $c$-sortable element $v_\ell$.
-The corresponding postfix of $\kk$ and the corresponding seed $t_\ell$ have the same properties we used to define $\delta^B$, so taking $B_\ell$ to be the exchange matrix at $t_\ell$, we can use $t_\ell$ to define $\delta^{B_\ell}$.
-Thus we can argue by induction on $m$ for the remaining assertions.
+Suppose $a_1\cdots a_m$ is the $c$-sorting word for $v$.
+\cref{any prefix} says that for any ${\ell\in\set{0,1,\ldots,m}}$, the prefix $a_1\cdots a_\ell$ is the $c$-sorting word for another $c$-sortable element $v_\ell$.
+The corresponding postfix of $\kk$ and the seed $t_\ell$ have the same properties we used to define $\delta^B$, so writing $B_\ell$ for the exchange matrix at $t_\ell$, we can use $t_\ell$ to define $\delta^{B_\ell}$.
+Thus we argue by induction on $m$ for the remaining assertions.
 
 Assertion~\ref{im ray} is true by \cref{nu delta} when $m=0$ (so that $t=t_0$ and $B=B_0$) because then $\delta^B=\delta$.
 By induction, $-B_{m-1}\delta^{B_{m-1}}$ is the shortest integer vector in the imaginary ray of $\F_{B_{m-1}^T}$.
@@ -1580,13 +1602,12 @@ Thus we must show that $\omega_c(C^{k_m}_c(v_{m-1})\ck,\delta)\ge0$.
 Since $C^{k_m}_c(v_{m-1})\ck$ is a positive scalar multiple of $C^{k_m}_c(v_{m-1})$, we need to check that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
 
 In the definition of $\delta^B$, we replaced a $c$-sortable element $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.
-We can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$.
-In particular, $c^jC^{k_m}_c(v_{m-1})=C^{k_m}_c(c^jv_{m-1})$ is a positive root for any $j\ge0$.
+Since we can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$, we know that $c^jC^{k_m}_c(v_{m-1})=C^{k_m}_c(c^jv_{m-1})$ is a positive root for any $j\ge0$.
 Thus \cref{who is pos} says that either $C^{k_m}_c(v_{m-1})$ is $c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$ or $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
 Thus \cref{om del} or \cref{om del fin} says that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
 We have proved Assertion~\ref{im ray}.
 
-Assertion~\ref{im hyp} is also true when $m=0$.
+Assertion~\ref{im hyp} is true when $m=0$.
 If $m>0$, then by induction, all imaginary cones in $\F_{B_{m-1}^T}$ are contained in $(\delta^{B_{m-1}})^\perp$.
 The imaginary cones in $\F_{B^T}$ are the images, under $\eta^{B^T_{m-1}}_{k_m}$, of the imaginary cones in $\F_{B_{m-1}^T}$.
 Every imaginary cone in $\F_{B_{m-1}^T}$ contains the imaginary ray, spanned by $-B_{m-1}\delta^B_{m-1}$.
@@ -1594,17 +1615,16 @@ We have previously shown that the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is non
 %More specifically, we showed that it is strictly negative unless $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
 Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{m-1}^T}$.
 
-If the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is strictly negative, then the $k_m$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{m-1}}_{k_m}$ acts on $\lambda$ by the same linear map as is acts on $-B_{m-1}\delta^B_{m-1}$, given, in the basis of fundamental weights, by the matrix $E_{-,k_m}^{B_{m-1}}$.
+If the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is strictly negative, then the $k_m$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{m-1}}_{k_m}$ acts on $\lambda$ (just as is acts on $-B_{m-1}\delta^B_{m-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_m}^{B_{m-1}}$.
 The map taking $\delta^{B_{m-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_m}^{B_{m-1}}$.
-Recall that the fundamental weights are dual to the simple \emph{co-roots}.
-Recall also that the diagonal matrix $\Sigma$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
-We compute
+The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\Sigma$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+Recalling the identity $(E_{\ep,k}^B)^T\Sigma=\Sigma F_{\ep,k}^B$ from \cref{acyc sec}, we compute
 \begin{align*}
 \br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}
 &=\br{E_{-,k_m}^{B_{m-1}}\lambda,F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}}\\
-&=(E_{-,k_m}^{B_{m-1}}\lambda)^TDF_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
-&=\lambda^T(E_{-,k_m}^{B_{m-1}})^TDF_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
-&=\lambda^TDF_{-,k_m}^{B_{m-1}}F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}=\lambda^TD\delta^{B_{m-1}}=\br{\lambda,\delta^{B_{m-1}}}=0.
+&=(E_{-,k_m}^{B_{m-1}}\lambda)^T\Sigma F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
+&=\lambda^T(E_{-,k_m}^{B_{m-1}})^T\Sigma F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
+&=\lambda^T\Sigma F_{-,k_m}^{B_{m-1}}F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}=\lambda^T\Sigma\delta^{B_{m-1}}=\br{\lambda,\delta^{B_{m-1}}}=0.
 \end{align*}
 
 If instead the $k_m$ entry of $-B_{m-1}\delta^B_{m-1}$ is zero then either linear map associated to $\eta^{B^T_{m-1}}_{k_m}$ takes $-B_{m-1}\delta^B_{m-1}$ to $-B\delta^B$, namely $E_{\ep,k_m}^{B_{m-1}}$ for $\ep\in\set{+,-}$.
@@ -1626,32 +1646,32 @@ Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above
 %\end{proof}4
 
 \cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ is contained in a hyperplane.
-We will use that fact to prove a proposition that is used to prove \cref{affine P point}.
+We will use that fact to prove a \lcnamecref{aff red} and then use that \lcnamecref{aff red} to prove \cref{affine P point}.
 
 \begin{proposition}\label{aff red}
 Suppose $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
 \end{proposition}
 \begin{proof}
 The matrix $B$ is of affine type if and only if $-B$ is of affine type, so it is enough to prove that every $B$ of affine type admits a maximal green sequence.
-The imaginary wall $\d^B_\infty$ is a union of convex cones, is contained in the hyperplane $\delta^B)^perp$, but is strictly smaller than that hyperplane.
+The imaginary wall $\d^B_\infty$ is a union of convex cones, is contained in the hyperplane $(\delta^B)^\perp$, but is strictly smaller than that hyperplane.
 (If the imaginary wall were the whole hyperplane, the $\g$-vector fan would be contained in a halfspace, but in the case where $B$ is acyclic, the $\g$-vector fan is dense in the whole space, and that property is preserved by mutation maps.) 
 For that reason, we can construct a maximal green sequence as follows:
-For any point $x$ in the positive cone, the line segment connecting $x$ to its negative~$-x$ goes through $0$, and thus we can move the segment an arbitrarily small amount to obtain a line segment from the positive cone to the negative cone that is contained in the interior of the $\g$-vector fan and doesn't pass through any codimension-$2$ faces of the $\g$-vector fan.
+For any point $x$ in the interior of the positive cone, we can move the line segment from $x$ to~$-x$ an arbitrarily small amount to obtain a line segment from the positive cone to the negative cone that is contained in the interior of the $\g$-vector fan and doesn't pass through any codimension-$2$ faces of the $\g$-vector fan.
 The $\g$-vector cones visited by this define a maximal green sequence.
 \end{proof}
 
 
 \begin{proof}[Proof of \cref{affine P point}]
-We first construct a salient exchange matrix $B_0$ mutation equivalent to $B$ such that any extension of $B_0$ is salient.
+We first construct an exchange matrix $B_0$ that is mutation-equivalent to $B$ such that any extension of $B_0$ is salient.
 
 Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
-When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation equivalent to $B$.
+When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation-equivalent to $B$.
 Since Cartan matrices of affine type have connected Dynkin diagrams, $B$ has no zero columns, and therefore $B_0$ has no zero columns.
 \cref{bip sal} says that any extension of $B_0$ is salient.
 
 Otherwise, the graph is a cycle, and source-sink moves lead to an exchange matrix $B'_0$ whose oriented graph has exactly one source and exactly one sink.
 For convenience, we can reindex $B'_0$ so that its source is $1$, the sink is $n$, and the directed graph for $B'_0$ has ${1\to2\to\cdots\to k\to n}$ and $1\to k+1\to k+2\to\cdots\to n$ for some $k$ with $1\le k<n$.
-The matrix $B'_0$ is also salient except when $n$ and $k$ are both even, but we perform one mutation on $B'_0$ to obtain a matrix that is salient for all $n$ and $k$.
+The matrix $B'_0$ is salient except when $n$ and $k$ are both even, but we perform one mutation on $B'_0$ to obtain a matrix that is salient for all $n$ and~$k$.
 
 Let $B_0$ be obtained from $B_0'$ by mutating at the sink.
 Thus the directed graph for $B_0$ has ${1\to2\to\cdots\to k\leftarrow n}$ and $1\to k+1\to k+2\to\cdots\to n-1\leftarrow n$ for some $k$ with $1\le k<n$.
@@ -1679,10 +1699,9 @@ We see that for any combination of the parities of $k$ and $n-k$, the inequaliti
 
 Since $B_0$ is skew-symmetric, the equations describing its kernel are exactly the same as the inequalities above, but with equality replacing strict inequality everywhere.
 By inspection of those equations, we see that every nonzero element of the kernel of $B_0$ has entries with opposite signs.
-Thus there is no nonzero element of the kernel with nonnegative entries.
-\cref{extend salient} says that every extension of $B_0$ is salient.
+Thus no nonzero element of the kernel has nonnegative entries, so \cref{extend salient} says that every extension of $B_0$ is salient.
 
-We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} to see that every exchange matrix of affine type admits a maximal red sequence.
+We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} for the existence of a maximal red sequence.
 \end{proof}
 
 
@@ -1820,7 +1839,7 @@ If a submatrix in \cref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_
 	\end{table}
 
 %We now prepare to prove \cref{neigh B} as a series of propositions.  
-Fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type that is mutation equivalent to $B$ and let $c$ be the corresponding Coxeter element.
+Fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type that is mutation-equivalent to $B$ and let $c$ be the corresponding Coxeter element.
 It is apparent that condition~\eqref{neigh detailed} implies condition~\eqref{aff 2} in \cref{neigh B}, and the following proposition proves that condition~\eqref{aff 2} implies condition~\eqref{neigh}.
 \begin{proposition}\label{aff 2 block}
 If $B$ is of affine type and there are indices $i$ and $j$ such that $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type, then $B$ is a neighboring exchange matrix.
