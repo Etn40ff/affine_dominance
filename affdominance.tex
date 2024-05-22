@@ -1733,29 +1733,35 @@ This is true for all $\kk$, so $\P^B_\lambda\supseteq\set{\lambda+aB\delta^B:a\g
 
 %\subsection{Neighboring exchange matrices}
 \subsection{Neighboring seeds}
-In a cluster pattern of affine type, a seed \newword{neighboring the imaginary wall} (usually shortened to a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
-The designation of a seed as neighboring is independent of the choice of initial seed.
-In this section, we characterize the exchange matrices of neighboring seeds, taking advantage of facts that can be obtained in the almost positive Schur roots model.
-We will call these exchange matrices \newword{neighboring exchange matrices}.
-Since the $\g$-vector fan is the subfan of $\F_{B^T}$ consisting of all full-dimensional cones and their faces, we can describe neighboring exchange matrices as follows:
-An exchange matrix of affine type is neighboring if and only if the imaginary cone in $\F_{B^T}$ shares $n-2$ rays with the imaginary wall in $\F_{B^T}$.
+In a cluster pattern of affine type, a seed \newword{neighboring the imaginary wall} (or simply a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
 
-\begin{lemma}\label{neigh neg and T}
-The property of an exchange matrix being of affine type and neighboring is preserved by transpose and preserved by negating the matrix.
+\begin{lemma}\label{neigh B only}
+The property that a seed $t$ is neighboring depends only on the exchange matrix at $t$, not on the specific seed $t$ or on the choice of initial seed $t_0$.
 \end{lemma}
 \begin{proof}
-The property of an exchange matrix being of affine type is preserved by transpose because the property of a Cartan matrix being of affine type is preserved by transpose.
-The property of an exchange matrix being of affine type is preserved by negating the matrix because negating does not change the underlying Cartan matrix.
-
-We have already seen that $-B^T$ is a rescaling of $B$, so $-B$ is a rescaling of $B^T$.
-Thus \cite[Proposition~7.8(3)]{universal} says that $\F_{-B}$ and $\F_{B^T}$ are related by a linear map.
-By \cite[Proposition~7.1]{universal}, $\F_B$ and $\F_{-B}$ are related by the antipodal map and $\F_{-B^T}$ and $\F_{B^T}$ are related by the antipodal map.
-We see that negating and transposing preserves the property of an affine exchange matrix being neighboring.
+Suppose $t_0$ and $t$ are seeds in a cluster pattern of affine type, choose $\kk$ such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Let $B_0$ be the exchange matrix at $t_0$ and let $B$ be the exchange matrix at $t$.
+Then $\eta^{B^T}_\kk$ is an isomorphism from $\F_{B_0^T}$ to $\F_{B^T}$ sending $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B;t}$, which is the positive cone.
+Thus $B$ is neighboring if and only if the positive cone in $\F_{B^T}$ shares $n-2$ rays with the imaginary wall in $\F_{B^T}$.
+This is a property that depends only on~$B$.
 \end{proof}
 
-We will call column $i$ of an exchange matrix $B$ a \newword{quasi-leaf} if column $i$ has at most two nonzero entries, and, if column $i$ has nonzero entries in distinct indices $j$ and $k$, then the restriction of $B$ to rows and columns $i$, $j$, and $k$ is $\pm\begin{bsmallmatrix*}[r]0&1&-1\\-1&0&1\\1&-1&0\end{bsmallmatrix*}$.
-It will also be convenient, in describing block decompositions of matrices, to allow \newword{empty matrices}, meaning matrices that have $0$ columns and/or $0$ rows while possibly formally having a nonzero number of rows or columns.
-Thus, for example, a ``$0\times 2$ matrix''.)
+In this section, we characterize \newword{neighboring exchange matrices}, the exchange matrices of neighboring seeds.
+
+\begin{lemma}\label{neigh neg and T}
+The property of an exchange matrix being of affine type and being neighboring is preserved by transpose and preserved by negating the matrix.
+\end{lemma}
+\begin{proof}
+An exchange matrix $B$ of affine type has $-B$ and $B^T$ of affine type because mutation commutes with transpose and negation, because $A$ is of affine type if and only if $A^T$ is, and because $B$ and $-B$ have the same underlying Cartan matrix.
+
+We have already seen that $-B^T$ is a rescaling of $B$, so \cite[Proposition~7.8(3)]{universal} says that $\F_B$ and $\F_{B^T}$ are related by a linear map.
+Also, \cite[Proposition~7.1]{universal} says that $\F_B$ and $\F_{-B}$ are related by the antipodal map.
+These linear maps preserve the property that the positive cone shares $n-2$ rays with the imaginary wall.
+\end{proof}
+
+We call column $i$ of an exchange matrix $B$ a \newword{quasi-leaf} if column $i$ has at most two nonzero entries and, if $b_{ij}$ and $b_{ik}$ are both nonzero, then the restriction of $B$ to rows and columns $i$, $j$, and $k$ is $\pm\begin{bsmallmatrix*}[r]0&1&-1\\-1&0&1\\1&-1&0\end{bsmallmatrix*}$.
+In describing block decompositions of matrices, we allow \newword{empty blocks}, meaning blocks with $0$ columns and/or $0$ rows.
+Thus, for example, a ``$0\times 2$ block'' or a ``$0\times 0$ block''.
 
 \begin{theorem}\label{neigh B}
 Suppose $B$ is an exchange matrix of affine type.
@@ -1780,11 +1786,11 @@ where $B_{44}$ is a rank-$2$ exchange matrix of affine type and the following co
 \item
 $B_{\ell\ell}$ is either a $0\times0$ block or an exchange matrix of finite type A; % (indexed with $B_{11}$, $B_{22}$, and $B_{33}$ in order of increasing size),
 \item
-If $B_{\ell\ell}$ is nonempty, then its last column is a quasi-leaf;
+If $B_{\ell\ell}$ is nonempty, then its last column is a quasi-leaf of $B_{\ell\ell}$;
 \item
-If $B_{\ell4}$ is nonempty, then it is nonzero only in the last row;
+If $B_{\ell4}$ is nonempty, then it is nonzero only in its last row;
 \item
-If $B_{4\ell}$ is nonempty, then it is nonzero only in the last column; and
+If $B_{4\ell}$ is nonempty, then it is nonzero only in its last column; and
 \item
 If $B_{\ell4}$ is nonempty (equivalently if $B_{4\ell}$ is nonempty), then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{submat tab}.
 \end{itemize}
@@ -1795,51 +1801,51 @@ If a submatrix in \cref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, or $D_
 	\begin{table}
 	\caption{Possible submatrices}
 	\label{submat tab}	
-	\begin{center}
+%	\begin{center}
 	\begin{tabular}{|cc|cc|}
 	Type & matrix & Type & matrix \\
 	\hline & & & \\[-1ex]
-	$A_{2}^{(1)}$ & $\left[\begin{array}{rrr}
+	$A_{2}^{(1)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 1 & -1 \\
 	-1 & 0 & 2 \\
 	1 & -2 & 0
-	\end{array}\right]$ & & \\[4ex]
-	$C_{2}^{(1)}$ & $\left[\begin{array}{rrr}
+	\end{bsmallmatrix*}$ & & \\[4ex]
+	$C_{2}^{(1)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 2 & -2 \\
 	-1 & 0 & 2 \\
 	1 & -2 & 0
-	\end{array}\right]$ &
-	$D_{3}^{(2)}$ & $\left[\begin{array}{rrr}
+	\end{bsmallmatrix*}$ &
+	$D_{3}^{(2)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 1 & -1 \\
 	-2 & 0 & 2 \\
 	2 & -2 & 0
-	\end{array}\right]$ \\[4ex]
-	$G_2^{(1)}$ & $\left[\begin{array}{rrr}
+	\end{bsmallmatrix*}$ \\[4ex]
+	$G_2^{(1)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 3 & -3 \\
 	-1 & 0 & 2 \\
 	1 & -2 & 0
-	\end{array}\right]$ &
-	$D_4^{(3)}$ & $\left[\begin{array}{rrr}
+	\end{bsmallmatrix*}$ &
+	$D_4^{(3)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 1 & -1 \\
 	-3 & 0 & 2 \\
 	3 & -2 & 0
-	\end{array}\right]$ \\[4ex]
-	$A_{4}^{(2)}$ & $\left[\begin{array}{rrr}
+	\end{bsmallmatrix*}$ \\[4ex]
+	$A_{4}^{(2)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 1 & -2 \\
 	-2 & 0 & 4 \\
 	1 & -1 & 0
-	\end{array}\right]$ &
-	$A_{4}^{(2)}$ & $\left[\begin{array}{rrr}
+	\end{bsmallmatrix*}$ &
+	$A_{4}^{(2)}$ & $\begin{bsmallmatrix*}[r]
 	0 & 2 & -1 \\
 	-1 & 0 & 1 \\
 	2 & -4 & 0
-	\end{array}\right]$ 
+	\end{bsmallmatrix*}$ 
 	\end{tabular}
-	\end{center}	
+%	\end{center}	
 	\end{table}
 
 %We now prepare to prove \cref{neigh B} as a series of propositions.  
-Fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type that is mutation-equivalent to $B$ and let $c$ be the corresponding Coxeter element.
+In what follows, fix an acyclic $n\times n$ exchange matrix $B_0$ of affine type that is mutation-equivalent to $B$ and let $c$ be the corresponding Coxeter element.
 It is apparent that condition~\eqref{neigh detailed} implies condition~\eqref{aff 2} in \cref{neigh B}, and the following proposition proves that condition~\eqref{aff 2} implies condition~\eqref{neigh}.
 \begin{proposition}\label{aff 2 block}
 If $B$ is of affine type and there are indices $i$ and $j$ such that $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type, then $B$ is a neighboring exchange matrix.
@@ -1848,8 +1854,8 @@ If $B$ is of affine type and there are indices $i$ and $j$ such that $\begin{bsm
 \begin{proof}
 We use \cite[Corollary~4.18]{afframe}, which applies to the acyclic affine exchange matrix $B_0$.
 The notation $\DF_c$ in \cite{afframe} refers to the doubled Cambrian fan, which coincides with the $\g$-vector fan \cite[Corollary~1.3]{afframe}.
-\cite[Corollary~4.18]{afframe} says, among other things, that if an $(n-2)$-dimensional cone $F$ of the $\g$-vector fan of $B_0$ is contained in infinitely many maximal cones of the $\g$-vector fan, then $F$ is in the boundary of the support of the $\g$-vector fan.
-Thus $F$ is also in the imaginary wall $\d$, and since $F$ is a cone in the $\g$-vector fan, it is in the \emph{boundary} of~$\d$.
+As part of \cite[Corollary~4.18]{afframe}, if an $(n-2)$-dimensional cone $F$ of the $\g$-vector fan of $B_0$ is contained in infinitely many maximal cones of the $\g$-vector fan, then $F$ is in the boundary of the support of the $\g$-vector fan.
+Thus $F$ is also in the imaginary wall $\d$, and since $F$ is a cone in the $\g$-vector fan, it is in the boundary of~$\d$.
 
 Now, suppose some $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type (and in particular of infinite type).
 Then, in the $\g$-vector fan of $B$, there are infinitely many maximal cones of the $\g$-vector fan that contain the cone $F$ spanned by the $\g$-vectors $\set{\e_k:k\not\in\set{i,j}}$.
@@ -1861,18 +1867,15 @@ Since the image of the positive cone contains the image of $F$, we conclude that
 \end{proof}
 
 It remains to show that condition~\eqref{neigh} implies condition~\eqref{neigh detailed}.
-Assume that $B$ is neighboring.
+Assume that ${B=[b_{ij}]}$ is neighboring.
 We will establish some notation and then prove the various parts of condition~\eqref{neigh detailed} as a series of propositions.
 
-The fact that $B$ is neighboring means there is a seed $t$ with exchange matrix $B$ such that $n-2$ of the $\g$-vectors at $t$ are in the boundary of $\d$.
+The fact that $B$ is neighboring means there is a seed $t$ with exchange matrix~$B$ such that $n-2$ of the columns of $G^{B_0,t_0}_t$ are in the boundary of $\d$.
 We use \cref{any B is sort} to choose a seed $t$ that corresponds to a $c$-sortable element~$v$.
-(There is a subtle point that we might worry about here:
-Conceivably, there exists $t$ with $\g$-vectors as described, but the seed $t'$ produced in the proof of \cref{any B is sort} does not have $\g$-vectors as described.
-However, in that proof, $t'$ is obtained from $t$ by applying automorphisms of the mutation fan, and therefore preserves the property that $\Cone_t^{B_0;t_0}$ has $(n-2)$-dimensional intersection with the imaginary wall.)
-
-We reindex the rows and columns of $B_0$ so that $\set{\xi_i:i\in[1,n-2]}$ are the $\g$-vectors in the boundary of $\d$ and $\set{\xi_{n-1},\xi_n}$ are the $\g$-vectors not contained in~$\d$.
-If necessary, we reindex (swapping positions $n-1$ and $n$) so that $b_{(n-1)n}\ge0$.
-Thus the vectors $\set{\xi_i:i\in[1,n-2]}\cup\set{-B_0\delta}$ span an imaginary cone in $\F_{B_0^T}$.
+We reindex the rows and columns of $B_0$ so that columns $1,\ldots,n-2$ of $G^{B_0,t_0}_t$ are in the boundary of $\d$ and columns $n-1,n$ are not.
+If necessary, we swap indices $n-1$ and~$n$ so that $b_{(n-1)n}\ge0$.
+With this indexing, we write $\xi_1,\ldots,\xi_n$ for the columns of $G^{B_0,t_0}_t$.
+The vectors $\set{\xi_i:i\in[1,n-2]}\cup\set{-B_0\delta}$ span an imaginary cone in $\F_{B_0^T}$.
 
 \begin{proposition}\label{B44 aff}
 The submatrix of $B$ with rows and columns indexed by $n-1,n$ is a rank-$2$ exchange matrix of affine type.
@@ -1880,8 +1883,8 @@ The submatrix of $B$ with rows and columns indexed by $n-1,n$ is a rank-$2$ exch
 \begin{proof}
 Consider the set of full-dimensional cones of $\F_{B_0^T}$ that have rays spanned by the vectors $\xi_1,\ldots,\xi_{n-2}$. 
 This set is infinite.
-(If the set were finite, the union of these full-dimensional cones would intersect the relative interior of an imaginary cone, contradicting the fact that $\F_{-B_0^T}$ is a fan.)
-Thus the entries of $B$ satisfy $b_{(n-1)n}b_{n(n-1)}\le-4$.
+(If the set is finite, the union of these full-dimensional cones intersects the relative interior of an imaginary cone, contradicting the fact that $\F_{-B_0^T}$ is a fan.)
+Thus ${b_{(n-1)n}b_{n(n-1)}\le-4}$.
 But also, $B$ is mutation-finite, so $b_{(n-1)n}b_{n(n-1)}\ge-4$ by \cref{mut fin 2x2}.
 \end{proof}
 
@@ -1889,13 +1892,12 @@ But also, $B$ is mutation-finite, so $b_{(n-1)n}b_{n(n-1)}\ge-4$ by \cref{mut fi
 
 
 There are vectors $\gamma_1,\ldots,\gamma_n\in\APre{c}$ such that $\nu_c(\gamma_i)=\xi_i$ for $i=1,\ldots,n$.
-The vectors $\gamma_1,\ldots,\gamma_{n-2}$ are in $\APTre{c}$.
 These roots are pairwise $c$-compatible and $\set{\gamma_1,\ldots,\gamma_{n-2}}\cup\set{\delta}$ is an imaginary $c$-cluster.
-In particular,  $\gamma_1,\ldots,\gamma_{n-2}$ are all in~$\RST{c}$.
-Choose integers $0\leq p_1\leq p_2 \leq p_3$ such that the nonzero values $p_\ell$ record the components of $\RST{c}$, with a component of rank $p_\ell+1$ for each nonzero $p_\ell$.
+In particular,  $\gamma_1,\ldots,\gamma_{n-2}$ are all in $\APTre{c}$ and thus in~$\RST{c}$.
+Choose integers ${0\leq p_1\leq p_2 \leq p_3}$ such that for each nonzero $p_\ell$ there is a component of $\RST{c}$ of rank $p_\ell+1$.
 As a consequence of \cref{compatible in tubes}, we see that $\set{\gamma_1,\ldots,\gamma_{n-2}}$ consists of $p_\ell$ roots from the $\ell\th$ component for each $\ell=1,2,3$.
-Thus $p_1+p+2+p_3=n-2$.
-Define subsets $I_1=\set{1,\ldots,p_1}$, $I_2=\set{p_1+1,\ldots,p_1+p_2}$, and $I_3=\set{p_1+p_2+1,\ldots,n-2}$ of $\set{1,\ldots,n-2}$ and further reindex the rows and columns of $B$ so that each subset $\set{\gamma_i:i\in I_\ell}$ consists of consists of roots from the same component of $\RST{c}$, for $\ell=1,2,3$.
+Thus ${p_1+p+2+p_3=n-2}$.
+Define $I_1=\set{1,\ldots,p_1}$, $I_2=\set{p_1+1,\ldots,p_1+p_2}$, and $I_3=\set{p_1+p_2+1,\ldots,n-2}$ and further reindex the rows and columns of $B$ so that each subset $\set{\gamma_i:i\in I_\ell}$ consists of consists of roots from the same component of $\RST{c}$, for $\ell=1,2,3$.
 Furthermore, if $p_1>0$, then there is a unique root in $\set{\gamma_i:i\in I_1}$ that is a sum of $p_1$ elements of $\SimplesT{c}$, and we give this the index $p_1$.
 Similarly, if $p_2>0$, we make $p_1+p_2$ the index of the unique root in $\set{\gamma_i:i\in I_2}$ that is a sum of $p_2$ elements of $\SimplesT{c}$.
 In any case, we make $p_1+p_2+p_3=n-2$ the index of the root in $\set{\gamma_i:i\in I_3}$ that is a sum of $p_3$ elements of $\SimplesT{c}$.
@@ -1903,46 +1905,50 @@ After this reindexing, we consider the decomposition of $B$ into blocks $B_{ij}$
 
 A \newword{special index} is the index of the last column/row of $B$ (if $B_{\ell\ell}$ is nonempty) for $\ell=1,2,3$.
 There are $1$, $2$, or $3$ special indices, namely whichever of $p_1$, $p_1+p_2$ and $p_1+p_2+p_3=n-2$ are nonzero.
-The two indices of $B_{44}$ are the \newword{affine indices} and call $B_{44}$ the \newword{affine submatrix} of~$B$.  \sayS{I think that affine indices is a misleading terminology: it can be confusing
-with the affine index of the root system.}
+The two indices of $B_{44}$ are the \newword{affine indices} and $B_{44}$ is the \newword{affine submatrix} of~$B$.  \sayS{I think that affine indices is a misleading terminology: it can be confusing
+with the affine index of the root system.  \rn{But its fits so well here.  Maybe we can get by with just a comment asking the reader not to be confused?}}
 %The \newword{tube components} of $\set{1,\ldots,n}$ are whichever of the sets $\set{1,\ldots,p_1}$, $\set{p_1+1,\ldots,p_1+p_2}$, and $\set{p_1+p_2+1,\ldots,n-2}$ are nonempty.
 
 \begin{proposition}\label{A and q-l}
 For $\ell=1,2,3$, if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of finite type $A_{p_\ell}$ and the special index in $B_{\ell\ell}$ is a quasi-leaf.
 \end{proposition}
 \begin{proof}
-Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these roots that does not occur in the support of $\gamma_i$ for any index $i$ of $B_{\ell\ell}$. 
-Write $\beta_{qr}$ for $\beta_q+\beta_{q+1}+\cdots+\beta_{r}$.
-Then every root $\gamma_i$ is $\beta_{q_ir_i}$ for some $1\le q_i\le r_i\le p_\ell$.
+Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these roots that does not occur in the support of $\gamma_i$ for $i\in I_\ell$.
+For $1\le q\le r\le p_\ell$, write $\beta_{qr}$ for $\beta_q+\beta_{q+1}+\cdots+\beta_{r}$ so that each $\gamma_i$ is~$\beta_{q_ir_i}$ for some $q_i$ and $r_i$.
 If $i$ is the special index, then $\gamma_i$ is~$\beta_{1p_\ell}$.
 %\cref{compatible in tubes} says that roots
-We can represent each $\gamma_i$ pictorially as in \cref{tube fig}, by circling the nodes $q_i$ through $r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
+We can represent each $\gamma_i$ pictorially as in \cref{tube fig},  \sayN{Need picture.  I can probably modify a PS file from \{affdenom\}.}
+by circling the nodes $q_i$ through~$r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
 
-We write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector $\beta_{qr}$.
-The denominator vector of $x_{qr}$ is $\beta_{qr}$, so the $\g$-vector of $x_{qr}$ is $\nu_c(\beta_{qr})$.
-The map $\nu_c$ is linear on the subspace spanned by roots in finite orbits.
-\cref{compatible in tubes} says that two of these cluster variables can be in the same cluster if and only if the corresonding roots are nested or spaced.
-There is a similar characterization of which pairs of these cluster variables are exchangeable \cite[Theorem~7.2]{affdenom}:
-The cluster variables associated to non-special indices in $B_{\ell\ell}$ are exchangeable if and only if the corresponding roots are adjacent or have overlapping support but are not nested.
-(In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that none of these roots have $\beta_0$ in their support.)
+%We write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector $\beta_{qr}$.
+%The denominator vector of $x_{qr}$ is $\beta_{qr}$, so the $\g$-vector of $x_{qr}$ is $\nu_c(\beta_{qr})$.
+%The map $\nu_c$ is linear on the subspace spanned by roots in finite orbits.
+%\cref{compatible in tubes} says that two of these cluster variables can be in the same cluster if and only if the corresonding roots are nested or spaced.
+%There is a similar characterization of which pairs of these cluster variables are exchangeable \cite[Theorem~7.2]{affdenom}:
+%The cluster variables associated to non-special indices in $B_{\ell\ell}$ are exchangeable if and only if the corresponding roots are adjacent or have overlapping support but are not nested.
+Write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector~$\beta_{qr}$ and $\g$-vector $\nu_c(\beta_{qr})$.
+\cref{compatible in tubes} says cluster variables $x_{qr}$ and $x_{q'r'}$ can be in the same cluster if and only if the $\beta_{qr}$ and $\beta_{q'r'}$ are nested or spaced.
+%The map $\nu_c$ is linear on the cone spanned by positive roots.
+Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable if and only if $\beta_{qr}$ and $\beta_{q'r'}$ either have disjoint support but are not spaced or have overlapping support but are not nested.
+(In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that $q\ge1$ and $q'\ge 1$, so neither of these roots has $\beta_0$ in its support.)
 Thus two exchangeable cluster variables $x_{qr}$ and $x_{q'r'}$ have, without loss of generality, $q<q'<r$, $q<r<r'$, and $q'\le r+1$.
-In light of \cref{exch ind}, the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
+If they are exchangeable, then \cref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
 These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, or $r'\ge r+2$.
 
 In the proof of \cref{exch ind}, we saw that the exchange relation for $x_{qr}$ and $x_{q'r'}$ has a term with no coefficient variables whose $\g$-vector is the sum of the $\g$-vectors of $x_{qr}$ and $x_{q'r'}$.
-Since $\nu_c$ is linear on these cluster variables, that monomial must be $x_{qr'}x_{q'r}$.
-The other term in the exchange relation is therefore $y^\phi x_{q(q'-2)}^ax_{(r+2)r'}^b$, where $y^\phi$ is the monomial in the coefficient variables with exponent vector $\phi$ (and this vector has nonnegative entries).
+Since $\nu_c$ is linear on the cone spanned by positive roots, that monomial must be $x_{qr'}x_{q'r}$.
+The other term in the exchange relation is therefore $y^\phi x_{q(q'-2)}^ax_{(r+2)r'}^b$ for some $a\ge0$ and $b\ge0$, where $y^\phi$ is the monomial in the coefficient variables with exponent vector $\phi$.
 The $\g$-vector of $y^\phi$ is $B_0\phi$.
-Since the $\g$-vectors of all cluster variables in the exchange relation are in $\delta^\perp$ and since the exchange relation is homogeneous in the $\g$-vector grading, we see that $B_0\phi$ is also in $\delta^\perp$.
+The $\g$-vectors of all cluster variables in the exchange relation are in $\delta^\perp$ and the exchange relation is homogeneous in the $\g$-vector grading, so $B_0\phi$ is also in $\delta^\perp$.
 In other words, $\omega_c(\delta,\phi)=0$, so \cref{om del fin} says that $\phi$ is in a finite $c$-orbit.
 
-Write $E_c$ for the $n\times n$ matrix whose $ij$-entry is~$(B_0)_{ij}$ if $i>j$, is $1$ if $i=j$, or is $0$ if $i<j$.
-Similarly, write $E_{c^{-1}}$ for the $n\times n$ matrix with $ij$-entry $0$ if $i>j$, is $1$ if $i=j$, and is $-b_{ij}$ if $i<j$.
-Then $B=E_c-E_{c^{-1}}$.
-The piecewise linear map $\nu_c$, when applied to vectors with nonnegative entries, is defined by the matrix $E_c$ (taking a column vector of simple-root coordinates to a column vector of fundamental-weight coordinates).
-Furthermore, a result of Howlett \cite[Theorem~2.1]{Howlett} (see also \cite[Theorem~2.6]{affdenom}) says that the matrix for $c$, as it acts on the basis of simple roots, is~$-E_{c^{-1}}^{-1}E_c$.
-We use these facts about $E_c$ to rewrite the $\g$-vector of $y^\phi$ as 
-\[B_0\phi=(E_c-E_{c^{-1}})\phi=(E_c-E_cc^{-1})\phi=\nu_c(1+c^{-1})\phi.\]
+Write $E_c$ for the $n\times n$ matrix whose $ij$-entry is~$(B_0)_{ij}$ if $i>j$, is $1$ if $i=j$, or is~$0$ if $i<j$.
+Similarly, write $E_{c^{-1}}$ for the $n\times n$ matrix whose $ij$-entry is $0$ if $i>j$, is $1$ if $i=j$, and is $-b_{ij}$ if $i<j$.
+Then $B_0=E_c-E_{c^{-1}}$.
+The piecewise linear map $\nu_c$, when applied to vectors with nonnegative entries, is defined by the matrix $E_c$ (taking simple-root coordinates to fundamental-weight coordinates).
+Furthermore, a result of Howlett \cite[Theorem~2.1]{Howlett} (see also \cite[Theorem~2.6]{affdenom}) says that the matrix for $c$ on the basis of simple roots is~$-E_{c^{-1}}^{-1}E_c$.
+Thus the $\g$-vector of $y^\phi$ is 
+\[B_0\phi=(E_c-E_{c^{-1}})\phi=(E_c+E_cc^{-1})\phi=\nu_c(1+c^{-1})\phi.\]
 Thus because the exchange relation is homogeneous, the vector $(1+c^{-1})\phi$ equals $\beta_{qr}+\beta_{q'r'}-a\beta_{q(q'-2)}-b\beta_{(r+2)r'}$.
 We conclude that $a=b=1$ and that $\phi=\beta_{q'(r+1)}$.
 
@@ -1950,7 +1956,7 @@ We have written the exchange relation between for $x_{qr}$ and $x_{q'r'}$ as
 \begin{equation}\label{exch rel eq}
 x_{qr}x_{q'r'}=x_{qr'}x_{q'r}+y^{\beta_{q'(r+1)}}x_{q(q'-2)}x_{(r+2)r'}.
 \end{equation}
-Up to a global change of sign, these exchange relations determine the entries $b_{ij}$ of $B_{\ell\ell}$ for non-special~$j$.
+Up to a global change of sign, these exchange relations determine the entries $b_{ij}$ of~$B_{\ell\ell}$ for non-special~$j$.
 Furthermore, appealing to \cref{neigh neg and T}, we know that $B^T$ is also neighboring.
 In particular, the argument to this point implies that the entries of $B_{\ell\ell}^T$ in non-special columns are $0$, $1$, or $-1$.
 We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and thus is skew-symmetric. %, so we have also determined the entries $b_{ij}$ of $B_{\ell\ell}$ for special $j$.
@@ -1973,11 +1979,11 @@ We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and 
 
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation $T_0$, take all diagonals with an endpoint at $p_\ell+2$.
 The roots~$\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
-For $i$ not special, $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e. the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
-The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in \cref{tri fig}.
+The root $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e.\ the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
+The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in \cref{tri fig}.  \sayN{Need picture.  I can easily supply PS.}
 If the other diagonal is specified by $\gamma'_i$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
 We conclude that, up to a global sign, the entries of  $B_{\ell\ell}$ in non-special columns agree with the entries of the signed adjacency matrix of $T$.
-Since both matrices are skew-symmetric, they are therefore equal.
+Since both matrices are skew-symmetric, they are therefore equal up to a sign.
 We see that $B_{\ell\ell}$ is of type $A_{p_\ell}$.
 
 In the triangulation $T$, there are two triangles containing the diagonal associated to $\beta_{1,p_\ell}$.
