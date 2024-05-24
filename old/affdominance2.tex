@@ -157,7 +157,6 @@
 \newcommand{\ggeq}{\ge\!\!\!\ge}
 \newcommand{\Cone}{\mathrm{Cone}}
 \newcommand{\Comp}{\mathrm{Comp}_C}
-\newcommand{\CompPlus}{\overline{\mathrm{Comp}}_C}
 \newcommand{\Star}{\mathrm{Star}}
 \newcommand{\Lin}{\mathrm{Lin}}
 \newcommand{\Ker}{\mathrm{Ker}}
@@ -814,22 +813,6 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $D_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
-\begin{proposition}\label{GBBC ext}
-$\GG_t^{\BB_0;t_0}\tB_t=\tB_0C_t^{B;t_0}$.
-\end{proposition}
-\begin{proof}
-\cref{GBBC} says that $\GG_t^{\BB_0;t_0}\BB_t=\BB_0\CC_t^{\BB_0;t_0}$.
-Restricted to the first $n$ columns, this says $\GG_t^{\BB_0;t_0}\tB_t=\BB_0\begin{bsmallmatrix}C_t^{B;t_0}\\0\end{bsmallmatrix}$.
-\end{proof}
-
-\begin{proposition}\label{BGCB ext}
-$\tB_t\bigl(G_t^{-B_0^T;t_0}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0$.
-\end{proposition}
-\begin{proof}
-\cref{BGCB} says that $\BB_t\bigl(\GG_t^{-\BB_0^T;t_0}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\BB_0$.
-Restricted to the first $n$ columns, this says $\BB_t\bigl(\begin{bsmallmatrix}G_t^{-B^T;t_0}&\,0\end{bsmallmatrix}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0$.
-\end{proof}
-
 Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^\tB_{\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
 
@@ -867,9 +850,9 @@ If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n
 \begin{lemma}\label{shift extended}
 If $\lambda'=\eta^{\BB^T}_\kk$ and $\tB'=\mu_\kk(\tB)$, then 
 \begin{enumerate}[\quad\bf1.]
-\item \label{shift extended all}
+\item \label{shift all}
 $\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)=\P^{\tB'}_{\lambda'}$.
-\item \label{shift extended one}
+\item \label{shift one}
 $\eta^{\BB^T}_\kk\!\!(\P^\tB_{\lambda,\ll})=\P^{\tB'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
 \end{enumerate}
 \end{lemma}
@@ -981,10 +964,8 @@ One can check that $\P_\lambda^\tB=\settt{\lambda+a\begin{bsmallmatrix*}[r]0\\0\
 Suppose $B$ is an $n\times n$ exchange matrix of finite type.
 Then 
 \begin{enumerate}[\quad\bf1.]
-\item \label{finite P point coeff-free}
-$\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
-\item \label{finite P point coeff-ful}
-If $B$ has at most one zero column, then $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.
+\item $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
+\item If $B$ has at most one zero column, then $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -1001,7 +982,6 @@ For any $\lambda\in\reals^m$, \cref{shift extended} says that $\P_\lambda^\tB$ i
 Again, \cref{P point} applies to say that $\P_{\lambda'}^{\tB_0}=\set{\lambda'}$, so $\P_\lambda^\tB=\set{\lambda}$.
 \end{proof}
 
-The hypothesis of \cref{finite P point}.\ref{finite P point coeff-ful} holds, for example, whenever the Cartan matrix associated to $B$ is irreducible and of finite type.
 
 %\section{Affine type}
 %Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
@@ -1158,7 +1138,7 @@ The hypothesis of \cref{finite P point}.\ref{finite P point coeff-ful} holds, fo
 An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
 We will prove the following theorems. \sayN{Probably should state versions for extended exchange matrices here.  If we get everything we want, we can say that these theorems completely characterize dominance regions in affine type.}
 
-\begin{theorem}\label{affine P point} \sayN{Separate this into two statements like \cref{finite P point}?}  
+\begin{theorem}\label{affine P point}  
 Suppose $\tB$ is an extended exchange matrix whose underlying exchange matrix $B$ is of affine type.
 %Suppose $B$ is an exchange matrix of affine type and suppose $\tB$ is any extension of $B$.
 If $\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_\lambda=\set{\lambda}$.
@@ -1744,6 +1724,9 @@ Thus no nonzero element of the kernel has nonnegative entries, so \cref{extend s
 We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} for the existence of a maximal red sequence.
 \end{proof}
 
+
+
+
 \cref{delta is the man} also allows us to prove one containment in \cref{affine main}.
 
 \begin{proposition}\label{affine main partial}
@@ -1762,6 +1745,11 @@ Since $(\eta_\kk^{B^T})^{-1}$ is linear on each imaginary cone and takes the dir
 \end{multline*}
 This is true for all $\kk$, so $\P^B_\lambda\supseteq\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty$, as desired.
 \end{proof}
+
+
+
+
+
 
 %\subsection{Neighboring exchange matrices}
 \subsection{Neighboring seeds}
@@ -2049,7 +2037,7 @@ Therefore the exchange relation for $x_{1p_\ell}$ exchanges it with a cluster va
 In particular, the right side of that exchange relation can't involve only cluster variables in indexed by non-affine indices, and therefore $B_{\ell4}$ has at least one nonzero entry in column $k$.
 \end{proof}
 
-\begin{proposition}\label{3x3 submat}
+\begin{proposition}\label{not all zeros}
 For $\ell\in\set{1,2,3}$, if $B_{\ell4}$ is nonempty, then the nonzero rows and columns in $\begin{bsmallmatrix} 0 & B_{\ell4} \\ B_{4\ell} & B_{44} \end{bsmallmatrix}$ form one of the matrices in \cref{submat tab}.
 \end{proposition}
 \begin{proof}
@@ -2493,37 +2481,42 @@ Given a neighboring exchange matrix $B$, each diagonal block of $\Comp(B)$ is of
 %
 %\end{proof}
 
-\sayN{Salvatore, you said you were confused about the proof of the following proposition, and you were right to be!  It was wrong, and in fact the statement was wrong.  I think this is now correct and everything still works, but it's slightly more complicated}
-Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by $2$.
-Although $\CompPlus(B)$ is an extension of $\Comp(C)$ in the sense of ``extended exchange matrices'', we don't want to think of it that way (and have chosen an overline in the notation rather than a tilde) because we will not always mutate it like an extended exchange matrix.
-(See \cref{special mut}, below.)
-
-%\begin{proposition}\label{Comp span}
-%Suppose $B$ is a neighboring exchange matrix.
-%Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative linear span of the columns of $B$ is contained in the nonnegative linear span of $\frac12B\delta^B$ and the columns of $\Comp(B)$.
-%\end{proposition}
-%\begin{proof}
-%By inspection of \cref{submat tab} and in light of \cref{neigh good stuff}, we observe the following facts:
-%First, the vector $-\frac12B\delta^B$ spanning the affine ray is a \emph{negative} linear combination of the last two columns of $B$.
-%Second, the linear span of the last two columns of $B$ intersected with the hyperplane $(\delta^B)^\perp$ is the line spanned by $\frac12B\delta^B$.
-%Third, $\frac12B\delta^B$ has nonzero entries only in the affine indices, and those entries are $1,-1$ unless the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, in which case, those entries are $2,-1$ or $1,-2$ respectively.
-%Fourth, each non-affine column of $B$ is half the corresponding column of $\Comp(B)$ plus a nonnegative multiple of $-\frac12B\delta^B$. 
-%\saySS{I am confused here: why half? non-affine non-special columns are unchanged, no?}
-%(This multiple is zero unless the column is a special column.)
-%The proposition follows.
-%\end{proof}
+In the following proposition, we think of the columns of $\Comp(B)$ as vectors in $\reals^n$ by considering them to have entries $0$ in the affine indices.
 
 \begin{proposition}\label{Comp span}
 Suppose $B$ is a neighboring exchange matrix.
-Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative linear span of the columns of $B$ is contained in the nonnegative linear span of $\frac12B\delta^B$ and the columns of $\CompPlus(B)$.
+Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative linear span of the columns of $B$ is contained in the nonnegative linear span of $\frac12B\delta^B$ and the columns of $\Comp(B)$.
 \end{proposition}
 \begin{proof}
+By inspection of \cref{submat tab} and in light of \cref{neigh good stuff}, we observe the following facts:
+First, the vector $-\frac12B\delta^B$ spanning the affine ray is a \emph{negative} linear combination of the last two columns of $B$.
+Second, the linear span of the last two columns of $B$ intersected with the hyperplane $(\delta^B)^\perp$ is the line spanned by $\frac12B\delta^B$.
+Third, $\frac12B\delta^B$ has nonzero entries only in the affine indices, and those entries are $1,-1$ unless the affine submatrix is $\begin{bsmallmatrix*}[r]0&4\\-1&0\end{bsmallmatrix*}$ or $\begin{bsmallmatrix*}[r]0&1\\-4&0\end{bsmallmatrix*}$, in which case, those entries are $2,-1$ or $1,-2$ respectively.
+Fourth, each non-affine column of $B$ is half the corresponding column of $\Comp(B)$ plus a nonnegative multiple of $-\frac12B\delta^B$. 
+\saySS{I am confused here: why half? non-affine non-special columns are unchanged, no?}
+(This multiple is zero unless the column is a special column.)
+The proposition follows.
+
+
 Suppose $\alpha$ has nonnegative entries and $B\alpha$ is in $(\delta^B)^\perp$.
-Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is a linear combination of simple roots in non-affine entries and $\gamma$ is a combination of simple roots in affine positions.
-Then $B\beta$ is a nonnegative linear combination of the non-affine columns of $B$, and equivalently a nonnegative linear combination of the columns of $\CompPlus(B)$.
-Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.
-By \cref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the vector $\gamma$ is a scalar multiple of $\delta^B$.
-Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
+Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is a linear combination of simple roots in non-affine entries and $\gamma$ is a linear combination of simple roots in affine positions.
+Let $B'$ be the $n\times(n-2)$ matrix obtained from the non-affine columns of $B$ by setting the entries in affine rows to $0$.
+Comparing \cref{neigh good stuff}.\ref{neigh im ray} with \cref{neigh B} (and especially \cref{submat tab}), we see that $B\beta$ can be obtained as a nonnegative linear combination of the columns of $B'$ and the vector $-\frac12B\delta^B$.
+\cref{delta is the man} says that $B\beta$ is contained in $(\delta^B)^\perp$.
+Also, $B'$ and $\Comp(B)$ have the same nonnegative linear span, so $B\beta$ is 
+
+
+HMM...
+
+
+
+
+columns of $B$
+
+
+FINISH REWRITING THIS DIRECTLY!!!
+
+
 \end{proof}
 
 \begin{proposition}\label{nonspecial mut}
@@ -2534,8 +2527,6 @@ Then
 $\mu_k(B)$ is neighboring,
 \item
 $\Comp(\mu_k(B))=\mu_k(\Comp(B))$,
-\item
-$\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ in the affine rows,
 \item
 the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
 \item
@@ -2551,8 +2542,7 @@ We see that $\mu_k(B)$ is neighboring.
 Furthermore, since $k$ is not special and not affine, row $k$ and column $k$ only have nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
 Thus mutating~$B$ at~$k$ amounts to replacing $B_{\ell\ell}$ by $\mu_k(B_{\ell\ell})$.
 Mutating $B_{\ell\ell}$ at $k$ commutes with applying a positive scaling to a column of $B_{\ell\ell}$ other than~$k$.
-Thus $\Comp(\mu_k(B))=\mu_k(\Comp(B))$ and ${\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))}$.
-Since $B$ has entries zero in affine entries of column $k$, the affine rows of $\CompPlus(B)$ are unchanged by mutation in position~$k$.
+Thus ${\Comp(\mu_k(B))=\mu_k(\Comp(B))}$.
 
 \cref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
@@ -2568,8 +2558,6 @@ Then there exists a sequence $\kk$ of indices in $\set{k,n-1,n}$ such that
 $\mu_\kk(B)$ is neighboring,
 \item
 $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$,
-\item
-$\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows,
 \item
 the mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise, and 
 \item
@@ -2815,9 +2803,6 @@ b_{ij}+m(2b_{ik},b_{kj})&-2b_{ik}\\
 \end{bsmallmatrix*}
 \]
 and we conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
-We see also that all entries in affine rows are preserved by $\mu_\kk$.
-Thus $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows.
-However, $\CompPlus(\mu_\kk(B))\neq\mu_k(\CompPlus(B))$, because the latter disagrees with $\CompPlus(B)$ in the $k\th$ entries of the affine rows (differing by a sign).
 
 The computations above can be reused to prove the assertions about $\eta^{B^T}_\kk$.
 %also let us determine mutation maps by taking $j$ to index a new column that has been used to extend $B$ but still taking $i$ to be a non-affine index in~$\set{1,\ldots,n}$.
@@ -2968,11 +2953,11 @@ b_{nj} & 1 & -2 & 0
 %where we observe in the middle mutation in direction 1 that $-x_i+m(x_i,-2)$ is always non-positive and $-y_j+2m(y_j,1)$ is always non-negative.
 
 The computation of the $ij$-entry of $\mu_k(\Comp(B))$ is the same as in Case~1, and we again conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
-The assertions about $\CompPlus(\mu_\kk(B))$ and about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
+The assertions about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
 We have proved the \lcnamecref{special mut} in the case of type $C_2^{(1)}$.
 
 The matrices of type $A_4^{(2)}$ shown in \cref{submat tab} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
-Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix~$D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
+Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the cases of type $A_4^{(2)}$.
 
 \noindent
 \textbf{Case 3.}
@@ -3135,7 +3120,6 @@ The sequence $\kk$ is $1313231$, and the mutation acts on $B$ as shown here.
 Once again, \cref{neigh B} implies that $\mu_\kk(B)$ is neighboring.
 
 There are no additional entries of $\mu_\kk(B)$ to compute, and $\Comp(B)$ is $[0]$, so we see that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
-The assertions about $\CompPlus(\mu_\kk(B))$ as proved as in previous cases.
 
 To prove the assertions about mutation maps, we consider adding an extra column with entries $c_1,c_2,c_3$ with $c_3=-c_2\ge0$.
 \begin{multline*}
@@ -3195,7 +3179,15 @@ The matrix of type $D_4^{(3)}$ in \cref{submat tab} is obtained from the matrix 
 Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the \lcnamecref{special mut} in the case of type $D_4^{(3)}$.
 \end{proof}
 
-Given a  is a sequence $\kk$ of non-affine indices, we define an \newword{expanded sequence}~$\ll$ where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in \cref{special mut}.
+\cref{nonspecial mut,special mut} allow us to prove the following key fact.
+
+\begin{proposition}\label{neigh im wall}
+Suppose $B$ is neighboring and is indexed as in \cref{neigh B}.
+Then $\d^B_\infty$ is the half-hyperplane contained in $(\delta^B)^\perp$, containing the vector $-\frac12B\delta^B$, with relative boundary the codimension-$2$ space consisting of vectors that are zero in the affine indices.
+\end{proposition}
+\begin{proof}
+Suppose $\kk$ is a sequence of non-affine indices.  
+Let $\ll$ be the corresponding sequence where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in \cref{special mut}.
 \cref{nonspecial mut,special mut} combine to say that 
 \begin{itemize}
 \item
@@ -3207,164 +3199,70 @@ If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\ll(x)=\eta^{
 \end{itemize}
 (The fact, in each of \cref{nonspecial mut,special mut}, that the mutated matrix is neighboring is crucial to concluding these facts for $\ll$.)
 
-\begin{proposition}\label{neigh im wall}
-Suppose $B$ is neighboring and is indexed as in \cref{neigh B}.
-Then $\d^B_\infty$ is the half-hyperplane contained in $(\delta^B)^\perp$, containing the vector $-\frac12B\delta^B$, with relative boundary the codimension-$2$ space consisting of vectors that are zero in the affine indices.
-\end{proposition}
-\begin{proof}
 Since $\Comp(B)$ is of finite type, $\F_{\Comp(B)^T}$ is finite and complete.
 We consider the mutation fan $\F_{\Comp(B)^T}$ as a complete fan in the subspace of $\reals^n$ consisting of vectors whose affine entries are zero. 
 (We refer to this subspace as $\reals^{n-2}$.)
-Every maximal cone $U$ of $\F_{\Comp(B)^T}$ is the image of the positive cone in $\reals^{n-2}$ under some mutation map $\eta^{(B')^T}_{\kk^{-1}}$, where $B'=\mu_\kk(\Comp(B))$ and $\kk$ is a sequence of non-affine indices.  
-Let $\ll$ be the expanded sequence, so that $B'=\Comp(\mu_\ll(B))$.
-There is an imaginary cone in $\F_{\mu_\ll(B)^T}$ that is the nonnegative linear span of the imaginary ray and the positive cone in $\reals^{n-2}$.
-Since $\eta^{\mu_\ll(B)^T}_{\ell^{-1}}$ is an isomorphism from $\F_{\mu_\ll(B)^T}$ to $\F_{B^T}$ that fixes the imaginary ray and sends the the positive cone in $\reals^{n-2}$ to $U$, the cone spanned by $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
+Every maximal cone of $\F_{\Comp(B)^T}$ is the image of the positive cone in $\reals^{n-2}$ under some mutation map $\eta^{(B')^T}_{\kk^{-1}}$, where $B'=\mu_\kk(\Comp(B))$ and $\kk$ is a sequence of non-affine indices.
+The considerations of the paragraph above imply that $B'$ is the type-C companion of $\mu_\ll(B)$.
+
+Let $U$ be any maximal cone in $\F_{\Comp(B)^T}$ and let $\kk$ be the sequence such that $U$ is the image of the positive cone in $\reals^{n-2}$ under $\eta^{(B')^T}_{\kk^{-1}}$, for $B'$ as above.
+There is an imaginary cone in $\F_{\mu_ll(B)^T}$ that is the nonnegative linear span of the imaginary ray and the positive cone in $\reals^{n-2}$.
+Since $\eta^{\mu_ll(B)^T}_{\ell^{-1}}$ is an isomorphism from $\F_{\mu_ll(B)^T}$ to $\F_{B^T}$, the results above imply that the positive span of $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
 We see that the imaginary cones in $\F_{B^T}$ fill the half-hyperplane described in the \lcnamecref{neigh im wall}.
 Since the imaginary ray is in the relative interior of that half-hyperplane, there are no other imaginary cones.
 \end{proof}
 
-\begin{proposition}\label{factor eta}
-Suppose $B$ is neighboring and $\lambda\in\d_\infty^B$.
-Write $\lambda=\lambda_0+\lambda_\infty$ for $\lambda_0$ with affine entries $0$ and $\lambda_\infty$ a nonnegative scaling of $\delta^B$.
-For $\kk$ a sequence of non-affine indices with expanded sequence $\ll$, ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$.
-\end{proposition}
-\begin{proof}
-\cref{neigh im wall} says that we can write $\lambda$ as $\lambda_0+\lambda_0$.
-Since $\eta_\ll^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the \lcnamecref{factor eta} follows from \cref{nonspecial mut,special mut}.
-\end{proof}
-
-
 We now prove the main theorem.
 
 \begin{proof}[Proof of \cref{affine main}]
-Take $\lambda\in\d_\infty^B$, consider any $B'$ mutation-equivalent to $B$, and specifically take any sequence $\ll$ of indices in $\set{1,\ldots,n}$ such that $B'=\mu_\ll(B)$.
-Write $\lambda'$ for $\eta_\ll^{B^T}(\lambda)$.
-The mutation map $\eta_\ll^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\ll(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\ll(B)\delta^{\mu_\ll(B)}$.
-Furthermore, $\eta_\ll^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that \cref{affine main} claims is equal to~$\P_\lambda^B$ to the line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
-Now \cref{shift} implies that it is enough to prove the \lcnamecref{affine main} for any one $B$ in the exchange pattern.
+\cref{affine main partial} says that $\P_\lambda^B$ contains the line segment described in the \lcnamecref{affine main}.
+We need to show the opposite containment.
 
+Given $B$ of affine type, let $\lambda$ be in the imaginary wall $\d_\infty^B$.
+Let $\kk$ be a sequence of indices in $\set{1,\ldots,n}$ and write $B'$ for $\mu_\kk(B)$ and $\lambda'$ for $\eta_\kk^{B^T}(\lambda)$.
+The mutation map $\eta_\kk^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\kk(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\kk(B)\delta^{\mu_\kk(B)}$.
+Furthermore, $\eta_\kk^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that \cref{affine main} claims is equal to $\P_\lambda^B$ to the analogous line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
+Now \cref{shift} implies that it is enough to prove the \lcnamecref{affine main} for any one $B$ in the exchange pattern.
 We choose $B$ to be a neighboring exchange matrix.
-%\cref{affine main partial} says that~$\P_\lambda^B$ contains the line segment described in the \lcnamecref{affine main}.
-%We need to show the opposite containment.
-Suppose now that $\kk$ is a sequence of \emph{non-affine} indices, let~$\ll$ be the expanded sequence, and again take $B'=\mu_\ll(B)$ by \cref{factor eta}.
-Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$.
+
+Now suppose $\kk$ is a sequence of \emph{non-affine} indices and, as before, let $\ll$ be the corresponding sequence where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in \cref{special mut}.
+
+By \cref{neigh im wall}, we can write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$.
+\cref{nonspecial mut,special mut} imply that $\Comp(B')=\mu_\kk(\Comp(B))$ and $\eta_\ll^{B^T}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty$.
 \cref{Comp span} implies that 
 \begin{multline*}
 \set{B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^{B'})^\perp\\
-\subseteq\set{\CompPlus(B')\alpha+B'\delta^{B'}a:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}.
+\subseteq\set{\Comp(B')\alpha+B'\delta^{B'}a:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}.
 \end{multline*}
-
-Let $M$ be the matrix obtained from $\CompPlus(B)$ by replacing the first $n-2$ rows by zeros (leaving only the affine entries).
-\cref{nonspecial mut,special mut} imply that $M$ is also the matrix obtained from $\CompPlus(B')$ by replacing the first $n-2$ rows by zeros.
-\cref{neigh B,delta is the man} imply that every column of $M$ is parallel to~$B\delta^B$.
-In the following formula, we will think of the columns of $\Comp(B')$ as vectors in $\reals^n$ with entries $0$ in the affine positions.
-
 We see that 
 \begin{multline*}
 \set{\eta_\ll^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\d^{B'}_\infty\\
 \begin{aligned}
-&\quad\subseteq\set{\eta_\ll^{B^T}(\lambda)+\CompPlus(B')\alpha+B'\delta^{B'}a:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}\cap\d^{B'}_\infty\\
-&\quad=\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha+\lambda_\infty+M\alpha+B'\delta^{B'}a:\alpha\ge0,a\ge0}\cap\d^{B'}_\infty.\\
+&\subseteq\set{\eta_\ll^{B^T}(\lambda)+\Comp(B')\alpha+B'\delta^{B'}p:\alpha\in\reals^{n-2},\alpha\ge0,p\ge0}\cap\d^{B'}_\infty\\
+&=\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}+\set{q\lambda_\infty:0\le q\le1}.
 \end{aligned}
 \end{multline*}
-The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
-
-The set $\P^B_{\lambda,\ll}$ obtained by applying $(\eta_\ll^{B^T})^{-1}$ to $\set{\eta_\ll^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-By \cref{factor eta}, if some point $x$ is $\P^B_{\lambda,\ll}$ for every $\ll$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
-Therefore \cref{finite P point}.\ref{finite P point coeff-free} says that the projection of~$x$ is $\lambda_0$.
-We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
-But also $\P^B_\lambda$ is contained in $\d^B_\infty$, and, by considering $\P^B_{\lambda,\emptyset}$, we see that $\P^B_\lambda$ is contained in the set $\set{\lambda+B\delta^Ba:a\ge0}$.
-We have shown that $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
+Now applying $(\eta_\ll^{B^T})^{-1}$ to both sides of the containment, we see that 
+\[\P^B_{\lambda,\ell}\subseteq\P^{\Comp(B)}_{\lambda_0,\kk}+\set{q\lambda_\infty:0\le q\le1}.\]
+\cref{finite P point} says that $\P^{\Comp(B)}_{\lambda_0}$ (the intersection of the $\P^{\Comp(B)}_{\lambda_0,\kk}$ over all sequences $\kk$) equals $\set{\lambda_0}$.
+\cref{P in dBinf} says that $\P^B_\lambda\subseteq\d^B_\infty$.
+Thus $\P^B_{\lambda}$ (the intersection of the $\P^B_{\lambda,\ll}$ over all sequences $\ll$) is contained in $\P^{\Comp(B)}_{\lambda_0,\kk}+\set{q\lambda_\infty:0\le q\le1}$, which equals $\set{\lambda-q\lambda_\infty:0\le q\le1}$.
 \end{proof}
+
+
+
+
 
 \subsection{Extended exchange matrices of affine type}
-In this section, we extend \cref{affine main} to arbitrary extensions of $B$.  \sayN{All this will be stated earlier if any of it works!}
 
-Recall that $\Proj_n$ is the projection from $\reals^m$ to $\reals^n$ that ignores the last $m-n$ coordinates.
-Recall also that the mutation fan for $\tB^T$ is the set $\F_{\tB^T}$ of cones $\Proj_n^{-1}C$ such that $C$ is a cone in the mutation fan $\F_{B^T}$.
-If $B$ is of affine type, then the imaginary wall $\d_\infty^B$ is a union of cones of $\F_{B^T}$.
-Accordingly, we define $\d_\infty^\tB$ to be $\Proj_n^{-1}\d_\infty^B$.
-
-\begin{theorem}\label{affine main extended}
-Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
-If $\lambda$ is contained in~$\d^\tB_\infty$, then the dominance region $\P^\tB_\lambda$ is the line segment parallel to $\tB\delta^B$, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^\tB_\infty$.
-\end{theorem}
-
-\newpage
+Let $B$ be an exchange matrix of affine type and let $\tB$ be an extension of $B$ with linearly independent columns.
 
 
-The imaginary ray in $\F_{B^T}$, spanned by $-\frac12B\delta^B$, corresponds to a $(1+m-n)$-dimensional cone in $\F_{\tB^T}$.
-The statement of \cref{affine main extended} suggests that there is a special direction within that $(1+m-n)$-dimensional cone, spanned by $-\frac12\tB\delta^B$.
-As a first step in the proof of \cref{affine main extended}, we point out one thing that is special about that direction, namely how it behaves under mutation maps.
-
-\begin{proposition}\label{delta is the tilde man}
-Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
-Then, for any sequence $\kk$ of indices in $\set{1,\ldots,n}$, $\eta^{\BB^T}_\kk(-\frac12\tB\delta^B)=-\frac12\mu_\kk(\tB)\delta^{\mu_\kk(\tB)}$.
-\end{proposition}
-The factors $\frac12$ in the statement are for aesthetic reasons, but the negative signs are crucial.
-The analogous statement for $-\frac12B\delta^B$ is true because $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray.
-
-\begin{proof}
-It is enough to prove the \lcnamecref{delta is the tilde man} for $\kk$ a singleton sequence~$k$.
+\sayN{We are going to use \cref{contains proj} to turn \cref{P in dinf} into a statement about $\P^\tB_\lambda$, but we don't yet have a definition of $\d_\infty$ in the extended-exchange matrix sense.}
 
 
-Recall that, for $B_0$ an acyclic exchange matrix of affine type and for a particular choice of $t$, the vector $\delta^B\in V$ is defined to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.
-Thus \cref{BGCB ext} rewrites $-\tB\delta^B=-\tB\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ as 
-\[-\tB\delta^B=-\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0\delta=\begin{bsmallmatrix}-(C_t^{-B^T;t_0})^T&0\\-(D_t^{-\tB^T;t_0})^T&-I_{m-n}\end{bsmallmatrix}\tB_0\delta.\]
-
-
-where the notation $-\tB^T$ means the first $n$ columns of $-\BB^T$: an extended exchange matrix whose first $n$ rows are $-B^T$ and whose remaining rows agree with $\tB$.
-
-
-Thus we check that $\eta_{k_m}^{B_{m-1}^T}(-B_{m-1}\delta^{B_{m-1}})=-B\delta^{B}$.
-
-We first appeal to \cite[Proposition~1.3]{NZ} to say that 
-\[\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta=\bigl(G_{t_{m-1}}^{-B_0^T;t_0}E_{+,k_m}^{B_{m-1}^T}\bigr)^T\delta=F_{-,k_m}^{B_{m-1}}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta,\]
-because $\kk$ is a green sequence, so that column $k_m$ of $C_{t_{m-1}}^{-B_0^T;t_0}$ is positive.
-Now \cref{EBF trick} says that $B=E_{-,k_m}^{B_{m-1}}B_{m-1}F_{-,k_m}^{B_{m-1}}$.
-Thus since $F_{-,k_m}^{B_{m-1}}$ is its own inverse, 
-\[-B\delta^B=-E_{-,k_m}^{B_{m-1}}B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta=E_{-,k_m}^{B_{m-1}}(-B_{m-1}\delta^{B_{m-1}}).\]
-Showing that $\eta_{k_m}^{B_{m-1}^T}(-B_{m-1}\delta^{B_{m-1}})=E_{-,k_m}^{B_{m-1}}(-B_{m-1}\delta^{B_{m-1}})$ amounts to showing that the $k_m$-entry of $-B_{m-1}\delta^{B_{m-1}}$ is nonpositive.
-
-We use \cref{BGCB} to rewrite $-B_{m-1}\delta^{B_{m-1}}=-B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta$ as $\bigl(C_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T(-B_0\delta)$.
-Thus we must show that $\omega_c(C^{k_m}_c(v_{m-1})\ck,\delta)\ge0$. 
-Since $C^{k_m}_c(v_{m-1})\ck$ is a positive scalar multiple of $C^{k_m}_c(v_{m-1})$, we need to check that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
-
-In the definition of $\delta^B$, we replaced a $c$-sortable element $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.
-Since we can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$, we know that $c^jC^{k_m}_c(v_{m-1})=C^{k_m}_c(c^jv_{m-1})$ is a positive root for any $j\ge0$.
-Thus \cref{who is pos} says that either $C^{k_m}_c(v_{m-1})$ is $c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$ or $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
-Thus \cref{om del} or \cref{om del fin} says that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
-We have proved Assertion~\ref{im ray}.
-
-
-\end{proof}
-
-
-
-
-
-
-Let $U$ be the set of vectors in $\reals^m$ that project to the line segment in \cref{affine main}.
-\cref{contains proj} combines with \cref{affine main} to say that $\P^\tB_\lambda\subseteq U$.
-In particular, $\P^\tB_\lambda$ is contained in $\d_\infty^\tB$.
-We want to show that $\P^\tB_\lambda$ is contained in $\set{\lambda+\tB\delta^Ba:a\ge0}$.
-
-Suppose $x\in\P^\tB_\lambda$.
-Then for some $a\ge0$, $x$ is $\lambda+\tB\delta^Ba$ plus a vector that is zero in the first $n$ entries.
-Also $x=\lambda+\tB\alpha$ for some $\alpha\ge0$.
-Thus $x-(\lambda+\tB\delta^Ba)$ is $\tB(\alpha-\delta^B)$.
-We conclude that $\P^\tB_\lambda$ is contained in $\set{\lambda+\tB\delta^Ba+\ker B:a\ge0}$.
-
-For any $\kk$, $\eta_\kk^{\BB^T}(\P^\tB_{\lambda,\kk})=\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\reals^n,\alpha\ge0}$, which is contained in...
-
-
-Probably need to show how the vectors $\tB\delta^B$ go under mutation maps.
-Hopefully, $\eta^{\BB^T}_\kk(-\tB\delta^B)=-\mu_\kk(\tB)\delta^{\mu_\kk(\tB)}$.
-
-
-
-
-\newpage
+imaginary ray 
+imaginary wall $\d^\tB$
 
 
 
