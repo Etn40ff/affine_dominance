@@ -800,7 +800,7 @@ In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1
 \subsection{Dominance regions for extended exchange matrices}\label{ext sec}
 We follow \cite{FZ07} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider $m\times m$ matrices related to $\tB$:
-Writing $\tB$ in block form $\begin{bsmallmatrix}B\\E\end{bsmallmatrix}$, let $\BB$ be the matrix with block form $\begin{bsmallmatrix}B&-E^T\\E&0\end{bsmallmatrix}$.
+Writing $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$, let $\BB$ be the matrix with block form $\begin{bsmallmatrix}B&-R^T\\R&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable and agrees with $\tB$ in columns $1$ to $n$.
 Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 
@@ -3290,8 +3290,6 @@ Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B
 If $\lambda$ is contained in~$\d^\tB_\infty$, then the dominance region $\P^\tB_\lambda$ is the line segment parallel to $\tB\delta^B$, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^\tB_\infty$.
 \end{theorem}
 
-\newpage
-
 
 The imaginary ray in $\F_{B^T}$, spanned by $-\frac12B\delta^B$, corresponds to a $(1+m-n)$-dimensional cone in $\F_{\tB^T}$.
 The statement of \cref{affine main extended} suggests that there is a special direction within that $(1+m-n)$-dimensional cone, spanned by $-\frac12\tB\delta^B$.
@@ -3299,7 +3297,7 @@ As a first step in the proof of \cref{affine main extended}, we point out one th
 
 \begin{proposition}\label{delta is the tilde man}
 Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
-Then, for any sequence $\kk$ of indices in $\set{1,\ldots,n}$, $\eta^{\BB^T}_\kk(-\frac12\tB\delta^B)=-\frac12\mu_\kk(\tB)\delta^{\mu_\kk(\tB)}$.
+Then $\eta^{\BB^T}_\kk(-\frac12\tB\delta^B)=-\frac12\mu_\kk(\tB)\delta^{\mu_\kk(B)}$ for any sequence $\kk$ of indices in $\set{1,\ldots,n}$.
 \end{proposition}
 The factors $\frac12$ in the statement are for aesthetic reasons, but the negative signs are crucial.
 The analogous statement for $-\frac12B\delta^B$ is true because $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray.
@@ -3310,66 +3308,107 @@ It is enough to prove the \lcnamecref{delta is the tilde man} for $\kk$ a single
 
 Recall that, for $B_0$ an acyclic exchange matrix of affine type and for a particular choice of $t$, the vector $\delta^B\in V$ is defined to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.
 Thus \cref{BGCB ext} rewrites $-\tB\delta^B=-\tB\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ as 
-\[-\tB\delta^B=-\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0\delta=\begin{bsmallmatrix}-(C_t^{-B^T;t_0})^T&0\\-(D_t^{-\tB^T;t_0})^T&-I_{m-n}\end{bsmallmatrix}\tB_0\delta.\]
+\[-\tB\delta^B=-\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0\delta=\begin{bsmallmatrix}-(C_t^{-B^T;t_0})^T&0\\-(D_t^{-\tB^T;t_0})^T&-I_{m-n}\end{bsmallmatrix}\tB_0\delta,\]
+where the notation $-\tB^T$ means the first $n$ columns of $-\BB^T$: an extended exchange matrix whose first $n$ rows are $-B^T$ and whose remaining rows agree with~$\tB$.  \sayN{Or, of we can get away with it, do a star.}
 
+****
 
-where the notation $-\tB^T$ means the first $n$ columns of $-\BB^T$: an extended exchange matrix whose first $n$ rows are $-B^T$ and whose remaining rows agree with $\tB$.
+This HAS TO be true (possibly with more hypotheses) if we're going to prove that the dominance region is a line segment.
+So I will continue on as if is were proved.
 
+****
 
-Thus we check that $\eta_{k_m}^{B_{m-1}^T}(-B_{m-1}\delta^{B_{m-1}})=-B\delta^{B}$.
+\end{proof}
 
-We first appeal to \cite[Proposition~1.3]{NZ} to say that 
-\[\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta=\bigl(G_{t_{m-1}}^{-B_0^T;t_0}E_{+,k_m}^{B_{m-1}^T}\bigr)^T\delta=F_{-,k_m}^{B_{m-1}}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta,\]
-because $\kk$ is a green sequence, so that column $k_m$ of $C_{t_{m-1}}^{-B_0^T;t_0}$ is positive.
-Now \cref{EBF trick} says that $B=E_{-,k_m}^{B_{m-1}}B_{m-1}F_{-,k_m}^{B_{m-1}}$.
-Thus since $F_{-,k_m}^{B_{m-1}}$ is its own inverse, 
-\[-B\delta^B=-E_{-,k_m}^{B_{m-1}}B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta=E_{-,k_m}^{B_{m-1}}(-B_{m-1}\delta^{B_{m-1}}).\]
-Showing that $\eta_{k_m}^{B_{m-1}^T}(-B_{m-1}\delta^{B_{m-1}})=E_{-,k_m}^{B_{m-1}}(-B_{m-1}\delta^{B_{m-1}})$ amounts to showing that the $k_m$-entry of $-B_{m-1}\delta^{B_{m-1}}$ is nonpositive.
+In light of \cref{delta is the tilde man}, we can prove one containment of \cref{affine main extended} (similarly to \cref{affine main partial}).
 
-We use \cref{BGCB} to rewrite $-B_{m-1}\delta^{B_{m-1}}=-B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta$ as $\bigl(C_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T(-B_0\delta)$.
-Thus we must show that $\omega_c(C^{k_m}_c(v_{m-1})\ck,\delta)\ge0$. 
-Since $C^{k_m}_c(v_{m-1})\ck$ is a positive scalar multiple of $C^{k_m}_c(v_{m-1})$, we need to check that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
+\begin{proposition}\label{affine main extended partial}
+Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
+If $\lambda$ is contained in the imaginary wall~$\d^\tB_\infty$, then the dominance region $\P^\tB_\lambda$ \emph{contains} the line segment parallel to $\tB\delta^B$, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^\tB_\infty$.
+\end{proposition}
+\begin{proof}
+Suppose $\kk$ is a sequence of indices in $\set{1,\ldots,n}$ and let $\tB'=\mu_\kk(B)$.
+Since $(\eta_\kk^{\BB^T})^{-1}$ is linear on each imaginary cone and by \cref{delta is the tilde man}, we see that 
+\begin{multline*}
+\P^\tB_{\lambda,\kk}=(\eta_\kk^{\BB^T})^{-1}\set{\eta^{\BB^T}_\kk(\lambda)+\tB'\alpha:\alpha\ge0}\\
+\supseteq(\eta_\kk^{\BB^T})^{-1}\set{\eta^{\BB^T}_\kk(\lambda)+a\tB'\delta^{B'}:a\ge0}\cap\d^\tB_\infty\\
+=\set{\lambda+a\tB\delta^B:a\ge0}\cap\d^\tB_\infty. 
+\end{multline*}
+This is true for all $\kk$, so $\P^\tB_\lambda\supseteq\set{\lambda+a\tB\delta^B:a\ge0}\cap\d^\tB_\infty$, as desired.
+\end{proof}
 
-In the definition of $\delta^B$, we replaced a $c$-sortable element $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.
-Since we can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$, we know that $c^jC^{k_m}_c(v_{m-1})=C^{k_m}_c(c^jv_{m-1})$ is a positive root for any $j\ge0$.
-Thus \cref{who is pos} says that either $C^{k_m}_c(v_{m-1})$ is $c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$ or $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
-Thus \cref{om del} or \cref{om del fin} says that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
-We have proved Assertion~\ref{im ray}.
+\begin{proposition}\label{lots of kernels}
+Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
+If $\lambda\in\d_\infty^\tB$, then 
+\[\P^\tB_{\lambda}\subseteq\Bigl(\set{\lambda+\tB\delta^Ba:a\ge0}\cap\d_\infty^\tB\Bigr)+\bigcap_{\tB'}\sett{\tB'\beta:\beta\in\ker(B')},\]
+where the intersection is over all $\tB'$ that obtained from $\tB$ by a sequence of mutations and each $B'$ is the exchange matrix that is the top of $\tB'$.
+\end{proposition}
+\begin{proof}
+%%Let $U$ be the set of vectors in $\reals^m$ that project to the line segment in \cref{affine main}.
+%%\cref{contains proj} combines with \cref{affine main} to say that $\P^\tB_\lambda\subseteq U$.
+%%In particular, $\P^\tB_\lambda$ is contained in $\d_\infty^\tB$, and more specifically, $\P^\tB_\lambda$ is contained in a cone of $\F_{\tB^T}$.
+%%Suppose $x\in\P^\tB_\lambda$.
+%%Since $\P^\tB_\lambda\subseteq U$, for some $a\ge0$, $x$ is $\lambda+\tB\delta^Ba$ plus a vector that is zero in the first $n$ entries.
+%%Since $\P^\tB_\lambda\subseteq\P^\tB_{\lambda,\emptyset}$, also $x=\lambda+\tB\alpha$ for some ${\alpha\ge0}$.
+%%Thus $x-(\lambda+\tB\delta^Ba)$ is $\tB(\alpha-\delta^B)$ and $\alpha-\delta^B\in\ker B$.
+%%We conclude that $\P^\tB_\lambda$ is contained in $\set{\lambda+\tB\delta^Ba+\tB\beta:a\ge0,\beta\in\ker B}$.
+%%
+%If $\tB'$ is mutation-equivalent to $\tB$, then there exists a sequence $\kk$ of indices in $\set{1,\ldots,n}$ with $\tB'=\mu_\kk(\tB)$ and therefore $B'=\mu_\kk(B)$.
+%Let $\lambda'=\eta_\kk^{\BB^T}(\lambda)$.
+%\cref{shift extended}.\ref{shift extended all} says that $\P^{\tB'}_{\lambda'}=\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)$.
+%Suppose $x\in\P^{\tB'}_{\lambda'}$.
+%Then \cref{contains proj} combines with \cref{affine main} to say that, for some $a\ge0$, $x$ is $\lambda'+\tB'\delta^{B'}a$ plus a vector that is zero in the first $n$ entries.
+%Also, since $\P^{\tB'}_{\lambda'}\subseteq\P^{\tB'}_{\lambda',\emptyset}$, also $x=\lambda'+\tB'\alpha$ for some ${\alpha\ge0}$.
+%Thus $x-(\lambda'+\tB'\delta^{B'}a)$ is $\tB'(\alpha-a\delta^{B'})$ and $\alpha-a\delta^{B'}\in\ker(B')$.
+%We conclude that $\P^{\tB'}_{\lambda'}$ is contained in $\set{\lambda'+\tB'\delta^{B'}a+\tB'\beta:a\ge0,\beta\in\ker(B')}$.
+%
+%Since this set is contained in a cone of the mutation fan for $\tB'$, the map $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{(\BB')^T}$ is linear on it.
+%Applying \cref{delta is the tilde man} and observing that $\eta_{\kk^{-1}}^{(\BB')^T}$ fixes vectors that are zero in the first $n$ entries, we see that
+%\[\P^\tB_\lambda\subseteq\sett{\lambda+\tB\delta^Ba+\tB'\beta:a\ge0,\beta\in\ker(B')}.\]
+%Thus
+%\begin{multline*}
+%\P^\tB_{\lambda}\subseteq\bigcap_{\tB'}\sett{\lambda+\tB\delta^Ba+\tB'\beta:a\ge0,\beta\in\ker(B')}\\=\sett{\lambda+\tB\delta^Ba:a\ge0}+\bigcap_{\tB'}\sett{\tB'\beta:\beta\in\ker(B')},
+%\end{multline*}
+%where the intersection is over all $\tB'$ that obtained from $\tB$ by a sequence of mutations.
+%
+%IS THAT LAST EQUALITY REALLY TRUE?
+%
+%Suppose $x\in\bigcap_{\tB'}\sett{\lambda+\tB\delta^Ba+\tB'\beta:a\ge0,\beta\in\ker(B')}$.
+%We know $\delta^B\not\in\ker(B)$ (because $-B\delta^B$ spans the imaginary ray), so $x= $
+%
+%STARTING AGAIN, with improvements:
+%
+Let $U$ be the set of vectors in $\reals^m$ that project to the line segment in \cref{affine main} under the map $\Proj_n$ that ignores the last $m-n$ entries.
+The set $U$ is contained in $\d_\infty^\tB$, and more specifically, contained in a cone of $\F_{\tB^T}$.
+We see that every mutation map is linear on $U$.
+\cref{contains proj} combines with \cref{affine main} to say that $\P^\tB_\lambda\subseteq U$, so $\P^\tB_\lambda$ is in a cone of $\F_{\tB^T}$ that is in $\d_\infty^\tB$.
 
+Suppose $x\in\P^\tB_\lambda$.
+Then $x\in U$, so for some $a\ge0$, $x$ is a vector $y=\lambda+\tB\delta^Ba$ plus a vector $z$ that is zero in the first $n$ entries.
+For any $\tB'$ that is mutation-equivalent to $\tB$, there exists a sequence $\kk$ of indices in $\set{1,\ldots,n}$ with $\tB'=\mu_\kk(\tB)$ and therefore $B'=\mu_\kk(B)$.Let $\lambda'=\eta_\kk^{\BB^T}(\lambda)$.
+Let $\lambda'=\eta_\kk^{\BB^T}(\lambda)$ and let $x'=\eta_\kk^{\BB^T}(x)$.
+Applying \cref{delta is the tilde man}, since $\eta_\kk^{\BB^T}$ is linear on $U$, and observing that $\eta_\kk^{\BB^T}$ fixes vectors that are zero in the first $n$ entries, we see that $x'$ is a vector $y'=\lambda'+\tB'\delta^{B'}a$ (for the same $a\ge0$ as before) plus $z$.
+\cref{shift extended}.\ref{shift extended all} implies that $x'\in\P^{\tB'}_{\lambda'}$, and since $\P^{\tB'}_{\lambda'}\subseteq\P^{\tB'}_{\lambda',\emptyset}$, we see that $x=\lambda'+\tB'\alpha$ for some ${\alpha\ge0}$.
+Thus $z=x'-y'$ is $\tB'(\alpha-a\delta^{B'})$ and since the first $n$ entries of $z$ are zero, $\alpha-a\delta^{B'}$ is in the kernel of~$B'$.
+We have written $x$ as a vector $\lambda+\tB\delta^Ba$ for some $a\ge0$ plus a vector $z$ that, for any $\tB'$ mutation-equivalent to $\tB$, is is of the form $\tB'\beta$ for some $\beta\in\ker(B')$.
+\end{proof}
+
+In light of \cref{affine main extended partial,lots of kernels}, the following \lcnamecref{int of kernels} completes the proof of \cref{affine main extended}.
+
+\begin{proposition}\label{int of kernels}
+Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
+Then ${\bigcap_{\tB'}\sett{\tB'\beta:\beta\in\ker(B')}=\set{0}}$, where the intersection is over $\tB'$ mutation-equivalent to $\tB$.
+\end{proposition}
+\begin{proof}
+Haven't thought about this AT ALL!
+
+But these kernels are $0$, $1$, or $2$-dimensional, so this at least seems possible, maybe with conditions on the extension.
 
 \end{proof}
 
 
 
-
-
-
-Let $U$ be the set of vectors in $\reals^m$ that project to the line segment in \cref{affine main}.
-\cref{contains proj} combines with \cref{affine main} to say that $\P^\tB_\lambda\subseteq U$.
-In particular, $\P^\tB_\lambda$ is contained in $\d_\infty^\tB$.
-We want to show that $\P^\tB_\lambda$ is contained in $\set{\lambda+\tB\delta^Ba:a\ge0}$.
-
-Suppose $x\in\P^\tB_\lambda$.
-Then for some $a\ge0$, $x$ is $\lambda+\tB\delta^Ba$ plus a vector that is zero in the first $n$ entries.
-Also $x=\lambda+\tB\alpha$ for some $\alpha\ge0$.
-Thus $x-(\lambda+\tB\delta^Ba)$ is $\tB(\alpha-\delta^B)$.
-We conclude that $\P^\tB_\lambda$ is contained in $\set{\lambda+\tB\delta^Ba+\ker B:a\ge0}$.
-
-For any $\kk$, $\eta_\kk^{\BB^T}(\P^\tB_{\lambda,\kk})=\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\reals^n,\alpha\ge0}$, which is contained in...
-
-
-Probably need to show how the vectors $\tB\delta^B$ go under mutation maps.
-Hopefully, $\eta^{\BB^T}_\kk(-\tB\delta^B)=-\mu_\kk(\tB)\delta^{\mu_\kk(\tB)}$.
-
-
-
-
-\newpage
-
-
-
-
-\sayN{Fix alignment of all matrices, if necessary using [ and small and array instead of bsmallmatrix.}
+\sayN{Note to self:  Fix alignment of all matrices, if necessary using [ and small and array instead of bsmallmatrix.}
 
 
 
