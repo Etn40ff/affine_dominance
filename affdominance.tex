@@ -972,7 +972,11 @@ Now \cref{extend salient} implies that any extension $\tB$ is salient.
 
 \begin{example}\label{0000 bad}
 The finite-type exchange matrix $B=\begin{bsmallmatrix}0&0\\0&0\end{bsmallmatrix}$ is salient, but the extended exchange matrix $\tB=\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}$ is not, because $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}1\\0\end{bsmallmatrix}=\begin{bsmallmatrix}0\\0\\1\end{bsmallmatrix}$ and $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}0\\1\end{bsmallmatrix}=\begin{bsmallmatrix*}[r]0\\0\\-1\end{bsmallmatrix*}$.
+FOLLOWING SENTENCE FALSE:
 One can check that $\P_\lambda^\tB=\settt{\lambda+a\begin{bsmallmatrix*}[r]0\\0\\1\end{bsmallmatrix*}:a\in\reals}$ for all $\lambda\in\reals^3$.
+BECAUSE THAT SENTENCE IS FALSE, that's probably 
+
+
 \end{example}
 
 
@@ -1157,6 +1161,11 @@ The hypothesis of \cref{finite P point}.\ref{finite P point coeff-ful} holds, fo
 \section{Dominance regions in affine type}
 An exchange matrix is of \newword{affine type} if it is mutation-equivalent to an acyclic exchange matrix whose underlying Cartan matrix is of affine type.
 We will prove the following theorems. \sayN{Probably should state versions for extended exchange matrices here.  If we get everything we want, we can say that these theorems completely characterize dominance regions in affine type.}
+
+\sayN{Need to say something about rank2 affine.  Are we leaving it out or are we going to deal with it?  The coefficient-free case is in Rupel-Stella.}
+
+
+\sayN{Need to add a note somewhere that affine implies not block-decomposable.}
 
 \begin{theorem}\label{affine P point} \sayN{Separate this into two statements like \cref{finite P point}?}  
 Suppose $\tB$ is an extended exchange matrix whose underlying exchange matrix $B$ is of affine type.
@@ -3403,6 +3412,9 @@ Then ${\bigcap_{\tB'}\sett{\tB'\beta:\beta\in\ker(B')}=\set{0}}$, where the inte
 Haven't thought about this AT ALL!
 
 But these kernels are $0$, $1$, or $2$-dimensional, so this at least seems possible, maybe with conditions on the extension.
+NO, also $3$-dimensional is possible.
+
+Also, Dylan and Salvatore convinced me that every single subspace in this intersection is the same!!!
 
 \end{proof}
 
