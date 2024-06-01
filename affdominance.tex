@@ -469,7 +469,7 @@ For any $\ll$,
 Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
 \end{proof}
 
-\sayN{Added following lemma.  Seems to be worth saying, and maybe we can mention it in the introduction to say something about ``any $B$ that decomposes into blocks of finite and affine type''.  Do you agree that it's easy enough to not give a proof?}
+\sayN{Added following lemma.  Seems to be worth saying, and maybe we can mention it in the introduction to say something about ``any $B$ that decomposes into blocks of finite and affine type''.  Do you agree that it's easy enough to not give a proof?  I suppose we need the same thing for extended exchange matrices.  Alternatively, we can just leave this out, because it's so easy.}
 The following lemma is easily proved from the definition of $\P_\lambda^B$ and simple observations about mutation maps in the presence of a block decomposition.
 
 \begin{lemma}\label{block dom}
@@ -1179,7 +1179,7 @@ Furthermore, if $\tB$ is any extension of $B$ and $\lambda\in\Cone^{\tB;t_0}_t$ 
 
 \begin{theorem}\label{affine main}
 Suppose $B$ is an exchange matrix of affine type.
-If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
+If $\lambda$ is in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
 To prove these theorems, we first gather some assorted tools, and then quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
@@ -1699,7 +1699,7 @@ Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above
 %\end{proof}4
 
 \cref{delta is the man}.\ref{im hyp} establishes that $\d^B_\infty$ is contained in a hyperplane.
-We will use that fact to prove a \lcnamecref{aff red} and then use that \lcnamecref{aff red} to prove \cref{affine P point}.
+We will use that fact to prove a \lcnamecref{aff red} that contributes to the proof of \cref{affine P point}.
 
 \begin{proposition}\label{aff red}
 Suppose $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
@@ -1713,10 +1713,10 @@ For any point $x$ in the interior of the positive cone, we can move the line seg
 The $\g$-vector cones visited by this define a maximal green sequence.
 \end{proof}
 
-
-\begin{proof}[Proof of \cref{affine P point}]
-We first construct an exchange matrix $B_0$ that is mutation-equivalent to $B$ such that any extension of $B_0$ is salient.
-
+\begin{proposition}\label{affine salient}
+If $B$ is an exchange matrix of affine type, then there exists an exchange matrix $B_0$ that is mutation-equivalent to $B$ such that $B$ is salient and any extension of $B_0$ is salient.
+\end{proposition}
+\begin{proof}
 Since $B$ is of affine type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of affine type.
 When this graph is an oriented tree, source-sink moves make a bipartite exchange matrix $B_0$ mutation-equivalent to $B$.
 Since Cartan matrices of affine type have connected Dynkin diagrams, $B$ has no zero columns, and therefore $B_0$ has no zero columns.
@@ -1753,8 +1753,11 @@ We see that for any combination of the parities of $k$ and $n-k$, the inequaliti
 Since $B_0$ is skew-symmetric, the equations describing its kernel are exactly the same as the inequalities above, but with equality replacing strict inequality everywhere.
 By inspection of those equations, we see that every nonzero element of the kernel of $B_0$ has entries with opposite signs.
 Thus no nonzero element of the kernel has nonnegative entries, so \cref{extend salient} says that every extension of $B_0$ is salient.
+\end{proof}
 
-We now conclude the proof exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} for the existence of a maximal red sequence.
+\begin{proof}[Proof of \cref{affine P point}]
+\cref{affine salient} provides an exchange matrix $B_0$ that is mutation-equivalent to $B$ such that any extension of $B_0$ is salient.
+We argue exactly as the proof of \cref{finite P point}, appealing to \cref{aff red} for the existence of a maximal red sequence.
 \end{proof}
 
 \cref{delta is the man} also allows us to prove one containment in \cref{affine main}.
@@ -3218,7 +3221,7 @@ the mutation map $\eta^{B^T}_\ll$ fixes the imaginary ray pointwise, and
 \item
 If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\ll(x)=\eta^{\Comp(B)^T}_\kk(x)$.
 \end{itemize}
-(The fact, in each of \cref{nonspecial mut,special mut}, that the mutated matrix is neighboring is crucial to concluding these facts for $\ll$.)
+(The fact, in each of \cref{nonspecial mut,special mut}, that the mutated matrix is neighboring and has the same affine and special indices as $B$ is crucial to concluding these facts for $\ll$.)
 
 \begin{proposition}\label{neigh im wall}
 Suppose $B$ is neighboring and is indexed as in \cref{neigh B}.
@@ -3237,15 +3240,13 @@ Since the imaginary ray is in the relative interior of that half-hyperplane, the
 \end{proof}
 
 \begin{proposition}\label{factor eta}
-Suppose $B$ is neighboring and $\lambda\in\d_\infty^B$.
-Write $\lambda=\lambda_0+\lambda_\infty$ for $\lambda_0$ with affine entries $0$ and $\lambda_\infty$ a nonnegative scaling of $\delta^B$.
-For $\kk$ a sequence of non-affine indices with expanded sequence $\ll$, ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$.
+Suppose $B$ is neighboring and $\lambda=\lambda_0+\lambda_\infty\in\d_\infty^B$ such that~$\lambda_0$ has affine entries $0$ and $\lambda_\infty$ is a nonnegative scaling of $\delta^B$.
+If $\kk$ is a sequence of non-affine indices with expanded sequence $\ll$, then ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$.
 \end{proposition}
 \begin{proof}
 \cref{neigh im wall} says that we can write $\lambda$ as $\lambda_0+\lambda_0$.
 Since $\eta_\ll^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the \lcnamecref{factor eta} follows from \cref{nonspecial mut,special mut}.
 \end{proof}
-
 
 We now prove the main theorem.
 
@@ -3259,8 +3260,8 @@ Now \cref{shift} implies that it is enough to prove the \lcnamecref{affine main}
 We choose $B$ to be a neighboring exchange matrix.
 %\cref{affine main partial} says that~$\P_\lambda^B$ contains the line segment described in the \lcnamecref{affine main}.
 %We need to show the opposite containment.
-Suppose now that $\kk$ is a sequence of \emph{non-affine} indices, let~$\ll$ be the expanded sequence, and again take $B'=\mu_\ll(B)$ by \cref{factor eta}.
-Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$.
+Suppose now that $\kk$ is a sequence of \emph{non-affine} indices, let~$\ll$ be the expanded sequence, and again take ${B'=\mu_\ll(B)}$.
+Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$ by \cref{factor eta}.
 \cref{Comp span} implies that 
 \begin{multline*}
 \set{B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^{B'})^\perp\\
@@ -3286,7 +3287,11 @@ The set $\P^B_{\lambda,\ll}$ obtained by applying $(\eta_\ll^{B^T})^{-1}$ to $\s
 By \cref{factor eta}, if some point $x$ is $\P^B_{\lambda,\ll}$ for every $\ll$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
 Therefore \cref{finite P point} says that the projection of~$x$ is $\lambda_0$.
 We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
-But also $\P^B_\lambda$ is contained in $\d^B_\infty$, and, by considering $\P^B_{\lambda,\emptyset}$, we see that $\P^B_\lambda$ is contained in the set $\set{\lambda+B\delta^Ba:a\ge0}$.
+But also $\P^B_\lambda$ is contained in $\d^B_\infty$, so it is contained in the ray in $\d^B_\infty$ parallel to the imaginary ray, containing $\lambda$, and having endpoint in the relative boundary of $\d^B_\infty$.
+\sayN{This is where the fix is needed because of $1\times1$ blocks.  We were being too flippant about restricting from the ray to the line segment, but a little ``salience'' makes it correct.}
+Arguing as in the first paragraph of this proof, we see that this fact about containment in a ray is true for any $B$ in the exchange pattern, and to restrict from the ray to the line segment, we can choose any $B$ in the exchange pattern.
+\cref{affine salient} allows us tochoose $B$ to be a salient exchange matrix in the exchange pattern.
+For this $B$, since $B\delta^B$ is in the nonnegative linear span of the columns of $B$, $-B\delta^B$ is not, so $\P^B_\lambda$ is contained in the set $\set{\lambda+B\delta^Ba:a\ge0}$.
 We have shown that $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{proof}
 
