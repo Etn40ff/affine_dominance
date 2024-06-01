@@ -469,6 +469,12 @@ For any $\ll$,
 Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
 \end{proof}
 
+\sayN{Added following lemma.  Seems to be worth saying, and maybe we can mention it in the introduction to say something about ``any $B$ that decomposes into blocks of finite and affine type''.  Do you agree that it's easy enough to not give a proof?}
+The following lemma is easily proved from the definition of $\P_\lambda^B$ and simple observations about mutation maps in the presence of a block decomposition.
+
+\begin{lemma}\label{block dom}
+If $B$ has a diagonal block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\end{bsmallmatrix}$ and $\lambda\in\reals^n$ has a corresponding decomposition $\begin{bsmallmatrix}\lambda_1\\\lambda_2\end{bsmallmatrix}$, then $\P_\lambda^B=\P_{\lambda_1}^{B_1}\times\P_{\lambda_2}^{B_2}$.
+\end{lemma}
 
 For seeds $t_0$ and $t$ and an exchange matrix $B$, let $C_t^{B;t_0}$ be the matrix whose columns are the $C$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
 Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the same sign.
@@ -955,9 +961,10 @@ We say that $B$ is \newword{bipartite} if there is a bipartition $\set{1,\ldots,
 Suppose $B$ is a bipartite exchange matrix.
 Then $B$ is salient.
 Furthermore, if $B$ has at most one column that is zero, any extension $\tB$ of $B$ is also salient.
+If $B$ has more than one zero column, then any extension $\tB$ of $B$ is mutation-equivalent to a salient exchange matrix.
 \end{lemma}
 \begin{proof}
-Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions $N$ has strictly positive dot product with every nonzero column of $B$.
+Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions~$N$ has strictly positive dot product with every nonzero column of $B$.
 Thus $B$ is salient.
 
 Suppose $y$ is an element of the kernel of $B$ with nonnegative entries.
@@ -965,6 +972,14 @@ The fact that $B$ is bipartite means that every row of $B$ has either nonnegativ
 Positions where the row is nonzero thus specify positions that must be zero in~$y$.
 If $B$ has at most one zero column, then $y$ is zero in every position except in that column (if it exists).
 Now \cref{extend salient} implies that any extension $\tB$ is salient.
+
+Now suppose $B$ has two or more zero columns.
+As in the proof of \cref{extend salient}, if nonzero vectors $x$ and $-x$ are both in the nonnegative span of the columns of $\tB$, then $x$ is $\tB y$ for $y\in\ker B$ with nonnegative entries.
+As in the previous paragraph, a nonnegative vector~$y$ is in $\ker B$ if and only if it has nonzero entries only where~$B$ has zero columns.
+For brevity, we will say ``zero columns of~$\tB$'' for the columns of~$\tB$ that are zero in their top $n$ entries. 
+We will perform a sequence of mutations in the positions of zero columns so that the nonnegative linear span of the zero columns does not contain a line.
+Since mutating in the position of a zero column does nothing but negate that zero column, we have a finite collection of vectors, and we want to negate a subset of them so that their nonnegative linear span contains no line.
+Taking $x$ to be any vector whose dot product is nonzero with each vector in the collection, we negate vectors in the collection so that all dot products with $x$ are positive.
 \end{proof}
 
 
@@ -972,24 +987,15 @@ Now \cref{extend salient} implies that any extension $\tB$ is salient.
 
 \begin{example}\label{0000 bad}
 The finite-type exchange matrix $B=\begin{bsmallmatrix}0&0\\0&0\end{bsmallmatrix}$ is salient, but the extended exchange matrix $\tB=\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}$ is not, because $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}1\\0\end{bsmallmatrix}=\begin{bsmallmatrix}0\\0\\1\end{bsmallmatrix}$ and $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}0\\1\end{bsmallmatrix}=\begin{bsmallmatrix*}[r]0\\0\\-1\end{bsmallmatrix*}$.
-FOLLOWING SENTENCE FALSE:
-One can check that $\P_\lambda^\tB=\settt{\lambda+a\begin{bsmallmatrix*}[r]0\\0\\1\end{bsmallmatrix*}:a\in\reals}$ for all $\lambda\in\reals^3$.
-BECAUSE THAT SENTENCE IS FALSE, that's probably 
-
-
+However, any single-step mutation of $\tB$ is salient.
 \end{example}
 
 
 
 \begin{theorem}\label{finite P point}  
 Suppose $B$ is an $n\times n$ exchange matrix of finite type.
-Then 
-\begin{enumerate}[\quad\bf1.]
-\item \label{finite P point coeff-free}
-$\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
-\item \label{finite P point coeff-ful}
-If $B$ has at most one zero column, then $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.
-\end{enumerate}
+Then $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
+Furthermore, $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.
 \end{theorem}
 \begin{proof}
 Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented forest.
@@ -999,13 +1005,12 @@ For any $\lambda\in\reals^n$, \cref{shift} says that $\P_\lambda^B$ is $\eta_\kk
 Every exchange matrix of finite type admits a maximal red sequence, so \cref{P point} applies to say that $\P_{\lambda'}^{B_0}=\set{\lambda'}$.
 Therefore $\P_\lambda^B=\set{\lambda}$.
 
-If $B$ has at most one column of zeros, then also $B_0$ has at most one column of zeros.
-Let $\tB$ be any extension of $B$ and let $\tB_0=\mu_\kk(\tB)$, which is salient by \cref{bip sal}.
-For any $\lambda\in\reals^m$, \cref{shift extended} says that $\P_\lambda^\tB$ is $\eta_\kk^{\BB_0^T}(\P_{\lambda'}^{\tB_0})$ for $\lambda'=\eta_\kk^{\BB_0^T}(\lambda)$.
-Again, \cref{P point} applies to say that $\P_{\lambda'}^{\tB_0}=\set{\lambda'}$, so $\P_\lambda^\tB=\set{\lambda}$.
+Let $\tB$ be any extension of $B$ and let $\tB_0=\mu_\kk(\tB)$.
+\cref{bip sal} says that $\tB_0$ is mutation-equivalent to some $\tB_1$ that is salient.
+Let $\ll$ be a sequence of indices such that $\tB_1=\mu_\ll(\tB_0)$.
+For any $\lambda\in\reals^m$, \cref{shift extended} says that $\P_\lambda^\tB$ is $\eta_{\kk^{-1}\ll^{-1}}^{\BB_1^T}(\P_{\lambda'}^{\tB_0})$ for $\lambda'=\eta_{\ll\kk}^{\BB^T}(\lambda)$.
+Again, \cref{P point} says that $\P_{\lambda'}^{\tB_1}=\set{\lambda'}$, so $\P_\lambda^\tB=\set{\lambda}$.
 \end{proof}
-
-The hypothesis of \cref{finite P point}.\ref{finite P point coeff-ful} holds, for example, whenever the Cartan matrix associated to $B$ is irreducible and of finite type.
 
 %\section{Affine type}
 %Let $B_0$ be acyclic of affine type, indexed so that entries above the diagonal are nonnegative.
@@ -1167,10 +1172,9 @@ We will prove the following theorems. \sayN{Probably should state versions for e
 
 \sayN{Need to add a note somewhere that affine implies not block-decomposable.}
 
-\begin{theorem}\label{affine P point} \sayN{Separate this into two statements like \cref{finite P point}?}  
-Suppose $\tB$ is an extended exchange matrix whose underlying exchange matrix $B$ is of affine type.
-%Suppose $B$ is an exchange matrix of affine type and suppose $\tB$ is any extension of $B$.
-If $\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_\lambda=\set{\lambda}$.
+\begin{theorem}\label{affine P point} 
+If $B$ is an exchange matrix of affine type and $\lambda\in\Cone^{B;t_0}_t$ for some $t$, then $\P^B_\lambda=\set{\lambda}$.
+Furthermore, if $\tB$ is any extension of $B$ and $\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_\lambda=\set{\lambda}$.
 \end{theorem}
 
 \begin{theorem}\label{affine main}
@@ -3280,7 +3284,7 @@ The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambd
 
 The set $\P^B_{\lambda,\ll}$ obtained by applying $(\eta_\ll^{B^T})^{-1}$ to $\set{\eta_\ll^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 By \cref{factor eta}, if some point $x$ is $\P^B_{\lambda,\ll}$ for every $\ll$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
-Therefore \cref{finite P point}.\ref{finite P point coeff-free} says that the projection of~$x$ is $\lambda_0$.
+Therefore \cref{finite P point} says that the projection of~$x$ is $\lambda_0$.
 We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
 But also $\P^B_\lambda$ is contained in $\d^B_\infty$, and, by considering $\P^B_{\lambda,\emptyset}$, we see that $\P^B_\lambda$ is contained in the set $\set{\lambda+B\delta^Ba:a\ge0}$.
 We have shown that $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
