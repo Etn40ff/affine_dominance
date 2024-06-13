@@ -1486,7 +1486,7 @@ The following \lcnamecref{eta nice} is part of \cite[Proposition~7.31]{affscat}.
 \begin{proposition}\label{eta nice} 
 Suppose $B_0$ is an acyclic exchange matrix and the Coxeter element associated to $B_0$ is $c=s_1\cdots s_n$.
 Then the piecewise linear map $\eta^{B_0^T}_{12\cdots n}$
-\begin{enumerate}
+\begin{enumerate}[\quad\bf1.]
 \item \label{nu tau}   
 has $\eta^{B^T}_{12\cdots n}\circ\nu_c=\nu_c\circ\tau_c$ as maps on $\AP{c}$, 
 \item\label{eta aut mut}
@@ -1507,10 +1507,12 @@ Then there exist integers $I_+$ and $I_-$ such that
 \begin{enumerate}[\quad\bf1.]
 \item \label{in big dinf}
 $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)\in\set{x\in V^*:\br{x,\beta}<0,\,\forall \beta\in\RSfin\text{ s.t. }\omega_c(\beta,\delta)>0}$ for $i>I_+$ or $I<I_-$.
-%%NO, this used the other piece of \cref{eta nice}.
-%\item \label{c agree}
-%$\eta_{12\cdots n}^{B^T}$ agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ for $i>I_+$ or $I<I_-$.
-\item 
+\item \label{c agree}
+%\item \label{c agree +}
+For $i>I_+$ or $i<I_-$, $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ and $\nu_c(\delta)$ are in the same domain of definition of $\eta_{12\cdots n}^{B^T}$ and $\eta_{12\cdots n}^{B^T}$ agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$,
+%\item \label{c agree -}
+%For $i<I_-$, $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ and $\nu_c(\delta)$ are in the same domain of definition of $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{-1}$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{-1}$ agrees with $c^{-1}$ on $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$,
+\item \label{correct side}
 $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$ for $i>I_+$ and $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}<0$ for $i<I_-$.
 \item \label{pos a}
 There exists positive real $a$ such that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i\ge I_+$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i\le I_-$.
@@ -1529,14 +1531,16 @@ There exist $q_1,\ldots,q_n\ge0$ such that $(\nu_c)^{-1}(x)=\sum_{j=1}^nq_j\beta
 By \cref{delta limit}, there exist integers $I_1,\ldots,I_\ell$ and positive real $a_1,\ldots,a_\ell$ such that $\tau_c^{i+m}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i>I_j$ and $\tau_c^{i-m}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i<I_j$, for all $j=1,\ldots,\ell$.
 Set $a=\sum_{j=1}^\ell q_ja_j>0$.
 Then $\tau_c^{i+m}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i>\max(I_1,\ldots,I_\ell)$ and $\tau_c^{i-m}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i<\min(I_1,\ldots,I_\ell)$.
-Applying $\nu_c$ and appealing to \cref{eta nice}\eqref{nu tau}, we see that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\max(I_1,\ldots,I_\ell)$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\min(I_1,\ldots,I_\ell)$.
+Applying $\nu_c$ and appealing to \cref{eta nice}.\ref{nu tau}, we see that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\max(I_1,\ldots,I_\ell)$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\min(I_1,\ldots,I_\ell)$.
 This is Assertion~\ref{pos a}, and Assertion~\ref{eta lim} follows immediately.
+
+The proof of \cref{eta nice}.\ref{eta is c} in \cite[Proposition~7.31]{affscat} includes checking, for each of the $n$ mutation steps of applying $\eta^{B^T}_{12\cdots n}$ to $\nu_c(\delta)$, which of the cases of the mutation map applies.
+At each step, the condition yields strict inequality (i.e. the vector in question is not on the hyperplane separating the two conditions), so $\nu_c(\delta)$ is in the \emph{interior} of the domain of definition of $\eta^{B^T}_{12\cdots n}$.
+Thus Assertion~\ref{eta lim} implies that for large enough (or small enough) $i$, $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$ are in the same domain of linearity of $\eta^{B^T}_{12\cdots n}$ and $\eta^{B^T}_{12\cdots n}$agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$.
 
 \cref{nu delta} says that $\nu_c(\delta)\in V^*$ is $-\frac12\omega_c(\,\cdot\,,\delta)$, so for any $\beta\in\RS$, the pairing $\br{\nu_c(\delta),\beta}$ is $-\frac12\omega(\beta,\delta)$.
 Thus Assertion~\ref{pos a} implies that for large enough or small enough $i$, $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RSfin$ such that $\omega_c(\beta,\delta)>0$.
 This is Assertion~\ref{in big dinf}.  
-%NOPE
-%, and Assertion~\ref{c agree} follows by \cref{eta nice}.\ref{eta is c bigger}.
 
 Now $2\nu_c(\delta)=-\omega_c(\,\cdot\,,\delta)$ is a $1$-eigenvector for $c$.
 (This is \cite[Lemma~3.5]{afforb} and follows immediately from \cref{omega c} and the fact that $c\delta=\delta$.)
@@ -1548,6 +1552,7 @@ Thus we can write $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ as $q\omega_c(\,\cd
 Since $c^m\omega_c(\,\cdot\,,\gamma_c)=\omega_c(\,\cdot\,,\gamma_c)+2m\nu_c(\delta)$, Assertion~\ref{pos a} implies that $q>0$ for large enough $i$.
 Thus $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$ for large enough~$i$.
 Similarly, $c^{-m}\omega_c(\,\cdot\,,\gamma_c=\omega_c(\,\cdot\,,\gamma_c)-2m\nu_c(\delta)$, so $q<0$ and thus $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}<0$ for small enough~$i$.
+This is Assertion~\ref{correct side}.
 \end{proof}
 
 
