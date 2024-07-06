@@ -913,7 +913,7 @@ Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\
 
 \subsection{Sufficient conditions for the dominance region to be a point}\label{point sec}
 We now use the tools developed so far to give sufficient conditions for the dominance region to be a point.
-We use the conditions to show that the dominance region is always a point in finite type (except for exchange matrices with too many zero columns).
+We use the conditions to show that the dominance region is always a point in finite type.
 Later, we prove similar results for affine type.
 
 Call an extended exchange matrix $\tB$ \newword{salient} if the nonnegative linear span of the columns of $\tB$ contains no line.
@@ -939,7 +939,7 @@ Thus it is enough to prove that $\P^{\tB_{t'}}_{\lambda'}=\set{\lambda'}$.
 Since $\eta_\ll^{\BB_0^T}\bigl(\Cone_t^{\tB_0;t_0}\bigr)=\Cone_t^{\tB_{t'};t'}$, we may set $t_0$ to be $t'$ instead and assume there is a maximal red sequence for $B_t$ starting from $t$ and ending at $t_0$.
 
 Let $\kk=k_m\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Then \cref{P in B0C extended} says that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+Then \cref{P in B0C extended} says that $\P^{\tB_0}_{\lambda,\kk}$ is contained in $\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
 Since $\kk^{-1}$ is a maximal red sequence for $B_t$, or in other words a maximal green sequence for $-B_t$, every column of $C_{t_0}^{-B_t;t}$ has negative sign, so $\Cone_{t_0}^{B_t^T;t}=\set{x\in\reals^n:x^TC_{t_0}^{-B_t;t}\ge0}$ consists of vectors with nonpositive entries.
 Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_{-B_t}$ (for example, combining \mbox{\cite[Proposition~7.1]{universal}}, \mbox{\cite[Proposition~8.9]{universal}}, and sign-coherence of $C$-vectors) and also $\Cone_{t_0}^{B_t^T;t}$ is a cone in $\F_{-B_t}$, we see that $\Cone_{t_0}^{B_t^T;t}=\left(\reals_{\le0}\right)^n$.
@@ -947,8 +947,18 @@ Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identit
 We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
 Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is salient, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
-  \sayD{Since we replaced the initial salient $\tB_0$ by $\tB_{t'}$, we need to show that $\tB_{t'}$ is also salient in order to complete the proof.}
+  \sayD{Since we replaced the initial salient $\tB_0$ by $\tB_{t'}$, we need to show that $\tB_{t'}$ is also salient in order to complete the proof.
+\rn{Drat.  Yes, is a problem.  Mutation need not preserve salience.  If this falls then \cref{finite P point} falls, and that's crucial to the proof of \cref{affine main}.  (Less importantly, also \cref{affine P point falls}.)}  
+}
 \end{proof}
+
+%It will be useful, for the purposes of later arguments, to point out that the proof of \cref{P point} obtains $\P^{\tB_0}_\lambda$ as the intersection of two sets $\P^{\tB_0}_{\lambda,\kk}$ and $\P^{\tB_0}_{\lambda,\ll}$.
+%We state that as a theorem.
+%
+%\begin{theorem}\label{it's two}
+%STATE THAT
+%\end{theorem}
+
 
 Thinking quickly, one might guess that if an exchange matrix $B$ is salient, then every extension $\tB$ of $B$ is also salient.
 This is not true, but the failure of this implication does place some constraints on $B$.
@@ -3412,7 +3422,8 @@ We see that
 The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
 
 The set $\P^B_{\lambda,\ll}$ obtained by applying $(\eta_\ll^{B^T})^{-1}$ to $\set{\eta_\ll^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-By \cref{factor eta}, if some point $x$ is $\P^B_{\lambda,\ll}$ for every $\ll$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
+By \cref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\ll}$  \sayN{Do we want $\P^B_{\lambda,\ll}\cap\d_\infty^{\mu_\ell(B)}$ instead?}
+for every $\ll$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
 Therefore \cref{finite P point} says that the projection of~$x$ is $\lambda_0$.
 We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
 But also $\P^B_\lambda$ is contained in $\d^B_\infty$, so it is contained in the ray in $\d^B_\infty$ parallel to the imaginary ray, containing $\lambda$, and having endpoint in the relative boundary of $\d^B_\infty$.
