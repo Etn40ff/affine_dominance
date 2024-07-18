@@ -421,9 +421,6 @@ Our proof takes stronger hypotheses than Qin's, \sayN{UPDATE:  Some versions of 
 but is sufficient for the purposes of the paper, uses only the basic discrete geometry of matrix mutation, and is short and self-contained.
 The first part of the paper also introduces much of the background that will be used later.
 
-\sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds".}
-
-
 \section{Dominance regions}
 In this section, we define dominance regions \sayN{except maybe that will be in the intro?} and prove some foundational facts about them.
 We assume the basic background on cluster algebras, following the approach of~\cite{ca4}.
@@ -492,7 +489,6 @@ For $\kk=k_m\cdots k_1$, define seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edg
 The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_\ell$ of $C_{t_{\ell-1}}^{B;t_0}$ is \emph{positive} for all $\ell$ with $1\le\ell\le m$. \sayD{I would prefer different indexing symbols here.  We will often use $m$ for the size of the extended exchange matrix and $\ell$ for a mutation direction, similarly $i$ and $j$ are basically always going to refer to the columns and rows of the exchange matrix so they are somehow already constrained quantities in my mind.  How does $\kk=k_r\cdots k_1$ and $k_p$ look instead?  I know it will be a lot to change this throughout, but I'm willing to if you guys give the go-ahead.}
 A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
 That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_m}^{B;t_0}$ is \emph{negative}.
-
 We will call $\kk$ a \newword{red sequence} for~$B$ if it is a green sequence for $-B$.
 A \newword{maximal red sequence} is a red sequence that cannot be extended.
 (A red sequence relates to antiprincipal coefficients: 
@@ -547,36 +543,6 @@ For any $k$, the $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same si
 %\begin{lemma}\label{B or -BT}
 %The $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
 %\end{lemma}
-
-\begin{lemma}\label{max green neg cone}
-If $\kk=k_m\cdots k_1$ for is a maximal green sequence for $B$ corresponding to seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ in the cluster pattern with $B$ at $t_0$, then ${\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}=\left(\reals_{\le0}\right)^n}$.
-\end{lemma}
-\begin{proof}
-Since $\kk$ is a maximal green sequence for $B$, every column of $C_t^{B;t_0}$ has negative sign and thus $\Cone_t^{-B^T;t_0}=\set{x\in\reals^n:x^TC_t^{B;t_0}\ge0}$ consists of vectors with nonpositive entries.
-Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_B$ (for example, combining \mbox{\cite[Proposition~7.1]{universal}}, \mbox{\cite[Proposition~8.9]{universal}}, and sign-coherence of $C$-vectors) and also $\Cone_t^{-B^T;t_0}$ is a cone in $\F_B$, we see that $\Cone_t^{-B^T;t_0}=\left(\reals_{\le0}\right)^n$.
-\cref{B or -BT} implies that $\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}$.
-\end{proof}
-
-
-\begin{lemma}\label{max red green}
-For a sequence $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ of mutations in a cluster pattern, the sequence $\kk=k_m\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_m$ is a maximal red sequence for~$B_t$.
-\end{lemma}
-\begin{proof}
-By the definition of a red sequence, the \lcnamecref{max red green} is equivalent to the statement that  $\kk=k_m\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_m$ is a maximal green sequence for~$-B_t$.
-Write $B_0$ for $B_{t_0}$.
-
-Suppose $\kk$ is a maximal green sequence for $B_{t_0}$.
-\cref{max green neg cone} implies that, up to permuting columns, $C_t^{B_0;t_0}$ is the negative of the identity matrix.
-In other words, mutating the matrix $\begin{bsmallmatrix}B_0\\I\end{bsmallmatrix}$ by the sequence $\kk$ yields the matrix $\begin{bsmallmatrix}B_t\\-I\end{bsmallmatrix}$.
-Each mutation in the sequence is at the index of a column such that the bottom half of the matrix has nonnegative entries, and the mutation turns those entries nonpositive.
-Since mutation commutes with negation, mutating the matrix $\begin{bsmallmatrix}-B_t\\I\end{bsmallmatrix}$ by the sequence $\kk^{-1}$ yields the matrix $\begin{bsmallmatrix}-B_0\\-I\end{bsmallmatrix}$, and each mutation is at the index of a column where the bottom half of the matrix is positive.
-Thus $\kk^{-1}$ is a maximal green sequence for $-B_t$.
-The opposite implication is symmetric.
-\end{proof}
-
-
-
-
 
 For $k\in\set{1,\ldots,n}$, let $J_k$ be the $n\times n$ matrix that agrees with the identity matrix except that $J_k$ has $-1$ in position $kk$.
 For an $n\times n$ matrix $M$ and $k\in\set{1,\ldots,n}$, let $M^{\bullet k}$ be the matrix that agrees with $M$ in column $k$ and has zeros everywhere outside of column $k$.
@@ -777,7 +743,7 @@ The map $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ 
 The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
 We claim that $E^{B_1}_{\ep,k_1}$ is the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
 Since $E^{B_1}_{\ep,k_1}$ is its own inverse, the claim is equivalent to saying that $E^{B_1}_{\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_0^T}$ on $\Cone_t^{B_0;t_0}$.
-  \sayD{Was this reformulation actually used in the next paragraph?  \rn{No, the next paragraph is the proof of the claim.  We use the reformulation later in the paragraph that starts "We have seen..."  We could move the reformulation later, I guess.}}
+  \sayD{Was this reformulation actually used in the next paragraph?}
 
 By \cite[(1.13)]{NZ12}, $\ep$ is the sign of the $k_1$-column of $\bigl(G_t^{-B_1^T;t_1}\bigr)^T$.
 That is, $\ep$ is the sign of the $k_1$-row of $G_t^{-B_1^T;t_1}$, or in other words, the sign of the $k_1$-entry of vectors in $\Cone_t^{-B^T_1;t_1}$.
@@ -962,7 +928,6 @@ about a salient extended exchange matrix $\tB$ is that the intersection of the n
 Suppose $\tB_0$ is a salient extended exchange matrix.
 Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
 If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
-**NOT PROVED.  See Note \ref{drat}.**
 \end{theorem}
 
 \begin{proof}%[Proof of \cref{P point}]
@@ -982,8 +947,8 @@ Thus, up to permuting columns, $C_{t_0}^{-B_t;t}$ is the negative of the identit
 We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
 Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is salient, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
-  \sayD{Since we replaced the initial salient $\tB_0$ by $\tB_{t'}$, we need to show that $\tB_{t'}$ is also salient in order to complete the proof.  \label{drat}
-\rn{Drat.  Yes, is a problem.  Mutation need not preserve salience.  If this falls then \cref{finite P point} falls, and that's crucial to the proof of \cref{affine main}.  (Less importantly, also \cref{affine P point} falls.)}  
+  \sayD{Since we replaced the initial salient $\tB_0$ by $\tB_{t'}$, we need to show that $\tB_{t'}$ is also salient in order to complete the proof.
+\rn{Drat.  Yes, is a problem.  Mutation need not preserve salience.  If this falls then \cref{finite P point} falls, and that's crucial to the proof of \cref{affine main}.  (Less importantly, also \cref{affine P point falls}.)}  
 }
 \end{proof}
 
@@ -1046,16 +1011,7 @@ The finite-type exchange matrix $B=\begin{bsmallmatrix}0&0\\0&0\end{bsmallmatrix
 However, any single-step mutation of $\tB$ is salient.
 \end{example}
 
-\begin{proposition}\label{fin red}
-If $B$ is an exchange matrix of finite type, then $B$ admits a maximal green sequence and a maximal red sequence.
-\end{proposition}
-\begin{proof}
-The matrix $B$ is of finite type if and only if $-B$ is of finite type, so it is enough to prove that every $B$ of finite type admits a maximal green sequence.
-We construct a maximal green sequence as follows:
-Any line parallel to the all-ones vector eventually eventually stays in the positive cone in one direction and eventually stays in the negative cone in the other direction.
-We can choose a line that is disjoint from all codimension-$2$ faces of the $\g$-vector fan.
-The $\g$-vector cones visited by this line, from the positive cone to the negative cone, define a maximal green sequence.
-\end{proof}
+
 
 \begin{theorem}\label{finite P point}  
 Suppose $B$ is an $n\times n$ exchange matrix of finite type.
@@ -1063,27 +1019,6 @@ Then $\P^B_\lambda=\set{\lambda}$ for all $\lambda\in\reals^n$.
 Furthermore, $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.
 \end{theorem}
 \begin{proof}
-%Suppose $t$ is a seed in the exchange graph for $B;t_0$ such that $\lambda\in\Cone^{\tB;t_0}_t$.
-%\cref{fin red} says that there exists a maximal red sequence for $B_t$.
-%Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
-%There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\edge}t'_1\overset{\ell_2}{\edge}\,\cdots\,\overset{\ell_q}{\edge}t'_q=t'$.
-%Let $\lambda'=\eta^{\BB^T}_\ll\!(\lambda)$.
-%\cref{shift extended} says $\eta^{\BB^T}_\ll\!(\P^{\tB}_\lambda)=\P^{\tB_{t'}}_{\lambda'}$.
-%Thus it is enough to prove that $\P^{\tB_{t'}}_{\lambda'}=\set{\lambda'}$.
-%Since $\eta_\ll^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)=\Cone_t^{\tB_{t'};t'}$, we may set $t_0$ to be $t'$ and $B$ to be $B_{t'}$ so that ${\lambda\in\Cone_t^{\tB;t_0}}$.
-%\cref{max red green} says that the specified maximal red sequence from $t$ to~$t_0$ is the reverse of a maximal green sequence for $B$. 
-%\cref{max green neg cone} says that $\Cone_t^{\tB;t_0}=(\reals_{\le0})^n$, so $\lambda\in(\reals_{\le0})^n$.
-%
-%Now let $u$ be any seed.
-%There exists a maximal green sequence $\kk=k_m\cdots k_1$ for $B$ with corresponding seeds $t_0=u_0\overset{k_1}{\edge}u_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}u_m$ such that $u=u_i$ for some $i$.  
-%To construct this sequence, choose a line as in the proof of \cref{fin red} that intersects the interior of $\Cone_u^{B_0;t_0}$.
-%\cref{max green neg cone} says that $\Cone_{u_m}^{\tB;t_0}=(\reals_{\le0})^n$, so $\lambda\in\Cone_{u_m}^{\tB;t_0}$.
-%
-%
-%DRAT.  This doesn't seem to buy us much. 
-
-CURRENT PROOF (below) does not work because it uses \cref{P point}, which might not be true.
-
 Since $B$ is of finite type, it is mutation-equivalent to an exchange matrix whose graph is an orientation of a Dynkin diagram of finite type and in particular an oriented forest.
 Source-sink mutations on this forest yield a bipartite exchange matrix $B_0$, which is salient by \cref{bip sal}.
 Suppose $\kk$ is a mutation sequence such that $\mu_\kk(B_0)=B$.
@@ -1391,7 +1326,7 @@ Let $W$ be the Weyl group generated by these reflections (an affine Coxeter  gro
 The action of $W$ on $V$ fixes~$\delta$.
 
 Let $c$ be the Coxeter element that can be read from $B_0$ by multiplying the simple reflections with $s_i$ preceding $s_j$ whenever $b_{ij}>0$.
-Because we have indexed $B_0$ so that its $ij$-entry is nonnegative whenever $i<j$, we have $c=s_1\cdots s_n$. \sayD{This implicitly uses the indecomposability of affine exchange matrices.  Do we really need that assumption for our results?  \rn{I'd say yes, because of \cref{block dom}, which tells us we can get cubes instead of line segments in the decomposable case.}}
+Because we have indexed $B_0$ so that its $ij$-entry is nonnegative whenever $i<j$, we $c=s_1\cdots s_n$. \sayD{This implicitly uses the indecomposability of affine exchange matrices.  Do we really need that assumption for our results?}
 Define
 \begin{align}
 \label{rep->}
@@ -1755,9 +1690,12 @@ Each $t_{i+1}$ is obtained from $t_i$ by mutating in position $k_{i+1}$, the las
 Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k_{i+1}}$ is unforced, and thus the $C$-vector at $t_i$ indexed by $k_{i+1}$ is positive.
 \end{proof}
 
+
+
+
 \begin{proposition}\label{any B is sort}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
-Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  I think we mean the seed at the end of the green sequecnce in \cref{sort green}, but we should say so.}
+Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.
 For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
 Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$.
 \end{proposition}
@@ -1903,9 +1841,9 @@ Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above
 We will use that fact to prove a \lcnamecref{aff red} that contributes to the proof of \cref{affine P point}.
 
 \begin{proposition}\label{aff red}
-If $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
+Suppose $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
 \end{proposition}
-\begin{proof}  \sayN{Later (but earlier in the paper), I borrowed some language from this to prove \cref{fin red}, so check for how to rephrase here.}
+\begin{proof}
 The matrix $B$ is of affine type if and only if $-B$ is of affine type, so it is enough to prove that every $B$ of affine type admits a maximal green sequence.
 The imaginary wall $\d^B_\infty$ is a union of convex cones and is contained in the hyperplane $(\delta^B)^\perp$, but is strictly smaller than that hyperplane.
 (If the imaginary wall were the whole hyperplane, the $\g$-vector fan would be contained in a halfspace, but in the case where $B$ is acyclic, the $\g$-vector fan is dense in the whole space, and that property is preserved by mutation maps.) 
