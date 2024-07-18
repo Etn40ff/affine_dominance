@@ -714,6 +714,8 @@ If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ 
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 
+%We point out that $\lambda$ is in the domain of definition of $\eta_\kk^{B_0^T}$ containing $\Cone^{B_0;t_0}_t$ if and only if $\eta_\kk^{B_0^T}(\lambda)$ is in the domain of definition of $\bigl(\eta_\kk^{B_0^T}\bigr)^{-1}=\eta^{B_t^T}_{\kk^{-1}}$ containing $\eta_\kk^{B_0^T}(\Cone^{B_0;t_0}_t)=\Cone_t^{B_t;t}=(\reals_{\ge0})^n$.
+
 Since $\bigl(\eta_{\kk}^{B_0^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\sett{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
 Let $D$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
 Then $\eta_{\kk^{-1}}^{B_t^T}$ is linear on $\eta_{\kk}^{B_0^T}(D)$.
@@ -845,6 +847,72 @@ Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{
 We have shown that $v_i=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
 In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
+
+\subsection{Temporary section with a modified \cref{P in B0C}}
+
+The condition in \cref{P in B0C} that $\lambda$ is in the domain of definition of $\eta_\kk^{B_0^T}$ containing $\Cone^{B_0;t_0}_t$ is equivalent to the requirement that $\eta_\kk^{B_0^T}(\lambda)$ is in the domain of definition of $\bigl(\eta_\kk^{B_0^T}\bigr)^{-1}=\eta^{B_t^T}_{\kk^{-1}}$ containing $\eta_\kk^{B_0^T}(\Cone^{B_0;t_0}_t)=\Cone_t^{B_t;t}=(\reals_{\ge0})^n$.  \sayN{Possibly I said this verbatim just after \cref{P in B0C}.}
+We prove a version of \cref{P in B0C} with a different condition on $\lambda$.
+
+\begin{theorem}\label{P in B0C mod}
+Suppose $\kk=k_m\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ and suppose $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$.
+Suppose $\lambda$ has the property that for any $i\in\set{1,\ldots m}$, either the $k_i$-entry of $\eta^{B_0^T}_{k_i\cdots k_1}(\lambda)$ is nonnegative or every entry in row~$k_i$ of $B_iC_t^{B_i;t_i}$ is nonpositive or both.
+Then
+\[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
+\end{theorem}
+
+\begin{proof}%[Proof of \cref{P in B0C mod}]
+Much of the argument is the same as the proof of \cref{P in B0C}.
+Again, we argue by induction on $m$, and the base case is the same as before.
+
+Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$.
+Then $\eta^{B_1^T}_{k_i\cdots k_2}(\lambda')=\eta^{B_0^T}_{k_i\cdots k_1}(\lambda)$ has nonpositive $k_i$-entry for $i=2,\ldots,m$.
+By induction on $m$, 
+\[\eta_{k_2\cdots k_m}^{B_t^T}\set{\eta_{k_m\cdots k_2}^{B_1^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+
+As revealed near the end of the proof of \cref{P in B0C}, the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$ is~$+$.
+If the $k_1$-entry of $\eta^{B_0^T}_{k_1}(\lambda)$ is nonnegative, then we complete the argument as in the proof of \cref{P in B0C}.
+If the $k_1$-entry of $\eta^{B_0^T}_{k_1}(\lambda)$ is negative, then by hypothesis, every entry in row~$k_1$ of $B_1C_t^{B_1;t_1}$ is nonpositive.
+
+As in the proof of \cref{P in B0C}, $B_0C_t^{B_0;t_0}=E^{B_1}_{+,k_1}B_1C_t^{B_1;t_1}$, so we can complete the proof by showing that
+\[\eta_{k_1}^{B_1^T}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq \set{\lambda+E^{B_1}_{+,k_1}B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+
+Since the $k_1$-entry of $\eta^{B_0^T}_{k_1}(\lambda)$ is negative and every entry in row~$k_1$ of $B_1C_t^{B_1;t_1}$ is nonpositive, 
+\begin{multline*}
+\eta_{k_1}^{B_1^T}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}=E^{B_1}_{-,k_1}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\\
+=\sett{\lambda+E^{B_1}_{-,k_1}B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.
+\end{multline*}
+Thus we want to show that 
+\[\sett{\lambda+E^{B_1}_{-,k_1}B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq\set{\lambda+E^{B_1}_{+,k_1}B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+The matrices $E^{B_1}_{-,k_1}$ and $E^{B_1}_{+,k_1}$ both fix vectors whose $k_1$-entry is $0$ and switch the sign of the $k_1$-entry of other vectors.
+Since there are no columns of $B_1C_t^{B_1;t_1}$ whose $k_1$-entry is $+$, it suffices to show that every vector $\bigl(E^{B_1}_{-+,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}$ whose $k_1$\nobreakdash-entry has sign~$+$ is contained in $\nnspan\sett{\bigl(E^{B_1}_{+,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n$.
+This is precisely what was shown, with the same assumptions, in the proof of \cref{P in B0C}.
+\end{proof}
+
+\begin{corollary}\label{acyc opp}  \sayN{If we leave this here:  We haven't talked about acyclic yet.}
+Suppose $B_0$ is an acyclic $n\times n$ exchange matrix, indexed so that $b_{ij}\ge0$ whenever $i<j$.
+If the first entry of $\eta^{B_0^T}_{1\cdots n}(\lambda)$ is nonnegative, then 
+\[\P^{B_0}_\lambda\subseteq\set{\lambda+B_0\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\set{\lambda-B_0\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
+\end{corollary}
+\begin{proof}
+Let $\kk=1\cdots n$ and take $t_0\overset{n}{\edge}t_1\overset{n-1}{\edge}\,\cdots\,\overset{1}{\edge}t_n=t$ with $B_{t_0}=B_0$.
+Easy standard calculations show that $B_t=B_0$, that $\kk^{-1}=1\cdots n$ is a red sequence for $B_0$ and that $C_t^{B_0;t_0}$ is the negative of the identity matrix.
+In any case, ${\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk}}$, so we are done if we can verify the hypotheses of \cref{P in B0C mod}.
+
+We first check that for every $i=1,\ldots,n$, every entry in row $k_i=n-i+1$ is nonpositive.  
+We observe that $B_i$ is obtained from $B_0$ for each $i=1,\ldots,n$, by negating the last~$i$ columns and then negating the last $i$ rows.
+(Thus the entries of the bottom-right $i\times i$ submatrix are unchanged.)
+
+
+OK, this doesn't work except for $i=1$
+
+But it should work if instead we take the "backwards" piece of the bipartite Cox. el't for $B_0$ bipartite.
+
+
+\end{proof}
+
+
+
+
 
 \subsection{Dominance regions for extended exchange matrices}\label{ext sec}
 We follow \cite{FZ07} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
