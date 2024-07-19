@@ -860,16 +860,6 @@ Then
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 
-THIS NEEDS MORE HYPOTHESES.
-
-Look at the case $B=\begin{bsmallmatrix*}[r]0&1\\-1&0\end{bsmallmatrix*}$, and $\kk=2$ (singleton sequence), where it appears that you need the 2nd coordinate to be negative.
-
-DISSECT THIS PROOF THROUGH THAT EXAMPLE!
-
-
-
-
-
 \begin{proof}%[Proof of \cref{P in B0C mod}]
 Much of the argument is the same as the proof of \cref{P in B0C}.
 Again, we argue by induction on $m$, and the base case is the same as before.
@@ -898,26 +888,24 @@ Since there are no columns of $B_1C_t^{B_1;t_1}$ whose $k_1$-entry is $+$, it su
 This is precisely what was shown, with the same assumptions, in the proof of \cref{P in B0C}.
 \end{proof}
 
-\begin{corollary}\label{acyc opp}  \sayN{If we leave this here:  We haven't talked about acyclic yet.}
-Suppose $B_0$ is an acyclic $n\times n$ exchange matrix, indexed so that $b_{ij}\ge0$ whenever $i<j$.
-If the first entry of $\eta^{B_0^T}_{1\cdots n}(\lambda)$ is nonnegative, then 
-\[\P^{B_0}_\lambda\subseteq\set{\lambda+B_0\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\set{\lambda-B_0\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
+\begin{corollary}\label{bip singleton}  \sayN{If we leave this here:  We haven't talked about acyclic yet.}
+Suppose $B_0$ is an acyclic, salient $n\times n$ exchange matrix and suppose $\kk=k_n\cdots k_1$ is a permutation of $\set{1,\ldots,n}$ such that $i$ precedes $j$ whenever $b_{ij}>0$.
+Suppose, for some $\lambda$ and $\ell$, that $b_{ij}=0$ for all $i,j\in\set{k_1,\ldots,k_\ell}$ and the $k_i$-entry of $\eta_{k_i\cdots k_1}^{B_0^T}(\lambda)$ is nonnegative for all $i>\ell$.
+Then $\P^{B_0}_\lambda=\set{\lambda}$.
 \end{corollary}
 \begin{proof}
-Let $\kk=1\cdots n$ and take $t_0\overset{n}{\edge}t_1\overset{n-1}{\edge}\,\cdots\,\overset{1}{\edge}t_n=t$ with $B_{t_0}=B_0$.
-Easy standard calculations show that $B_t=B_0$, that $\kk^{-1}=1\cdots n$ is a red sequence for $B_0$ and that $C_t^{B_0;t_0}$ is the negative of the identity matrix.
-In any case, ${\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk}}$, so we are done if we can verify the hypotheses of \cref{P in B0C mod}.
+Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_n=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
+The conditions on $\kk$ imply that $B_t=B_0$, that $\kk^{-1}=1\cdots n$ is a red sequence for $B_0$ and that $C_t^{B_0;t_0}$ is the negative of the identity matrix.
+Since ${\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk}}$, if we can verify the hypotheses of \cref{P in B0C mod}, we will have 
+\[\P^{B_0}_\lambda\subseteq\set{\lambda+B_0\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\set{\lambda-B_0\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda}.\]
+The hypotheses for $i>\ell$ are part of the hypotheses of this \lcnamecref{bip singleton}, and we will check that for $i=1,\ldots,\ell$, every entry in row $k_i$ of $B_iC_t^{B_i;t_i}$ is nonpositive.  
 
-We first check that for every $i=1,\ldots,n$, every entry in row $k_i=n-i+1$ is nonpositive.  
-We observe that $B_i$ is obtained from $B_0$ for each $i=1,\ldots,n$, by negating the last~$i$ columns and then negating the last $i$ rows.
-(Thus the entries of the bottom-right $i\times i$ submatrix are unchanged.)
-
-
-OK, this doesn't work except for $i=1$
-
-But it should work if instead we take the "backwards" piece of the bipartite Cox. el't for $B_0$ bipartite.
-
-
+For convenience, we will assume that $B_0$ is indexed so that $\kk=n\cdots 1$ so that $k_i=i$ for all~$1$.
+Then the first $\ell$ rows of $B_0$ consist of zeros in columns $1,\ldots,\ell$ and nonpositive entries in columns $\ell+1,\ldots,n$.
+Each $B_i$ for $i=1,\ldots,n$ is obtained from $B_0$ by negating the first~$i$ columns and then negating the first~$i$ rows.
+The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in the first $\ell$ diagonal entries and $-1$ in the other diagonal entries.  
+Thus $B_iC_t^{B_i;t_i}$ is obtained from $B_0$ by negating all entries in rows $i+1,\ldots,n$.
+In particular, when $i\le\ell$, the entries in row $i$ of $B_iC_t^{B_i;t_i}$ are nonpositive.
 \end{proof}
 
 
