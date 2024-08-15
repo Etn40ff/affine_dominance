@@ -837,6 +837,22 @@ v_i
 \end{align*}
 where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\delta\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
 
+\sayN{This is an alternative to the previous paragraph that does not need sign-coherence of $C_t^{B_1;t_1}$.
+Am I missing something?}
+Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, so writing $\gamma_j$ for the entries of $\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, we have $v_i=\sum_{j=1}^n\gamma_jM_{\col j}$.
+Write $\set{1,\ldots,n}=S\cup T$ with $S\cup T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
+Then
+\begin{align*}
+v_i
+&=\sum_{j\in S}\gamma_jM_{\col j}+\sum_{j\in T}\gamma_jM_{\col j}\\
+&=\sum_{j\in S}\gamma_j(N_{\col j}+|b_{kj}|N_{\col k})+\sum_{j\in T}\gamma_j(N_{\col j}-|b_{kj}|N_{\col k})\\
+&=\sum_{j=1}^n\gamma_jN_{\col j}-\sum_{j=1}^n\ep\gamma_jb_{kj}N_{\col k}\\
+&=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
+&=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k},
+\end{align*}
+where $\sigma=\ep\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
+\sayN{End alternative paragraph}
+
 As noted above, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{-B_1^T;t_1}$.
 Since $\Cone^{-B_1^T;t_1}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_1}\ge0}$, the rows of $\bigl(C_t^{B_1;t_1}\bigr)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
 In particular $\bigl(C_t^{B_1;t_1}\bigr)^{-1}(\ep e_k)$ has nonnegative entries.
@@ -891,7 +907,7 @@ This is precisely what was shown, with the same assumptions, in the proof of \cr
 \begin{corollary}\label{bip singleton}  \sayN{If we leave this here:  We haven't talked about acyclic yet.}
 Suppose $B_0$ is an acyclic, salient $n\times n$ exchange matrix and suppose $\kk=k_n\cdots k_1$ is a permutation of $\set{1,\ldots,n}$ such that $i$ precedes $j$ whenever $b_{ij}>0$.
 Suppose, for some $\lambda$ and $\ell$, that $b_{ij}=0$ for all $i,j\in\set{k_1,\ldots,k_\ell}$ and the $k_i$-entry of $\eta_{k_i\cdots k_1}^{B_0^T}(\lambda)$ is nonnegative for all $i>\ell$.
-Then $\P^{B_0}_\lambda=\set{\lambda}$.
+Then $\P^{B_0}_\lambda=\set{\lambda}$.  \sayN{If $B_0$ is bipartitie and $\set{k_1,\ldots,k_\ell}$ is one of the parts, then we can use the $k_i$-entry of $\eta_{k_n\cdots k_1}^{B_0^T}(\lambda)$, i.e.\ same mutation map for all $i$.  We could write that into the \lcnamecref{bip singleton}, but this version might be necessary if we decide we can do $\tilde A$.}
 \end{corollary}
 \begin{proof}
 Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_n=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
