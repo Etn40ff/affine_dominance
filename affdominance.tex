@@ -182,7 +182,7 @@
 \renewcommand{\c}{\mathbf{c}}
 \renewcommand{\b}{\mathbf{b}}
 \renewcommand{\k}{\mathbbm{k}}
-\newcommand{\kk}{\mathbf{k}}
+\newcommand{\kk}{{\boldsymbol{k}}}
 \renewcommand{\ll}{{\boldsymbol\ell}}
 \newcommand{\ks}{\mathbf{k}}
 \renewcommand{\a}{\mathbf{a}}
@@ -434,7 +434,7 @@ Also, throughout the section, we use results from~\cite{NZ}.
 We begin with a skew-symmetrizable exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 The diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$ has $\Sigma B\Sigma^{-1}=-B^T$.
 
-Given a sequence \sayD{This might look a little better as a $\boldsymbol{k}$ to match the font style.  When it's paired with the $\ll$ I think the difference is more striking: $\ll\kk$ vs $\ll\boldsymbol{k}$.} $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
+Given a sequence \sayD{This might look a little better as a $\boldsymbol{k}$ to match the font style.  When it's paired with the $\ll$ I think the difference is more striking: $\ll\kk$ vs $\ll\boldsymbol{k}$.  \rn{I implemented this.}} $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
 We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
 Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
@@ -825,7 +825,7 @@ Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, and $\bigl(C_t^
 (This is ``sign-coherence of $C$-vectors''.  
 See Remark~\ref{conditional}.)
 Thus there are nonnegative numbers $\gamma_j$ such that $v_i=\delta\sum_{j=1}^n\gamma_jM_{\col j}$.
-Write $\set{1,\ldots,n}=S\cup T$ with $S\cup T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
+Write $\set{1,\ldots,n}=S\cup T$ with $S\cap T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
 Then
 \begin{align*}
 v_i
@@ -840,7 +840,7 @@ where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because
 \sayN{This is an alternative to the previous paragraph that does not need sign-coherence of $C_t^{B_1;t_1}$.
 Am I missing something?}
 Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, so writing $\gamma_j$ for the entries of $\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, we have $v_i=\sum_{j=1}^n\gamma_jM_{\col j}$.
-Write $\set{1,\ldots,n}=S\cup T$ with $S\cup T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
+Write $\set{1,\ldots,n}=S\cup T$ with $S\cap T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
 Then
 \begin{align*}
 v_i
@@ -907,23 +907,46 @@ This is precisely what was shown, with the same assumptions, in the proof of \cr
 \begin{corollary}\label{bip singleton}  \sayN{If we leave this here:  We haven't talked about acyclic yet.}
 Suppose $B_0$ is an acyclic, salient $n\times n$ exchange matrix and suppose $\kk=k_n\cdots k_1$ is a permutation of $\set{1,\ldots,n}$ such that $i$ precedes $j$ whenever $b_{ij}>0$.
 Suppose, for some $\lambda$ and $\ell$, that $b_{ij}=0$ for all $i,j\in\set{k_1,\ldots,k_\ell}$ and the $k_i$-entry of $\eta_{k_i\cdots k_1}^{B_0^T}(\lambda)$ is nonnegative for all $i>\ell$.
-Then $\P^{B_0}_\lambda=\set{\lambda}$.  \sayN{If $B_0$ is bipartitie and $\set{k_1,\ldots,k_\ell}$ is one of the parts, then we can use the $k_i$-entry of $\eta_{k_n\cdots k_1}^{B_0^T}(\lambda)$, i.e.\ same mutation map for all $i$.  We could write that into the \lcnamecref{bip singleton}, but this version might be necessary if we decide we can do $\tilde A$.}
+Then $\P^{B_0}_\lambda=\set{\lambda}$.  \sayN{If $B_0$ is bipartite and $\set{k_1,\ldots,k_\ell}$ is one of the parts, then we can use the $k_i$-entry of $\eta_{k_n\cdots k_1}^{B_0^T}(\lambda)$, i.e.\ same mutation map for all $i$.  We could write that into the \lcnamecref{bip singleton}, but this version might be necessary if we decide we can do $\tilde A$.}
 \end{corollary}
 \begin{proof}
-Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_n=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
+Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_n}{\edge}t_n=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
 The conditions on $\kk$ imply that $B_t=B_0$, that $\kk^{-1}=1\cdots n$ is a red sequence for $B_0$ and that $C_t^{B_0;t_0}$ is the negative of the identity matrix.
 Since ${\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk}}$, if we can verify the hypotheses of \cref{P in B0C mod}, we will have 
 \[\P^{B_0}_\lambda\subseteq\set{\lambda+B_0\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\set{\lambda-B_0\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda}.\]
 The hypotheses for $i>\ell$ are part of the hypotheses of this \lcnamecref{bip singleton}, and we will check that for $i=1,\ldots,\ell$, every entry in row $k_i$ of $B_iC_t^{B_i;t_i}$ is nonpositive.  
 
-For convenience, we will assume that $B_0$ is indexed so that $\kk=n\cdots 1$ so that $k_i=i$ for all~$1$.
+For convenience, we will assume that $B_0$ is indexed so that $\kk=n\cdots 1$ so that $k_i=i$ for all~$i$.
 Then the first $\ell$ rows of $B_0$ consist of zeros in columns $1,\ldots,\ell$ and nonpositive entries in columns $\ell+1,\ldots,n$.
 Each $B_i$ for $i=1,\ldots,n$ is obtained from $B_0$ by negating the first~$i$ columns and then negating the first~$i$ rows.
-The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in the first $\ell$ diagonal entries and $-1$ in the other diagonal entries.  
+The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in the first $i$ diagonal entries and $-1$ in the other diagonal entries.  
 Thus $B_iC_t^{B_i;t_i}$ is obtained from $B_0$ by negating all entries in rows $i+1,\ldots,n$.
 In particular, when $i\le\ell$, the entries in row $i$ of $B_iC_t^{B_i;t_i}$ are nonpositive.
 \end{proof}
 
+
+\begin{corollary}\label{what we get from bip}\sayN{This might be better, as it puts no conditions on $\lambda$}
+\sayN{This must be wrong:  Take bipartite $\tilde A_3$ and $\lambda=\nu_c(\delta)$}
+Suppose $B_0$ is bipartite with bipartition $\set{1,\ldots,n}=P\cup N$ (meaning that $b_{ij}=0$ whenever $i,j\in P$ or $i,j\in N$ and $b_{ij}\ge0$ whenever $i\in P$ and $j\in N$).
+Then $\P^{B_0}_\lambda\subseteq\lambda+\nnspan\sett{(B_0)_{\col i}:i\in N}$ for arbitrary $\lambda$.
+\end{corollary}
+\begin{proof}
+Suppose $\kk_+=k_m\cdots k_1$ is a sequence consisting of the elements of $P$ in any order with no repeats.
+Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
+The conditions on $\kk_+$ imply that $B_t=-B_0$, that $\kk_+^{-1}$ is a red sequence for $-B_0$ and that $C_t^{B_0;t_0}$ (NOT TRUE!!)  is the diagonal matrix with $-1$ in positions $P$ and $1$ in positions $N$.
+
+\sayN{Danger, there are superficial resemblances between this and the proof of \cref{bip singleton}, but some things are subtly backwards.}
+For convenience, assume that $B_0$ is indexed so that $\kk_+=m\cdots 1$ so that $k_i=i$ for all~$i\in\set{1,\ldots,m}$.
+Then the first $m$ rows of $B_0$ consist of zeros in columns $1,\ldots,m$ and nonnegative entries in columns $m+1,\ldots,n$.
+Each $B_i$ for $i=1,\ldots,m$ is obtained from $B_0$ by negating the first~$i$ columns and then negating the first~$i$ rows.
+The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in entries $1,\ldots,i$ and $m+1,\ldots,n$ and $-1$ in the other diagonal entries.  
+Thus $B_iC_t^{B_i;t_i}$ is obtained from $B_0$ by negating all entries in rows $i+1,\ldots,m$ and negating all entries in columns $1,\ldots,m$.
+In particular, the entries in row $i$ of $B_iC_t^{B_i;t_i}$ are nonpositive.
+
+We apply \cref{P in B0C mod} to say that $\P^{B_0}_{\lambda,\kk_+}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha}$, so
+\[\P_\lambda^{B_0}\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk_+}\subseteq\set{\lambda+B_0\alpha}\cap\set{\lambda+B_0C_t^{B_0;t_0}\alpha}.\]
+Since $B_0C_t^{B_0;t_0}$ is the matrix obtained from $B_0$ by negating all entries in columns $1,\ldots,m$, this intersection is $\lambda+\nnspan\sett{(B_0)_{\col i}:i\in N}$.
+\end{proof}
 
 
 
