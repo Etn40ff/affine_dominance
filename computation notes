@@ -1,0 +1,723 @@
+A=CartanMatrix(['B',3])
+c=list(range(A.nrows()))
+for v in sortables(A,c):
+    print(v)
+    p_lambda_int(B(A,c),lam(A,v),K(c,v))
+
+
+A=Matrix([[2,-1,0,0],[-1,2,-1,0],[0,-1,2,-1],[0,0,-1,2]])
+cminus=[1,3]
+cplus=[0,2]
+for v in sortables(A,cplus+cminus):
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),Kbip(cplus,cminus,5))
+# Result was a point every time
+
+A=Matrix([[2,-2,0,0],[-1,2,-1,0],[0,-1,2,-1],[0,0,-1,2]])
+
+A=CartanMatrix(['E',8]); B(A,list(range(A.nrows()))).determinant()
+
+
+
+A=CartanMatrix(['A',3])
+cplus=[0,2]
+cminus=[1]
+c=cplus+cminus
+p_lambda_int(B(A,cplus+cminus),lam(A,[]),[c+cplus,c,cplus,[]])
+A 0-dimensional polyhedron in QQ^3 defined as the convex hull of 1 vertex
+
+
+
+A=CartanMatrix(['A',8])
+cplus=[0,2,4,6]
+cminus=[1,3,5,7]
+c=cplus+cminus
+p_lambda_int(B(A,cplus+cminus),lam(A,[]),[c+c,c+cplus,c,cplus])
+p_lambda_int(B(A,cplus+cminus),lam(A,[]),[c+cplus,c,cplus,[]])
+p_lambda_int(B(A,cplus+cminus),lam(A,[]),[c,cplus,[],cminus])
+p_lambda_int(B(A,cplus+cminus),lam(A,[]),[cplus,[],cminus,cminus+cplus])
+p_lambda_int(B(A,cplus+cminus),lam(A,[]),[[],cminus,cminus+cplus,cminus+cplus+cminus])
+
+
+For A up to A8, B up to B7, D up to D7, E6, E7, E8, F4, G2
+The first and last of these p_lambda_int's give a polytope as high dimensional as possible, and the middle three give a point.
+(Note, this is only for lambda=(1,...,1).)
+
+
+A=CartanMatrix(['A',4])
+cplus=[0,2]
+cminus=[1,3]
+c=cplus+cminus
+for v in parasortables(A,c):
+    print(v)
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),[c+c+cplus,c+c,c+cplus,c])
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),[c+c,c+cplus,c,cplus])
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),[c+cplus,c,cplus,[]])
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),[c,cplus,[],cminus])
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),[cplus,[],cminus,cminus+cplus])
+    p_lambda_int(B(A,cplus+cminus),lam(A,v),[[],cminus,cminus+cplus,cminus+cplus+cminus])
+
+
+A=CartanMatrix(['B',4])
+cplus=[0,2]
+cminus=[1,3]
+c=cplus+cminus
+for v in sortables(A,c):
+    h=coxeter_number(A)
+    print("\n\n",v)
+    for n in range(-2*h,0):
+        pn=plusminus(cplus,cminus,n/2)
+        P=p_lambda_int(B(A,cplus+cminus),lam(A,v),[[],pn])
+        if P.dimension()==0:
+            print(plusminus(cplus,cminus,n/2))
+
+
+A=CartanMatrix(['A',3])
+#cplus=[0,2]
+#cminus=[1]
+#c=cplus+cminus
+c=list(range(A.nrows()))
+for v in sortables(A,c):
+    h=coxeter_number(A)
+    print("\n\n",v)
+    Pv=p_lambda_faster(B(A,c),lam(A,v),v)
+    for u in sortables(A,list(reversed(c))):
+        P=p_lambda_faster(B(A,c),lam(A,v),u).intersection(Pv)
+        if P.dimension()==0:
+            print(u)
+
+##***  The above seems to be working!  There is a unique c^{-1} sortable that gives dimension 0!!!!!! 
+##***  NOOO!  It's only when B has full rank.
+
+
+
+for n in range(6,9):
+    type='E'
+    print(type,n,B(CartanMatrix([type,n]),list(range(n))).determinant())
+
+
+
+
+
+A=CartanMatrix(['B',2])
+c=[0,1]
+p_lambda_int(B(A,c),lam(A,[0]),[[0],[1,0,1]])
+A 0-dimensional polyhedron in QQ^2 defined as the convex hull of 1 vertex
+
+(Note that these Cartan matrices have the double edge between n and n-1.)
+
+A=CartanMatrix(['B',3])
+c=[0,1,2]
+p_lambda_int(B(A,c),lam(A,[1]),[[1],[2,1,2]])
+A 2-dimensional polyhedron in QQ^3 defined as the convex hull of 2 vertices and 2 rays
+
+
+
+
+A=CartanMatrix(['A',4])
+c=list(range(A.nrows()))
+for u in sortables(A,c):
+    h=coxeter_number(A)
+    print("\n\n",u)
+    Pu=p_lambda_faster(B(A,c),lam(A,u),u)
+    for v in sortables(A,list(reversed(c))):
+        Puv=p_lambda_faster(B(A,c),lam(A,u),v).intersection(Pu)
+        for w in sortables(A,c):
+            Puvw=p_lambda_faster(B(A,c),lam(A,u),w).intersection(Puv)
+            if Puvw.dimension()==0:
+                print(v)
+                print(w)
+
+
+A=CartanMatrix(['A',3])
+c=list(range(A.nrows()))
+P=Polyhedron(rays=B(A,c).columns()).intersection(Polyhedron(rays=(-B(A,c)).columns()))
+P
+
+
+A=CartanMatrix(['A',3])
+c=list(range(A.nrows()))
+#c=[1,2,0]
+for v in parasortables(A,c):
+    p_lambda_int(B(A,c),lam(A,v),[v,inv_sortable(A,c,v)])
+
+
+
+
+A=CartanMatrix(['B',3])
+c=list(range(A.nrows()))
+#c=[1,2,0]
+for v in sortables(A,c):
+    print("\n\n",v)
+    P=p_lambda_int(B(A,c),lam(A,v),[v,inv_sortable(A,c,v),[],c])
+    if P.dimension()==0:
+        continue
+    P
+    P.vertices()
+    P.rays()
+    P.lines()
+    Bmat=copy(B(A,c))
+    for k in v:
+        Bmat.mutate(k)
+    Bmat
+
+
+A=CartanMatrix(['D',7])
+cplus=[0,2,4]
+cminus=[1,3,5,6]
+c=cplus+cminus
+from time import perf_counter
+num=0
+first=perf_counter()
+for v in parasortables(A,c):
+    num+=1
+    start=perf_counter()
+    P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+    end=perf_counter()
+    if P.dimension()!=0:
+        print("ALERT: FAILURE")
+    else:
+        print(num," Time for this step: ",end-start," Time in all: ",end-first)
+
+
+
+A=CartanMatrix(['B',5])
+cplus=[0,2,4]
+cminus=[1,3]
+c=cplus+cminus
+for v in parasortables(A,c):
+    h=coxeter_number(A)
+    print("\n\n",v)
+    Ps=[(p_lambda_int(B(A,cplus+cminus),lam(A,v),[p]),p) for p in Kbip(cmi
+nus,cplus,h)]
+    for i in range(len(Ps)):
+        for j in range(i,len(Ps)):
+            P=Ps[i][0].intersection(Ps[j][0])
+            if P.dimension()==0:
+                print(Ps[i][1],Ps[j][1])
+
+The above gives 0-dimensional (for some i and j) in every case.
+
+
+
+A=CartanMatrix(['B',4])
+cplus=[0,2]
+cminus=[1,3]
+c=cplus+cminus
+for v in sortables(A,c):
+    h=coxeter_number(A)
+    works=false
+    for n in range(-2*h,0):
+        pn=plusminus(cplus,cminus,n/2)
+        P=p_lambda_int(B(A,cplus+cminus),lam(A,v),[[],pn])
+        if P.dimension()==0:
+            works=true
+            break
+    if works:
+        print(v)
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 0, 2]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 0]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2]
+[0, 2, 1, 3, 0, 2, 1, 3, 0]
+[0, 2, 1, 3, 0, 2, 1, 3, 2, 1, 3, 2]
+[0, 2, 1, 3, 0, 2, 1, 3, 2, 1, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 2, 1]
+[0, 2, 1, 3, 0, 2, 1, 3, 2, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 2]
+[0, 2, 1, 3, 0, 2, 1, 3]
+[0, 2, 1, 3, 0, 2]
+[0, 2, 1, 3, 0]
+[0, 2, 1, 3, 2, 1, 3, 2, 1, 3]
+[0, 2, 1, 3, 2, 1, 3, 2, 3]
+[0, 2, 1, 3, 2, 1, 3]
+[0, 2, 1, 3, 2, 1]
+[0, 2, 1, 3, 2]
+[0, 2, 1, 3]
+[0, 2, 1, 0, 2, 1]
+[0, 2, 1, 0, 2]
+[0, 2, 1, 0]
+[0, 2, 1, 2]
+[0, 2, 1]
+[0, 2]
+[0, 1, 3, 0]
+[0, 1, 3]
+[0, 1, 0]
+[0, 1]
+[0, 3]
+[0]
+[2, 1, 3, 2, 1, 3, 2, 1, 3]
+[2, 1, 3, 2, 1, 3, 2, 1]
+[2, 1, 3, 2, 1, 3]
+[2, 1, 3, 2, 3, 2]
+[2, 1, 3, 2, 3]
+[2, 1, 3]
+[2, 1, 2]
+[2, 1]
+[2]
+[1, 3]
+[1]
+[3]
+[]
+A=CartanMatrix(['B',4])
+cplus=[0,2]
+cminus=[1,3]
+c=cplus+cminus
+for v in sortables(A,c):
+    h=coxeter_number(A)
+    works=false
+    for n in range(-2*h,0):
+        pn=plusminus(cplus,cminus,n/2)
+        P=p_lambda_int(B(A,cplus+cminus),lam(A,v),[[],pn])
+        if P.dimension()==0:
+            works=true
+            break
+    if not works:
+        print(v)
+
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 2, 3]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, 2]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 0]
+[0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1]
+[0, 2, 1, 3, 0, 2, 1, 0]
+[0, 2, 1, 3, 0, 2, 1]
+[0, 2, 1, 3, 0, 2, 3, 2]
+[0, 2, 1, 3, 0, 2, 3]
+[0, 2, 1, 3, 2, 1, 3, 2, 1]
+[0, 2, 1, 3, 2, 1, 3, 2]
+[0, 2, 1, 3, 2, 3, 2]
+[0, 2, 1, 3, 2, 3]
+[0, 2, 3, 2, 3]
+[0, 2, 3, 2]
+[0, 2, 3]
+[2, 1, 3, 2, 1, 3, 2, 3]
+[2, 1, 3, 2, 1, 3, 2]
+[2, 1, 3, 2, 1]
+[2, 1, 3, 2]
+[2, 3, 2, 3]
+[2, 3, 2]
+[2, 3]
+A=CartanMatrix(['B',3])
+cplus=[0,2]
+cminus=[1]
+c=cplus+cminus
+for v in sortables(A,c):
+    h=coxeter_number(A)
+    works=false
+    for n in range(-2*h,0):
+        pn=plusminus(cplus,cminus,n/2)
+        P=p_lambda_int(B(A,cplus+cminus),lam(A,v),[[],pn])
+        if P.dimension()==0:
+            works=true
+            break
+    if not works:
+        print(v)
+
+[--no output--]
+
+
+
+A=CartanMatrix(['B',5])
+c=[0,1,2,3,4]
+n=1
+for v in sortables(A,c):
+    P=p_lambda_int(B(A,c),lam(A,v),Kprefix(c,6))
+    print(n,v,P.dimension())
+    n+=1
+    if P.dimension()!=0:
+        print('FAILURE')
+        break
+
+
+-------
+
+Testing intersection of all prefixes of c^infty
+
+
+sage: A=CartanMatrix(['B',5])
+....: c=[0,1,2,3,4]
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kprefix(c,6))
+....:     print(n,v,P.dimension())
+....:     n+=1
+....:     if P.dimension()!=0:
+....:         print('FAILURE')
+....:         break
+....: 
+1 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4] 0
+2 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3] 0
+3 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2] 0
+4 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1] 0
+5 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0] 0
+... [all 0, no failures]
+247 [3, 4, 3, 4] 0
+248 [3, 4, 3] 0
+249 [3, 4] 0
+250 [3] 0
+251 [4] 0
+252 [] 0
+
+
+sage: A=CartanMatrix(['B',6])
+....: c=[0,1,2,3,4,5]
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kprefix(c,6))
+....:     print(n,v,P.dimension())
+....:     n+=1
+....:     if P.dimension()!=0:
+....:         print('FAILURE')
+....:         break
+....: 
+1 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5] 0
+2 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4] 0
+3 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3] 0
+4 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2] 0
+5 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1] 0
+6 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0] 0
+... [all 0, no failures]
+919 [4, 5, 4, 5] 0
+920 [4, 5, 4] 0
+921 [4, 5] 0
+922 [4] 0
+923 [5] 0
+924 [] 0
+
+
+
+sage: A=CartanMatrix(['B',6])
+....: c=[2,0,5,4,3,1]
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kprefix(c,6))
+....:     print(n,v,P.dimension())
+....:     n+=1
+....:     if P.dimension()!=0:
+....:         print('FAILURE')
+....:         break
+....: 
+1 [2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1] 0
+2 [2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3] 0
+3 [2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 1] 0
+4 [2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4] 0
+5 [2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 4, 3, 1, 2, 0, 5, 1] 0
+... [all 0, no failures]
+920 [4] 0
+921 [3, 1] 0
+922 [3] 0
+923 [1] 0
+924 [] 0
+
+
+
+sage: A=CartanMatrix(['A',7])
+....: c=[2,6,0,5,4,3,1]
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kprefix(c,6))
+....:     print(n,v,P.dimension())
+....:     n+=1
+....:     if P.dimension()!=0:
+....:         print('FAILURE')
+....:         break
+....: 
+1 [2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 5, 4, 3, 6, 5] 0
+2 [2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 5, 4, 3, 6] 0
+3 [2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 5, 4, 3] 0
+4 [2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 5, 4, 6, 5] 0
+5 [2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 5, 4, 6] 0
+... [all 0, no failures]
+1425 [4, 1] 0
+1426 [4] 0
+1427 [3, 1] 0
+1428 [3] 0
+1429 [1] 0
+1430 [] 0
+
+[ 0  1  0  0  0  0  0]
+[-1  0 -1  0  0  0  0]
+[ 0  1  0  1  0  0  0]
+[ 0  0 -1  0 -1  0  0]
+[ 0  0  0  1  0 -1  0]
+[ 0  0  0  0  1  0 -1]
+[ 0  0  0  0  0  1  0]
+
+w0=[2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 0, 5, 4, 3, 1, 2, 6, 5, 4, 3, 6, 5]
+
+
+-------
+
+Testing intersection of all bipartite.
+
+sage: A=CartanMatrix(['A',5])
+sage: cplus=[0,2,4]
+sage: cminus=[1,3]
+sage: c=cplus+cminus
+sage: from time import perf_counter
+....: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.14344054099638015  Time in all:  0.3004431659937836
+2  Time for this step:  0.13378700002795085  Time in all:  0.434274583007209
+3  Time for this step:  0.13280745799420401  Time in all:  0.5671334579819813
+4  Time for this step:  0.13957291701808572  Time in all:  0.7067927080206573
+5  Time for this step:  0.2216881249914877  Time in all:  0.9285202079918236
+... [no failures]
+81  Time for this step:  0.018737250007689  Time in all:  6.90245379100088
+82  Time for this step:  0.049783999973442405  Time in all:  6.952255374984816
+83  Time for this step:  0.053138499963097274  Time in all:  7.005419874971267
+84  Time for this step:  0.021408624947071075  Time in all:  7.026918332965579
+85  Time for this step:  0.05150333297206089  Time in all:  7.078441915975418
+86  Time for this step:  0.05460083403158933  Time in all:  7.1330781250144355
+87  Time for this step:  0.017918750003445894  Time in all:  7.151069624989759
+88  Time for this step:  0.02023904101224616  Time in all:  7.171337541018147
+89  Time for this step:  0.01991012500366196  Time in all:  7.191315583011601
+90  Time for this step:  0.0218541250214912  Time in all:  7.213198499986902
+
+sage: A=CartanMatrix(['A',7])
+sage: cminus=[1,3,5]
+sage: cplus=[0,2,4,6]
+sage: c=cplus+cminus
+sage: from time import perf_counter
+....: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.20203341596061364  Time in all:  0.2090540409553796
+2  Time for this step:  0.1865986249758862  Time in all:  0.3956999579677358
+3  Time for this step:  0.8635632500518113  Time in all:  1.2593603749992326
+4  Time for this step:  0.8137698749778792  Time in all:  2.073171124968212
+5  Time for this step:  0.20346445799805224  Time in all:  2.2768425409449264
+6  Time for this step:  0.774543084029574  Time in all:  3.0514374999911524
+7  Time for this step:  0.7670439169742167  Time in all:  3.8185858329525217
+8  Time for this step:  0.7099182090023533  Time in all:  4.5285449999501
+... [no failures]
+992  Time for this step:  0.1552401669905521  Time in all:  583.9193707499653
+993  Time for this step:  0.1873315420234576  Time in all:  584.1067378749722
+994  Time for this step:  0.037849374988581985  Time in all:  584.1447041249485
+995  Time for this step:  0.04150250001111999  Time in all:  584.1862309579737
+996  Time for this step:  0.04197562497574836  Time in all:  584.2282661249628
+997  Time for this step:  0.04444558301474899  Time in all:  584.2727357909898
+998  Time for this step:  0.040508249949198216  Time in all:  584.313314540952
+999  Time for this step:  0.045673999993596226  Time in all:  584.3590176249854
+1000  Time for this step:  0.04578049998963252  Time in all:  584.4048567499849
+1001  Time for this step:  0.051152082975022495  Time in all:  584.4560504579567
+sage: 
+
+
+
+
+sage: A=CartanMatrix(['C',7])
+sage: cplus=[0,2,4,6]
+sage: cminus=[1,3,5]
+sage: c=cplus+cminus
+sage: from time import perf_counter
+sage: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.2359639159985818  Time in all:  0.2741092500509694
+2  Time for this step:  0.22391633299412206  Time in all:  0.4996870000031777
+3  Time for this step:  1.885972333024256  Time in all:  2.385734042036347
+4  Time for this step:  1.277308874996379  Time in all:  3.663077000004705
+5  Time for this step:  0.2600942919962108  Time in all:  3.9232583340490237
+6  Time for this step:  1.3844399999943562  Time in all:  5.3077355840359814
+... [no failures]
+1706  Time for this step:  0.25635525002144277  Time in all:  26820.293468750024
+1707  Time for this step:  0.3971757080289535  Time in all:  26820.690669917036
+1708  Time for this step:  0.4099374170182273  Time in all:  26821.100645042025
+1709  Time for this step:  0.29650449997279793  Time in all:  26821.39727175003
+1710  Time for this step:  0.3291349589708261  Time in all:  26821.72643483401
+1711  Time for this step:  0.3369076250237413  Time in all:  26822.063403959037
+1712  Time for this step:  0.3686332500074059  Time in all:  26822.43207887502
+1713  Time for this step:  0.3133774999878369  Time in all:  26822.745540292002
+1714  Time for this step:  0.32606220798334107  Time in all:  26823.07162891701
+1715  Time for this step:  0.33495862502604723  Time in all:  26823.40664137504
+1716  Time for this step:  0.36394466599449515  Time in all:  26823.770610125037
+
+
+
+sage: A=CartanMatrix(['D',5])
+....: cplus=[0,2]
+....: cminus=[1,3,4]
+....: c=cplus+cminus
+....: from time import perf_counter
+....: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.10562574997311458  Time in all:  0.10697020799852908
+2  Time for this step:  0.460238458996173  Time in all:  0.5672452500439249
+3  Time for this step:  0.19215120800072327  Time in all:  0.7595005829934962
+4  Time for this step:  0.5528110830346122  Time in all:  1.312350916035939
+5  Time for this step:  0.37235245801275596  Time in all:  1.6847895830287598
+6  Time for this step:  0.4387767920270562  Time in all:  2.123602958046831
+... [no failures]
+100  Time for this step:  0.2968269999837503  Time in all:  30.45204995799577
+101  Time for this step:  0.22240004199557006  Time in all:  30.674490125034936
+102  Time for this step:  0.1775988339795731  Time in all:  30.852178875007667
+103  Time for this step:  0.25199745898135006  Time in all:  31.104211000027135
+104  Time for this step:  0.24994916695868596  Time in all:  31.35423733299831
+105  Time for this step:  0.21936754195485264  Time in all:  31.573640874994453
+sage: A=CartanMatrix(['D',6])
+sage: A
+[ 2 -1  0  0  0  0]
+[-1  2 -1  0  0  0]
+[ 0 -1  2 -1  0  0]
+[ 0  0 -1  2 -1 -1]
+[ 0  0  0 -1  2  0]
+[ 0  0  0 -1  0  2]
+sage: A=CartanMatrix(['D',6])
+....: cplus=[0,2,4,5]
+....: cminus=[1,3]
+....: c=cplus+cminus
+....: from time import perf_counter
+....: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.24156137503450736  Time in all:  0.24679137498605996
+2  Time for this step:  0.35773658304242417  Time in all:  0.6045716250082478
+3  Time for this step:  0.4457041670102626  Time in all:  1.0503199999802746
+4  Time for this step:  0.3874543749843724  Time in all:  1.4378650419530459
+5  Time for this step:  0.4999180830200203  Time in all:  1.9378202499938197
+... [no failures]
+373  Time for this step:  0.39246179099427536  Time in all:  638.9713637079694
+374  Time for this step:  0.5533483329927549  Time in all:  639.5247513749637
+375  Time for this step:  0.36280150001402944  Time in all:  639.8876527919783
+376  Time for this step:  0.38436945795547217  Time in all:  640.2720603749622
+377  Time for this step:  0.4762785829952918  Time in all:  640.748422249977
+378  Time for this step:  0.3885587499826215  Time in all:  641.1370227499865
+sage: A=CartanMatrix(['D',7])
+sage: A
+[ 2 -1  0  0  0  0  0]
+[-1  2 -1  0  0  0  0]
+[ 0 -1  2 -1  0  0  0]
+[ 0  0 -1  2 -1  0  0]
+[ 0  0  0 -1  2 -1 -1]
+[ 0  0  0  0 -1  2  0]
+[ 0  0  0  0 -1  0  2]
+sage: A=CartanMatrix(['D',7])
+....: cplus=[0,2,4]
+....: cminus=[1,3,5,6]
+....: c=cplus+cminus
+....: from time import perf_counter
+....: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.30835024995030835  Time in all:  0.32576612499542534
+2  Time for this step:  0.24709383299341425  Time in all:  0.5729130420368165
+3  Time for this step:  85.6976419579587  Time in all:  86.27064741699724
+4  Time for this step:  114.29959537502145  Time in all:  200.57028758403612
+5  Time for this step:  1.0250890419702046  Time in all:  201.5956409170176
+6  Time for this step:  1.1425872499821708  Time in all:  202.73826858401299
+... [no failures]
+1380  Time for this step:  3.436899083026219  Time in all:  45133.164185625035
+1381  Time for this step:  3.543970958038699  Time in all:  45136.708230167045
+1382  Time for this step:  1.9626627909601666  Time in all:  45138.67092462501
+1383  Time for this step:  2.2258199590141885  Time in all:  45140.89683558402
+1384  Time for this step:  4.096728499978781  Time in all:  45144.99359591701
+1385  Time for this step:  4.075740250002127  Time in all:  45149.06941920903
+1386  Time for this step:  2.200197833997663  Time in all:  45151.26965183404
+
+
+
+
+
+
+
+sage: A=CartanMatrix(['E',7])
+....: cplus=[0,3,5]
+....: cminus=[1,2,4,6]
+....: c=cplus+cminus
+....: from time import perf_counter
+....: num=0
+....: first=perf_counter()
+....: for v in parasortables(A,c):
+....:     num+=1
+....:     start=perf_counter()
+....:     P=p_lambda_int(B(A,c),lam(A,v),Kbip(cplus,cminus,14))
+....:     end=perf_counter()
+....:     if P.dimension()!=0:
+....:         print("ALERT: FAILURE")
+....:     else:
+....:         print(num," Time for this step: ",end-start," Time in all: ",end-f
+....: irst)
+....: 
+1  Time for this step:  0.10127979202661663  Time in all:  0.13846912502776831
+2  Time for this step:  0.08994724997319281  Time in all:  0.2284787080134265
+3  Time for this step:  0.2850785000482574  Time in all:  0.5136477080523036
+4  Time for this step:  0.2555889160139486  Time in all:  0.7692779580247588
+5  Time for this step:  0.0903390419553034  Time in all:  0.859730625001248
+6  Time for this step:  0.09217666601762176  Time in all:  0.9519495830172673
+... [no failures]
+1721  Time for this step:  0.04907254199497402  Time in all:  10674.084400749998
+1722  Time for this step:  0.03793845896143466  Time in all:  10674.122453292017
+1723  Time for this step:  0.041804042004514486  Time in all:  10674.164293042035
+1724  Time for this step:  0.04270116600673646  Time in all:  10674.207063833019
+1725  Time for this step:  0.045747750031296164  Time in all:  10674.25284041703
+1726  Time for this step:  0.04139495803974569  Time in all:  10674.294323458045
+1727  Time for this step:  0.046783374971710145  Time in all:  10674.34113575
+1728  Time for this step:  0.04578808299265802  Time in all:  10674.386986833008
+1729  Time for this step:  0.050165167020168155  Time in all:  10674.437173750019
+sage: 
