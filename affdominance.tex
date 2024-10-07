@@ -182,7 +182,7 @@
 \renewcommand{\c}{\mathbf{c}}
 \renewcommand{\b}{\mathbf{b}}
 \renewcommand{\k}{\mathbbm{k}}
-\newcommand{\kk}{\mathbf{k}}
+\newcommand{\kk}{{\boldsymbol{k}}}
 \renewcommand{\ll}{{\boldsymbol\ell}}
 \newcommand{\ks}{\mathbf{k}}
 \renewcommand{\a}{\mathbf{a}}
@@ -434,7 +434,7 @@ Also, throughout the section, we use results from~\cite{NZ}.
 We begin with a skew-symmetrizable exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 The diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$ has $\Sigma B\Sigma^{-1}=-B^T$.
 
-Given a sequence \sayD{This might look a little better as a $\boldsymbol{k}$ to match the font style.  When it's paired with the $\ll$ I think the difference is more striking: $\ll\kk$ vs $\ll\boldsymbol{k}$.} $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
+Given a sequence \sayD{This might look a little better as a $\boldsymbol{k}$ to match the font style.  When it's paired with the $\ll$ I think the difference is more striking: $\ll\kk$ vs $\ll\boldsymbol{k}$.  \rn{I implemented this.}} $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
 We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
 Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
@@ -825,7 +825,7 @@ Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, and $\bigl(C_t^
 (This is ``sign-coherence of $C$-vectors''.  
 See Remark~\ref{conditional}.)
 Thus there are nonnegative numbers $\gamma_j$ such that $v_i=\delta\sum_{j=1}^n\gamma_jM_{\col j}$.
-Write $\set{1,\ldots,n}=S\cup T$ with $S\cup T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
+Write $\set{1,\ldots,n}=S\cup T$ with $S\cap T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
 Then
 \begin{align*}
 v_i
@@ -836,6 +836,22 @@ v_i
 &=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k},
 \end{align*}
 where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\delta\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
+
+\sayN{This is an alternative to the previous paragraph that does not need sign-coherence of $C_t^{B_1;t_1}$.
+Am I missing something?}
+Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, so writing $\gamma_j$ for the entries of $\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, we have $v_i=\sum_{j=1}^n\gamma_jM_{\col j}$.
+Write $\set{1,\ldots,n}=S\cup T$ with $S\cap T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
+Then
+\begin{align*}
+v_i
+&=\sum_{j\in S}\gamma_jM_{\col j}+\sum_{j\in T}\gamma_jM_{\col j}\\
+&=\sum_{j\in S}\gamma_j(N_{\col j}+|b_{kj}|N_{\col k})+\sum_{j\in T}\gamma_j(N_{\col j}-|b_{kj}|N_{\col k})\\
+&=\sum_{j=1}^n\gamma_jN_{\col j}-\sum_{j=1}^n\ep\gamma_jb_{kj}N_{\col k}\\
+&=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sum_{j=1}^n\ep\gamma_jM_{kj}N_{\col k}\\
+&=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k},
+\end{align*}
+where $\sigma=\ep\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
+\sayN{End alternative paragraph}
 
 As noted above, $\ep$ is the sign of the $k_1$-entry of vectors in $\Cone_t^{-B_1^T;t_1}$.
 Since $\Cone^{-B_1^T;t_1}_t=\set{x\in\reals^n:x^TC_t^{B_1;t_1}\ge0}$, the rows of $\bigl(C_t^{B_1;t_1}\bigr)^{-1}$ span the extreme rays of $\Cone_t^{-B_1^T;t_1}$.
@@ -891,24 +907,120 @@ This is precisely what was shown, with the same assumptions, in the proof of \cr
 \begin{corollary}\label{bip singleton}  \sayN{If we leave this here:  We haven't talked about acyclic yet.}
 Suppose $B_0$ is an acyclic, salient $n\times n$ exchange matrix and suppose $\kk=k_n\cdots k_1$ is a permutation of $\set{1,\ldots,n}$ such that $i$ precedes $j$ whenever $b_{ij}>0$.
 Suppose, for some $\lambda$ and $\ell$, that $b_{ij}=0$ for all $i,j\in\set{k_1,\ldots,k_\ell}$ and the $k_i$-entry of $\eta_{k_i\cdots k_1}^{B_0^T}(\lambda)$ is nonnegative for all $i>\ell$.
-Then $\P^{B_0}_\lambda=\set{\lambda}$.
+Then $\P^{B_0}_\lambda=\set{\lambda}$.  \sayN{If $B_0$ is bipartite and $\set{k_1,\ldots,k_\ell}$ is one of the parts, then we can use the $k_i$-entry of $\eta_{k_n\cdots k_1}^{B_0^T}(\lambda)$, i.e.\ same mutation map for all $i$.  We could write that into the \lcnamecref{bip singleton}, but this version might be necessary if we decide we can do $\tilde A$.}
 \end{corollary}
 \begin{proof}
-Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_n=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
+Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_n}{\edge}t_n=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
 The conditions on $\kk$ imply that $B_t=B_0$, that $\kk^{-1}=1\cdots n$ is a red sequence for $B_0$ and that $C_t^{B_0;t_0}$ is the negative of the identity matrix.
 Since ${\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk}}$, if we can verify the hypotheses of \cref{P in B0C mod}, we will have 
 \[\P^{B_0}_\lambda\subseteq\set{\lambda+B_0\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\set{\lambda-B_0\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda}.\]
 The hypotheses for $i>\ell$ are part of the hypotheses of this \lcnamecref{bip singleton}, and we will check that for $i=1,\ldots,\ell$, every entry in row $k_i$ of $B_iC_t^{B_i;t_i}$ is nonpositive.  
 
-For convenience, we will assume that $B_0$ is indexed so that $\kk=n\cdots 1$ so that $k_i=i$ for all~$1$.
+For convenience, we will assume that $B_0$ is indexed so that $\kk=n\cdots 1$ so that $k_i=i$ for all~$i$.
 Then the first $\ell$ rows of $B_0$ consist of zeros in columns $1,\ldots,\ell$ and nonpositive entries in columns $\ell+1,\ldots,n$.
 Each $B_i$ for $i=1,\ldots,n$ is obtained from $B_0$ by negating the first~$i$ columns and then negating the first~$i$ rows.
-The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in the first $\ell$ diagonal entries and $-1$ in the other diagonal entries.  
+The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in the first $i$ diagonal entries and $-1$ in the other diagonal entries.  
 Thus $B_iC_t^{B_i;t_i}$ is obtained from $B_0$ by negating all entries in rows $i+1,\ldots,n$.
 In particular, when $i\le\ell$, the entries in row $i$ of $B_iC_t^{B_i;t_i}$ are nonpositive.
 \end{proof}
 
 
+\begin{corollary}\label{what we get from bip}\sayN{This might be better, as it puts no conditions on $\lambda$}
+\sayN{This must be wrong:  Take bipartite $\tilde A_3$ and $\lambda=\nu_c(\delta)$}
+Suppose $B_0$ is bipartite with bipartition $\set{1,\ldots,n}=P\cup N$ (meaning that $b_{ij}=0$ whenever $i,j\in P$ or $i,j\in N$ and $b_{ij}\ge0$ whenever $i\in P$ and $j\in N$).
+Then $\P^{B_0}_\lambda\subseteq\lambda+\nnspan\sett{(B_0)_{\col i}:i\in N}$ for arbitrary $\lambda$.
+\end{corollary}
+\begin{proof}
+Suppose $\kk_+=k_m\cdots k_1$ is a sequence consisting of the elements of $P$ in any order with no repeats.
+Take $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ with $B_{t_0}=B_0$ and write $B_i$ for each~$B_{t_i}$.
+The conditions on $\kk_+$ imply that $B_t=-B_0$, that $\kk_+^{-1}$ is a red sequence for $-B_0$ and that $C_t^{B_0;t_0}$ (NOT TRUE!!)  is the diagonal matrix with $-1$ in positions $P$ and $1$ in positions $N$.
+
+\sayN{Danger, there are superficial resemblances between this and the proof of \cref{bip singleton}, but some things are subtly backwards.}
+For convenience, assume that $B_0$ is indexed so that $\kk_+=m\cdots 1$ so that $k_i=i$ for all~$i\in\set{1,\ldots,m}$.
+Then the first $m$ rows of $B_0$ consist of zeros in columns $1,\ldots,m$ and nonnegative entries in columns $m+1,\ldots,n$.
+Each $B_i$ for $i=1,\ldots,m$ is obtained from $B_0$ by negating the first~$i$ columns and then negating the first~$i$ rows.
+The matrix $C_t^{B_i;t_i}$ is diagonal, with entries $1$ in entries $1,\ldots,i$ and $m+1,\ldots,n$ and $-1$ in the other diagonal entries.  
+Thus $B_iC_t^{B_i;t_i}$ is obtained from $B_0$ by negating all entries in rows $i+1,\ldots,m$ and negating all entries in columns $1,\ldots,m$.
+In particular, the entries in row $i$ of $B_iC_t^{B_i;t_i}$ are nonpositive.
+
+We apply \cref{P in B0C mod} to say that $\P^{B_0}_{\lambda,\kk_+}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha}$, so
+\[\P_\lambda^{B_0}\subseteq\P^{B_0}_{\lambda,\emptyset}\cap\P^{B_0}_{\lambda,\kk_+}\subseteq\set{\lambda+B_0\alpha}\cap\set{\lambda+B_0C_t^{B_0;t_0}\alpha}.\]
+Since $B_0C_t^{B_0;t_0}$ is the matrix obtained from $B_0$ by negating all entries in columns $1,\ldots,m$, this intersection is $\lambda+\nnspan\sett{(B_0)_{\col i}:i\in N}$.
+\end{proof}
+
+\subsection{Another experimental section}\label{sort sec}
+In this section, I'm trying to develop further the induction on length and rank for proving that the dominance region is a point in the $\g$-vector cone.
+(Actually, this will only work in the doubled Cambrian fan if it works at all.)
+
+An inversion of an element $w$ of a Coxeter group is a reflection $t$ such that $\ell(tw)<\ell(w)$.
+Let $\inv(w)$ stand for the set of positive roots corresponding to inversions of $w$.
+We will need the following well known fact:
+If $w\in W$ and $s\in S$ have $w\ge s$ in the weak order, then $\inv(sw)=s(\inv(w)\setminus\set\alpha)$, where $\alpha$ is the simple root associated to~$s$.
+
+\begin{proposition}\label{sort domain} 
+Suppose $B_0$ is acyclic with associated Coxeter element $c$ and~$v$ is a $c$-sortable element and let $\tB_0$ be an arbitrary extension of $B_0$ by adjoining rows.
+Let $\kk=k_q\cdots k_1$ be the reverse of the sequence of indices of the $c$-sorting word for~$v$ and write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
+%Then $\eta_\kk^{B_0^T}(\Cone_t^{B_0;t_0})$ is the positive cone.
+Then the domain of definition of $\eta_\kk^{\BB_0^T}$ containing $\Cone_t^{\tB_0;t_0}$ is $\set{\lambda\in V^*:\br{\lambda,\beta}\le0\,\,\forall\beta\in\inv(v)}$.  \sayN{Maybe we haven't already talked about roots living in the first $n$ coordinates when we're dealing with extended exchange matrices?  Is $V^*$ a larger space or is it $n$-dimensional? If we have defined $V^*$ to be $n$-dimensional, we could just talk about the lit of inequalities defining the domain of definition.}
+\end{proposition}
+\begin{proof}
+As has already been mentioned, $\eta_\kk^{B_0^T}(\Cone_t^{B_0;t_0})$ is the positive cone \cite[Proposition~8.13]{universal}, 
+Also, if $\kk'=k_q\cdots k_2$, then $\eta_{\kk'}^{B_1^T}(\Cone_t^{B_1;t_1})$ is the positive cone, so $\bigl(\eta_{\kk'}^{B_1^T}\bigr)^{-1}\eta_\kk^{B_0^T}(\Cone_t^{B_0;t_0})=\Cone_t^{B_1;t_1}$.
+That is, $\eta_{k_1}^{B_0^T}(\Cone_t^{B_1;t_1})=\Cone_t^{B_0;t_0}$.
+Thus also $\eta_{k_1}^{\BB_0^T}(\Cone_t^{\tB_1;t_1})=\Cone_t^{\tB_0;t_0}$.
+
+We argue by induction on the length of $v$ and the size (i.e.\ the dimension $n$) of~$B_0$.
+We may as well assume that $B_0$ is indexed so that $c=s_1\cdots s_n$, or in other words $b_{ij}\ge0$ whenever $i<j$.
+If $v\ge s_1$, then its $c$-sorting word starts with $s_1$ and $s_iv$ is $s_1cs_1$-sortable, with $s_1cs_1$-sorting word is obtained by deleting $s_1$ the beginning of the $c$-sorting word for $v$.
+Thus $k_1=1$.
+The matrix $B_1$ is acyclic with Coxeter element $s_1cs_1$.
+By induction on length, the domain of definition of $\eta_{\kk'}^{\BB_1^T}$ containing $\Cone_t^{\tB_1;t_1}$ is $\set{\lambda\in V^*:\br{\lambda,\beta}\le0\,\,\forall\beta\in\inv(s_1v)}$.
+A vector $\lambda\in V^*$ is in the domain of definition of $\eta_\kk^{\BB_0^T}$ containing $\Cone_t^{\tB_0;t_0}$ if and only if $\br{\lambda,\alpha_1}\le0$ and $\eta_{1}^{\tB_0^T}(\lambda)$ is in the domain of definition of $\eta_{\kk'}^{\tB_1^T}$ containing $\Cone_t^{\tB_1;t_1}$.
+If $\br{\lambda,\alpha_1}\le0$, then $\eta_{1}^{\BB_0^T}(\lambda)=s_1\lambda$.
+Since $\inv(s_1v)=s_1(\inv(v)\setminus\set{\alpha_1})$, we see that the domain of definition of $\eta_\kk^{\BB_0^T}$ containing $\Cone_t^{\tB_0;t_0}$ is $\set{\lambda\in V^*:\br{\lambda,\beta}\le0\,\,\forall\beta\in\inv(v)}$.
+
+If $v\not\ge s_1$, then $v$ its $c$-sorting word contains no letters $s_1$ and is the $s_1c$-sorting word for an $s_1c$-sortable element of the standard parabolic subgroup generated by $\set{s_2,\ldots,s_n}$.
+Let $\tB_0'$ be the matrix obtained by deleting column $1$ from $\tB_0$ and considering row $1$ as an additional coefficient row.
+By induction on $n$, the domain of definition of $\eta_\kk^{(\BB_0')^T}$ containing $\Cone_t^{\tB_0';t_0}$ is $\set{\lambda\in V^*:\br{\lambda,\beta}\le0\,\,\forall\beta\in\inv(v)}$.
+Since $\kk$ does not contain $1$ and since $\Cone_t^{\tB_0';t_0}$ contains $\Cone_t^{\tB_0;t_0}$, this is the same as the domain of definition of $\eta_\kk^{\BB_0'^T}$ containing $\Cone_t^{\tB_0;t_0}$.
+\end{proof}
+
+\begin{proposition}\label{skip domain} 
+Suppose $B_0$ is acyclic with associated Coxeter element $c$ and~$v$ is a $c$-sortable element and let $\tB_0$ be an arbitrary extension of $B_0$ by adjoining rows.
+Suppose for some $s_j\in S$ that the first skip of $s_j$ in the $c$-sorting word for $v$ is at the end of the $c$-sorting word.
+Let $\kk=k_q\cdots k_1$ be the reverse of the sequence of indices of the $c$-sorting word for~$v$ and write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
+\begin{enumerate}[\quad\bf1.]
+\item
+If the skip is forced then the domain of definition of the domain of definition of $\eta_{j\kk}^{\BB_0^T}$ containing $\Cone_t^{\tB_0;t_0}$ contains $\set{\lambda\in V^*:\br{\lambda,\beta}\le0\,\,\forall\beta\in\inv(v)}$.
+\item
+If the skip is unforced then
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Since $\eta_\kk^{B_0^T}(\Cone_t^{B_0;t_0})$ is the positive cone, a point $\lambda$ is in the domain of definition of $\eta_{j\kk}^{\BB_0^T}$ containing $\Cone_t^{\tB_0;t_0}$ if and only if it is in the domain of definition of $\eta_{\kk}^{\BB_0^T}$ containing $\Cone_t^{\tB_0;t_0}$ and $\br{\eta_{\kk}^{\BB_0^T}(\lambda),\alpha_1}\ge0$.
+
+
+
+We argue by induction on the length of $v$ and on~$n$ and we assume that $B_0$ is indexed so that $c=s_1\cdots s_n$.
+If $v\ge s_1$, then $k_1=1$ and $s_iv$ is $s_1cs_1$-sortable, with $s_1cs_1$-sorting word is obtained by deleting $s_1$ the beginning of the $c$-sorting word for $v$.
+NEED A CASE FOR WHERE the skip is forced and the cover reflection for the skip is $s_1$.  ***That's not the same thing as $j=1$.
+
+
+By induction on length, WHATEVER IS SUPPOSED TO HAPPEN HAPPENS.
+
+If $v\not\ge s_1$, the $c$-sorting word for $v$ is the $s_1c$-sorting word for an $s_1c$-sortable element.
+Let $\tB_0'$ be the matrix obtained from $\tB_0$ by deleting column $1$ considering row $1$ as a coefficient row.
+I DON'T THINK $j=1$ is the right condition.
+If $j\neq1$, then by induction on $n$, WHATEVER IS SUPPOSED TO HAPPEN HAPPENS.
+
+If $j=1$, then we must consider two cases.
+If the skip of $1$ is forced, then $s_1$ is a cover reflection of $v$ (combining \cite[Proposition~5.1]{typefree} and \cite[Proposition~5.2]{typefree}).
+
+
+
+
+
+\end{proof}
 
 
 
@@ -1693,7 +1805,8 @@ This is Assertion~\ref{pos a}, and Assertion~\ref{eta lim} follows immediately.
 
 The proof of \cref{eta nice}.\ref{eta is c} in \cite[Proposition~7.31]{affscat} includes checking, for each of the $n$ mutation steps of applying $\eta^{B^T}_{12\cdots n}$ to $\nu_c(\delta)$, which of the cases of the mutation map applies.
 At each step, the condition yields strict inequality (i.e. the vector in question is not on the hyperplane separating the two conditions), so $\nu_c(\delta)$ is in the \emph{interior} of the domain of definition of $\eta^{B^T}_{12\cdots n}$.
-Thus Assertion~\ref{eta lim} implies that for large enough or small enough $i$, the $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$ are in the same domain of linearity of $\eta^{B^T}_{12\cdots n}$ and $\eta^{B^T}_{12\cdots n}$agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$.
+Thus Assertion~\ref{eta lim} implies that for large enough or small enough $i$, the $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$ are in the same domain of linearity \sayN{...of definition?}
+of $\eta^{B^T}_{12\cdots n}$ and $\eta^{B^T}_{12\cdots n}$agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$.
 
 \cref{nu delta} says that $\nu_c(\delta)\in V^*$ is $-\frac12\omega_c(\,\cdot\,,\delta)$, so for any $\beta\in\RS$, the pairing $\br{\nu_c(\delta),\beta}$ is $-\frac12\omega(\beta,\delta)$.
 Thus Assertion~\ref{pos a} implies that for large enough or small enough $i$, we have $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RSfin$ such that $\omega_c(\beta,\delta)>0$.
