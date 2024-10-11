@@ -361,6 +361,9 @@ sage: A=CartanMatrix(['B',5])
 251 [4] 0
 252 [] 0
 
+(Also A=CartanMatrix(['C',5]) c=[0,1,2,3,4] works)
+
+
 
 sage: A=CartanMatrix(['B',6])
 ....: c=[0,1,2,3,4,5]
@@ -475,6 +478,174 @@ sage: A=CartanMatrix(['A',7])
 1428 [5] 0
 1429 [6] 0
 1430 [] 0
+
+
+--------
+
+Testing whether there is always a *pair* of prefixes that works
+(The answer is *no*)
+
+
+sage: A=CartanMatrix(['C',4])
+....: c=[0,1,2,3]
+....: coxnum=8
+....: n=1
+....: for v in sortables(A,c):
+....:     print(n,v)
+....:     n+=1
+....:     Ps=list(p_lambda_faster(B(A,c),lam(A,v),c_inf_prefix(c,i)) for i in ra
+....: nge((coxnum+2)*A.nrows()))
+....:     fails=true
+....:     for i in range(len(Ps)):
+....:         for j in range(i+1,len(Ps)):
+....:             if (Ps[i].intersection(Ps[j])).dimension()==0:
+....:                 fails=false
+....:                 break
+....:     if fails:
+....:         print('FAILS!')
+....:         break
+....: 
+1 [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+2 [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2]
+3 [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1]
+4 [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0]
+... [no fails]
+66 [2, 3, 2]
+67 [2, 3]
+68 [2]
+69 [3]
+70 []
+
+A=CartanMatrix(['A',7])
+c=[0,1,2,3,4,5,6]
+coxnum=8
+n=1
+for v in sortables(A,c):
+    print(n,v)
+    n+=1
+    Ps=list(p_lambda_faster(B(A,c),lam(A,v),c_inf_prefix(c,i)) for i in range((coxnum+2)*A.nrows()))
+    fails=true
+    for i in range(len(Ps)):
+        for j in range(i+1,len(Ps)):
+            if (Ps[i].intersection(Ps[j])).dimension()==0:
+                fails=false
+                break
+    if fails:
+        print('FAILS!')
+        break
+1 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1, 2, 0, 1, 0]
+2 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1, 2, 0, 1]
+3 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1, 2, 0]
+4 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1, 2, 1]
+5 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1, 2]
+6 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1, 0]
+7 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 1]
+8 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0, 2]
+9 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 0]
+10 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 1, 2, 1]
+11 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 1, 2]
+12 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 1]
+13 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3, 2]
+14 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 3]
+15 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 0, 1, 0]
+16 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 0, 1]
+17 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 0, 1, 2, 0]
+FAILS!
+
+
+-------
+
+But, there seems to be a subset of the prefixes that works:
+
+Also:  It appears that i*A.nrows()+1 can be changed to i*A.nrows()+j for any j not equivalent to 0 mod n.
+And if the rank is even, it can be *any* j.
+
+Also, it seems like we can do a lot smaller than coxnum+2.  
+For C_3, coxnum=6, and the smallest that works is 4.
+For C_4, coxnum=8, and the smallest that works is 5.
+For C_5, coxnum=10, and the smallest that works is 6.
+For C_6, coxnum=12, and the smallest that works is 7.
+For D_4, coxnum=6 and the smallest that works is 4.
+For D_5, coxnum=8 and the smallest that works is 5.
+For D_6, coxnum=8 and the smallest that works is 6.
+A_3, coxnum=4, smallest that works is 3.
+A_4, coxnum=5, smallest that works is 4.
+A_5, coxnum=6, smallest that works is 5.
+A_6, coxnum=7, smallest that works is 6.
+
+sage: A=CartanMatrix(['C',5])
+....: c=[0,1,2,3,4]
+....: coxnum=10
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),list(c_inf_prefix(c,i*A.nrows()+1) for
+....: i in range(coxnum+2)))
+....:     print(n,v)
+....:     n+=1
+....:     if P.dimension()>0:
+....:         print("FAILURE!",P.dimension())
+....:         break
+....: 
+1 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
+2 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3]
+3 [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
+...
+251 [4]
+252 []
+
+sage: A=CartanMatrix(['C',6])
+....: c=[0,1,2,3,4,5]
+....: coxnum=12
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),list(c_inf_prefix(c,i*A.nrows()+1) for
+....: i in range(coxnum+2)))
+....:     print(n,v)
+....:     n+=1
+....:     if P.dimension()>0:
+....:             print("FAILURE!",P.dimension())
+....: 
+1 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
+2 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4]
+3 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3]
+4 [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2]
+... [no FAILURE]
+922 [4]
+923 [5]
+924 []
+
+
+
+sage: A=CartanMatrix(['C',7])
+....: c=[0,1,2,3,4,5,6]
+....: coxnum=14
+....: n=1
+....: for v in sortables(A,c):
+....:     P=p_lambda_int(B(A,c),lam(A,v),list(c_inf_prefix(c,i*A.nrows()+1) for
+....: i in range(coxnum)))
+....:     print(n,v)
+....:     n+=1
+....:     if P.dimension()>0:
+....:         print("FAILURE!",P.dimension())
+....:         break
+....: 
+1 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6]
+2 [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5]
+...
+3423 [4, 5, 4]
+3424 [4, 5]
+3425 [4, 6]
+3426 [4]
+3427 [5, 6, 5, 6]
+3428 [5, 6, 5]
+3429 [5, 6]
+3430 [5]
+3431 [6]
+3432 []
+
+
+
+
 
 
 
@@ -750,3 +921,63 @@ sage: A=CartanMatrix(['E',7])
 1728  Time for this step:  0.04578808299265802  Time in all:  10674.386986833008
 1729  Time for this step:  0.050165167020168155  Time in all:  10674.437173750019
 sage: 
+
+----
+
+Doesn't work:
+
+sage: A=CartanMatrix(['C',4])
+....: c=[0,1,2,3]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     P=p_lambda_int(B(A,c),lam(A,v),K_insert(c,v))
+....:     print(num,v,P.dimension())
+....:     if P.dimension()>0:
+....:         print("Failure!")
+....:         print(v,"\n",K_insert(c[1:],v),"\n",K_insert(c,v),"\n")
+....:         break
+1 [1, 2, 3, 1, 2, 3, 1, 2, 3] 0
+2 [1, 2, 3, 1, 2, 3, 1, 2] 0
+3 [1, 2, 3, 1, 2, 3, 1] 0
+4 [1, 2, 3, 1, 2, 3] 0
+5 [1, 2, 3, 1, 2, 1] 0
+6 [1, 2, 3, 1, 2] 0
+7 [1, 2, 3, 1] 0
+8 [1, 2, 3, 2, 3] 3
+Failure!
+[1, 2, 3, 2, 3] 
+ [[1, 2, 3, 1, 2, 3], [1, 2, 3, 1, 2, 3, 1], [1, 2, 3, 1, 2, 3, 1, 2], [1, 2, 3, 1, 2, 3, 1, 2, 3], [1, 2, 3, 1, 2, 3, 1, 2, 3, 1], [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2]] 
+ [[0, 1, 2, 3, 0, 1, 2, 3], [0, 1, 2, 3, 0, 1, 2, 3, 0], [0, 1, 2, 3, 0, 1, 2, 3, 0, 1], [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2], [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3], [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0], [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1], [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2]] 
+
+
+-------
+
+This seems to work at least for some Coxeter elements for ACD up to rank 6
+
+A=CartanMatrix(['C',3])
+c=[0,1,2]
+seqs=[]
+for u in sortables(A,c[1:]):
+    seqs=seqs+[u,u+[c[0]]]
+num=0
+for v in sortables(A,c[1:]):
+    num+=1
+    d=p_lambda_int(B(A,c),lam(A,v),seqs).dimension()
+    print(num,v,d)
+    if d!=0:
+        print('Failure!')
+        break
+
+Or, with a revised K(c,v), seems to work up to rank 7:
+
+A=CartanMatrix(['C',6])
+c=[0,1,2,3,4,5]
+num=0
+for v in sortables(A,c[1:]):
+    num+=1
+    d=p_lambda_int(B(A,c),lam(A,v),K(c,v)).dimension()
+    print(num,v,d)
+    if d!=0:
+        print('Failure!')
+        break

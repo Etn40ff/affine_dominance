@@ -161,6 +161,32 @@ def p_lambda_faster(B, la, seq):  # faster?  I think so
     return P
 
 
+# Given a polyhedron P and a vertex v, finds the smallest cone at v that contains P.
+# The point is that you need to keep the lines and the rays and add a ray in the 
+# direction v'-v for each other vertex v'.
+# This will give strange results unless v is a vertex of P or is on a line or ray of P.
+# To make it better, you would need to do a lot of checking about whether P is in the relative 
+# interior of a face and I don't want to waste that computation time.  We'll only use this when 
+# v is the lambda that defines P as a P_lambda,k
+# The vertex should be given as a tuple, e.g. (1,2,3)
+def cone_at(P,v):
+    newrays=list(r.vector() for r in P.rays());
+    for vert in P.vertices():
+        vertvec=vert.vector()
+        if vertvec!=v:
+            newrays=newrays+[vertvec-v]
+    return Polyhedron(vertices=[v],rays=newrays,lines=P.lines())
+
+# like p_lambda_int, but returns the (often larger) cone at lambda that contains p_lambda_int
+# I guessed that this would be faster in situations where we think we are getting a point, but
+# it seems about the same
+def p_lambda_cone(B, la, seqs):
+    P = cone_at(p_lambda_faster(B, la, seqs[0]),la)
+    for s in seqs:
+        P = P.intersection(cone_at(p_lambda_faster(B, la, s),la))
+        if P.dimension()==0:
+            break
+    return P
 
 
 def B(A,c):  # Cartan matrix (assumes nonpositive off-diagonal entries) and Coxeter element (a list)
@@ -180,9 +206,8 @@ def K(c,v):  # A set of sequences depending on a sortable element v, given by it
         out=[[]]
     elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
         oldK=K(c[1:],v)
-        #print([c],oldK)
         for k in oldK:
-            out=out+[[c[0]]+k]
+            out=out+[k+[c[0]]]
         out=oldK+out
     else:  # The "induction on length" case.  This is provably the right thing to do.
         for k in K(c[1:]+[c[0]],v[1:]):
@@ -192,14 +217,55 @@ def K(c,v):  # A set of sequences depending on a sortable element v, given by it
                 out=out+[[v[0]]+k]
     return out
 
+# a set of sequences, all prefixes of c^infty.  The induction-on-rank step is inserting c[0] into
+# the sequences in the parabolic in the right places to make them prefixes of c^infty
+
+def K_insert(c,v):  
+    if c==[]:   # The terminal case (empty sequence for the rank-0 Coxeter group)
+        out=[[]]
+    elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
+        out=[]
+        oldK=K_insert(c[1:],v)
+        for k in oldK:
+            newk = insert(c,k)
+            if newk==[] or newk[-1]==c[-1]:
+                out=out+[newk,newk+[c[0]]]
+            else:
+                out=out+[newk]
+    else:  # The "induction on length" case.  This is provably the right thing to do.
+        out=[]
+        for k in K_insert(c[1:]+[c[0]],v[1:]):
+            if k!=[] and k[0]==v[0]:
+                out=out+[k[1:]]
+            else:
+                out=out+[[v[0]]+k]
+    return out
+
+def insert(c,k):
+    if k==[]:
+        return []
+    elif k[0]==c[1]:
+        return [c[0],k[0]]+insert(c,k[1:])
+    else:
+        return [k[0]]+insert(c,k[1:])
+
 def Kc(c,coxnum):  # powers of c
     return list(c*i for i in range(coxnum+2)) 
 
+def Kc_even(c,coxnum):  # even powers of c
+    return list(2*c*i for i in range(coxnum+1)) 
+
 def Kprefix(c,coxnum):  # prefixes of powers of c
-    return list(c_inf_prefix(c,i) for i in range(len(c)*(coxnum+2))) 
+    return list(c_inf_prefix(c,i) for i in range(len(c)*coxnum)) 
 
 def c_inf_prefix(c,i):
-    return list(c[i%len(c)] for i in range(i))
+    return list(c[j%len(c)] for j in range(i))
+
+def Krev_prefix(c,coxnum):  # prefixes of powers of c
+    return list(c_inf_prefix(c,i) for i in range(len(c)*(coxnum+2))) 
+
+def c_inf_rev_prefix(c,i):
+    return list(c[(-j)%len(c)] for j in range(i))
 
 # Trying to find an index I such that the intersection of the P_{lambda,k} for sequences
 # k=c_inf_prefix(c,I),...,c_inf_prefix(c,I+n) is a point.  (Takes a sortable element v, and 
@@ -293,7 +359,8 @@ def coxeter_number(A):
     n=A.nrows()
     return len(longest_sortable(A,list(range(n))))*2/n
 
-# Each c-sortable element v encodes a cone in the c-Cambrian fan.
+# Each c-sortable element v encodes a cone in the c-Cambrian fan
+
 # This finds the c^{-1}-sortable element that encodes the same cone in the antipodal c^{-1}-Cambrian fan.
 def inv_sortable(A,c,v):
     return inv_sortable_remaining(A,c,[],lam(A,v))
