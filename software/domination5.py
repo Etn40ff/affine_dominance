@@ -1,115 +1,5 @@
-def p_lambda_seq(B, la, seq):
-    m = B.nrows()
-    rk = B.rank()
-    n = B.ncols()
-    B = block_matrix([[B,matrix(la).transpose()]])
-    for k in seq:
-        B.mutate(k)
-    B, la  = B[:,:-1], B[:,-1] 
-    Ps = [Polyhedron(rays=B.columns(),base_ring=QQ).translation(la)]
-    for k in reversed(seq):
-        Ep = E(B, k, 1)
-        Em = E(B, k, -1)
-        Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(m-k-1)])
-        Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(m-k-1)])
-        new_Ps = []
-        for P in Ps:
-            Pp = P.intersection(Hp)
-            if Pp.dimension() == rk:
-                new_Ps.append(Ep*Pp)
-            Pm = P.intersection(Hm)
-            if Pm.dimension() == rk:
-                new_Ps.append(Em*Pm)
-        Ps = new_Ps
-        B.mutate(k)
-#    return Ps
-    return PolyhedralComplex(Ps).union_as_polyhedron()
-
-def p_lambda_seq_as_list_any_rank(B, la, seq):
-    m = B.nrows()
-    rk = B.rank()
-    n = B.ncols()
-    B = block_matrix([[B,matrix(la).transpose()]])
-    for k in seq:
-        B.mutate(k)
-    B, la  = B[:,:-1], B[:,-1] 
-    Ps = [Polyhedron(rays=B.columns(),base_ring=QQ).translation(la)]
-    for k in reversed(seq):
-        Ep = E(B, k, 1)
-        Em = E(B, k, -1)
-        Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(m-k-1)])
-        Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(m-k-1)])
-        new_Ps = []
-        for P in Ps:
-            Pp = P.intersection(Hp)
-            if Pp.dimension() == rk:
-                new_Ps.append(Ep*Pp)
-            Pm = P.intersection(Hm)
-            if Pm.dimension() == rk:
-                new_Ps.append(Em*Pm)
-        Ps = new_Ps
-        B.mutate(k)
-    P = Ps[0]
-    for Q in Ps:
-        P = P.convex_hull(Q)
-    return P
-
-def p_lambda_seq_convexhull(B, la, seq):
-    m = B.nrows()
-    rk = B.rank()
-    n = B.ncols()
-    B = block_matrix([[B,matrix(la).transpose()]])
-    for k in seq:
-        B.mutate(k)
-    B, la  = B[:,:-1], B[:,-1] 
-    Ps = [Polyhedron(rays=B.columns(),base_ring=QQ).translation(la)]
-    for k in reversed(seq):
-        Ep = E(B, k, 1)
-        Em = E(B, k, -1)
-        Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(m-k-1)])
-        Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(m-k-1)])
-        new_Ps = []
-        for P in Ps:
-            Pp = P.intersection(Hp)
-            if Pp.dimension() == rk:
-                new_Ps.append(Ep*Pp)
-            Pm = P.intersection(Hm)
-            if Pm.dimension() == rk:
-                new_Ps.append(Em*Pm)
-        Ps = new_Ps
-        B.mutate(k)
-    P = Ps[0]
-    for Q in Ps:
-        P = P.convex_hull(Q)
-    return P
-
-def p_lambda_seq_as_list(B, la, seq):
-    m = B.nrows()
-    n = B.ncols()
-    B = block_matrix([[B,matrix(la).transpose()]])
-    for k in seq:
-        B.mutate(k)
-    B, la  = B[:,:-1], B[:,-1] 
-    Ps = [Polyhedron(rays=B.columns()).translation(la)]
-    for k in reversed(seq):
-        Ep = E(B, k, 1)
-        Em = E(B, k, -1)
-        Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(m-k-1)])
-        Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(m-k-1)])
-        new_Ps = []
-        for P in Ps:
-            Pp = P.intersection(Hp)
-            if Pp.dimension() == n:
-                new_Ps.append(Ep*Pp)
-            Pm = P.intersection(Hm)
-            if Pm.dimension() == n:
-                new_Ps.append(Em*Pm)
-        Ps = new_Ps
-        B.mutate(k)
-    return Ps
-
-def intersect_polytope_lists(A,B):
-    return [ P for Q in A for R in B for P in [Q.intersection(R)] if not P.is_empty() ]
+# HUGE CHANGE:  I am rewriting this to agree with the notation in the paper!!
+# This involves reversing the directions the sequences are read.
 
 def E(B, k, eps):
     n = B.nrows()
@@ -119,30 +9,28 @@ def E(B, k, eps):
     M[k,k] = -1
     return M
 
-# Added by Nathan:
-
 def p_lambda_int(B, la, seqs):
-    P = p_lambda_faster(B, la, seqs[0])
+    P = p_lambda(B, la, seqs[0])
     for s in seqs:
-        P = P.intersection(p_lambda_faster(B, la, s))
+        P = P.intersection(p_lambda(B, la, s))
         if P.dimension()==0:
             break
     return P
 
 
-def p_lambda_faster(B, la, seq):  # faster?  I think so
+def p_lambda(B, la, seq):  # faster?  I think so
     m = B.nrows()
     rk = B.rank()
     n = B.ncols()
     B = block_matrix([[B,matrix(la).transpose()]])
-    for k in seq:
+    for k in reversed(seq):
         B.mutate(k)
     B, la  = B[:,:-1], B[:,-1] 
 # changed this to allow for zero columns
 #    P = Polyhedron(rays=B.columns(),base_ring=QQ).translation(la)
     P = Polyhedron(rays=[v for  v in B.columns() if v!=0],base_ring=QQ).translation(la)
     #print("P:   ",P,P.vertices(),P.rays(),P.lines(),"\n")
-    for k in reversed(seq):
+    for k in seq:
         Ep = E(B, k, 1)
         Em = E(B, k, -1)
         Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(m-k-1)])
@@ -183,9 +71,9 @@ def cone_at(P,v):
 # I guessed that this would be faster in situations where we think we are getting a point, but
 # it seems about the same
 def p_lambda_cone(B, la, seqs):
-    P = cone_at(p_lambda_faster(B, la, seqs[0]),la)
+    P = cone_at(p_lambda(B, la, seqs[0]),la)
     for s in seqs:
-        P = P.intersection(cone_at(p_lambda_faster(B, la, s),la))
+        P = P.intersection(cone_at(p_lambda(B, la, s),la))
         if P.dimension()==0:
             break
     return P
@@ -209,7 +97,7 @@ def K(c,v):  # A set of sequences depending on a sortable element v, given by it
     elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
         oldK=K(c[1:],v)
         for k in oldK:
-            out=out+[k+[c[0]]]
+            out=out+[[c[0]]+k]
         out=oldK+out
     else:  # The "induction on length" case.  This is provably the right thing to do.
         for k in K(c[1:]+[c[0]],v[1:]):
@@ -226,10 +114,27 @@ def Kbackwards(c,v):  # A set of sequences depending on a sortable element v, gi
     elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
         oldK=Kbackwards(c[1:],v)
         for k in oldK:
-            out=out+[[c[0]]+k]
+            out=out+[k+[c[0]]]
         out=oldK+out
     else:  # The "induction on length" case.  This is provably the right thing to do.
         for k in Kbackwards(c[1:]+[c[0]],v[1:]):
+            if k!=[] and k[0]==v[0]:
+                out=out+[k[1:]]
+            else:
+                out=out+[[v[0]]+k]
+    return out
+
+def K(c,v):  # A set of sequences depending on a sortable element v, given by its c-sorting word
+    out = []
+    if c==[]:   # The terminal case (empty sequence for the rank-0 Coxeter group)
+        out=[[]]
+    elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
+        oldK=K(c[1:],v)
+        for k in oldK:
+            out=out+[[c[0]]+k]
+        out=oldK+out
+    else:  # The "induction on length" case.  This is provably the right thing to do.
+        for k in K(c[1:]+[c[0]],v[1:]):
             if k!=[] and k[0]==v[0]:
                 out=out+[k[1:]]
             else:
@@ -283,7 +188,7 @@ def c_inf_prefix(c,i):
     return list(c[j%len(c)] for j in range(i))
 
 def Krev_prefix(c,coxnum):  # prefixes of powers of c
-    return list(c_inf_prefix(c,i) for i in range(len(c)*(coxnum+2))) 
+    return list(c_inf_rev_prefix(c,i) for i in range(len(c)*(coxnum+2))) 
 
 def c_inf_rev_prefix(c,i):
     return list(c[(-j)%len(c)] for j in range(i))
@@ -331,21 +236,26 @@ def plusminus(cplus,cminus,n):
 
 
 # reflects a vector by a simple reflection
-def reflect(A,vec,s):
+# This is in the dual presentation, where vectors are fundamental weight coordinates
+def reflect_once(A,vec,s):
     return vector(vec)-vec[s]*vector(A.column(s))
+
+# reflects a vector by a list of simple reflections, starting with the rightmost element of the list
+def reflect(A,vec,list):
+    ans=vec
+    for s in reversed(list):
+        vec=reflect_once(A,vec,s)
+    return vec
+
+# reflects each column of a matrix, interpreting it as fundamental weight coordinates of a
+# vector in the dual space.  (This applies reflect(A,•,list) to every column.)
+def reflect_matrix(A,M,list):
+    return matrix(map(lambda x: reflect(A,x,list),M.columns())).transpose()
 
 # a vector in the interior of the Coxeter cone given by the sortable element
 # (and therefore in the cone of the g-vector fan given by the sortable element)
 def lam(A,v):
-    n=A.nrows()
-    out=vector([1]*n)
-    for s in reversed(v):
-        out=reflect(A,out,s)
-    return out
-
-# finds the intersection of the P_lambda,k for lambda=lam(A,v) and all k in K(c,v)
-def p_lambda_v(A,c,v):
-    return p_lambda_int(B(A,c),lam(A,v),K(c,v))
+    return reflect(A,vector([1]*A.nrows()),v)
 
 def sortables(A,c):
     yield from sortables_remaining(A,c,[],vector([1]*A.nrows()))
@@ -355,7 +265,7 @@ def sortables_remaining(A,c,sort,vec):
         yield sort
     else:
         if vec[c[0]]>0:
-            yield from sortables_remaining(A,c[1:]+[c[0]],sort+[c[0]],reflect(A,vec,c[0]))
+            yield from sortables_remaining(A,c[1:]+[c[0]],sort+[c[0]],reflect_once(A,vec,c[0]))
         yield from sortables_remaining(A,c[1:],sort,vec)
 
 def parasortables(A,c):  # c-sortable elements not starting with c, i.e. in some proper parabolic
@@ -371,7 +281,7 @@ def longest_sortable_remaining(A,c,sort,vec):
         return sort
     else:
         if vec[c[0]]>0:
-            return longest_sortable_remaining(A,c[1:]+[c[0]],sort+[c[0]],reflect(A,vec,c[0]))
+            return longest_sortable_remaining(A,c[1:]+[c[0]],sort+[c[0]],reflect_once(A,vec,c[0]))
         else:
             return longest_sortable_remaining(A,c[1:],sort,vec)
 
@@ -391,103 +301,24 @@ def inv_sortable_remaining(A,c,sort,vec):
         return sort
     else:
         if vec[c[-1]]>0:
-            return inv_sortable_remaining(A,[c[-1]]+c[:-1],sort+[c[-1]],reflect(A,vec,c[-1]))
+            return inv_sortable_remaining(A,[c[-1]]+c[:-1],sort+[c[-1]],reflect_once(A,vec,c[-1]))
         else:
             return inv_sortable_remaining(A,c[:-1],sort,vec)
 
-
-'''
-#This was just a test of how python works
-def even(n):
-    for i in range(n):
-        if i==(i//2)*2:
-            yield(i)
-'''
-
-
-
-
-
-'''
-# An old version (failed in B3):
-def K(c,v):  # A set of sequences depending on a sortable element v, given by its c-sorting word
-    out = []
-    if c==[]:   # The terminal case (empty sequence for the rank-0 Coxeter group)
-        out=[[]]
-    elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
-        oldK=K(c[1:],v)
-        #print([c],oldK)
-        for k in oldK:
-            out=out+[k,[c[0]]+k]
-    else:  # The "induction on length" case.  This is provably the right thing to do.
-        for k in K(c[1:]+[c[0]],v[1:]):
-            if k!=[] and k[0]==v[0]:
-                out=out+[k[1:]]
-            else:
-                out=out+[[v[0]]+k]
-    return out
-
-# Another old version (also failed in B3)
-def K(c,v):  # A set of sequences depending on a sortable element v, given by its c-sorting word
-    out = []
-    if c==[]:   
-        out=[[]]
-    elif v==[] or c[0]!=v[0]:
-        oldK=K(c[1:],v)
-        for k in oldK:
-            out=out+[k+[c[0]]]
-        out=oldK+out
-    else:
-        for k in K(c[1:]+[c[0]],v[1:]):
-            if k!=[] and k[0]==v[0]:
-                out=out+[k[1:]]
-            else:
-                out=out+[[v[0]]+k]
-    return out
-
-#Another
-def K(c,v):  # A set of sequences depending on a sortable element v, given by its c-sorting word
-    out = []
-    if c==[]:   # The terminal case (empty sequence for the rank-0 Coxeter group)
-        out=[[]]
-    elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
-        for i in range(len(c)):
-            out=out+[c[0:i+1]]
-        out=K(c[1:],v)+out
-    else:  # The "induction on length" case.  This is provably the right thing to do.
-        for k in K(c[1:]+[c[0]],v[1:]):
-            if k!=[] and k[0]==v[0]:
-                out=out+[k[1:]]
-            else:
-                out=out+[[v[0]]+k]
-    return out
+#apply mutation map eta^{B^T}_k to lambda for a sequence k, reading k from right to left
+def mutation_map(B,la,k):
+    Bplus=block_matrix([[B,matrix(la).transpose()]])
+    for i in reversed(k):
+        Bplus.mutate(i)
+    return vector(Bplus[:,-1])
+ 
+# Mutates the matrix B for a sequence k, reading k from right to left.
+# Makes a copy, rather than mutating in place.
+def mutate(B,k):
+    Bprime=copy(B)
+    for i in reversed(k):
+        Bprime.mutate(i)
+    return Bprime
 
 
 
-# An experiment (a pretty dumb one... yields the list [v])
-def K(c,v):  # A set of sequences depending on a sortable element v, given by its c-sorting word
-    out = []
-    if c==[]:   # The terminal case (empty sequence for the rank-0 Coxeter group)
-        out=[[]]
-    elif v==[] or c[0]!=v[0]:  # The "induction on rank" case.
-        out=K(c[1:],v)
-    else:  # The "induction on length" case.  This is provably the right thing to do.
-        for k in K(c[1:]+[c[0]],v[1:]):
-            if k!=[] and k[0]==v[0]:
-                out=out+[k[1:]]
-            else:
-                out=out+[[v[0]]+k]
-    return out
-
-# old
-def Kbip(cplus,cminus,Coxnum):
-    out = [cminus+cplus,cminus,[]]
-    for i in range(Coxnum-1):
-        if (i//2)*2==i:  #even
-            out=out+[out[-1]+cplus]
-        else:
-            out=out+[out[-1]+cminus]
-    return out
-
-
-'''

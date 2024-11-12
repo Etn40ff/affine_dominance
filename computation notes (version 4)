@@ -952,6 +952,35 @@ Failure!
 
 
 -------
+This seems to tell us that you can separate the intersection of the sequences in the parabolic from the sequences in the parabolic with c[0] tacked on by looking at the span of the first column.
+
+
+A=CartanMatrix(['D',4])
+c=[2,1,0,3]
+for v in sortables(A,c[1:]):
+    P=p_lambda_cone(B(A,c),lam(A,v),K(c[1:],v))
+    Q=p_lambda_cone(B(A,c),lam(A,v),list(k+[c[0]] for k in K(c[1:],v)))
+    print("\n",v)
+    print("parabolic     ",list(map(vector,P.rays())),list(map(vector,P.lines())))
+    print("parabolic + c0",list(map(vector,Q.rays())),list(map(vector,Q.lines())))
+
+
+-------
+This is doing intersections of k in the parabolic with k+[c[0]].
+It doesn't say much to me.
+
+A=CartanMatrix(['C',4])
+c=[2,1,0,3]
+for v in sortables(A,c[1:]):
+    print("\n",v)
+    for k in K(c[1:],v):
+        P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+        print(k,P.rays(),P.lines())
+
+
+
+
+-------
 
 This seems to work at least for some Coxeter elements for ACD up to rank 6
 
