@@ -1,0 +1,700 @@
+Checking visually that the intersection of the spans of columns of c^i B  for i=0...h/2-1 really 
+is disjoint from P_eta(lambda),c^(-1) for any lambda with lambda_1 ≥ 0
+
+
+sage: A=CartanMatrix(['C',3])
+....: c=[0,2,1]
+....: cinv=list(reversed(c))
+....: plots=[point(vector((0,0,0)),size=50)]
+....: num=0
+....: sc=1/20
+....: colors=rainbow(40)
+....: for u in sortables(A,c[1:]):
+....:     t=vector((num*sc,0,-num*sc))
+....:     Bplus=block_matrix([[B(A,c),matrix(lam(A,u)).transpose()]])
+....:     for k in c:
+....:         Bplus.mutate(k)
+....:     la=vector(Bplus[:,-1])
+....:     Q=p_lambda(B(A,c),la,cinv)
+....:     plots=plots+[(Q.translation(t-la)).plot(fill=colors[num],alpha=0.5)]
+....:     num+=1
+....: num=0
+....: for i in range(coxeter_number(A)//2):
+....:     t=vector((-num*sc,0,num*sc))
+....:     Q=Polyhedron(vertices=[vector([0]*A.nrows())],rays=reflect_matrix(A,B(
+....: A,c),cinv*i).columns())
+....:     plots=plots+[(Q.translation(t)).plot(fill=colors[num+20],alpha=0.5)]
+....:     num+=1
+....: sum(plots)
+
+Checking the same thing by computer:
+
+sage: A=CartanMatrix(['C',7])
+....: c=[0,2,4,6,1,3,5]
+....: cinv=list(reversed(c))
+....: P=Polyhedron(vertices=[vector([0]*A.nrows())],rays=B(A,c).columns())
+....: for i in range(coxeter_number(A)//2):
+....:     P=P.intersection(Polyhedron(vertices=[vector([0]*A.nrows())],rays=refl
+....: ect_matrix(A,B(A,c),cinv*i).columns()))
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     Bplus=block_matrix([[B(A,c),matrix(lam(A,v)).transpose()]])
+....:     for k in c:
+....:         Bplus.mutate(k)
+....:     la=vector(Bplus[:,-1])
+....:     d=P.intersection(p_lambda(B(A,c),la,cinv).translation(-la)).dimension(
+....: )
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print("Failure!")
+....:         break
+
+Works up to C7, and for odd An for n up to 7.  (We didn't necessarily expect it to work for even A.)
+
+
+
+--------
+
+
+Seems to work, but is dependent on c:
+
+sage: A=CartanMatrix(['A',3])
+....: c=[2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [1, 0, 1] 0
+2 [1, 0] 0
+3 [1] 0
+4 [0] 0
+5 [] 0
+sage: A=CartanMatrix(['A',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [3, 2, 1, 0, 3, 2, 1, 3, 2, 3] 0
+2 [3, 2, 1, 0, 3, 2, 1, 3, 2] 0
+...
+41 [0] 0
+42 [] 0
+
+
+sage: A=CartanMatrix(['A',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] 0
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] 0
+...
+428 [0] 0
+429 [] 0
+sage: A=CartanMatrix(['A',9])
+....: c=[8,7,6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6, 7] 0
+2 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6] 0
+...
+4861 [0] 0
+4862 [] 0
+
+
+sage: A=CartanMatrix(['C',3])
+....: c=[2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [1, 0, 1] 0
+2 [1, 0] 0
+3 [1] 0
+4 [0] 0
+5 [] 0
+
+sage: A=CartanMatrix(['C',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+....: 
+1 [3, 2, 1, 0, 3, 2, 1, 3, 2, 3] 0
+2 [3, 2, 1, 0, 3, 2, 1, 3, 2] 0
+...
+41 [0] 0
+42 [] 0
+
+
+sage: A=CartanMatrix(['C',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+....: 
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] 0
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] 0
+...
+428 [0] 0
+429 [] 0
+
+
+sage: A=CartanMatrix(['C',9])
+....: c=[8,7,6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6, 7] 0
+2 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6] 0
+...
+4861 [0] 0
+4862 [] 0
+
+Works for odd D also, but again only certain c. 
+I couldn't find a c that works for D4 (or D6), but I didn't try everything either
+
+sage: A=CartanMatrix(['D',4])
+....: c=[0,1,2,3]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [1, 2, 3, 1, 2, 3] 0
+2 [1, 2, 3, 1, 2] 1
+Failure!
+
+sage: A=CartanMatrix(['D',4])
+....: c=[3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [2, 1, 0, 2, 1, 2] 1
+Failure!
+
+sage: A=CartanMatrix(['D',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [3, 2, 1, 0, 3, 2, 1, 3, 2, 3] 0
+2 [3, 2, 1, 0, 3, 2, 1, 3, 2] 0
+...
+41 [0] 0
+42 [] 0
+
+
+sage: A=CartanMatrix(['D',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] 0
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] 0
+...
+428 [0] 0
+429 [] 0
+
+sage: A=CartanMatrix(['D',9])
+....: c=[8,7,6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6, 7] 0
+2 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6] 0
+...
+4861 [0] 0
+4862 [] 0
+
+
+It is *not* true that there is always a pair of the sequences in [k,kinv,k+[c[0]],kinv+[c[0]]] that works.
+
+sage: A=CartanMatrix(['C',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     fails=true
+....:     num+=1
+....:     print(num,v)
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     Ps=list(p_lambda(B(A,c),lam(A,v),seq) for seq in [k,kinv,k+[c[0]],kinv
+....: +[c[0]]])
+....:     for i in range(len(Ps)):
+....:         for j in range(i+1,len(Ps)):
+....:             if Ps[i].intersection(Ps[j]).dimension()==0:
+....:                 print(i,j)
+....:                 fails=false
+....:                 break
+....:     if fails:
+....:         print('FAILS!')
+....:         break
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5]
+0 3
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4]
+0 3
+1 2
+...
+131 [5, 4, 3, 2, 1, 0, 1]
+0 3
+132 [5, 4, 3, 2, 1, 0]
+FAILS!
+
+But amazingly, this and one other are the *only* failures to have the intersection of two of them be a point:
+
+sage: A=CartanMatrix(['C',9])
+....: c=[8,7,6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     fails=true
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     Ps=list(p_lambda(B(A,c),lam(A,v),seq) for seq in [k,kinv,k+[c[0]],kinv
+....: +[c[0]]])
+....:     for i in range(len(Ps)):
+....:         for j in range(i+1,len(Ps)):
+....:             if Ps[i].intersection(Ps[j]).dimension()==0:
+....:                 fails=false
+....:                 break
+....:     if fails:
+....:         print(num,v,'FAILS!')
+1430 [7, 6, 5, 4, 3, 2, 1, 0] FAILS!
+4862 [] FAILS!
+
+sage: A=CartanMatrix(['C',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     fails=true
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     Ps=list(p_lambda(B(A,c),lam(A,v),seq) for seq in [k,kinv,k+[c[0]],kinv
+....: +[c[0]]])
+....:     for i in range(len(Ps)):
+....:         for j in range(i+1,len(Ps)):
+....:             if Ps[i].intersection(Ps[j]).dimension()==0:
+....:                 fails=false
+....:                 break
+....:     if fails:
+....:         print(num,v,'FAILS!')
+132 [5, 4, 3, 2, 1, 0] FAILS!
+429 [] FAILS!
+
+sage: A=CartanMatrix(['C',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     fails=true
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     Ps=list(p_lambda(B(A,c),lam(A,v),seq) for seq in [k,kinv,k+[c[0]],kinv
+....: +[c[0]]])
+....:     for i in range(len(Ps)):
+....:         for j in range(i+1,len(Ps)):
+....:             if Ps[i].intersection(Ps[j]).dimension()==0:
+....:                 fails=false
+....:                 break
+....:     if fails:
+....:         print(num,v,'FAILS!')
+14 [3, 2, 1, 0] FAILS!
+42 [] FAILS!
+
+sage: A=CartanMatrix(['C',3])
+....: c=[2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     fails=true
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     Ps=list(p_lambda(B(A,c),lam(A,v),seq) for seq in [k,kinv,k+[c[0]],kinv
+....: +[c[0]]])
+....:     for i in range(len(Ps)):
+....:         for j in range(i+1,len(Ps)):
+....:             if Ps[i].intersection(Ps[j]).dimension()==0:
+....:                 fails=false
+....:                 break
+....:     if fails:
+....:         print(num,v,'FAILS!')
+2 [1, 0] FAILS!
+5 [] FAILS!
+
+
+
+The criterion for c seems to be that deleting its first letter leaves type A.  
+Here, it fails:
+
+sage: A=CartanMatrix(['C',5])
+....: c=[0,1,2,3,4]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,k+[c[0]],kinv+[c[0]]]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4] 0
+2 [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3] 0
+...
+15 [1, 2, 3, 4, 1, 2, 3, 4] 0
+16 [1, 2, 3, 4, 1, 2, 3, 1, 2, 1] 1
+Failure!
+
+
+Note that the same thing with [k,kinv,[c[0]]+k,[c[0]]+kinv] fails.
+
+
+sage: A=CartanMatrix(['C',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     d=p_lambda_int(B(A,c),lam(A,v),[k,kinv,[c[0]]+k,[c[0]]+kinv]).dimensio
+....: n()
+....:     print(num,v,d)
+....:     if d!=0:
+....:         print('Failure!')
+....:         break
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] 0
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] 0
+...
+132 [5, 4, 3, 2, 1, 0] 0
+133 [5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] 4
+Failure!
+
+
+
+**In fact, computationally, for this same choice of Coxeter element, the cones defined by p_lambda_int([k,k+[c[0]]) and p_lambda_int([kinv,kinv+[c[0]]) are exactly opposite each other (at lambda).
+
+sage: A=CartanMatrix(['C',3])
+....: c=[2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Q=p_lambda_cone(B(A,c),lam(A,v),[kinv,kinv+[c[0]]])
+....:     b=bool(P.translation(-lam(A,v))==-(Q.translation(-lam(A,v))))
+....:     print(num,v,b)
+....:     if b==false:
+....:         print('Failure!')
+1 [1, 0, 1] True
+2 [1, 0] True
+3 [1] True
+4 [0] True
+5 [] True
+
+sage: A=CartanMatrix(['C',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Q=p_lambda_cone(B(A,c),lam(A,v),[kinv,kinv+[c[0]]])
+....:     b=bool(P.translation(-lam(A,v))==-(Q.translation(-lam(A,v))))
+....:     print(num,v,b)
+....:     if b==false:
+....:         print('Failure!')
+1 [3, 2, 1, 0, 3, 2, 1, 3, 2, 3] True
+2 [3, 2, 1, 0, 3, 2, 1, 3, 2] True
+...
+40 [1] True
+41 [0] True
+42 [] True
+
+
+sage: A=CartanMatrix(['C',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Q=p_lambda_cone(B(A,c),lam(A,v),[kinv,kinv+[c[0]]])
+....:     b=bool(P.translation(-lam(A,v))==-(Q.translation(-lam(A,v))))
+....:     print(num,v,b)
+....:     if b==false:
+....:         print('Failure!')
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] True
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] True
+...
+428 [0] True
+429 [] True
+
+
+For these same choices of c, something really nice happens.
+Note that this is on the level of cones.
+The cone at lambda for the sequences k and k+[c[0]] is the same as the cone *in the parabolic* for k.
+In other words, on the level of cones, we can ignore the first column.
+
+sage: A=CartanMatrix(['A',3])
+....: c=[2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [1, 0, 1] True
+2 [1, 0] True
+3 [1] True
+4 [0] True
+5 [] True
+
+sage: A=CartanMatrix(['A',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [3, 2, 1, 0, 3, 2, 1, 3, 2, 3] True
+2 [3, 2, 1, 0, 3, 2, 1, 3, 2] True
+...
+41 [0] True
+42 [] True
+
+sage: A=CartanMatrix(['A',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] True
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] True
+...
+428 [0] True
+429 [] True
+
+sage: A=CartanMatrix(['C',3])
+....: c=[2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [1, 0, 1] True
+2 [1, 0] True
+3 [1] True
+4 [0] True
+5 [] True
+
+sage: A=CartanMatrix(['C',5])
+....: c=[4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [3, 2, 1, 0, 3, 2, 1, 3, 2, 3] True
+2 [3, 2, 1, 0, 3, 2, 1, 3, 2] True
+...
+41 [0] True
+42 [] True
+
+
+sage: A=CartanMatrix(['C',7])
+....: c=[6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4, 5] True
+2 [5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 5, 4, 3, 2, 5, 4, 3, 5, 4] True
+...
+428 [0] True
+429 [] True
+
+
+sage: A=CartanMatrix(['C',9])
+....: c=[8,7,6,5,4,3,2,1,0]
+....: num=0
+....: for v in sortables(A,c[1:]):
+....:     num+=1
+....:     k=list(reversed(v))
+....:     kinv=list(reversed(inv_sortable(A,c[1:],v)))
+....:     P=p_lambda_cone(B(A,c),lam(A,v),[k,k+[c[0]]])
+....:     Bprime=B(A,c)
+....:     Bprime.set_column(c[0],[0]*A.nrows())
+....:     S=p_lambda_cone(Bprime,lam(A,v),[k])
+....:     b=bool(P==S)
+....:     print(num,v,b)
+....:     if not(b):
+....:         print('Failure!')
+....:         break
+1 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6, 7] True
+2 [7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5, 4, 3, 2, 1, 7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 7, 6, 5, 4, 7, 6, 5, 7, 6] True
+...
+4861 [0] True
+4862 [] True

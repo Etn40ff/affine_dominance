@@ -1,0 +1,25 @@
+Things that work (computationally):
+----------------------------------
+
+All prefixes of c^infty, presumably for all c, but I just spot-checked.  (Can't always just take a pair of prefixes.)
+
+for c bipartite, there is always a pair of bipartite sequences (integer or "half-integer" number of Coxeters)
+
+for c bipartite, all powers of c from 0 to cox_num/2.
+
+In many cases, taking a set of sequences that works for the parabolic, plus the same sequences with the first letter of c (so, the special leaf) appended at the *beginning* of each sequence (so mutated *last* in the sequence).  (Some small rank examples are exceptions.)
+
+For odd A, C, and D (+ presumably B), for some Coxeter elements (the criterion seems to be that deleting the first element of the Coxeter element gives type A), you can move lambda so that its first entry is positive and then take the sortable and inverse sortable for lambda (both *reversed*) and also the same two sequences with the first letter of c tacked on at the *end* (so it's the *first* thing mutated).
+
+
+
+Things that don't work:
+----------------------
+
+For some Coxeter elements, taking a set of sequences that works for the parabolic, plus the same sequences with the first letter of c appended at the *beginning* of each sequence.
+
+For some Coxeter elements, taking a set of sequences that works for the parabolic, plus the same sequences with the first letter of c appended at the *end* of each sequence.
+
+
+
+
