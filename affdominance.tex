@@ -2935,6 +2935,7 @@ $\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ i
 the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
 \item
 If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+\sayS{This can be upgraded to $\eta^{B^T}_k(x)=\eta^{\CompPlus(B)^T}_k(x)$ because entries in the non-special non-affine columns are zero in the affine rows.}
 \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -3634,13 +3635,16 @@ Take $\lambda\in\d_\infty^B$, consider any $B'$ mutation-equivalent to $B$, and 
 Write $\lambda'$ for $\eta_\ll^{B^T}(\lambda)$.
 The mutation map $\eta_\ll^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\ll(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\ll(B)\delta^{\mu_\ll(B)}$.
 Furthermore, $\eta_\ll^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that \cref{affine main} claims is equal to~$\P_\lambda^B$ to the line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
+\sayS{This sentence is missing something}
 Now \cref{shift} implies that it is enough to prove the \lcnamecref{affine main} for any one $B$ in the exchange pattern.
 
 We choose $B$ to be a neighboring exchange matrix.
 %\cref{affine main partial} says that~$\P_\lambda^B$ contains the line segment described in the \lcnamecref{affine main}.
 %We need to show the opposite containment.
 Suppose now that $\kk$ is a sequence of \emph{non-affine} indices, let~$\ll$ be the expanded sequence, and again take ${B'=\mu_\ll(B)}$.
-Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$ by \cref{factor eta}.
+Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_0}$
+\sayS{${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$?}
+by \cref{factor eta}.
 \cref{Comp span} implies that 
 \begin{multline*}
 \set{B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^{B'})^\perp\\
