@@ -320,5 +320,62 @@ def mutate(B,k):
         Bprime.mutate(i)
     return Bprime
 
+# Returns one maximal green sequence for B
+# limit is the longest sequence it will look for, and it will return 0 
+# if there is none of length limit or shorter
+# In this case, if limit is large, it could take a long time, because it will
+# try every possible green sequence up to length limit
+
+def maximal_green(Bmat,limit):
+    Btilde=block_matrix([[Bmat],[matrix.identity(Bmat.ncols())]],subdivide=False)
+    return max_green_helper([],0,Btilde,limit)
+
+# Takes an extended exchange matrix obtained by mutation from some 
+# extended exchange matrix with principal coefficients and finds the
+# sign of the ith column (returning 1 or -1).
+# It's a theorem that (unless I've programmed it wrong), this will return a value 
+def sign_of_c(i,Btilde):
+    n=Btilde.ncols()
+    for j in range(n,n+n):
+        if Btilde[j,i]>0:
+            return 1
+        elif Btilde[j,i]<0:
+            return -1
+
+def max_green_helper(seq_so_far,length_so_far,Btilde,limit):
+    if length_so_far > limit:
+        return 0
+    exists_green=False  
+    for i in range(n):
+        if sign_of_c(i,Btilde)==1:
+            exists_green=True
+            newBtilde=mutate(Btilde,[i])
+            possible_sequence=max_green_helper([i]+seq_so_far,1+length_so_far,newBtilde,limit)
+            if possible_sequence!=0:
+                return possible_sequence
+    if not exists_green:  #In this case, seq_so_far was already a maximal green sequence
+        return(seq_so_far)
+    else:  #In this case, all of the green moves failed to get to a max green sequence
+        return 0
+
+# Returns a shortest maximal green sequence (if a maximal green sequence exists)
+# Will stop trying after reaching limit, returning 0 if it gives up
+# This will be super-inefficient if the shortest is a lot longer than the number of rows of Bmat
+def shortest_maximal_green(Bmat,limit):
+    for l in range(Bmat.ncols(),limit+1):
+        possible_sequence=maximal_green(Bmat,l)
+        if possible_sequence!=0:
+            return possible_sequence
+    return 0
+
+
+
+
+
+
+
+
+
+
 
 
