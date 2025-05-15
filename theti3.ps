@@ -1,0 +1,84 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: -113 -73 113 73
+
+(graph.ps) run
+(vector.ps) run
+
+/rh 110 def
+/rv 70 def
+/n 10 def
+/th 360 n div def
+
+1 th mul dup cos rh mul exch sin rv mul /v1 vertex
+2 th mul dup cos rh mul exch sin rv mul /v2 vertex
+3 th mul dup cos rh mul exch sin rv mul /v3 vertex
+4 th mul dup cos rh mul exch sin rv mul /v4 vertex
+5 th mul dup cos rh mul exch sin rv mul /v5 vertex
+6 th mul dup cos rh mul exch sin rv mul /v6 vertex
+7 th mul dup cos rh mul exch sin rv mul /v7 vertex
+8 th mul dup cos rh mul exch sin rv mul /v8 vertex
+9 th mul dup cos rh mul exch sin rv mul /v9 vertex
+10 th mul dup cos rh mul exch sin rv mul /v10 vertex
+
+
+
+
+0 setgray
+
+1 setlinewidth
+1 setlinecap
+/vr 1.5 def
+
+v1 vr drawvertex
+v2 vr drawvertex
+v3 vr drawvertex
+v4 vr drawvertex
+v5 vr drawvertex
+v6 vr drawvertex
+v7 vr drawvertex
+v8 vr drawvertex
+v9 vr drawvertex
+v10 vr drawvertex
+
+v1 v2 0 edge
+v2 v3 0 edge
+v3 v4 0 edge
+v4 v5 0 edge
+v5 v6 0 edge
+v6 v7 0 edge
+v7 v8 0 edge
+v8 v9 0 edge
+v9 v10 0 edge
+v10 v1 0 edge
+
+v4 v6 0 edge
+v4 v7 0 edge
+v3 v7 0 edge
+v3 v8 0 edge
+v2 v8 0 edge
+v2 v9 0 edge
+v1 v9 0 edge
+
+
+
+0.75 setlinewidth
+1 setlinecap
+0.9 0.1 0.9 setrgbcolor
+0.5 v3 scalarmul 0.5 v2 scalarmul addvec coords moveto 0.5 v7 scalarmul 0.5 v8 scalarmul addvec coords lineto
+stroke
+
+
+0.3 0.5 1 setrgbcolor
+0.5 v5 scalarmul 0.5 v6 scalarmul addvec coords moveto 0.6 v8 scalarmul 0.4 v9 scalarmul addvec coords lineto
+0.4 v8 scalarmul 0.6 v9 scalarmul addvec coords moveto 0.75 v10 scalarmul 0.25 v1 scalarmul addvec coords lineto
+0.3 v3 scalarmul 0.7 v2 scalarmul addvec coords moveto 0.25 v10 scalarmul 0.75 v1 scalarmul addvec coords lineto
+0.7 v5 scalarmul 0.3 v4 scalarmul addvec coords moveto 0.6 v1 scalarmul 0.4 v10 scalarmul addvec coords lineto
+0.65 v3 scalarmul 0.35 v2 scalarmul addvec coords moveto 0.6 v4 scalarmul 0.4 v5 scalarmul addvec coords lineto
+0.7 v7 scalarmul 0.3 v8 scalarmul addvec coords moveto 0.3 v5 scalarmul 0.7 v6 scalarmul addvec coords lineto
+0.7 v5 scalarmul 0.3 v6 scalarmul addvec coords moveto 0.6 v10 scalarmul 0.4 v1 scalarmul addvec coords lineto
+stroke
+
+
+
+
+

@@ -1,0 +1,333 @@
+%--------------------------------------------
+%  Begin definitions for vector.ps
+%--------------------------------------------
+
+% This is a set of routines for doing basic manipulations
+% of vectors.  A vector is an array of numbers, for example
+% [1 3.5 -2.3]
+%
+%
+%  User procedures:
+%  addvec, subvec, scalarmul, scalardiv
+%  addentries, mulentries, dotprod,
+%  veclength, unit
+%
+%  Helper procedures: 
+%  interlace
+%  Other names used:
+
+%---------------------------------------------------
+%  Definitions of user procedures for vector.ps
+%---------------------------------------------------
+
+% Checks whether two vectors are equal, by checking whether 
+% every entry is equal.  Note that, in postscript, all arrays
+% are specified by pointers.  Thus the postscript operator eq
+% will always return false, unless eq is applied, unless the 
+% two pointers are equal.
+% For example, 
+% [1 2] [1 2] eq 
+% returns false, but
+% [1 2] dup eq
+% returns true.  The point of this procedure is that
+% [1 2] [1 2] eqvec
+% returns true.
+% Syntax:  A B eqvec
+/eqvec
+{
+dup length 3 -1 roll dup length		% stack: B lB A lA
+dup 4 -1 roll eq
+	{					% stack: B A l
+	true 4 1 roll 0 exch 1 exch 1 sub	% stack: true B A 1 1 l-1
+		{				% stack: true B A i
+		3 copy				% stack: true B A i B A i
+		get 3 1 roll exch get		% stack: true B A Ai Bi
+		ne {3 -1 roll pop false 3 1 roll exit} if
+		}
+	for
+	pop pop
+	}
+	{pop pop pop false}
+ifelse
+}
+def
+
+
+
+%  adds two vectors
+%  usage:
+%  v w addvec
+/addvec
+{
+dup length [ 4 2 roll	% stack: n [ v w
+interlace ]		% stack: n [v1 w1 ... vn wn]
+[ 3 1 roll		% stack: [ n [v1 w1 ... vn wn]
+aload length 1 add	% stack: [ n v1 w1 ... vn wn (2n+1)
+-1 roll			% stack: [ v1 w1 ... vn wn n
+dup 2 mul 1 sub exch	% stack: [ v1 w1 ... vn wn (2n-1) n
+-1 exch			% stack: [ v1 w1 ... vn wn (2n-1) -1 n 
+{
+3 1 roll
+add exch
+ 1 roll
+}
+for
+]
+}
+def
+
+
+%  subtracts two vectors
+%  usage:
+%  v w subvec
+/subvec
+{
+dup length [ 4 2 roll	% stack: n [ v w
+interlace ]		% stack: n [v1 w1 ... vn wn]
+[ 3 1 roll		% stack: [ n [v1 w1 ... vn wn]
+aload length 1 add	% stack: [ n v1 w1 ... vn wn (2n+1)
+-1 roll			% stack: [ v1 w1 ... vn wn n
+dup 2 mul 1 sub exch	% stack: [ v1 w1 ... vn wn (2n-1) n
+-1 exch			% stack: [ v1 w1 ... vn wn (2n-1) -1 n 
+{
+3 1 roll
+sub exch
+ 1 roll
+}
+for
+]
+}
+def
+
+% multiplies the vector v by the scalar s
+% usage:
+% s v scalarmul
+/scalarmul
+{
+[ 3 1 roll		% stack: [ s v
+aload length		% stack: [ s v1 ... vn n
+dup 2 add -1 roll	% stack: [ v1 ... vn n s
+exch dup 2 add exch	% stack: [ v1 ... vn s (n+2) n
+1 1 3 -1 roll		% stack: [ v1 ... vn s (n+2) 1 1 n
+{
+pop			% stack: [ s*v(j+1) ... s*vn v1 ... vj s (n+2)
+3 1 roll dup		% stack: [ s*v(j+1) ... s*vn v1 ... v(j-1) (n+2) vj s s 
+4 1 roll mul exch	% stack: [ s*v(j+1) ... s*vn v1 ... v(j-1) s s*vj (n+2)
+dup 3 1 roll		% stack: [ s*v(j+1) ... s*vn v1 ... v(j-1) s (n+2) s*vj (n+2)
+1 roll			% stack: [ s*vj ... s*vn v1 ... v(j-1) s (n+2)
+}
+for			% stack: [ s*v1 ... s*vn s (n+2)
+pop pop ]		% stack: [ s*v1 ... s*vn ]
+}
+def
+
+% divides the vector v by the scalar s
+% usage:
+% v s scalardiv
+/scalardiv
+{
+exch
+[ 3 1 roll		% stack: [ s v
+aload length		% stack: [ s v1 ... vn n
+dup 2 add -1 roll	% stack: [ v1 ... vn n s
+exch dup 2 add exch	% stack: [ v1 ... vn s (n+2) n
+1 1 3 -1 roll		% stack: [ v1 ... vn s (n+2) 1 1 n
+{
+pop			% stack: [ v(j+1)/s ... vn/s v1 ... vj s (n+2)
+3 1 roll dup		% stack: [ v(j+1)/s ... vn/s v1 ... v(j-1) (n+2) vj s s 
+4 1 roll div exch	% stack: [ v(j+1)/s ... vn/s v1 ... v(j-1) s vj/s (n+2)
+dup 3 1 roll		% stack: [ v(j+1)/s ... vn/s v1 ... v(j-1) s (n+2) vj/s (n+2)
+1 roll			% stack: [ vj/s ... vn/s v1 ... v(j-1) s (n+2)
+}
+for			% stack: [ s/v1 ... vn/s s (n+2)
+pop pop ]		% stack: [ s/v1 ... vn/s ]
+}
+def
+
+% adds the entries of a vector and places
+% the sum on the stack
+% usage:
+% v addentries
+/addentries
+{
+aload length 1 sub	%stack: v1 ... vn (n-1)
+1 1 3 -1 roll		%stack: v1 ... vn 1 1 (n-1)
+{
+pop add
+}
+for
+}
+def
+
+
+% multiplies the entries of a vector and places
+% the product on the stack
+% usage:
+% v mulentries
+/mulentries
+{
+aload length 1 sub	%stack: v1 ... vn (n-1)
+1 1 3 -1 roll		%stack: v1 ... vn 1 1 (n-1)
+{
+pop mul
+}
+for
+}
+def
+
+%  dot product of two vectors
+%  usage:
+%  v w dotprod
+/dotprod
+{
+dup length [ 4 2 roll	% stack: n [ v w
+interlace ]		% stack: n [v1 w1 ... vn wn]
+[ 3 1 roll		% stack: [ n [v1 w1 ... vn wn]
+aload length 1 add	% stack: [ n v1 w1 ... vn wn (2n+1)
+-1 roll			% stack: [ v1 w1 ... vn wn n
+dup 2 mul 1 sub exch	% stack: [ v1 w1 ... vn wn (2n-1) n
+-1 exch			% stack: [ v1 w1 ... vn wn (2n-1) -1 n 
+{
+3 1 roll
+mul exch
+ 1 roll
+}
+for
+]
+addentries
+}
+def
+
+% Dot product with a "signature"
+% usage: v w sig sigprod
+% Here v and w are vectors of the same size
+% and sig is another vector of the same size
+% that represents the signature (usually something
+% like [1 1 -1 0], but in fact can be anything.
+% In effect, this takes a 3-fold product for each index
+% and then adds
+/sigprod
+{
+dup length [ 4 2 roll	% stack: n [ v w
+interlace ]		% stack: n [v1 w1 ... vn wn]
+[ 3 1 roll		% stack: [ n [v1 w1 ... vn wn]
+aload length 1 add	% stack: [ n v1 w1 ... vn wn (2n+1)
+-1 roll			% stack: [ v1 w1 ... vn wn n
+dup 2 mul 1 sub exch	% stack: [ v1 w1 ... vn wn (2n-1) n
+-1 exch			% stack: [ v1 w1 ... vn wn (2n-1) -1 n 
+{
+3 1 roll
+mul exch
+ 1 roll
+}
+for
+]
+dotprod
+}
+def
+
+%  cross product of two vectors in R^3
+%  usage:
+%  v w crossprod
+/crossprod
+{
+[ 3 1 roll
+2 copy
+2 copy			% stack: [ v w v w v w
+aload pop 3 -1 roll pop	% stack: [ v w v w v w2 w3	
+3 -1 roll		% stack: [ v w v w w2 w3 v
+aload pop 3 -1 roll pop	% stack: [ v w v w w2 w3 v2 v3	
+4 1 roll mul		% stack: [ v w v w v3 w2 w3v2
+3 1 roll mul sub	% stack: [ v w v w (w3v2-v3w2)
+5 1 roll		% stack: [ (w3v2-v3w2) v w v w 
+aload pop 3 1 roll pop	% stack: [ (w3v2-v3w2) v w v w3 w1
+3 -1 roll		% stack: [ (w3v2-v3w2) v w w3 w1 v
+aload pop 3 1 roll pop	% stack: [ (w3v2-v3w2) v w w3 w1 v3 v1
+4 1 roll mul		% stack: [ (w3v2-v3w2) v w v1 w3 w1v3
+3 1 roll mul sub	% stack: [ (w3v2-v3w2) v w (w1v3-v1w3)
+3 1 roll		% stack: [ (w3v2-v3w2) (w1v3-v1w3) v w
+aload pop pop		% stack: [ (w3v2-v3w2) (w1v3-v1w3) v w1 w2 
+3 -1 roll		% stack: [ (w3v2-v3w2) (w1v3-v1w3) w1 w2 v
+aload pop pop		% stack: [ (w3v2-v3w2) (w1v3-v1w3) w1 w2 v1 v2
+4 1 roll mul		% stack: [ (w3v2-v3w2) (w1v3-v1w3) v2 w1 w2v1
+3 1 roll mul sub	% stack: [ (w3v2-v3w2) (w1v3-v1w3) (w2v1-v2w1)
+]
+}
+def
+
+% returns the length of a vector
+% NOTE: the word "length" encodes a built-in PostScript
+% function which returns the length of an array!
+% (so for vectors, the number of components).
+% usage v veclength
+/veclength
+{
+veclengthsqr sqrt
+}
+def
+
+% returns the square of the length of a vector
+/veclengthsqr
+{
+dup dotprod
+}
+def
+
+% returns the distance between two vectors
+/distance
+{
+subvec veclength
+}
+def
+
+
+% scales a vector to unit length
+% usage:
+% v unit
+/unit
+{
+dup veclength scalardiv
+}
+def
+
+% scales a vector to unit length or leaves it zero
+% if it is zero
+% usage:
+% v unitzero
+/unitzero
+{
+dup veclength
+%  divides by veclength if its not zero.
+dup 0 eq
+{pop}
+{scalardiv}
+ifelse
+}
+def
+
+%--------------------------------------------
+%  Definitions of helper procedures for vector.ps
+%--------------------------------------------
+
+%  Given two vectors v and w, assumed to be the same 
+%  length (n), puts the entries v1 w1 v2 w2 ... vn wn
+%  on the stack.
+%  usage:
+%  v w interlace
+/interlace
+{
+exch aload length	% stack: w v1...vn n
+1 add -1 roll		% stack: v1...vn w
+aload length		% stack: v1...vn w1...wn n
+dup 2 mul 1 sub 1 exch	% stack: v1...vn w1...wn n 1 (2n-1) 
+{1 roll}
+for
+}
+def
+
+
+%--------------------------------------------
+%  End definitions for vector.ps
+%--------------------------------------------
+
+

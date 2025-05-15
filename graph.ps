@@ -1,0 +1,413 @@
+%--------------------------------------------
+%  Begin definitions for graph.ps
+%--------------------------------------------
+
+%  A .ps template with functionality to draw graphs.
+%
+%  User procedures:
+%  vertex, movevertex
+%  coords, xcoord, ycoord, goto, drawvertex, 
+%  label, namelabel,
+%  whiteoutlabel, whiteoutnamelabel
+%  centerlabel, centernamelabel,
+%  centerwhiteoutlabel, centerwhiteoutnamelabel
+%  piclabel,
+%  edge, diredge, 
+%  overedge, overdiredge
+%  
+%  Helper procedures: 
+%  background
+%  findoffset
+%  
+%  Other names used:
+%  startx, starty, endx, endy
+%  arrowsize,
+%  xextra, yextra
+
+%--------------------------------------------
+%  Definitions of user procedures for graph.ps
+%--------------------------------------------
+
+%  names a vertex
+%  usage:
+%   x y /name vertex
+/vertex 
+{
+3 1 roll 
+[ 
+3 1 roll 
+] 
+bind def
+}
+def
+
+%  moves a vertex by adding (xo,yo) to its coordinates
+%  usage:
+%  /name xo yo movevertex
+% note you must use /name, not name
+/movevertex 
+{
+3 -1 roll dup cvx exec coords
+3 -1 roll [
+6 2 roll
+3 -1 roll
+add
+3 1 roll
+add 
+exch
+] def
+}
+def
+
+%  puts the coordinates of a vertex on the stack
+%  usage:
+%  name coords
+/coords
+{
+aload pop
+}
+def
+
+%  puts the x-coordinate of a vertex on the stack
+%  usage:
+%  name xcoord
+/xcoord
+{
+aload pop pop
+}
+def
+
+%  puts the y-coordinate of a vertex on the stack
+%  usage:
+%  name ycoord
+/ycoord
+{
+aload pop exch pop
+}
+def
+
+%  moves to the coordinates of a vertex
+%  usage:
+%  name goto
+/goto
+{
+coords moveto
+}
+def
+
+%  draws a vertex
+%  usage:
+%  name rad drawvertex
+% rad is the radius of the disk to be drawn
+/drawvertex
+{
+exch aload
+3 1 roll moveto 
+exch dup 0 rmoveto
+exch aload pop 3 2 roll
+0 360 arc
+fill
+}
+def
+
+%  Given an array of vertices, draws them all with radius rad.
+%  usage:
+%  [v1 .. vn] rad drawall
+/drawall
+{
+1 dict begin
+/r exch def
+aload length
+1 1 3 -1 roll
+{
+pop
+r drawvertex
+}
+for
+end
+}
+def
+
+% sets a current point 
+% as the vertex point plus the offset (xo, yo)
+% then shows the label (a string)
+% usage name xo yo (label) label
+% NOTE:  your label won't show up if you don't set a font.
+/label
+{
+4 -1 roll
+goto
+3 1 roll
+rmoveto
+show
+}
+def
+
+% labels a point by its name
+% usage /name xo yo namelabel
+% NOTE:  your label won't show up if you don't set a font.
+% NOTE:  you need /name, not name
+/namelabel
+{
+3 -1 roll dup cvx exec 
+4 1 roll 
+100 string cvs
+label
+}
+def
+
+%  This draws a white rectangle then the label.
+%  The white rectangle is determined as the bounding rectangle 
+%  of the label, with an extra border (of horizontal size "xextra"
+%  and vertical size "yextra".)
+%  If you are drawing on a non-white background, alter the 
+%  helper procedure /background. 
+%  usage name xo yo xextra yextra (label) whiteoutlabel
+% NOTE:  your label won't show up if you don't set a font.
+/whiteoutlabel
+{
+exch /yextra exch def
+exch /xextra exch def
+newpath
+4 -1 roll
+goto
+3 1 roll
+rmoveto
+gsave
+background
+dup
+false charpath pathbbox 
+%  subtracts the extra whiteout from the lower-left coordinates
+%  and adds it to the upper right
+yextra add 4 1 roll
+xextra add 4 1 roll
+yextra sub 4 1 roll
+xextra sub 4 1 roll
+%  converts the lower-left, top-right coordinates to
+%  lower-left coords and width then height
+4 copy pop pop
+4 1 roll
+exch
+4 1 roll
+sub
+3 1 roll
+sub
+%  done converting
+rectfill
+grestore
+show
+}
+def
+
+% whites out then labels a point by its name using whiteoutlabel
+% usage /name xo yo xextra yextra whiteoutnamelabel
+% NOTE:  your label won't show up if you don't set a font.
+% NOTE:  you need /name, not name
+/whiteoutnamelabel
+{
+5 -1 roll dup cvx exec 
+6 1 roll 
+100 string cvs
+whiteoutlabel
+}
+def
+
+%  finds the smallest bounding box containing the string
+%  You may not like the results if the reference frame is rotated!
+%  leaves this on the stack as coordinates llx lly urx ury
+%  of the lower-left and upper right corners
+%  this assumes you have a current point set.
+%  usage:
+%  string stringbox
+/stringbox{
+gsave
+currentpoint newpath moveto
+false charpath pathbbox 
+grestore
+}
+def
+
+
+%  finds what the offset should be to center the string, and
+%  leaves this on the stack as two floats xo and yo
+% usage:
+% string findoffset
+/findoffset
+{
+gsave
+0 0 moveto
+stringbox
+exch 4 -1 roll sub -2 div
+3 1 roll sub 2 div
+grestore
+}
+def
+
+% sets a current point 
+% as the vertex point plus necessary offset to center the string
+% then shows the label (a string)
+% usage name (label) centerlabel
+% NOTE:  your label won't show up if you don't set a font.
+/centerlabel
+{
+dup 
+findoffset
+3 -1 roll label
+}
+def
+
+% labels a point by its name, centered
+% usage /name namelabel
+% NOTE:  your label won't show up if you don't set a font.
+% NOTE:  you need /name, not name
+/centernamelabel
+{
+dup 100 string cvs
+exch cvx exec
+exch
+centerlabel
+}
+def
+
+%  This draws a white rectangle then the label, both centered.
+%  The white rectangle is determined as the bounding rectangle 
+%  of the label, with an extra border (of horizontal size "xextra"
+%  and vertical size "yextra".)
+%  If you are drawing on a non-white background, alter the 
+%  helper procedure /background. 
+%  usage name xextra yextra (label) centerwhiteoutlabel
+% NOTE:  your label won't show up if you don't set a font.
+/centerwhiteoutlabel
+{
+dup findoffset 
+5 2 roll
+whiteoutlabel
+}
+def
+
+% whites out then labels a point by its name using whiteoutlabel
+% centered
+% usage /name xextra yextra centernamelabel
+% NOTE:  your label won't show up if you don't set a font.
+% NOTE:  you need /name, not name
+/centerwhiteoutnamelabel
+{
+3 -1 roll dup 100 string cvs findoffset
+5 -2 roll
+whiteoutnamelabel
+}
+def
+
+
+% sets a current point for the picture procedure
+% as the vertex point plus the offset (xo, yo)
+% then runs the procedure 
+% usage:
+% name xo yo {procedure} piclabel
+/piclabel
+{
+4 -1 roll
+goto
+3 1 roll
+rmoveto
+exec
+}
+def
+
+%  draws an edge connecting vertex1 and vertex2
+%  usage: 
+%  vertex1 vertex2 offset edge
+%  vertex1 and vertex2 are the names of the vertices to be connected.
+%  offset controls the amount that the edge flairs out to the left (positive offset) 
+%  if you were standing at the first point and looking at the second point.
+% and /name is the name of the edge.
+/edge 
+{
+/offset exch def 
+coords /endy exch def /endx exch def 
+coords /starty exch def /startx exch def
+startx starty moveto
+startx 2 div endx 2 div add starty endy sub offset mul add
+starty 2 div endy 2 div add endx startx sub offset mul add
+endx 2 div startx 2 div add starty endy sub offset mul add
+endy 2 div starty 2 div add endx startx sub offset mul add
+endx endy
+curveto stroke
+} 
+def
+
+% draws a directed edge
+% usage vertex1 vertex2 offset arrowsize diredge
+% arrowsize is the size of the arrow
+/diredge {
+/arrowsize exch def /offset exch def aload pop /endy exch def /endx exch def aload pop /starty exch def /startx exch def
+startx starty moveto 
+startx 2 div endx 2 div add starty endy sub offset mul add 
+starty 2 div endy 2 div add endx startx sub offset mul add
+endx 2 div startx 2 div add starty endy sub offset mul add
+endy 2 div starty 2 div add endx startx sub offset mul add
+endx endy
+curveto stroke
+endx startx sub dup dup mul endy starty sub dup mul add sqrt div /arx exch def
+endy starty sub dup dup mul endx startx sub dup mul add sqrt div /ary exch def 
+endx 8 div startx 2 div endx 2 div add starty endy sub offset mul add 3 mul 4 div add startx 8 div add 
+endy 8 div starty 2 div endy 2 div add endx startx sub offset mul add 3 mul 4 div add starty 8 div add
+moveto 
+-1 arx mul ary add arrowsize mul -1 arx mul -1 ary mul add arrowsize mul rlineto stroke
+endx 8 div startx 2 div endx 2 div add starty endy sub offset mul add 3 mul 4 div add startx 8 div add
+endy 8 div starty 2 div endy 2 div add endx startx sub offset mul add 3 mul 4 div add starty 8 div add
+moveto 
+-1 arx mul -1 ary mul add arrowsize mul arx -1 ary mul add arrowsize mul rlineto stroke
+} def
+
+% This draws a white border then the edge.
+%  (If you are drawing on a non-white background, alter the 
+%  helper procedure /background.) 
+%  Useful for making one edge seem to go in front of another.
+%  usage:  just like edge, but one more argument (last) gives the width of the border
+%  and of course use the command overedge.
+% NOTE:  after you do this, you may want to draw vertices again.
+% or just always do your diredges before you draw your vertices
+/overedge
+{
+gsave
+setlinewidth
+background
+3 copy edge
+grestore
+edge
+}
+def
+
+%  just like overedge, but draws a diredge after the border
+% Has 5 arguments, 4 for diredge, then an extra argument for the width of the border
+/overdiredge
+{
+gsave
+setlinewidth
+background
+4 copy diredge
+grestore
+diredge
+}
+def
+
+%--------------------------------------------
+%  Definitions of helper procedures for graph.ps
+%--------------------------------------------
+
+% a helper procedure for overedge and other procedures.
+% background is a procedure which sets the color.
+% As it is, it is set to be white.
+% If you are drawing on a different background and want to use overedges,
+% replace this with a procedure which sets the color to your background color.
+/background
+{1 setgray}
+def
+
+%--------------------------------------------
+%  End definitions for graph.ps
+%--------------------------------------------
+
+
+
