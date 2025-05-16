@@ -726,7 +726,7 @@ The matrix for $\L_{\kk^{-1}}^{B_t^T}$, acting on column vectors, is $G_t^{B_0;t
 \end{proposition}
 \begin{proof}
 By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_t^T}\left(\left(\reals_{\ge0}\right)^n\right)$, and therefore also ${\eta_\kk^{B_0^T}\bigl(\Cone^{B_0;t_0}_t\bigr)=\left(\reals_{\ge0}\right)^n}$.
-The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence of mutations $\kk$.
+The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_t^T}$ takes the extreme ray of $\left(\reals_{\ge0}\right)^n$ spanned by $\e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence of mutations $\kk$.
 \end{proof}
 
 The following is a result of \cite{NZ12}.
@@ -3834,7 +3834,7 @@ Then ${\P^B_\lambda=\set{\lambda}}$ for all $\lambda\in\reals^n$.
 \sayN{This used to say:  ``Furthermore, $\P^\tB_\lambda=\set{\lambda}$ for any $m\times n$ extension~$\tB$ of $B$ and any $\lambda\in\reals^m$.''  I don't think we want to try that, since we don't need it.}
 \end{theorem}
 
-\cref{finite P point} is an immediate consequence of the following more specific \lcnamecref{finite P point bip}.
+In light of \cref{shift}, \cref{finite P point} is an immediate consequence of the following more specific \lcnamecref{finite P point bip}.
 
 \begin{proposition}\label{finite P point bip}
 Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite type with associated Coxeter element $c$.
@@ -3849,26 +3849,37 @@ In light of \cref{block dom}, we may as well assume that $B$ is block-indecompos
 Thus the Cartan matrix associated to $B$ is indecomposable of finite type.
 We verify the \lcnamecref{finite P point bip} type-by-type using the marked surfaces model, folding, and computations.
 We assume the most basic facts about the marked surfaces model \cite{cats1,cats2}, including the signed adjacency matrix of a triangulation, mutation by flipping arcs, the definition of shear coordinates, and the fact that shear coordinates define a bijection between laminations and vectors.
-(In general, one must be careful of the difference between rational laminations and real laminations, but we will only consider finite type, where one may as well take laminations to have real weights.)
+(In general, one must be careful of the difference between rational laminations and real laminations, but we will only consider finite type, where one may as well allow laminations to have real weights.)
 
 \medskip
 
 \noindent
 \textbf{Type A.}
 Let $T$ be a triangulation of the regular $(n+3)$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$.
-Then up to switching the orientation of the plane, $T$ is as exemplified in \cref{T fig}.
+Then up to switching the orientation of the plane, $T$ is as exemplified in the left picture of \cref{T fig}.
 \begin{figure}
-\scalebox{1}{\includegraphics{Tfig.ps}}
-\begin{picture}(0,0)(58,-58)
-\put(-46.5,-23){$t_1$}
-\put(-36.5,-1){$t_2$}
-\put(-19,-26){$t_3$}
-\put(-3.5,5){$t_4$}
-\put(15.5,-26){$t_5$}
-\put(28,12){$t_6$}
-\put(42,-3){$t_7$}
-\end{picture}
-\caption{A bipartite triangulation $T$}
+\scalebox{0.85}{\includegraphics{Tfig.ps}
+\begin{picture}(0,0)(73,-73)
+\put(-58.5,-23){$t_1$}
+\put(-48,6){$t_2$}
+\put(-24,-20){$t_3$}
+\put(-5,8){$t_4$}
+\put(20,-17){$t_5$}
+\put(37.5,10){$t_6$}
+\put(54.5,-3){$t_7$}
+\end{picture}}
+\qquad\quad
+\scalebox{0.66}[0.85]{\includegraphics{Theta.ps}
+\begin{picture}(0,0)(93,-73)
+\put(-70,-12){$\thet_1$}
+\put(-53,12){$\thet_2$}
+\put(-23,-31){$\thet_3$}
+\put(-1,22){$\thet_4$}
+\put(31,-25){$\thet_5$}
+\put(49,-37){$\thet_6$}
+\put(56,4){$\thet_7$}
+\end{picture}}
+\caption{A bipartite triangulation $T$ and the lamination $\Theta^{(\ell)}$}
 \label{T fig}
 \end{figure}
 We refer to the arcs of $T$ as $t_1,\ldots,t_n$.
@@ -3879,11 +3890,11 @@ For definiteness in what follows, we will call that direction ``counterclockwise
 Let $\Lambda$ be the weighted lamination such that $\lambda$ is the negation of the shear coordinates of $\Lambda$.
 This choice of $\Lambda$ ensures that reading the negative shear coordinates of $\Lambda$ with respect to a rotation of $T$ (i.e.\ replacing $B$ by  $\mu_{\kk^\ell}(B)$ for some $\ell\in\integers$) gives $\eta^{B^T}_{\kk^\ell}(\lambda)$.
 (See \cite[Theorem~12.6]{cats2}, \cite[Theorem~4.3]{unisurface}, and \cite[Section~5]{unisurface}.)
-The lamination $\Lambda$ consists of a set of noncrossing curves, each with a real weight and each connecting an edge of the $(n+3)$-gon to a different and non-adjacent edge.  
+The lamination $\Lambda$ consists of a set of \newword{compatible} (meaning noncrossing) curves, each with a real weight and each connecting an edge of the $(n+3)$-gon to a different and non-adjacent edge.  
 
-Maximal sets of such noncrossing curves have cardinality~$n$.
+Maximal sets of such compatible curves have cardinality~$n$.
 The combinatorics of such maximal sets is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
-If $\Lambda$ has fewer than $n$ curves, we extend it to a set of $n$ noncrossing curves by adjoining additional curves with weight~$0$.
+If $\Lambda$ has fewer than $n$ curves, we extend it to a set of $n$ compatible curves by adjoining additional curves with weight~$0$.
 We label these curves in some order as $L_1,L_2,\ldots,L_n$, with weights $w_1,\ldots,w_n$.
 
 
@@ -3900,131 +3911,165 @@ But it will be convenient to take advantage of the fact that rotation of the $(n
 Thus we construct a point $x$ as follows:
 First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$.
 Then take another lamination $\Theta^{(\ell)}$ whose shear coordinates are the negative of the vector $B\alpha^{(\ell)}$ (rather than $\mu_{\kk^\ell}(B)\alpha^{(\ell)}$).
-The lamination $\Theta^{(\ell)}$ has $n$ curves, namely, for $i=1,\ldots,n$, the curve $\thet_i$ with weight $b_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$, intersecting exactly one arc (the $i\th$ arc) in the rotated triangulation, as exemplified in \cref{Theta fig}.
-\begin{figure}
-\scalebox{1}{\includegraphics{Theta.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(-86,-12){$\thet_1$}
-\put(-63,12){$\thet_2$}
-\put(-26,-31){$\thet_3$}
-\put(-1,22){$\thet_4$}
-\put(38,-25){$\thet_5$}
-\put(60,-37){$\thet_6$}
-\put(69,10){$\thet_7$}
-\end{picture}
-%\scalebox{1}{\includegraphics{Theta.ps}}
-%\begin{picture}(0,0)(113,-83)
-%\put(-88,-8){$b_1^{(\ell)}$}
-%\put(-63,8){$b_2^{(\ell)}$}
-%\put(-28,-27){$b_3^{(\ell)}$}
-%\put(-1,18){$b_4^{(\ell)}$}
-%\put(35,-17){$b_5^{(\ell)}$}
-%\put(60,-37){$b_6^{(\ell)}$}
-%\put(67.5,0){$b_7^{(\ell)}$}
-%\end{picture}
-\caption{The lamination $\Theta^{(\ell)}$}
-\label{Theta fig}
-\end{figure}
+The lamination $\Theta^{(\ell)}$ has $n$ curves, namely, for $i=1,\ldots,n$, the curve $\thet_i$ with weight $b_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$, intersecting exactly one arc (the $i\th$ arc) in the rotated triangulation, as exemplified in the right picture of \cref{T fig}.
+%\begin{figure}
+%\scalebox{0.83}[1]{\includegraphics{Theta.ps}
+%\begin{picture}(0,0)(93,-73)
+%\put(-70,-12){$\thet_1$}
+%\put(-53,12){$\thet_2$}
+%\put(-23,-31){$\thet_3$}
+%\put(-1,22){$\thet_4$}
+%\put(31,-25){$\thet_5$}
+%\put(49,-37){$\thet_6$}
+%\put(56,4){$\thet_7$}
+%\end{picture}}
+%%\scalebox{1}{\includegraphics{Theta.ps}}
+%%\begin{picture}(0,0)(113,-83)
+%%\put(-88,-8){$b_1^{(\ell)}$}
+%%\put(-63,8){$b_2^{(\ell)}$}
+%%\put(-28,-27){$b_3^{(\ell)}$}
+%%\put(-1,18){$b_4^{(\ell)}$}
+%%\put(35,-17){$b_5^{(\ell)}$}
+%%\put(60,-37){$b_6^{(\ell)}$}
+%%\put(67.5,0){$b_7^{(\ell)}$}
+%%\end{picture}
+%\caption{The lamination $\Theta^{(\ell)}$}
+%\label{Theta fig}
+%\end{figure}
 (The curves $\thet_i$ are independent of $\ell$, but the weights $b_i^{(\ell)}$ depend on $\ell$.)
 Let $X^{(\ell)}$ be the lamination whose shear coordinates with respect to the unrotated~$T$ are the sum of the shear coordinates of $\Lambda^{(\ell)}$ and the shear coordinates of $\Theta^{(\ell)}$.
-Then rotate $X^{(\ell)}$ counterclockwise $\ell$ units, and read shear coordinates with respect to~$T$.
+(Both $\Theta^{(\ell)}$ and $X^{(\ell)}$ depend on $a_1^{(\ell)},\ldots,a_n^{(\ell)}$, but this dependence is not explicitly in the notation.)
+Rotate $X^{(\ell)}$ counterclockwise $\ell$ units and read shear coordinates with respect to~$T$.
 The negative of these shear coordinates is~$x$.
 
+The set $\set{\thet_1,\ldots,\thet_n}$ of curves that underly the laminations $\Theta^{(\ell)}$ has several remarkable properties that are crucial to the proof.
+In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
+
+\begin{itemize}
+\item
+\newword{First remarkable property}:
+Every curve that can appear in a lamination can be rotated to become one of the curves in $\set{\thet_1,\ldots,\thet_n}$.
+\item
+\newword{Second remarkable property}:
+The shear coordinates of $\thet_i$ with respect to $T$ is $\pm1$ in position $t_i$ and $0$ elsewhere.
+\item
+\newword{Third remarkable property}:
+Any curve $\gamma\neq\thet_i$ that can appear in a lamination has the property that the shear coordinates of $\gamma$ and $\thet_i$ weakly disagree in sign in position $t_i$.
+They strictly disagree in sign if and only if~$\gamma$ and~$\thet_i$ are not compatible.
+\end{itemize}
+
 Now suppose $x=\lambda+B\alpha^{(0)}$ is in $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
-The fact that $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$ implies the following fact, which we refer to below as the \newword{main observation}:
+The fact that $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$ means that $x$ determines a lamination $X^{(\ell)}$, as described above, for all $\ell\in\integers$, and furthermore implies the following fact, which we refer to below as the \newword{main observation}:
 For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ units counterclockwise, becomes~$X^{(0)}$.
 
 We will show that $\alpha^{(0)}=0$, or in other words that $a_1^{(0)}=\cdots=a_n^{(0)}=0$.
+This implies that $x=\lambda$.
 Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $b_i^{(0)}$ is~$0$.
 We will consider two cases.
 
 \smallskip
 
 \noindent
-\textit{Case 1.}  \sayN{If we end up needing cases in other types (as is likely in Type D), we might need a more specific label to this case.}
-$\thet_i$ coincides with a curve $L_j\in\Lambda$.
-This case is represented in \cref{theti fig 1}.
-(The meaning of the dotted curve marked $L'_j$ is explained below.
-The orientation of the arc $t_i\in T$  in its quadrilateral might be opposite.
-If so, then the argument given here still works, with a global change in sign.)
+\textit{Case 1 (Type A).}  
+The curve $\thet_i$ coincides with a curve $L_j\in\Lambda$.
+This case is represented in the left picture of \cref{theti fig 1}.
+(The meaning of the dotted curve marked~$L'_j$ is explained below.
+The orientation of the arc $t_i\in T$  in its quadrilateral might be the opposite of what is pictured.)
 \begin{figure}
-\scalebox{1}{\includegraphics{theti1.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(-17.5,-17){$\thet_i$}
-\put(1,25){$L_j$}
-\put(43,-13){$L'_j$}
-\put(10,-45){$t_i$}
-\end{picture}
+\scalebox{0.85}{\includegraphics{theti1.ps}
+\begin{picture}(0,0)(73,-73)
+\put(-16,-17){$\thet_i$}
+\put(0,25){$L_j$}
+\put(25,-13){$L'_j$}
+\put(10,-38){$t_i$}
+\end{picture}}
+\qquad\quad
+\scalebox{0.85}{\includegraphics{theti2.ps}
+\begin{picture}(0,0)(73,-73)
+\put(-3,22){$\thet_{\!m}$}
+\put(7.5,-20){$t_{\!m}$}
+\end{picture}}
 \caption{$\thet_i$ coincides with some $L_j$}
 \label{theti fig 1}
 \end{figure}
-The sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$ is $w_j+b_i^{(0)}$ in position $t_i$, because no curves of $\Lambda$ or $\Theta^{(\ell)}$ contribute to this coordinate except $\thet_i=L_j$.
-Therefore, $X^{(0)}$ has the curve $\thet_i$ with weight $w_j+b_i^{(0)}$ (or, if $w_j+b_i^{(0)}=0$, $X^{(0)}$ consists of curves that don't cross $\thet_i$).
+The sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$ is $\pm(w_j+b_i^{(0)})$ in position~$t_i$, because the second remarkable property assures that $\thet_i$ and $L_j$ make this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(\ell)}$ contribute to this coordinate.
+Therefore, the second remarkable property says that $X^{(0)}$ has the curve $L_j=\thet_i$ with weight $w_j+b_i^{(0)}$ (or, if $w_j+b_i^{(0)}=0$, $X^{(0)}$ consists of curves that are compatible with $\thet_i$).
 
-There is a unique curve $L'_j$ that does not cross any curve in $\Lambda$ except $L_j$.  \sayN{If I can mark it in \cref{theti fig 1}, mention that here.}
+There is a unique curve $L'_j$ that is compatible with every curve in $\Lambda$ except $L_j$. 
 (The situation is analogous to diagonal flips between triangulations.)
-There exists $\ell\in\integers$ such that rotating $L'_j$ by $\ell$ units gives a curve $\thet_m$, as exemplified in \cref{theti fig 2}.
-\begin{figure}
-\scalebox{1}{\includegraphics{theti2.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(2,25){$\thet_m$}
-\put(32,-33){$t_m$}
-\end{picture}
-\caption{Rotating so that $\L'_j$ coincides with some $\thet_m$}
-\label{theti fig 2}
-\end{figure}
-The shear sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\pm(w_j-b_m^{(\ell)})$ in position~$t_m$, with the sign determined by the orientation of $t_m$ in its quadrilateral.
-The main observation implies that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ has the same sign and is at least $w_j+b_i^{(0)}$ in absolute value in position $t_m$.
-Therefore, $b_i^{(0)}=b_m^{(\ell)}=0$.
+By the first remarkable property, there exists $\ell\in\integers$ such that rotating $L'_j$ by $\ell$ units gives a curve~$\thet_m$, as exemplified in the right picture of \cref{theti fig 1}.
+%\begin{figure}
+%\scalebox{1}{\includegraphics{theti2.ps}
+%\begin{picture}(0,0)(73,-73)
+%\put(2,25){$\thet_m$}
+%\put(32,-33){$t_m$}
+%\end{picture}}
+%\caption{Rotating so that $\L'_j$ coincides with some $\thet_m$}
+%\label{theti fig 2}
+%\end{figure}
+Since every curve in $\Lambda^{(\ell)}$ or $\Theta^{(\ell)}$, besides $\thet_m$ (which equals the rotation of $L'_j$), is compatible with $\thet_m$, the third remarkable property says that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\pm(w_j-b_m^{(\ell)})$ in position~$t_m$, with the sign determined by the orientation of $t_m$ in its quadrilateral.
+But the main observation says that $X^{(\ell)}$ has the rotation of $L_j$ with weight $w_j+b_i^{(0)}$ or consists of curves that are compatible with the rotation of $L_j$.
+Thus the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ has the same sign and absolute value at least $w_j+b_i^{(0)}$ in position $t_m$.
+We conclude that $b_i^{(0)}=b_m^{(\ell)}=0$.
 
 \smallskip
 
 \noindent
-\textit{Claim between cases.}
-For each $j=1,\ldots,n$, the lamination $X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$.
-(Or, if $w_j=0$ and $X^{(\ell)}$ does not have the curve $L_j$, it consists of curves that don't cross $L_j$.)
-To see why, notice that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\thet_i$.
-As in Case 1, we see that $X^{(\ell)}$ has the curve $\thet_i$ with weight $w_j+b_i^{(\ell)}\ge w_j$ (or, if not, $w_j+b_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that don't cross $\thet_i$).
+\textit{Claim between cases (Type A).}
+We claim that for each $j=1,\ldots,n$, the lamination $X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$, or, if $w_j=0$ and $X^{(\ell)}$ does not have the curve $L_j$, then $X^{(\ell)}$ consists of curves that are compatible with $L_j$.
+The first remarkable property says that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\thet_i$.
+As in Case 1, we see that $X^{(\ell)}$ has the curve~$\thet_i$ with weight $w_j+b_i^{(\ell)}\ge w_j$, or, if not, then $w_j+b_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that are compatible with $\thet_i$.
 The claim follows from the main observation.
 
 \smallskip
 
 \noindent
-\textit{Case 2.}
-$\thet_i$ does not coincide with a curve $L_j\in\Lambda$.
-Since $\Lambda$ is maximal, there are curves in $\Lambda$ that cross $\thet_i$.
+\textit{Case 2 (Type A).}
+The curve $\thet_i$ does not coincide with any curve $L_j\in\Lambda$.
+Since $\Lambda$ is maximal, there are curves in $\Lambda$ that are not compatible with $\thet_i$.
 The situation is pictured in \cref{theti fig 3}.
 \begin{figure}
-\scalebox{1}{\includegraphics{theti3.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(-15,-22){$\thet_i$}
-\put(15,-33){$t_i$}
+\scalebox{0.85}{\includegraphics{theti3.ps}}
+\begin{picture}(0,0)(73,-73)
+\put(-3,-33){$\thet_i$}
+\put(15,-30){$t_i$}
 \end{picture}
-\caption{Curves in $\Lambda$ cross $\thet_i$}
+\caption{Curves in $\Lambda$ are incompatible with $\thet_i$}
 \label{theti fig 3}
 \end{figure}
-The claim implies that each of the curves $L_m$ in $\Lambda$ that cross $\thet_i$ also appears in $X^{(0)}$ with weight at lease $w_m$ (or is compatible with every curve in $X^{(0)}$).
-Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is at least the sum of these weights $w_m$, and thus $b_i^{(\ell)}=0$.
+The claim implies that each of the curves $L_m$ in $\Lambda$ that are incompatible with $\thet_i$ also appears in~$X^{(0)}$ with weight at least $w_m$ (or is compatible with every curve in $X^{(0)}$).
+The third remarkable property says that each of these curves $L_m$ has shear coordinate strictly disagreeing in sign at position $t_i$ with the shear coordinate of $\thet_i$ and that no other curves besides $\thet_i$ and these $L_m$ contribute to position $t_i$ of the sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$.
+Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is the sum of these weights $w_m$, and thus $b_i^{(\ell)}=0$.
 
 \medskip
 
 \noindent
 \textbf{Type D.}
-The outline of the proof in type D is essentially the same as in type A, and for that reason we omit some explanations that will be clear in this case based on explanations in the type-A case.
+The outline of the proof in type D is essentially the same as in type~A.
 The major difference in type D is the appearance of tagged triangulations.
-Let $T$ be a tagged triangulation of the once-punctured regular $n$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$, exemplified in \cref{d T fig}.
+Let~$T$ be a tagged triangulation of the once-punctured regular $n$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$, exemplified in the left picture of \cref{d T fig}.
 \begin{figure}
-NEED THIS
-%\scalebox{1}{\includegraphics{dTfig.ps}}
-%\begin{picture}(0,0)(58,-58)
-%\put(-46.5,-23){$t_1$}
-%\put(-36.5,-1){$t_2$}
-%\put(-19,-26){$t_3$}
-%\put(-3.5,5){$t_4$}
-%\put(15.5,-26){$t_5$}
-%\put(28,12){$t_6$}
-%\put(42,-3){$t_7$}
-%\end{picture}
+\scalebox{0.85}{\includegraphics{Tfigd.ps}
+\begin{picture}(0,0)(82,-86)
+\put(-62,12.5){$t_1$}
+\put(-36.5,-14){$t_2$}
+\put(-25,-33.5){$t_3$}
+\put(-6.5,39.5){$t_4$}
+\put(6.5,-53.5){$t_5$}
+\put(35.5,-5){$t_6$}
+\put(55.5,-26){$t_7$}
+\end{picture}}
+\qquad
+\scalebox{0.85}{\includegraphics{Thetad.ps}
+\begin{picture}(0,0)(82,-86)
+\put(-40,-15.5){$\thet_1$}
+\put(-64,22){$\thet_2$}
+\put(-68,-35){$\thet_3$}
+\put(-27.5,61){$\thet_4$}
+\put(0,68){$\thet_5$}
+\put(34,45){$\thet_6$}
+\put(57.5,-35){$\thet_7$}
+\end{picture}}
 \caption{A bipartite tagged triangulation $T$}
 \label{d T fig}
 \end{figure}
@@ -4034,143 +4079,122 @@ The mutation $\mu_\kk$ on $B$ corresponds to an $n$-fold rotation (rotation by `
 Let $\Lambda$ be the weighted quasi-lamination such that $\lambda$ is the negation of the shear coordinates of $\Lambda$.
 Quasi-laminations are a variant of laminations with the property that the curves allowed in quasi-laminations are in bijections with the tagged arcs.
 (See \cite[Section~4]{unisurface}.)
+A quasi-lamination $\Lambda$ in the once-punctured $n$-gon is a pairwise compatible set of curves, each with a real weight.
+Some of the curves connect an edge of the $n$-gon to \emph{different} edge.
+The two edges must be non-adjacent, unless the curve and the two edges enclose the puncture.
+The remaining curves have an endpoint on an edge and, at the other end, spiral into the puncture in either direction, clockwise or counterclosckwise.
 In the once-punctured $n$-gon, there are two differences between laminations and quasi-laminations:
 First, a curve with both endpoints on the same edge of the $n$-gon, going around the puncture, is \emph{not} allowed in a quasi-lamination.
-Second, for each side, the two curves starting on that side and spiraling around the puncture in opposite directions \emph{are} allowed to appear together in a quasi-lamination, even though they intersect.
-The lamination $\Lambda$ consists of a set of curves, each with a real weight.
-Some of the curves connect an edge of the $n$-gon to different edge.
-The two edges must be non-adjacent, unless the curve and the two edges enclose the puncture.
-The remaining curves have an endpoint on an edge and, at the other end, spiral into the puncture in either direction.
+Second, while the notion of compatibility is ``non-intersecting'' for most pairs of curves, there is one exception:  
+For each side, the two curves starting on that side and spiraling around the puncture in opposite directions \emph{are} compatible, even though they intersect.
 
 The key properties of laminations also hold for quasi-laminations, specifically the bijection (shear coordinates) between quasi-laminations and vectors \cite[Theorem~4.4]{unisurface} and the fact that applying $\eta^{B^T}$ to vectors corresponds to mutating the initial triangulation \cite[Theorem~4.3]{unisurface}.
-In particular, the negative of the shear coordinate vector of $\Lambda$ with respect to a rotation of $T$ is $\eta^{B^T}_{\kk^\ell}(\lambda)$ for an appropriate~$\ell$.
+In particular, the negative of the shear coordinate vector of $\Lambda$ with respect to a rotation of $T$ (with taggings swapped for a rotation of an odd number of units) is $\eta^{B^T}_{\kk^\ell}(\lambda)$ for an appropriate~$\ell$.
 
 Maximal sets of pairwise compatible curves, in the sense of quasi-laminations, have cardinality $n$, and behave combinatorially like tagged triangulations of the punctured $n$-gon.
 If $\Lambda$ has fewer than $n$ curves, we extend it to a maximal set of compatible curves by adjoining curves with weight~$0$.
 The curves of $\Lambda$ are $L_1,L_2,\ldots,L_n$, with weights $w_1,\ldots,w_n$.
 
-As in type A, we can describe a point $x\in\P^B_{\lambda,\kk^\ell}$ directly using the definition.  % (rotating $T$, constructing the lamination whose shear coordinates are the shear coordinates of $\Lambda$ plus $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$, then rotating $T$ back).
-But this time, we skip directly to the more convenient description.
-
+As in type A, we can describe a point $x\in\P^B_{\lambda,\kk^\ell}$ directly using the definition,  % (rotating $T$, constructing the lamination whose shear coordinates are the shear coordinates of $\Lambda$ plus $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$, then rotating $T$ back).
+but here we skip directly to the more convenient description:
 To construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ clockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd to obtain a lamination $\Lambda^{(\ell)}$.
 We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-B\alpha^{(\ell)}$ (rather than $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$).
 
-The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in \cref{d Theta fig}.
+The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in the right picture of  \cref{d T fig}.
 The curve $\thet_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
 The curve $\thet_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
-Each remaining curve intersects exactly one arc of $T$.
 The weights on these two curves are $b_1^{(\ell)}=b_2^{(\ell)}=a_3$.
+Each remaining curve intersects exactly one arc of $T$.
 The curve $\thet_3$ intersects $t_3$ and has weight $b_3^{(\ell)}=a_1+a_2+a_4$.
-For $i=4,\ldots,n$, the curve $\thet_i$ with weight $b_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$.
-\begin{figure}
-NEED THIS
-%\scalebox{1}{\includegraphics{dTheta.ps}}
-%\begin{picture}(0,0)(113,-73)
-%\put(-86,-12){$\thet_1$}
-%\put(-63,12){$\thet_2$}
-%\put(-26,-31){$\thet_3$}
-%\put(-1,22){$\thet_4$}
-%\put(38,-25){$\thet_5$}
-%\put(60,-37){$\thet_6$}
-%\put(69,10){$\thet_7$}
-%\end{picture}
-\caption{The lamination $\Theta^{(\ell)}$}
-\label{d Theta fig}
-\end{figure}
+For $i=4,\ldots,n$, the curve $\thet_i$ with weight $b_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
+%\begin{figure}
+%\scalebox{1}{\includegraphics{Thetad.ps}
+%\begin{picture}(0,0)(82,-86)
+%\put(-40,-15.5){$\thet_1$}
+%\put(-64,22){$\thet_2$}
+%\put(-68,-35){$\thet_3$}
+%\put(-27.5,61){$\thet_4$}
+%\put(0,68){$\thet_5$}
+%\put(34,45){$\thet_6$}
+%\put(57.5,-35){$\thet_7$}
+%\end{picture}}
+%\caption{The lamination $\Theta^{(\ell)}$ in type D}
+%\label{d Theta fig}
+%\end{figure}
 As in type A, the lamination $X^{(\ell)}$ has shear coordinates with respect to~$T$ equal to the sum of the shear coordinates of $\Lambda^{(\ell)}$ and the shear coordinates of $\Theta^{(\ell)}$.
 The vector $x$ is obtained by rotating $X^{(\ell)}$ counterclockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd, reading shear coordinates with respect to~$T$, and negating.
 
-HERE  (unaltered type A below)
+Suppose $x=\lambda+B\alpha^{(0)}$ is in $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$, so that $x$ determines a lamination $X^{(\ell)}$ for all $\ell\in\integers$.
+As in type A, we have the \newword{main observation}:
+For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ units counterclockwise (swapping spiral directions if $\ell$ is odd), becomes~$X^{(0)}$.
 
-
-
-Now suppose $x=\lambda+B\alpha^{(0)}$ is in $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
-The fact that $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$ implies the following fact, which we refer to below as the \newword{main observation}:
-For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ units counterclockwise, becomes~$X^{(0)}$.
-
-We will show that $\alpha^{(0)}=0$, or in other words that $a_1^{(0)}=\cdots=a_n^{(0)}=0$.
-Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $b_i^{(0)}$ is~$0$.
-We will consider two cases.
-
-\smallskip
-
-\noindent
-\textit{Case 1.}  \sayN{If we end up needing cases in other types (as is likely in Type D), we might need a more specific label to this case.}
-$\thet_i$ coincides with a curve $L_j\in\Lambda$.
-This case is represented in \cref{theti fig 1}.
-(The meaning of the dotted curve marked $L'_j$ is explained below.
-The orientation of the arc $t_i\in T$  in its quadrilateral might be opposite.
-If so, then the argument given here still works, with a global change in sign.)
-\begin{figure}
-\scalebox{1}{\includegraphics{theti1.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(-17.5,-17){$\thet_i$}
-\put(1,25){$L_j$}
-\put(43,-13){$L'_j$}
-\put(10,-45){$t_i$}
-\end{picture}
-\caption{$\thet_i$ coincides with some $L_j$}
-\label{theti fig 1}
-\end{figure}
-The sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$ is $w_j+b_i^{(0)}$ in position $t_i$, because no curves of $\Lambda$ or $\Theta^{(\ell)}$ contribute to this coordinate except $\thet_i=L_j$.
-Therefore, $X^{(0)}$ has the curve $\thet_i$ with weight $w_j+b_i^{(0)}$ (or, if $w_j+b_i^{(0)}=0$, $X^{(0)}$ consists of curves that don't cross $\thet_i$).
-
-There is a unique curve $L'_j$ that does not cross any curve in $\Lambda$ except $L_j$.  \sayN{If I can mark it in \cref{theti fig 1}, mention that here.}
-(The situation is analogous to diagonal flips between triangulations.)
-There exists $\ell\in\integers$ such that rotating $L'_j$ by $\ell$ units gives a curve $\thet_m$, as exemplified in \cref{theti fig 2}.
-\begin{figure}
-\scalebox{1}{\includegraphics{theti2.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(2,25){$\thet_m$}
-\put(32,-33){$t_m$}
-\end{picture}
-\caption{Rotating so that $\L'_j$ coincides with some $\thet_m$}
-\label{theti fig 2}
-\end{figure}
-The shear sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\pm(w_j-b_m^{(\ell)})$ in position~$t_m$, with the sign determined by the orientation of $t_m$ in its quadrilateral.
-The main observation implies that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ has the same sign and is at least $w_j+b_i^{(0)}$ in absolute value in position $t_m$.
-Therefore, $b_i^{(0)}=b_m^{(\ell)}=0$.
-
-\smallskip
-
-\noindent
-\textit{Claim between cases.}
-For each $j=1,\ldots,n$, the lamination $X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$.
-(Or, if $w_j=0$ and $X^{(\ell)}$ does not have the curve $L_j$, it consists of curves that don't cross $L_j$.)
-To see why, notice that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\thet_i$.
-As in Case 1, we see that $X^{(\ell)}$ has the curve $\thet_i$ with weight $w_j+b_i^{(\ell)}\ge w_j$ (or, if not, $w_j+b_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that don't cross $\thet_i$).
-The claim follows from the main observation.
-
-\smallskip
-
-\noindent
-\textit{Case 2.}
-$\thet_i$ does not coincide with a curve $L_j\in\Lambda$.
-Since $\Lambda$ is maximal, there are curves in $\Lambda$ that cross $\thet_i$.
-The situation is pictured in \cref{theti fig 3}.
-\begin{figure}
-\scalebox{1}{\includegraphics{theti3.ps}}
-\begin{picture}(0,0)(113,-73)
-\put(-15,-22){$\thet_i$}
-\put(15,-33){$t_i$}
-\end{picture}
-\caption{Curves in $\Lambda$ cross $\thet_i$}
-\label{theti fig 3}
-\end{figure}
-The claim implies that each of the curves $L_m$ in $\Lambda$ that cross $\thet_i$ also appears in $X^{(0)}$ with weight at lease $w_m$ (or is compatible with every curve in $X^{(0)}$).
-Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is at least the sum of these weights $w_m$, and thus $b_i^{(\ell)}=0$.
+The crux of the proof is that the curves $\set{\thet_1,\ldots,\thet_n}$ have the three \newword{remarkable properties} described in the type-A case, substituting ``rotations that appropriately swap spirals'' for ``rotations'' and ``quasi-laminations'' for ``laminations''.
+When this is verified, the proof is then completed precisely as in the type-A case, with the same substitutions.
+The verification is straightforward, using the definitions of compatibility and shear coordinates, and we omit the details.
 
 \medskip
 
 \noindent
-\textbf{Type C.}
+\textbf{Types C and B.} \sayN{I think the folding ideas are of independent interest, so we should give this exposition outside of the proof, maybe in the preliminary sections of the paper.}
+The result in these types follows from the results in types A and~C by folding.
+We provide details, following the exposition in \cite[Sections~2.3--2.4]{VielThesis}, which cites results from \cite{CaoHuangLi,DemonetThesis,Dupont,NS14}.
+An \newword{admissible automorphism} of an exchange matrix $B$ is a permutation $\sigma$ of the indices of~$B$ such that $b_{ij}=0$ whenever $i$ and $j$ are in the same $\sigma$-orbit and the weak sign of $b_{ij}$ depends only on the $\sigma$-orbits of $i$ and $j$.
+For each index $i$, define $\bar\imath$ to be the $\sigma$-orbit of $i$ and reuse the notation $\bar\imath$ to stand for a word that lists the $\sigma$-orbit of $i$ in any order.
+Given an admissible automorphism, an \newword{orbit sequence} is a sequence $\kk$ of indices of $B$ of the form $\kk=\bar\imath_1\cdots\bar\imath_m$.
+A \newword{stable automorphism} is an admissible automorphism $\sigma$ that is also an admissible automorphism of $\mu_\kk(B)$ for any \emph{orbit sequence}~$\kk$.
+
+The \newword{folding} of $B$ with respect to $\sigma$ is the exchange matrix $\pi_\sigma(B)$ indexed by the $\sigma$-orbits, whose $\bar\imath\bar\jmath$-entry is $\sum_{i'\in\bar\imath}b_{i'j'}$ for any $j'\in\bar\jmath$.
+An orbit sequence can be viewed as a sequence of indices of $B$ or as a sequence of indices of $\pi_\sigma(B)$.
+We pass freely between the two points of view, even within the same equation, because the correct point of view is easily seen from context.
+For any orbit sequence $\kk$, we have $\pi_\sigma(\mu_\kk(B))=\mu_\kk(\pi_\sigma(B))$.
+
+The permutation $\sigma$ of indices can be interpreted as a permutation of the standard basis $\e_1,\ldots,\e_n$ of~$\reals^n$ and thus as a linear map on $\reals^n$.
+Write~$(\reals^n)^\sigma$ for the subspace of $\reals^n$ consisting of points fixed by~$\sigma$.
+The fixed space has a basis indexed by the $\sigma$-orbits, with the basis vector for $\bar\imath$ given by $\sum_{i'\in\bar\imath}\e_{i'}$.
+We call this basis the \newword{orbit basis} of~$(\reals^n)^\sigma$.
+The following fact is \cite[Lemma~2.4.6]{VielThesis}.  \sayN{I guess if we keep this within the proof, I guess we would rewrite it so as not to have a proposition and theorem inside the proof...}
+(In fact, we quote the lemma with an additional transpose, but all of the folding constructions commute with taking the transpose of~$B$.)
+%A permutation $\sigma$ is a stable automorphism of $B$ if and only if it is a stable automorphism of~$B^T$.
+\begin{proposition}\label{VielLemma}
+Suppose $\sigma$ is a stable automorphism of $B$.
+Then for any orbit sequence $\kk$, the mutation map $\eta^{B^T}_\kk$, defined as usual in terms of the standard basis of $\reals^n$, fixes $(\reals^n)^\sigma$ as a set and, on $(\reals^n)^\sigma$, agrees with the mutation map $\eta_\kk^{\pi_\sigma(B)^T}$ defined in terms of the orbit basis of $(\reals^n)^\sigma$.
+\end{proposition}
+
+For a vector $\alpha\in(\reals^n)^\sigma$, we say $\alpha\ge0$ to mean that $\alpha$ has nonnegative coordinates in the orbit basis and we interpret the notation $\pi_\sigma(B)\alpha$ as the matrix $\pi_\sigma(B)$ times the column vector of orbit-basis coordinates of $\alpha$.
+We observe that when $\sigma$ is a stable automorphism of $B$,
+\[\sett{B\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\reals^n)^\sigma=\sett{\pi_\sigma(B)\alpha:\alpha\in(\reals^n)^*,\alpha\ge0}.\]
+This observation, combined with \cref{VielLemma}, immediately implies the following \lcnamecref{fold dom reg}.
+In the \lcnamecref{fold dom reg}, we interpret $\P_\lambda^{\pi_\sigma(B)}$ as the dominance region of $\lambda$ inside $(\reals^n)^\sigma$ defined in terms of the orbit basis of $(\reals^n)^\sigma$.
+\begin{theorem}\label{fold dom reg}
+Suppose $\sigma$ is a stable automorphism of $B$ and $\lambda\in(\reals^n)^\sigma$.
+Then $\P_\lambda^{\pi_\sigma(B)}=\P_\lambda^B\cap(\reals^n)^\sigma$.
+Indeed, $\P_{\lambda,\kk}^{\pi_\sigma(B)}=\P_{\lambda,\kk}^B\cap(\reals^n)^\sigma$ for all orbit sequences~$\kk$.
+\end{theorem}
+
+One readily verifies that (as is well known) a bipartite exchange matrix of type $C_n$ is obtained from a bipartite exchange matrix of type $A_{2n-1}$ by folding.
+The stable automorphism has orbits $\set{n}$ and $\set{i,2n-i}$ for $i=1,\ldots,n-1$.
+Thus the type-C case of the theorem follows from the type-A case and \cref{fold dom reg}.
+Similarly, a bipartite exchange matrix of type $B_n$ is obtained from a bipartite exchange matrix of type $D_{n+1}$ by folding with respect to a stable automorphism whose only nontrivial orbit consists of the two ``antennae'' of the Cartan matrix.
+Thus the type-B case of the theorem similarly follows from the type-D case.
 
 \medskip
 
 \noindent
-\textbf{Type B.}
+\textbf{The exceptional types.}
+The remaining finite types are checked computationally.
+A priori, the computation is infinite for each exchange matrix because the \lcnamecref{finite P point bip} must hold for each $\lambda\in\reals^n$, but we reduce it to a finite computation that must be done for one $\lambda$ in the interior of each maximal cone of the mutation fan.
 
+The set $\P^B_{\lambda,\kk}$ can be computed, for each $\kk$ as a union of polyhedra.
+One computes $\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\ge0}$, a cone at the point $\eta_\kk^{B^T}(\lambda)$, and then applies $\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}$ as a sequence of piecewise linear maps with two domains of linearity.
+At the first step, if the relative interior of the cone $\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\ge0}$ intersects both domains of linearity, the piecewise-linear map breaks the cone into a union of two polyhedra.
+Our computation considers, instead of this union, the smallest cone at the image of $\lambda$ containing the union.
+Then at the next step, instead of passing to a union of two polyhedra, we again take the smallest cone containing the union.  
+Continuing in this manner, we obtain a cone $\overline{\P}^B_{\lambda,\kk}$ at $\lambda$.
 
+If $\lambda$ is in the interior of a maximal cone $C$ in the mutation fan, and $\lambda'$ is another vector in $C$, but not necessarily in the interior, we see that $\overline{\P}^B_{\lambda,\kk}$ is at least as big as $(\lambda-\lambda')+\overline{\P}^B_{\lambda',\kk}$.
+(At some step, $\lambda'$ might be on the boundary of the two domains of linearity, and if so, one of the two polyhedra might be smaller than in the construction of $\overline{\P}^B_{\lambda',\kk}$ than the in the translation of the construction of $\overline{\P}^B_{\lambda,\kk}$.)
+Therefore, we need only verify for one $\lambda$ in the interior of each maximal cone of the mutation fan, that $\bigcap_{\ell\in\integers}\overline{\P}^B_{\lambda,\kk^\ell}=\set{\lambda}$.
+Our computation is assisted by the technology of $c$-sortable elements, which index the maximal cones.
 \end{proof}
 
 

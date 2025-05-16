@@ -1,0 +1,199 @@
+
+
+A=CartanMatrix(['E',6])
+c=[0,3,5,1,2,4]
+coxnum=coxeter_number(A)
+Bmat=B(A,c)
+num=0
+for v in sortables(A,c):
+    num+=1
+    l=lam(A,[])
+    P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+    d=P.dimension()
+    if d>0:
+        print(num)
+        print(P,BPrime,"\n","Failure!")
+    else:
+        print(num)
+sage: A=CartanMatrix(['E',6])
+....: c=[0,3,5,1,2,4]
+....: coxnum=coxeter_number(A)
+....: Bmat=B(A,c)
+....: num=0
+....: for v in sortables(A,c):
+....:     num+=1
+....:     l=lam(A,[])
+....:     P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+....:     d=P.dimension()
+....:     if d>0:
+....:         print(num)
+....:         print(P,BPrime,"\n","Failure!")
+....:     else:
+....:         print(num)
+....: 
+1
+2
+.
+.
+.
+832
+833
+
+
+A=CartanMatrix(['E',7])
+c=[0,3,5,1,2,4,6]
+coxnum=coxeter_number(A)
+Bmat=B(A,c)
+num=0
+for v in sortables(A,c):
+    num+=1
+    l=lam(A,[])
+    P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+    d=P.dimension()
+    if d>0:
+        print(num)
+        print(P,BPrime,"\n","Failure!")
+    else:
+        print(num)
+sage: A=CartanMatrix(['E',7])
+....: 
+sage: A
+[ 2  0 -1  0  0  0  0]
+[ 0  2  0 -1  0  0  0]
+[-1  0  2 -1  0  0  0]
+[ 0 -1 -1  2 -1  0  0]
+[ 0  0  0 -1  2 -1  0]
+[ 0  0  0  0 -1  2 -1]
+[ 0  0  0  0  0 -1  2]
+sage: c=[0,3,5,1,2,4,6]
+....: coxnum=coxeter_number(A)
+....: Bmat=B(A,c)
+....: num=0
+....: for v in sortables(A,c):
+....:     num+=1
+....:     l=lam(A,[])
+....:     P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+....:     d=P.dimension()
+....:     if d>0:
+....:         print(num)
+....:         print(P,BPrime,"\n","Failure!")
+....:     else:
+....:         print(num)
+....: 
+1
+2
+.
+.
+.
+4159
+4160
+
+
+
+A=CartanMatrix(['E',8])
+c=[0,3,5,7,1,2,4,6]
+coxnum=coxeter_number(A)
+Bmat=B(A,c)
+num=0
+for v in sortables(A,c):
+    num+=1
+    l=lam(A,[])
+    P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+    d=P.dimension()
+    if d>0:
+        print(num)
+        print(P,BPrime,"\n","Failure!")
+    else:
+        print(num)
+# Started at 11:15 am on Friday, May 16
+
+
+
+A=CartanMatrix(['F',4])
+c=[0,2,1,3]
+coxnum=coxeter_number(A)
+Bmat=B(A,c)
+num=0
+for v in sortables(A,c):
+    num+=1
+    l=lam(A,[])
+    P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+    d=P.dimension()
+    if d>0:
+        print(num)
+        print(P,BPrime,"\n","Failure!")
+    else:
+        print(num)
+sage: A=CartanMatrix(['F',4])
+sage: A
+[ 2 -1  0  0]
+[-1  2 -1  0]
+[ 0 -2  2 -1]
+[ 0  0 -1  2]
+sage: c=[0,2,1,3]
+....: coxnum=coxeter_number(A)
+....: Bmat=B(A,c)
+....: num=0
+....: for v in sortables(A,c):
+....:     num+=1
+....:     l=lam(A,[])
+....:     P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+....:     d=P.dimension()
+....:     if d>0:
+....:         print(num)
+....:         print(P,BPrime,"\n","Failure!")
+....:     else:
+....:         print(num)
+....: 
+1
+2
+.
+.
+.
+104
+105
+
+
+A=CartanMatrix(['G',2])
+c=[0,1]
+coxnum=coxeter_number(A)
+Bmat=B(A,c)
+num=0
+for v in sortables(A,c):
+    num+=1
+    l=lam(A,[])
+    P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+    d=P.dimension()
+    if d>0:
+        print(num)
+        print(P,BPrime,"\n","Failure!")
+    else:
+        print(num)
+
+sage: A=CartanMatrix(['G',2])
+....: c=[0,1]
+....: coxnum=coxeter_number(A)
+....: Bmat=B(A,c)
+....: num=0
+....: for v in sortables(A,c):
+....:     num+=1
+....:     l=lam(A,[])
+....:     P=p_lambda_cone_all(Bmat,l,Kc(c,coxnum))
+....:     d=P.dimension()
+....:     if d>0:
+....:         print(num)
+....:         print(P,BPrime,"\n","Failure!")
+....:     else:
+....:         print(num)
+....: 
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+

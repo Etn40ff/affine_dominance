@@ -371,9 +371,54 @@ def shortest_maximal_green(Bmat,limit):
 
 
 
+# A version that does cone_at at every step except at the end.
+# This has the benefit that if you get a singleton at one point 
+# in the relative interior of a B-cone, you get a singleton at 
+# every point in the relative interior of that B-cone.
+# Or do you get the closure of the B-cone?
+
+def p_lambda_cone_every_step(B, la, seq):
+    m = B.nrows()
+    rk = B.rank()
+    n = B.ncols()
+    Bla = block_matrix([[B,matrix(la).transpose()]])
+    for k in reversed(seq):
+        Bla.mutate(k)
+    B, la  = Bla[:,:-1], Bla[:,-1] 
+    P = Polyhedron(rays=[v for  v in B.columns() if v!=0],base_ring=QQ).translation(la)
+    for k in seq:
+        Ep = E(B, k, 1)
+        Em = E(B, k, -1)
+        Hp = Polyhedron(ieqs=[(0,)*(k+1)+(1,)+(0,)*(m-k-1)])
+        Hm = Polyhedron(ieqs=[(0,)*(k+1)+(-1,)+(0,)*(m-k-1)])
+        #print("Hp:   ",Hp,Hp.vertices(),Hp.rays(),Hp.lines(),"\n")
+        #print("Hm:   ",Hm,Hm.vertices(),Hm.rays(),Hm.lines(),"\n\n")
+        Pp = P.intersection(Hp)
+        Pm = P.intersection(Hm)
+        if Pp.dimension() < rk:
+            P=Em*Pm
+        elif Pm.dimension() < rk:
+            P=Ep*Pp
+        else:
+            #print("Pp:   ",Pp,Pp.vertices(),Pp.rays(),Pp.lines(),"\n")
+            #print("Pm:   ",Pm,Pm.vertices(),Pm.rays(),Pm.lines(),"\n\n")
+            P=(Ep*Pp).convex_hull(Em*Pm)
+        # Here is the difference
+        Bla.mutate(k)
+        B, la  = Bla[:,:-1], Bla[:,-1] 
+        P=cone_at(P,vector(la))
+    return P
 
 
 
+# like p_lambda_con, but returns the (even larger) cone at lambda obtained by doing the cone_at operation at every step
+def p_lambda_cone_all(B, la, seqs):
+    P = cone_at(p_lambda(B, la, seqs[0]),la)
+    for s in seqs:
+        P = P.intersection(p_lambda_cone_every_step(B, la, s))
+        if P.dimension()==0:
+            break
+    return P
 
 
 

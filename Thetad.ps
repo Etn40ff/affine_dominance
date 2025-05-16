@@ -1,0 +1,245 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: -88 -86 82 86
+
+(graph.ps) run
+(vector.ps) run
+
+
+/r 85 def
+/n 7 def
+/th 360 n div def
+
+-1 th mul 180 add dup cos r mul exch sin r mul /v1 vertex
+-2 th mul 180 add dup cos r mul exch sin r mul /v2 vertex
+-3 th mul 180 add dup cos r mul exch sin r mul /v3 vertex
+-4 th mul 180 add dup cos r mul exch sin r mul /v4 vertex
+-5 th mul 180 add dup cos r mul exch sin r mul /v5 vertex
+-6 th mul 180 add dup cos r mul exch sin r mul /v6 vertex
+-7 th mul 180 add dup cos r mul exch sin r mul /v7 vertex
+
+-0.23 r mul 0 /c vertex
+
+0.75 setlinewidth
+1 setlinecap
+/vr 1.5 def
+
+v1 vr drawvertex
+v2 vr drawvertex
+v3 vr drawvertex
+v4 vr drawvertex
+v5 vr drawvertex
+v6 vr drawvertex
+v7 vr drawvertex
+c vr drawvertex
+
+v1 v2 0 edge
+v2 v3 0 edge
+v3 v4 0 edge
+v4 v5 0 edge
+v5 v6 0 edge
+v6 v7 0 edge
+v7 v1 0 edge
+
+v7 c 0.15 edge
+v7 c -0.15 edge
+
+v7 coords moveto
+0.1 r mul -0.8 r mul
+0.35 r mul 0.2 r mul 
+v1 coords curveto stroke
+
+v6 coords moveto
+0.2 r mul -0.7 r mul
+0.6 r mul 0.4 r mul 
+v1 coords curveto stroke
+
+v6 coords moveto
+0.6 r mul -0.85 r mul
+0.3 r mul 0.4 r mul 
+v2 coords curveto stroke
+
+v5 coords moveto
+0.5 r mul -0.5 r mul
+0.5 r mul 0.5 r mul 
+v2 coords curveto stroke
+
+v5 coords moveto
+0.63 r mul -0.5 r mul
+0.7 r mul -0.2 r mul 
+v3 coords curveto stroke
+
+
+
+%  a length parameter for notches
+/notchlength 6 def
+%  a width parameter for notches
+/notchwidth 2.5 def
+/sf 1 def
+
+%  draws a notch.
+%  usage: x y dir notch
+%  x y is the coordinates of the center of the notch
+%  dir is the angle of orientation of the notch
+/notch
+{
+1 dict begin
+/dir exch def
+moveto
+notchlength sf div 2 div dir cos mul notchwidth sf div 2 div dir sin mul add
+notchlength sf div 2 div dir sin mul notchwidth sf div 2 div dir cos mul neg add 
+rlineto
+notchwidth sf div dir sin mul neg
+notchwidth sf div dir cos mul 
+rlineto
+notchlength sf div dir cos mul neg notchwidth sf div dir sin mul add
+notchlength sf div dir sin mul neg notchwidth sf div dir cos mul neg add 
+rlineto
+notchwidth sf div dir sin mul neg
+notchwidth sf div dir cos mul 
+rlineto
+fill
+end
+}
+def
+
+-0.35 r mul -0.036 r mul 105 notch
+
+
+0.75 setlinewidth
+1 setlinecap
+0.9 0.1 0.9 setrgbcolor
+0.7 v4 scalarmul 0.3 v5 scalarmul addvec coords moveto 0.3 v2 scalarmul 0.7 v3 scalarmul addvec coords lineto
+
+0.7 v5 scalarmul 0.3 v6 scalarmul addvec coords moveto 
+0.43 r mul -0.5 r mul
+0.6 r mul -0.2 r mul 
+0.5 v2 scalarmul 0.5 v3 scalarmul addvec coords curveto
+
+0.5 v5 scalarmul 0.5 v6 scalarmul addvec coords moveto 
+0.4 r mul -0.5 r mul
+0.6 r mul -0.2 r mul 
+0.3 v1 scalarmul 0.7 v2 scalarmul addvec coords curveto
+
+0.8 v6 scalarmul 0.2 v7 scalarmul addvec coords moveto 
+0.2 r mul -0.4 r mul
+0.2 r mul -0.2 r mul 
+0.5 v1 scalarmul 0.5 v2 scalarmul addvec coords curveto
+
+0.6 v6 scalarmul 0.4 v7 scalarmul addvec coords moveto 
+-0.05 r mul -0.35 r mul
+0.25 r mul 0.1 r mul 
+0.2 v7 scalarmul 0.8 v1 scalarmul addvec coords curveto
+
+stroke
+
+%  Spirals counterclockwise into a marked point (given by its name)
+%  Does not stroke.
+%  Starts from the currentpoint (which must therefore be defined!)
+%  mp is the marked point at the center
+%  nr is number of rotations
+%  n is number of arcs per rotation
+%  d is radius change per rotation  (positive to spiral in)
+%  usage:  mp nr n d toccwspiral
+/toccwspiral
+{
+12 dict begin
+/d exch neg def
+/n exch def
+/nr exch def
+aload pop
+/y exch def
+/x exch def
+/dth 360 n div def
+/dr d n div def
+/initr currentpoint y sub dup mul exch x sub dup mul add sqrt def
+/tharc currentpoint y sub exch x sub atan def
+/startrad dr dth 2 div sin 2 mul div def
+/xcen x startrad tharc sin neg mul add def
+/ycen y startrad tharc cos mul add def
+/rarc initr def
+xcen rarc tharc cos mul add
+ycen rarc tharc sin mul add
+moveto
+1 1 n nr mul
+{pop
+xcen ycen rarc tharc tharc dth add arc
+/tharc tharc dth add def
+/rarc rarc dr add def
+/xcen xcen dr tharc cos mul sub def
+/ycen ycen dr tharc sin mul sub def
+}
+for
+end
+}
+def
+
+%  Spirals counterclockwise into a marked point (given by its name)
+%  Does not stroke.
+%  Starts from the currentpoint (which must therefore be defined!)
+%  mp is the marked point at the center
+%  nr is number of rotations
+%  n is number of arcs per rotation
+%  d is radius change per rotation  (positive to spiral in)
+%  usage:  mp nr n d tocwspiral
+/tocwspiral
+{
+12 dict begin
+/d exch neg def
+/n exch def
+/nr exch def
+aload pop
+/y exch def
+/x exch def
+/dth 360 n div def
+/dr d n div def
+/initr currentpoint y sub dup mul exch x sub dup mul add sqrt def
+/tharc currentpoint y sub exch x sub atan def
+/startrad dr dth 2 div sin 2 mul div def
+/xcen x startrad tharc sin mul add def
+/ycen y startrad tharc cos neg mul add def
+/rarc initr def
+xcen rarc tharc cos mul add
+ycen rarc tharc sin mul add
+moveto
+1 1 n nr mul
+{pop
+xcen ycen rarc tharc tharc dth sub arcn
+/tharc tharc dth sub def
+/rarc rarc dr add def
+/xcen xcen dr tharc cos mul sub def
+/ycen ycen dr tharc sin mul sub def
+}
+for
+end
+}
+def
+
+
+1.0 0.1 1.0 setrgbcolor
+0.7 v7 scalarmul 0.3 v1 scalarmul addvec coords moveto 
+-0.55 r mul -0.08 r mul
+-0.35 r mul -0.11 r mul 
+-0.225 r mul -0.10 r mul 
+curveto
+c 1.8 24 3.5
+toccwspiral
+stroke
+
+0.85 setlinewidth
+0.8 0.0 0.8 setrgbcolor
+
+
+0.45 v7 scalarmul 0.55 v1 scalarmul addvec coords moveto 
+-0.5 r mul 0.3 r mul
+-0.23 r mul 0.09 r mul 
+-0.19 r mul 0.058 r mul 
+curveto
+c 1.2 24 4.5
+tocwspiral
+stroke
+
+
+0 setgray
+
+c vr drawvertex
+

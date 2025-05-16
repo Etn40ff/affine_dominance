@@ -1,0 +1,107 @@
+%!PS-Adobe-2.0 EPSF-1.2
+%%BoundingBox: -88 -86 82 86
+
+(graph.ps) run
+(vector.ps) run
+
+
+/r 85 def
+/n 7 def
+/th 360 n div def
+
+-1 th mul 180 add dup cos r mul exch sin r mul /v1 vertex
+-2 th mul 180 add dup cos r mul exch sin r mul /v2 vertex
+-3 th mul 180 add dup cos r mul exch sin r mul /v3 vertex
+-4 th mul 180 add dup cos r mul exch sin r mul /v4 vertex
+-5 th mul 180 add dup cos r mul exch sin r mul /v5 vertex
+-6 th mul 180 add dup cos r mul exch sin r mul /v6 vertex
+-7 th mul 180 add dup cos r mul exch sin r mul /v7 vertex
+
+-0.16 r mul 0 /c vertex
+
+0.75 setlinewidth
+1 setlinecap
+/vr 1.5 def
+
+v1 vr drawvertex
+v2 vr drawvertex
+v3 vr drawvertex
+v4 vr drawvertex
+v5 vr drawvertex
+v6 vr drawvertex
+v7 vr drawvertex
+c vr drawvertex
+
+v1 v2 0 edge
+v2 v3 0 edge
+v3 v4 0 edge
+v4 v5 0 edge
+v5 v6 0 edge
+v6 v7 0 edge
+v7 v1 0 edge
+
+v7 c 0.15 edge
+v7 c -0.15 edge
+
+v7 coords moveto
+0.1 r mul -0.8 r mul
+0.35 r mul 0.2 r mul 
+v1 coords curveto stroke
+
+v6 coords moveto
+0.2 r mul -0.7 r mul
+0.6 r mul 0.4 r mul 
+v1 coords curveto stroke
+
+v6 coords moveto
+0.6 r mul -0.85 r mul
+0.3 r mul 0.4 r mul 
+v2 coords curveto stroke
+
+v5 coords moveto
+0.5 r mul -0.5 r mul
+0.5 r mul 0.5 r mul 
+v2 coords curveto stroke
+
+v5 coords moveto
+0.63 r mul -0.5 r mul
+0.7 r mul -0.2 r mul 
+v3 coords curveto stroke
+
+
+
+%  a length parameter for notches
+/notchlength 6 def
+%  a width parameter for notches
+/notchwidth 2.5 def
+/sf 1 def
+
+%  draws a notch.
+%  usage: x y dir notch
+%  x y is the coordinates of the center of the notch
+%  dir is the angle of orientation of the notch
+/notch
+{
+1 dict begin
+/dir exch def
+moveto
+notchlength sf div 2 div dir cos mul notchwidth sf div 2 div dir sin mul add
+notchlength sf div 2 div dir sin mul notchwidth sf div 2 div dir cos mul neg add 
+rlineto
+notchwidth sf div dir sin mul neg
+notchwidth sf div dir cos mul 
+rlineto
+notchlength sf div dir cos mul neg notchwidth sf div dir sin mul add
+notchlength sf div dir sin mul neg notchwidth sf div dir cos mul neg add 
+rlineto
+notchwidth sf div dir sin mul neg
+notchwidth sf div dir cos mul 
+rlineto
+fill
+end
+}
+def
+
+
+-0.2769 r mul -0.03461 r mul 105 notch
+
