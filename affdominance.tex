@@ -445,7 +445,7 @@ Thus we write maps $\eta_\kk^{B^T}$.
 This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
 
-Given a vector $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
+Given $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
 (Throughout the paper, we will define sets indexed by vectors $\alpha\in\reals^n$ with $\alpha\ge0$, or sometimes $\alpha\in\reals^m$ with $\alpha\ge0$.
 When we can do so without confusion, we will omit the explicit statement that $\alpha\in\reals^n$ or $\alpha\in\reals^m$.)
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
@@ -462,11 +462,11 @@ $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
 For any $\ll$,
 \begin{align*}
 \eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})
-&=\eta^{B^T}_\kk\!\!\left(\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\right)\\
-%&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
-&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
-%&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+B_t\alpha:\alpha\ge0}\\
-&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\settt{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+B_t\alpha:\alpha\ge0}\\
+&=\eta^{B^T}_\kk\!\!\left(\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+\mu_\ll(B)\alpha:\alpha\ge0}\right)\\
+%&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+\mu_\ll(B)\alpha:\alpha\ge0}\\
+&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+\mu_\ll(B)\alpha:\alpha\ge0}\\
+%&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+\mu_\ell(B)\alpha:\alpha\ge0}\\
+&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\settt{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+\mu_{\ll\kk^{-1}}(B')\alpha:\alpha\ge0}\\
 &=\P^{B'}_{\lambda',\ll\kk^{-1}}.
 \end{align*}
 Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
@@ -1058,21 +1058,27 @@ $\tB_t\bigl(G_t^{-B_0^T;t_0}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0$.
 Restricted to the first $n$ columns, this says $\BB_t\bigl(\begin{bsmallmatrix}G_t^{-B^T;t_0}&\,0\end{bsmallmatrix}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0$.
 \end{proof}
 
-Given a vector $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-Define the \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ to be the intersection $\bigcap_\kk\P^\tB_{\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
+Given $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+The \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ is the intersection $\bigcap_\kk\P^\tB_{\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
 
 We relate the dominance region $\P_\lambda^\tB$ with respect to the extended exchange matrix $\tB$ to the dominance region $\P_\lambda^B$ with respect to the (non-extended) exchange matrix $B$.
 Let $\Proj_n$ be the projection from $\reals^m$ to $\reals^n$ that ignores the last $m-n$ coordinates.
+The following lemma is immediate.
+
+\begin{lemma}\label{eta proj}
+Let $\tB$ be an extended exchange matrix with underlying exchange matrix $B$.
+Then $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ as maps on $\reals^n$, for any sequence $\kk$ of indices in $\set{1,\ldots,n}$.
+\end{lemma}
+
+
 
 \begin{proposition}\label{contains proj}
 Let $\tB$ be an extended exchange matrix with underlying exchange matrix $B$.
 If $\lambda\in\reals^m$ and $\lambda'=\Proj_n\lambda\in\reals^n$, then $\Proj_n(\P_\lambda^\tB)\subseteq\P_{\lambda'}^B$.
 \end{proposition}
 \begin{proof}
-It is apparent that $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ as maps on $\reals^n$, for any sequence $\kk$ of indices in $\set{1,\ldots,n}$.
-Since $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{\mu_\kk(\BB)^T}$, the analogous fact is true for $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}$.
-Also, $\Proj_n\set{\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{B_t\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-The \lcnamecref{contains proj} follows.
+The \lcnamecref{contains proj} follows from \cref{eta proj}, from the analogous fact for $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{\mu_\kk(\BB)^T}$, and from the fact that 
+\[\Proj_n\set{\mu_\kk(\tB)\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\mu_\kk(B)\alpha:\alpha\in\reals^n,\alpha\ge0}.\qedhere\]
 \end{proof}
 
 Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
@@ -1448,7 +1454,7 @@ Furthermore, if $\tB$ is any extension of $B$ and $\lambda\in\Cone^{\tB;t_0}_t$ 
 
 \begin{theorem}\label{affine main}
 Suppose $B$ is an exchange matrix of affine type.
-If $\lambda$ is in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
+If $\lambda$ is in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is $\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty$, the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
 To prove these theorems, we first gather some assorted tools, and then quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
@@ -2149,7 +2155,7 @@ We argue exactly as the proof of \cref{finite P point}, appealing to \cref{aff r
 
 \begin{proposition}\label{affine main partial}
 Suppose $B$ is an exchange matrix of affine type.
-If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ \emph{contains} the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
+If $\lambda$ is contained in the imaginary wall~$\d^B_\infty$, then $\P^B_\lambda\supseteq\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty$.  % \emph{contains} the line segment parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{proposition}
 \begin{proof}
 Suppose $\kk$ is a sequence of indices in $\set{1,\ldots,n}$ and let $B'=\mu_\kk(B)$.
@@ -3731,6 +3737,9 @@ So I will continue on as if it were proved.
 
 ****
 
+ALTERNATIVELY, if we prove that the dominance region is a line segment some other way, we get this as a corollary.
+
+
 \end{proof}
 
 In light of \cref{delta is the tilde man}, we can prove one containment of \cref{affine main extended} (similarly to \cref{affine main partial}).
@@ -4070,7 +4079,7 @@ Let~$T$ be a tagged triangulation of the once-punctured regular $n$-gon whose si
 \put(34,45){$\thet_6$}
 \put(57.5,-35){$\thet_7$}
 \end{picture}}
-\caption{A bipartite tagged triangulation $T$}
+\caption{A bipartite tagged triangulation $T$ and lamination~$\Theta^{(\ell)}$}
 \label{d T fig}
 \end{figure}
 The arcs of $T$ are $t_1,\ldots,t_n$.
