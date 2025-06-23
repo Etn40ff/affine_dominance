@@ -3892,8 +3892,8 @@ Then up to switching the orientation of the plane, $T$ is as exemplified in the 
 \caption{A bipartite triangulation $T$ and the lamination $\Theta^{(\ell)}$}
 \label{T fig}
 \end{figure}
-We refer to the arcs of $T$ as $t_1,\ldots,t_n$.
-One easily verifies that applying the mutation $\mu_\kk$ to $B$ corresponds to an $(n+3)$-fold rotation of~$T$.
+We refer to the arcs of~$T$ as $t_1,\ldots,t_n$. 
+One easily verifies that flipping the arcs of $T$ in the order specified by $\kk$ corresponds to an $(n+3)$-fold rotation of~$T$.
 The direction of the rotation depends on the exact choice of~$B$ and will not matter in the argument.
 For definiteness in what follows, we will call that direction ``counterclockwise'', and for convenience, we will refer to this $(n+3)$-fold rotation as a rotation of ``one unit'' counterclockwise.
 
@@ -3912,16 +3912,16 @@ For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is $\bigl(\e
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
 In the $(n+3)$-gon model, a point $x$ is obtained as follows:
 Apply the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$ by rotating $T$ by $\ell$ units counterclockwise.
-Then find a lamination whose shear coordinates, with respect to the rotated triangulation, are the sum of $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$ and the shear coordinates of $\Lambda$.
-Then $x$ is the negative of the shear coordinates of that lamination with respect to the unrotated triangulation $T$.
+Then find a lamination whose shear coordinates, with respect to the rotated triangulation, are the sum of $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$ and the shear coordinates of $\Lambda$.
+Then $x$ is the negative of the shear coordinates of that lamination with respect to the unrotated triangulation~$T$.
 
 The description above describes ${x=\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}}\bigr)$.
 But it will be convenient to take advantage of the fact that rotation of the $(n+3)$-gon commutes with the other operations that produce a point $x$, and thus construct an $x$ without ever rotating the triangulation.
 
 Thus we construct a point $x$ as follows:
 First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$.
-Then take another lamination $\Theta^{(\ell)}$ whose shear coordinates are the negative of the vector $B\alpha^{(\ell)}$ (rather than $\mu_{\kk^\ell}(B)\alpha^{(\ell)}$).
-The lamination $\Theta^{(\ell)}$ has $n$ curves, namely, for $i=1,\ldots,n$, the curve $\thet_i$ with weight $b_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$, intersecting exactly one arc (the $i\th$ arc) in the rotated triangulation, as exemplified in the right picture of \cref{T fig}.
+Then take another lamination $\Theta^{(\ell)}$ whose shear coordinates are the negative of the vector $B\alpha^{(\ell)}$.
+The lamination $\Theta^{(\ell)}$ has $n$ curves, namely, for $i=1,\ldots,n$, the curve $\thet_i$ with weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$, intersecting exactly one arc (the $i\th$ arc) in the rotated triangulation, as exemplified in the right picture of \cref{T fig}.  
 %\begin{figure}
 %\scalebox{0.83}[1]{\includegraphics{Theta.ps}
 %\begin{picture}(0,0)(93,-73)
@@ -3946,13 +3946,13 @@ The lamination $\Theta^{(\ell)}$ has $n$ curves, namely, for $i=1,\ldots,n$, the
 %\caption{The lamination $\Theta^{(\ell)}$}
 %\label{Theta fig}
 %\end{figure}
-(The curves $\thet_i$ are independent of $\ell$, but the weights $b_i^{(\ell)}$ depend on $\ell$.)
+(The curves $\thet_i$ are independent of $\ell$, but the weights $z_i^{(\ell)}$ depend on~$\ell$.)  \sayN{Maybe say this before giving the weights?}
 Let $X^{(\ell)}$ be the lamination whose shear coordinates with respect to the unrotated~$T$ are the sum of the shear coordinates of $\Lambda^{(\ell)}$ and the shear coordinates of $\Theta^{(\ell)}$.
 (Both $\Theta^{(\ell)}$ and $X^{(\ell)}$ depend on $a_1^{(\ell)},\ldots,a_n^{(\ell)}$, but this dependence is not explicitly in the notation.)
 Rotate $X^{(\ell)}$ counterclockwise $\ell$ units and read shear coordinates with respect to~$T$.
 The negative of these shear coordinates is~$x$.
 
-The set $\set{\thet_1,\ldots,\thet_n}$ of curves that underly the laminations $\Theta^{(\ell)}$ has several remarkable properties that are crucial to the proof.
+The set $\set{\thet_1,\ldots,\thet_n}$ of curves that underly the laminations $\Theta^{(\ell)}$ has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
 \begin{itemize}
@@ -3974,7 +3974,7 @@ For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ uni
 
 We will show that $\alpha^{(0)}=0$, or in other words that $a_1^{(0)}=\cdots=a_n^{(0)}=0$.
 This implies that $x=\lambda$.
-Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $b_i^{(0)}$ is~$0$.
+Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $z_i^{(0)}$ is~$0$.
 We will consider two cases.
 
 \smallskip
@@ -4002,8 +4002,8 @@ The orientation of the arc $t_i\in T$  in its quadrilateral might be the opposit
 \caption{$\thet_i$ coincides with some $L_j$}
 \label{theti fig 1}
 \end{figure}
-The sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$ is $\pm(w_j+b_i^{(0)})$ in position~$t_i$, because the second remarkable property assures that $\thet_i$ and $L_j$ make this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(\ell)}$ contribute to this coordinate.
-Therefore, the second remarkable property says that $X^{(0)}$ has the curve $L_j=\thet_i$ with weight $w_j+b_i^{(0)}$ (or, if $w_j+b_i^{(0)}=0$, $X^{(0)}$ consists of curves that are compatible with $\thet_i$).
+The sum of the shear coordinates of $\Lambda$ and~$\Theta^{(0)}$ is $\pm(w_j+z_i^{(0)})$ in position~$t_i$, because the second remarkable property assures that $\thet_i$ and $L_j$ make this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(\ell)}$ contribute to this coordinate.
+Therefore, the second remarkable property says that $X^{(0)}$ has the curve $L_j=\thet_i$ with weight $w_j+z_i^{(0)}$ (or, if $w_j+z_i^{(0)}=0$, $X^{(0)}$ consists of curves that are compatible with $\thet_i$).
 
 There is a unique curve $L'_j$ that is compatible with every curve in $\Lambda$ except $L_j$. 
 (The situation is analogous to diagonal flips between triangulations.)
@@ -4017,18 +4017,18 @@ By the first remarkable property, there exists $\ell\in\integers$ such that rota
 %\caption{Rotating so that $\L'_j$ coincides with some $\thet_m$}
 %\label{theti fig 2}
 %\end{figure}
-Since every curve in $\Lambda^{(\ell)}$ or $\Theta^{(\ell)}$, besides $\thet_m$ (which equals the rotation of $L'_j$), is compatible with $\thet_m$, the third remarkable property says that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\pm(w_j-b_m^{(\ell)})$ in position~$t_m$, with the sign determined by the orientation of $t_m$ in its quadrilateral.
-But the main observation says that $X^{(\ell)}$ has the rotation of $L_j$ with weight $w_j+b_i^{(0)}$ or consists of curves that are compatible with the rotation of $L_j$.
-Thus the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ has the same sign and absolute value at least $w_j+b_i^{(0)}$ in position $t_m$.
-We conclude that $b_i^{(0)}=b_m^{(\ell)}=0$.
+Since every curve in $\Lambda^{(\ell)}$ or $\Theta^{(\ell)}$, besides the rotation of $L_j$, is compatible with $\thet_m$, the third remarkable property says that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\pm(w_j-z_m^{(\ell)})$ in position~$t_m$, with the sign determined by the orientation of $t_m$ in its quadrilateral.
+But the main observation says that $X^{(\ell)}$ has the rotation of $L_j$ with weight $w_j+z_i^{(0)}$ or consists of curves that are compatible with the rotation of $L_j$.
+Thus the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ has the same sign and absolute value at least $w_j+z_i^{(0)}$ in position $t_m$.
+We conclude that $z_i^{(0)}=z_m^{(\ell)}=0$.
 
 \smallskip
 
 \noindent
 \textit{Claim between cases (Type A).}
-We claim that for each $j=1,\ldots,n$, the lamination $X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$, or, if $w_j=0$ and $X^{(\ell)}$ does not have the curve $L_j$, then $X^{(\ell)}$ consists of curves that are compatible with $L_j$.
+We claim that for each $j=1,\ldots,n$, the lamination $X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$, or, if $w_j=0$ and $X^{(0)}$ does not have the curve $L_j$, then $X^{(0)}$ consists of curves that are compatible with $L_j$.
 The first remarkable property says that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\thet_i$.
-As in Case 1, we see that $X^{(\ell)}$ has the curve~$\thet_i$ with weight $w_j+b_i^{(\ell)}\ge w_j$, or, if not, then $w_j+b_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that are compatible with $\thet_i$.
+As in Case 1, we see that either $X^{(\ell)}$ has the curve~$\thet_i$ with weight $w_j+z_i^{(\ell)}\ge w_j$ or $w_j+z_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that are compatible with $\thet_i$.
 The claim follows from the main observation.
 
 \smallskip
@@ -4047,9 +4047,9 @@ The situation is pictured in \cref{theti fig 3}.
 \caption{Curves in $\Lambda$ are incompatible with $\thet_i$}
 \label{theti fig 3}
 \end{figure}
-The claim implies that each of the curves $L_m$ in $\Lambda$ that are incompatible with $\thet_i$ also appears in~$X^{(0)}$ with weight at least $w_m$ (or is compatible with every curve in $X^{(0)}$).
-The third remarkable property says that each of these curves $L_m$ has shear coordinate strictly disagreeing in sign at position $t_i$ with the shear coordinate of $\thet_i$ and that no other curves besides $\thet_i$ and these $L_m$ contribute to position $t_i$ of the sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$.
-Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is the sum of these weights $w_m$, and thus $b_i^{(\ell)}=0$.
+The claim implies that each of the curves $L_m$ in $\Lambda$ that are incompatible with $\thet_i$ also appears in~$X^{(0)}$ with weight at least $w_m$ (or $L_m$ is compatible with every curve in $X^{(0)}$).
+The third remarkable property says that each of these curves $L_m$ has shear coordinate strictly disagreeing in sign at position~$t_i$ with the shear coordinate of $\thet_i$ and that no other curves besides $\thet_i$ and these $L_m$ contribute to position $t_i$ of the sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$.
+Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is the sum of these weights $w_m$, so $z_i^{(\ell)}=0$.
 
 \medskip
 
@@ -4108,15 +4108,15 @@ The curves of $\Lambda$ are $L_1,L_2,\ldots,L_n$, with weights $w_1,\ldots,w_n$.
 As in type A, we can describe a point $x\in\P^B_{\lambda,\kk^\ell}$ directly using the definition,  % (rotating $T$, constructing the lamination whose shear coordinates are the shear coordinates of $\Lambda$ plus $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$, then rotating $T$ back).
 but here we skip directly to the more convenient description:
 To construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ clockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd to obtain a lamination $\Lambda^{(\ell)}$.
-We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-B\alpha^{(\ell)}$ (rather than $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$).
+We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 
 The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in the right picture of  \cref{d T fig}.
 The curve $\thet_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
 The curve $\thet_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
-The weights on these two curves are $b_1^{(\ell)}=b_2^{(\ell)}=a_3$.
+The weights on these two curves are $z_1^{(\ell)}=z_2^{(\ell)}=a_3$.
 Each remaining curve intersects exactly one arc of $T$.
-The curve $\thet_3$ intersects $t_3$ and has weight $b_3^{(\ell)}=a_1+a_2+a_4$.
-For $i=4,\ldots,n$, the curve $\thet_i$ with weight $b_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
+The curve $\thet_3$ intersects $t_3$ and has weight $z_3^{(\ell)}=a_1+a_2+a_4$.
+For $i=4,\ldots,n$, the curve $\thet_i$ with weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
 %\begin{figure}
 %\scalebox{1}{\includegraphics{Thetad.ps}
 %\begin{picture}(0,0)(82,-86)
