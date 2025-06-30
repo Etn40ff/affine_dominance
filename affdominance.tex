@@ -3908,7 +3908,7 @@ If $\Lambda$ has fewer than $n$ curves, we extend it to a set of $n$ compatible 
 We label these curves in some order as $L_1,L_2,\ldots,L_n$, with weights $w_1,\ldots,w_n$.
 
 
-For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is $\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}\bigr)$, where $\alpha^{(\ell)}$ has nonnegative entries $a_1^{(\ell)},\ldots,a_n^{(\ell)}$.
+For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is $\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}\bigr)$ for some $\alpha^{(\ell)}$ with nonnegative entries $a_1^{(\ell)},\ldots,a_n^{(\ell)}$.
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
 In the $(n+3)$-gon model, a point $x$ is obtained as follows:
 Apply the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$ by rotating $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
@@ -3969,7 +3969,7 @@ They strictly disagree in sign if and only if~$\gamma$ and~$\thet_i$ are not com
 \end{itemize}
 
 Now suppose $x=\lambda+B\alpha^{(0)}$ is in $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
-The fact that $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$ means that $x$ determines a lamination $X^{(\ell)}$, as described above, for all $\ell\in\integers$, and furthermore implies the following fact, which we refer to below as the \newword{main observation}:
+The fact that $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$ means that $x$ determines a lamination $X^{(\ell)}$, as described above, for each $\ell\in\integers$, and furthermore implies the following fact, which we refer to below as the \newword{main observation}:
 For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ units counterclockwise, becomes~$X^{(0)}$.
 
 We will show that $\alpha^{(0)}=0$, or in other words that $a_1^{(0)}=\cdots=a_n^{(0)}=0$.
@@ -4002,7 +4002,7 @@ The orientation of the arc $t_i\in T$  in its quadrilateral might be the opposit
 \caption{$\thet_i$ coincides with some $L_j$}
 \label{theti fig 1}
 \end{figure}
-The sum of the shear coordinates of $\Lambda$ and~$\Theta^{(0)}$ is $\pm(w_j+z_i^{(0)})$ in position~$t_i$, because the second remarkable property assures that $\thet_i$ and $L_j$ make this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(0)}$ contribute to this coordinate.
+The sum of the shear coordinates of $\Lambda$ and~$\Theta^{(0)}$ is $\pm(w_j+z_i^{(0)})$ in position~$t_i$, because the second remarkable property assures that $\thet_i=L_j$ makes this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(0)}$ contribute to this coordinate.
 Therefore, the second remarkable property says that $X^{(0)}$ has the curve $L_j=\thet_i$ with weight $w_j+z_i^{(0)}$ (or, if $w_j+z_i^{(0)}=0$, $X^{(0)}$ consists of curves that are compatible with $\thet_i$).
 
 There is a unique curve $L'_j$ that is compatible with every curve in $\Lambda$ except~$L_j$. 
