@@ -4146,10 +4146,10 @@ The verification is straightforward, using the definitions of compatibility and 
 
 \noindent
 \textbf{Types C and B.} \sayN{I think the folding ideas are of independent interest, so we should give this exposition outside of the proof, maybe in the preliminary sections of the paper.}
-The result in these types follows from the results in types A and~C by folding.
+The result in these types follows from the results in types A and~D by folding.
 We provide details, following the exposition in \cite[Sections~2.3--2.4]{VielThesis}, which cites results from \cite{CaoHuangLi,DemonetThesis,Dupont,NS14}.
-An \newword{admissible automorphism} of an exchange matrix $B$ is a permutation $\sigma$ of the indices of~$B$ such that $b_{ij}=0$ whenever $i$ and $j$ are in the same $\sigma$-orbit and the weak sign of $b_{ij}$ depends only on the $\sigma$-orbits of $i$ and $j$.
-For each index $i$, define $\bar\imath$ to be the $\sigma$-orbit of $i$ and reuse the notation $\bar\imath$ to stand for a word that lists the $\sigma$-orbit of $i$ in any order.
+An \newword{admissible automorphism} of an exchange matrix $B$ is a permutation $\sigma$ of the indices of~$B$ such that $b_{ij}=0$ whenever~$i$ and~$j$ are in the same $\sigma$-orbit and, for $i$ and $j$ in different orbits, the weak sign of $b_{ij}$ depends only on the $\sigma$-orbits of $i$ and $j$.
+For each index $i$, define~$\bar\imath$ to be the $\sigma$-orbit of $i$ and reuse the notation $\bar\imath$ to stand for a word that lists the $\sigma$-orbit of $i$ in any order.
 Given an admissible automorphism, an \newword{orbit sequence} is a sequence $\kk$ of indices of $B$ of the form $\kk=\bar\imath_1\cdots\bar\imath_m$.
 A \newword{stable automorphism} is an admissible automorphism $\sigma$ that is also an admissible automorphism of $\mu_\kk(B)$ for any \emph{orbit sequence}~$\kk$.
 
@@ -4171,21 +4171,23 @@ Then for any orbit sequence $\kk$, the mutation map $\eta^{B^T}_\kk$, defined as
 \end{proposition}
 
 For a vector $\alpha\in(\reals^n)^\sigma$, we say $\alpha\ge0$ to mean that $\alpha$ has nonnegative coordinates in the orbit basis and we interpret the notation $\pi_\sigma(B)\alpha$ as the matrix $\pi_\sigma(B)$ times the column vector of orbit-basis coordinates of $\alpha$.
+We can thus interpret $\pi_\sigma(B)\alpha$ as a vector in $(\reals^n)^\sigma$.
 We observe that when $\sigma$ is a stable automorphism of $B$,
-\[\sett{B\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\reals^n)^\sigma=\sett{\pi_\sigma(B)\alpha:\alpha\in(\reals^n)^*,\alpha\ge0}.\]
-This observation, combined with \cref{VielLemma}, immediately implies the following \lcnamecref{fold dom reg}.
-In the \lcnamecref{fold dom reg}, we interpret $\P_\lambda^{\pi_\sigma(B)}$ as the dominance region of $\lambda$ inside $(\reals^n)^\sigma$ defined in terms of the orbit basis of $(\reals^n)^\sigma$.
+\[\sett{B\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\reals^n)^\sigma=\sett{\pi_\sigma(B)\alpha:\alpha\in(\reals^n)^\sigma,\alpha\ge0}.\]
+This observation, combined with \cref{VielLemma}, immediately implies the following theorem.
+In the theorem, we interpret $\P_\lambda^{\pi_\sigma(B)}$ as the dominance region of $\lambda$ inside $(\reals^n)^\sigma$ defined in terms of the orbit basis of $(\reals^n)^\sigma$.
 \begin{theorem}\label{fold dom reg}
 Suppose $\sigma$ is a stable automorphism of $B$ and $\lambda\in(\reals^n)^\sigma$.
-Then $\P_\lambda^{\pi_\sigma(B)}=\P_\lambda^B\cap(\reals^n)^\sigma$.
-Indeed, $\P_{\lambda,\kk}^{\pi_\sigma(B)}=\P_{\lambda,\kk}^B\cap(\reals^n)^\sigma$ for all orbit sequences~$\kk$.
+Then $\P_{\lambda,\kk}^{\pi_\sigma(B)}=\P_{\lambda,\kk}^B\cap(\reals^n)^\sigma$ for all orbit sequences~$\kk$.
 \end{theorem}
 
-One readily verifies that (as is well known) a bipartite exchange matrix of type $C_n$ is obtained from a bipartite exchange matrix of type $A_{2n-1}$ by folding.
-The stable automorphism has orbits $\set{n}$ and $\set{i,2n-i}$ for $i=1,\ldots,n-1$.
+One readily verifies that (as is well known) a bipartite exchange matrix $B'$ of type~$C_n$ is obtained from a bipartite exchange matrix $B$ of type $A_{2n-1}$ by folding.
+The stable automorphism $\sigma$ has orbits $\set{n}$ and $\set{i,2n-i}$ for $i=1,\ldots,n-1$.
+Since $i$ and $2n-i$ are in the same orbit for all $i=1,\ldots,n-1$, we can write the Coxeter element $c$ in such a way that the sequence of indices associated to $c$ is an orbit sequence, and therefore every sequence appearing in Proposition~\ref{finite P point bip} is an orbit sequence.
 Thus the type-C case of the theorem follows from the type-A case and \cref{fold dom reg}.
+
 Similarly, a bipartite exchange matrix of type $B_n$ is obtained from a bipartite exchange matrix of type $D_{n+1}$ by folding with respect to a stable automorphism whose only nontrivial orbit consists of the two ``antennae'' of the Cartan matrix.
-Thus the type-B case of the theorem similarly follows from the type-D case.
+The two antennae are in the same part of the bipartition, so the type-B case of the theorem similarly follows from the type-D case.
 
 \medskip
 
@@ -4194,7 +4196,7 @@ Thus the type-B case of the theorem similarly follows from the type-D case.
 The remaining finite types are checked computationally.
 A priori, the computation is infinite for each exchange matrix because the \lcnamecref{finite P point bip} must hold for each $\lambda\in\reals^n$, but we reduce it to a finite computation that must be done for one $\lambda$ in the interior of each maximal cone of the mutation fan.
 
-The set $\P^B_{\lambda,\kk}$ can be computed, for each $\kk$ as a union of polyhedra.
+The set $\P^B_{\lambda,\kk}$ can be computed, for each $\kk$ as a union of polyhedra, as follows.
 One computes $\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\ge0}$, a cone at the point $\eta_\kk^{B^T}(\lambda)$, and then applies $\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}$ as a sequence of piecewise linear maps with two domains of linearity.
 At the first step, if the relative interior of the cone $\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\ge0}$ intersects both domains of linearity, the piecewise-linear map breaks the cone into a union of two polyhedra.
 Our computation considers, instead of this union, the smallest cone at the image of $\lambda$ containing the union.
@@ -4202,7 +4204,8 @@ Then at the next step, instead of passing to a union of two polyhedra, we again 
 Continuing in this manner, we obtain a cone $\overline{\P}^B_{\lambda,\kk}$ at $\lambda$.
 
 If $\lambda$ is in the interior of a maximal cone $C$ in the mutation fan, and $\lambda'$ is another vector in $C$, but not necessarily in the interior, we see that $\overline{\P}^B_{\lambda,\kk}$ is at least as big as $(\lambda-\lambda')+\overline{\P}^B_{\lambda',\kk}$.
-(At some step, $\lambda'$ might be on the boundary of the two domains of linearity, and if so, one of the two polyhedra might be smaller than in the construction of $\overline{\P}^B_{\lambda',\kk}$ than the in the translation of the construction of $\overline{\P}^B_{\lambda,\kk}$.)
+(At every step, the cone $C$ is contained in one of the two domains of linearity.
+But at some step, $\lambda'$ might be on the boundary of the two domains of linearity, and if so, one of the two polyhedra might be smaller in the construction of $\overline{\P}^B_{\lambda',\kk}$ than in the translation of the construction of $\overline{\P}^B_{\lambda,\kk}$.)
 Therefore, we need only verify for one $\lambda$ in the interior of each maximal cone of the mutation fan, that $\bigcap_{\ell\in\integers}\overline{\P}^B_{\lambda,\kk^\ell}=\set{\lambda}$.
 Our computation is assisted by the technology of $c$-sortable elements, which index the maximal cones.
 \end{proof}
