@@ -3897,14 +3897,16 @@ One easily verifies that flipping the arcs of $T$ in the order specified by $\kk
 The direction of the rotation depends on the exact choice of~$B$ and will not matter in the argument.
 For definiteness in what follows, we will call that direction ``counterclockwise'', and for convenience, we will refer to this $(n+3)$-fold rotation as a rotation of ``one unit'' counterclockwise.
 
-A lamination consists of a set of \newword{compatible} (meaning noncrossing) curves, each with a real weight and each connecting an edge of the $(n+3)$-gon to a different and non-adjacent edge.
-Maximal sets of such compatible curves have cardinality~$n$.
+A lamination consists of a set of \newword{compatible} (i.e.\ noncrossing) curves each connecting an edge of the $(n+3)$-gon to a different and non-adjacent edge and each with an assigned real weight.
+Any collection of weighted curves joining the edges of the polygon has an associated vector of shear coordinates and there is a unique lamination having the same shear coordinates.
+Maximal sets of compatible curves have cardinality~$n$.
 If a lamination has fewer than $n$ curves, we always extend it to a set of $n$ compatible curves by adjoining additional curves with weight~$0$.
 The way in which this is done will not affect the arguments below.
 Thus the combinatorics of laminations is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
 
 There is a distinguished collection of curves $\set{\thet_1,\ldots,\thet_n}$ which will underlie the laminations we consider.
 Since $B$ is bipartite, each arc $t_i$ lies in a quadrilateral containing exactly two boundary edges and the curve $\thet_i$ connects these two edges as exemplified in the right picture of \cref{T fig}.
+Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\thet_1,\ldots,\thet_n}$.
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
@@ -3912,6 +3914,9 @@ In fact, most of the argument will seem clear without explicit appeals to these 
 \item
 \newword{First remarkable property}:
 Every curve that can appear in a lamination can be rotated to become one of the curves in $\set{\thet_1,\ldots,\thet_n}$.
+\item
+\newword{First remarkable property'}:
+    For any lamination $\Lambda$ and any curve $\thet_i$, we can find a rotation of $\Lambda$ that contains $\thet_i$ or we can find a  rotation of $\Lambda$ so that $\thet_i$ is incompatible with exactly one curve and this curve can be rotated to be some $\thet_{i'}$.
 \item
 \newword{Second remarkable property}:
 The shear coordinates of $\thet_i$ with respect to $T$ is $\varepsilon_i=\pm1$ in position $t_i$ and $0$ elsewhere, where the sign $\varepsilon_i$ is determined by the orientation of $t_i$ in its quadrilateral.
@@ -3929,15 +3934,16 @@ We label the curves of the lamination $\Lambda$ in some order as $L_1,L_2,\ldots
 For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is of the form $\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}\bigr)$ for some $\alpha^{(\ell)}$ with nonnegative entries $a_1^{(\ell)},\ldots,a_n^{(\ell)}$.
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
 In the $(n+3)$-gon model, such a point $x$ is obtained as follows:
-Apply the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$ by rotating $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
-Then find the lamination whose shear coordinates, with respect to the rotated triangulation~$T'$, are the sum of $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$ and the shear coordinates of $\Lambda$ with respect to~$T'$.
+Rotate $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
+Observe that reading the shear coordinates of $\Lambda$ with respect to the rotated triangulation $T'$ is the same as applying the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$.
+Thus we find the lamination whose shear coordinates with respect to $T'$ are the sum of the shear coordinates of $\Lambda$ with respect to~$T'$ and $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 Then $x$ is the negative of the shear coordinates of that lamination with respect to the unrotated triangulation~$T$.
 
 The description above describes ${x=\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}}\bigr)$ directly.
-But it will be convenient to take advantage of the fact that rotation of the $(n+3)$-gon commutes with the other operations that produce a point $x$, and thus construct such an $x\in \P^B_{\lambda,\kk^\ell}$ without ever rotating the triangulation.
+However, it will be convenient to take advantage of the fact that rotations of the $(n+3)$-gon commute with the other operations that produce a point $x$, and thus construct such an $x\in \P^B_{\lambda,\kk^\ell}$ without ever rotating the triangulation.
 This will allow us to make use of the remarkable properties of the collection $\set{\thet_1,\ldots,\thet_n}$.
 
-Thus we construct a point $x\in \P^B_{\lambda,\kk^\ell}$ as follows:
+So instead we construct a point $x\in \P^B_{\lambda,\kk^\ell}$ as follows:
 First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$.
 Then take another lamination $\Theta^{(\ell)}$ whose shear coordinates with respect to~$T$ are~$-B\alpha^{(\ell)}$.
 Namely, $\Theta^{(\ell)}$ consists of the curves $\set{\thet_1,\ldots,\thet_n}$ with $\thet_i$ having weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$. 
@@ -3965,20 +3971,37 @@ Namely, $\Theta^{(\ell)}$ consists of the curves $\set{\thet_1,\ldots,\thet_n}$ 
 %\caption{The lamination $\Theta^{(\ell)}$}
 %\label{Theta fig}
 %\end{figure}
-Let $X^{(\ell)}$ be the lamination whose shear coordinates with respect to~$T$ are the sum of the shear coordinates of~$\Lambda^{(\ell)}$ and the shear coordinates of $\Theta^{(\ell)}$.
+Let $X^{(\ell)}$ be the lamination whose shear coordinates with respect to~$T$ are the same as the shear coordinates of $\Lambda^{(\ell)}\cup\Theta^{(\ell)}$.
 (Both $\Theta^{(\ell)}$ and $X^{(\ell)}$ depend on $a_1^{(\ell)},\ldots,a_n^{(\ell)}$, but this dependence is not explicitly in the notation.)
 Rotate $X^{(\ell)}$ counterclockwise $\ell$ units and read shear coordinates with respect to~$T$.
 The negative of these shear coordinates is~$x$.
 
 Now suppose $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
-Then $x$ determines a lamination $X^{(\ell)}$ for each $\ell\in\integers$.
-By the construction above, for each $\ell$, the vector $x$ is determined by reading the shear coordinates with respect to $T$ of a rotation of $X^{(\ell)}$.
+By the construction above, for each $\ell$, the vector $x$ is determined by reading the shear coordinates with respect to $T$ of a rotation of a lamination $X^{(\ell)}$ as above.
 Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:
-For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ units counterclockwise, becomes~$X^{(0)}$.
+All of the laminations $X^{(\ell)}$ for $\ell\in\integers$ are related by rotations.
 
-We will show that $\alpha^{(0)}=0$, or in other words that $a_1^{(0)}=\cdots=a_n^{(0)}=0$.
+We will show that $\alpha^{(\ell)}=0$ for all $\ell$, or in other words that $a_1^{(\ell)}=\cdots=a_n^{(\ell)}=0$.
 This implies that $x=\lambda$.
-Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $z_i^{(0)}$ is~$0$.
+Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $z_i^{(\ell)}$ is~$0$.
+
+By the first remarkable property, for each $L_m$ there exists an $\ell_m\in\integers$ so that $(L_m)^{(\ell_m)}=\thet_{i_m}$ for some $i_m$.
+Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell_m)}$ is $\varepsilon_{i_m}(w_m+z_{i_m}^{(\ell_m)})$ in position~$t_{i_m}$ because the second remarkable property assures that the rotation of $L_m$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_m)}$ or $\Theta^{(\ell_m)}$ contribute to this coordinate.
+Therefore, $X^{(\ell_m)}$ has the curve $\thet_{i_m}$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
+By the main observation, this implies $X^{(0)}$ has the curve $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
+It follows that $X^{(0)}$ contains the same curves as $\Lambda$.
+
+Let $L'_m$ be the unique curve that is compatible with every curve in $\Lambda$ except~$L_m$.
+By the first remarkable property, there exists $\ell'_m\in\integers$ so that $(L'_m)^{(\ell'_m)}=\thet_{i'_m}$ for some $i'_m$.
+Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides the rotation of $L_m$, is compatible with $\thet_{i'_m}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is ${\ep_{i'_m}(-w_m+z_{i'_m}^{(\ell'_m)})}$.
+But the main observation says that $X^{(\ell'_m)}$ contains the rotation of $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$ and otherwise contains curves that are compatible with the rotation of $L_m$.
+Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is $-\ep_{i'_m}(w_m+z_{i_m}^{(\ell_m)})$.
+Thus $w_m-z_{i'_m}^{(\ell'_m)}=w_m+z_{i_m}^{(\ell_m)}$, and we conclude that $z_{i_m}^{(\ell_m)}=z_{i'_m}^{(\ell'_m)}=0$ since both are nonnegative.
+
+It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
+
+---------------------
+
 We will consider two cases.
 
 \smallskip
