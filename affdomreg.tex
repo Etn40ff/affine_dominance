@@ -1826,7 +1826,7 @@ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order
 \begin{proposition}\label{delta limit eta}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and let $m$ be the least common multiple of the sizes of finite $c$-orbits.
 Suppose $x\in V^*\setminus\d_\infty$.
-Then there exist integers $I_+$ and $I_-$ such that 
+Then there exist integers $I_+$ and $I_-$ such that   \sayN{At the moment, we only use Assertions~\ref{correct side} and~\ref{eta lim} in this paper.  Assertion~\ref{pos a} is currently used to prove Assertion~\ref{eta lim}.  Possibly, we can delete the other two, I may want to keep them if they end up being needed in \{afftheta\}.  But I'll re-evaluate that soon when \{afftheta\} stabilizes.}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{in big dinf}
 $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)\in\set{x\in V^*:\br{x,\beta}<0,\,\forall \beta\in\RSfin\text{ s.t. }\omega_c(\beta,\delta)>0}$ for $i>I_+$ or $i<I_-$.
@@ -1860,6 +1860,7 @@ This is Assertion~\ref{pos a}, and Assertion~\ref{eta lim} follows immediately.
 The proof of Proposition~\ref{eta nice}.\ref{eta is c} in \cite[Proposition~7.31]{affscat} includes checking, for each of the $n$ mutation steps of applying $\eta^{B^T}_{12\cdots n}$ to $\nu_c(\delta)$, which of the cases of the mutation map applies.
 At each step, the condition yields strict inequality (i.e. the vector in question is not on the hyperplane separating the two conditions), so $\nu_c(\delta)$ is in the \emph{interior} of the domain of definition of $\eta^{B^T}_{12\cdots n}$.
 Thus Assertion~\ref{eta lim} implies that for large enough or small enough $i$, the $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$ are in the same domain of definition of $\eta^{B^T}_{12\cdots n}$ and $\eta^{B^T}_{12\cdots n}$agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$.
+This is Assertion~\ref{c agree}.
 
 Lemma~\ref{nu delta} says that $\nu_c(\delta)\in V^*$ is $-\frac12\omega_c(\,\cdot\,,\delta)$, so for any $\beta\in\RS$, the pairing $\br{\nu_c(\delta),\beta}$ is $-\frac12\omega(\beta,\delta)$.
 Thus Assertion~\ref{pos a} implies that for large enough or small enough $i$, we have $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RSfin$ such that $\omega_c(\beta,\delta)>0$.
@@ -1909,11 +1910,12 @@ Write the entries of $\lambda$ as $(\lambda_1,\ldots,\lambda_n)$.
 Since $B_0$ is acyclic and its first row has nonnegative entries, in particular every point in $\P^{B_0}_\lambda$ has first coordinate greater than or equal to $\lambda_1$.
 Also, since $\delta$ has all entries positive and the first row of $B_0$ is nonzero, $B_0\delta$ has first coordinate strictly positive.
 
-In Proposition~\ref{delta limit eta}, we can take $m$ such that $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m$ fixes $\d_\infty$ pointwise (replacing $m$ with the least common multiple of $m$ and the order of $c$ on $\d_\infty$).   \sayN{Confused now... The way we defined $m$ in Proposition~\ref{delta limit eta}, doesn't it already fix $\d_\infty$ pointwise?}
-Since $\mu_{12\cdots n}(B_0)=B_0$, Lemma~\ref{shift}.\ref{shift all} says that $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m(\P_\lambda^{B_0})=P_\lambda^{B_0}$.
+Let $m$ be the order of $\eta^{B_0^T}_{12\cdots n}$ on $\d_\infty$ (see Proposition~\ref{eta nice}.\ref{eta is c}).
+Then $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m$ fixes $\d_\infty$ pointwise.
+Also, $\mu_{12\cdots n}(B_0)=B_0$, so Lemma~\ref{shift}.\ref{shift all} says ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
 
 Now suppose $\P^{B_0}_\lambda$ contains a point $x\not\in\d_\infty$.
-Applying Proposition~\ref{delta limit eta}, we find a sequence of points in $\P^{B_0}_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
+Applying Proposition~\ref{delta limit eta}.\ref{eta lim}, we find a sequence of points in $\P^{B_0}_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
 By Lemma~\ref{nu delta}, and the fact that $B_0\delta$ has first coordinate strictly positive, we conclude that $\P^{B_0}_\lambda$ contains points with first coordinate strictly \emph{negative}.
 This contradiction shows that $\P^{B_0}_\lambda\subseteq\d_\infty$.
 \end{proof}
@@ -1995,7 +1997,7 @@ Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
-Taking $x$ in the interior of $\Cone^{B_0;t_0}_{t'}$, Proposition~\ref{delta limit eta} says that $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$  for large enough~$i$.
+Taking $x$ in the interior of $\Cone^{B_0;t_0}_{t'}$, Proposition~\ref{delta limit eta}.\ref{correct side} says that $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$  for large enough~$i$.
 Thus $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ is in the $c$-Cambrian fan, and so $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i\bigl(\Cone^{B_0;t_0}_{t'}\bigr)$ is a cone $\Cone^{B_0;t_0}_t$ for some seed $t$ associated to a $c$-sortable element $v$.
 The automorphism $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ of $\nu_c(\Fan_c(\RS))$ maps $\Cone^{B_0;t_0}_t$ to $\Cone^{B_0;t_0}_{t'}$.
 The map $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ acts as an initial seed mutation $\mu_{(12\cdots n)^i}$, which fixes $B_0$.
