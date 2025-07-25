@@ -1185,13 +1185,13 @@ Then up to switching the orientation of the plane, $T$ is as exemplified in the 
 \qquad\quad
 \scalebox{0.66}[0.85]{\includegraphics{Theta.ps}
 \begin{picture}(0,0)(93,-73)
-\put(-70,-12){$\thet_1$}
-\put(-53,12){$\thet_2$}
-\put(-23,-31){$\thet_3$}
-\put(-1,22){$\thet_4$}
-\put(31,-25){$\thet_5$}
-\put(49,-37){$\thet_6$}
-\put(56,4){$\thet_7$}
+\put(-70,-12){$\theta_1$}
+\put(-53,12){$\theta_2$}
+\put(-23,-31){$\theta_3$}
+\put(-1,22){$\theta_4$}
+\put(31,-25){$\theta_5$}
+\put(49,-37){$\theta_6$}
+\put(56,4){$\theta_7$}
 \end{picture}}
 \caption{A bipartite triangulation $T$ and the lamination $\Theta^{(\ell)}$}
 \label{T fig}
@@ -1208,59 +1208,68 @@ If a lamination has fewer than $n$ curves, we always extend it to a set of $n$ c
 The way in which this is done will not affect the arguments below.
 Thus the combinatorics of laminations is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
 
-There is a distinguished collection of curves $\set{\thet_1,\ldots,\thet_n}$ which will underlie the laminations we consider.
-Since $B$ is bipartite, each arc $t_i$ lies in a quadrilateral containing exactly two boundary edges and the curve $\thet_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
-Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\thet_1,\ldots,\thet_n}$.
+\sayN{I'm fine with talking about the theta's first, but I don't want to lose sight of why we have them.  What was here gave the impression that we just looked for some curves with remarkable properties.  What's really true is that the definition of the dominance region forces us to look at these curves in the bipartite case, and then they happen to have these remarkable properties that make our proof work.  I tried to rewrite this to make that clear. }
+To compute dominance regions, we need to find, for every vector that is a nonnegative linear combination of the columns of $B$, the lamination whose shear coordinates, with respect to~$T$, are that vector.
+Those laminations all have the same underlying set $\set{\theta_1,\ldots,\theta_n}$ of curves, which we now describe.
+Since $B$ is bipartite, each arc $t_i$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
+\sayN{There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.}
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
 \begin{itemize}
 \item
 \newword{First remarkable property}:
-Every curve that can appear in a lamination can be rotated to become one of the curves in $\set{\thet_1,\ldots,\thet_n}$.
-\item
-\newword{First remarkable property'}:
-    For any lamination $\Lambda$ and any curve $\thet_i$, we can find a rotation of $\Lambda$ that contains $\thet_i$ or we can find a  rotation of $\Lambda$ so that $\thet_i$ is incompatible with exactly one curve and this curve can be rotated to be some $\thet_{i'}$.
+Every curve that can appear in a lamination can be rotated to become one of the curves in $\set{\theta_1,\ldots,\theta_n}$.
+%\item
+%\newword{First remarkable property'}:
+%    For any lamination $\Lambda$ and any curve $\theta_i$, we can find a rotation of $\Lambda$ that contains $\theta_i$ or we can find a  rotation of $\Lambda$ so that $\theta_i$ is incompatible with exactly one curve and this curve can be rotated to be some $\theta_{i'}$.
 \item
 \newword{Second remarkable property}:
-The shear coordinates of $\thet_i$ with respect to $T$ is $\varepsilon_i=\pm1$ in position $t_i$ and $0$ elsewhere, where the sign $\varepsilon_i$ is determined by the orientation of $t_i$ in its quadrilateral.
+The shear coordinates of $\theta_i$ with respect to~$T$ is $\ep_i=\pm1$ in position $t_i$ and $0$ elsewhere, where the sign $\ep_i$ is determined by the orientation of $t_i$ in its quadrilateral.
 \item
 \newword{Third remarkable property}:
-Any curve $\gamma\neq\thet_i$ that can appear in a lamination with $\thet_i$ has the property that the shear coordinates of $\gamma$ and $\thet_i$ weakly disagree in sign in position $t_i$.
-They strictly disagree in sign if and only if~$\gamma$ and~$\thet_i$ are not compatible.
+Any curve $\gamma\neq\theta_i$ that can appear in a lamination \sayN{Removed ``with $\theta_i$'' here.  It makes the remarkable property too weak to be useful.  The property is true for any curve that can appear in any lamination, and that's what makes the property powerful. }
+has the property that the shear coordinates of $\gamma$ and $\theta_i$ weakly disagree in sign in position $t_i$.
+They strictly disagree in sign if and only if~$\gamma$ and~$\theta_i$ are not compatible.
 \end{itemize}
+What is remarkable about these properties is not that we were able to find a set of curves with these properties, but rather that the laminations that we are forced to consider consist of a set of curves with these properties.
 
 In order to compute $\P^B_\lambda$, we consider the weighted lamination $\Lambda$ such that $\lambda$ is the negation of the shear coordinates of $\Lambda$ with respect to the triangulation~$T$.
-This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by reading the negative shear coordinates of $\Lambda$ with respect to a rotation of $T$, specifically from flipping the arcs of $T$ in the order specified by $\kk^\ell$.
+\sayN{Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.}
+We can compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by reading the negative shear coordinates of $\Lambda$ with respect to a rotation of $T$, specifically the rotation $\ell$ units counterclockwise that corresponds to flipping the arcs of $T$ in the order specified by $\kk^\ell$.
 (See \cite[Theorem~12.6]{cats2}, \cite[Theorem~4.3]{unisurface}, and \cite[Section~5]{unisurface}.)
+\marginN{Added the following.  We need it because later we're going to ask for $L'_m$ to be the unique curve $\neq L_m$ that is compatible with the others.  Without extending, we don't get uniqueness.}
+If $\Lambda$ is supported on fewer than $n$ curves, we extend it by adjoining compatible curves with weight~$0$.
+(There may be more than one way to do this, but we fix some choice.)
 We label the curves of the lamination $\Lambda$ in some order as $L_1,L_2,\ldots,L_n$ with weights $w_1,\ldots,w_n$ respectively.
 
 For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is of the form $\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}\bigr)$ for some $\alpha^{(\ell)}$ with nonnegative entries $a_1^{(\ell)},\ldots,a_n^{(\ell)}$.
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
 In the $(n+3)$-gon model, such a point $x$ is obtained as follows:
 Rotate $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
-Observe that reading the shear coordinates of $\Lambda$ with respect to the rotated triangulation $T'$ is the same as applying the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$.
+\sayN{Removed ``Observe that'' because we already said it in the previous paragraph, and it's not an observation, it's a result that we have to quote.''}
+Reading the shear coordinates of $\Lambda$ with respect to the rotated triangulation $T'$ is the same as applying the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$.
 Thus we find the lamination whose shear coordinates with respect to $T'$ are the sum of the shear coordinates of $\Lambda$ with respect to~$T'$ and $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 Then $x$ is the negative of the shear coordinates of that lamination with respect to the unrotated triangulation~$T$.
 
 The description above describes ${x=\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}}\bigr)$ directly.
 However, it will be convenient to take advantage of the fact that rotations of the $(n+3)$-gon commute with the other operations that produce a point $x$, and thus construct such an $x\in \P^B_{\lambda,\kk^\ell}$ without ever rotating the triangulation.
-This will allow us to make use of the remarkable properties of the collection $\set{\thet_1,\ldots,\thet_n}$.
+This will allow us to make use of the remarkable properties of the collection $\set{\theta_1,\ldots,\theta_n}$.
 
 So instead we construct a point $x\in \P^B_{\lambda,\kk^\ell}$ as follows:
 First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$.
-Then take another lamination $\Theta^{(\ell)}$ whose shear coordinates with respect to~$T$ are~$-B\alpha^{(\ell)}$.
-Namely, $\Theta^{(\ell)}$ consists of the curves $\set{\thet_1,\ldots,\thet_n}$ with $\thet_i$ having weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$. 
+Then find the unique lamination $\Theta^{(\ell)}$ whose shear coordinates with respect to~$T$ are~$-B\alpha^{(\ell)}$.
+Crucially, $\Theta^{(\ell)}$ consists of the curves $\set{\theta_1,\ldots,\theta_n}$ with $\theta_i$ having weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$. 
 %\begin{figure}
 %\scalebox{0.83}[1]{\includegraphics{Theta.ps}
 %\begin{picture}(0,0)(93,-73)
-%\put(-70,-12){$\thet_1$}
-%\put(-53,12){$\thet_2$}
-%\put(-23,-31){$\thet_3$}
-%\put(-1,22){$\thet_4$}
-%\put(31,-25){$\thet_5$}
-%\put(49,-37){$\thet_6$}
-%\put(56,4){$\thet_7$}
+%\put(-70,-12){$\theta_1$}
+%\put(-53,12){$\theta_2$}
+%\put(-23,-31){$\theta_3$}
+%\put(-1,22){$\theta_4$}
+%\put(31,-25){$\theta_5$}
+%\put(49,-37){$\theta_6$}
+%\put(56,4){$\theta_7$}
 %\end{picture}}
 %%\scalebox{1}{\includegraphics{Theta.ps}}
 %%\begin{picture}(0,0)(113,-83)
@@ -1281,106 +1290,111 @@ Rotate $X^{(\ell)}$ counterclockwise $\ell$ units and read shear coordinates wit
 The negative of these shear coordinates is~$x$.
 
 Now suppose $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
-By the construction above, for each $\ell$, the vector $x$ is determined by reading the shear coordinates with respect to $T$ of a rotation of a lamination $X^{(\ell)}$ as above.
-Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:
+By the construction above, for each $\ell$, the vector~$x$ is the shear coordinates with respect to $T$ of a rotation of a lamination $X^{(\ell)}$ as above.
+Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:  \sayN{I wanted to make the following sentence more precise by saying what the rotation is.  So I added the ``specifically'' sentence.}
 All of the laminations $X^{(\ell)}$ for $\ell\in\integers$ are related by rotations.
+Specifically, $X^{(\ell)}$ is obtained by rotating $X^{(0)}$ clockwise $\ell$ units.
 
 We will show that $\alpha^{(\ell)}=0$ for all $\ell$, or in other words that $a_1^{(\ell)}=\cdots=a_n^{(\ell)}=0$.
-This implies that $x=\lambda$.
+%This implies that $x=\lambda$.
 Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $z_i^{(\ell)}$ is~$0$.
 
-By the first remarkable property, for each $L_m$ there exists an $\ell_m\in\integers$ so that $(L_m)^{(\ell_m)}=\thet_{i_m}$ for some $i_m$.
-Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell_m)}$ is $\varepsilon_{i_m}(w_m+z_{i_m}^{(\ell_m)})$ in position~$t_{i_m}$ because the second remarkable property assures that the rotation of $L_m$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_m)}$ or $\Theta^{(\ell_m)}$ contribute to this coordinate.
-Therefore, $X^{(\ell_m)}$ has the curve $\thet_{i_m}$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
+By the first remarkable property, for each $L_m$ there exists an $\ell_m\in\integers$ so that $(L_m)^{(\ell_m)}=\theta_{i_m}$ for some $i_m$.
+Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell_m)}$ is $\ep_{i_m}(w_m+z_{i_m}^{(\ell_m)})$ in position~$t_{i_m}$ because the second remarkable property assures that the rotation of $L_m$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_m)}$ or $\Theta^{(\ell_m)}$ contribute to this coordinate.
+Therefore, $X^{(\ell_m)}$ has the curve $\theta_{i_m}$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
+\sayN{Added the following. $X^{(\ell_m)}$ might *not* have $\theta_{i_m}$, and we need to be clear about what happens in that case.}
+(Or, if ${w_m+z_{i_m}^{(\ell_m)}=0}$, then $X^{(\ell_m)}$ consists of curves that are compatible with $\theta_{i_m}$.)
 By the main observation, this implies $X^{(0)}$ has the curve $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
-It follows that $X^{(0)}$ contains the same curves as $\Lambda$.
+It follows that $X^{(0)}$ contains the same curves as $\Lambda$ \sayN{Also added the following for the same reason.}
+(after possibly adjoining some curves with weight $0$ that are compatible with the curves in $X^{(0)}$).
 
 Let $L'_m$ be the unique curve that is compatible with every curve in $\Lambda$ except~$L_m$.
-By the first remarkable property, there exists $\ell'_m\in\integers$ so that $(L'_m)^{(\ell'_m)}=\thet_{i'_m}$ for some $i'_m$.
-Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides the rotation of $L_m$, is compatible with $\thet_{i'_m}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is ${\ep_{i'_m}(-w_m+z_{i'_m}^{(\ell'_m)})}$.
+By the first remarkable property, there exists $\ell'_m\in\integers$ so that $(L'_m)^{(\ell'_m)}=\theta_{i'_m}$ for some $i'_m$.
+Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides the rotation of $L_m$, is compatible with $\theta_{i'_m}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is ${\ep_{i'_m}(-w_m+z_{i'_m}^{(\ell'_m)})}$.
 But the main observation says that $X^{(\ell'_m)}$ contains the rotation of $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$ and otherwise contains curves that are compatible with the rotation of $L_m$.
 Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is $-\ep_{i'_m}(w_m+z_{i_m}^{(\ell_m)})$.
-Thus $w_m-z_{i'_m}^{(\ell'_m)}=w_m+z_{i_m}^{(\ell_m)}$, and we conclude that $z_{i_m}^{(\ell_m)}=z_{i'_m}^{(\ell'_m)}=0$ since both are nonnegative.
+Therefore $w_m-z_{i'_m}^{(\ell'_m)}=w_m+z_{i_m}^{(\ell_m)}$, and we conclude that $z_{i_m}^{(\ell_m)}=z_{i'_m}^{(\ell'_m)}=0$ since both are nonnegative.
+\sayN{I like this "caseless" way of saying things.  Thanks.}
 
 It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
 
----------------------
-
-We will consider two cases.
-
-\smallskip
-
-\noindent
-\textit{Case 1 (Type A).}  
-The curve $\thet_i$ coincides with a curve $L_j\in\Lambda$.
-This case is represented in the left picture of Figure~\ref{theti fig 1}.
-(The meaning of the dotted curve marked~$L'_j$ is explained below.
-The orientation of the arc $t_i\in T$  in its quadrilateral might be the opposite of what is pictured.)
-\begin{figure}
-\scalebox{0.85}{\includegraphics{theti1.ps}
-\begin{picture}(0,0)(73,-73)
-\put(-16,-17){$\thet_i$}
-\put(0,25){$L_j$}
-\put(25,-13){$L'_j$}
-\put(10,-38){$t_i$}
-\end{picture}}
-\qquad\quad
-\scalebox{0.85}{\includegraphics{theti2.ps}
-\begin{picture}(0,0)(73,-73)
-\put(-3,22){$\thet_{\!m}$}
-\put(7.5,-20){$t_{\!m}$}
-\end{picture}}
-\caption{$\thet_i$ coincides with some $L_j$}
-\label{theti fig 1}
-\end{figure}
-The sum of the shear coordinates of $\Lambda$ and~$\Theta^{(0)}$ is $\varepsilon_0(w_j+z_i^{(0)})$ in position~$t_i$ for $\varepsilon_0\in\{\pm1\}$, because the second remarkable property assures that $\thet_i=L_j$ makes this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(0)}$ contribute to this coordinate.
-Therefore, $X^{(0)}$ has the curve $L_j=\thet_i$ with weight $w_j+z_i^{(0)}$.
-
-There is a unique curve $L'_j$ that is compatible with every curve in $\Lambda$ except~$L_j$. 
-(The situation is analogous to diagonal flips between triangulations.)
-By the first remarkable property, there exists $\ell\in\integers$ such that rotating $L'_j$ by $\ell$ units gives a curve~$\thet_m$, as exemplified in the right picture of Figure~\ref{theti fig 1}.
+%---------------------
+%
+%We will consider two cases.
+%
+%\smallskip
+%
+%\noindent
+%\textit{Case 1 (Type A).}  
+%The curve $\theta_i$ coincides with a curve $L_j\in\Lambda$.
+%This case is represented in the left picture of Figure~\ref{theti fig 1}.
+%(The meaning of the dotted curve marked~$L'_j$ is explained below.
+%The orientation of the arc $t_i\in T$  in its quadrilateral might be the opposite of what is pictured.)
 %\begin{figure}
-%\scalebox{1}{\includegraphics{theti2.ps}
+%\scalebox{0.85}{\includegraphics{theti1.ps}
 %\begin{picture}(0,0)(73,-73)
-%\put(2,25){$\thet_m$}
-%\put(32,-33){$t_m$}
+%\put(-16,-17){$\theta_i$}
+%\put(0,25){$L_j$}
+%\put(25,-13){$L'_j$}
+%\put(10,-38){$t_i$}
 %\end{picture}}
-%\caption{Rotating so that $\L'_j$ coincides with some $\thet_m$}
-%\label{theti fig 2}
+%\qquad\quad
+%\scalebox{0.85}{\includegraphics{theti2.ps}
+%\begin{picture}(0,0)(73,-73)
+%\put(-3,22){$\theta_{\!m}$}
+%\put(7.5,-20){$t_{\!m}$}
+%\end{picture}}
+%\caption{$\theta_i$ coincides with some $L_j$}
+%\label{theti fig 1}
 %\end{figure}
-Since every curve in $\Lambda^{(\ell)}$ or $\Theta^{(\ell)}$, besides the rotation of $L_j$, is compatible with $\thet_m$, the third remarkable property says that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is ${\ep(w_j-z_m^{(\ell)})}$ in position~$t_m$, with the sign $\ep\in\set{\pm1}$ determined by the orientation of $t_m$ in its quadrilateral.
-But the main observation says that $X^{(\ell)}$ either (1) contains the rotation of $L_j$ with weight $w_j+z_i^{(0)}$ and then contains curves that are compatible with the rotation of $L_j$ or (2) does not contain the rotation of $L_j$ and consists of curves that are compatible with the rotation of $L_j$.
-Thus, by the third remarkable property, the sum of the shear coordinates of~$\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\ep(w_j+z_i^{(0)})$ in position~$t_m$ for the same~$\ep$.
-Thus $w_j-z_m^{(\ell)}=w_j+z_i^{(0)}$, and we conclude that $z_i^{(0)}=z_m^{(\ell)}=0$.
-
-\smallskip
-
-\noindent
-\textit{Claim between cases (Type A).}
-We claim that for each $j=1,\ldots,n$, the lamination~$X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$, or, if $w_j=0$ and $X^{(0)}$ does not have the curve $L_j$, then $X^{(0)}$ consists of curves that are compatible with $L_j$.
-The first remarkable property says that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\thet_i$.
-As in Case 1, we see that either $X^{(\ell)}$ has the curve~$\thet_i$ with weight $w_j+z_i^{(\ell)}\ge w_j$ or $w_j+z_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that are compatible with $\thet_i$.
-The claim follows from the main observation.
-
-\smallskip
-
-\noindent
-\textit{Case 2 (Type A).}
-The curve $\thet_i$ does not coincide with any curve $L_j\in\Lambda$.
-Since $\Lambda$ is maximal, there are curves in $\Lambda$ that are not compatible with $\thet_i$.
-The situation is pictured in Figure~\ref{theti fig 3}.
-\begin{figure}
-\scalebox{0.85}{\includegraphics{theti3.ps}}
-\begin{picture}(0,0)(73,-73)
-\put(-3,-33){$\thet_i$}
-\put(15,-30){$t_i$}
-\end{picture}
-\caption{Curves in $\Lambda$ are incompatible with $\thet_i$}
-\label{theti fig 3}
-\end{figure}
-The claim implies that each of the curves $L_m$ in $\Lambda$ that are incompatible with $\thet_i$ also appears in~$X^{(0)}$ with weight at least $w_m$ (or $L_m$ is compatible with every curve in $X^{(0)}$).
-The third remarkable property says that each of these curves $L_m$ has shear coordinate strictly disagreeing in sign at position~$t_i$ with the shear coordinate of $\thet_i$ and that no other curves besides $\thet_i$ and these $L_m$ contribute to position $t_i$ of the sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$.
-Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is the sum of these weights $w_m$, so $z_i^{(\ell)}=0$.
+%The sum of the shear coordinates of $\Lambda$ and~$\Theta^{(0)}$ is $\ep_0(w_j+z_i^{(0)})$ in position~$t_i$ for $\ep_0\in\{\pm1\}$, because the second remarkable property assures that $\theta_i=L_j$ makes this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(0)}$ contribute to this coordinate.
+%Therefore, $X^{(0)}$ has the curve $L_j=\theta_i$ with weight $w_j+z_i^{(0)}$.
+%
+%There is a unique curve $L'_j$ that is compatible with every curve in $\Lambda$ except~$L_j$. 
+%(The situation is analogous to diagonal flips between triangulations.)
+%By the first remarkable property, there exists $\ell\in\integers$ such that rotating $L'_j$ by $\ell$ units gives a curve~$\theta_m$, as exemplified in the right picture of Figure~\ref{theti fig 1}.
+%%\begin{figure}
+%%\scalebox{1}{\includegraphics{theti2.ps}
+%%\begin{picture}(0,0)(73,-73)
+%%\put(2,25){$\theta_m$}
+%%\put(32,-33){$t_m$}
+%%\end{picture}}
+%%\caption{Rotating so that $\L'_j$ coincides with some $\theta_m$}
+%%\label{theti fig 2}
+%%\end{figure}
+%Since every curve in $\Lambda^{(\ell)}$ or $\Theta^{(\ell)}$, besides the rotation of $L_j$, is compatible with $\theta_m$, the third remarkable property says that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is ${\ep(w_j-z_m^{(\ell)})}$ in position~$t_m$, with the sign $\ep\in\set{\pm1}$ determined by the orientation of $t_m$ in its quadrilateral.
+%But the main observation says that $X^{(\ell)}$ either (1) contains the rotation of $L_j$ with weight $w_j+z_i^{(0)}$ and then contains curves that are compatible with the rotation of $L_j$ or (2) does not contain the rotation of $L_j$ and consists of curves that are compatible with the rotation of $L_j$.
+%Thus, by the third remarkable property, the sum of the shear coordinates of~$\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\ep(w_j+z_i^{(0)})$ in position~$t_m$ for the same~$\ep$.
+%Thus $w_j-z_m^{(\ell)}=w_j+z_i^{(0)}$, and we conclude that $z_i^{(0)}=z_m^{(\ell)}=0$.
+%
+%\smallskip
+%
+%\noindent
+%\textit{Claim between cases (Type A).}
+%We claim that for each $j=1,\ldots,n$, the lamination~$X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$, or, if $w_j=0$ and $X^{(0)}$ does not have the curve $L_j$, then $X^{(0)}$ consists of curves that are compatible with $L_j$.
+%The first remarkable property says that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\theta_i$.
+%As in Case 1, we see that either $X^{(\ell)}$ has the curve~$\theta_i$ with weight $w_j+z_i^{(\ell)}\ge w_j$ or $w_j+z_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that are compatible with $\theta_i$.
+%The claim follows from the main observation.
+%
+%\smallskip
+%
+%\noindent
+%\textit{Case 2 (Type A).}
+%The curve $\theta_i$ does not coincide with any curve $L_j\in\Lambda$.
+%Since $\Lambda$ is maximal, there are curves in $\Lambda$ that are not compatible with $\theta_i$.
+%The situation is pictured in Figure~\ref{theti fig 3}.
+%\begin{figure}
+%\scalebox{0.85}{\includegraphics{theti3.ps}}
+%\begin{picture}(0,0)(73,-73)
+%\put(-3,-33){$\theta_i$}
+%\put(15,-30){$t_i$}
+%\end{picture}
+%\caption{Curves in $\Lambda$ are incompatible with $\theta_i$}
+%\label{theti fig 3}
+%\end{figure}
+%The claim implies that each of the curves $L_m$ in $\Lambda$ that are incompatible with $\theta_i$ also appears in~$X^{(0)}$ with weight at least $w_m$ (or $L_m$ is compatible with every curve in $X^{(0)}$).
+%The third remarkable property says that each of these curves $L_m$ has shear coordinate strictly disagreeing in sign at position~$t_i$ with the shear coordinate of $\theta_i$ and that no other curves besides $\theta_i$ and these $L_m$ contribute to position $t_i$ of the sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$.
+%Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is the sum of these weights $w_m$, so $z_i^{(\ell)}=0$.
 
 \medskip
 
@@ -1403,13 +1417,13 @@ Let~$T$ be a tagged triangulation of the once-punctured regular $n$-gon whose si
 \qquad
 \scalebox{0.85}{\includegraphics{Thetad.ps}
 \begin{picture}(0,0)(82,-86)
-\put(-40,-15.5){$\thet_1$}
-\put(-64,22){$\thet_2$}
-\put(-68,-35){$\thet_3$}
-\put(-27.5,61){$\thet_4$}
-\put(0,68){$\thet_5$}
-\put(34,45){$\thet_6$}
-\put(57.5,-35){$\thet_7$}
+\put(-40,-15.5){$\theta_1$}
+\put(-64,22){$\theta_2$}
+\put(-68,-35){$\theta_3$}
+\put(-27.5,61){$\theta_4$}
+\put(0,68){$\theta_5$}
+\put(34,45){$\theta_6$}
+\put(57.5,-35){$\theta_7$}
 \end{picture}}
 \caption{A bipartite tagged triangulation $T$ and lamination~$\Theta^{(\ell)}$}
 \label{d T fig}
@@ -1418,7 +1432,7 @@ The arcs of $T$ are $t_1,\ldots,t_n$.
 The mutation $\mu_\kk$ on $B$ corresponds to an $n$-fold rotation (rotation by ``one unit'') of~$T$ in a direction that we will call ``counterclockwise'', together with swapping which arc is notched at the puncture.
 
 Let $\Lambda$ be the weighted quasi-lamination such that $\lambda$ is the negation of the shear coordinates of $\Lambda$.
-Quasi-laminations are a variant of laminations with the property that the curves allowed in quasi-laminations are in bijections with the tagged arcs.
+Quasi-laminations are a variant of laminations with the property that the curves allowed in quasi-laminations are in bijection with the tagged arcs.
 (See \cite[Section~4]{unisurface}.)
 A quasi-lamination $\Lambda$ in the once-punctured $n$-gon is a pairwise compatible set of curves, each with a real weight.
 Some of the curves connect an edge of the $n$-gon to \emph{different} edge.
@@ -1429,8 +1443,8 @@ First, a curve with both endpoints on the same edge of the $n$-gon, going around
 Second, while the notion of compatibility is ``non-intersecting'' for most pairs of curves, there is one exception:  
 For each side, the two curves starting on that side and spiraling around the puncture in opposite directions \emph{are} compatible, even though they intersect.
 
-The key properties of laminations also hold for quasi-laminations, specifically the bijection (shear coordinates) between quasi-laminations and vectors \cite[Theorem~4.4]{unisurface} and the fact that applying $\eta^{B^T}$ to vectors corresponds to mutating the initial triangulation \cite[Theorem~4.3]{unisurface}.
-In particular, the negative of the shear coordinate vector of $\Lambda$ with respect to a rotation of $T$ (with taggings swapped for a rotation of an odd number of units) is $\eta^{B^T}_{\kk^\ell}(\lambda)$ for an appropriate~$\ell$.
+The key properties of laminations also hold for quasi-laminations, specifically the bijection (shear coordinates) between quasi-laminations and vectors \cite[Theorem~4.4]{unisurface} and the fact that applying $\eta^{B^T}$ to vectors corresponds to flipping a sequence of tagged arcs in the initial triangulation \cite[Theorem~4.3]{unisurface}.
+In particular, the negative of the shear coordinate vector of $\Lambda$ with respect to a rotation of $T$ by $\ell$ units, with taggings swapped when $\ell$ is odd, is $\eta^{B^T}_{\kk^\ell}(\lambda)$.
 
 Maximal sets of pairwise compatible curves, in the sense of quasi-laminations, have cardinality $n$, and behave combinatorially like tagged triangulations of the punctured $n$-gon.
 If $\Lambda$ has fewer than $n$ curves, we extend it to a maximal set of compatible curves by adjoining curves with weight~$0$.
@@ -1442,22 +1456,22 @@ To construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ cl
 We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 
 The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in the right picture of  Figure~\ref{d T fig}.
-The curve $\thet_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
-The curve $\thet_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
+The curve $\theta_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
+The curve $\theta_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
 The weights on these two curves are $z_1^{(\ell)}=z_2^{(\ell)}=a_3$.
 Each remaining curve intersects exactly one arc of $T$.
-The curve $\thet_3$ intersects $t_3$ and has weight $z_3^{(\ell)}=a_1+a_2+a_4$.
-For $i=4,\ldots,n$, the curve $\thet_i$ with weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
+The curve $\theta_3$ intersects $t_3$ and has weight $z_3^{(\ell)}=a_1+a_2+a_4$.
+For $i=4,\ldots,n$, the curve $\theta_i$ with weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
 %\begin{figure}
 %\scalebox{1}{\includegraphics{Thetad.ps}
 %\begin{picture}(0,0)(82,-86)
-%\put(-40,-15.5){$\thet_1$}
-%\put(-64,22){$\thet_2$}
-%\put(-68,-35){$\thet_3$}
-%\put(-27.5,61){$\thet_4$}
-%\put(0,68){$\thet_5$}
-%\put(34,45){$\thet_6$}
-%\put(57.5,-35){$\thet_7$}
+%\put(-40,-15.5){$\theta_1$}
+%\put(-64,22){$\theta_2$}
+%\put(-68,-35){$\theta_3$}
+%\put(-27.5,61){$\theta_4$}
+%\put(0,68){$\theta_5$}
+%\put(34,45){$\theta_6$}
+%\put(57.5,-35){$\theta_7$}
 %\end{picture}}
 %\caption{The lamination $\Theta^{(\ell)}$ in type D}
 %\label{d Theta fig}
@@ -1467,10 +1481,10 @@ The vector $x$ is obtained by rotating $X^{(\ell)}$ counterclockwise $\ell$ unit
 
 Suppose $x=\lambda+B\alpha^{(0)}$ is in $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$, so that $x$ determines a lamination $X^{(\ell)}$ for all $\ell\in\integers$.
 As in type A, we have the \newword{main observation}:
-For any $\ell\in\integers$, the lamination $X^{(\ell)}$, when rotated $\ell$ units counterclockwise (swapping spiral directions if $\ell$ is odd), becomes~$X^{(0)}$.
+For any $\ell\in\integers$, the lamination $X^{(\ell)}$ is obtained by rotating~$X^{(0)}$ by clockwise $\ell$ units, swapping spiral directions if $\ell$ is odd.
 
-The crux of the proof is that the curves $\set{\thet_1,\ldots,\thet_n}$ have the three \newword{remarkable properties} described in the type-A case, substituting ``rotations that appropriately swap spirals'' for ``rotations'' and ``quasi-laminations'' for ``laminations''.
-When this is verified, the proof is then completed precisely as in the type-A case, with the same substitutions.
+The crux of the proof is that the curves $\set{\theta_1,\ldots,\theta_n}$ have the three \newword{remarkable properties} described in the type-A case, substituting ``rotations that appropriately swap spirals'' for ``rotations'' and ``quasi-laminations'' for ``laminations''.
+When the three properties are verified, the proof is then completed precisely as in the type-A case, with the same substitutions.
 The verification is straightforward, using the definitions of compatibility and shear coordinates, and we omit the details.
 
 \medskip
@@ -3897,7 +3911,7 @@ It is immediate that $\set{\lambda}\subseteq\IP^\tB_\lambda\subseteq\P^\tB_\lamb
 Thus in particular, Theorem~\ref{affine P point indep} is true with $\IP_\lambda^\tB$ replacing $\P_\lambda^\tB$.
 The following is the integral version of Theorem~\ref{affine main extended}.
 
-\begin{theorem}\label{affine main integral}
+\begin{theorem}\label{affine main integral}  \marginN{Right now, this result is not mentioned anywhere else in the paper.  We should figure out where to mention it.}
 Suppose $\tB$ is an $m\times n$ extended exchange matrix such that $B$ is of affine type.
 If $\lambda\in\integers^m$ is in the relative interior of the imaginary wall~$\d^\tB_\infty$, then the integral dominance region $\IP^\tB_\lambda$ is $\set{\lambda+a\tB\delta^B:a\ge0\in\integers}\cap\d^\tB_\infty$, consisting of every other integer point in the line segment $\P^\tB_\lambda$, starting with $\lambda$.
 \end{theorem}
@@ -3918,60 +3932,59 @@ The fact about every other integer point follows by Proposition~\ref{delta is th
 
 
 
-\marginN{Right now, this result is not mentioned anywhere else in the paper.  We should figure out where to mention it.}
 
 
-
-\section{Stuff we might not need}
-
-Thinking quickly, one might guess that if an exchange matrix $B$ is salient, then every extension $\tB$ of $B$ is also salient.
-This is not true, but the failure of this implication does place some constraints on $B$.
-
-\begin{lemma}\label{extend salient}
-If $B$ is a salient exchange matrix and $\tB$ is an extension of $B$ that is not salient, then the kernel of $B$ contains two independent vectors, each with nonnegative entries.
-\end{lemma}
-\begin{proof}
-Suppose $B$ is salient and suppose $x$ and $-x$ are nonzero elements of the nonnegative span of the columns of $\tB$.
-Then $\Proj_n(x)$ and $\Proj_n(-x)$ are elements of the nonnegative span of the columns of $B$.
-These are therefore both zero, because $B$ is salient.
-Thus $x=\tB y$ for some nonzero $y\in\ker B$ with nonnegative entries and $-x=\tB z$ for some nonzero $z\in\ker B$ with nonnegative entries.
-Since both $y$ and $z$ are nonzero and have nonnegative entries, if they are linearly dependent, then they are related by a positive scaling, contradicting the fact that $x=\tB y\neq0$ and $-x=\tB z\neq0$.
-Thus $y$ and $z$ are linearly independent.
-\end{proof}
-
-\begin{lemma}\label{bip sal ext}
-(If we use this, remember we already have Lemma~\ref{bip sal}.)
-Suppose $B$ is a bipartite exchange matrix.
-Then $B$ is salient.
-Furthermore, if $B$ has at most one column that is zero, any extension $\tB$ of $B$ is also salient.
-If $B$ has more than one zero column, then any extension $\tB$ of $B$ is mutation-equivalent to a salient exchange matrix.
-\end{lemma}
-\begin{proof}
-Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions~$N$ has strictly positive dot product with every nonzero column of $B$.
-Thus $B$ is salient.
-
-Suppose $y$ is an element of the kernel of $B$ with nonnegative entries.
-The fact that $B$ is bipartite means that every row of $B$ has either nonnegative entries (if the index of the row is in~$P$) or nonpositive entries (if the index of the row is in~$N$).
-Positions where the row is nonzero thus specify positions that must be zero in~$y$.
-If $B$ has at most one zero column, then $y$ is zero in every position except in that column (if it exists).
-Now Lemma~\ref{extend salient} implies that any extension $\tB$ is salient.
-
-Now suppose $B$ has two or more zero columns.
-As in the proof of Lemma~\ref{extend salient}, if nonzero vectors $x$ and $-x$ are both in the nonnegative span of the columns of $\tB$, then $x$ is $\tB y$ for $y\in\ker B$ with nonnegative entries.
-As in the previous paragraph, a nonnegative vector~$y$ is in $\ker B$ if and only if it has nonzero entries only where~$B$ has zero columns.
-For brevity, we will say ``zero columns of~$\tB$'' for the columns of~$\tB$ that are zero in their top $n$ entries. 
-We will perform a sequence of mutations in the positions of zero columns so that the nonnegative linear span of the zero columns does not contain a line.
-Since mutating in the position of a zero column does nothing but negate that zero column, we have a finite collection of vectors, and we want to negate a subset of them so that their nonnegative linear span contains no line.
-Taking $x$ to be any vector whose dot product is nonzero with each vector in the collection, we negate vectors in the collection so that all dot products with $x$ are positive.
-\end{proof}
-
-\begin{example}\label{0000 bad}
-The finite-type exchange matrix $B=\begin{bsmallmatrix}0&0\\0&0\end{bsmallmatrix}$ is salient, but the extended exchange matrix $\tB=\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}$ is not, because $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}1\\0\end{bsmallmatrix}=\begin{bsmallmatrix}0\\0\\1\end{bsmallmatrix}$ and $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}0\\1\end{bsmallmatrix}=\begin{bsmallmatrix*}[r]0\\0\\-1\end{bsmallmatrix*}$.
-However, any single-step mutation of $\tB$ is salient.
-\end{example}
-
-Also, commented out in Proposition~\ref{affine salient} is the statement of proof that any extension of the matrix found by the proposition is also salient.
-
+%
+%\section{Stuff we might not need}
+%
+%Thinking quickly, one might guess that if an exchange matrix $B$ is salient, then every extension $\tB$ of $B$ is also salient.
+%This is not true, but the failure of this implication does place some constraints on $B$.
+%
+%\begin{lemma}\label{extend salient}
+%If $B$ is a salient exchange matrix and $\tB$ is an extension of $B$ that is not salient, then the kernel of $B$ contains two independent vectors, each with nonnegative entries.
+%\end{lemma}
+%\begin{proof}
+%Suppose $B$ is salient and suppose $x$ and $-x$ are nonzero elements of the nonnegative span of the columns of $\tB$.
+%Then $\Proj_n(x)$ and $\Proj_n(-x)$ are elements of the nonnegative span of the columns of $B$.
+%These are therefore both zero, because $B$ is salient.
+%Thus $x=\tB y$ for some nonzero $y\in\ker B$ with nonnegative entries and $-x=\tB z$ for some nonzero $z\in\ker B$ with nonnegative entries.
+%Since both $y$ and $z$ are nonzero and have nonnegative entries, if they are linearly dependent, then they are related by a positive scaling, contradicting the fact that $x=\tB y\neq0$ and $-x=\tB z\neq0$.
+%Thus $y$ and $z$ are linearly independent.
+%\end{proof}
+%
+%\begin{lemma}\label{bip sal ext}
+%(If we use this, remember we already have Lemma~\ref{bip sal}.)
+%Suppose $B$ is a bipartite exchange matrix.
+%Then $B$ is salient.
+%Furthermore, if $B$ has at most one column that is zero, any extension $\tB$ of $B$ is also salient.
+%If $B$ has more than one zero column, then any extension $\tB$ of $B$ is mutation-equivalent to a salient exchange matrix.
+%\end{lemma}
+%\begin{proof}
+%Any vector $x\in\reals^n$ that is positive in positions $P$ and negative in positions~$N$ has strictly positive dot product with every nonzero column of $B$.
+%Thus $B$ is salient.
+%
+%Suppose $y$ is an element of the kernel of $B$ with nonnegative entries.
+%The fact that $B$ is bipartite means that every row of $B$ has either nonnegative entries (if the index of the row is in~$P$) or nonpositive entries (if the index of the row is in~$N$).
+%Positions where the row is nonzero thus specify positions that must be zero in~$y$.
+%If $B$ has at most one zero column, then $y$ is zero in every position except in that column (if it exists).
+%Now Lemma~\ref{extend salient} implies that any extension $\tB$ is salient.
+%
+%Now suppose $B$ has two or more zero columns.
+%As in the proof of Lemma~\ref{extend salient}, if nonzero vectors $x$ and $-x$ are both in the nonnegative span of the columns of $\tB$, then $x$ is $\tB y$ for $y\in\ker B$ with nonnegative entries.
+%As in the previous paragraph, a nonnegative vector~$y$ is in $\ker B$ if and only if it has nonzero entries only where~$B$ has zero columns.
+%For brevity, we will say ``zero columns of~$\tB$'' for the columns of~$\tB$ that are zero in their top $n$ entries. 
+%We will perform a sequence of mutations in the positions of zero columns so that the nonnegative linear span of the zero columns does not contain a line.
+%Since mutating in the position of a zero column does nothing but negate that zero column, we have a finite collection of vectors, and we want to negate a subset of them so that their nonnegative linear span contains no line.
+%Taking $x$ to be any vector whose dot product is nonzero with each vector in the collection, we negate vectors in the collection so that all dot products with $x$ are positive.
+%\end{proof}
+%
+%\begin{example}\label{0000 bad}
+%The finite-type exchange matrix $B=\begin{bsmallmatrix}0&0\\0&0\end{bsmallmatrix}$ is salient, but the extended exchange matrix $\tB=\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}$ is not, because $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}1\\0\end{bsmallmatrix}=\begin{bsmallmatrix}0\\0\\1\end{bsmallmatrix}$ and $\begin{bsmallmatrix*}[r]0&0\\0&0\\1&-1\end{bsmallmatrix*}\begin{bsmallmatrix}0\\1\end{bsmallmatrix}=\begin{bsmallmatrix*}[r]0\\0\\-1\end{bsmallmatrix*}$.
+%However, any single-step mutation of $\tB$ is salient.
+%\end{example}
+%
+%Also, commented out in Proposition~\ref{affine salient} is the statement of proof that any extension of the matrix found by the proposition is also salient.
+%
 
 
 
