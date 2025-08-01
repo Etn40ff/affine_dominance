@@ -687,7 +687,7 @@ F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
 \end{align*}
 Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
 We note that $(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}=\Sigma F_{\ep,k}^B\Sigma^{-1}$, where~$\Sigma$ is the diagonal matrix of skew-symmetrizing constants of~$B$.
-The following is \cite[(3.2)]{ca3}.
+The following is a special case of \cite[(3.2)]{ca3}.
 \marginN{Do I have this attribution right?
 \rd{It appeared already in Cluster Algebras III equation (3.2), I'm not sure whether or not this is the first occurrence though.}\rn{OK, I have fixed that. I doubt there was anything earlier.  ca3 was very early on.}}
 \begin{lemma}\label{EBF trick}
@@ -971,6 +971,10 @@ Define $\BB$ to be the matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\Sigma&0\\0&\Sigma'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
 \sayD{For symmetric $B$ this is fine but this requires a bit more care in general.  If $\Sigma B\Sigma^{-1}=-B^T$, then in order for $\BB$ to remain skew-symmetrizable we would need to have an $(m-n)\times (m-n)$ diagonal matrix $\Sigma'$ with $\Sigma'R=R\Sigma$ which may not exist.  If we were to allow rational entries we could replace $-R^T$ in $\BB$ with $-\Sigma^{-1}R^T$ and fix the issue.  An alternative would be to choose as the extension of $\Sigma$ any $\Sigma'$ so that $\Sigma'R\Sigma^{-1}$ has integer entries and then replace the $-R^T$ in $\BB$ by $-\Sigma^{-1}R^T\Sigma'$.  \rn{I liked your alternative, and implemented it.}} 
 Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
+The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
+\begin{lemma}\label{EBF trick ext}
+For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of~$\tB$ at $k$ is $\mu_k(\tB)=E_{\ep,k}^\BB BF_{\ep,k}^B$.
+\end{lemma}
 
 The matrix $\BB$ defines mutation maps $\eta_\kk^{\BB^T}$ that act on $\reals^m$ rather than $\reals^n$, but without exception we will only consider mutations in positions $1,\ldots,n$.
 Also, given $\BB$, a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$, there are associated matrices of $\g$-vectors and $\c$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
@@ -982,7 +986,7 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $D_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
-\begin{proposition}\label{GBBC ext}
+\begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?}
 $\GG_t^{\BB_0;t_0}\tB_t=\tB_0C_t^{B;t_0}$.
 \end{proposition}
 \begin{proof}
@@ -2005,7 +2009,7 @@ Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k
 
 \begin{proposition}\label{any B is sort}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
-Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  I think we mean the seed at the end of the green sequecnce in Proposition~\ref{sort green}, but we should say so.}
+Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  I think we mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but we should say so.}
 For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
 Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$.
 \end{proposition}
@@ -3876,10 +3880,45 @@ Then $\eta^{\BB^T}_\kk(-\frac12\tB\delta^B)=-\frac12\mu_\kk(\tB)\delta^{\mu_\kk(
 The factors $\frac12$ in the statement are for aesthetic reasons, but the negative signs are crucial.
 The analogous statement for $-\frac12B\delta^B$ is true because $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray.
 
-\begin{proof}
-NEED THIS.  \sayN{If we don't get this, we will know that the dominance region is a line segment, but will not know what the line segment is, except in a neighboring seed!}
-(Note:  This is for arbitrary $\kk$, not just copies of $c$.)
+\begin{proof}%[Proof of Proposition~\ref{delta is the tilde man}]
+If $t$ is a seed with extended exchange matrix $\tB$, the matrix $\mu_\kk(\tB)$ depends only on the seed $t'$ obtained from $t$ by mutating along the sequence $\kk$, not on the choice of a sequence $\kk$ that sends $t$ to $t'$.
+Also, since $\delta^{\mu_\kk(B)}$ is the normal vector to the imaginary cones in $\F_{B^T}$ (Proposition~\ref{delta is the man}.\ref{im hyp}), up to scaling it only depends on~$\mu_\kk(B)$, and not the specific choice of $\kk$.
+Since $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray of $\F_{B^T}$, the scaling is also determined by $\mu_\kk(B)$.
+Thus~$\delta^{\mu_\kk(B)}$ depends only on $\mu_\kk(B)$ and thus depends only on $t'$ and not the specific choice of~$\kk$.
+Thus, to prove the proposition, it is enough to show that, given any seeds $t$ and $t'$ with extended exchange matrices $\tB$ and $\tB'$ (of affine type), there exists a sequence $\kk$ taking~$t$ to~$t'$ such that $\eta^{\BB^T}_\kk(-\frac12\tB\delta^B)=-\frac12\mu_\kk(\tB)\delta^{\mu_\kk(B)}$.
 
+Choose an acyclic exchange matrix $B_0$, mutation equivalent to $B$, and let $c$ be the Coxeter element determined by~$B_0$.
+To define $\delta^B$, we started with an initial seed~$t_0$ and initial exchange matrix $B_0$ and appealed to Proposition~\ref{any B is sort} to choose a seed~$t$ with exchange matrix $B$, with good properties.
+The proof of Proposition~\ref{any B is sort} proceded by taking an \emph{arbitrary} seed with exchange matrix $B$ and applying \emph{initial seed mutations} along the sequence $(12\cdots n)^i$ for large enough $i$ that the desired properties hold. 
+These initial seed mutations change which seed we called the initial seed $t_0$ while preserving the fact that the initial exchange matrix is $B_0$.
+Increasing~$i$ did not destroy the desired properties.
+
+We carry out this process simultaneously for $B$ and $B'$, but we specifically choose seeds the given seeds $t$ and $t'$ (with exchange matrices $B$ and $B'$ respectively).
+Then we choose $i$ large enough so that \emph{both} seeds have the desired properties relative to the initial seed $t_0$.
+Write $\tB_0$ for the extended exchange matrix at $t_0$.
+The output of Proposition~\ref{any B is sort}, for this large enough $i$, is a $c$-sortable element $v$ such that the sequence $\kk$ that reverses the indices in the $c$-sorting word for $v$ has ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$ such that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$, and analogously for $t'$.
+%(That is, a $c$-sortable element $v'$ such that the sequence $\kk'$ that reverses the indices in the $c$-sorting word for $v'$ has ${t_0\overset{k'_1}{\edge}t'_1\overset{k'_2}{\edge}\,\cdots\,\overset{k'_{m'}}{\edge}t'_m=t}'$ such that $\bigl(G_{t'_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m'}$.)
+
+The argument in the proof of Proposition~\ref{delta is the man}, with Lemma~\ref{EBF trick ext} replacing Lemma~\ref{EBF trick}, shows that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
+\sayN{Commented out a longer version.  But with that commented out, this is as short as it can get, and I don't think there is anything to be gained (except complication) by combining this with Proposition~\ref{delta is the man}.}
+%
+%We argue, by extending the argument in the proof of Proposition~\ref{delta is the man}, that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
+%Suppose $a_1\cdots a_m$ is the $c$-sorting word for $v$.
+%As in the proof of Proposition~\ref{delta is the man}, we argue by induction on $m$.
+%The base case is trivial.
+%By induction, $\eta^{\BB_0^T}_{k_{m-1}\cdots k_1}(-\frac12\tB_0\delta^{B_0})=-\frac12\tB_{m-1}\delta^{B_{m-1}}$, and we need to check that $\eta_{k_m}^{\BB_{m-1}^T}(-\frac12\tB_{m-1}\delta^{B_{m-1}})=-\frac12\tB\delta^{B}$.
+%
+%As in the proof of Proposition~\ref{delta is the man}, $\delta^B=F_{-,k_m}^{B_{m-1}}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta$.
+%
+%Lemma~\ref{EBF trick ext} says that $\tB=E_{-,k_m}^{\BB_{m-1}}\tB_{m-1}F_{-,k_m}^{B_{m-1}}$, and since $F_{-,k_m}^{B_{m-1}}$ is its own inverse, 
+%\[-\frac12\tB\delta^B=-\frac12E_{-,k_m}^{\BB_{m-1}}\tB_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta=E_{-,k_m}^{\BB_{m-1}}(-\frac12\tB_{m-1}\delta^{B_{m-1}}).\]
+%Then showing that $\eta_{k_m}^{\BB_{m-1}^T}(-\frac12\tB_{m-1}\delta^{B_{m-1}})=E_{-,k_m}^{\BB_{m-1}}(-\frac12\tB_{m-1}\delta^{B_{m-1}})$ amounts to showing that the $k_m$-entry of $-\frac12\tB_{m-1}\delta^{B_{m-1}}$ is nonpositive.
+%This was checked in the proof of Proposition~\ref{delta is the man}.
+%We see that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
+%
+The same argument, with $t'$ replacing $t$, shows that $\eta^{\BB_0^T}_{\kk'}(-\frac12\tB_0\delta^{B_0})=-\frac12\tB'\delta^{B'}$.
+Multiplying by the inverse $\eta^{\BB^T}_{(\kk')^{-1}}$ of $\eta^{\BB_0^T}_{\kk'}$, we see that $-\frac12\tB_0\delta^{B_0}=\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'})$.
+Substituting into $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$, we obtain $\eta^{\BB_0^T}_\kk(\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'}))=-\frac12\tB\delta^B$, or in other words $\eta^{\BB^T}_{\kk(\kk')^{-1}}(-\frac12\tB'\delta^{B'})=-\frac12\tB\delta^B$, as desired.
 \end{proof}
 
 
