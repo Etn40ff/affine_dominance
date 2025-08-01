@@ -1216,7 +1216,7 @@ Thus the combinatorics of laminations is the combinatorics of triangulations of 
 To compute dominance regions, we need to find, for every vector that is a nonnegative linear combination of the columns of $B$, the lamination whose shear coordinates, with respect to~$T$, are that vector.
 Those laminations all have the same underlying set $\set{\theta_1,\ldots,\theta_n}$ of curves, which we now describe.
 Since $B$ is bipartite, each arc $t_i$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
-\sayN{There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.}
+\sayN{There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.  UPDATE:  Found no problems later on.}
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
@@ -1318,87 +1318,9 @@ Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides the 
 But the main observation says that $X^{(\ell'_m)}$ contains the rotation of $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$ and otherwise contains curves that are compatible with the rotation of $L_m$.
 Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is $-\ep_{i'_m}(w_m+z_{i_m}^{(\ell_m)})$.
 Therefore $w_m-z_{i'_m}^{(\ell'_m)}=w_m+z_{i_m}^{(\ell_m)}$, and we conclude that $z_{i_m}^{(\ell_m)}=z_{i'_m}^{(\ell'_m)}=0$ since both are nonnegative.
-\sayN{I like this "caseless" way of saying things.  Thanks.}
+\sayN{I like this ``caseless'' way of saying things.  Thanks.}
 
 It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
-
-%---------------------
-%
-%We will consider two cases.
-%
-%\smallskip
-%
-%\noindent
-%\textit{Case 1 (Type A).}  
-%The curve $\theta_i$ coincides with a curve $L_j\in\Lambda$.
-%This case is represented in the left picture of Figure~\ref{theti fig 1}.
-%(The meaning of the dotted curve marked~$L'_j$ is explained below.
-%The orientation of the arc $t_i\in T$  in its quadrilateral might be the opposite of what is pictured.)
-%\begin{figure}
-%\scalebox{0.85}{\includegraphics{theti1.ps}
-%\begin{picture}(0,0)(73,-73)
-%\put(-16,-17){$\theta_i$}
-%\put(0,25){$L_j$}
-%\put(25,-13){$L'_j$}
-%\put(10,-38){$t_i$}
-%\end{picture}}
-%\qquad\quad
-%\scalebox{0.85}{\includegraphics{theti2.ps}
-%\begin{picture}(0,0)(73,-73)
-%\put(-3,22){$\theta_{\!m}$}
-%\put(7.5,-20){$t_{\!m}$}
-%\end{picture}}
-%\caption{$\theta_i$ coincides with some $L_j$}
-%\label{theti fig 1}
-%\end{figure}
-%The sum of the shear coordinates of $\Lambda$ and~$\Theta^{(0)}$ is $\ep_0(w_j+z_i^{(0)})$ in position~$t_i$ for $\ep_0\in\{\pm1\}$, because the second remarkable property assures that $\theta_i=L_j$ makes this contribution and the third remarkable property says that no other curves of $\Lambda$ or $\Theta^{(0)}$ contribute to this coordinate.
-%Therefore, $X^{(0)}$ has the curve $L_j=\theta_i$ with weight $w_j+z_i^{(0)}$.
-%
-%There is a unique curve $L'_j$ that is compatible with every curve in $\Lambda$ except~$L_j$. 
-%(The situation is analogous to diagonal flips between triangulations.)
-%By the first remarkable property, there exists $\ell\in\integers$ such that rotating $L'_j$ by $\ell$ units gives a curve~$\theta_m$, as exemplified in the right picture of Figure~\ref{theti fig 1}.
-%%\begin{figure}
-%%\scalebox{1}{\includegraphics{theti2.ps}
-%%\begin{picture}(0,0)(73,-73)
-%%\put(2,25){$\theta_m$}
-%%\put(32,-33){$t_m$}
-%%\end{picture}}
-%%\caption{Rotating so that $\L'_j$ coincides with some $\theta_m$}
-%%\label{theti fig 2}
-%%\end{figure}
-%Since every curve in $\Lambda^{(\ell)}$ or $\Theta^{(\ell)}$, besides the rotation of $L_j$, is compatible with $\theta_m$, the third remarkable property says that the sum of the shear coordinates of $\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is ${\ep(w_j-z_m^{(\ell)})}$ in position~$t_m$, with the sign $\ep\in\set{\pm1}$ determined by the orientation of $t_m$ in its quadrilateral.
-%But the main observation says that $X^{(\ell)}$ either (1) contains the rotation of $L_j$ with weight $w_j+z_i^{(0)}$ and then contains curves that are compatible with the rotation of $L_j$ or (2) does not contain the rotation of $L_j$ and consists of curves that are compatible with the rotation of $L_j$.
-%Thus, by the third remarkable property, the sum of the shear coordinates of~$\Lambda^{(\ell)}$ and $\Theta^{(\ell)}$ is $\ep(w_j+z_i^{(0)})$ in position~$t_m$ for the same~$\ep$.
-%Thus $w_j-z_m^{(\ell)}=w_j+z_i^{(0)}$, and we conclude that $z_i^{(0)}=z_m^{(\ell)}=0$.
-%
-%\smallskip
-%
-%\noindent
-%\textit{Claim between cases (Type A).}
-%We claim that for each $j=1,\ldots,n$, the lamination~$X^{(0)}$ has the curve $L_j$ with weight $\ge w_j$, or, if $w_j=0$ and $X^{(0)}$ does not have the curve $L_j$, then $X^{(0)}$ consists of curves that are compatible with $L_j$.
-%The first remarkable property says that there exists $\ell\in\integers$ such that the rotation of $L_j$ counterclockwise $\ell$ units is a curve $\theta_i$.
-%As in Case 1, we see that either $X^{(\ell)}$ has the curve~$\theta_i$ with weight $w_j+z_i^{(\ell)}\ge w_j$ or $w_j+z_i^{(\ell)}=0$ and $X^{(\ell)}$ consists of curves that are compatible with $\theta_i$.
-%The claim follows from the main observation.
-%
-%\smallskip
-%
-%\noindent
-%\textit{Case 2 (Type A).}
-%The curve $\theta_i$ does not coincide with any curve $L_j\in\Lambda$.
-%Since $\Lambda$ is maximal, there are curves in $\Lambda$ that are not compatible with $\theta_i$.
-%The situation is pictured in Figure~\ref{theti fig 3}.
-%\begin{figure}
-%\scalebox{0.85}{\includegraphics{theti3.ps}}
-%\begin{picture}(0,0)(73,-73)
-%\put(-3,-33){$\theta_i$}
-%\put(15,-30){$t_i$}
-%\end{picture}
-%\caption{Curves in $\Lambda$ are incompatible with $\theta_i$}
-%\label{theti fig 3}
-%\end{figure}
-%The claim implies that each of the curves $L_m$ in $\Lambda$ that are incompatible with $\theta_i$ also appears in~$X^{(0)}$ with weight at least $w_m$ (or $L_m$ is compatible with every curve in $X^{(0)}$).
-%The third remarkable property says that each of these curves $L_m$ has shear coordinate strictly disagreeing in sign at position~$t_i$ with the shear coordinate of $\theta_i$ and that no other curves besides $\theta_i$ and these $L_m$ contribute to position $t_i$ of the sum of the shear coordinates of $\Lambda$ and $\Theta^{(0)}$.
-%Thus the shear coordinate of $X^{(0)}$ at position $t_i$ is the sum of these weights $w_m$, so $z_i^{(\ell)}=0$.
 
 \medskip
 
@@ -1599,15 +1521,14 @@ More details can be found in \cite{affdenom,framework,afframe,affscat}.
 
 Let $B_0$ be an acyclic $n\times n$ exchange matrix in a cluster algebra of affine type, indexed so that $b_{ij}\ge0$ whenever $i<j$.
 %Let $\tB_0$ be an extension with linearly independent columns.
-Let $A_0$ be the Cartan matrix underlying $B_0$, so that $A_0$ is of affine type.
+Let $A$ be the Cartan matrix underlying $B_0$, so that $A$ is of affine type.
 Let $\delta$ be the shortest positive imaginary root in the root system $\RS$ associated to $A$.
-\sayN{$A$ or $A_0$?}
 \sayD{We implicitly use properties of $\delta$ in many places below, it might be worthwhile to collect those observations somewhere as a proposition.}
 Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples=\set{\alpha_1,\ldots,\alpha_n}$ be the simple roots of $\RS$.
 The \newword{support} of a root is the set of simple roots appearing in an expression for the roots as a linear combination of simple roots.
 
 As before, write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
-These constants also symmetrize~$A_0$ (meaning that the entries $a_{ij}$ of $A_0$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
+These constants also symmetrize~$A$ (meaning that the entries $a_{ij}$ of $A$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
 The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
 Thus the diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates \sayD{It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
 \rn{I prefer "simple-root" when it's used as an adjective as in "simple-root coordinates" or "simple root" when it is a noun.  For co-roots, similarly. I like the dash in "co-root", and "simple-co-root coordinates" works for me.}} 
@@ -1633,7 +1554,7 @@ The expressions~$\beta^\perp$ must be treated with some care when we have passed
 Integer vectors in $\beta^\perp$ do not necessarily have zero dot product with the simple-root coordinates of~$\beta$, but, rather, they have zero dot product with the simple co-root coordinates of $\beta$.
 \end{remark}
 
-The Cartan matrix $A_0$ is the matrix of a bilinear form $K$ on $V$, in the simple-roots basis on the right and the simple-co-roots \sayD{It seems that there is already some proclivity towards the all dashes approach in my previous comment.  Let me know if that's the way we should go and I'd be happy to enforce the consistency throughout.} 
+The Cartan matrix $A$ is the matrix of a bilinear form $K$ on $V$, in the simple-roots basis on the right and the simple-co-roots \sayD{It seems that there is already some proclivity towards the all dashes approach in my previous comment.  Let me know if that's the way we should go and I'd be happy to enforce the consistency throughout.} 
 basis on the left.
 Each real root defines a reflection that negates the root and fixes the hyperplane that is orthogonal to the root (with orthogonality defined in terms of $K$).
 Let $W$ be the Weyl group generated by these reflections (an affine Coxeter  group with simple reflections $s_1,\ldots,s_n$ corresponding to the simple roots $\alpha_1,\ldots,\alpha_n$).
@@ -1648,7 +1569,7 @@ Define
 \label{rep<-}
 \TravInj{c}&:=\set{\alpha_n,s_n\alpha_{n-1},\ldots,s_n\cdots s_2\alpha_1},
 \end{align}%
-Continuing under the assumption that $A_0$ is of affine type, the sets $\TravProj{c}$ and $\TravInj{c}$ are disjoint, and the union $\TravProj{c}\cup\TravInj{c}$ contains one representative of each of the $2n$ infinite $c$-orbits of roots.
+Continuing under the assumption that $A$ is of affine type, the sets $\TravProj{c}$ and $\TravInj{c}$ are disjoint, and the union $\TravProj{c}\cup\TravInj{c}$ contains one representative of each of the $2n$ infinite $c$-orbits of roots.
 (See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2]{afforb}.)
 The following lemma is \cite[Lemma~1.6]{Dlab-Ringel} or \cite[Lemma~4.1]{afforb}.
 
@@ -1727,7 +1648,7 @@ If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{
 These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
 
 Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.
-Let $\APT{c}=\APTre{c}\cup\set\delta$. \sayD{"real" added just for easier readability}
+Let $\APT{c}=\APTre{c}\cup\set\delta$. \sayD{"real" added just for easier readability  \okn}
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
 The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables \cite[Theorem~1.2]{affdenom}, with respect to the initial exchange matrix $B_0$.
 There is a notion \cite[Definition~4.3]{affdenom} of \newword{$c$-compatibility} of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
@@ -1844,7 +1765,7 @@ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order
 \begin{proposition}\label{delta limit eta}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and let $m$ be the least common multiple of the sizes of finite $c$-orbits.
 Suppose $x\in V^*\setminus\d_\infty$.
-Then there exist integers $I_+$ and $I_-$ such that   \sayN{At the moment, we only use Assertions~\ref{correct side} and~\ref{eta lim} in this paper, but Assertion~\ref{pos a} is used to prove Assertion~\ref{eta lim}.  I hope it's OK that we keep the others (15 lines, including statements and proof), because they are needed in \{afftheta\}.}
+Then there exist integers $I_+$ and $I_-$ such that   \sayN{In this paper, we only use Assertions~\ref{correct side} and~\ref{eta lim} in this paper, but Assertion~\ref{pos a} is used to prove Assertion~\ref{eta lim}.  I hope it's OK that we keep the others (15 lines, including statements and proof), because they are needed in \{afftheta\}.}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{in big dinf}
 $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)\in\set{x\in V^*:\br{x,\beta}<0,\,\forall \beta\in\RSfin\text{ s.t. }\omega_c(\beta,\delta)>0}$ for $i>I_+$ or $i<I_-$.
@@ -2009,7 +1930,7 @@ Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k
 
 \begin{proposition}\label{any B is sort}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
-Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  I think we mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but we should say so.}
+Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so?}
 For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
 Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$.
 \end{proposition}
@@ -2027,7 +1948,9 @@ It is known \cite[Proposition~4.6]{afframe} that there are only finitely many $c
 Thus we choose $i$ large enough (i.e. choose $p$ large enough) so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j\ge pn$.
 But for $0\le j\le pn$, the the prefix $a_1\cdots a_j$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
 By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_j}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_j$ to the positive cone.
-  The resulting cone $\Cone^{B_0;t_0}_{t_j}$ is therefore contained in the Tits cone,\sayD{Should we introduce the Tits cone at the start of this section?} so that every nonzero vector in $\Cone^{B_0;t_0}_{t_j}$ pairs strictly positively with $\delta$.
+The resulting cone $\Cone^{B_0;t_0}_{t_j}$ is therefore contained in the Tits cone,
+\sayD{Should we introduce the Tits cone at the start of this section?  \rn{No objection.}} 
+so that every nonzero vector in $\Cone^{B_0;t_0}_{t_j}$ pairs strictly positively with $\delta$.
 The cone $\Cone^{B_0;t_0}_{t_j}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
 We see that the columns of $G_{t_j}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
 \end{proof}
@@ -2503,7 +2426,7 @@ After this reindexing, we consider the decomposition of $B$ into blocks $B_{ij}$
 A \newword{special index} is the index of the last column/row of $B_{\ell\ell}$ (if $B_{\ell\ell}$ is nonempty) for $\ell=1,2,3$.
 There are $1$, $2$, or $3$ special indices, namely whichever of $p_1$, $p_1+p_2$ and $p_1+p_2+p_3=n-2$ are nonzero.
 The two indices of $B_{44}$ are the \newword{affine indices} and $B_{44}$ is the \newword{affine submatrix} of~$B$.  \sayS{I think that affine indices is a misleading terminology: it can be confusing
-with the affine index of the root system.  \rn{But its fits so well here.  Maybe we can get by with just a comment asking the reader not to be confused?}}
+with the affine index of the root system.  \rn{But it fits so well here.  Maybe we can get by with just a comment asking the reader not to be confused?}}
 %The \newword{tube components} of $\set{1,\ldots,n}$ are whichever of the sets $\set{1,\ldots,p_1}$, $\set{p_1+1,\ldots,p_1+p_2}$, and $\set{p_1+p_2+1,\ldots,n-2}$ are nonempty.
 
 \begin{proposition}\label{A and q-l}
