@@ -2491,9 +2491,11 @@ Proposition~\ref{compatible in tubes} says cluster variables $x_{qr}$ and $x_{q'
 %The map $\nu_c$ is linear on the cone spanned by positive roots.
 Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable if and only if $\beta_{qr}$ and $\beta_{q'r'}$ either have disjoint support but are not spaced or have overlapping support but are not nested.
 (In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that $q\ge1$ and $q'\ge 1$, so neither of these roots has $\beta_0$ in its support.)
-Thus two exchangeable cluster variables $x_{qr}$ and $x_{q'r'}$ have, without loss of generality, $q<q'<r$, $q<r<r'$, and $q'\le r+1$.
-If they are exchangeable, then Lemma~\ref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
+If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, \sayN{changed $q<q'<r$ to $q<q'$.} 
+$q<r<r'$, and $q'\le r+1$.
+Lemma~\ref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
 These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, or $r'\ge r+2$.
+(In what follows, if $x_{q'r}$ does not exist, the notation $x_{q'r}$ will mean $1$, and similarly for $x_{q(q'-2)}$ and $x_{(r+2)r'}$.)
 
 In the proof of Lemma~\ref{exch ind}, we saw that the exchange relation for $x_{qr}$ and $x_{q'r'}$ has a term with no coefficient variables whose $\g$-vector is the sum of the $\g$-vectors of $x_{qr}$ and $x_{q'r'}$.
 Since $\nu_c$ is linear on the cone spanned by positive roots, that monomial must be $x_{qr'}x_{q'r}$.
@@ -2505,7 +2507,7 @@ In other words, $\omega_c(\delta,\phi)=0$, so Proposition~\ref{om del fin} says 
 Write $E_c$ for the $n\times n$ matrix whose $ij$-entry is~$(B_0)_{ij}$ if $i>j$, is $1$ if $i=j$, or is~$0$ if $i<j$.
 Similarly, write $E_{c^{-1}}$ for the $n\times n$ matrix whose $ij$-entry is $0$ if $i>j$, is $1$ if $i=j$, and is $-(B_0)_{ij}$ if $i<j$.
 Then $B_0=E_c-E_{c^{-1}}$.
-The piecewise linear map $\nu_c$, when applied to vectors with nonnegative entries, is defined by the matrix $E_c$ (taking simple-root coordinates to fundamental-weight coordinates).
+The piecewise linear map~$\nu_c$, when applied to vectors with nonnegative entries, is defined by the matrix $E_c$ (taking simple-root coordinates to fundamental-weight coordinates).
 Furthermore, a result of Howlett \cite[Theorem~2.1]{Howlett} (see also \cite[Theorem~2.6]{affdenom}) says that the matrix for $c$ on the basis of simple roots is~$-E_{c^{-1}}^{-1}E_c$.
 Thus the $\g$-vector of $y^\phi$ is 
 \[B_0\phi=(E_c-E_{c^{-1}})\phi=(E_c+E_cc^{-1})\phi=\nu_c(1+c^{-1})\phi.\]
