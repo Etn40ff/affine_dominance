@@ -1245,7 +1245,7 @@ We can compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by reading the negative shear co
 \marginN{Added the following.  We need it because later we're going to ask for $L'_m$ to be the unique curve $\neq L_m$ that is compatible with the others.  Without extending, we don't get uniqueness.}
 If $\Lambda$ is supported on fewer than $n$ curves, we extend it by adjoining compatible curves with weight~$0$.
 (There may be more than one way to do this, but we fix some choice.)
-We label the curves of the lamination $\Lambda$ in some order as $L_1,L_2,\ldots,L_n$ with weights $w_1,\ldots,w_n$ respectively.
+We label the curves of the lamination~$\Lambda$ in some order as $L_1,L_2,\ldots,L_n$ with weights $w_1,\ldots,w_n$ respectively.
 
 For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is of the form $\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}\bigr)$ for some $\alpha^{(\ell)}$ with nonnegative entries $a_1^{(\ell)},\ldots,a_n^{(\ell)}$.
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
@@ -1261,7 +1261,8 @@ However, it will be convenient to take advantage of the fact that rotations of t
 This will allow us to make use of the remarkable properties of the collection $\set{\theta_1,\ldots,\theta_n}$.
 
 So instead we construct a point $x\in \P^B_{\lambda,\kk^\ell}$ as follows:
-First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$.
+First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$
+with curves $(L_1)^{(\ell)},(L_2)^{(\ell)},\ldots,(L_n)^{(\ell)}$ weighted $w_1,\ldots,w_n$ respectively.
 Then find the unique lamination $\Theta^{(\ell)}$ whose shear coordinates with respect to~$T$ are~$-B\alpha^{(\ell)}$.
 Crucially, $\Theta^{(\ell)}$ consists of the curves $\set{\theta_1,\ldots,\theta_n}$ with $\theta_i$ having weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$. 
 %\begin{figure}
@@ -1304,8 +1305,40 @@ We will show that $\alpha^{(\ell)}=0$ for all $\ell$, or in other words that $a_
 Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $z_i^{(\ell)}$ is~$0$.
 
 By the first remarkable property, for each $L_m$ there exists an $\ell_m\in\integers$ so that $(L_m)^{(\ell_m)}=\theta_{i_m}$ for some $i_m$.
-Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell_m)}$ is $\ep_{i_m}(w_m+z_{i_m}^{(\ell_m)})$ in position~$t_{i_m}$ because the second remarkable property assures that the rotation of $L_m$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_m)}$ or $\Theta^{(\ell_m)}$ contribute to this coordinate.
-Therefore, $X^{(\ell_m)}$ has the curve $\theta_{i_m}$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
+Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell_m)}$ is $\ep_{i_m}(w_m+z_{i_m}^{(\ell_m)})$ in position~$t_{i_m}$ because the second remarkable property assures that $(L_m)^{(\ell_m)}$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_m)}$ or $\Theta^{(\ell_m)}$ contribute to this coordinate.
+(See the left picture of Figure~\ref{theti fig}.)
+\begin{figure}
+\scalebox{0.77}{\includegraphics{theti1.ps}
+\begin{picture}(0,0)(73,-73)
+\put(-21,-17){$\thet_{i_m}$}
+\put(-2.5,25){\small$L_m^{(\ell_m)}$}
+%\put(25,-13){$L'_j$}
+\put(5,-19){$t_{i_m}$}
+\end{picture}}
+\hspace{0.5pt}
+\scalebox{0.77}{\includegraphics{theti1.5.ps}
+\begin{picture}(0,0)(73,-73)
+\put(2.5,9){\small$L_m$}
+\put(-16,-33){$L'_m$}
+%\put(5,-19){$t_{i_m}$}
+\end{picture}}
+\hspace{0.5pt}
+\scalebox{0.77}{\includegraphics{theti2.ps}
+\begin{picture}(0,0)(73,-73)
+%\put(-25,25){\small$(L_m)^{(\ell'_m)}$}
+\put(-3,22){$\thet_{\!i'_m}$}
+\put(6.5,-18){$t_{\!i'_m}$}
+\end{picture}}
+%\quad
+%\scalebox{0.77}{\includegraphics{theti3.ps}}
+%\begin{picture}(0,0)(73,-73)
+%\put(-3,-33){$\thet_i$}
+%\put(15,-30){$t_i$}
+%\end{picture}
+\caption{An illustration of the proof of the Type-A case}
+\label{theti fig}
+\end{figure}
+Therefore, by the third remarkable property again, $X^{(\ell_m)}$ has the curve $\theta_{i_m}$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
 \sayN{Added the following. $X^{(\ell_m)}$ might *not* have $\theta_{i_m}$, and we need to be clear about what happens in that case.}
 (Or, if ${w_m+z_{i_m}^{(\ell_m)}=0}$, then $X^{(\ell_m)}$ consists of curves that are compatible with $\theta_{i_m}$.)
 By the main observation, this implies $X^{(0)}$ has the curve $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
@@ -1313,9 +1346,11 @@ It follows that $X^{(0)}$ contains the same curves as $\Lambda$ \sayN{Also added
 (after possibly adjoining some curves with weight $0$ that are compatible with the curves in $X^{(0)}$).
 
 Let $L'_m$ be the unique curve that is compatible with every curve in $\Lambda$ except~$L_m$.
+(See the middle picture of Figure~\ref{theti fig}.)
 By the first remarkable property, there exists $\ell'_m\in\integers$ so that $(L'_m)^{(\ell'_m)}=\theta_{i'_m}$ for some $i'_m$.
-Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides the rotation of $L_m$, is compatible with $\theta_{i'_m}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is ${\ep_{i'_m}(-w_m+z_{i'_m}^{(\ell'_m)})}$.
-But the main observation says that $X^{(\ell'_m)}$ contains the rotation of $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$ and otherwise contains curves that are compatible with the rotation of $L_m$.
+Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides $(L_m)^{(\ell'_m)}$, is compatible with $\theta_{i'_m}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is ${\ep_{i'_m}(-w_m+z_{i'_m}^{(\ell'_m)})}$.
+(See the right picture of Figure~\ref{theti fig}.)
+But the main observation says that $X^{(\ell'_m)}$ contains $(L_m)^{(\ell'_m)}$ with weight $w_m+z_{i_m}^{(\ell_m)}$ and otherwise contains curves that are compatible with the rotation of $L_m$.
 Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is $-\ep_{i'_m}(w_m+z_{i_m}^{(\ell_m)})$.
 Therefore $w_m-z_{i'_m}^{(\ell'_m)}=w_m+z_{i_m}^{(\ell_m)}$, and we conclude that $z_{i_m}^{(\ell_m)}=z_{i'_m}^{(\ell'_m)}=0$ since both are nonnegative.
 \sayN{I like this ``caseless'' way of saying things.  Thanks.}
@@ -2439,6 +2474,11 @@ If $i$ is the special index, then $\gamma_i$ is~$\beta_{1p_\ell}$.
 %Proposition~\ref{compatible in tubes} says that roots
 We can represent each $\gamma_i$ pictorially as in Figure~\ref{tube fig},  \sayN{Need picture.  I can probably modify a PS file from \{affdenom\}.}
 by circling the nodes $q_i$ through~$r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
+\begin{figure}
+%\includegraphics{tubefig}
+\caption{An illustration of the proof of Proposition~\ref{A and q-l}}
+\label{tube fig}
+\end{figure}
 
 %We write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector $\beta_{qr}$.
 %The denominator vector of $x_{qr}$ is $\beta_{qr}$, so the $\g$-vector of $x_{qr}$ is $\nu_c(\beta_{qr})$.
@@ -2500,7 +2540,12 @@ We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and 
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation $T_0$, take all diagonals with an endpoint at $p_\ell+2$.
 The roots~$\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
 The root $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e.\ the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
-The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in Figure~\ref{tri fig}.  \sayN{Need picture.  I can easily supply PS.}
+The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in Figure~\ref{tri fig}.   \sayN{Need picture.}
+\begin{figure}
+%\includegraphics{trifig}
+\caption{Another illustration of the proof of Proposition~\ref{A and q-l}}
+\label{tri fig}
+\end{figure}
 If the other diagonal is specified by $\gamma'_i$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
 We conclude that, up to a global sign, the entries of  $B_{\ell\ell}$ in non-special columns agree with the entries of the signed adjacency matrix of $T$.
 Since both matrices are skew-symmetric, they are therefore equal up to a sign.
