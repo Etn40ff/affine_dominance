@@ -6,7 +6,7 @@
 %(arrows.ps) run
 
 /r 40 def
-/n 13 def
+/n 15 def
 /th 360 n div def
 /vr 1.5 def
 
@@ -30,21 +30,61 @@ th rotate
 11 th mul dup cos r mul exch sin r mul /v11 vertex
 12 th mul dup cos r mul exch sin r mul /v12 vertex
 13 th mul dup cos r mul exch sin r mul /v13 vertex
+14 th mul dup cos r mul exch sin r mul /v14 vertex
+15 th mul dup cos r mul exch sin r mul /v15 vertex
 
 0.9 setgray
-v1 v2 -0.06 edge
-v2 v3 -0.06 edge
-v3 v4 -0.06 edge
-v4 v5 -0.06 edge
-v5 v6 -0.06 edge
-v6 v7 -0.06 edge
-v7 v8 -0.06 edge
-v8 v9 -0.06 edge
-v9 v10 -0.06 edge
-v10 v11 -0.06 edge
-v11 v12 -0.06 edge
-v12 v13 -0.06 edge
-v13 v1 -0.06 edge
+v1 v2 0 edge
+v2 v3 0 edge
+v3 v4 0 edge
+v4 v5 0 edge
+v5 v6 0 edge
+v6 v7 0 edge
+v7 v8 0 edge
+v8 v9 0 edge
+v9 v10 0 edge
+v10 v11 0 edge
+v11 v12 0 edge
+v12 v13 0 edge
+v13 v14 0 edge
+v14 v15 0 edge
+v15 v1 0 edge
+
+
+v13 v15 0 edge
+v13 v1 0 edge
+v13 v2 0 edge
+v13 v3 0 edge
+v13 v4 0 edge
+v13 v5 0 edge
+v13 v6 0 edge
+v13 v7 0 edge
+v13 v8 0 edge
+v13 v9 0 edge
+v13 v10 0 edge
+v13 v11 0 edge
+
+
+
+
+
+1.25 setlinewidth
+0 0 1 setrgbcolor
+
+
+v15 v8 0 edge
+v3 v12 0 edge
+
+0.9 setlinewidth
+
+1 0.4 0.5 setrgbcolor
+[3 2.22] 0 setdash
+0 setlinecap
+
+v15 v3 0 edge
+v3 v8 0 edge
+v8 v12 0 edge
+v12 v15 0 edge
 
 
 
@@ -63,57 +103,8 @@ v10 vr drawvertex
 v11 vr drawvertex
 v12 vr drawvertex
 v13 vr drawvertex
+v14 vr drawvertex
+v15 vr drawvertex
 
 
-%usage: th1 th2 inner outer tube
-/tube
-{
-4 dict begin
-/o exch def
-/i exch def
-/th2 exch def
-/th1 exch def
-th1 cos i mul th1 sin i mul moveto
-0 0 i th1 th2 arc
-th2 cos i o add 2 div mul th2 sin i o add 2 div mul
-i o sub 2 div th2 th2 180 add arcn
-0 0 o th2 th1 arcn
-th1 cos i o add 2 div mul th1 sin i o add 2 div mul
-i o sub 2 div 180 th1 add th1 arcn
-end
-}
-def
-
-
-% shortcut
-% usage num1 num2 w tube
-/t
-{
-dup r exch sub exch r add 4 2 roll
-th mul exch th mul exch 4 2 roll
-tube stroke
-}
-def
-
-
-1.25 setlinewidth
-0 0 1 setrgbcolor
-
-
-1 7 5 t
-4 11 8 t
-
-0.9 setlinewidth
-
-
-1 0.4 0.5 setrgbcolor
-[3 2.22] 0 setdash
-0 setlinecap
-
-
-1 11 11 t
-
-1 2 3 t
-4 7 3 t
-9 11 3 t
 

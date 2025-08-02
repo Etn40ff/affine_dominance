@@ -2472,8 +2472,7 @@ Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the compon
 For $1\le q\le r\le p_\ell$, write $\beta_{qr}$ for $\beta_q+\beta_{q+1}+\cdots+\beta_{r}$ so that each $\gamma_i$ is~$\beta_{q_ir_i}$ for some $q_i$ and $r_i$.
 If $i$ is the special index, then $\gamma_i$ is~$\beta_{1p_\ell}$.
 %Proposition~\ref{compatible in tubes} says that roots
-We can represent each $\gamma_i$ pictorially as in Figure~\ref{tube fig},  \sayN{Need picture.  I can probably modify a PS file from \{affdenom\}.}
-by circling the nodes $q_i$ through~$r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
+We can represent each $\gamma_i$ pictorially as in Figure~\ref{tube fig}, by circling the nodes $q_i$ through~$r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
 
 %We write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector $\beta_{qr}$.
 %The denominator vector of $x_{qr}$ is $\beta_{qr}$, so the $\g$-vector of $x_{qr}$ is $\nu_c(\beta_{qr})$.
@@ -2489,15 +2488,26 @@ Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and
 If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, \sayN{changed $q<q'<r$ to $q<q'$.} 
 $q<r<r'$, and $q'\le r+1$.
 \begin{figure}
+\scalebox{1}{
 \includegraphics{tubefig}
-\scalebox{1}{\begin{picture}(0,0)(54,-54)
+\begin{picture}(0,0)(54,-54)
 %\put(-25,13){\small$q$}
-\put(-47,36){\small$q$}
-\put(45,-24){\small$r$}
-\put(26,45){\small$q'$}
-\put(-48,-44){\small$r'$}
+\put(-37,46){\small$q$}
+\put(38,-38){\small$r$}
+\put(36,37){\small$q'$}
+\put(-56,-34){\small$r'$}
 \end{picture}}
-\caption{An illustration of the proof of Proposition~\ref{A and q-l}}
+\qquad\qquad
+\scalebox{1}{
+\includegraphics{trifig}
+\begin{picture}(0,0)(54,-54)
+%\put(-25,13){\small$q$}
+\put(-37,46){\small$q$}
+\put(38,-38){\small$r$}
+\put(36,37){\small$q'$}
+\put(-56,-34){\small$r'$}
+\end{picture}}
+\caption{Illustrations of the proof of Proposition~\ref{A and q-l}}
 \label{tube fig}
 \end{figure}
 The solid lines in Figure~\ref{tube fig} indicate~$\beta_{qr}$ and~$\beta_{q'r'}$ in the case where $q'<r$.
@@ -2551,12 +2561,7 @@ We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and 
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation $T_0$, take all diagonals with an endpoint at $p_\ell+2$.
 The roots~$\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
 The root $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e.\ the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
-The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in Figure~\ref{tri fig}.   \sayN{Need picture.}
-\begin{figure}
-%\includegraphics{trifig}
-\caption{Another illustration of the proof of Proposition~\ref{A and q-l}}
-\label{tri fig}
-\end{figure}
+The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in Figure~\ref{tri fig}.   
 If the other diagonal is specified by $\gamma'_i$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
 We conclude that, up to a global sign, the entries of  $B_{\ell\ell}$ in non-special columns agree with the entries of the signed adjacency matrix of $T$.
 Since both matrices are skew-symmetric, they are therefore equal up to a sign.
