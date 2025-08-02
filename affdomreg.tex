@@ -2472,7 +2472,7 @@ Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the compon
 For $1\le q\le r\le p_\ell$, write $\beta_{qr}$ for $\beta_q+\beta_{q+1}+\cdots+\beta_{r}$ so that each $\gamma_i$ is~$\beta_{q_ir_i}$ for some $q_i$ and $r_i$.
 If $i$ is the special index, then $\gamma_i$ is~$\beta_{1p_\ell}$.
 %Proposition~\ref{compatible in tubes} says that roots
-We can represent each $\gamma_i$ pictorially as in Figure~\ref{tube fig}, by circling the nodes $q_i$ through~$r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
+We can represent each $\gamma_i$ pictorially as in the left picture of Figure~\ref{tube fig}, by circling the nodes $q_i$ through~$r_i$ on a cycle with nodes labeled $0,1,\ldots,p_\ell$.
 
 %We write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector $\beta_{qr}$.
 %The denominator vector of $x_{qr}$ is $\beta_{qr}$, so the $\g$-vector of $x_{qr}$ is $\nu_c(\beta_{qr})$.
@@ -2487,6 +2487,12 @@ Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and
 (In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that $q\ge1$ and $q'\ge 1$, so neither of these roots has $\beta_0$ in its support.)
 If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, \sayN{changed $q<q'<r$ to $q<q'$.} 
 $q<r<r'$, and $q'\le r+1$.
+The solid lines in the left picture of Figure~\ref{tube fig} indicate~$\beta_{qr}$ and~$\beta_{q'r'}$ in the case where $q'<r$.
+Lemma~\ref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
+These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, or $r'\ge r+2$.
+(In what follows, if $x_{q'r}$ does not exist, the notation $x_{q'r}$ will mean $1$, and similarly for $x_{q(q'-2)}$ and $x_{(r+2)r'}$.)
+The dashed lines in the left picture of Figure~\ref{tube fig} indicate $\beta_{qr'}$, $\beta_{q'r}$, $\beta_{q(q'-2)}$, and $\beta_{(r+2)r'}$.
+
 \begin{figure}
 \scalebox{1}{
 \includegraphics{tubefig}
@@ -2510,11 +2516,6 @@ $q<r<r'$, and $q'\le r+1$.
 \caption{Illustrations of the proof of Proposition~\ref{A and q-l}}
 \label{tube fig}
 \end{figure}
-The solid lines in Figure~\ref{tube fig} indicate~$\beta_{qr}$ and~$\beta_{q'r'}$ in the case where $q'<r$.
-Lemma~\ref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
-These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, or $r'\ge r+2$.
-(In what follows, if $x_{q'r}$ does not exist, the notation $x_{q'r}$ will mean $1$, and similarly for $x_{q(q'-2)}$ and $x_{(r+2)r'}$.)
-The dashed lines in Figure~\ref{tube fig} indicate $\beta_{qr'}$, $\beta_{q'r}$, $\beta_{q(q'-2)}$, and $\beta_{(r+2)r'}$.
 
 In the proof of Lemma~\ref{exch ind}, we saw that the exchange relation for $x_{qr}$ and $x_{q'r'}$ has a term with no coefficient variables whose $\g$-vector is the sum of the $\g$-vectors of $x_{qr}$ and $x_{q'r'}$.
 Since $\nu_c$ is linear on the cone spanned by positive roots, that monomial must be $x_{qr'}x_{q'r}$.
@@ -2540,29 +2541,14 @@ x_{qr}x_{q'r'}=x_{qr'}x_{q'r}+y^{\beta_{q'(r+1)}}x_{q(q'-2)}x_{(r+2)r'}.
 Up to a global change of sign, these exchange relations determine the entries $b_{ij}$ of~$B_{\ell\ell}$ for non-special~$j$.
 Furthermore, appealing to Lemma~\ref{neigh neg and T}, we know that $B^T$ is also neighboring.
 In particular, the argument to this point implies that the entries of $B_{\ell\ell}^T$ in non-special columns are $0$, $1$, or $-1$.
-We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and thus is skew-symmetric. %, so we have also determined the entries $b_{ij}$ of $B_{\ell\ell}$ for special $j$.
-
-%we can write down the entries $b_{ij}$ of $B_{\ell\ell}$ for non-special~$j$:
-%For $\gamma_j=\beta_{q_jr_j}$, among roots $\gamma_k\neq\gamma_j$ with $q_k\le q_j\le r_j\le r_k$, there is a unique $k$ that minimizes $r_k-q_k$, and for this $k$, either $q_k=q_j\le r_j< r_k$ or $q_k<q_j\le r_j=r_k$.
-% ...
-%there is a unique $m_j\in[q_j,r_j]$ such that every $\gamma_k$ with $\SuppT(\gamma_k)\subseteq\SuppT(\gamma_j)$ has $\beta_{m_j}\not\in\SuppT(\gamma_k)$.
-%There is also a unique largest $m'_j$ such that there exists $\gamma_k=\beta_{(r_j+2)m'_j}$ (allowing $m'_j=r_j+1$ so that no such $\gamma_k$ exists).
-%Then the entry $b_{ij}$ is $1$ if $\gamma_i=\beta_{q_j(m_j-1)}$ or $\gamma_i=\beta_{(r_j+2)m'_j}$, and $b_{ij}$ is $-1$ if $\gamma_i=\beta_{q_jm'_j}$ or $\gamma_i=\beta{(m_j+1)r_j}$, and otherwise $b_{ij}=0$.
-%Now, appealing to Lemma~\ref{neigh neg and T}, we know that $B^T$ is also neighboring.
-%In particular, the argument to this point implies that the entries of $B_{\ell\ell}^T$ in non-special columns are $0$, $1$, or $-1$.
-%We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and thus is skew-symmetric.
-%If $j$ is special, then $q_j=1$ and $r_j=p_\ell$.
-%Defining $m_j$ as before (and ignoring $m'_j$), we see that $b_{ij}$ is $1$ if $\gamma_i=\beta_{q_j(m_j-1)}$, and $b_{ij}$ is $-1$ if $\gamma_i=\beta{(m_j+1)r_j}$, and otherwise $b_{ij}=0$.
-%In particular, we have shown that the special index $j$ is a quasi-leaf.
-%
-%
-%BLACK=NEGATIVE if I take the LEFT RED!
+We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and thus is skew-symmetric. 
 
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation $T_0$, take all diagonals with an endpoint at $p_\ell+2$.
 The roots~$\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
 The root $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e.\ the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
-The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$, as illustrated in Figure~\ref{tri fig}.   
-If the other diagonal is specified by $\gamma'_i$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
+The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$.
+If the other diagonal is specified by $\gamma_{i'}$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
+The exchange relation is illustrated in the right picture of Figure~\ref{tube fig}, with solid lines representing the cluster variables being exchanged and dashed lines representing the cluster variables appearing in the exchange relation.
 We conclude that, up to a global sign, the entries of  $B_{\ell\ell}$ in non-special columns agree with the entries of the signed adjacency matrix of $T$.
 Since both matrices are skew-symmetric, they are therefore equal up to a sign.
 We see that $B_{\ell\ell}$ is of type $A_{p_\ell}$.
