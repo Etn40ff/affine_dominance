@@ -443,7 +443,6 @@
 \address[Salvatore Stella]{Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica, Universit\`{a} degli Studi dell'Aquila, IT}
 %\keywords{}
 \thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608 and by the National Science Foundation under award number DMS-2054489.
-Dylan Rupel was partially supported by ????.  
 Salvatore Stella was partially supported by ????.  }
 %\received{}
 %\revised{}
@@ -458,7 +457,7 @@ Salvatore Stella was partially supported by ????.  }
 We determine dominance regions associated to cluster algebras of affine type.
 In the most interesting cases, the dominance region is a line segment, which we describe explicitly.
 Motivations for this work include a project to determine all pointed bases for upper cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
-The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the imaginary wall.
+  The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the imaginary wall).
 \end{abstract}
 
 \maketitle
@@ -469,7 +468,7 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \tableofcontents
 
 \section{Introduction}
-\sayN{Fill in support for Dylan and Salvatore}
+\sayN{Fill in support for Salvatore}
 \sayN{I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no?}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds".}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
@@ -480,8 +479,8 @@ characterizes all pointed bases of the upper cluster algebra in terms of the dom
 See \cite[Section~1]{FanQin}.)
 
 Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
-(In~\cite{RSDom} and in this paper, we consider \emph{tall} extended exchange matrices rather \emph{wide} ones.
-Also, we follow the usual practice of taking the ``rank'' of an extended exchange matrix to be the number of columns.
+(In~\cite{RSDom} and in this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
+Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrix.
 Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
 They found that, in the rank-$2$ affine case, dominance regions are either points or line segments.
 The purpose of this paper is to generalize that fact to extended exchange matrices of affine type, beyond rank~$2$.
@@ -492,12 +491,12 @@ This cone is called the imaginary wall, because it is a wall in the cluster scat
 There is a unique ray of the mutation fan, called the imaginary ray, that is in the relative interior of the imaginary wall.  
 
 Up to translation, the dominance region of $\lambda$ only depends on the projection of~$\lambda$ into $\reals^n$ that ignores the last $m-n$ entries.
-We prove that when $\tB$ has linearly independent columns, $\P_\lambda^\tB$ is a point if $\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
+We prove that when $\tB$ has linearly independent columns, the dominance region $\P_\lambda^\tB$ is a point if $\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
 
-In general it is appears to be much harder to compute dominance regions without the assumption that $\tB$ has linearly independent columns.
+In general, it appears to be much harder to compute dominance regions without the assumption that $\tB$ has linearly independent columns.
 However, our characterization of dominance regions in affine type in the case of linearly independent columns requires us first to characterize, in the coefficient-free case, dominance regions for $\lambda$ in the imaginary cone.
 (From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
-In the coefficient-free case, we can describe line-segment explicitly:
+In the coefficient-free case, we can describe the line-segments explicitly:
 They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
 
 A crucial ingredient for the characterization of dominance regions in affine type is a detailed study of the exchange matrices of neighboring seeds.  
