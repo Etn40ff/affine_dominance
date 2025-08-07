@@ -529,14 +529,13 @@ Also, throughout the section, we use results from~\cite{NZ}.
 We begin with a skew-symmetrizable exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 The diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$ has $\Sigma B\Sigma^{-1}=-B^T$.
 
-Given a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
-That is, $\mu_\kk(B)$ means $\mu_{k_m}(\mu_{k_{m-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
-We write $\kk^{-1}$ for $k_1\cdots k_m$, the reverse of $\kk$.
+Given a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
+That is, $\mu_\kk(B)$ means $\mu_{k_r}(\mu_{k_{r-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
+We write $\kk^{-1}$ for $k_1\cdots k_r$, the reverse of $\kk$.
 Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
 
 Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix.
-In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors, and also, the mutation maps we need use transposes $B^T$ of exchange matrices.
-Thus we write maps $\eta_\kk^{B^T}$.
+In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
 This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
 
@@ -567,10 +566,6 @@ For any $\ll$,
 Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
 \end{proof}
 
-\sayN{Added following lemma.  Seems to be worth saying, and maybe we can mention it in the introduction to say something about ``any $B$ that decomposes into blocks of finite and affine type''.  Do you agree that it's easy enough to not give a proof?  I suppose we need the same thing for extended exchange matrices.  Alternatively, we can just leave this out, because it's so easy.
-\rd{I think it's a worthwhile statement to include.  It seemed like the proof was about as long as saying it was easy so I added a few words about it. Nothing changes if the $B_i$ were rectangular so this covers the extended case as well.  Do we need to say that explicitly?}  \rn{I added Lemma~\ref{block dom ext}.}}
-%The following lemma is easily proved from the definition of $\P_\lambda^B$ and simple observations about mutation maps in the presence of a block decomposition.
-
 \begin{lemma}\label{block dom}
 If $B$ has a diagonal block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\end{bsmallmatrix}$ and $\lambda\in\reals^n$ has a corresponding decomposition $\begin{bsmallmatrix}\lambda_1\\\lambda_2\end{bsmallmatrix}$, then $\P_\lambda^B=\P_{\lambda_1}^{B_1}\times\P_{\lambda_2}^{B_2}$.
 \end{lemma}
@@ -582,16 +577,16 @@ If $B$ has a diagonal block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\end{
 For seeds $t_0$ and $t$ and an exchange matrix $B$, let $C_t^{B;t_0}$ be the matrix whose columns are the $C$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
 Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the same sign.
 (This is ``sign-coherence of $C$-vectors'', which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
-Thus we will refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
-For $\kk=k_m\cdots k_1$, define seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$.
-The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_\ell$ of $C_{t_{\ell-1}}^{B;t_0}$ is \emph{positive} for all $\ell$ with $1\le\ell\le m$. \sayD{I would prefer different indexing symbols here.  We will often use $m$ for the size of the extended exchange matrix and $\ell$ for a mutation direction, similarly $i$ and $j$ are basically always going to refer to the columns and rows of the exchange matrix so they are somehow already constrained quantities in my mind.  How does $\kk=k_r\cdots k_1$ and $k_p$ look instead?  I know it will be a lot to change this throughout, but I'm willing to if you guys give the go-ahead.  \rn{Fine with me.}}
+Thus we may refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
+For $\kk=k_r\cdots k_1$, define seeds $t_1,\ldots,t_r$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r$.
+The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_p$ of $C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$. \sayD{I would prefer different indexing symbols here.  We will often use $m$ for the size of the extended exchange matrix and $\ell$ for a mutation direction, similarly $i$ and $j$ are basically always going to refer to the columns and rows of the exchange matrix so they are somehow already constrained quantities in my mind.  How does $\kk=k_r\cdots k_1$ and $k_p$ look instead?  I know it will be a lot to change this throughout, but I'm willing to if you guys give the go-ahead.  \rn{Fine with me.}}
 A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
-That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_m}^{B;t_0}$ is \emph{negative}.
+That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_r}^{B;t_0}$ is \emph{negative}.
 
 We will call $\kk$ a \newword{red sequence} for~$B$ if it is a green sequence for $-B$.
 A \newword{maximal red sequence} is a red sequence that cannot be extended.
 (A red sequence relates to antiprincipal coefficients: 
-If we were to define a version of $C$-vectors recursively starting with the negative of the identity matrix, the requirement for a red sequence would be that the $k_\ell$ column is negative at every step.)
+If we were to define a version of $C$-vectors recursively starting with the negative of the identity matrix, the requirement for a red sequence would be that the $k_p$ column is negative at every step.)
 
 Let $G_t^{B;t_0}$ be the matrix whose columns are the $\g$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
 Let $\Cone^{B;t_0}_t$ be the nonnegative linear span of the columns of $G_t^{B;t_0}$.
@@ -602,9 +597,9 @@ The inverse of $G_t^{B;t_0}$ is $\bigl(C_t^{-B^T;t_0}\bigr)^T$.
 (This is \cite[Theorem~1.2]{NZ} or \cite[Theorem~1.1]{framework} and \cite[Theorem~3.30]{framework}.)
 Thus $\Cone^{B;t_0}_t=\sett{x\in\reals^n:x^TC_t^{-B^T;t_0}\ge0}$, where $0$ is a row vector and ``$\ge$'' means componentwise comparison. 
 
-Given $\kk$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m$, let $B_i$ be the exchange matrix at~$t_i$, so that in particular, $B_0=B$.
-The map $\eta_{\kk}^{B^T}$ is ${\eta_{k_m}^{B_{m-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
-The definition of each $\eta_{k_i}^{B_{i-1}^T}$ has two cases, separated by the hyperplane $x_{k_i}=0$.
+Given $\kk$ with $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r$, let $B_p$ be the exchange matrix at~$t_p$, so that in particular, $B_0=B$.
+The map $\eta_{\kk}^{B^T}$ is ${\eta_{k_r}^{B_{r-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
+The definition of each $\eta_{k_p}^{B_{p-1}^T}$ has two cases, separated by the hyperplane $x_{k_p}=0$.
 Two vectors are in the same \newword{domain of definition} of $\eta_\kk^{B^T}$ if the same case applies for the two vectors at every step.
 (Both cases apply on the separating hyperplanes, so domains of definition are closed.)
 In particular, $\eta_\kk^{B^T}$ is linear in each of its domains of definition, but the domains of linearity of $\eta_\kk^{B^T}$ can be larger than its domains of definition.
@@ -614,7 +609,7 @@ We will not need the details of the definition, but roughly, the cones of $\F_{B
 Thus for each $\kk$, each cone of $\F_{B^T}$ is contained in a domain of definition of $\eta_\kk^{B^T}$, and the mutation map $\eta_\kk^{B^T}$ is linear on every cone of $\F_{B^T}$ \cite[Proposition~5.3]{universal}.
 Every cone $\Cone^{B;t_0}_t$ is a maximal cone in the mutation fan $\F_{B^T}$ \cite[Proposition~8.13]{universal}.
 Thus in particular, the mutation map $\eta_\kk^{B^T}$ is linear on every cone $\Cone^{B;t_0}_t$.
-Furthermore, $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$.
+Furthermore, $\Cone_t^{B_r;t_r}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$.
 (This amounts to the initial seed mutation formula for $\g$-vectors, conjectured as \cite[Conjecture~7.12]{ca4} and shown in \cite[Proposition~4.2(v)]{NZ} to follow from sign-coherence of $C$-vectors.
 The restatement in terms of mutation maps is \cite[Conjecture~8.11]{universal}.)
 A similar fact applies to the entire mutation fan:
@@ -627,7 +622,6 @@ As written, \cite[Proposition~8.13]{universal} is conditional on the conjectured
 We will need to relate the cones $\Cone^{B;t_0}_t$ and $\Cone^{-B^T;t_0}_t$.
 Recall that $-B^T=\Sigma B\Sigma^{-1}$, where $\Sigma$ is the diagonal matrix with positive entries $d_1,\ldots,d_n$.
 In the language of \cite[Section~7]{universal}, $-B^T$ is a \newword{rescaling} of $B$.
-\sayD{This is backwards from the convention at the start of section 2.1, which convention do we want to go with?  \rn{I fixed this instance to match everything else.}}
 Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\Sigma^{-1}G_t^{B;t_0}$.
 (In the statement of \cite[Proposition~8.20]{universal}, the roles of $\Sigma$ and $\Sigma^{-1}$ are reversed, and $\Sigma$ is multiplied on the right because, in~\cite{universal}, the $\g$-vectors are row vectors rather than column vectors.)
 Thus we have the following fact.
@@ -645,7 +639,7 @@ For any $k$, the $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same si
 %\end{lemma}
 
 \begin{lemma}\label{max green neg cone}
-If $\kk=k_m\cdots k_1$ for is a maximal green sequence for $B$ corresponding to seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ in the cluster pattern with $B$ at $t_0$, then ${\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}=\left(\reals_{\le0}\right)^n}$.
+If $\kk=k_r\cdots k_1$ for is a maximal green sequence for $B$ corresponding to seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$ in the cluster pattern with $B$ at $t_0$, then ${\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}=\left(\reals_{\le0}\right)^n}$.
 \end{lemma}
 \begin{proof}
 Since $\kk$ is a maximal green sequence for $B$, every column of $C_t^{B;t_0}$ has negative sign and thus $\Cone_t^{-B^T;t_0}=\set{x\in\reals^n:x^TC_t^{B;t_0}\ge0}$ consists of vectors with nonpositive entries.
@@ -653,12 +647,11 @@ Since $\left(\reals_{\le0}\right)^n$ is a cone in the mutation fan $\F_B$ (for e
 Lemma~\ref{B or -BT} implies that $\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}$.
 \end{proof}
 
-
 \begin{lemma}\label{max red green}
-For a sequence $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$ of mutations in a cluster pattern, the sequence $\kk=k_m\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_m$ is a maximal red sequence for~$B_t$.
+For a sequence $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$ of mutations in a cluster pattern, the sequence $\kk=k_r\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal red sequence for~$B_t$.
 \end{lemma}
 \begin{proof}
-By the definition of a red sequence, the lemma is equivalent to the statement that  $\kk=k_m\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_m$ is a maximal green sequence for~$-B_t$.
+By the definition of a red sequence, the lemma is equivalent to the statement that  $\kk=k_r\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal green sequence for~$-B_t$.
 Write $B_0$ for $B_{t_0}$.
 
 Suppose $\kk$ is a maximal green sequence for $B_{t_0}$.
@@ -806,12 +799,12 @@ In Section~\ref{ext sec}, we extend the result to tall extended exchange matrice
 %As an application, we prove in Section~\ref{ext sec} that (when $B$ is replaced by an extended exchange matrix with linearly independent columns) that the dominance region of a point $\lambda$ in the $\g$-vector fan... hypotheses... never mind
 
 Let $B_0$ be an exchange matrix.
-For a sequence $\kk=k_m\cdots k_1$ of indices, define seeds $t_1,\ldots,t_m=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+For a sequence $\kk=k_r\cdots k_1$ of indices, define seeds $t_1,\ldots,t_r=t$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
 We will prove the following theorem.
 
 \begin{theorem}\label{P in B0C}
-Suppose $\kk=k_m\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{B_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
+Suppose $\kk=k_r\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
+If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{B_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 
@@ -873,7 +866,7 @@ By Lemma~\ref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$
 \end{aligned}\end{equation}
 
 The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$.  
-This map is $\eta_{\kk}^{B_0^T}={\eta_{k_m}^{B_{m-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
+This map is $\eta_{\kk}^{B_0^T}={\eta_{k_r}^{B_{r-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
 The map $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B_1;t_1}$.
 The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
 We will find the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
@@ -887,9 +880,9 @@ Now, one easily checks that the action of $\eta_{k_1}^{B_1^T}$ on vectors whose 
 %It negates the $k_1$ entry.
 %The $i\th$ ($i\neq k$) entry gets sent to itself plus the $k_1$ entry times $(B_1)_{ik}$ times $\ep$, if $(B_1)_{ik}$ also has sign $\ep$.
 
-Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$, so that $\lambda'$ is in the same domain of definition of $\eta_{k_m\cdots k_2}^{B_1^T}$ as $\Cone_t^{B_1;t_1}$ and so that $\lambda'=E^{B_1}_{\ep,k_1}\lambda$.
-By induction on $m$, 
-\[\eta_{k_2\cdots k_m}^{B_t^T}\set{\eta_{k_m\cdots k_2}^{B_1^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$, so that $\lambda'$ is in the same domain of definition of $\eta_{k_r\cdots k_2}^{B_1^T}$ as $\Cone_t^{B_1;t_1}$ and so that $\lambda'=E^{B_1}_{\ep,k_1}\lambda$.
+By induction on $r$, 
+\[\eta_{k_2\cdots k_r}^{B_t^T}\set{\eta_{k_r\cdots k_2}^{B_1^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 Applying the homeomorphism $\eta_{k_1}^{B_1^T}$ to both sides, we obtain
 \[\eta_{\kk^{-1}}^{B_t^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_t\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 In light of \eqref{ind B0C}, we can complete the proof by showing that
@@ -976,7 +969,7 @@ For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation
 \end{lemma}
 
 The matrix $\BB$ defines mutation maps $\eta_\kk^{\BB^T}$ that act on $\reals^m$ rather than $\reals^n$, but without exception we will only consider mutations in positions $1,\ldots,n$.
-Also, given $\BB$, a sequence $\kk=k_m\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_m$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$, there are associated matrices of $\g$-vectors and $\c$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
+Also, given $\BB$, a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_r$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$, there are associated matrices of $\g$-vectors and $\c$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
 Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have block forms
 \[
 \GG_t^{\BB;t_0}=\begin{bsmallmatrix}G_t^{B;t_0}&0\\H_t^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}
@@ -1026,7 +1019,7 @@ Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of defin
 Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is $\Proj_n^{-1}D$ for some domain $D$ of definition of $\eta_\kk^{B^T}$.
 Accordingly, we define $\Cone_t^{\tB;t_0}$ to be %the nonnegative span of the columns of $\GG_t^{\BB;t_0}$ and the columns of $\begin{bsmallmatrix}0\\-I_{m-n}\end{bsmallmatrix}$.
 $\Proj_n^{-1}\Cone_t^{B;t_0}$.
-Since $\Cone_t^{B_m;t_m}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_m;t_m}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$.
+Since $\Cone_t^{B_r;t_r}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_r;t_r}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$.
 
 Similarly, we define the mutation fan for $\tB^T$ to be the set $\F_{\tB^T}$ of cones $\Proj_n^{-1}C$ such that $C$ is a cone in the mutation fan $\F_{B^T}$.
 Since $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ for sequences $\kk$ of indices in $\set{1,\ldots,n}$, the map $\eta_\kk^{\BB^T}$ is linear on every cone of $\F_{\tB^T}$ and acts as an isomorphism of fans from $\F_{\tB^T}$ to $\F_{\mu_\kk(\tB)^T}$.
@@ -1059,13 +1052,13 @@ Then $\P_\lambda^\tB=\P_{\lambda_1}^{\tB_1}\times\P_{\lambda_2}^{\tB_2}$.
 We will prove the following extension of Theorem~\ref{P in B0C}.
 
 \begin{theorem}\label{P in B0C extended}
-Suppose $\kk=k_m\cdots k_1$ is a sequence of indices in $\set{1,\ldots, n}$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-If $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{\tB_0;t_0}_t$,
+Suppose $\kk=k_r\cdots k_1$ is a sequence of indices in $\set{1,\ldots, n}$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
+If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_t$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{\tB_0;t_0}_t$,
 \[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_t\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 \begin{proof}
-First, we notice that $\kk^{-1}=k_1\cdots k_m$ is a red sequence for $\BB_t$, or in other words, $\kk$ is a green sequence for $-\BB_t$.
-Indeed, since $\CC_{t_{\ell-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{\ell-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_\ell$ of $\CC_{t_{\ell-1}}^{-\BB;t_0}$ equals the sign of column $k_\ell$ of $C_{t_{\ell-1}}^{-B;t_0}$ whenever $1\le\ell<m$.
+First, we notice that $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $\BB_t$, or in other words, $\kk$ is a green sequence for $-\BB_t$.
+Indeed, since $\CC_{t_{\ell-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{\ell-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_p$ of $\CC_{t_{p-1}}^{-\BB;t_0}$ equals the sign of column $k_p$ of $C_{t_{p-1}}^{-B;t_0}$ whenever $1\le p<r$.
 Thus Theorem~\ref{P in B0C} says that
 \[\P^{\BB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\BB_t\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
 The assertion of Theorem~\ref{P in B0C extended} is that the same holds even when, in each term, the conditions $\alpha\in\reals^m,\alpha\ge0$ are strengthened by requiring that $\alpha$ is zero in coordinates $n+1,\ldots,m$.
@@ -1100,7 +1093,7 @@ Since $\eta_\ll^{\BB_0^T}\bigl(\Cone_t^{\tB_0;t_0}\bigr)=\Cone_t^{\tB_{t'};t'}$,
 (It is well known that the linear independence of the columns is preserved under mutation.
 See \cite[Lemma~1.2]{GSV03} or \cite[Lemma~3.2]{ca3}.)
 
-Let $\kk=k_m\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Let $\kk=k_r\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
 Then Theorem~\ref{P in B0C extended} says that $\P^{\tB_0}_{\lambda,\kk}$ is contained in $\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
 Since $\kk^{-1}$ is a maximal red sequence for $B_t$, or in other words a maximal green sequence for $-B_t$, every column of $C_{t_0}^{-B_t;t}$ has negative sign, so $\Cone_{t_0}^{B_t^T;t}=\set{x\in\reals^n:x^TC_{t_0}^{-B_t;t}\ge0}$ consists of vectors with nonpositive entries.
@@ -1905,15 +1898,15 @@ The element $w$ is \newword{$c$-sortable} if this sequence of subsets is weakly 
 
 The following lemma is immediate from the definition.
 \begin{lemma}\label{any prefix}
-If $a_1\ldots a_m$ is the $c$-sorting word for a $c$-sortable element, then for any $k\in\set{0,1,\ldots,m}$, the prefix $a_1\cdots a_k$ is the $c$-sorting word for a $c$-sortable element.
+If $a_1\ldots a_r$ is the $c$-sorting word for a $c$-sortable element, then for any $p\in\set{0,1,\ldots,r}$, the prefix $a_1\cdots a_p$ is the $c$-sorting word for a $c$-sortable element.
 \end{lemma}
 
 
 The $c$-sortable elements and their $c$-sorting words contain a lot of combinatorial data about the mutation fan.
 %Each $c$-sortable element determines an $n$-dimensional cone $\Cone_c(v)$ in $V^*$ whose inward-facing normals are certain roots or co-roots in $\RS\subset V$ determined by the $c$-sorting word as follows.
-Given a $c$-sortable element $v$ and an index $i\in\set{1,\ldots,n}$, let $a_1\cdots a_k$ be the prefix of the $c$-sorting word for $v$ consisting of all the letters before the first place where $s_i$ is skipped in the $c$-sorting word.
-Define $C_c^i(v)$ to be the root $a_1\cdots a_k\alpha_i$ and define $C_c^i(v)\ck$ to be the corresponding co-root $a_1\cdots a_k\alpha\ck_i$.
-The skip of $s_i$ in the $c$-sorting word is \newword{unforced} if $a_1\cdots a_ks_i$ is a reduced word.
+Given a $c$-sortable element $v$ and an index $i\in\set{1,\ldots,n}$, let $a_1\cdots a_p$ be the prefix of the $c$-sorting word for $v$ consisting of all the letters before the first place where $s_i$ is skipped in the $c$-sorting word.
+Define $C_c^i(v)$ to be the root $a_1\cdots a_p\alpha_i$ and define $C_c^i(v)\ck$ to be the corresponding co-root $a_1\cdots a_p\alpha\ck_i$.
+The skip of $s_i$ in the $c$-sorting word is \newword{unforced} if $a_1\cdots a_ps_i$ is a reduced word.
 Otherwise, it is \newword{forced}.
 The root $C_c^i(v)$ is positive if and only if the skip is unforced.
 
@@ -1938,35 +1931,35 @@ Suppose $W$ is of affine type and suppose $v$ is a $c$-sortable element whose $c
 Then $cv$ is $c$-sortable and its $c$-sorting word is $s_1\cdots s_n$ followed by the $c$-sorting word for~$v$.
 \end{proposition}
 \begin{proof}
-Let $a_1\cdots a_m$ be the $c$-sorting word for $v$.
-We first show that $s_na_1\cdots a_m$ is reduced.
-  The means showing that $\alpha_n\not\in\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,m}$, where $\alpha(a_k)$ is the simple root associated to the simple reflection~$a_k$.
-Suppose to the contrary that $\alpha_n=a_1\cdots a_{k-1}\alpha(a_k)$ for some~$k$.
-Since $\set{a_1\cdots a_{k-1}\alpha(a_k):k=1,\ldots,n}$ equals $\TravProj{c}$ and $\alpha_n\in \TravInj{c}$, we must have $k>n$.
-But then Lemma~\ref{c to pos} says that $a_{n+1}\cdots a_{k-1}\alpha(a_k)$ is negative, contradicting the fact that $a_{n+1}\cdots a_m$ is reduced.
+Let $a_1\cdots a_r$ be the $c$-sorting word for $v$.
+We first show that $s_na_1\cdots a_r$ is reduced.
+  The means showing that $\alpha_n\not\in\set{a_1\cdots a_{p-1}\alpha(a_p):p=1,\ldots,r}$, where $\alpha(a_p)$ is the simple root associated to the simple reflection~$a_p$.
+Suppose to the contrary that $\alpha_n=a_1\cdots a_{p-1}\alpha(a_p)$ for some~$p$.
+Since $\set{a_1\cdots a_{p-1}\alpha(a_p):p=1,\ldots,n}$ equals $\TravProj{c}$ and $\alpha_n\in \TravInj{c}$, we must have $p>n$.
+But then Lemma~\ref{c to pos} says that $a_{n+1}\cdots a_{p-1}\alpha(a_p)$ is negative, contradicting the fact that $a_{n+1}\cdots a_r$ is reduced.
 
-We conclude that $s_na_1\cdots a_m$ is reduced.
-Therefore, we see that $s_na_1\cdots a_m$ is the $(s_ncs_n)$-sorting word for $s_nv$ and that $s_nv$ is $(s_ncs_n)$-sortable.
+We conclude that $s_na_1\cdots a_r$ is reduced.
+Therefore, we see that $s_na_1\cdots a_r$ is the $(s_ncs_n)$-sorting word for $s_nv$ and that $s_nv$ is $(s_ncs_n)$-sortable.
 Applying that fact $n$ times implies the proposition.
 \end{proof}
 
 \begin{proposition}\label{sort green}
 Suppose $B_0$ is an acyclic $n\times n$ exchange matrix of affine type.
-Let $v$ be a $c$-sortable element and let $\kk=k_m\cdots k_1$ be the \emph{reverse} of the sequence of indices in the $c$-sorting word for $v$.
+Let $v$ be a $c$-sortable element and let $\kk=k_r\cdots k_1$ be the \emph{reverse} of the sequence of indices in the $c$-sorting word for $v$.
 Then $\kk$ is a green sequence for $B_0$.
 \end{proposition}
 \begin{proof}
-Write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Lemma~\ref{any prefix} implies that each $t_i$ is associated to a $c$-sortable element.
-Each $t_{i+1}$ is obtained from $t_i$ by mutating in position $k_{i+1}$, the last letter of the $c$-sorting word associated to $t_{i+1}$.
-Since the $c$-sorting word associated to $t_{i+1}$ is reduced, the skip of $s_{k_{i+1}}$ is unforced, and thus the $C$-vector at $t_i$ indexed by $k_{i+1}$ is positive.
+Write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
+Lemma~\ref{any prefix} implies that each $t_p$ is associated to a $c$-sortable element.
+Each $t_{p+1}$ is obtained from $t_p$ by mutating in position $k_{p+1}$, the last letter of the $c$-sorting word associated to $t_{p+1}$.
+Since the $c$-sorting word associated to $t_{p+1}$ is reduced, the skip of $s_{k_{p+1}}$ is unforced, and thus the $C$-vector at $t_p$ indexed by $k_{p+1}$ is positive.
 \end{proof}
 
 \begin{proposition}\label{any B is sort}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
 Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so?}
-For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$.
-Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$.
+For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$.
+Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,m}$.
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
@@ -1977,19 +1970,17 @@ The map $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i$ acts as an initial seed mutation
 If $\ll$ is the sequence of indices that mutates $t_0$ to $t'$, then $\ll(12\cdots n)^i$ mutates $t_0$ to $t$.
 We see that the exchange matrix at $t$ is $\mu_{\ll(12\cdots n)^i}(B_0)=\mu_\ll(B_0)=B$.
 
-Increasing $i$ in the previous paragraph means using Proposition~\ref{tack on c} to replace~$v$ by a $c$-sortable element~$c^pv$.
-It is known \cite[Proposition~4.6]{afframe} that there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_j}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta<0}}$. 
-Thus we choose $i$ large enough (i.e. choose $p$ large enough) so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j\ge pn$.
-But for $0\le j\le pn$, the the prefix $a_1\cdots a_j$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
-By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_j}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_j$ to the positive cone.
-The resulting cone $\Cone^{B_0;t_0}_{t_j}$ is therefore contained in the Tits cone,
+Increasing $i$ in the previous paragraph means using Proposition~\ref{tack on c} to replace~$v$ by a $c$-sortable element~$c^jv$.
+It is known \cite[Proposition~4.6]{afframe} that there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_p}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta<0}}$. 
+Thus we choose $i$ large enough (i.e. choose $j$ large enough) so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $p\ge jn$.
+But for $0\le p\le jn$, the prefix $a_1\cdots a_p$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
+By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_p}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_p$ to the positive cone.
+The resulting cone $\Cone^{B_0;t_0}_{t_p}$ is therefore contained in the Tits cone,
 \sayD{Should we introduce the Tits cone at the start of this section?  \rn{No objection.}} 
-so that every nonzero vector in $\Cone^{B_0;t_0}_{t_j}$ pairs strictly positively with $\delta$.
-The cone $\Cone^{B_0;t_0}_{t_j}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
-We see that the columns of $G_{t_j}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
+so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with $\delta$.
+The cone $\Cone^{B_0;t_0}_{t_p}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
+We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
 \end{proof}
-
-
 
 
 \subsection{General seeds of affine type}
@@ -2014,14 +2005,13 @@ If $\lambda\in\d^B_\infty$, then $\P^B_\lambda\subseteq\d^B_\infty$.
 \end{lemma}
 
 Let $B_0$ be an acyclic exchange matrix that is mutation-equivalent to $B$ and consider the cluster pattern with $B_0$ the seed at $t_0$.
-We will construct a particular seed $t$ with exchange matrix $B$ and a green sequence $\kk=k_m\cdots k_1$ for $B_0$ that mutates $t_0$ to $t$ and then establish some additional properties of $\kk$.
+We will construct a particular seed $t$ with exchange matrix $B$ and a green sequence $\kk=k_r\cdots k_1$ for $B_0$ that mutates $t_0$ to $t$ and then establish some additional properties of $\kk$.
 
 Proposition~\ref{any B is sort} says there exists a $c$-sortable element $v$ whose associated seed has exchange matrix $B$.
-Let $\kk$ be the reverse of the sequence of indices in the $c$-sorting word for $v$ and write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
-Proposition~\ref{any B is sort} says further that $v$ can be chosen so that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $j=0,\ldots,m$.
+Let $\kk$ be the reverse of the sequence of indices in the $c$-sorting word for $v$ and write $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
+Proposition~\ref{any B is sort} says further that $v$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $p=0,\ldots,r$.
 Proposition~\ref{sort green} says that $\kk$ is a green sequence for $B_0$.
 For such a choice of $v$ and $t$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$.  The following proposition in particular implies that $\delta^B$ is well defined, in the sense that it depends only on $B$ and not on the specific choices we made.
-
 
 \begin{proposition}\label{delta is the man}
 Suppose $B$ is an exchange matrix of affine type.
@@ -2043,56 +2033,56 @@ Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G
 Recall from Section~\ref{def sec} that the inverse of $G_t^{-B^T;t_0}$ is $\bigl(C_t^{B;t_0}\bigr)^T$.
 Since $\delta$ is the shortest integer vector in the ray that it spans, and since $\delta^B$ is obtained from $\delta$ by the action of an integer matrix whose inverse is an integer matrix,~$\delta^B$ is also the shortest integer vector in the ray that it spans.
 
-Suppose $a_1\cdots a_m$ is the $c$-sorting word for $v$.
-Lemma~\ref{any prefix} says that for any ${\ell\in\set{0,1,\ldots,m}}$, the prefix $a_1\cdots a_\ell$ is the $c$-sorting word for another $c$-sortable element $v_\ell$.
-The corresponding postfix of $\kk$ and the seed $t_\ell$ have the same properties we used to define $\delta^B$, so writing $B_\ell$ for the exchange matrix at $t_\ell$, we can use $t_\ell$ to define $\delta^{B_\ell}$.
-Thus we argue by induction on $m$ for the remaining assertions.
+Suppose $a_1\cdots a_r$ is the $c$-sorting word for $v$.
+Lemma~\ref{any prefix} says that for any ${p\in\set{0,1,\ldots,r}}$, the prefix $a_1\cdots a_p$ is the $c$-sorting word for another $c$-sortable element $v_p$.
+The corresponding postfix of $\kk$ and the seed $t_p$ have the same properties we used to define $\delta^B$, so writing $B_p$ for the exchange matrix at $t_p$, we can use $t_p$ to define $\delta^{B_p}$.
+Thus we argue by induction on $r$ for the remaining assertions.
 
 Assertion~\ref{im ray} is true by Lemma~\ref{nu delta} when $m=0$ (so that $t=t_0$ and $B=B_0$) because then $\delta^B=\delta$.
-By induction, $-\frac12B_{m-1}\delta^{B_{m-1}}$ is the shortest integer vector in the imaginary ray of $\F_{B_{m-1}^T}$.
-The mutation map $\eta_{k_m}^{B_{m-1}^T}$ takes the shortest integer vector in the imaginary ray of $\F_{B_{m-1}^T}$ to the shortest integer vector in the imaginary ray of $\F_{B^T}$. 
-Thus we check that $\eta_{k_m}^{B_{m-1}^T}(-\frac12B_{m-1}\delta^{B_{m-1}})=-\frac12B\delta^{B}$.
+By induction, $-\frac12B_{r-1}\delta^{B_{r-1}}$ is the shortest integer vector in the imaginary ray of $\F_{B_{r-1}^T}$.
+The mutation map $\eta_{k_r}^{B_{r-1}^T}$ takes the shortest integer vector in the imaginary ray of $\F_{B_{r-1}^T}$ to the shortest integer vector in the imaginary ray of $\F_{B^T}$. 
+Thus we check that $\eta_{k_r}^{B_{r-1}^T}(-\frac12B_{r-1}\delta^{B_{r-1}})=-\frac12B\delta^{B}$.
 
 We first appeal to \cite[Proposition~1.3]{NZ} to say that 
-\[\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta=\bigl(G_{t_{m-1}}^{-B_0^T;t_0}E_{+,k_m}^{B_{m-1}^T}\bigr)^T\delta=F_{-,k_m}^{B_{m-1}}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta,\]
-because $\kk$ is a green sequence, so that column $k_m$ of $C_{t_{m-1}}^{-B_0^T;t_0}$ is positive.
-Now Lemma~\ref{EBF trick} says that $B=E_{-,k_m}^{B_{m-1}}B_{m-1}F_{-,k_m}^{B_{m-1}}$.
-Thus since $F_{-,k_m}^{B_{m-1}}$ is its own inverse, 
-\[-\frac12B\delta^B=-\frac12E_{-,k_m}^{B_{m-1}}B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta=E_{-,k_m}^{B_{m-1}}(-\frac12B_{m-1}\delta^{B_{m-1}}).\]
-Then showing that $\eta_{k_m}^{B_{m-1}^T}(-\frac12B_{m-1}\delta^{B_{m-1}})=E_{-,k_m}^{B_{m-1}}(-\frac12B_{m-1}\delta^{B_{m-1}})$ amounts to showing that the $k_m$-entry of $-\frac12B_{m-1}\delta^{B_{m-1}}$ is nonpositive.
+\[\delta^B=\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta=\bigl(G_{t_{r-1}}^{-B_0^T;t_0}E_{+,k_r}^{B_{r-1}^T}\bigr)^T\delta=F_{-,k_r}^{B_{r-1}}\bigl(G_{t_{r-1}}^{-B_0^T;t_0}\bigr)^T\delta,\]
+because $\kk$ is a green sequence, so that column $k_r$ of $C_{t_{r-1}}^{-B_0^T;t_0}$ is positive.
+Now Lemma~\ref{EBF trick} says that $B=E_{-,k_r}^{B_{r-1}}B_{r-1}F_{-,k_r}^{B_{r-1}}$.
+Thus since $F_{-,k_r}^{B_{r-1}}$ is its own inverse, 
+\[-\frac12B\delta^B=-\frac12E_{-,k_r}^{B_{r-1}}B_{r-1}\bigl(G_{t_{r-1}}^{-B_0^T;t_0}\bigr)^T\delta=E_{-,k_r}^{B_{r-1}}(-\frac12B_{r-1}\delta^{B_{r-1}}).\]
+Then showing that $\eta_{k_r}^{B_{r-1}^T}(-\frac12B_{r-1}\delta^{B_{r-1}})=E_{-,k_r}^{B_{r-1}}(-\frac12B_{r-1}\delta^{B_{r-1}})$ amounts to showing that the $k_r$-entry of $-\frac12B_{r-1}\delta^{B_{r-1}}$ is nonpositive.
 
-We use Proposition~\ref{BGCB} to rewrite $-\frac12B_{m-1}\delta^{B_{m-1}}=-\frac12B_{m-1}\bigl(G_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T\delta$ as $\bigl(C_{t_{m-1}}^{-B_0^T;t_0}\bigr)^T(-\frac12B_0\delta)$.
-Thus we must show that $\omega_c(C^{k_m}_c(v_{m-1})\ck,\delta)\ge0$. 
-Since $C^{k_m}_c(v_{m-1})\ck$ is a positive scalar multiple of $C^{k_m}_c(v_{m-1})$, we need to check that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
+We use Proposition~\ref{BGCB} to rewrite $-\frac12B_{r-1}\delta^{B_{r-1}}=-\frac12B_{r-1}\bigl(G_{t_{r-1}}^{-B_0^T;t_0}\bigr)^T\delta$ as $\bigl(C_{t_{r-1}}^{-B_0^T;t_0}\bigr)^T(-\frac12B_0\delta)$.
+Thus we must show that $\omega_c(C^{k_r}_c(v_{r-1})\ck,\delta)\ge0$. 
+Since $C^{k_r}_c(v_{r-1})\ck$ is a positive scalar multiple of $C^{k_r}_c(v_{r-1})$, we need to check that $\omega_c(C^{k_r}_c(v_{r-1}),\delta)\ge0$. 
 
 In the definition of $\delta^B$, we replaced a $c$-sortable element $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.
-Since we can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$, we know that $c^jC^{k_m}_c(v_{m-1})=C^{k_m}_c(c^jv_{m-1})$ is a positive root for any $j\ge0$.
-Thus Proposition~\ref{who is pos} says that either $C^{k_m}_c(v_{m-1})$ is $c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$ or $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
-Thus Proposition~\ref{om del} or Proposition~\ref{om del fin} says that $\omega_c(C^{k_m}_c(v_{m-1}),\delta)\ge0$. 
+Since we can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$, we know that $c^jC^{k_r}_c(v_{r-1})=C^{k_r}_c(c^jv_{r-1})$ is a positive root for any $j\ge0$.
+Thus Proposition~\ref{who is pos} says that either $C^{k_r}_c(v_{r-1})$ is $c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$ or $C^{k_r}_c(v_{r-1})$ is in a finite $c$-orbit.
+Thus Proposition~\ref{om del} or Proposition~\ref{om del fin} says that $\omega_c(C^{k_r}_c(v_{r-1}),\delta)\ge0$. 
 We have proved Assertion~\ref{im ray}.
 
-Assertion~\ref{im hyp} is true when $m=0$.
-If $m>0$, then by induction, all imaginary cones in $\F_{B_{m-1}^T}$ are contained in $(\delta^{B_{m-1}})^\perp$.
-The imaginary cones in $\F_{B^T}$ are the images, under $\eta^{B^T_{m-1}}_{k_m}$, of the imaginary cones in $\F_{B_{m-1}^T}$.
-Every imaginary cone in $\F_{B_{m-1}^T}$ contains the imaginary ray, spanned by $-\frac12B_{m-1}\delta^B_{m-1}$.
-We have previously shown that the $k_m$ entry of $-\frac12B_{m-1}\delta^B_{m-1}$ is nonpositive.
-%More specifically, we showed that it is strictly negative unless $C^{k_m}_c(v_{m-1})$ is in a finite $c$-orbit.
-Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{m-1}^T}$.
+Assertion~\ref{im hyp} is true when $r=0$.
+If $r>0$, then by induction, all imaginary cones in $\F_{B_{r-1}^T}$ are contained in $(\delta^{B_{r-1}})^\perp$.
+The imaginary cones in $\F_{B^T}$ are the images, under $\eta^{B^T_{r-1}}_{k_r}$, of the imaginary cones in $\F_{B_{r-1}^T}$.
+Every imaginary cone in $\F_{B_{r-1}^T}$ contains the imaginary ray, spanned by $-\frac12B_{r-1}\delta^B_{r-1}$.
+We have previously shown that the $k_r$ entry of $-\frac12B_{r-1}\delta^B_{r-1}$ is nonpositive.
+%More specifically, we showed that it is strictly negative unless $C^{k_r}_c(v_{r-1})$ is in a finite $c$-orbit.
+Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{r-1}^T}$.
 
-If the $k_m$ entry of $-\frac12B_{m-1}\delta^B_{m-1}$ is strictly negative, then the $k_m$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{m-1}}_{k_m}$ acts on $\lambda$ (just as it acts on $-\frac12B_{m-1}\delta^B_{m-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_m}^{B_{m-1}}$.
-The map taking $\delta^{B_{m-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_m}^{B_{m-1}}$.
+If the $k_r$ entry of $-\frac12B_{m-1}\delta^B_{r-1}$ is strictly negative, then the $k_r$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{r-1}}_{k_r}$ acts on $\lambda$ (just as it acts on $-\frac12B_{r-1}\delta^B_{r-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_r}^{B_{r-1}}$.
+The map taking $\delta^{B_{r-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_r}^{B_{r-1}}$.
 The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\Sigma$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
 Recalling the identity $(E_{\ep,k}^B)^T\Sigma=\Sigma F_{\ep,k}^B$ from Section~\ref{acyc sec}, we compute
 \begin{align*}
-\br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}
-&=\br{E_{-,k_m}^{B_{m-1}}\lambda,F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}}\\
-&=(E_{-,k_m}^{B_{m-1}}\lambda)^T\Sigma F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
-&=\lambda^T(E_{-,k_m}^{B_{m-1}})^T\Sigma F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}\\
-&=\lambda^T\Sigma F_{-,k_m}^{B_{m-1}}F_{-,k_m}^{B_{m-1}}\delta^{B_{m-1}}=\lambda^T\Sigma\delta^{B_{m-1}}=\br{\lambda,\delta^{B_{m-1}}}=0.
+\br{\eta^{B^T_{r-1}}_{k_r}(\lambda),\delta^B}
+&=\br{E_{-,k_r}^{B_{r-1}}\lambda,F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}}\\
+&=(E_{-,k_r}^{B_{r-1}}\lambda)^T\Sigma F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}\\
+&=\lambda^T(E_{-,k_r}^{B_{r-1}})^T\Sigma F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}\\
+&=\lambda^T\Sigma F_{-,k_r}^{B_{r-1}}F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}=\lambda^T\Sigma\delta^{B_{r-1}}=\br{\lambda,\delta^{B_{r-1}}}=0.
 \end{align*}
 
-If instead the $k_m$ entry of $-\frac12B_{m-1}\delta^B_{m-1}$ is zero then either linear map associated to $\eta^{B^T_{m-1}}_{k_m}$ takes $-\frac12B_{m-1}\delta^B_{m-1}$ to $-\frac12B\delta^B$, namely $E_{\ep,k_m}^{B_{m-1}}$ for $\ep\in\set{+,-}$.
-Taking $\ep$ to be the sign of the $k_m$ entry of $\lambda$, we compute as above with the sign $\ep$ replacing the sign~$-$, to obtain $\br{\eta^{B^T_{m-1}}_{k_m}(\lambda),\delta^B}=0$.
+If instead the $k_r$ entry of $-\frac12B_{r-1}\delta^B_{r-1}$ is zero then either linear map associated to $\eta^{B^T_{r-1}}_{k_r}$ takes $-\frac12B_{r-1}\delta^B_{r-1}$ to $-\frac12B\delta^B$, namely $E_{\ep,k_r}^{B_{r-1}}$ for $\ep\in\set{+,-}$.
+Taking $\ep$ to be the sign of the $k_r$ entry of $\lambda$, we compute as above with the sign $\ep$ replacing the sign~$-$, to obtain $\br{\eta^{B^T_{r-1}}_{k_r}(\lambda),\delta^B}=0$.
 \end{proof}
 
 Proposition~\ref{delta is the man} allows us to prove one containment in Theorem~\ref{affine main}.
@@ -2287,7 +2277,7 @@ The seed associated to this full-dimensional cone is neighboring.
 The property that a seed $t$ is neighboring depends only on the exchange matrix at $t$, not on the specific seed $t$ or on the choice of initial seed $t_0$.
 \end{lemma}
 \begin{proof}
-Suppose $t_0$ and $t$ are seeds in a cluster pattern of affine type, choose $\kk$ such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t$.
+Suppose $t_0$ and $t$ are seeds in a cluster pattern of affine type, choose $\kk$ such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
 Let $B_0$ be the exchange matrix at $t_0$ and let $B$ be the exchange matrix at $t$.
 Then $\eta^{B^T}_\kk$ is an isomorphism from $\F_{B_0^T}$ to $\F_{B^T}$ sending $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B;t}$, which is the positive cone.
 Thus $B$ is neighboring if and only if the positive cone in $\F_{B^T}$ shares $n-2$ rays with the imaginary wall in $\F_{B^T}$.
@@ -3865,8 +3855,8 @@ Increasing~$i$ did not destroy the desired properties.
 We carry out this process simultaneously for $B$ and $B'$, but we specifically choose seeds the given seeds $t$ and $t'$ (with exchange matrices $B$ and $B'$ respectively).
 Then we choose $i$ large enough so that \emph{both} seeds have the desired properties relative to the initial seed $t_0$.
 Write $\tB_0$ for the extended exchange matrix at $t_0$.
-The output of Proposition~\ref{any B is sort}, for this large enough $i$, is a $c$-sortable element $v$ such that the sequence $\kk$ that reverses the indices in the $c$-sorting word for $v$ has ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_m}{\edge}t_m=t}$ such that $\bigl(G_{t_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m}$, and analogously for $t'$.
-%(That is, a $c$-sortable element $v'$ such that the sequence $\kk'$ that reverses the indices in the $c$-sorting word for $v'$ has ${t_0\overset{k'_1}{\edge}t'_1\overset{k'_2}{\edge}\,\cdots\,\overset{k'_{m'}}{\edge}t'_m=t}'$ such that $\bigl(G_{t'_j}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${j=0,\ldots,m'}$.)
+The output of Proposition~\ref{any B is sort}, for this large enough $i$, is a $c$-sortable element $v$ such that the sequence $\kk$ that reverses the indices in the $c$-sorting word for $v$ has ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$ such that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$, and analogously for $t'$.
+%(That is, a $c$-sortable element $v'$ such that the sequence $\kk'$ that reverses the indices in the $c$-sorting word for $v'$ has ${t_0\overset{k'_1}{\edge}t'_1\overset{k'_2}{\edge}\,\cdots\,\overset{k'_{r'}}{\edge}t'_r=t}'$ such that $\bigl(G_{t'_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r'}$.)
 
 The argument in the proof of Proposition~\ref{delta is the man}, with Lemma~\ref{EBF trick ext} replacing Lemma~\ref{EBF trick}, shows that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
 \sayN{Commented out a longer version.  But with that commented out, this is as short as it can get, and I don't think there is anything to be gained (except complication) by combining this with Proposition~\ref{delta is the man}.}
