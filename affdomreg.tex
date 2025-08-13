@@ -194,7 +194,7 @@
 \renewcommand{\v}{\mathbf{v}}
 \renewcommand{\u}{\mathbf{u}}
 \newcommand{\w}{\mathbf{w}}
-\newcommand{\tB}{{\tilde{B}}}
+\newcommand{\tB}{{\widetilde{B}}}
 \newcommand{\tM}{{\widetilde{M}}}
 \newcommand{\tN}{{\tilde{N}}}
 \newcommand{\T}{\mathbb{T}}
@@ -275,6 +275,7 @@
 \newcommand{\adj}[2]{\operatorname{adj}_{#1}(#2)}
 \newcommand{\Lower}{\operatorname{Lower}}
 \newcommand{\Upper}{\operatorname{Upper}}
+\newcommand{\symmetrizer}{{D}}
 
 
 % Notation mess
@@ -443,7 +444,7 @@
 \address[Salvatore Stella]{Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica, Universit\`{a} degli Studi dell'Aquila, IT}
 %\keywords{}
 \thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608 and by the National Science Foundation under award number DMS-2054489.
-Salvatore Stella was partially supported by ????.  }
+Salvatore Stella was partially supported by PRIN 20223FEA2E, \lq\lq Cluster algebras and Poisson Lie groups\rq\rq and INdAM/GNSAGA}
 %\received{}
 %\revised{}
 %\accepted{}
@@ -456,8 +457,8 @@ Salvatore Stella was partially supported by ????.  }
 \begin{abstract}
 We determine dominance regions associated to cluster algebras of affine type.
 In the most interesting cases, the dominance region is a line segment, which we describe explicitly.
-Motivations for this work include a project to determine all pointed bases for upper cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
-  The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the imaginary wall).
+Motivations for this work include a project to determine all pointed bases for cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
+The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the imaginary wall).
 \end{abstract}
 
 \maketitle
@@ -468,8 +469,11 @@ Motivations for this work include a project to determine all pointed bases for u
 \tableofcontents
 
 \section{Introduction}
-\sayN{Fill in support for Salvatore}
+\sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?}
+\sayS{Do we want to postpone talking about our other projects to the introduction?}
+\sayS{I just changed $\tilde B$ to $\widetilde B$}
 \sayN{I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no?}
+\sayS{Yes, done it but only in the abstract since in the introduction we quote Qin in a general way}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds".}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\reals^m$ due to Fan Qin~\cite{FanQin}.
@@ -479,7 +483,9 @@ characterizes all pointed bases of the upper cluster algebra in terms of the dom
 See \cite[Section~1]{FanQin}.)
 
 Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
-(In~\cite{RSDom} and in this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
+(
+\sayS{In~\cite{RSDom} we were agnostic about about this, hopeffully}
+In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
 Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrix.
 Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
 They found that, in the rank-$2$ affine case, dominance regions are either points or line segments.
@@ -492,12 +498,19 @@ There is a unique ray of the mutation fan, called the imaginary ray, that is in 
 
 Up to translation, the dominance region of $\lambda$ only depends on the projection of~$\lambda$ into $\reals^n$ that ignores the last $m-n$ entries.
 We prove that when $\tB$ has linearly independent columns, the dominance region $\P_\lambda^\tB$ is a point if $\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
+\sayS{Do we need to reiterate in the above sentence that we are talking about the affine case?}
 
-In general, it appears to be much harder to compute dominance regions without the assumption that $\tB$ has linearly independent columns.
-However, our characterization of dominance regions in affine type in the case of linearly independent columns requires us first to characterize, in the coefficient-free case, dominance regions for $\lambda$ in the imaginary cone.
-(From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
-In the coefficient-free case, we can describe the line-segments explicitly:
+\sayS{I rephrased the following paragraph and commented out the old version}
+Computing dominance regions without the assumption that $\tB$ has linearly independent columns is in general is much harder. 
+However, in affine type, our argument to deal with points that project to the relative interior of the imaginary wall passes through the coefficient-free case where we can describe the line-segments explicitly:
 They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
+(From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
+
+%In general, it appears to be much harder to compute dominance regions without the assumption that $\tB$ has linearly independent columns.
+%However, our characterization of dominance regions in affine type in the case of linearly independent columns requires us first to characterize, in the coefficient-free case, dominance regions for $\lambda$ in the imaginary cone.
+%(From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
+%In the coefficient-free case, we can describe the line-segments explicitly:
+%They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
 
 A crucial ingredient for the characterization of dominance regions in affine type is a detailed study of the exchange matrices of neighboring seeds.  
 (A related result is proved by Greenberg and Kaufman~\cite{GreenbergKaufman}.
@@ -506,7 +519,7 @@ These are seeds that have $n-2$ of their $\g$-vectors in the imaginary wall (the
 It is apparent already from \cite{affdenom} that the combinatorics of neighboring seeds involves a product of finite type~B or~C generalized associahedra \cite[Propositions~5.13, 6,13]{affdenom}.  
 (The work of McCammond and Sulway on Artin groups of Euclidean type~\cite{McSul} finds, in an affine version of noncrossing partition lattices, products of finite type-B noncrossing partition lattices in a closely analogous way.)
 In this paper, we make the appearance of finite type B/C combinatorics in mutation fans of affine type completely explicit.
-Specifically, we show that when $B$ is a the exchange matrix of a neighboring seed of affine type, the imaginary wall is a halfspace and the restriction of the mutation fan to the imaginary wall is (\emph{metrically}, not merely \emph{combinatorially}) a product of the imaginary ray and some number ($1$, $2$ or $3$) of mutation fans of finite type~C.
+Specifically, we show that when $B$ is the exchange matrix of a neighboring seed, the imaginary wall is a halfspace and the restriction of the mutation fan to the imaginary wall is (\emph{metrically}, not merely \emph{combinatorially}) a product of the imaginary ray and some number ($1$, $2$ or $3$) of mutation fans of finite type~C.
 We also show that certain sequences of mutations of $B$ correspond to (and give the same mutation maps as) mutations of the corresponding finite type-C exchange matrices.
 
 To use these insights to compute dominance regions in affine type, we were obliged to prove that, in the finite-type coefficient-free case, each dominance region is a single point.
@@ -515,7 +528,7 @@ The proof we give involves a type-by-type argument using the marked surfaces mod
 As a consequence, we also show that dominance regions in finite type are singletons for arbitrary coefficients.
 
 The results of this paper are motivated by two ongoing projects.  
-One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin}.
+One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
 The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
 \sayN{Say more?  Say differently?}
 
@@ -527,7 +540,8 @@ Also, throughout the section, we use results from~\cite{NZ}.
 
 \subsection{Definitions and background}\label{def sec}
 We begin with a skew-symmetrizable exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
-The diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$ has $\Sigma B\Sigma^{-1}=-B^T$.
+The diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$ has $\symmetrizer B\symmetrizer^{-1}=-B^T$.
+\sayS{I made the symmetrizer into a macro and replaced $\Sigma$ with $D$. I need to doublecheck that all other occurrenced of $D$ are replaced by some other symbol. UPDATE: I did but left untouched the occurrences as a generic rescaler}
 
 Given a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_r}(\mu_{k_{r-1}}(\cdots(\mu_{k_1}(B))\cdots))$.
@@ -620,18 +634,18 @@ As written, \cite[Proposition~8.13]{universal} is conditional on the conjectured
 \end{remark}
 
 We will need to relate the cones $\Cone^{B;t_0}_t$ and $\Cone^{-B^T;t_0}_t$.
-Recall that $-B^T=\Sigma B\Sigma^{-1}$, where $\Sigma$ is the diagonal matrix with positive entries $d_1,\ldots,d_n$.
+Recall that $-B^T=\symmetrizer B\symmetrizer^{-1}$, where $\symmetrizer$ is the diagonal matrix with positive entries $d_1,\ldots,d_n$.
 In the language of \cite[Section~7]{universal}, $-B^T$ is a \newword{rescaling} of $B$.
-Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\Sigma^{-1}G_t^{B;t_0}$.
-(In the statement of \cite[Proposition~8.20]{universal}, the roles of $\Sigma$ and $\Sigma^{-1}$ are reversed, and $\Sigma$ is multiplied on the right because, in~\cite{universal}, the $\g$-vectors are row vectors rather than column vectors.)
+Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\symmetrizer^{-1}G_t^{B;t_0}$.
+(In the statement of \cite[Proposition~8.20]{universal}, the roles of $\symmetrizer$ and $\symmetrizer^{-1}$ are reversed, and $\symmetrizer$ is multiplied on the right because, in~\cite{universal}, the $\g$-vectors are row vectors rather than column vectors.)
 Thus we have the following fact.
 \begin{lemma}\label{B or -BT}
 For any $k$, the $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same sign as the $k\th$ entries of vectors in $\Cone^{-B^T;t_0}_t$.
 \end{lemma}
 %Therefore, \cite[Proposition~8.20]{universal} implies the following lemma.
-%(In the statement of \cite[Proposition~8.20]{universal}, $\Sigma$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
+%(In the statement of \cite[Proposition~8.20]{universal}, $\symmetrizer$ is multiplied on the right, because there $\g$-vectors are row vectors rather than column vectors.)
 %\begin{lemma}\label{SigmaG}
-%For $i=1,\ldots,n$, the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\Sigma G_t^{B;t_0}$.
+%For $i=1,\ldots,n$, the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\symmetrizer G_t^{B;t_0}$.
 %\end{lemma}
 %The following lemma is an immediate consequence.
 %\begin{lemma}\label{B or -BT}
@@ -674,7 +688,7 @@ E_{\ep,k}^B&=J_k+[\ep B]_+^{\bullet k}\\
 F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
 \end{align*}
 Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
-We note that $(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}=\Sigma F_{\ep,k}^B\Sigma^{-1}$, where~$\Sigma$ is the diagonal matrix of skew-symmetrizing constants of~$B$.
+We note that $(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$, where~$\symmetrizer$ is the diagonal matrix of skew-symmetrizing constants of~$B$.
 The following is a special case of \cite[(3.2)]{ca3}.
 \begin{lemma}\label{EBF trick}
 For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
@@ -803,9 +817,9 @@ If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_t$, then for any~$\lambda$ 
 \end{theorem}
 
 Since $\bigl(\eta_{\kk}^{B_0^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{B_t^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_t^T}\sett{\eta_\kk^{B_0^T}(\lambda)+B_t\alpha:\alpha\ge0}$.
-Let $D$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
-Then $\eta_{\kk^{-1}}^{B_t^T}$ is linear on $\eta_{\kk}^{B_0^T}(D)$.
-Let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$\eta_{\kk}^{B_0^T}(D)$.
+Let $\Sigma$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
+Then $\eta_{\kk^{-1}}^{B_t^T}$ is linear on $\eta_{\kk}^{B_0^T}(\Sigma)$.
+Let~$\L_{\kk^{-1}}^{B_t^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_t^T}$ on~$\eta_{\kk}^{B_0^T}(\Sigma)$.
 
 \begin{proposition}\label{L mat}
 The matrix for $\L_{\kk^{-1}}^{B_t^T}$, acting on column vectors, is $G_t^{B_0;t_0}$.
@@ -951,11 +965,11 @@ In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1
 \subsection{Dominance regions for extended exchange matrices}\label{ext sec}
 We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider an $m\times m$ matrix related to $\tB$.
-Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\Sigma$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
-Let $R'=\Sigma'R\Sigma^{-1}$ for any diagonal matrix $\Sigma'$ such that $\Sigma'R\Sigma^{-1}$ has integer entries.
+Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
+Let $R'=\symmetrizer'R\symmetrizer^{-1}$ for any diagonal matrix $\symmetrizer'$ such that $\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
 Define $\BB$ to be the matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
-Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\Sigma&0\\0&\Sigma'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
-\sayD{For symmetric $B$ this is fine but this requires a bit more care in general.  If $\Sigma B\Sigma^{-1}=-B^T$, then in order for $\BB$ to remain skew-symmetrizable we would need to have an $(m-n)\times (m-n)$ diagonal matrix $\Sigma'$ with $\Sigma'R=R\Sigma$ which may not exist.  If we were to allow rational entries we could replace $-R^T$ in $\BB$ with $-\Sigma^{-1}R^T$ and fix the issue.  An alternative would be to choose as the extension of $\Sigma$ any $\Sigma'$ so that $\Sigma'R\Sigma^{-1}$ has integer entries and then replace the $-R^T$ in $\BB$ by $-\Sigma^{-1}R^T\Sigma'$.  \rn{I liked your alternative, and implemented it.}} 
+Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
+\sayD{For symmetric $B$ this is fine but this requires a bit more care in general.  If $\symmetrizer B\symmetrizer^{-1}=-B^T$, then in order for $\BB$ to remain skew-symmetrizable we would need to have an $(m-n)\times (m-n)$ diagonal matrix $\symmetrizer'$ with $\symmetrizer'R=R\symmetrizer$ which may not exist.  If we were to allow rational entries we could replace $-R^T$ in $\BB$ with $-\symmetrizer^{-1}R^T$ and fix the issue.  An alternative would be to choose as the extension of $\symmetrizer$ any $\symmetrizer'$ so that $\symmetrizer'R\symmetrizer^{-1}$ has integer entries and then replace the $-R^T$ in $\BB$ by $-\symmetrizer^{-1}R^T\symmetrizer'$.  \rn{I liked your alternative, and implemented it.}} 
 Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
 \begin{lemma}\label{EBF trick ext}
@@ -968,9 +982,9 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \[
 \GG_t^{\BB;t_0}=\begin{bsmallmatrix}G_t^{B;t_0}&0\\H_t^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}
 \quad\text{ and }\quad
-\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&D_t^{\tB;t_0}\\0&I_{m-n}\end{bsmallmatrix},
+\CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&K_t^{\tB;t_0}\\0&I_{m-n}\end{bsmallmatrix},
 \]
-where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $D_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
+where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $K_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
 \begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?}
 $\GG_t^{\BB_0;t_0}\tB_t=\tB_0C_t^{B;t_0}$.
@@ -1010,7 +1024,7 @@ The proposition follows from Lemma~\ref{eta proj}, from the analogous fact for $
 \end{proof}
 
 Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
-Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is $\Proj_n^{-1}D$ for some domain $D$ of definition of $\eta_\kk^{B^T}$.
+Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is $\Proj_n^{-1}\Sigma$ for some domain $\Sigma$ of definition of $\eta_\kk^{B^T}$.
 Accordingly, we define $\Cone_t^{\tB;t_0}$ to be %the nonnegative span of the columns of $\GG_t^{\BB;t_0}$ and the columns of $\begin{bsmallmatrix}0\\-I_{m-n}\end{bsmallmatrix}$.
 $\Proj_n^{-1}\Cone_t^{B;t_0}$.
 Since $\Cone_t^{B_r;t_r}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_r;t_r}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$.
@@ -1551,11 +1565,11 @@ The \newword{support} of a root is the set of simple roots appearing in an expre
 As before, write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 These constants also symmetrize~$A$ (meaning that the entries $a_{ij}$ of $A$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
 The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
-Thus the diagonal matrix $\Sigma$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates \sayD{It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
+Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates \sayD{It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
 \rn{I prefer "simple-root" when it's used as an adjective as in "simple-root coordinates" or "simple root" when it is a noun.  For co-roots, similarly. I like the dash in "co-root", and "simple-co-root coordinates" works for me.}} 
 of that vector.
-%Furthermore, the matrix $\Sigma B_0\Sigma^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $\Sigma B_0\Sigma^{-1}=-B_0^T$.
-%Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B_0^T}=\Sigma F_{\ep,k}^B\Sigma^{-1}$.
+%Furthermore, the matrix $\symmetrizer B_0\symmetrizer^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $\symmetrizer B_0\symmetrizer^{-1}=-B_0^T$.
+%Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B_0^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$.
 
 Let $V$ be the real vector space spanned by the roots, let $V^*$ be the dual space, and let $\br{\,\cdot\,,\,\cdot\,}:V^*\times V$ be the natural pairing between them.
 The simple co-roots~$\Simples\ck$ are also in $V$ (each being a positive scaling of the corresponding simple root).
@@ -2065,14 +2079,14 @@ Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{r-1}^T}$.
 
 If the $k_r$ entry of $-\frac12B_{m-1}\delta^B_{r-1}$ is strictly negative, then the $k_r$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{r-1}}_{k_r}$ acts on $\lambda$ (just as it acts on $-\frac12B_{r-1}\delta^B_{r-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_r}^{B_{r-1}}$.
 The map taking $\delta^{B_{r-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_r}^{B_{r-1}}$.
-The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\Sigma$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
-Recalling the identity $(E_{\ep,k}^B)^T\Sigma=\Sigma F_{\ep,k}^B$ from Section~\ref{acyc sec}, we compute
+The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\symmetrizer$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+Recalling the identity $(E_{\ep,k}^B)^T\symmetrizer=\symmetrizer F_{\ep,k}^B$ from Section~\ref{acyc sec}, we compute
 \begin{align*}
 \br{\eta^{B^T_{r-1}}_{k_r}(\lambda),\delta^B}
 &=\br{E_{-,k_r}^{B_{r-1}}\lambda,F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}}\\
-&=(E_{-,k_r}^{B_{r-1}}\lambda)^T\Sigma F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}\\
-&=\lambda^T(E_{-,k_r}^{B_{r-1}})^T\Sigma F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}\\
-&=\lambda^T\Sigma F_{-,k_r}^{B_{r-1}}F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}=\lambda^T\Sigma\delta^{B_{r-1}}=\br{\lambda,\delta^{B_{r-1}}}=0.
+&=(E_{-,k_r}^{B_{r-1}}\lambda)^T\symmetrizer F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}\\
+&=\lambda^T(E_{-,k_r}^{B_{r-1}})^T\symmetrizer F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}\\
+&=\lambda^T\symmetrizer F_{-,k_r}^{B_{r-1}}F_{-,k_r}^{B_{r-1}}\delta^{B_{r-1}}=\lambda^T\symmetrizer\delta^{B_{r-1}}=\br{\lambda,\delta^{B_{r-1}}}=0.
 \end{align*}
 
 If instead the $k_r$ entry of $-\frac12B_{r-1}\delta^B_{r-1}$ is zero then either linear map associated to $\eta^{B^T_{r-1}}_{k_r}$ takes $-\frac12B_{r-1}\delta^B_{r-1}$ to $-\frac12B\delta^B$, namely $E_{\ep,k_r}^{B_{r-1}}$ for $\ep\in\set{+,-}$.
