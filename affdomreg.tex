@@ -2280,8 +2280,8 @@ We see that for any combination of the parities of $k$ and $n-k$, the inequaliti
 In a cluster pattern of affine type, a seed \newword{neighboring the imaginary wall} (or simply a \newword{neighboring seed}) is a seed that has $n-2$ of its $\g$-vectors contained in the imaginary wall.
 It is easy to see that neighboring seeds exist in every cluster pattern of affine type using facts about the affine almost-positive roots model.
 Recall that, when $B$ is acyclic of affine type, $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B^T$, and that $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B$ to the $\g$-vector fan.
-By \cite[Proposition~5.14]{affdenom}, every maximal cone of the mutation fan containing having a ray spanned by $\nu_c(\delta)$, has exactly $n-2$ other rays, which are spanned by vectors $\nu_c(\beta)$ for roots $\beta\in\APre{c}$.
-Then \cite[Proposition~5.14]{affdenom} further implies that these $n-2$ rays are contained in some full-dimensional with $2$ additional rays, also spanned by vectors $\nu_c(\beta)$ for roots $\beta\in\APre{c}$.
+By \cite[Proposition~5.14]{affdenom}, every maximal cone of the mutation fan having a ray spanned by $\nu_c(\delta)$, has exactly $n-2$ other rays, which are spanned by vectors $\nu_c(\beta)$ for roots $\beta\in\APre{c}$.
+Then \cite[Proposition~5.14]{affdenom} further implies that these $n-2$ rays are contained in some full-dimensional cone together with $2$ additional rays, also spanned by vectors $\nu_c(\beta)$ for roots $\beta\in\APre{c}$.
 The seed associated to this full-dimensional cone is neighboring.
 
 \begin{lemma}\label{neigh B only}
@@ -2291,7 +2291,7 @@ The property that a seed $t$ is neighboring depends only on the exchange matrix 
 Suppose $t_0$ and $t$ are seeds in a cluster pattern of affine type, choose $\kk$ such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
 Let $B_0$ be the exchange matrix at $t_0$ and let $B$ be the exchange matrix at $t$.
 Then $\eta^{B^T}_\kk$ is an isomorphism from $\F_{B_0^T}$ to $\F_{B^T}$ sending $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B;t}$, which is the positive cone.
-Thus $B$ is neighboring if and only if the positive cone in $\F_{B^T}$ shares $n-2$ rays with the imaginary wall in $\F_{B^T}$.
+Thus $t$ is neighboring if and only if the positive cone in $\F_{B^T}$ shares $n-2$ rays with the imaginary wall in $\F_{B^T}$.
 This is a property that depends only on~$B$.
 \end{proof}
 
@@ -2452,7 +2452,7 @@ In particular,  $\gamma_1,\ldots,\gamma_{n-2}$ are all in $\APTre{c}$ and thus i
 Choose integers ${0\leq p_1\leq p_2 \leq p_3}$ such that for each nonzero $p_\ell$ there is a component of $\RST{c}$ of rank $p_\ell+1$.
 As a consequence of Proposition~\ref{compatible in tubes}, we see that $\set{\gamma_1,\ldots,\gamma_{n-2}}$ consists of $p_\ell$ roots from the $\ell\th$ component for each $\ell=1,2,3$.
 Thus ${p_1+p_2+p_3=n-2}$.
-Define $I_1=\set{1,\ldots,p_1}$, $I_2=\set{p_1+1,\ldots,p_1+p_2}$, and $I_3=\set{p_1+p_2+1,\ldots,n-2}$ and further reindex the rows and columns of $B$ so that each subset $\set{\gamma_i:i\in I_\ell}$ consists of consists of roots from the same component of $\RST{c}$, for $\ell=1,2,3$.
+Define $I_1=\set{1,\ldots,p_1}$, $I_2=\set{p_1+1,\ldots,p_1+p_2}$, and $I_3=\set{p_1+p_2+1,\ldots,n-2}$ and further reindex the rows and columns of $B$ so that each subset $\set{\gamma_i:i\in I_\ell}$  consists of roots from the same component of $\RST{c}$, for $\ell=1,2,3$.
 Furthermore, if $p_1>0$, then there is a unique root in $\set{\gamma_i:i\in I_1}$ that is a sum of $p_1$ elements of $\SimplesT{c}$, and we give this the index $p_1$.
 Similarly, if $p_2>0$, we make $p_1+p_2$ the index of the unique root in $\set{\gamma_i:i\in I_2}$ that is a sum of $p_2$ elements of $\SimplesT{c}$.
 In any case, we make $p_1+p_2+p_3=n-2$ the index of the root in $\set{\gamma_i:i\in I_3}$ that is a sum of $p_3$ elements of $\SimplesT{c}$.
@@ -2460,8 +2460,7 @@ After this reindexing, we consider the decomposition of $B$ into blocks $B_{ij}$
 
 A \newword{special index} is the index of the last column/row of $B_{\ell\ell}$ (if $B_{\ell\ell}$ is nonempty) for $\ell=1,2,3$.
 There are $1$, $2$, or $3$ special indices, namely whichever of $p_1$, $p_1+p_2$ and $p_1+p_2+p_3=n-2$ are nonzero.
-The two indices of $B_{44}$ are the \newword{affine indices} and $B_{44}$ is the \newword{affine submatrix} of~$B$.  \sayS{I think that affine indices is a misleading terminology: it can be confusing
-with the affine index of the root system.  \rn{But it fits so well here.  Maybe we can get by with just a comment asking the reader not to be confused?}}
+The two indices of $B_{44}$ are the \newword{affine indices} and $B_{44}$ is the \newword{affine submatrix} of~$B$.
 %The \newword{tube components} of $\set{1,\ldots,n}$ are whichever of the sets $\set{1,\ldots,p_1}$, $\set{p_1+1,\ldots,p_1+p_2}$, and $\set{p_1+p_2+1,\ldots,n-2}$ are nonempty.
 
 \begin{proposition}\label{A and q-l}
@@ -2480,7 +2479,7 @@ We can represent each $\gamma_i$ pictorially as in the left picture of Figure~\r
 %Proposition~\ref{compatible in tubes} says that two of these cluster variables can be in the same cluster if and only if the corresonding roots are nested or spaced.
 %There is a similar characterization of which pairs of these cluster variables are exchangeable \cite[Theorem~7.2]{affdenom}:
 %The cluster variables associated to non-special indices in $B_{\ell\ell}$ are exchangeable if and only if the corresponding roots are adjacent or have overlapping support but are not nested.
-Write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector~$\beta_{qr}$ and $\g$-vector $\nu_c(\beta_{qr})$.
+Write $x_{qr}$ for the principal-coefficients cluster variable with denominator vector~$\beta_{qr}$ and $\g$-vector $\nu_c(\beta_{qr})$ with respect to $B_0,t_0$.
 Proposition~\ref{compatible in tubes} says cluster variables $x_{qr}$ and $x_{q'r'}$ can be in the same cluster if and only if the $\beta_{qr}$ and $\beta_{q'r'}$ are nested or spaced.
 %The map $\nu_c$ is linear on the cone spanned by positive roots.
 Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable if and only if $\beta_{qr}$ and $\beta_{q'r'}$ either have disjoint support but are not spaced or have overlapping support but are not nested.
@@ -2524,6 +2523,7 @@ The $\g$-vector of $y^\phi$ is $B_0\phi$.
 The $\g$-vectors of all cluster variables in the exchange relation are in $\delta^\perp$ and the exchange relation is homogeneous in the $\g$-vector grading, so $B_0\phi$ is also in $\delta^\perp$.
 In other words, $\omega_c(\delta,\phi)=0$, so Proposition~\ref{om del fin} says that $\phi$ is in a finite $c$-orbit.
 
+\sayS{This uses $c=s_1\dots s_n$ but we havent made this assumption in this section.}
 Write $E_c$ for the $n\times n$ matrix whose $ij$-entry is~$(B_0)_{ij}$ if $i>j$, is $1$ if $i=j$, or is~$0$ if $i<j$.
 Similarly, write $E_{c^{-1}}$ for the $n\times n$ matrix whose $ij$-entry is $0$ if $i>j$, is $1$ if $i=j$, and is $-(B_0)_{ij}$ if $i<j$.
 Then $B_0=E_c-E_{c^{-1}}$.
@@ -2939,7 +2939,7 @@ In the most common case from Table~\ref{submat tab}, the mutations are as follow
 \begin{bsmallmatrix*}
 0 & 2 & r_p\\
 -2 & 0 & r_n
-\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\end{bsmallmatrix*}\overset{p}{\longrightarrow}
 \begin{bsmallmatrix*}
 0 & -2 & -r_p\\
 2 & 0 & r_n+m(r_p,-2)
@@ -2966,7 +2966,7 @@ In the next case from Table~\ref{submat tab}, the mutations are
 \[\begin{bsmallmatrix*}
 0 & 4 & r_p\\
 -1 & 0 &r_n
-\end{bsmallmatrix*}\overset{n-1}{\longrightarrow}
+\end{bsmallmatrix*}\overset{p}{\longrightarrow}
 \begin{bsmallmatrix*}
 0 & -4 & -r_p\\
 1 & 0 &r_n+m(r_p,-1)
@@ -2993,7 +2993,7 @@ In the final case, the mutations are
 \[\begin{bsmallmatrix*}
 0 & 1 & r_p\\
 -4 & 0 &r_n
-\end{bsmallmatrix*}\overset{n-1}{\longrightarrow} 
+\end{bsmallmatrix*}\overset{p}{\longrightarrow} 
 \begin{bsmallmatrix*}
 0 & -1 & -r_p\\
 4 & 0 &r_n+m(r_p,-4)
@@ -3028,7 +3028,7 @@ Given a neighboring exchange matrix $B$, each diagonal block of $\Comp(B)$ is of
 %
 %\end{proof}
 
-\sayN{Salvatore, you said you were confused about the proof of the following proposition, and you were right to be!  It was wrong, and in fact the statement was wrong.  I think this is now correct and everything still works, but it's slightly more complicated}
+\sayN{Salvatore, you said you were confused about the proof of the following proposition, and you were right to be!  It was wrong, and in fact the statement was wrong.  I think this is now correct and everything still works, but it's slightly more complicated \rs{Great!}}
 Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix \sayD{Should this be $(n-2)\times n$?  \rn{No, I think $n$ rows and $n-2$ columns is correct.}} 
 which agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by $2$.
 Although $\CompPlus(B)$ is an extension of $\Comp(C)$ in the sense of ``extended exchange matrices'', we don't want to think of it that way (and have chosen an overline in the notation rather than a tilde) because we will not always mutate it like an extended exchange matrix.
@@ -3076,7 +3076,6 @@ $\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ i
 the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
 \item
 If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
-\sayS{This can be upgraded to $\eta^{B^T}_k(x)=\eta^{\CompPlus(B)^T}_k(x)$ because entries in the non-special non-affine columns are zero in the affine rows.  \rn{I don't understand.}}
 \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -3767,11 +3766,11 @@ Since the imaginary ray is in the relative interior of that half-hyperplane, the
 \end{proof}
 
 \begin{proposition}\label{factor eta}
-Suppose $B$ is neighboring and $\lambda=\lambda_0+\lambda_\infty\in\d_\infty^B$ such that~$\lambda_0$ has affine entries $0$ and $\lambda_\infty$ is a nonnegative scaling of $\delta^B$.
+  Suppose $B$ is neighboring and $\lambda=\lambda_0+\lambda_\infty\in\d_\infty^B$ such that~$\lambda_0$ has affine entries $0$ and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$.\sayS{We were missing a factor of $-\frac12B$ here.}
 If $\kk$ is a sequence of non-affine indices with expanded sequence $\ll$, then ${\eta^{B^T}_\ll(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$.
 \end{proposition}
 \begin{proof}
-Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.\sayD{Should one of these be a $\lambda_\infty$?  \rn{Yes, fixed.}}
+  Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.\sayD{Should one of these be a $\lambda_\infty$?  \rn{Yes, fixed.}}\sayS{I think this sentence has to go: it is in the claim}
 Since $\eta_\ll^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
 \end{proof}
 
@@ -3782,7 +3781,7 @@ Take $\lambda\in\d_\infty^B$, consider any $B'$ mutation-equivalent to $B$, and 
 Write $\lambda'$ for $\eta_\ll^{B^T}(\lambda)$.
 The mutation map $\eta_\ll^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\ll(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\ll(B)\delta^{\mu_\ll(B)}$.
 Furthermore, $\eta_\ll^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that Theorem~\ref{affine main} claims is equal to~$\P_\lambda^B$ to the line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
-\sayS{This sentence is missing something.  \rn{I don't think it's missing something, but it might be terribly written.   Theorem~\ref{affine main} claims that $\P_\lambda^B$ is a specific line segment.  It also claims that $\P_{\lambda'}^{B'}$ is a specific line segment.  This sentence is trying to say that $\eta_\ll^{B^T}$ takes the line segment claimed to be $\P_\lambda^B$ to the line segment claimed to be $\P_{\lambda'}^{B'}$.  How do we say this better?}}
+\sayS{This sentence is missing something.  \rn{I don't think it's missing something, but it might be terribly written.   Theorem~\ref{affine main} claims that $\P_\lambda^B$ is a specific line segment.  It also claims that $\P_{\lambda'}^{B'}$ is a specific line segment.  This sentence is trying to say that $\eta_\ll^{B^T}$ takes the line segment claimed to be $\P_\lambda^B$ to the line segment claimed to be $\P_{\lambda'}^{B'}$.  How do we say this better?}\rs{It is probably ok as is}}
 Now Lemma~\ref{shift} implies that it is enough to prove the theorem for any one $B$ in the exchange pattern.
 
 We choose $B$ to be a neighboring exchange matrix.
