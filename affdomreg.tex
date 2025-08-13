@@ -579,7 +579,7 @@ For any $\ll$,
 &=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\settt{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+\mu_{\ll\kk^{-1}}(B')\alpha:\alpha\ge0}\\
 &=\P^{B'}_{\lambda',\ll\kk^{-1}}.
 \end{align*}
-Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
+  Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
 \end{proof}
 
 \begin{lemma}\label{block dom}
@@ -595,7 +595,7 @@ Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the 
 (This is ``sign-coherence of $C$-vectors'', which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
 Thus we may refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
 For $\kk=k_r\cdots k_1$, define seeds $t_1,\ldots,t_r$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r$.
-The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_p$ of $C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$. \sayD{I would prefer different indexing symbols here.  We will often use $m$ for the size of the extended exchange matrix and $\ell$ for a mutation direction, similarly $i$ and $j$ are basically always going to refer to the columns and rows of the exchange matrix so they are somehow already constrained quantities in my mind.  How does $\kk=k_r\cdots k_1$ and $k_p$ look instead?  I know it will be a lot to change this throughout, but I'm willing to if you guys give the go-ahead.  \rn{Fine with me.}}
+The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_p$ of $C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$.
 A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
 That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_r}^{B;t_0}$ is \emph{negative}.
 
@@ -678,10 +678,6 @@ Since mutation commutes with negation, mutating the matrix $\begin{bsmallmatrix}
 Thus $\kk^{-1}$ is a maximal green sequence for $-B_t$.
 The opposite implication is symmetric.
 \end{proof}
-
-
-
-
 
 For $k\in\set{1,\ldots,n}$, let $J_k$ be the $n\times n$ matrix that agrees with the identity matrix except that $J_k$ has $-1$ in position $kk$.
 For an $n\times n$ matrix $M$ and $k\in\set{1,\ldots,n}$, let $M^{\bullet k}$ be the matrix that agrees with $M$ in column $k$ and has zeros everywhere outside of column $k$.
