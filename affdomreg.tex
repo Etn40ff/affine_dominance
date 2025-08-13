@@ -339,7 +339,8 @@
 
 
 
-\newcommand{\afftype}[1]{{\widetilde{\raisebox{0pt}[6pt][0pt]{#1}}}}
+%\newcommand{\afftype}[1]{{\widetilde{\raisebox{0pt}[6pt][0pt]{#1}}}}
+\newcommand{\afftype}[1]{{#1^{(1)}}}
 
 
 
@@ -548,9 +549,10 @@ That is, $\mu_\kk(B)$ means $\mu_{k_r}(\mu_{k_{r-1}}(\cdots(\mu_{k_1}(B))\cdots)
 We write $\kk^{-1}$ for $k_1\cdots k_r$, the reverse of $\kk$.
 Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
 
+\sayS{Do we need a reference for mutation maps?} 
 Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix.
 In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
-This map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
+One such map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
 
 Given $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
@@ -585,7 +587,7 @@ If $B$ has a diagonal block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\end{
 \end{lemma}
 \begin{proof}
   For any column $k$ of $B_1$, we have $\mu_k\begin{bsmallmatrix}B_1&0\\0&B_2\end{bsmallmatrix}=\begin{bsmallmatrix}\mu_k(B_1)&0\\0&B_2\end{bsmallmatrix}$ and similarly for columns of $B_2$.
-  This implies the mutations corresponding to columns of $B_1$ and to columns of $B_2$ will commute and thus mutations corresponding to columns of $B_i$ only affect $\lambda_i$.
+  This implies that the mutations corresponding to columns of $B_1$ and to columns of $B_2$ will commute and thus mutations corresponding to columns of $B_i$ only affect $\lambda_i$.
 \end{proof}
 
 For seeds $t_0$ and $t$ and an exchange matrix $B$, let $C_t^{B;t_0}$ be the matrix whose columns are the $C$-vectors at $t$ relative to the initial seed $t_0$ with exchange matrix~$B$.
@@ -694,10 +696,8 @@ F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
 Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
 We note that $(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$, where~$\symmetrizer$ is the diagonal matrix of skew-symmetrizing constants of~$B$.
 The following is a special case of \cite[(3.2)]{ca3}.
-\marginN{Do I have this attribution right?
-\rd{It appeared already in Cluster Algebras III equation (3.2), I'm not sure whether or not this is the first occurrence though.}\rn{OK, I have fixed that. I doubt there was anything earlier.  ca3 was very early on.}}
 \begin{lemma}\label{EBF trick}
-For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.  \sayD{I think we can omit this proof. \rn{Yes, did that.}}
+For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
 \end{lemma}
 %\begin{proof}
 %We expand the product $(J_k+[\ep B]_+^{\bullet k})B(J_k+[-\ep B]_+^{k\bullet})$ to four terms.
@@ -771,7 +771,7 @@ Folding is a standard technique from the theory of Cartan matrices and root syst
 We provide details, following the exposition in \cite[Sections~2.3--2.4]{VielThesis}, which cites results from \cite{CaoHuangLi,DemonetThesis,DupontNonSimp,NS14}.
 An \newword{admissible automorphism} of an exchange matrix $B$ is a permutation $\sigma$ of the indices of~$B$ such that $b_{ij}=0$ whenever~$i$ and~$j$ are in the same $\sigma$-orbit and, for $i$ and $j$ in different orbits, the weak sign of $b_{ij}$ depends only on the $\sigma$-orbits of $i$ and $j$.
 For each index $i$, define~$\bar\imath$ to be the $\sigma$-orbit of $i$ and reuse the notation $\bar\imath$ to stand for a word that lists the $\sigma$-orbit of $i$ in any order.
-Given an admissible automorphism, an \newword{orbit sequence} is a sequence $\kk$ of indices of $B$ of the form $\kk=\bar\imath_1\cdots\bar\imath_m$.
+Given an admissible automorphism, an \newword{orbit sequence} is a sequence $\kk$ of indices of $B$ of the form $\kk=\bar\imath_1\cdots\bar\imath_p$.
 A \newword{stable automorphism} is an admissible automorphism $\sigma$ that is also an admissible automorphism of $\mu_\kk(B)$ for any \emph{orbit sequence}~$\kk$.
 
 The \newword{folding} of $B$ with respect to $\sigma$ is the exchange matrix $\pi_\sigma(B)$ indexed by the $\sigma$-orbits, whose $\bar\imath\bar\jmath$-entry is $\sum_{i'\in\bar\imath}b_{i'j'}$ for any $j'\in\bar\jmath$.
@@ -807,7 +807,7 @@ Then $\P_{\lambda,\kk}^{\pi_\sigma(B)}=\P_{\lambda,\kk}^B\cap(\reals^n)^\sigma$ 
 
 \subsection{Linearizing the dominance region}\label{lin sec}
 The difficult thing about computing the regions $\P^B_{\lambda,\kk}$ whose intersection is the dominance region $\P^B_\lambda$ is applying the piecewise linear map $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$, because the number of its domains of definition may grow without bound as the length of $\kk$ increases.
-In this section, we describe the cones (at $\lambda$) that coincide with $\P^B_{\lambda,\kk}$ inside a domain of definition of $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$ containing~$\lambda$ and show, in some cases, that these cones contain $\P^B_{\lambda,\kk}$.
+In this section, we describe the cones (at $\lambda$) that coincide with $\P^B_{\lambda,\kk}$ inside the domain of definition of $\bigl(\eta^{B^T}_\kk\bigr)^{-1}$ containing~$\lambda$ and show, in some cases, that these cones contain $\P^B_{\lambda,\kk}$.
 We work here with square exchange matrices.
 In Section~\ref{ext sec}, we extend the result to tall extended exchange matrices.
 %As an application, we prove in Section~\ref{ext sec} that (when $B$ is replaced by an extended exchange matrix with linearly independent columns) that the dominance region of a point $\lambda$ in the $\g$-vector fan... hypotheses... never mind
@@ -866,7 +866,7 @@ In light of Proposition~\ref{B0C}, the conclusion of Theorem~\ref{P in B0C} is e
 
 
 \begin{proof}[Proof of Theorem~\ref{P in B0C}]
-We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$ by induction on $m$ (the length of $\kk$).
+We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$ by induction on $r$ (the length of $\kk$).
 The base case, where $\kk=\emptyset$, is true because $C_{t_0}^{B_0;t_0}$ is the identity matrix and $\P_{\lambda,\emptyset}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
  
 \cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_t;t}$.  
@@ -973,9 +973,8 @@ We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$
 We will also consider an $m\times m$ matrix related to $\tB$.
 Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
 Let $R'=\symmetrizer'R\symmetrizer^{-1}$ for any diagonal matrix $\symmetrizer'$ such that $\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
-Define $\BB$ to be the matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
+Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
-\sayD{For symmetric $B$ this is fine but this requires a bit more care in general.  If $\symmetrizer B\symmetrizer^{-1}=-B^T$, then in order for $\BB$ to remain skew-symmetrizable we would need to have an $(m-n)\times (m-n)$ diagonal matrix $\symmetrizer'$ with $\symmetrizer'R=R\symmetrizer$ which may not exist.  If we were to allow rational entries we could replace $-R^T$ in $\BB$ with $-\symmetrizer^{-1}R^T$ and fix the issue.  An alternative would be to choose as the extension of $\symmetrizer$ any $\symmetrizer'$ so that $\symmetrizer'R\symmetrizer^{-1}$ has integer entries and then replace the $-R^T$ in $\BB$ by $-\symmetrizer^{-1}R^T\symmetrizer'$.  \rn{I liked your alternative, and implemented it.}} 
 Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
 \begin{lemma}\label{EBF trick ext}
@@ -992,7 +991,7 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $K_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
-\begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?}
+\begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?}\sayS{It looks like we do not}
 $\GG_t^{\BB_0;t_0}\tB_t=\tB_0C_t^{B;t_0}$.
 \end{proposition}
 \begin{proof}
@@ -1047,7 +1046,7 @@ If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n
 
 Lemma~\ref{shift} immediately implies the following lemma.
 \begin{lemma}\label{shift extended}
-If $\lambda'=\eta^{\BB^T}_\kk$ and $\tB'=\mu_\kk(\tB)$, then 
+If $\lambda'=\eta_\kk^{\BB^T}(\lambda)$ and $\tB'=\mu_\kk(\tB)$, then 
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift extended one}
 $\eta^{\BB^T}_\kk\!\!(\P^\tB_{\lambda,\ll})=\P^{\tB'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -1087,7 +1086,7 @@ Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\
 
 \subsection{Sufficient conditions for the dominance region to be a point}\label{point sec}  
 We now use the tools developed so far to give sufficient conditions for the dominance region to be a point.
-We use the conditions to show that the dominance region is always a point when $B$ is of in finite type and $\tB$ has linearly independent columns.
+We use the conditions to show that the dominance region is always a point when $B$ is of finite type and $\tB$ has linearly independent columns.
 In Section~\ref{rescue sec}, we prove the same fact for $B$ of finite type with no conditions on~$\tB$ (Theorem~\ref{finite P point}).
 In Section~\ref{aff sec}, we prove the same fact for $\tB$ of affine type with linearly independent columns and $\lambda$ in the $\g$-vector fan (Theorem~\ref{affine P point indep}). 
 
@@ -1132,7 +1131,7 @@ If $B$ is an exchange matrix of finite type, then $B$ admits a maximal green seq
 \begin{proof}
 The matrix $B$ is of finite type if and only if $-B$ is of finite type, so it is enough to prove that every $B$ of finite type admits a maximal green sequence.
 We construct a maximal green sequence as follows:
-Any line parallel to the all-ones vector eventually eventually stays in the positive cone in one direction and eventually stays in the negative cone in the other direction.
+Any line parallel to the all-ones vector eventually stays in the positive cone in one direction and eventually stays in the negative cone in the other direction.
 We can choose a line that is disjoint from all codimension-$2$ faces of the $\g$-vector fan.
 The $\g$-vector cones visited by this line, from the positive cone to the negative cone, define a maximal green sequence.
 \end{proof}
@@ -1218,11 +1217,11 @@ If a lamination has fewer than $n$ curves, we always extend it to a set of $n$ c
 The way in which this is done will not affect the arguments below.
 Thus the combinatorics of laminations is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
 
-\sayN{I'm fine with talking about the theta's first, but I don't want to lose sight of why we have them.  What was here gave the impression that we just looked for some curves with remarkable properties.  What's really true is that the definition of the dominance region forces us to look at these curves in the bipartite case, and then they happen to have these remarkable properties that make our proof work.  I tried to rewrite this to make that clear. }
+\sayN{I'm fine with talking about the theta's first, but I don't want to lose sight of why we have them.  What was here gave the impression that we just looked for some curves with remarkable properties.  What's really true is that the definition of the dominance region forces us to look at these curves in the bipartite case, and then they happen to have these remarkable properties that make our proof work.  I tried to rewrite this to make that clear. \rs{OK}}
 To compute dominance regions, we need to find, for every vector that is a nonnegative linear combination of the columns of $B$, the lamination whose shear coordinates, with respect to~$T$, are that vector.
 Those laminations all have the same underlying set $\set{\theta_1,\ldots,\theta_n}$ of curves, which we now describe.
 Since $B$ is bipartite, each arc $t_i$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
-\sayN{There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.  UPDATE:  Found no problems later on.}
+\sayN{There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.  UPDATE:  Found no problems later on.\rs{OK}}
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
@@ -1238,17 +1237,17 @@ Every curve that can appear in a lamination can be rotated to become one of the 
 The shear coordinates of $\theta_i$ with respect to~$T$ is $\ep_i=\pm1$ in position $t_i$ and $0$ elsewhere, where the sign $\ep_i$ is determined by the orientation of $t_i$ in its quadrilateral.
 \item
 \newword{Third remarkable property}:
-Any curve $\gamma\neq\theta_i$ that can appear in a lamination \sayN{Removed ``with $\theta_i$'' here.  It makes the remarkable property too weak to be useful.  The property is true for any curve that can appear in any lamination, and that's what makes the property powerful. }
+Any curve $\gamma\neq\theta_i$ that can appear in a lamination \sayN{Removed ``with $\theta_i$'' here.  It makes the remarkable property too weak to be useful.  The property is true for any curve that can appear in any lamination, and that's what makes the property powerful.\rs{OK} }
 has the property that the shear coordinates of $\gamma$ and $\theta_i$ weakly disagree in sign in position $t_i$.
 They strictly disagree in sign if and only if~$\gamma$ and~$\theta_i$ are not compatible.
 \end{itemize}
-What is remarkable about these properties is not that we were able to find a set of curves with these properties, but rather that the laminations that we are forced to consider consist of a set of curves with these properties.
+What is remarkable about these properties is not that we were able to find a set of curves satisfying them, but rather that the laminations that we are forced to consider consist of a set of curves with these properties.
 
 In order to compute $\P^B_\lambda$, we consider the weighted lamination $\Lambda$ such that $\lambda$ is the negation of the shear coordinates of $\Lambda$ with respect to the triangulation~$T$.
-\sayN{Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.}
+\sayN{Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.\rs{OK}}
 We can compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by reading the negative shear coordinates of $\Lambda$ with respect to a rotation of $T$, specifically the rotation $\ell$ units counterclockwise that corresponds to flipping the arcs of $T$ in the order specified by $\kk^\ell$.
 (See \cite[Theorem~12.6]{cats2}, \cite[Theorem~4.3]{unisurface}, and \cite[Section~5]{unisurface}.)
-\marginN{Added the following.  We need it because later we're going to ask for $L'_m$ to be the unique curve $\neq L_m$ that is compatible with the others.  Without extending, we don't get uniqueness.}
+\marginN{Added the following.  We need it because later we're going to ask for $L'_p$ to be the unique curve $\neq L_p$ that is compatible with the others.  Without extending, we don't get uniqueness.\rs{OK}}
 If $\Lambda$ is supported on fewer than $n$ curves, we extend it by adjoining compatible curves with weight~$0$.
 (There may be more than one way to do this, but we fix some choice.)
 We label the curves of the lamination~$\Lambda$ in some order as $L_1,L_2,\ldots,L_n$ with weights $w_1,\ldots,w_n$ respectively.
@@ -1257,7 +1256,7 @@ For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is of the fo
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
 In the $(n+3)$-gon model, such a point $x$ is obtained as follows:
 Rotate $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
-\sayN{Removed ``Observe that'' because we already said it in the previous paragraph, and it's not an observation, it's a result that we have to quote.''}
+\sayN{Removed ``Observe that'' because we already said it in the previous paragraph, and it's not an observation, it's a result that we have to quote.'' \rs{OK}}
 Reading the shear coordinates of $\Lambda$ with respect to the rotated triangulation $T'$ is the same as applying the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$.
 Thus we find the lamination whose shear coordinates with respect to $T'$ are the sum of the shear coordinates of $\Lambda$ with respect to~$T'$ and $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 Then $x$ is the negative of the shear coordinates of that lamination with respect to the unrotated triangulation~$T$.
@@ -1302,7 +1301,7 @@ The negative of these shear coordinates is~$x$.
 
 Now suppose $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
 By the construction above, for each $\ell$, the vector~$x$ is the shear coordinates with respect to $T$ of a rotation of a lamination $X^{(\ell)}$ as above.
-Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:  \sayN{I wanted to make the following sentence more precise by saying what the rotation is.  So I added the ``specifically'' sentence.}
+Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:  \sayN{I wanted to make the following sentence more precise by saying what the rotation is.  So I added the ``specifically'' sentence.\rs{OK}}
 All of the laminations $X^{(\ell)}$ for $\ell\in\integers$ are related by rotations.
 Specifically, $X^{(\ell)}$ is obtained by rotating $X^{(0)}$ clockwise $\ell$ units.
 
@@ -1310,30 +1309,30 @@ We will show that $\alpha^{(\ell)}=0$ for all $\ell$, or in other words that $a_
 %This implies that $x=\lambda$.
 Since $a_i^{(\ell)}\ge 0$ for all $i$ and $\ell$, it is enough to show that each $z_i^{(\ell)}$ is~$0$.
 
-By the first remarkable property, for each $L_m$ there exists an $\ell_m\in\integers$ so that $(L_m)^{(\ell_m)}=\theta_{i_m}$ for some $i_m$.
-Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell_m)}$ is $\ep_{i_m}(w_m+z_{i_m}^{(\ell_m)})$ in position~$t_{i_m}$ because the second remarkable property assures that $(L_m)^{(\ell_m)}$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_m)}$ or $\Theta^{(\ell_m)}$ contribute to this coordinate.
+By the first remarkable property, for each $L_p$ there exists an $\ell_p\in\integers$ so that $(L_p)^{(\ell_p)}=\theta_{i_p}$ for some $i_p$.
+Then the sum of the shear coordinates of $\Lambda^{(\ell_p)}$ and~$\Theta^{(\ell_p)}$ is $\ep_{i_p}(w_p+z_{i_p}^{(\ell_p)})$ in position~$t_{i_p}$ because the second remarkable property assures that $(L_p)^{(\ell_p)}$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_p)}$ or $\Theta^{(\ell_p)}$ contribute to this coordinate.
 (See the left picture of Figure~\ref{theti fig}.)
 \begin{figure}
 \scalebox{0.77}{\includegraphics{theti1.ps}
 \begin{picture}(0,0)(73,-73)
-\put(-21,-17){$\thet_{i_m}$}
-\put(-2.5,25){\small$L_m^{(\ell_m)}$}
+\put(-21,-17){$\thet_{i_p}$}
+\put(-2.5,25){\small$L_p^{(\ell_p)}$}
 %\put(25,-13){$L'_j$}
-\put(5,-19){$t_{i_m}$}
+\put(5,-19){$t_{i_p}$}
 \end{picture}}
 \hspace{0.5pt}
 \scalebox{0.77}{\includegraphics{theti1.5.ps}
 \begin{picture}(0,0)(73,-73)
-\put(2.5,9){\small$L_m$}
-\put(-16,-33){$L'_m$}
-%\put(5,-19){$t_{i_m}$}
+\put(2.5,9){\small$L_p$}
+\put(-16,-33){$L'_p$}
+%\put(5,-19){$t_{i_p}$}
 \end{picture}}
 \hspace{0.5pt}
 \scalebox{0.77}{\includegraphics{theti2.ps}
 \begin{picture}(0,0)(73,-73)
-%\put(-25,25){\small$(L_m)^{(\ell'_m)}$}
-\put(-3,22){$\thet_{\!i'_m}$}
-\put(6.5,-18){$t_{\!i'_m}$}
+%\put(-25,25){\small$(L_p)^{(\ell'_p)}$}
+\put(-3,22){$\thet_{\!i'_p}$}
+\put(6.5,-18){$t_{\!i'_p}$}
 \end{picture}}
 %\quad
 %\scalebox{0.77}{\includegraphics{theti3.ps}}
@@ -1344,22 +1343,22 @@ Then the sum of the shear coordinates of $\Lambda^{(\ell_m)}$ and~$\Theta^{(\ell
 \caption{An illustration of the proof of the Type-A case}
 \label{theti fig}
 \end{figure}
-Therefore, by the third remarkable property again, $X^{(\ell_m)}$ has the curve $\theta_{i_m}$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
-\sayN{Added the following. $X^{(\ell_m)}$ might *not* have $\theta_{i_m}$, and we need to be clear about what happens in that case.}
-(Or, if ${w_m+z_{i_m}^{(\ell_m)}=0}$, then $X^{(\ell_m)}$ consists of curves that are compatible with $\theta_{i_m}$.)
-By the main observation, this implies $X^{(0)}$ has the curve $L_m$ with weight $w_m+z_{i_m}^{(\ell_m)}$.
-It follows that $X^{(0)}$ contains the same curves as $\Lambda$ \sayN{Also added the following for the same reason.}
+Therefore, by the third remarkable property again, $X^{(\ell_p)}$ has the curve $\theta_{i_p}$ with weight $w_p+z_{i_p}^{(\ell_p)}$.
+\sayN{Added the following. $X^{(\ell_p)}$ might *not* have $\theta_{i_p}$, and we need to be clear about what happens in that case.\rs{OK}}
+(Or, if ${w_p+z_{i_p}^{(\ell_p)}=0}$, then $X^{(\ell_p)}$ consists of curves that are compatible with $\theta_{i_p}$.)
+By the main observation, this implies $X^{(0)}$ has the curve $L_p$ with weight $w_p+z_{i_p}^{(\ell_p)}$.
+It follows that $X^{(0)}$ contains the same curves as $\Lambda$ \sayN{Also added the following for the same reason.\rs{OK} }
 (after possibly adjoining some curves with weight $0$ that are compatible with the curves in $X^{(0)}$).
 
-Let $L'_m$ be the unique curve that is compatible with every curve in $\Lambda$ except~$L_m$.
+Let $L'_p$ be the unique curve that is compatible with every curve in $\Lambda$ except~$L_p$.
 (See the middle picture of Figure~\ref{theti fig}.)
-By the first remarkable property, there exists $\ell'_m\in\integers$ so that $(L'_m)^{(\ell'_m)}=\theta_{i'_m}$ for some $i'_m$.
-Since every curve in $\Lambda^{(\ell'_m)}$ or $\Theta^{(\ell'_m)}$, besides $(L_m)^{(\ell'_m)}$, is compatible with $\theta_{i'_m}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is ${\ep_{i'_m}(-w_m+z_{i'_m}^{(\ell'_m)})}$.
+By the first remarkable property, there exists $\ell'_p\in\integers$ so that $(L'_p)^{(\ell'_p)}=\theta_{i'_p}$ for some $i'_p$.
+Since every curve in $\Lambda^{(\ell'_p)}$ or $\Theta^{(\ell'_p)}$, besides $(L_p)^{(\ell'_p)}$, is compatible with $\theta_{i'_p}$, the third remarkable property says that the shear coordinate of $X^{(\ell'_p)}$ in position~$t_{i'_p}$ is ${\ep_{i'_p}(-w_p+z_{i'_p}^{(\ell'_p)})}$.
 (See the right picture of Figure~\ref{theti fig}.)
-But the main observation says that $X^{(\ell'_m)}$ contains $(L_m)^{(\ell'_m)}$ with weight $w_m+z_{i_m}^{(\ell_m)}$ and otherwise contains curves that are compatible with the rotation of $L_m$.
-Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_m)}$ in position~$t_{i'_m}$ is $-\ep_{i'_m}(w_m+z_{i_m}^{(\ell_m)})$.
-Therefore $w_m-z_{i'_m}^{(\ell'_m)}=w_m+z_{i_m}^{(\ell_m)}$, and we conclude that $z_{i_m}^{(\ell_m)}=z_{i'_m}^{(\ell'_m)}=0$ since both are nonnegative.
-\sayN{I like this ``caseless'' way of saying things.  Thanks.}
+But the main observation says that $X^{(\ell'_p)}$ contains $(L_p)^{(\ell'_p)}$ with weight $w_p+z_{i_p}^{(\ell_p)}$ and otherwise contains curves that are compatible with the rotation of $L_p$.
+Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_p)}$ in position~$t_{i'_p}$ is $-\ep_{i'_p}(w_p+z_{i_p}^{(\ell_p)})$.
+Therefore $w_p-z_{i'_p}^{(\ell'_p)}=w_p+z_{i_p}^{(\ell_p)}$, and we conclude that $z_{i_p}^{(\ell_p)}=z_{i'_p}^{(\ell'_p)}=0$ since both are nonnegative.
+\sayN{I like this ``caseless'' way of saying things.  Thanks.\rs{Me too}}
 
 It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
 
@@ -1532,14 +1531,14 @@ If $\lambda$ is in the relative interior of the imaginary wall~$\d^B_\infty$, th
 
 \begin{remark}\label{2x2}
 Theorem~\ref{affine main} is true for all exchange matrices of affine type, including the case where $B$ is $2\times2$.
-The latter case of the theorem is \cite[Specific reference]{RSDom}.  \marginN{Fill this reference in?}
-Some of the considerations in our proof of Theorem~\ref{affine main} only make sense when $B$ is larger than $2\times2$.
+The latter case of the theorem is \cite[Theorem 1.2]{RSDom} in the special case where $bc=4$.  \marginN{Fill this reference in?\rs{done and added some words to the effect that we avoid this case our proofs here}}
+Some of the considerations in our proof of Theorem~\ref{affine main} only make sense when $B$ is larger than $2\times2$ so we silently omit this case in what follows.
 \end{remark}
 
 \begin{remark}\label{indecomposable}
 The definition of a Cartan matrix $A$ of affine type implies in particular that $A$ is block-indecomposable.
 Thus an exchange matrix of affine type is also block-indecomposable.
-But Theorem~\ref{affine main} can easily be applied to exchange matrices that are not of finite type but decompose into matrices of finite and affine type.
+But Theorem~\ref{affine main} can easily be applied to exchange matrices that decompose into matrices of finite and affine type.
 For example, suppose $B$ has a diagonal block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\end{bsmallmatrix}$ where $B_1$ and $B_2$ are of affine type and $\lambda=\begin{bsmallmatrix}\lambda_1\\\lambda_2\end{bsmallmatrix}$ with each $\lambda_i$ is in the relative interior of the imaginary wall~$\d^{B_i}_\infty$, then Theorem~\ref{affine main} and Lemma~\ref{block dom} imply that $\P_\lambda^B$ is a product of line segments.
 
 \end{remark}
@@ -1554,7 +1553,7 @@ When $B$ is acyclic, $\delta^B$ coincides with the imaginary root usually denote
 To explain and prove Theorem~\ref{affine main}, we quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
 
 \subsection{Acyclic seeds of affine type}\label{acyc sec}
-Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has an acyclic seed whose exchange matrix is an orientation of a Cartan matrix of affine type.
+Most of what we know about cluster algebras of affine type rests on the fact that every cluster algebra of affine type has a seed whose exchange matrix is an acyclic orientation of a Cartan matrix of affine type.
 (Indeed, the analogous observation is true for cluster algebras of finite type.)
 The associated Cartan matrix of affine type allows us to model $\dd$-vectors, $\g$-vectors, and the mutation fan by almost-positive Schur roots, sortable elements and (doubled) Cambrian fans.
 We now quote some useful results in this setting and prove some additional facts.
@@ -1564,9 +1563,9 @@ Let $B_0$ be an acyclic $n\times n$ exchange matrix in a cluster algebra of affi
 %Let $\tB_0$ be an extension with linearly independent columns.
 Let $A$ be the Cartan matrix underlying $B_0$, so that $A$ is of affine type.
 Let $\delta$ be the shortest positive imaginary root in the root system $\RS$ associated to $A$.
-\sayD{We implicitly use properties of $\delta$ in many places below, it might be worthwhile to collect those observations somewhere as a proposition.}
+\sayD{We implicitly use properties of $\delta$ in many places below, it might be worthwhile to collect those observations somewhere as a proposition.\rs{I am listing here properties that I notice while reading in case we decide to do so. $\delta$ has full support.}}
 Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples=\set{\alpha_1,\ldots,\alpha_n}$ be the simple roots of $\RS$.
-The \newword{support} of a root is the set of simple roots appearing in an expression for the roots as a linear combination of simple roots.
+The \newword{support} of a root is the set of simple roots appearing with nonzero coefficient in its expression as a linear combination of simple roots.
 
 As before, write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 These constants also symmetrize~$A$ (meaning that the entries $a_{ij}$ of $A$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
@@ -1585,7 +1584,7 @@ Given $\beta\in V$, the notation $\beta^\perp$ indicates the set of vectors in $
 
 
 
-\begin{remark}\label{danger: co-roots}  \sayN{Added this to ward off confusion, especially in Proposition~\ref{delta is the man}.}
+\begin{remark}\label{danger: co-roots}  \sayN{Added this to ward off confusion, especially in Proposition~\ref{delta is the man}.\rs{OK}}
 The purpose of using $\Simples$ as the basis for $V$ but using the dual basis to $\Simples\ck$ as the basis for $V^*$ is to incorporate the symmetrizability of $A$ (and therefore the skew-symmetrizability of $B$) seamlessly into the constructions.
 However, some care must be taken when we use these constructions to understand the vectors in~$\reals^n$ that appears elsewhere in the paper.
 We identify $V^*$ with the vector space $\reals^n$ by identifying the \emph{fundamental weights} with the standard unit basis vectors of $\reals^n$ and also identify $V$ with the vector space $\reals^n$ by identifying the \emph{simple roots} with the standard unit basis vectors.
@@ -1636,7 +1635,7 @@ This bilinear form is skew-symmetric because $B$ is skew-symmetrizable and the s
 The following lemma is a version of \cite[Lemma~3.8]{typefree}.
 
 \begin{lemma}\label{omega s}
-$\omega_{s_1cs_1}(s_1x,s_1y)=\omega_c(x,c)=\omega_{s_ncs_n}(s_nx,s_ny)$ for any $x$ and $y$ in~$V$.
+$\omega_{s_1cs_1}(s_1x,s_1y)=\omega_c(x,y)=\omega_{s_ncs_n}(s_nx,s_ny)$ for any $x$ and $y$ in~$V$.
 \end{lemma}
 
 Applying Lemma~\ref{omega s} $n$ times, we obtain the following lemma.
@@ -1669,7 +1668,7 @@ Suppose the orbit of $x$ has $k$ elements.
 The sum $x+cx+\cdots+c^{k-1}x$ of all vectors in the $c$-orbit of $x$ is fixed by the action of $c$ and thus is a scalar multiple of $\delta$, since $\delta$ spans the $1$-eigenspace of $c$.
 Because $\omega_c$ is skew-symmetric, $\omega_c(x+cx+\cdots+c^{k-1}x,\delta)=0$.
 Now Lemma~\ref{omega c} says that $k\omega_c(x,\delta)=0$.
-The subspace consisting of vectors $x$ such that $\omega_c(x,\delta)=0$ has dimension $n-1$ and the subspace consisting of vectors in finite $c$-orbits also has dimension $n-1$ (for example, it contains $n-1$ linearly independent roots), \sayN{Expand on that?}
+The subspace consisting of vectors $x$ such that $\omega_c(x,\delta)=0$ has dimension $n-1$ and the subspace consisting of vectors in finite $c$-orbits also has dimension $n-1$ (for example, it contains $n-1$ linearly independent roots), \sayN{Expand on that?\rs{Maybe just few words on why $\omega_c(x,\delta)=0$ has dimension $n-1$} }
 so these subspaces must coincide.
 \end{proof}
 
@@ -1681,15 +1680,15 @@ These form a subsystem of $\RS$, in the sense that the set of real roots in $\RS
 But $\RST{c}$ might not be a root system in the usual (Kac-Moody) sense.
 Rather, it is the product of $1$, $2$, or $3$ affine root systems of type $\afftype{A}$, living in a vector space that may be smaller than the sum of the ranks of the irreducible factor ($0$, $1$, or $2$ dimensions smaller):
 Each factor has a shortest positive imaginary root, and all of these are identified with $\delta$.
-(Thus $\RST{c}$ is a Kac-Moody root system only in the case where it has one of these components.)
+(Thus $\RST{c}$ is a Kac-Moody root system only in the case where it has exactly one of these components.)
 The set of simple roots of $\RST{c}$ is written as $\SimplesT{c}$.
-Any real root $\beta\in\RST{c}$ admits a unique expression as a linear combination of elements of $\SimplesT{c}$ and thus a well defined support $\SuppT(\beta)$ as a subset of $\SimplesT{c}$.
 The total number of roots in $\SimplesT{c}$ is $n-2$ plus the number of factors of $\RST{c}$.
 If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{c}$, then $\beta_0+\cdots+\beta_k=\delta$.
 These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
 
-Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.
-Let $\APT{c}=\APTre{c}\cup\set\delta$. \sayD{"real" added just for easier readability  \okn}
+\sayS{The definition of $\APTre{c}$ that we had here was wrong}
+Let $\APTre{c}$ be the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$ and denote by $\SuppT(\beta)$ their support with respect to $\SimplesT{c}$.
+Let $\APT{c}=\APTre{c}\cup\set\delta$.
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
 The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables \cite[Theorem~1.2]{affdenom}, with respect to the initial exchange matrix $B_0$.
 There is a notion \cite[Definition~4.3]{affdenom} of \newword{$c$-compatibility} of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
@@ -1733,7 +1732,7 @@ We reorganize some other assertions of \cite[Proposition~3.12]{affdenom} as foll
 
 \begin{proposition}\label{delta limit}
 Suppose $\beta\in\AP{c}\setminus\APT{c}$ and let $I$ be the unique integer such that $\tau_c^I(\beta)\in-\Simples$.
-Let $m$ be the least common multiple of the sizes of finite $c$-orbits.
+Let $\ell$ be the least common multiple of the sizes of finite $c$-orbits.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{c pos}
 For $i\not\in\set{I-1,I}$, the action of $\tau_c$ on $\tau_c^i(\beta)$ is the same as the action of~$c$.
@@ -1744,7 +1743,7 @@ $K(\gamma_c,\tau_c^i(\beta))>0$ for $i>I$.
 \item \label{K neg}
 $K(\gamma_c,\tau_c^i(\beta))<0$ for $i<I$.
 \item \label{exists}
-There exists a positive real number $a$ such that $\tau_c^{i+m}(\beta)=\tau_c^i(\beta)+a\delta$ when $i>I$ and $\tau_c^{i-m}(\beta)=\tau_c^i(\beta)+a\delta$ when $i<I$.
+There exists a positive real number $a$ such that $\tau_c^{i+\ell}(\beta)=\tau_c^i(\beta)+a\delta$ when $i>I$ and $\tau_c^{i-\ell}(\beta)=\tau_c^i(\beta)+a\delta$ when $i<I$.
 \item \label{lim}
 $\displaystyle\lim_{i\to\infty}\frac{\tau_c^i\beta}{|\tau_c^i\beta|}=\lim_{i\to-\infty}\frac{\tau_c^i\beta}{|\tau_c^i\beta|}=\frac{\delta}{|\delta|}$.
 \end{enumerate}
@@ -1753,10 +1752,10 @@ $\displaystyle\lim_{i\to\infty}\frac{\tau_c^i\beta}{|\tau_c^i\beta|}=\lim_{i\to-
 \begin{proof}
 The first two assertions are \cite[Proposition~3.12(2)]{affdenom}.
 The next two assertions are \cite[Proposition~3.12(8)]{affdenom}.
-The subspace $\set{v\in V:K(\gamma_c,v)=0}$ is the direct sum of all eigenspaces of $c$, so $c^m$ fixes this subspace pointwise.
+The subspace $\set{v\in V:K(\gamma_c,v)=0}$ is the direct sum of all eigenspaces of $c$, so $c^\ell$ fixes this subspace pointwise.
 Write $\tau_c^i(\beta)$ as $q\gamma_c+v$ with $K(\gamma_c,v)=0$. \sayD{Why is it clear that this can be done?  \rn{Because the subspace $\set{v\in V:K(\gamma_c,v)=0}$ is a hyperplane and $\gamma_c$ is not in the hyperplane (i.e. $K(\gamma_c,\gamma_c)\neq0$.  But probably this needs to be said/jusitified}}
 Since $K$ is positive semidefinite and $\gamma_c$ is not a multiple of $\delta$, we have $q>0$ for $i>I$ by Assertion~\ref{K pos} and $q<0$ for $i<I$ by Assertion~\ref{K neg}.
-Applying Assertion~\ref{c pos} and using the fact that $c\gamma_c=\gamma_c+\delta$, we have $\tau_c^m(\tau_c^i(\beta))=qm\delta+q\gamma_c+v$ and $\tau_c^{-m}(\tau_c^i(\beta))=-qm\delta+q\gamma_c+v$, and Assertions~\ref{exists} and~\ref{lim} follow. \sayD{Should the last two equalities here also include a $q\gamma_c$?  \rn{Yes, fixed.}}
+Applying Assertion~\ref{c pos} and using the fact that $c\gamma_c=\gamma_c+\delta$, we have $\tau_c^\ell(\tau_c^i(\beta))=q\ell\delta+q\gamma_c+v$ and $\tau_c^{-\ell}(\tau_c^i(\beta))=-q\ell\delta+q\gamma_c+v$, and Assertions~\ref{exists} and~\ref{lim} follow. \sayD{Should the last two equalities here also include a $q\gamma_c$?  \rn{Yes, fixed.}}
 \end{proof}
 
 
@@ -1804,7 +1803,7 @@ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order
 \end{proposition}
 
 \begin{proposition}\label{delta limit eta}
-Suppose $B_0$ is an acyclic exchange matrix of affine type and let $m$ be the least common multiple of the sizes of finite $c$-orbits.
+Suppose $B_0$ is an acyclic exchange matrix of affine type and let $\ell$ be the least common multiple of the sizes of finite $c$-orbits.
 Suppose $x\in V^*\setminus\d_\infty$.
 Then there exist integers $I_+$ and $I_-$ such that   \sayN{In this paper, we only use Assertions~\ref{correct side} and~\ref{eta lim} in this paper, but Assertion~\ref{pos a} is used to prove Assertion~\ref{eta lim}.  I hope it's OK that we keep the others (15 lines, including statements and proof), because they are needed in \{afftheta\}.}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
@@ -1818,7 +1817,7 @@ For $i>I_+$ or $i<I_-$, $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ and $\nu_c(\d
 \item \label{correct side}
 $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$ for $i>I_+$ and $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}<0$ for $i<I_-$.
 \item \label{pos a}
-There exists positive real $a$ such that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i>I_+$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i<I_-$.
+There exists positive real $a$ such that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+\ell}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i>I_+$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-\ell}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ when $i<I_-$.
 \item \label{eta lim}
 $\displaystyle\lim_{i\to\infty}\frac{\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)}{\bigl|\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)\bigr|}=\lim_{i\to-\infty}\frac{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)}{\bigl|\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)\bigr|}=\frac{\nu_c(\delta)}{|\nu_c(\delta)|}$.
 \end{enumerate}
@@ -1831,10 +1830,10 @@ Then $I_+$ and $I_-$ are implicitly defined to realize ``large enough'' or ``sma
 Since $x$ is not in $\d_\infty$, it is in a full-dimensional cone of $\nu_c(\Fan_c(\RS))$.
 Thus $(\nu_c)^{-1}(x)$ is in a maximal cone of $\Fan_c(\RS)$ spanned by some $\beta_1,\ldots,\beta_n$, indexed with $\beta_1,\ldots,\beta_\ell\in\AP{c}\setminus\APT{c}$ and $\beta_{\ell+1},\ldots,\beta_n\in\APT{c}$ with $\ell\ge1$.
 There exist $q_1,\ldots,q_n\ge0$ such that $(\nu_c)^{-1}(x)=\sum_{j=1}^nq_j\beta_j$ with $q_j>0$ for at least one $j\in\set{1,\ldots,\ell}$.
-By Proposition~\ref{delta limit}, there exist integers $I_1,\ldots,I_\ell$ and positive real $a_1,\ldots,a_\ell$ such that $\tau_c^{i+m}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i>I_j$ and $\tau_c^{i-m}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i<I_j$, for all $j=1,\ldots,\ell$.
+By Proposition~\ref{delta limit}, there exist integers $I_1,\ldots,I_\ell$ and positive real $a_1,\ldots,a_\ell$ such that $\tau_c^{i+\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i>I_j$ and $\tau_c^{i-\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i<I_j$, for all $j=1,\ldots,\ell$.
 Set $a=\sum_{j=1}^\ell q_ja_j>0$.
-Then $\tau_c^{i+m}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i>\max(I_1,\ldots,I_\ell)$ and $\tau_c^{i-m}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i<\min(I_1,\ldots,I_\ell)$.
-Applying $\nu_c$ and appealing to Proposition~\ref{eta nice}.\ref{nu tau}, we see that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\max(I_1,\ldots,I_\ell)$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-m}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\min(I_1,\ldots,I_\ell)$.
+Then $\tau_c^{i+\ell}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i>\max(I_1,\ldots,I_\ell)$ and $\tau_c^{i-\ell}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i<\min(I_1,\ldots,I_\ell)$.
+Applying $\nu_c$ and appealing to Proposition~\ref{eta nice}.\ref{nu tau}, we see that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+\ell}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\max(I_1,\ldots,I_\ell)$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-\ell}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\min(I_1,\ldots,I_\ell)$.
 This is Assertion~\ref{pos a}, and Assertion~\ref{eta lim} follows immediately.
 
 The proof of Proposition~\ref{eta nice}.\ref{eta is c} in \cite[Proposition~7.31]{affscat} includes checking, for each of the $n$ mutation steps of applying $\eta^{B^T}_{12\cdots n}$ to $\nu_c(\delta)$, which of the cases of the mutation map applies.
@@ -1851,11 +1850,11 @@ Now $2\nu_c(\delta)=-\omega_c(\,\cdot\,,\delta)$ is a $1$-eigenvector for $c$.
 Also $-\omega_c(\,\cdot\,,\gamma_c)$ is a generalized $1$-eigenvector for $c$, associated to the $1$-eigenvector $2\nu_c(\delta)$.
 (One can check this directly, or, for example, in light of Lemma~\ref{nu delta} this is \cite[Lemma~2.8]{affncA}.)
 Using the fact \cite[Lemma~3.5]{afforb} that $\omega_c(\delta,\,\cdot\,)$ is a negative scaling of $K(\gamma_c,\,\cdot\,)$, we compute $\brr{-\omega_c(\,\cdot\,,\gamma_c),\delta}=-\omega_c(\delta,\gamma_c)=K(\gamma_c,\gamma_c)$, which is positive because $K$ is positive semidefinite and $\gamma_c$ is not a multiple of $\delta$.
-Since $c$ fixes $\d_\infty$ as a set and has finite order $m$ on $\d_\infty$ (Proposition~\ref{eta nice}.\ref{eta is c}), it fixes the entire hyperplane $\delta^\perp$ as a set.
-Thus we can write $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ as $q\omega_c(\,\cdot\,,\gamma_c)+v$ for $v\in\delta^\perp$ fixed by $c^m$.
-Since $c^m\omega_c(\,\cdot\,,\gamma_c)=\omega_c(\,\cdot\,,\gamma_c)+2m\nu_c(\delta)$, Assertion~\ref{pos a} implies that $q>0$ for large enough $i$.
+Since $c$ fixes $\d_\infty$ as a set and has finite order $\ell$ on $\d_\infty$ (Proposition~\ref{eta nice}.\ref{eta is c}), it fixes the entire hyperplane $\delta^\perp$ as a set.
+Thus we can write $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ as $q\omega_c(\,\cdot\,,\gamma_c)+v$ for $v\in\delta^\perp$ fixed by $c^\ell$.
+Since $c^\ell\omega_c(\,\cdot\,,\gamma_c)=\omega_c(\,\cdot\,,\gamma_c)+2\ell\nu_c(\delta)$, Assertion~\ref{pos a} implies that $q>0$ for large enough $i$.
 Thus $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}>0$ for large enough~$i$.
-  Similarly, $c^{-m}\omega_c(\,\cdot\,,\gamma_c)=\omega_c(\,\cdot\,,\gamma_c)-2m\nu_c(\delta)$, so $q<0$ and thus $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}<0$ for small enough~$i$.
+  Similarly, $c^{-\ell}\omega_c(\,\cdot\,,\gamma_c)=\omega_c(\,\cdot\,,\gamma_c)-2\ell\nu_c(\delta)$, so $q<0$ and thus $\brr{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\delta}<0$ for small enough~$i$.
 This is Assertion~\ref{correct side}.
 \end{proof}
 
@@ -1890,9 +1889,9 @@ Write the entries of $\lambda$ as $(\lambda_1,\ldots,\lambda_n)$.
 Since $B_0$ is acyclic and its first row has nonnegative entries, in particular every point in $\P^{B_0}_\lambda$ has first coordinate greater than or equal to $\lambda_1$.
 Also, since $\delta$ has all entries positive and the first row of $B_0$ is nonzero, $B_0\delta$ has first coordinate strictly positive.
 
-Let $m$ be the order of $\eta^{B_0^T}_{12\cdots n}$ on $\d_\infty$ (see Proposition~\ref{eta nice}.\ref{eta is c}).
-Then $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m$ fixes $\d_\infty$ pointwise.
-Also, $\mu_{12\cdots n}(B_0)=B_0$, so Lemma~\ref{shift}.\ref{shift all} says ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^m(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
+Let $p$ be the order of $\eta^{B_0^T}_{12\cdots n}$ on $\d_\infty$ (see Proposition~\ref{eta nice}.\ref{eta is c}).
+Then $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^p$ fixes $\d_\infty$ pointwise.
+Also, $\mu_{12\cdots n}(B_0)=B_0$, so Lemma~\ref{shift}.\ref{shift all} says ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^p(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
 
 Now suppose $\P^{B_0}_\lambda$ contains a point $x\not\in\d_\infty$.
 Applying Proposition~\ref{delta limit eta}.\ref{eta lim}, we find a sequence of points in $\P^{B_0}_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
@@ -1947,7 +1946,7 @@ Then $cv$ is $c$-sortable and its $c$-sorting word is $s_1\cdots s_n$ followed b
 \begin{proof}
 Let $a_1\cdots a_r$ be the $c$-sorting word for $v$.
 We first show that $s_na_1\cdots a_r$ is reduced.
-  The means showing that $\alpha_n\not\in\set{a_1\cdots a_{p-1}\alpha(a_p):p=1,\ldots,r}$, where $\alpha(a_p)$ is the simple root associated to the simple reflection~$a_p$.
+This means showing that $\alpha_n\not\in\set{a_1\cdots a_{p-1}\alpha(a_p):p=1,\ldots,r}$, where $\alpha(a_p)$ is the simple root associated to the simple reflection~$a_p$.
 Suppose to the contrary that $\alpha_n=a_1\cdots a_{p-1}\alpha(a_p)$ for some~$p$.
 Since $\set{a_1\cdots a_{p-1}\alpha(a_p):p=1,\ldots,n}$ equals $\TravProj{c}$ and $\alpha_n\in \TravInj{c}$, we must have $p>n$.
 But then Lemma~\ref{c to pos} says that $a_{n+1}\cdots a_{p-1}\alpha(a_p)$ is negative, contradicting the fact that $a_{n+1}\cdots a_r$ is reduced.
@@ -1973,7 +1972,7 @@ Since the $c$-sorting word associated to $t_{p+1}$ is reduced, the skip of $s_{k
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
 Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so?}
 For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$.
-Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,m}$.
+Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$.
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
@@ -2031,7 +2030,7 @@ For such a choice of $v$ and $t$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0
 Suppose $B$ is an exchange matrix of affine type.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{im ray pos}
-$\delta^B$ has nonnegative entries and is the shortest integer vector in the ray it~spans.  \sayN{Added the statement that it's the shortest integer vector. Check me.}
+  $\delta^B$ has nonnegative entries and is the shortest integer vector in the ray it~spans.  \sayN{Added the statement that it's the shortest integer vector. Check me.\rs{It seems OK}}
 \item \label{im ray}
 $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray of $\F_{B^T}$.
 \item \label{im hyp}
@@ -2041,9 +2040,10 @@ All imaginary cones in $\F_{B^T}$ are contained in $(\delta^B)^\perp$.
 
 We refer to Remark~\ref{danger: co-roots} for clarification on how to interpret Proposition~\ref{delta is the man}.\ref{im hyp} in specific examples.
 See also the last part of the following proof.
+\sayS{I am not sure that I understand what is this paragraph meant to explain. Are we talking about how to interpret the orthogonality relation?}
 
 \begin{proof}%[Proof of Proposition~\ref{delta is the man}]
-Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries. \sayN{Rest of this paragraph is what I added to prove the added statement.}
+  Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries. \sayN{Rest of this paragraph is what I added to prove the added statement.\rs{OK}}
 Recall from Section~\ref{def sec} that the inverse of $G_t^{-B^T;t_0}$ is $\bigl(C_t^{B;t_0}\bigr)^T$.
 Since $\delta$ is the shortest integer vector in the ray that it spans, and since $\delta^B$ is obtained from $\delta$ by the action of an integer matrix whose inverse is an integer matrix,~$\delta^B$ is also the shortest integer vector in the ray that it spans.
 
@@ -2067,7 +2067,7 @@ Then showing that $\eta_{k_r}^{B_{r-1}^T}(-\frac12B_{r-1}\delta^{B_{r-1}})=E_{-,
 
 We use Proposition~\ref{BGCB} to rewrite $-\frac12B_{r-1}\delta^{B_{r-1}}=-\frac12B_{r-1}\bigl(G_{t_{r-1}}^{-B_0^T;t_0}\bigr)^T\delta$ as $\bigl(C_{t_{r-1}}^{-B_0^T;t_0}\bigr)^T(-\frac12B_0\delta)$.
 Thus we must show that $\omega_c(C^{k_r}_c(v_{r-1})\ck,\delta)\ge0$. 
-Since $C^{k_r}_c(v_{r-1})\ck$ is a positive scalar multiple of $C^{k_r}_c(v_{r-1})$, we need to check that $\omega_c(C^{k_r}_c(v_{r-1}),\delta)\ge0$. 
+Since $C^{k_r}_c(v_{r-1})\ck$ is a positive scalar multiple of $C^{k_r}_c(v_{r-1})$, it is equivalent to check that $\omega_c(C^{k_r}_c(v_{r-1}),\delta)\ge0$. 
 
 In the definition of $\delta^B$, we replaced a $c$-sortable element $v$ by the $c$-sortable element~$c^iv$ for large enough $i$.
 Since we can increase $i$ arbitrarily without disturbing the properties we have established for $\kk$, we know that $c^jC^{k_r}_c(v_{r-1})=C^{k_r}_c(c^jv_{r-1})$ is a positive root for any $j\ge0$.
@@ -2083,7 +2083,7 @@ We have previously shown that the $k_r$ entry of $-\frac12B_{r-1}\delta^B_{r-1}$
 %More specifically, we showed that it is strictly negative unless $C^{k_r}_c(v_{r-1})$ is in a finite $c$-orbit.
 Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{r-1}^T}$.
 
-If the $k_r$ entry of $-\frac12B_{m-1}\delta^B_{r-1}$ is strictly negative, then the $k_r$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{r-1}}_{k_r}$ acts on $\lambda$ (just as it acts on $-\frac12B_{r-1}\delta^B_{r-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_r}^{B_{r-1}}$.
+If the $k_r$ entry of $-\frac12B_{r-1}\delta^B_{r-1}$ is strictly negative, then the $k_r$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{r-1}}_{k_r}$ acts on $\lambda$ (just as it acts on $-\frac12B_{r-1}\delta^B_{r-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_r}^{B_{r-1}}$.
 The map taking $\delta^{B_{r-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_r}^{B_{r-1}}$.
 The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\symmetrizer$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
 Recalling the identity $(E_{\ep,k}^B)^T\symmetrizer=\symmetrizer F_{\ep,k}^B$ from Section~\ref{acyc sec}, we compute
@@ -2112,7 +2112,7 @@ Since $\delta^{B'}$ has nonnegative entries, the ray $\set{\eta^{B^T}_\kk(\lambd
 Since $(\eta_\kk^{B^T})^{-1}$ is linear on each imaginary cone and takes the direction $-B'\delta^{B'}$ of the imaginary ray in $\F_{(B')^T}$ to the direction $-B\delta^B$ of the imaginary ray in $\F_{B^T}$, we see that 
 \begin{multline*}
 \P^B_{\lambda,\kk}=(\eta_\kk^{B^T})^{-1}\set{\eta^{B^T}_\kk(\lambda)+B'\alpha:\alpha\ge0}\\
-\supseteq(\eta_\kk^{B^T})^{-1}\set{\eta^{B^T}_\kk(\lambda)+aB'\delta^{B'}:a\ge0}\cap\d^B_\infty\\
+\supseteq(\eta_\kk^{B^T})^{-1}\left(\set{\eta^{B^T}_\kk(\lambda)+aB'\delta^{B'}:a\ge0}\cap\d^{B'}_\infty\right)\\
 =\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty. 
 \end{multline*}
 This is true for all $\kk$, so $\P^B_\lambda\supseteq\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty$, as desired.
@@ -2153,7 +2153,7 @@ We have not pursued this result because the results that we do prove are suffici
 For the same reason, and because we don't know any other uses for the result, we have refrained from giving it the status of a conjecture. 
 If a need for this result becomes apparent in the future, we suspect that it can be proved using some of the same ideas as the proof of Theorem~\ref{finite P point}:
 Starting with the coefficient-free case, using a bipartite initial seed, folding and computations (reduced to a finite computation using symmetry).
-However, some variation of the proof would be needed in affine type $\widetilde A$, because there exist exchange matrices of affine type $\widetilde A$ that are not mutation-equivalent to bipartite exchange matrices.
+However, some variation of the proof would be needed in affine type $\afftype A$, because there exist exchange matrices of affine type $\afftype A$ that are not mutation-equivalent to bipartite exchange matrices.
 These cases can presumably be handled in some way, perhaps using another canonical choice of triangulation in the surfaces model.
 \end{remark}
 
@@ -2216,6 +2216,7 @@ Suppose $x$ and $x'$ are exchangeable cluster variables in a cluster pattern wit
 Then every exchange relation for $x$ and $x'$ is the same:
 It involves the same two cluster monomials with the same coefficients.
 \end{lemma}
+\sayS{Is this lemma really new?}
 \begin{proof}
 Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
 Sign-coherence of $C$-vectors (explained earlier in Section~\ref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
@@ -2233,7 +2234,7 @@ It appears that, to extend Lemma~\ref{exch ind} to arbitrary coefficients, one n
 
 \subsubsection{Salient exchange matrices of affine type}
 \begin{proposition}\label{affine salient}
-If $B$ is an exchange matrix of affine type, then there exists an exchange matrix $B_0$ that is mutation-equivalent to $B$ such that $B$ is salient.
+If $B$ is an exchange matrix of affine type, then there exists an exchange matrix $B_0$ that is mutation-equivalent to $B$ such that $B_0$ is salient.
 % and any extension of $B_0$ is salient.
 \end{proposition}
 \begin{proof}
