@@ -473,21 +473,20 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?}
 \sayS{Do we want to postpone talking about our other projects to the introduction?}
 \sayS{I just changed $\tilde B$ to $\widetilde B$}
-\sayN{I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no?}
-\sayS{Yes, done it but only in the abstract since in the introduction we quote Qin in a general way}
+\sayN{\color{orange}I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no? \rs{Yes, done it but only in the abstract since in the introduction we quote Qin in a general way}}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds".}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\reals^m$ due to Fan Qin~\cite{FanQin}.
-The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, \marginN{Did I get the hypotheses of his theorem right?}
+The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, \marginN{\color{orange}Did I get the hypotheses of his theorem right?\rs{I think so}}
 characterizes all pointed bases of the upper cluster algebra in terms of the dominance order.
 (Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
 See \cite[Section~1]{FanQin}.)
 
 Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
 (
-\sayS{In~\cite{RSDom} we were agnostic about about this, hopeffully}
+\sayS{In~\cite{RSDom} we were agnostic about about this}
 In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
-Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrix.
+Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrices. 
 Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
 They found that, in the rank-$2$ affine case, dominance regions are either points or line segments.
 The purpose of this paper is to generalize that fact to extended exchange matrices of affine type, beyond rank~$2$.
@@ -498,12 +497,11 @@ This cone is called the imaginary wall, because it is a wall in the cluster scat
 There is a unique ray of the mutation fan, called the imaginary ray, that is in the relative interior of the imaginary wall.  
 
 Up to translation, the dominance region of $\lambda$ only depends on the projection of~$\lambda$ into $\reals^n$ that ignores the last $m-n$ entries.
-We prove that when $\tB$ has linearly independent columns, the dominance region $\P_\lambda^\tB$ is a point if $\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
-\sayS{Do we need to reiterate in the above sentence that we are talking about the affine case?}
+We prove that in affine types, when $\tB$ has linearly independent columns, the dominance region $\P_\lambda^\tB$ is a point if $\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
 
 \sayS{I rephrased the following paragraph and commented out the old version}
-Computing dominance regions without the assumption that $\tB$ has linearly independent columns is in general is much harder. 
-However, in affine type, our argument to deal with points that project to the relative interior of the imaginary wall passes through the coefficient-free case where we can describe the line-segments explicitly:
+Computing dominance regions without the assumption that $\tB$ has linearly independent columns is in general much harder. 
+However, in affine type, our argument to deal with points that project to the relative interior of the imaginary wall passes through understanding the coefficient-free case where we can describe the line-segments explicitly:
 They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
 (From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
 
@@ -529,10 +527,10 @@ The proof we give involves a type-by-type argument using the marked surfaces mod
 As a consequence, we also show that dominance regions in finite type are singletons for arbitrary coefficients.
 
 The results of this paper are motivated by two ongoing projects.  
-One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
+One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
 The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
-\sayN{Say more?  Say differently?\rs{How about this`?}}
-For both these applications the relevant notion is is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
+\sayN{\color{orange}Say more?  Say differently?\rs{How about this`?}}
+For both these applications the relevant notion is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
 We describe these in Section~\ref{sec:integral}.
 
 \section{Dominance regions}
@@ -597,7 +595,7 @@ Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the 
 (This is ``sign-coherence of $C$-vectors'', which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
 Thus we may refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
 For $\kk=k_r\cdots k_1$, define seeds $t_1,\ldots,t_r$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r$.
-The sequence $\kk$ is a \newword{green sequence} for an exchange matrix $B$ if column $k_p$ of $C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$.
+The sequence $\kk$ is a \newword{green sequence} for the exchange matrix $B$ if column $k_p$ of $C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$.
 A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
 That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_r}^{B;t_0}$ is \emph{negative}.
 
@@ -623,7 +621,7 @@ Two vectors are in the same \newword{domain of definition} of $\eta_\kk^{B^T}$ i
 In particular, $\eta_\kk^{B^T}$ is linear in each of its domains of definition, but the domains of linearity of $\eta_\kk^{B^T}$ can be larger than its domains of definition.
 
 There is a fan $\F_{B^T}$ called the \newword{mutation fan} for $B^T$ \cite[Definition~5.12]{universal}.
-We will not need the details of the definition, but roughly, the cones of $\F_{B^T}$ are the intersections of domains of definition of all mutation maps $\eta_\kk^{B^T}$ for all mutation sequences $\kk$.
+We will not need the details of the definition, but roughly, the cones of $\F_{B^T}$ are the intersections of domains of definition of mutation maps $\eta_\kk^{B^T}$ for all sequences $\kk$.
 Thus for each $\kk$, each cone of $\F_{B^T}$ is contained in a domain of definition of $\eta_\kk^{B^T}$, and the mutation map $\eta_\kk^{B^T}$ is linear on every cone of $\F_{B^T}$ \cite[Proposition~5.3]{universal}.
 Every cone $\Cone^{B;t_0}_t$ is a maximal cone in the mutation fan $\F_{B^T}$ \cite[Proposition~8.13]{universal}.
 Thus in particular, the mutation map $\eta_\kk^{B^T}$ is linear on every cone $\Cone^{B;t_0}_t$.
@@ -669,10 +667,10 @@ Lemma~\ref{B or -BT} implies that $\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}$.
 For a sequence $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$ of mutations in a cluster pattern, the sequence $\kk=k_r\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal red sequence for~$B_t$.
 \end{lemma}
 \begin{proof}
-By the definition of a red sequence, the lemma is equivalent to the statement that  $\kk=k_r\cdots k_1$ of indices is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal green sequence for~$-B_t$.
+By the definition of a red sequence, the lemma is equivalent to the statement that  $\kk=k_r\cdots k_1$ is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal green sequence for~$-B_t$.
 Write $B_0$ for $B_{t_0}$.
 
-Suppose $\kk$ is a maximal green sequence for $B_{t_0}$.
+Suppose $\kk$ is a maximal green sequence for $B_0$.
 Lemma~\ref{max green neg cone} implies that, up to permuting columns, $C_t^{B_0;t_0}$ is the negative of the identity matrix.
 In other words, mutating the matrix $\begin{bsmallmatrix}B_0\\I\end{bsmallmatrix}$ by the sequence $\kk$ yields the matrix $\begin{bsmallmatrix}B_t\\-I\end{bsmallmatrix}$.
 Each mutation in the sequence is at the index of a column such that the bottom half of the matrix has nonnegative entries, and the mutation turns those entries nonpositive.
@@ -727,6 +725,7 @@ For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation
 %\end{proof}
 
 Given a matrix $M$, write $M_{\col j}$ for the $j\th$ column of $M$.
+\sayS{I am tempted to try the notation $M^j$ or $M^{(j)      }$ for columns but I am worried it might be confusing}
 For matrices $M$ and~$N$ such that $MN$ is defined, we observe that $(MN)_{\col j}=M(N)_{\col j}$.
 \begin{lemma}\label{columns lem}
 Suppose $B=[b_{ij}]$ is an exchange matrix, let $k\in\set{1,\ldots,n}$, and choose a sign $\ep\in\set{\pm1}$.
@@ -971,16 +970,16 @@ We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$
 We will also consider an $m\times m$ matrix related to $\tB$.
 Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
 Let $R'=\symmetrizer'R\symmetrizer^{-1}$ for any diagonal matrix $\symmetrizer'$ such that $\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
-Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
+Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique?} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
-Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
+Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the\sayS{Ditto} associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
 \begin{lemma}\label{EBF trick ext}
 For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of~$\tB$ at $k$ is $\mu_k(\tB)=E_{\ep,k}^\BB BF_{\ep,k}^B$.
 \end{lemma}
 
 The matrix $\BB$ defines mutation maps $\eta_\kk^{\BB^T}$ that act on $\reals^m$ rather than $\reals^n$, but without exception we will only consider mutations in positions $1,\ldots,n$.
-Also, given $\BB$, a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_r$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$, there are associated matrices of $\g$-vectors and $\c$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
+Also, given $\BB$, a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, and seeds $t_1,\ldots,t_r$ such that $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$, there are associated matrices of $\g$-vectors and $\c$-vectors, which we write as $\GG_t^{\BB;t_0}$ and $\CC_t^{\BB;t_0}$.
 Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have block forms
 \[
 \GG_t^{\BB;t_0}=\begin{bsmallmatrix}G_t^{B;t_0}&0\\H_t^{\tB;t_0}&I_{m-n}\end{bsmallmatrix}
@@ -989,7 +988,7 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $K_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
 
-\begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?}\sayS{It looks like we do not}
+\begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?\rs{It looks like we do not}}
 $\GG_t^{\BB_0;t_0}\tB_t=\tB_0C_t^{B;t_0}$.
 \end{proposition}
 \begin{proof}
@@ -1115,6 +1114,9 @@ We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in
 Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is has linearly independent columns, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{proof}
 
+Taking care of the appropriate change in notations and conventions the result we just established provides a completely combinatorial proof of \cite[Lemma 3.4.12]{FanQin}.
+\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial?}
+
 \begin{theorem}\label{finite P point indep}  
 Suppose $\tB$ is an $m\times n$ extended exchange matrix with linearly independent columns such that $B$ is of finite type.
 Then $\P^\tB_\lambda=\set{\lambda}$ for any $\lambda\in\reals^m$.
@@ -1158,8 +1160,9 @@ A small part of the classification of cluster algebras of finite type~\cite{ca2}
 Thus in light of Lemma~\ref{shift}, Theorem~\ref{finite P point} is an immediate consequence of the following more specific proposition.
 
 \begin{proposition}\label{finite P point bip}
-Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite type with associated Coxeter element $c$.
-Let $\kk$ be the sequence of indices associated to $c$.
+  \sayS{We do not know about Coxeter elements yet, please see if you like the convention I picked at random}
+  Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite.
+  Arrange the elements of  $\set{1,\ldots,n}$ in a sequence $\kk=k_n \cdots k_1$ such that $b_{k_i,k_j}>0$ whenever $i>j$.
 Then $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}=\set{\lambda}$ for all $\lambda\in\reals^n$.
 \end{proposition}
 
@@ -1215,11 +1218,13 @@ If a lamination has fewer than $n$ curves, we always extend it to a set of $n$ c
 The way in which this is done will not affect the arguments below.
 Thus the combinatorics of laminations is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
 
-\sayN{I'm fine with talking about the theta's first, but I don't want to lose sight of why we have them.  What was here gave the impression that we just looked for some curves with remarkable properties.  What's really true is that the definition of the dominance region forces us to look at these curves in the bipartite case, and then they happen to have these remarkable properties that make our proof work.  I tried to rewrite this to make that clear. \rs{OK}}
+\sayN{\color{orange}I'm fine with talking about the theta's first, but I don't want to lose sight of why we have them.  What was here gave the impression that we just looked for some curves with remarkable properties.  What's really true is that the definition of the dominance region forces us to look at these curves in the bipartite case, and then they happen to have these remarkable properties that make our proof work.  I tried to rewrite this to make that clear. \rs{OK}}
 To compute dominance regions, we need to find, for every vector that is a nonnegative linear combination of the columns of $B$, the lamination whose shear coordinates, with respect to~$T$, are that vector.
 Those laminations all have the same underlying set $\set{\theta_1,\ldots,\theta_n}$ of curves, which we now describe.
-Since $B$ is bipartite, each arc $t_i$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
-\sayN{There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.  UPDATE:  Found no problems later on.\rs{OK}}
+Since $B$ is bipartite, each arc $t_i$ except for $t_1$ and $t_n$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
+The quadrilaterals enclosing $t_1$ and $t_n$ have three boundary edges and the curves $\theta_1$ and $\theta_n$ connect the two that are opposite to each other. 
+\sayS{Here we were claiming something false about the number of boundary arcs. If we want to be pedantic there is still the case of $n=1$. I do not know if it is better to add it here or to deal with it in the exceptional types}
+\sayN{\color{orange}There was a sentence here:  ``Then any vector can be realized as the shear coordinates of a lamination involving the curves $\set{\theta_1,\ldots,\theta_n}$.''  That's not true, so I took it out.  (The theorem is that to get all vectors, you need to take all possible laminations, so all the curves are needed, not just the $\theta_i$'s.)  I'll try to see if this is a problem as I keep reading.  UPDATE:  Found no problems later on.\rs{OK}}
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
@@ -1235,17 +1240,17 @@ Every curve that can appear in a lamination can be rotated to become one of the 
 The shear coordinates of $\theta_i$ with respect to~$T$ is $\ep_i=\pm1$ in position $t_i$ and $0$ elsewhere, where the sign $\ep_i$ is determined by the orientation of $t_i$ in its quadrilateral.
 \item
 \newword{Third remarkable property}:
-Any curve $\gamma\neq\theta_i$ that can appear in a lamination \sayN{Removed ``with $\theta_i$'' here.  It makes the remarkable property too weak to be useful.  The property is true for any curve that can appear in any lamination, and that's what makes the property powerful.\rs{OK} }
+Any curve $\gamma\neq\theta_i$ that can appear in a lamination \sayN{\color{orange}Removed ``with $\theta_i$'' here.  It makes the remarkable property too weak to be useful.  The property is true for any curve that can appear in any lamination, and that's what makes the property powerful.\rs{OK} }
 has the property that the shear coordinates of $\gamma$ and $\theta_i$ weakly disagree in sign in position $t_i$.
 They strictly disagree in sign if and only if~$\gamma$ and~$\theta_i$ are not compatible.
 \end{itemize}
 What is remarkable about these properties is not that we were able to find a set of curves satisfying them, but rather that the laminations that we are forced to consider consist of a set of curves with these properties.
 
 In order to compute $\P^B_\lambda$, we consider the weighted lamination $\Lambda$ such that $\lambda$ is the negation of the shear coordinates of $\Lambda$ with respect to the triangulation~$T$.
-\sayN{Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.\rs{OK}}
+\sayN{\color{orange}Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.\rs{OK}}
 We can compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by reading the negative shear coordinates of $\Lambda$ with respect to a rotation of $T$, specifically the rotation $\ell$ units counterclockwise that corresponds to flipping the arcs of $T$ in the order specified by $\kk^\ell$.
 (See \cite[Theorem~12.6]{cats2}, \cite[Theorem~4.3]{unisurface}, and \cite[Section~5]{unisurface}.)
-\marginN{Added the following.  We need it because later we're going to ask for $L'_p$ to be the unique curve $\neq L_p$ that is compatible with the others.  Without extending, we don't get uniqueness.\rs{OK}}
+\marginN{\color{orange}Added the following.  We need it because later we're going to ask for $L'_p$ to be the unique curve $\neq L_p$ that is compatible with the others.  Without extending, we don't get uniqueness.\rs{OK}}
 If $\Lambda$ is supported on fewer than $n$ curves, we extend it by adjoining compatible curves with weight~$0$.
 (There may be more than one way to do this, but we fix some choice.)
 We label the curves of the lamination~$\Lambda$ in some order as $L_1,L_2,\ldots,L_n$ with weights $w_1,\ldots,w_n$ respectively.
@@ -1254,7 +1259,7 @@ For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is of the fo
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
 In the $(n+3)$-gon model, such a point $x$ is obtained as follows:
 Rotate $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
-\sayN{Removed ``Observe that'' because we already said it in the previous paragraph, and it's not an observation, it's a result that we have to quote.'' \rs{OK}}
+\sayN{\color{orange}Removed ``Observe that'' because we already said it in the previous paragraph, and it's not an observation, it's a result that we have to quote.'' \rs{OK}}
 Reading the shear coordinates of $\Lambda$ with respect to the rotated triangulation $T'$ is the same as applying the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$.
 Thus we find the lamination whose shear coordinates with respect to $T'$ are the sum of the shear coordinates of $\Lambda$ with respect to~$T'$ and $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 Then $x$ is the negative of the shear coordinates of that lamination with respect to the unrotated triangulation~$T$.
@@ -1299,7 +1304,7 @@ The negative of these shear coordinates is~$x$.
 
 Now suppose $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
 By the construction above, for each $\ell$, the vector~$x$ is the shear coordinates with respect to $T$ of a rotation of a lamination $X^{(\ell)}$ as above.
-Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:  \sayN{I wanted to make the following sentence more precise by saying what the rotation is.  So I added the ``specifically'' sentence.\rs{OK}}
+Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:  \sayN{\color{orange}I wanted to make the following sentence more precise by saying what the rotation is.  So I added the ``specifically'' sentence.\rs{OK}}
 All of the laminations $X^{(\ell)}$ for $\ell\in\integers$ are related by rotations.
 Specifically, $X^{(\ell)}$ is obtained by rotating $X^{(0)}$ clockwise $\ell$ units.
 
@@ -1342,10 +1347,10 @@ Then the sum of the shear coordinates of $\Lambda^{(\ell_p)}$ and~$\Theta^{(\ell
 \label{theti fig}
 \end{figure}
 Therefore, by the third remarkable property again, $X^{(\ell_p)}$ has the curve $\theta_{i_p}$ with weight $w_p+z_{i_p}^{(\ell_p)}$.
-\sayN{Added the following. $X^{(\ell_p)}$ might *not* have $\theta_{i_p}$, and we need to be clear about what happens in that case.\rs{OK}}
+\sayN{\color{orange}Added the following. $X^{(\ell_p)}$ might *not* have $\theta_{i_p}$, and we need to be clear about what happens in that case.\rs{OK}}
 (Or, if ${w_p+z_{i_p}^{(\ell_p)}=0}$, then $X^{(\ell_p)}$ consists of curves that are compatible with $\theta_{i_p}$.)
 By the main observation, this implies $X^{(0)}$ has the curve $L_p$ with weight $w_p+z_{i_p}^{(\ell_p)}$.
-It follows that $X^{(0)}$ contains the same curves as $\Lambda$ \sayN{Also added the following for the same reason.\rs{OK} }
+It follows that $X^{(0)}$ contains the same curves as $\Lambda$ \sayN{\color{orange}Also added the following for the same reason.\rs{OK} }
 (after possibly adjoining some curves with weight $0$ that are compatible with the curves in $X^{(0)}$).
 
 Let $L'_p$ be the unique curve that is compatible with every curve in $\Lambda$ except~$L_p$.
@@ -1356,7 +1361,7 @@ Since every curve in $\Lambda^{(\ell'_p)}$ or $\Theta^{(\ell'_p)}$, besides $(L_
 But the main observation says that $X^{(\ell'_p)}$ contains $(L_p)^{(\ell'_p)}$ with weight $w_p+z_{i_p}^{(\ell_p)}$ and otherwise contains curves that are compatible with the rotation of $L_p$.
 Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_p)}$ in position~$t_{i'_p}$ is $-\ep_{i'_p}(w_p+z_{i_p}^{(\ell_p)})$.
 Therefore $w_p-z_{i'_p}^{(\ell'_p)}=w_p+z_{i_p}^{(\ell_p)}$, and we conclude that $z_{i_p}^{(\ell_p)}=z_{i'_p}^{(\ell'_p)}=0$ since both are nonnegative.
-\sayN{I like this ``caseless'' way of saying things.  Thanks.\rs{Me too}}
+\sayN{\color{orange}I like this ``caseless'' way of saying things.  Thanks.\rs{Me too}}
 
 It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
 
@@ -1459,7 +1464,7 @@ The result in these types follows from the results in types A and~D by folding.
 (See Section~\ref{fold sec}.)
 One readily verifies that (as is well known) a bipartite exchange matrix $B'$ of type~$C_n$ is obtained from a bipartite exchange matrix $B$ of type $A_{2n-1}$ by folding.
 The stable automorphism $\sigma$ has orbits $\set{n}$ and $\set{i,2n-i}$ for $i=1,\ldots,n-1$.
-Since $i$ and $2n-i$ are in the same orbit for all $i=1,\ldots,n-1$, we can write the Coxeter element $c$ in such a way that the sequence of indices associated to $c$ is an orbit sequence, and therefore every sequence appearing in Proposition~\ref{finite P point bip} is an orbit sequence.
+Since $i$ and $2n-i$ are in the same orbit for all $i=1,\ldots,n-1$, we can ask for $\kk$ to be an orbit sequence, and therefore every sequence appearing in Proposition~\ref{finite P point bip} is an orbit sequence.
 Thus the type-C case of the theorem follows from the type-A case and Theorem~\ref{fold dom reg}.
 
 Similarly, a bipartite exchange matrix of type $B_n$ is obtained from a bipartite exchange matrix of type $D_{n+1}$ by folding with respect to a stable automorphism whose only nontrivial orbit consists of the two ``antennae'' of the Cartan matrix.
@@ -2486,7 +2491,7 @@ Proposition~\ref{compatible in tubes} says cluster variables $x_{qr}$ and $x_{q'
 %The map $\nu_c$ is linear on the cone spanned by positive roots.
 Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable if and only if $\beta_{qr}$ and $\beta_{q'r'}$ either have disjoint support but are not spaced or have overlapping support but are not nested.
 (In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that $q\ge1$ and $q'\ge 1$, so neither of these roots has $\beta_0$ in its support.)
-If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, \sayN{changed $q<q'<r$ to $q<q'$.\rs{OK}} 
+If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, \sayN{\color{orange}changed $q<q'<r$ to $q<q'$.\rs{OK}} 
 $q<r<r'$, and $q'\le r+1$.
 The solid lines in the left picture of Figure~\ref{tube fig} indicate~$\beta_{qr}$ and~$\beta_{q'r'}$ in the case where $q'<r$.
 Lemma~\ref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
@@ -3818,7 +3823,7 @@ for every $\widehat\kk$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^
 Therefore Theorem~\ref{finite P point no} says that the projection of~$x$ is $\lambda_0$.
 We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
 But also $\P^B_\lambda$ is contained in $\d^B_\infty$, so it is contained in the ray in $\d^B_\infty$ parallel to the imaginary ray, containing $\lambda$, and having endpoint in the relative boundary of $\d^B_\infty$.
-\sayN{There was a problem here.  We were being too flippant about restricting from the ray to the line segment, but a little ``salience'' makes it correct.\rs{OK}}
+\sayN{\color{orange}There was a problem here.  We were being too flippant about restricting from the ray to the line segment, but a little ``salience'' makes it correct.\rs{OK}}
 Arguing as in the first paragraph of this proof, we see that this fact about containment in a ray is true for any $B$ in the exchange pattern, and to restrict from the ray to the line segment, we can choose any $B$ in the exchange pattern.
 Proposition~\ref{affine salient} allows us to choose $B$ to be a salient exchange matrix in the exchange pattern.
 For this $B$, since $B\delta^B$ is in the nonnegative linear span of the columns of $B$, $-B\delta^B$ is not, so $\P^B_\lambda$ is contained in the set $\set{\lambda+B\delta^Ba:a\ge0}$.
