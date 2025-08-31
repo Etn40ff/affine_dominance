@@ -968,10 +968,10 @@ In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1
 We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider an $m\times m$ matrix related to $\tB$.
 Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
-Let $R'=\symmetrizer'R\symmetrizer^{-1}$ for any diagonal matrix $\symmetrizer'$ such that $\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
-Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique?} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
+Let $\symmetrizer'$ be the diagonal matrix with minimal entries such that $R':=\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
+Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
-Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the\sayS{Ditto} associated $m\times m$ matrix.
+  Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the\sayS{Ditto \rd{ditto}} associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
 \begin{lemma}\label{EBF trick ext}
 For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of~$\tB$ at $k$ is $\mu_k(\tB)=E_{\ep,k}^\BB BF_{\ep,k}^B$.
@@ -1067,7 +1067,7 @@ If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_r$, then for any~$\lambda$ 
 \end{theorem}
 \begin{proof}
 First, we notice that $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $\BB_r$, or in other words, $\kk$ is a green sequence for $-\BB_r$.
-Indeed, since $\CC_{t_{\ell-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{\ell-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_p$ of $\CC_{t_{p-1}}^{-\BB;t_0}$ equals the sign of column $k_p$ of $C_{t_{p-1}}^{-B;t_0}$ whenever $1\le p<r$.
+Indeed, since $\CC_{t_{p-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{p-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_p$ of $\CC_{t_{p-1}}^{-\BB;t_0}$ equals the sign of column $k_p$ of $C_{t_{p-1}}^{-B;t_0}$ whenever $1\le p<r$.
 Thus Theorem~\ref{P in B0C} says that
 \[\P^{\BB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\BB_r\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
 The assertion of Theorem~\ref{P in B0C extended} is that the same holds even when, in each term, the conditions $\alpha\in\reals^m,\alpha\ge0$ are strengthened by requiring that $\alpha$ is zero in coordinates $n+1,\ldots,m$.
@@ -1114,7 +1114,7 @@ Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\re
 \end{proof}
 
 Taking care of the appropriate change in notations and conventions the result we just established provides a completely combinatorial proof of \cite[Lemma 3.4.12]{FanQin}.
-\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial?}
+\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial? \rd{``elementary proof''?}}
 
 \begin{theorem}\label{finite P point indep}  
 Suppose $\tB$ is an $m\times n$ extended exchange matrix with linearly independent columns such that $B$ is of finite type.
@@ -1160,7 +1160,7 @@ Thus in light of Lemma~\ref{shift}, Theorem~\ref{finite P point} is an immediate
 
 \begin{proposition}\label{finite P point bip}
   \sayS{We do not know about Coxeter elements yet, please see if you like the convention I picked at random}
-  Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite.
+  Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite type.
   Arrange the elements of  $\set{1,\ldots,n}$ in a sequence $\kk=k_n \cdots k_1$ such that $b_{k_i,k_j}>0$ whenever $i>j$.
 Then $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}=\set{\lambda}$ for all $\lambda\in\reals^n$.
 \end{proposition}
@@ -1360,7 +1360,7 @@ Since every curve in $\Lambda^{(\ell'_p)}$ or $\Theta^{(\ell'_p)}$, besides $(L_
 But the main observation says that $X^{(\ell'_p)}$ contains $(L_p)^{(\ell'_p)}$ with weight $w_p+z_{i_p}^{(\ell_p)}$ and otherwise contains curves that are compatible with the rotation of $L_p$.
 Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_p)}$ in position~$t_{i'_p}$ is $-\ep_{i'_p}(w_p+z_{i_p}^{(\ell_p)})$.
 Therefore $w_p-z_{i'_p}^{(\ell'_p)}=w_p+z_{i_p}^{(\ell_p)}$, and we conclude that $z_{i_p}^{(\ell_p)}=z_{i'_p}^{(\ell'_p)}=0$ since both are nonnegative.
-\sayN{\color{orange}I like this ``caseless'' way of saying things.  Thanks.\rs{Me too}}
+\sayN{\color{orange}I like this ``caseless'' way of saying things.  Thanks.\rs{Me too} \rd{Great!}}
 
 It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
 
@@ -1405,7 +1405,7 @@ Quasi-laminations are a variant of laminations with the property that the curves
 A quasi-lamination $\Lambda$ in the once-punctured $n$-gon is a pairwise compatible set of curves, each with a real weight.
 Some of the curves connect an edge of the $n$-gon to \emph{different} edge.
 The two edges must be non-adjacent, unless the curve and the two edges enclose the puncture.
-The remaining curves have an endpoint on an edge and, at the other end, spiral into the puncture in either direction, clockwise or counterclosckwise.
+The remaining curves have an endpoint on an edge and, at the other end, spiral into the puncture in either the clockwise or counterclockwise direction.
 In the once-punctured $n$-gon, there are two differences between laminations and quasi-laminations:
 First, a curve with both endpoints on the same edge of the $n$-gon, going around the puncture, is \emph{not} allowed in a quasi-lamination.
 Second, while the notion of compatibility is ``non-intersecting'' for most pairs of curves, there is one exception:  
@@ -1429,7 +1429,7 @@ The curve $\theta_2$ also has an endpoint on that edge but spirals clockwise int
 The weights on these two curves are $z_1^{(\ell)}=z_2^{(\ell)}=a_3$.
 Each remaining curve intersects exactly one arc of $T$.
 The curve $\theta_3$ intersects $t_3$ and has weight $z_3^{(\ell)}=a_1+a_2+a_4$.
-For $i=4,\ldots,n$, the curve $\theta_i$ with weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
+For $i=4,\ldots,n$, the curve $\theta_i$ has weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
 %\begin{figure}
 %\scalebox{1}{\includegraphics{Thetad.ps}
 %\begin{picture}(0,0)(82,-86)
