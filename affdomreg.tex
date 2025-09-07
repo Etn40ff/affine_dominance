@@ -561,6 +561,7 @@ When we can do so without confusion, we will omit the explicit statement that $\
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
 If $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$, then 
+  \sayD{We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
 $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -1572,8 +1573,8 @@ The \newword{support} of a root is the set of simple roots appearing with nonzer
 As before, write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 These constants also symmetrize~$A$ (meaning that the entries $a_{ij}$ of $A$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
 The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
-Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates \sayD{It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
-\rn{I prefer "simple-root" when it's used as an adjective as in "simple-root coordinates" or "simple root" when it is a noun.  For co-roots, similarly. I like the dash in "co-root", and "simple-co-root coordinates" works for me.}} 
+Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple-co-root coordinates \sayD{It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
+\rn{I prefer "simple-root" when it's used as an adjective as in "simple-root coordinates" or "simple root" when it is a noun.  For co-roots, similarly. I like the dash in "co-root", and "simple-co-root coordinates" works for me.} \rd{I made this change throughout.}} 
 of that vector.
 %Furthermore, the matrix $\symmetrizer B_0\symmetrizer^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $\symmetrizer B_0\symmetrizer^{-1}=-B_0^T$.
 %Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B_0^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$.
@@ -1588,16 +1589,15 @@ Given $\beta\in V$, the notation $\beta^\perp$ indicates the set of vectors in $
 
 \begin{remark}\label{danger: co-roots}  \sayN{\color{orange}Added this to ward off confusion, especially in Proposition~\ref{delta is the man}.\rs{OK}}
 The purpose of using $\Simples$ as the basis for $V$ but using the dual basis to $\Simples\ck$ as the basis for $V^*$ is to incorporate the symmetrizability of $A$ (and therefore the skew-symmetrizability of $B$) seamlessly into the constructions.
-However, some care must be taken when we use these constructions to understand the vectors in~$\reals^n$ that appears elsewhere in the paper.
+However, some care must be taken when we use these constructions to understand the vectors in~$\reals^n$ that appear elsewhere in the paper.
 We identify $V^*$ with the vector space $\reals^n$ by identifying the \emph{fundamental weights} with the standard unit basis vectors of $\reals^n$ and also identify $V$ with the vector space $\reals^n$ by identifying the \emph{simple roots} with the standard unit basis vectors.
-With these identifications, multiplying a vector in~$V$ by a matrix takes simple root coordinates to fundamental weight coordinates.
-For the same reason, a matrix defines a bilinear form on $V$ in terms of simple co-root coordinates on the left and simple root coordinates on the right.
-The expressions~$\beta^\perp$ must be treated with some care when we have passed to vectors in $\reals^n$:
-Integer vectors in $\beta^\perp$ do not necessarily have zero dot product with the simple-root coordinates of~$\beta$, but, rather, they have zero dot product with the simple co-root coordinates of $\beta$.
+With these identifications, we view multiplying a vector in~$V$ by a matrix as taking simple-root coordinates to fundamental-weight coordinates.
+In the same way, we view a matrix as defining a bilinear form on $V$ in terms of simple-co-root coordinates on the left and simple-root coordinates on the right.
+Thus the expressions~$\beta^\perp$ below must be treated with some care when we have passed to vectors in $\reals^n$:
+Integer vectors in $\beta^\perp$ do not necessarily have zero dot product with the simple-root coordinates of~$\beta$, but, rather, they have zero dot product with the simple-co-root coordinates of $\beta$.
 \end{remark}
 
-The Cartan matrix $A$ is the matrix of a bilinear form $K$ on $V$, in the simple-roots basis on the right and the simple-co-roots \sayD{It seems that there is already some proclivity towards the all dashes approach in my previous comment.  Let me know if that's the way we should go and I'd be happy to enforce the consistency throughout.} 
-basis on the left.
+The Cartan matrix $A$ is the matrix of a bilinear form $K$ on $V$, in the simple-roots basis on the right and the simple-co-roots basis on the left.
 Each real root defines a reflection that negates the root and fixes the hyperplane that is orthogonal to the root (with orthogonality defined in terms of $K$).
 Let $W$ be the Weyl group generated by these reflections (an affine Coxeter  group with simple reflections $s_1,\ldots,s_n$ corresponding to the simple roots $\alpha_1,\ldots,\alpha_n$).
 The action of $W$ on $V$ fixes~$\delta$.
@@ -1632,7 +1632,7 @@ The eigenvalue $1$ of~$c$ has algebraic multiplicity $2$, so there is a generali
 This means that $c\gamma_c=\gamma_c+\delta$.
 (In fact there are many choices of generalized eigenvector; see \cite[Proposition~3.1]{afforb} for what distinguishes $\gamma_c$.)
 
-We define a bilinear form $\omega_c$ on $V$ whose matrix, in simple co-root coordinates on the left and simple root coordinates on the right is~$B_0$.
+We define a bilinear form $\omega_c$ on $V$ whose matrix, in simple-co-root coordinates on the left and simple-root coordinates on the right is~$B_0$.
 This bilinear form is skew-symmetric because $B_0$ is skew-symmetrizable and the skew-symmetrizing constants are also the scaling factors between simple roots and simple co-roots.
 The following lemma is a version of \cite[Lemma~3.8]{typefree}.
 
@@ -1653,7 +1653,7 @@ If $\beta=c^p\gamma$ for some $\gamma\in\TravProj{c}$ and $p\ge0$, then $\omega_
 \begin{proof}
 The hypothesis is that $\beta=(s_1\cdots s_n)^ps_1\cdots s_{k-1}\alpha_k$ for some $k\in\set{1,\ldots,n}$ and $p\ge0$.
 We argue by induction on $np+k$.
-If $p=0$ and $k=1$, then $\beta=\alpha_1$ and $\omega_c(\alpha_1,\delta)\ge0$ because every entry of $B_0$ in row $1$ is nonnegative with at least one positive entry and $\delta$ has all simple root coordinates positive.
+If $p=0$ and $k=1$, then $\beta=\alpha_1$ and $\omega_c(\alpha_1,\delta)\ge0$ because every entry of $B_0$ in row $1$ is nonnegative with at least one positive entry and $\delta$ has all simple-root coordinates positive.
 Otherwise $s_1\beta=(s_2\cdots s_ns_1)^ps_2\cdots s_{k-1}\alpha_k$ if $k>1$ or $s_1\beta=(s_2\cdots s_ns_1)^{p-1}s_2\cdots s_n\alpha_1$ if $k=1$.
 In either case, $s_1\beta$ is of the form $(s_1cs_1)^{p'}\gamma'$ for $\gamma'\in\TravProj{s_1cs_1}$.
 By induction, $\omega_{s_1cs_1}(s_1\beta,\delta)\ge0$, and since $s_1\delta=\delta$, Lemma~\ref{omega s} completes the proof.
@@ -1690,7 +1690,7 @@ These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots
 
 \sayS{The definition of $\APTre{c}$ that we had here was wrong}
 Let $\APTre{c}$ be the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$ and denote by $\SuppT(\beta)$ their support with respect to $\SimplesT{c}$.
-Let $\APT{c}=\APTre{c}\cup\set\delta$.
+Let $\APT{c}=\APTre{c}\cup\set\delta$. \sayD{The $c$ here is a subscript while it is a superscript in other places, does it make sense to make this uniform and always use subscripts?} 
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
 The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables \cite[Theorem~1.2]{affdenom}, with respect to the initial exchange matrix $B_0$.
 There is a notion \cite[Definition~4.3]{affdenom} of \newword{$c$-compatibility} of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
@@ -1772,7 +1772,7 @@ Imaginary $c$-clusters have $n-1$ roots and span cones outside the $\dd$-vector 
 There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
 The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}. \sayD{\color{orange}Is there more here than Salvatore and my result that we can transform $\dd$-vectors to $\g$-vectors in acyclic types?  \rn{Yes, this is also about the parts of the fan $\Fan_c(\RS)$ that are outside the $\dd$-vector fan, or equivalently the parts of $\nu_c(\Fan_c(\RS))$ that are outside the $\g$-vector fan.} }
 The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to the \newword{imaginary cones} of $\nu_c(\Fan_c(\RS))$.
-These cover the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call that \newword{imaginary wall}~$\d_\infty$.
+These cover the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call the \newword{imaginary wall}~$\d_\infty$.
 The imaginary wall is contained in $\delta^\perp$.
 The vector $\nu_c(\delta)$ spans a ray called the \newword{imaginary ray} that is in every imaginary cone.
 This is the only ray of the fan $\nu_c(\Fan_c(\RS))$ that is not spanned by the $\g$-vector of a cluster variable.
@@ -1934,7 +1934,7 @@ In particular, each $c$-sortable element~$v$ specifies a unique seed.
 The $C$-vectors of this seed are encoded in the $c$-sorting word for~$v$.
 Specifically, the $C$-vector in position $i$ is the integer vector given by the simple-root coordinates of $C_c^i(v)$.
 (See \cite[Therem~1.1]{framework} and \cite[Theorem~5.12]{framework}.)
-The simple co-root coordinates of $C_c^i(v)\ck$ give the $C$-vector of the seed specified by~$v$ in the cluster algebra with initial exchange matrix $-B_0^T$.
+The simple-co-root coordinates of $C_c^i(v)\ck$ give the $C$-vector of the seed specified by~$v$ in the cluster algebra with initial exchange matrix $-B_0^T$.
 Thus by \cite[Theorem~1.1]{framework}, the exchange matrix at the seed associated to $v$ has $ij$-entry $\omega_c(C_c^i(v)\ck,C_c^j(v))$.
 
 When $B_0$ is of finite type (equivalently, when $W$ is finite), the $c$-Cambrian fan coincides with the $\g$-vector fan, but otherwise (when $W$ is infinite), the $c$-Cambrian fan is not complete and is a proper subfan of the $\g$-vector fan.
@@ -1986,7 +1986,7 @@ If $\ll$ is the sequence of indices that mutates $t_0$ to $t'$, then $\ll(12\cdo
 We see that the exchange matrix at $t$ is $\mu_{\ll(12\cdots n)^i}(B_0)=\mu_\ll(B_0)=B$.
 
 Increasing $i$ in the previous paragraph means using Proposition~\ref{tack on c} to replace~$v$ by a $c$-sortable element~$c^jv$.
-It is known \cite[Proposition~4.6]{afframe} that there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_p}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta<0}}$. 
+It is known \cite[Proposition~4.6]{afframe} that there are only finitely many $c$-sortable elements $v$ such that the nonnegative span of $G_{t_p}^{-B_0^T;t_0}$ intersects the halfspace $\set{x\in V^*:\br{x,\delta}<0}$. 
 Thus we choose $i$ large enough (i.e. choose $j$ large enough) so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all $p\ge jn$.
 But for $0\le p\le jn$, the prefix $a_1\cdots a_p$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
 By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_p}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_p$ to the positive cone.
@@ -2087,7 +2087,7 @@ Let $\lambda$ be any vector in an imaginary cone of $\F_{B_{r-1}^T}$.
 
 If the $k_r$ entry of $-\frac12B_{r-1}\delta^B_{r-1}$ is strictly negative, then the $k_r$ entry of $\lambda$ is nonpositive, and thus $\eta^{B^T_{r-1}}_{k_r}$ acts on $\lambda$ (just as it acts on $-\frac12B_{r-1}\delta^B_{r-1}$) by the map given in the basis of fundamental weights by the matrix $E_{-,k_r}^{B_{r-1}}$.
 The map taking $\delta^{B_{r-1}}$ to $\delta^B$ is given, in the basis of simple roots, by the matrix $F_{-,k_r}^{B_{r-1}}$.
-The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\symmetrizer$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple co-root coordinates of that vector.
+The fundamental weights are dual to the simple \emph{co-roots} and the diagonal matrix $\symmetrizer$ of symmetrizing constants, applied to the simple-root coordinates of a vector, gives the simple-co-root coordinates of that vector.
 Recalling the identity $(E_{\ep,k}^B)^T\symmetrizer=\symmetrizer F_{\ep,k}^B$ from Section~\ref{acyc sec}, we compute
 \begin{align*}
 \br{\eta^{B^T_{r-1}}_{k_r}(\lambda),\delta^B}
@@ -2131,6 +2131,7 @@ Theorem~\ref{affine P point indep} follows from Theorem~\ref{P point} and the fo
 
 \begin{proposition}\label{aff red}
 If $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
+  \sayD{This argument is remarkably similar to the proof of Proposition 2.28 so I thought it could make sense to combine them, but it isn't clear if there is any way for this to actually work with the structure of the paper.}  
 \end{proposition}
 \begin{proof}  
 Because $B$ is of affine type if and only if $-B$ is of affine type, it is enough to prove that every $B$ of affine type admits a maximal green sequence.
@@ -2432,9 +2433,9 @@ It remains to show that condition~\ref{neigh} implies condition~\ref{neigh detai
 Assume that ${B=[b_{ij}]}$ is neighboring.
 We will establish some notation and then prove the various parts of condition~\ref{neigh detailed} as a series of propositions.
 
-The fact that $B$ is neighboring means there is a seed $t$ with exchange matrix~$B$ such that $n-2$ of the columns of $G^{B_0,t_0}_t$ are in the boundary of $\d$.
+The fact that $B$ is neighboring means there is a seed $t$ with exchange matrix~$B$ such that $n-2$ of the columns of $G^{B_0,t_0}_t$ are in the boundary of $\d_\infty$.
 We use Proposition~\ref{any B is sort} to choose a seed $t$ that corresponds to a $c$-sortable element~$v$.
-We reindex the rows and columns of $B_0$ so that columns $1,\ldots,n-2$ of $G^{B_0,t_0}_t$ are in the boundary of $\d$ and columns $n-1,n$ are not.
+We reindex the rows and columns of $B_0$ so that columns $1,\ldots,n-2$ of $G^{B_0,t_0}_t$ are in the boundary of $\d_\infty$ and columns $n-1,n$ are not.
 If necessary, we swap indices $n-1$ and~$n$ so that $b_{(n-1)n}\ge0$.
 With this indexing, we write $\xi_1,\ldots,\xi_n$ for the columns of $G^{B_0,t_0}_t$.
 The vectors $\set{\xi_i:i\in[1,n-2]}\cup\set{-B_0\delta}$ span an imaginary cone in $\F_{B_0^T}$.
@@ -2447,9 +2448,7 @@ Consider the set of full-dimensional cones of $\F_{B_0^T}$ that have rays spanne
 This set is infinite.
 (If the set is finite, the union of these full-dimensional cones intersects the relative interior of an imaginary cone, contradicting the fact that $\F_{-B_0^T}$ is a fan.)
 Thus ${b_{(n-1)n}b_{n(n-1)}\le-4}$.
-But also, $B$ is mutation-finite, so $b_{(n-1)n}b_{n(n-1)}\ge-4$ by Theorem~\ref{mut fin 2x2}, 
-  \sayD{It isn't clear what assumptions are being made here and what was contradicted. \rn{I'm not understanding what your concern is.}}
-so ${b_{(n-1)n}b_{n(n-1)}=-4}$.
+But also, $B$ is mutation-finite, so $b_{(n-1)n}b_{n(n-1)}\ge-4$ by Theorem~\ref{mut fin 2x2}, so ${b_{(n-1)n}b_{n(n-1)}=-4}$.
 \end{proof}
 
 There are vectors $\gamma_1,\ldots,\gamma_n\in\APre{c}$ such that $\nu_c(\gamma_i)=\xi_i$ for $i=1,\ldots,n$.
@@ -2550,15 +2549,15 @@ We see in particular that $B_{\ell\ell}$ has only entries $0$, $1$, or $-1$ and 
 
 On the other hand, consider a $(p_\ell+3)$-gon with vertices labeled $0,1,\ldots,p_\ell+2$ and as initial triangulation $T_0$, take all diagonals with an endpoint at $p_\ell+2$.
 The roots~$\gamma_i$ specify a triangulation $T$ that doesn't contain any of these initial arcs.
-The root $\gamma_i=\beta_{q_i,r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e.\ the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
+The root $\gamma_i=\beta_{q_i r_i}$ corresponds to the diagonal from $q_i-1$ to $r_i+1$, i.e.\ the diagonal that crosses the initial diagonals with endpoints $q_i,q_i+1,\ldots,r_i$ and no other initial diagonals.  
 The diagonal associated to $\gamma_i$ is contained in a quadrilateral in~$T$.
 If the other diagonal is specified by $\gamma_{i'}$, then up to swapping primed and unprimed indices, the exchange relation is exactly what was given above.
 The exchange relation is illustrated in the right picture of Figure~\ref{tube fig}, with solid lines representing the cluster variables being exchanged and dashed lines representing the cluster variables appearing in the exchange relation.
 We conclude that, up to a global sign, the entries of  $B_{\ell\ell}$ in non-special columns agree with the entries of the signed adjacency matrix of $T$.
 Since both matrices are skew-symmetric, they are therefore equal up to a sign.
-We see that $B_{\ell\ell}$ is of type $A_{p_\ell}$.
+We thus see that $B_{\ell\ell}$ is of type $A_{p_\ell}$.
 
-In the triangulation $T$, there are two triangles containing the diagonal associated to $\beta_{1,p_\ell}$.
+In the triangulation $T$, there are two triangles containing the diagonal associated to $\beta_{1 p_\ell}$.
 One of these triangles also contains two segments of the boundary (the segments connecting $0$ to $1$ and $0$ to $p_\ell+2$).
 The other triangle contains zero, one, or two diagonals (non-boundary segments).
 Thus the column associated to the special index has at most two nonzero entries, and if there are two, then those two, together with the special index, induce the submatrix of $B$ that appears in the definition of a quasi-leaf.
@@ -2707,12 +2706,12 @@ These matrices determine inequalities, including
 \[
 3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-3b_{kp}>\frac94b_{kn},\\
 \]
-\sayS{The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me.}
+\sayS{The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me. \rd{Looks good now.}}
 which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
 If $(b_{kp},b_{kn})=(2,-3)$, then $b_{pk}\in\set{-1,-2}$ and $b_{nk}=1$.
 Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which fails for either choice of $b_{pk}$, thus ruling out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
 Similar considerations starting with $b_{pk}+3b_{nk}>0$ and $3b_{pk}+4b_{nk}<0$ rule out all pairs $(b_{pk},b_{nk})$ except $(-2,1)$ and $(-4,2)$.
-Thus $(b_{kp},b_{kn},b_{pk},b_{nk})$ is $(1,-2,-2,1)$, $(1,-2,-4,2)$, or $(2,-4,-2,1)$, but we rule out the second and third possibilities because they would imply exponential growth.
+Thus $(b_{kp},b_{kn},b_{pk},b_{nk})$ is $(1,-2,-2,1)$, $(1,-2,-4,2)$, or $(2,-4,-2,1)$, but we rule out the second and third possibilities because they would imply exponential growth as explained in Section~\ref{growth sec}.
 
 The last case, where the affine submatrix has entries $-4$ and $1$, is related to the previous case by passing to the negative transpose, so the same calculations lead to the desired result.
 \end{proof}
@@ -2922,7 +2921,7 @@ We state these assertions about $\delta^B$ and $-\frac12B\delta^B$ together beca
 
 Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall~$\d^B_\infty$.
 Thus Proposition~\ref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
-(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use  Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{Ido not understand why are you concerned here}}
+(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use  Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{Ido not understand why are you concerned here}}
 %NO. Proposition~\ref{delta is the man}.\ref{im ray} DOES NOT give this minimality.
 %Furthermore, Proposition~\ref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
@@ -2939,7 +2938,7 @@ ab&\text{if }\sgn(a)=\sgn(b)=+\\
 -ab&\text{if }\sgn(a)=\sgn(b)=-\\
 0&\text{otherwise}.
 \end{cases}\]
-To determine the affine entries, we need only the $2\times2$ affine submatrices of $B$.
+  To determine the affine entries, we need only the $2\times2$ affine submatrix \sayD{Changed this from "submatrices"} of $B$.
 In the most common case from Table~\ref{submat tab}, the mutations are as follows:
 \[
 \begin{bsmallmatrix*}
@@ -3022,7 +3021,7 @@ We see that $r_n=-2r_p\ge0$ and $2d_p=r_n=-2r_p=d_n$, so that special entries of
 
 \subsection{Type-C companions of neighboring exchange matrices}\label{type C}
 To each neighboring exchange matrix $B$, we now associate an $(n-2)\times(n-2)$ exchange matrix called the \newword{type-C companion} of $B$ and written $\Comp(B)$.
-The type-C companion $\Comp(B)$ agrees with the \emph{non-affine} rows and columns of $B$, except that all entries in \emph{special columns} are multiplied by $2$.
+The type-C companion $\Comp(B)$ agrees with the \emph{non-affine} rows and columns of $B$, except that all entries in \emph{special columns} are multiplied by~$2$.
 The type-C companion $\Comp(B)$ has a diagonal block decomposition with $1$, $2$, or $3$ diagonal blocks, having the same sizes as the blocks $B_{11}$, $B_{22}$, and/or $B_{33}$ of~$B$.
 The following proposition is immediate from Theorem~\ref{neigh B} and \cite[Proposition~3.3]{NS14} and justifies the terminology.
 
@@ -3035,8 +3034,8 @@ Given a neighboring exchange matrix $B$, each diagonal block of $\Comp(B)$ is of
 %\end{proof}
 
 \sayN{\color{orange}Salvatore, you said you were confused about the proof of the following proposition, and you were right to be!  It was wrong, and in fact the statement was wrong.  I think this is now correct and everything still works, but it's slightly more complicated \rs{Great!}}
-Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix \sayD{\color{orange}Should this be $(n-2)\times n$?  \rn{No, I think $n$ rows and $n-2$ columns is correct.}} 
-which agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by $2$.
+Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix \sayD{\color{orange}Should this be $(n-2)\times n$?  \rn{No, I think $n$ rows and $n-2$ columns is correct.} \rd{Oh yeah, I'm dumb}} 
+which agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by~$2$.
 Although $\CompPlus(B)$ is an extension of $\Comp(C)$ in the sense of ``extended exchange matrices'', we don't want to think of it that way (and have chosen an overline in the notation rather than a tilde) because we will not always mutate it like an extended exchange matrix.
 (See Proposition~\ref{special mut}, below.)
 
@@ -3063,14 +3062,14 @@ Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative 
 Suppose $\alpha$ has nonnegative entries and $B\alpha$ is in $(\delta^B)^\perp$.
 Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is a linear combination of simple roots in non-affine entries and $\gamma$ is a combination of simple roots in affine positions.
 Then $B\beta$ is a nonnegative linear combination of the non-affine columns of $B$, and equivalently a nonnegative linear combination of the columns of $\CompPlus(B)$.
-Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.
+  Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.\sayD{This was observed somewhere earlier, maybe as a part of a proof, should we highlight it as a Lemma so that we can refer to it here?}
 By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the vector $\gamma$ is a scalar multiple of $\delta^B$.
 Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
 \end{proof}
 
 \begin{proposition}\label{nonspecial mut}
 Suppose $B$ is a neighboring exchange matrix and $k$ is a non-special, non-affine index of~$B$.
-Then 
+Then the following hold:
 \begin{itemize}
 \item
 $\mu_k(B)$ is neighboring,
@@ -3088,18 +3087,19 @@ If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\C
 Mutating at $k$ means replacing the root $\gamma_k$ in the real $c$-cluster $\set{\gamma_1,\ldots,\gamma_n}$.
 Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root in $\APTre{c}$.
 Thus $\xi_k$ is replaced by another vector in $\d_\infty$.
+  \sayD{The notation of $\gamma$ and $\xi$ was introduced around 7 pages back, it seems like we should recall their meaning before using them again.}
 We see that $\mu_k(B)$ is neighboring.
 
 Furthermore, since $k$ is not special and not affine, row $k$ and column $k$ only have nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
 Thus mutating~$B$ at~$k$ amounts to replacing $B_{\ell\ell}$ by $\mu_k(B_{\ell\ell})$.
 Mutating $B_{\ell\ell}$ at $k$ commutes with applying a positive scaling to a column of $B_{\ell\ell}$ other than~$k$.
 Thus $\Comp(\mu_k(B))=\mu_k(\Comp(B))$ and ${\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))}$.
-Since $B$ has entries zero in affine entries of column $k$, the affine rows of $\CompPlus(B)$ are unchanged by mutation in position~$k$.
+Since $B$ has zero entries in affine components of column $k$, the affine rows of $\CompPlus(B)$ are unchanged by mutation in position~$k$.
 
 Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
-Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense), we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+  Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.}), we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{proof}
 
 \begin{proposition}\label{special mut}
@@ -3747,11 +3747,11 @@ where each \emph{special} index in $\kk$ is replaced with the corresponding sequ
 Propositions~\ref{nonspecial mut} and~\ref{special mut} combine to say that 
 \begin{itemize}
 \item
-$\Comp(\mu_{\widehat\k}(B))=\mu_\kk(\Comp(B))$,
+$\Comp(\mu_{\widehat\kk}(B))=\mu_\kk(\Comp(B))$,
 \item
-the mutation map $\eta^{B^T}_{\widehat\k}$ fixes the imaginary ray pointwise, and 
+the mutation map $\eta^{B^T}_{\widehat\kk}$ fixes the imaginary ray pointwise, and 
 \item
-If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\k}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
 \end{itemize}
 (The fact, in each of Propositions~\ref{nonspecial mut} and~\ref{special mut}, that the mutated matrix is neighboring and has the same affine and special indices as $B$ is crucial to concluding these facts for $\widehat\kk$.)
 
@@ -3764,20 +3764,23 @@ Since $\Comp(B)$ is of finite type, $\F_{\Comp(B)^T}$ is finite and complete.
 We consider the mutation fan $\F_{\Comp(B)^T}$ as a complete fan in the subspace of $\reals^n$ consisting of vectors whose affine entries are zero. 
 (We refer to this subspace as $\reals^{n-2}$.)
 Every maximal cone $U$ of $\F_{\Comp(B)^T}$ is the image of the positive cone in $\reals^{n-2}$ under some mutation map $\eta^{(B')^T}_{\kk^{-1}}$, where $B'=\mu_\kk(\Comp(B))$ and $\kk$ is a sequence of non-affine indices.  
-Let $\widehat\kk$ be the expanded sequence, so that $B'=\Comp(\mu_{\widehat\k}(B))$.
-There is an imaginary cone in $\F_{\mu_{\widehat\k}(B)^T}$ that is the nonnegative linear span of the imaginary ray and the positive cone in $\reals^{n-2}$.
-Since $\eta^{\mu_{\widehat\k}(B)^T}_{\widehat\kk^{-1}}$ is an isomorphism from $\F_{\mu_{\widehat\k}(B)^T}$ to $\F_{B^T}$ that fixes the imaginary ray and sends the the positive cone in $\reals^{n-2}$ to $U$, the cone spanned by $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
+Let $\widehat\kk$ be the expanded sequence, so that $B'=\Comp(\mu_{\widehat\kk}(B))$.
+There is an imaginary cone in $\F_{\mu_{\widehat\kk}(B)^T}$ that is the nonnegative linear span of the imaginary ray and the positive cone in $\reals^{n-2}$.
+Since $\eta^{\mu_{\widehat\kk}(B)^T}_{\widehat\kk^{-1}}$ is an isomorphism from $\F_{\mu_{\widehat\kk}(B)^T}$ to $\F_{B^T}$ that fixes the imaginary ray and sends the the positive cone in $\reals^{n-2}$ to $U$, the cone spanned by $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
 We see that the imaginary cones in $\F_{B^T}$ fill the half-hyperplane described in the proposition.
 Since the imaginary ray is in the relative interior of that half-hyperplane, there are no other imaginary cones.
 \end{proof}
 
+It follows from Proposition~\ref{neigh im wall} that for any neighboring $B$ and $\lambda\in\d_\infty^B$, we may write $\lambda=\lambda_0+\lambda_\infty$ where~$\lambda_0$ has affine entries $0$ and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$.
+
 \begin{proposition}\label{factor eta}
-  Suppose $B$ is neighboring and $\lambda=\lambda_0+\lambda_\infty\in\d_\infty^B$ such that~$\lambda_0$ has affine entries $0$ and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$.\sayS{We were missing a factor of $-\frac12B$ here.}
-If $\kk$ is a sequence of non-affine indices with expanded sequence $\widehat\kk$, then ${\eta^{B^T}_{\widehat\k}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$.
+  Suppose $B$ is neighboring and $\lambda\in\d_\infty^B$ with $\lambda=\lambda_0+\lambda_\infty$ as above.
+If $\kk$ is a sequence of non-affine indices with expanded sequence $\widehat\kk$, then ${\eta^{B^T}_{\widehat\kk}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$.
 \end{proposition}
 \begin{proof}
-  Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.\sayD{\color{orange}Should one of these be a $\lambda_\infty$?  \rn{Yes, fixed.}}\sayS{I think this sentence has to go: it is in the claim}
-Since $\eta_{\widehat\k}^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
+   %Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.
+  \sayS{I think this sentence has to go: it is in the claim}\sayD{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}
+Since $\eta_{\widehat\kk}^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
 \end{proof}
 
 We now prove the main theorem.
@@ -3793,8 +3796,8 @@ Now Lemma~\ref{shift} implies that it is enough to prove the theorem for any one
 We choose $B$ to be a neighboring exchange matrix.
 %Proposition~\ref{affine main partial} says that~$\P_\lambda^B$ contains the line segment described in the theorem.
 %We need to show the opposite containment.
-Suppose now that $\kk$ is a sequence of \emph{non-affine} indices, let~$\widehat\kk$ be the expanded sequence, and take ${B'=\mu_{\widehat\k}(B)}$.
-Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_{\widehat\k}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$ by Proposition~\ref{factor eta}.
+Suppose now that $\kk$ is a sequence of \emph{non-affine} indices, let~$\widehat\kk$ be the expanded sequence, and take ${B'=\mu_{\widehat\kk}(B)}$.
+Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the affine indices and $\lambda_\infty$ is a nonnegative scaling of $-\frac12B\delta^B$, so that ${\eta^{B^T}_{\widehat\kk}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$ by Proposition~\ref{factor eta}.
 Proposition~\ref{Comp span} implies that 
 \begin{multline*}
 \set{B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^{B'})^\perp\\
