@@ -471,26 +471,26 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 
 \section{Introduction}
 \sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?}
-\sayS{Do we want to postpone talking about our other projects to the introduction?}
-\sayS{I just changed $\tilde B$ to $\widetilde B$}
+\sayS{I changed $\tilde B$ to $\widetilde B$}
 \sayN{\color{orange}I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no? \rs{Yes, done it but only in the abstract since in the introduction we quote Qin in a general way}}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds". \rd{I tried to make our indexing of exchange matrices more uniform throughout by only using a numerical index associated to a mutation sequence rather than indexing by vertices of the n-regular graph.}}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
-Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\reals^m$ due to Fan Qin~\cite{FanQin}.
+Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
 The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, \marginN{\color{orange}Did I get the hypotheses of his theorem right?\rs{I think so}}
-characterizes all pointed bases of the upper cluster algebra in terms of the dominance order.
+characterizes all pointed bases of the upper cluster algebra in terms of this order.
 (Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
 See \cite[Section~1]{FanQin}.)
 
 Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
 (
-\sayS{In~\cite{RSDom} we were agnostic about about this}
+\sayS{\color{orange}In~\cite{RSDom} we were agnostic about about this}
 In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
 Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrices. 
 Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
 They found that, in the rank-$2$ affine case, dominance regions are either points or line segments.
 The purpose of this paper is to generalize that fact to extended exchange matrices of affine type, beyond rank~$2$.
 
+Let $B$ be the $n\times n$ submatrix of $\widetilde B$ associated to mutable variables.
 A preliminary step to understanding dominance regions in affine type is to understand the mutation fan for $B^T$ in the sense of~\cite{universal}, which coincides in affine type~\cite[Theorem~2.10]{affscat} with the cluster scattering fan in the sense of~\cite{scatfan}.
 In any type, the mutation fan for $B^T$ contains the $\g$-vector fan for $B$ as a subfan~\cite[Theorem~8.7]{universal}, and in affine type, the complement of the $\g$-vector fan is a codimension-$1$ cone \cite[Corollaries~1.3, 4.9]{afframe}.
 This cone is called the imaginary wall, because it is a wall in the cluster scattering diagram~\cite{affscat}.
@@ -540,7 +540,7 @@ Also, throughout the section, we use results from~\cite{NZ}.
 
 
 \subsection{Definitions and background}\label{def sec}
-We begin with a skew-symmetrizable exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
+We begin with a skew-symmetrizable $n \times n$ exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 The diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$ has $\symmetrizer B\symmetrizer^{-1}=-B^T$.
 \sayS{I made the symmetrizer into a macro and replaced $\Sigma$ with $D$. I need to doublecheck that all other occurrenced of $D$ are replaced by some other symbol. UPDATE: I did but left untouched the occurrences as a generic rescaler}
 
@@ -554,6 +554,8 @@ Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to
 In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
 One such map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
+As in this paper we seldom use mutation maps without a transpose we could have opted to drop the superscript in our notation; we refrained from doing so since we will need to discuss and adapt to our needs parts of some proofs already written elswere with our current notation.
+\sayS{\color{orange}Added this sentence to justify our three levels notation}
 
 Given $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
 (Throughout the paper, we will define sets indexed by vectors $\alpha\in\reals^n$ with $\alpha\ge0$, or sometimes $\alpha\in\reals^m$ with $\alpha\ge0$.
@@ -656,7 +658,7 @@ For any $k$, the $k\th$ entries of vectors in $\Cone^{B;t_0}_t$ have the same si
 %\end{lemma}
 
 \begin{lemma}\label{max green neg cone}
-If $\kk=k_r\cdots k_1$ for is a maximal green sequence for $B$ corresponding to seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$ in the cluster pattern with $B$ at $t_0$, then ${\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}=\reals_{\le0}^n}$.
+If $\kk=k_r\cdots k_1$ is a maximal green sequence for $B$ corresponding to seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$ in the cluster pattern with $B$ at $t_0$, then ${\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}=\reals_{\le0}^n}$.
 \end{lemma}
 \begin{proof}
 Since $\kk$ is a maximal green sequence for $B$, every column of $C_t^{B;t_0}$ has negative sign and thus $\Cone_t^{-B^T;t_0}=\set{x\in\reals^n:x^TC_t^{B;t_0}\ge0}$ consists of vectors with nonpositive entries.
@@ -668,13 +670,14 @@ Lemma~\ref{B or -BT} implies that $\Cone_t^{B;t_0}=\Cone_t^{-B^T;t_0}$.
 For a sequence $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$ of mutations in a cluster pattern, the sequence $\kk=k_r\cdots k_1$ of indices is a maximal green sequence for $B_0$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal red sequence for~$B_r$.
 \end{lemma}
 \begin{proof}
-By the definition of a red sequence, the lemma is equivalent to the statement that  $\kk=k_r\cdots k_1$ is a maximal green sequence for $B_{t_0}$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal green sequence for~$-B_r$.
+By the definition of a red sequence, the lemma is equivalent to the statement that  $\kk=k_r\cdots k_1$ is a maximal green sequence for $B_0$ if and only if $\kk^{-1}=k_1\cdots k_r$ is a maximal green sequence for~$-B_r$.
 
 Suppose $\kk$ is a maximal green sequence for $B_0$.
 Lemma~\ref{max green neg cone} implies that, up to permuting columns, $C_t^{B_0;t_0}$ is the negative of the identity matrix.
-In other words, mutating the matrix $\begin{bsmallmatrix}B_0\\I\end{bsmallmatrix}$ by the sequence $\kk$ yields the matrix $\begin{bsmallmatrix}B_r\\-I\end{bsmallmatrix}$.
+In other words, mutating the matrix $\begin{bsmallmatrix}B_0\\I\end{bsmallmatrix}$ by the sequence $\kk$ yields the matrix $\begin{bsmallmatrix}B_r\\-P\end{bsmallmatrix}$ for some permutation matrix $P$.
+\sayS{This proof was not correct as it was not properly taking care of the permutation, please check my fix.}
 Each mutation in the sequence is at the index of a column such that the bottom half of the matrix has nonnegative entries, and the mutation turns those entries nonpositive.
-Since mutation commutes with negation, mutating the matrix $\begin{bsmallmatrix}-B_r\\I\end{bsmallmatrix}$ by the sequence $\kk^{-1}$ yields the matrix $\begin{bsmallmatrix}-B_0\\-I\end{bsmallmatrix}$, and each mutation is at the index of a column where the bottom half of the matrix is positive.
+Since mutation commutes with negation and with reordering of the columns $\{n+1,\dots 2n\}$, mutating the matrix $\begin{bsmallmatrix}-B_r\\I\end{bsmallmatrix}$ by the sequence $\kk^{-1}$ yields the matrix $\begin{bsmallmatrix}-B_0\\-P^{-1}\end{bsmallmatrix}$, and each mutation is at the index of a column where the bottom half of the matrix is positive.
 Thus $\kk^{-1}$ is a maximal green sequence for $-B_r$.
 The opposite implication is symmetric.
 \end{proof}
@@ -725,7 +728,6 @@ For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation
 %\end{proof}
 
 Given a matrix $M$, write $M_{\col j}$ for the $j\th$ column of $M$.
-\sayS{I am tempted to try the notation $M^j$ or $M^{(j)      }$ for columns but I am worried it might be confusing}
 For matrices $M$ and~$N$ such that $MN$ is defined, we observe that $(MN)_{\col j}=M(N)_{\col j}$.
 \begin{lemma}\label{columns lem}
 Suppose $B=[b_{ij}]$ is an exchange matrix, let $k\in\set{1,\ldots,n}$, and choose a sign $\ep\in\set{\pm1}$.
@@ -828,7 +830,7 @@ Let~$\L_{\kk^{-1}}^{B_r^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^
 The matrix for $\L_{\kk^{-1}}^{B_r^T}$, acting on column vectors, is $G_t^{B_0;t_0}$.
 \end{proposition}
 \begin{proof}
-By \cite[Proposition~8.13]{universal}, $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_r^T}(\reals_{\ge0}^n)$, and therefore also ${\eta_\kk^{B_0^T}\bigl(\Cone^{B_0;t_0}_t\bigr)=\reals_{\ge0}^n}$.
+By \cite[Proposition~8.13]{universal} we have $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_r^T}(\reals_{\ge0}^n)$, and therefore also ${\eta_\kk^{B_0^T}\bigl(\Cone^{B_0;t_0}_t\bigr)=\reals_{\ge0}^n}$.
 The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_r^T}$ takes the extreme ray of $\reals_{\ge0}^n$ spanned by $\e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence of mutations $\kk$.
 \end{proof}
 
@@ -895,7 +897,8 @@ Let $\lambda'=\eta_{k_1}^{B_0^T}(\lambda)$, so that $\lambda'$ is in the same do
 By induction on $r$, 
 \[\eta_{k_2\cdots k_r}^{B_r^T}\set{\eta_{k_r\cdots k_2}^{B_1^T}(\lambda')+B_r\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 Applying the homeomorphism $\eta_{k_1}^{B_1^T}$ to both sides, we obtain
-\[\eta_{\kk^{-1}}^{B_r^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_r\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+\[\eta_{\kk^{-1}}^{B_r^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_r\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
+\sayS{Was $\eta_{\kk^{-1}}^{B_r^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_r\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}$}
 In light of \eqref{ind B0C}, we can complete the proof by showing that
 \[\eta_{k_1}^{B_1^T}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq E^{B_1}_{\ep,k_1}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 
@@ -969,10 +972,10 @@ In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1
 We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$ that are ``tall'', in the sense that $m\ge n$.
 We will also consider an $m\times m$ matrix related to $\tB$.
 Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
-Let $\symmetrizer'$ be the diagonal matrix with minimal entries such that $R':=\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
-Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
+Let $\symmetrizer'$ be the integer diagonal matrix with minimal entries such that $R':=\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
+Define $\BB$ to be the \sayS{\color{orange}Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}\rs{OK}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
-  Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the\sayS{Ditto \rd{ditto}} associated $m\times m$ matrix.
+  Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
 \begin{lemma}\label{EBF trick ext}
 For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of~$\tB$ at $k$ is $\mu_k(\tB)=E_{\ep,k}^\BB BF_{\ep,k}^B$.
@@ -1085,16 +1088,16 @@ Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\
 We now use the tools developed so far to give sufficient conditions for the dominance region to be a point.
 We use the conditions to show that the dominance region is always a point when $B$ is of finite type and $\tB$ has linearly independent columns.
 In Section~\ref{rescue sec}, we prove the same fact for $B$ of finite type with no conditions on~$\tB$ (Theorem~\ref{finite P point}).
-In Section~\ref{aff sec}, we prove the same fact for $\tB$ of affine type with linearly independent columns and $\lambda$ in the $\g$-vector fan (Theorem~\ref{affine P point indep}). 
+In Section~\ref{aff sec}, we prove the same fact for $B$ of affine type, $\tB$ with linearly independent columns, and $\lambda$ in the $\g$-vector fan (Theorem~\ref{affine P point indep}). 
 
 \begin{theorem}\label{P point}  
 Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
 Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
-If there exists a maximal red sequence for $B_r$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
+If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
 \end{theorem}
 
 \begin{proof}%[Proof of Theorem~\ref{P point}]
-Let $t'$ be the seed at the end of the maximal red sequence for $B_r$.
+Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
 There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\edge}t'_1\overset{\ell_2}{\edge}\,\cdots\,\overset{\ell_q}{\edge}t'_q=t'$.
 Let $\lambda'=\eta^{\BB_0^T}_\ll\!(\lambda)$.
 Lemma~\ref{shift extended} says $\eta^{\BB_0^T}_\ll\!(\P^{\tB_0}_\lambda)=\P^{\tB'_q}_{\lambda'}$.
@@ -1115,7 +1118,7 @@ Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\re
 \end{proof}
 
 Taking care of the appropriate change in notations and conventions the result we just established provides a completely combinatorial proof of \cite[Lemma 3.4.12]{FanQin}.
-\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial? \rd{``elementary proof''?}}
+\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial? \rd{``elementary proof''?} \rs{I am not sure about elementary: we have a theorem, he has a lemma...}} 
 
 \begin{theorem}\label{finite P point indep}  
 Suppose $\tB$ is an $m\times n$ extended exchange matrix with linearly independent columns such that $B$ is of finite type.
@@ -1161,9 +1164,9 @@ Thus in light of Lemma~\ref{shift}, Theorem~\ref{finite P point} is an immediate
 
 \begin{proposition}\label{finite P point bip}
   \sayS{We do not know about Coxeter elements yet, please see if you like the convention I picked at random}
-  Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite type.
-  Arrange the elements of  $\set{1,\ldots,n}$ in a sequence $\kk=k_n \cdots k_1$ such that $b_{k_i,k_j}>0$ whenever $i>j$.
-Then $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}=\set{\lambda}$ for all $\lambda\in\reals^n$.
+  Suppose $B$ is a bipartite $n\times n$ exchange matrix of finite type with bipartition $\set{1,\ldots,n}=P\cup N$ as above.
+  Let $\kk_P$ and $\kk_N$ be any shuffle of $P$ and $N$ respectively and consider the concatenation $\kk=\kk_P \kk_N$.
+  Then $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}=\set{\lambda}$ for all $\lambda\in\reals^n$.
 \end{proposition}
 
 The intersection in Proposition~\ref{finite P point bip} is written as an infinite intersection but in fact is the intersection of finitely many different sets.
@@ -1532,9 +1535,16 @@ Suppose $B$ is an exchange matrix of affine type.
 If $\lambda$ is in the relative interior of the imaginary wall~$\d^B_\infty$, then the dominance region $\P^B_\lambda$ is the line segment ${\set{\lambda+aB\delta^B:a\ge0}\cap\d^B_\infty}$ parallel to the imaginary ray, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^B_\infty$.
 \end{theorem}
 
+Until the theorem is explained fully, we remark that the imaginary wall $\d^B_\infty$ is a codimension-1 closed convex cone, the closure of the complement of the union of all full-dimensional cones of the mutation fan.
+The imaginary wall is a union of cones of the mutation fan.
+There is a unique ray of the mutation fan in the relative interior of the imaginary wall, and that ray has direction $-B\delta^B$ for some vector~$\delta^B$.
+When $B$ is acyclic, $\delta^B$ coincides with the imaginary root usually denoted~$\delta$.
+%The cone $\d_\infty^\tB$ is defined to be $\Proj_n^{-1}\d_\infty^B$.
+%It is the closure of the complement of the union of all cones $\Cone^{\tB;t_0}_t$ for seeds $t$.
+
 \begin{remark}\label{2x2}
 Theorem~\ref{affine main} is true for all exchange matrices of affine type, including the case where $B$ is $2\times2$.
-The latter case of the theorem is \cite[Theorem 1.2]{RSDom} when $bc=4$.  \marginN{Fill this reference in?\rs{done and added some words to the effect that we avoid this case our proofs here}}
+The latter case of the theorem is \cite[Theorem 1.2]{RSDom} when $bc=4$.  \marginN{\color{orange}Fill this reference in?\rs{done and added some words to the effect that we avoid this case our proofs here}}
 Some of the considerations in our proof of Theorem~\ref{affine main} only make sense when $B$ is larger than $2\times2$ so we silently omit this case in what follows.
 \end{remark}
 
@@ -1545,13 +1555,6 @@ But Theorem~\ref{affine main} can easily be applied to exchange matrices that de
 For example, suppose $B$ has a diagonal block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\end{bsmallmatrix}$ where $B_1$ and $B_2$ are of affine type and $\lambda=\begin{bsmallmatrix}\lambda_1\\\lambda_2\end{bsmallmatrix}$ with each $\lambda_i$ in the relative interior of the imaginary wall~$\d^{B_i}_\infty$, then Theorem~\ref{affine main} and Lemma~\ref{block dom} imply that $\P_\lambda^B$ is a product of line segments.
 
 \end{remark}
-
-Until the theorem is explained fully, we remark that the imaginary wall $\d^B_\infty$ is a codimension-1 closed convex cone, the closure of the complement of the union of all full-dimensional cones of the mutation fan.
-The imaginary wall is a union of cones of the mutation fan.
-There is a unique ray of the mutation fan in the relative interior of the imaginary wall, and that ray has direction $-B\delta^B$ for some vector~$\delta^B$.
-When $B$ is acyclic, $\delta^B$ coincides with the imaginary root usually denoted~$\delta$.
-%The cone $\d_\infty^\tB$ is defined to be $\Proj_n^{-1}\d_\infty^B$.
-%It is the closure of the complement of the union of all cones $\Cone^{\tB;t_0}_t$ for seeds $t$.
 
 To explain and prove Theorem~\ref{affine main}, we quote and develop the relevant theory for different classes of affine-type seeds, namely acyclic seeds, arbitrary seeds, and neighboring seeds.
 
@@ -1566,14 +1569,14 @@ Let $B_0$ be an acyclic $n\times n$ exchange matrix in a cluster algebra of affi
 %Let $\tB_0$ be an extension with linearly independent columns.
 Let $A$ be the Cartan matrix underlying $B_0$, so that $A$ is of affine type.
 Let $\delta$ be the shortest positive imaginary root in the root system $\RS$ associated to $A$.
-\sayD{We implicitly use properties of $\delta$ in many places below, it might be worthwhile to collect those observations somewhere as a proposition.\rs{I am listing here properties that I notice while reading in case we decide to do so. $\delta$ has full support.}}
+\sayD{\color{orange}We implicitly use properties of $\delta$ in many places below, it might be worthwhile to collect those observations somewhere as a proposition.\rs{I am listing here properties that I notice while reading in case we decide to do so. $\delta$ has full support.}\rs{UPDATE: I think that apart from full support we are fine.}}
 Let $\RSpos$ be the set of positive roots in $\RS$ and let $\Simples=\set{\alpha_1,\ldots,\alpha_n}$ be the simple roots of $\RS$.
 The \newword{support} of a root is the set of simple roots appearing with nonzero coefficient in its expression as a linear combination of simple roots.
 
 As before, write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 These constants also symmetrize~$A$ (meaning that the entries $a_{ij}$ of $A$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
 The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
-Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple-co-root coordinates \sayD{It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
+Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple-co-root coordinates \sayD{\color{orange}It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
 \rn{I prefer "simple-root" when it's used as an adjective as in "simple-root coordinates" or "simple root" when it is a noun.  For co-roots, similarly. I like the dash in "co-root", and "simple-co-root coordinates" works for me.} \rd{I made this change throughout.}} 
 of that vector.
 %Furthermore, the matrix $\symmetrizer B_0\symmetrizer^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $\symmetrizer B_0\symmetrizer^{-1}=-B_0^T$.
@@ -1678,7 +1681,7 @@ so these subspaces must coincide.
 Every finite $c$-orbit of roots consists entirely of positive roots or entirely of negative roots.
 (See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2(5)]{afforb}.)
 Let $\RST{c}$ be the set of roots in~$\RS$ that are in finite $c$-orbits.
-These form a subsystem of $\RS$, in the sense that the set of real roots in $\RST{c}$ are closed under the reflections they define, and all imaginary roots are in $\RST{c}$.
+These form a subsystem of $\RS$, in the sense that the set of real roots in $\RST{c}$ is closed under the reflections they define, and all imaginary roots are in $\RST{c}$.
 But $\RST{c}$ might not be a root system in the usual (Kac-Moody) sense.
 Rather, it is the product of $1$, $2$, or $3$ affine root systems of type $\afftype{A}$, living in a vector space that may be smaller than the sum of the ranks of the irreducible factor ($0$, $1$, or $2$ dimensions smaller):
 Each factor has a shortest positive imaginary root, and all of these are identified with $\delta$.
@@ -1706,7 +1709,7 @@ The following proposition is \cite[Proposition~5.6]{affdenom}.
 A root $\alpha\in\APre{c}$ is $c$-compatible with~$\delta$ if and only if $\alpha\in\APTre{c}$.
 \end{proposition}
 
-Two roots $\alpha,\beta\in\APTre{c}$ are called \newword{nested} if $\SuppT(\alpha)\subseteq\SuppT(\beta)$ or if $\SuppT(\beta)\subseteq\SuppT(\alpha)$ or \newword{spaced} if $[\SuppT(c^{-1}\alpha)\cup\SuppT(\alpha)\cup\SuppT(c\alpha)]\cap\SuppT(\beta)=\emptyset$.
+Two roots $\alpha,\beta\in\APTre{c}$ are called \newword{nested} if $\SuppT(\alpha)\subseteq\SuppT(\beta)$ or if $\SuppT(\beta)\subseteq\SuppT(\alpha)$; they are \newword{spaced} if $[\SuppT(c^{-1}\alpha)\cup\SuppT(\alpha)\cup\SuppT(c\alpha)]\cap\SuppT(\beta)=\emptyset$.
 The following proposition is \cite[Proposition~5.12]{affdenom}.
 
 \begin{proposition}\label{compatible in tubes}
@@ -1830,7 +1833,8 @@ We will show that each assertion holds for large enough $i$ or small enough~$i$,
 Then $I_+$ and $I_-$ are implicitly defined to realize ``large enough'' or ``small enough'' for all the assertions simultaneously.
 
 Since $x$ is not in $\d_\infty$, it is in a full-dimensional cone of $\nu_c(\Fan_c(\RS))$.
-Thus $(\nu_c)^{-1}(x)$ is in a maximal cone of $\Fan_c(\RS)$ spanned by some $\beta_1,\ldots,\beta_n$, indexed with $\beta_1,\ldots,\beta_p\in\AP{c}\setminus\APT{c}$ and $\beta_{p+1},\ldots,\beta_n\in\APT{c}$ with $p\ge1$.
+Thus $(\nu_c)^{-1}(x)$ is in a maximal cone of $\Fan_c(\RS)$ spanned by some $\beta_1,\ldots,\beta_n$, indexed with $\beta_1,\ldots,\beta_p\in\AP{c}\setminus\APT{c}$ and $\beta_{p+1},\ldots,\beta_n\in\APT{c}$ with $p\ge2$.
+\sayS{This was $p\ge 1$}
 There exist $q_1,\ldots,q_n\ge0$ such that $(\nu_c)^{-1}(x)=\sum_{j=1}^nq_j\beta_j$ with $q_j>0$ for at least one $j\in\set{1,\ldots,p}$.
 By Proposition~\ref{delta limit}, there exist integers $I_1,\ldots,I_p$ and positive real $a_1,\ldots,a_p$ such that $\tau_c^{i+\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i>I_j$ and $\tau_c^{i-\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i<I_j$, for all $j=1,\ldots,p$.
 Set $a=\sum_{j=1}^p q_ja_j>0$.
@@ -1972,9 +1976,10 @@ Since the $c$-sorting word associated to $t_{p+1}$ is reduced, the skip of $s_{k
 
 \begin{proposition}\label{any B is sort}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
-Then there exists a $c$-sortable element~$v$ whose associated seed $t$ has exchange matrix $B$.  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so? \rs{I think that it is made clear enough by the following sentence}}
-For $\kk$ the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$, write ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$.
-Then~$v$ and~$t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$.
+Let $t_0$ be a seed with exchange matrix $B_0$.
+Then there exists a $c$-sortable element~$v$ such that, writing $\kk$ for the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$ and defining seeds ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$, the exhange matrix at $t$ is $B$.
+These $v$ and $t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$.
+\sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so? \rs{I tried rephrasing}}
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
@@ -1991,7 +1996,7 @@ Thus we choose $i$ large enough (i.e. choose $j$ large enough) so that $\bigl(G_
 But for $0\le p\le jn$, the prefix $a_1\cdots a_p$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
 By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_p}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_p$ to the positive cone.
 The resulting cone $\Cone^{B_0;t_0}_{t_p}$ is therefore contained in the Tits cone,
-\sayD{Should we introduce the Tits cone at the start of this section?  \rn{No objection.}} 
+\sayD{Should we introduce the Tits cone at the start of this section?  \rn{No objection.} \rs{Maybe not: we give lots of baground for granted and I do not expect that anyone can read up to here without knowing what the Tits cone is}} 
 so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with $\delta$.
 The cone $\Cone^{B_0;t_0}_{t_p}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
 We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here?}
@@ -2131,7 +2136,7 @@ Theorem~\ref{affine P point indep} follows from Theorem~\ref{P point} and the fo
 
 \begin{proposition}\label{aff red}
 If $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
-  \sayD{This argument is remarkably similar to the proof of Proposition 2.28 so I thought it could make sense to combine them, but it isn't clear if there is any way for this to actually work with the structure of the paper.}  
+\sayD{\color{orange}This argument is remarkably similar to the proof of Proposition 2.28 so I thought it could make sense to combine them, but it isn't clear if there is any way for this to actually work with the structure of the paper. \rs{I am ok either way; probably it is more efficient to leave things as is}}  
 \end{proposition}
 \begin{proof}  
 Because $B$ is of affine type if and only if $-B$ is of affine type, it is enough to prove that every $B$ of affine type admits a maximal green sequence.
@@ -2315,7 +2320,7 @@ Also, \cite[Proposition~7.1]{universal} says that $\F_B$ and $\F_{-B}$ are relat
 These linear maps preserve the property that the positive cone shares $n-2$ rays with the imaginary wall.
 \end{proof}
 
-We call column $i$ of an exchange matrix $B$ a \newword{quasi-leaf} if column $i$ has at most two nonzero entries and, if $b_{ij}$ and $b_{ik}$ are both nonzero, then the restriction of $B$ to rows and columns $i$, $j$, and $k$ is $\pm\begin{bsmallmatrix*}[r]0&1&-1\\-1&0&1\\1&-1&0\end{bsmallmatrix*}$.
+We call column $i$ of an exchange matrix $B$ a \newword{quasi-leaf} if column $i$ has at most two nonzero entries and, if $b_{ji}$ and $b_{ki}$ are both nonzero, then the restriction of $B$ to rows and columns $i$, $j$, and $k$ is $\pm\begin{bsmallmatrix*}[r]0&1&-1\\-1&0&1\\1&-1&0\end{bsmallmatrix*}$.
 In describing block decompositions of matrices, we allow \newword{empty blocks}, meaning blocks with $0$ columns and/or $0$ rows.
 Thus, for example, a ``$0\times 2$ block'' or a ``$0\times 0$ block''.
 
@@ -2706,7 +2711,7 @@ These matrices determine inequalities, including
 \[
 3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-3b_{kp}>\frac94b_{kn},\\
 \]
-\sayS{The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me. \rd{Looks good now.}}
+\sayS{\color{orange}The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me. \rd{Looks good now.}}
 which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
 If $(b_{kp},b_{kn})=(2,-3)$, then $b_{pk}\in\set{-1,-2}$ and $b_{nk}=1$.
 Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which fails for either choice of $b_{pk}$, thus ruling out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
@@ -2921,7 +2926,7 @@ We state these assertions about $\delta^B$ and $-\frac12B\delta^B$ together beca
 
 Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall~$\d^B_\infty$.
 Thus Proposition~\ref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
-(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use  Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{Ido not understand why are you concerned here}}
+(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use  Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here}}
 %NO. Proposition~\ref{delta is the man}.\ref{im ray} DOES NOT give this minimality.
 %Furthermore, Proposition~\ref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
@@ -2938,7 +2943,7 @@ ab&\text{if }\sgn(a)=\sgn(b)=+\\
 -ab&\text{if }\sgn(a)=\sgn(b)=-\\
 0&\text{otherwise}.
 \end{cases}\]
-  To determine the affine entries, we need only the $2\times2$ affine submatrix \sayD{Changed this from "submatrices"} of $B$.
+To determine the affine entries, we need only the $2\times2$ affine submatrix \sayD{\color{orange}Changed this from "submatrices"\rs{OK}} of $B$.
 In the most common case from Table~\ref{submat tab}, the mutations are as follows:
 \[
 \begin{bsmallmatrix*}
@@ -3061,6 +3066,7 @@ Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative 
 \begin{proof}
 Suppose $\alpha$ has nonnegative entries and $B\alpha$ is in $(\delta^B)^\perp$.
 Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is a linear combination of simple roots in non-affine entries and $\gamma$ is a combination of simple roots in affine positions.
+\sayS{Should we avoid talking of roots when the underlying root system is not affine i.e. when the initial matrix is not acyclic?}
 Then $B\beta$ is a nonnegative linear combination of the non-affine columns of $B$, and equivalently a nonnegative linear combination of the columns of $\CompPlus(B)$.
   Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.\sayD{This was observed somewhere earlier, maybe as a part of a proof, should we highlight it as a Lemma so that we can refer to it here?}
 By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the vector $\gamma$ is a scalar multiple of $\delta^B$.
@@ -3086,8 +3092,8 @@ If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\C
 \begin{proof}
 Mutating at $k$ means replacing the root $\gamma_k$ in the real $c$-cluster $\set{\gamma_1,\ldots,\gamma_n}$.
 Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root in $\APTre{c}$.
-Thus $\xi_k$ is replaced by another vector in $\d_\infty$.
-  \sayD{The notation of $\gamma$ and $\xi$ was introduced around 7 pages back, it seems like we should recall their meaning before using them again.}
+Thus the $\g$-vector $\xi_k$ is replaced by another vector in $\d_\infty$.
+\sayD{The notation of $\gamma$ and $\xi$ was introduced around 7 pages back, it seems like we should recall their meaning before using them again.\rs{added "$\g$-vector" to help with this}}
 We see that $\mu_k(B)$ is neighboring.
 
 Furthermore, since $k$ is not special and not affine, row $k$ and column $k$ only have nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
@@ -3099,7 +3105,7 @@ Since $B$ has zero entries in affine components of column $k$, the affine rows o
 Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
-  Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.}), we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}}), we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{proof}
 
 \begin{proposition}\label{special mut}
@@ -3779,7 +3785,7 @@ If $\kk$ is a sequence of non-affine indices with expanded sequence $\widehat\kk
 \end{proposition}
 \begin{proof}
    %Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.
-  \sayS{I think this sentence has to go: it is in the claim}\sayD{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}
+  \sayS{\color{orange}I think this sentence has to go: it is in the claim \rd{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}}
 Since $\eta_{\widehat\kk}^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
 \end{proof}
 
@@ -3801,7 +3807,7 @@ Write $\lambda$ as $\lambda_0+\lambda_\infty$, where $\lambda_0$ is zero in the 
 Proposition~\ref{Comp span} implies that 
 \begin{multline*}
 \set{B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\delta^{B'})^\perp\\
-\subseteq\set{\CompPlus(B')\alpha+B'\delta^{B'}a:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}.
+\subseteq\set{\CompPlus(B')\alpha+aB'\delta^{B'}:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}.
 \end{multline*}
 
 Let $M$ be the matrix obtained from $\CompPlus(B)$ by replacing the first $n-2$ rows by zeros (leaving only the affine entries).
@@ -3813,8 +3819,8 @@ We see that
 \begin{multline*}
   \set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}\cap\d^{B'}_\infty\\
 \begin{aligned}
-&\quad\subseteq\set{\eta_{\widehat\kk}^{B^T}(\lambda)+\CompPlus(B')\alpha+B'\delta^{B'}a:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}\cap\d^{B'}_\infty\\
-&\quad=\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha+\lambda_\infty+M\alpha+B'\delta^{B'}a:\alpha\ge0,a\ge0}\cap\d^{B'}_\infty.\\
+&\quad\subseteq\set{\eta_{\widehat\kk}^{B^T}(\lambda)+\CompPlus(B')\alpha+aB'\delta^{B'}:\alpha\in\reals^{n-2},\alpha\ge0,a\ge0}\cap\d^{B'}_\infty\\
+&\quad=\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha+\lambda_\infty+M\alpha+aB'\delta^{B'}:\alpha\ge0,a\ge0}\cap\d^{B'}_\infty.\\
 \end{aligned}
 \end{multline*}
 The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
@@ -3918,7 +3924,7 @@ The theorem follows.
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
 We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}}
-Given an integer point $\lambda\in\integers^m$, define $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
+Given an integer point $\lambda\in\integers^m$, define $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\tB^T}\bigr)^{-1}\sett{\eta_\kk^{\tB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ \sayS{Was $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$} for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_\lambda$ of $\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\lambda,\kk}$ over all~$\kk$.
 
 It is immediate that $\set{\lambda}\subseteq\IP^\tB_\lambda\subseteq\P^\tB_\lambda$.
