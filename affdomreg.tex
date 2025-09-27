@@ -470,8 +470,8 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \tableofcontents
 
 \section{Introduction}
-\sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?}
-\sayS{I changed $\tilde B$ to $\widetilde B$}
+\sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?  \rn{I don't understand the question.}}
+\sayS{I changed $\tilde B$ to $\widetilde B$  \okn}
 \sayN{\color{orange}I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no? \rs{Yes, done it but only in the abstract since in the introduction we quote Qin in a general way}}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds". \rd{I tried to make our indexing of exchange matrices more uniform throughout by only using a numerical index associated to a mutation sequence rather than indexing by vertices of the n-regular graph.}}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
@@ -501,14 +501,17 @@ We prove that in affine types, when $\tB$ has linearly independent columns, the 
 
 \sayS{I rephrased the following paragraph and commented out the old version}
 Computing dominance regions without the assumption that $\tB$ has linearly independent columns is in general much harder. 
-However, in affine type, our argument to deal with points that project to the relative interior of the imaginary wall passes through understanding the coefficient-free case where we can describe the line-segments explicitly:
-They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
-(From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
+\marginN{Modified following sentences.  Old version commented out.  Also removed parentheses in last sentence.}
+However, in affine type, for points that project to the relative interior of the imaginary wall, our argument requires us to first understand the coefficient-free case.
+In that case, the line segments are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
+%However, in affine type, our argument to deal with points that project to the relative interior of the imaginary wall passes through understanding the coefficient-free case where we can describe the line segments explicitly:
+%They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
+From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.
 
 %In general, it appears to be much harder to compute dominance regions without the assumption that $\tB$ has linearly independent columns.
 %However, our characterization of dominance regions in affine type in the case of linearly independent columns requires us first to characterize, in the coefficient-free case, dominance regions for $\lambda$ in the imaginary cone.
 %(From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.)
-%In the coefficient-free case, we can describe the line-segments explicitly:
+%In the coefficient-free case, we can describe the line segments explicitly:
 %They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
 
 A crucial ingredient for the characterization of dominance regions in affine type is a detailed study of the exchange matrices of neighboring seeds.  
@@ -529,9 +532,11 @@ As a consequence, we also show that dominance regions in finite type are singlet
 The results of this paper are motivated by two ongoing projects.  
 One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
 The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
-\sayN{\color{orange}Say more?  Say differently?\rs{How about this`?}}
-For both these applications the relevant notion is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
-We describe these in Section~\ref{sec:integral}.
+\sayN{Say more?  Say differently?\rs{How about this?} \rn{Yes, that's a good thing to say.  I revised it a bit.  The main motivation for revising is that it's not really the integer lattice, it's $\lambda$ plus the integer lattice.  That seemed annoying to say directly, so I came up with this.  (Old version commented out.)  OK?}}
+For both of these applications the relevant notion is the integral dominance region:  the set of points in $\P_\lambda^\tB$ that are obtained as $\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
+We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
+%For both these applications the relevant notion is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
+%We describe these in Section~\ref{sec:integral}.
 
 \section{Dominance regions}
 In this section, we define dominance regions and prove some foundational facts about them.
@@ -542,20 +547,21 @@ Also, throughout the section, we use results from~\cite{NZ}.
 \subsection{Definitions and background}\label{def sec}
 We begin with a skew-symmetrizable $n \times n$ exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 The diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$ has $\symmetrizer B\symmetrizer^{-1}=-B^T$.
-\sayS{I made the symmetrizer into a macro and replaced $\Sigma$ with $D$. I need to doublecheck that all other occurrenced of $D$ are replaced by some other symbol. UPDATE: I did but left untouched the occurrences as a generic rescaler}
+\sayS{I made the symmetrizer into a macro and replaced $\Sigma$ with $D$. I need to doublecheck that all other occurrenced of $D$ are replaced by some other symbol. UPDATE: I did but left untouched the occurrences as a generic rescaler.  \okn}
 
 Given a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_r}(\mu_{k_{r-1}}(\cdots(\mu_{k_1}(B))\cdots))$ and, when a sequence $\kk$ has been chosen, we often denote this mutated exchange matrix simply as $B_r$.
 We write $\kk^{-1}$ for $k_1\cdots k_r$, the reverse of $\kk$.
 Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
 
-\sayS{Do we need a reference for mutation maps?} 
+\sayS{Do we need a reference for mutation maps?  \rn{If we need one here, it's \cite{universal}, or more specifically \cite[Definition~4.1]{universal}.}} 
 Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix.
 In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
 One such map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
-As in this paper we seldom use mutation maps without a transpose we could have opted to drop the superscript in our notation; we refrained from doing so since we will need to discuss and adapt to our needs parts of some proofs already written elswere with our current notation.
-\sayS{\color{orange}Added this sentence to justify our three levels notation}
+As in this paper we seldom use mutation maps without a transpose, we could have opted to drop the superscript $^T$ in our notation.
+We refrained from dropping it because we will need to discuss and adapt parts of some proofs already written elsewhere with our current notation.
+\sayS{Added this sentence to justify our three levels notation.  \rn{Good idea.  I revised slightly.}}
 
 Given $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
 (Throughout the paper, we will define sets indexed by vectors $\alpha\in\reals^n$ with $\alpha\ge0$, or sometimes $\alpha\in\reals^m$ with $\alpha\ge0$.
@@ -563,7 +569,9 @@ When we can do so without confusion, we will omit the explicit statement that $\
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
 If $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$, then 
-  \sayD{We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.}
+  \sayD{We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.
+  \rn{Before we make any changes, I wanted to mention the convention that is currently in place for  enumerate environments:  Roman numerals in parentheses (or lower case letters if nested inside something already numbered) for conditions (either listed as part of a definition or declared to be equivalent) and bold arabic numerals for assertions (or bold lowercase letters if nested inside something numbered).  We can do something different if you want, but I'd like to distinguish these two kinds of lists.  Changing our minds should be fairly easy because we're (hopefully) referring to everything by reference.\\
+Or, if the issue is more about capitalization after the item-marker, I'm not sure if we're consistent about that, but there might be reasons not to be completely consistent (e.g. some of the assertions are grammatically part of a large sentence and some are not).  Of course, we could also make the grammatical usage uniform.}}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
 $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -973,7 +981,7 @@ We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$
 We will also consider an $m\times m$ matrix related to $\tB$.
 Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
 Let $\symmetrizer'$ be the integer diagonal matrix with minimal entries such that $R':=\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
-Define $\BB$ to be the \sayS{\color{orange}Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}\rs{OK}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
+Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}\rs{OK}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
   Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
@@ -1364,7 +1372,6 @@ Since every curve in $\Lambda^{(\ell'_p)}$ or $\Theta^{(\ell'_p)}$, besides $(L_
 But the main observation says that $X^{(\ell'_p)}$ contains $(L_p)^{(\ell'_p)}$ with weight $w_p+z_{i_p}^{(\ell_p)}$ and otherwise contains curves that are compatible with the rotation of $L_p$.
 Thus, by the third remarkable property, the shear coordinate of $X^{(\ell'_p)}$ in position~$t_{i'_p}$ is $-\ep_{i'_p}(w_p+z_{i_p}^{(\ell_p)})$.
 Therefore $w_p-z_{i'_p}^{(\ell'_p)}=w_p+z_{i_p}^{(\ell_p)}$, and we conclude that $z_{i_p}^{(\ell_p)}=z_{i'_p}^{(\ell'_p)}=0$ since both are nonnegative.
-\sayN{\color{orange}I like this ``caseless'' way of saying things.  Thanks.\rs{Me too} \rd{Great!}}
 
 It follows that $X^{(0)}=\Lambda$ and thus $x=\lambda$.
 
@@ -1576,9 +1583,7 @@ The \newword{support} of a root is the set of simple roots appearing with nonzer
 As before, write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B_0$ (meaning that the entries $b_{ij}$ of $B_0$ satisfy $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
 These constants also symmetrize~$A$ (meaning that the entries $a_{ij}$ of $A$ satisfy $d_i a_{ij}=d_j a_{ji}$ for all $i,j$).
 The \newword{simple co-roots} are $\alpha_i\ck= d_i^{-1} \alpha_i$. 
-Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple-co-root coordinates \sayD{\color{orange}It seems to me that we should use "coroot" everywhere and write this as "simple-coroot coordinates", or as "simple-co-root coordinates otherwise.  Alternatively, we could just write "simple root" in place of "simple-root" everywhere it appears.
-\rn{I prefer "simple-root" when it's used as an adjective as in "simple-root coordinates" or "simple root" when it is a noun.  For co-roots, similarly. I like the dash in "co-root", and "simple-co-root coordinates" works for me.} \rd{I made this change throughout.}} 
-of that vector.
+Thus the diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$, applied to the simple-root coordinates of a vector, gives the simple-co-root coordinates of that vector.
 %Furthermore, the matrix $\symmetrizer B_0\symmetrizer^{-1}$ has entries $d_ib_{ij}d_j^{-1}=-b_{ji}$, so $\symmetrizer B_0\symmetrizer^{-1}=-B_0^T$.
 %Also, $(E_{\ep,k}^B)^T=F_{\ep,k}^{-B_0^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$.
 
@@ -1693,7 +1698,7 @@ These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots
 
 \sayS{The definition of $\APTre{c}$ that we had here was wrong}
 Let $\APTre{c}$ be the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$ and denote by $\SuppT(\beta)$ their support with respect to $\SimplesT{c}$.
-Let $\APT{c}=\APTre{c}\cup\set\delta$. \sayD{The $c$ here is a subscript while it is a superscript in other places, does it make sense to make this uniform and always use subscripts?} 
+Let $\APT{c}=\APTre{c}\cup\set\delta$. \sayD{The $c$ here is a subscript while it is a superscript in other places, does it make sense to make this uniform and always use subscripts?  \rn{Possibly it makes sense.  But I shudder at altering the notation that we have used in the \{affdenom\} paper, which was so notation-heavy.  I vote for this notation to be ``grandfathered in''.}} 
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
 The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables \cite[Theorem~1.2]{affdenom}, with respect to the initial exchange matrix $B_0$.
 There is a notion \cite[Definition~4.3]{affdenom} of \newword{$c$-compatibility} of almost positive Schur roots (similar in spirit to the compatibility of almost positive roots in~\cite{ga}) such that a set of almost positive real Schur roots is pairwise $c$-compatible if and only if the corresponding cluster variables are contained in a common cluster.
@@ -1726,7 +1731,6 @@ $c$-compatibility of roots in the same factor can be understood by picturing the
   %However, the representation theory literature uses the term ``tubes'' for the components
   However, this terminology conflicts with the representation theory literature use of the term ``tubes'', so we will avoid the term altogether.
 \end{remark}
-\sayD{\color{orange}It felt like this statement should be set apart in some way.  \okn}
 
 There is a bijection $\tau_c:\AP{c}\to\AP{c}$ that induces an automorphism of $\Fan_c(\RS)$.
 The definition of $\tau_c$ and some of its key properties are found in \cite[Section~3]{affdenom}.
@@ -2136,7 +2140,7 @@ Theorem~\ref{affine P point indep} follows from Theorem~\ref{P point} and the fo
 
 \begin{proposition}\label{aff red}
 If $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
-\sayD{\color{orange}This argument is remarkably similar to the proof of Proposition 2.28 so I thought it could make sense to combine them, but it isn't clear if there is any way for this to actually work with the structure of the paper. \rs{I am ok either way; probably it is more efficient to leave things as is}}  
+\sayD{\color{orange}This argument is remarkably similar to the proof of Proposition 2.28 so I thought it could make sense to combine them, but it isn't clear if there is any way for this to actually work with the structure of the paper. \rs{I am ok either way; probably it is more efficient to leave things as is}.  \rn{I vote efficiency.}}  
 \end{proposition}
 \begin{proof}  
 Because $B$ is of affine type if and only if $-B$ is of affine type, it is enough to prove that every $B$ of affine type admits a maximal green sequence.
@@ -2237,7 +2241,7 @@ Now $N$ is a monomial in the coefficient variables times a cluster monomial, and
 
 \begin{remark}\label{4.3}
 It appears that, to extend Lemma~\ref{exch ind} to arbitrary coefficients, one needs \cite[Conjecture~4.3]{ca4}, which says that the exchange graph does not depend on the choice of coefficients.
-\sayN{As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? Is it worth saying anything more than we say now?  I'm leaning towards "no".\rs{I am also voting no}  }
+\sayN{As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? Is it worth saying anything more than we say now?  I'm leaning towards "no".\rs{I am also voting no}  \okn }
 \end{remark}
 
 \subsubsection{Salient exchange matrices of affine type}
@@ -2711,7 +2715,7 @@ These matrices determine inequalities, including
 \[
 3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-3b_{kp}>\frac94b_{kn},\\
 \]
-\sayS{\color{orange}The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me. \rd{Looks good now.}}
+\sayS{The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me. \rd{Looks good now.}}
 which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
 If $(b_{kp},b_{kn})=(2,-3)$, then $b_{pk}\in\set{-1,-2}$ and $b_{nk}=1$.
 Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which fails for either choice of $b_{pk}$, thus ruling out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
@@ -2926,7 +2930,7 @@ We state these assertions about $\delta^B$ and $-\frac12B\delta^B$ together beca
 
 Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall~$\d^B_\infty$.
 Thus Proposition~\ref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
-(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use  Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here}}
+(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here}}
 %NO. Proposition~\ref{delta is the man}.\ref{im ray} DOES NOT give this minimality.
 %Furthermore, Proposition~\ref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
@@ -2943,7 +2947,7 @@ ab&\text{if }\sgn(a)=\sgn(b)=+\\
 -ab&\text{if }\sgn(a)=\sgn(b)=-\\
 0&\text{otherwise}.
 \end{cases}\]
-To determine the affine entries, we need only the $2\times2$ affine submatrix \sayD{\color{orange}Changed this from "submatrices"\rs{OK}} of $B$.
+To determine the affine entries, we need only the $2\times2$ affine submatrix of $B$.
 In the most common case from Table~\ref{submat tab}, the mutations are as follows:
 \[
 \begin{bsmallmatrix*}
@@ -3039,8 +3043,7 @@ Given a neighboring exchange matrix $B$, each diagonal block of $\Comp(B)$ is of
 %\end{proof}
 
 \sayN{\color{orange}Salvatore, you said you were confused about the proof of the following proposition, and you were right to be!  It was wrong, and in fact the statement was wrong.  I think this is now correct and everything still works, but it's slightly more complicated \rs{Great!}}
-Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix \sayD{\color{orange}Should this be $(n-2)\times n$?  \rn{No, I think $n$ rows and $n-2$ columns is correct.} \rd{Oh yeah, I'm dumb}} 
-which agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by~$2$.
+Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix which agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by~$2$.
 Although $\CompPlus(B)$ is an extension of $\Comp(C)$ in the sense of ``extended exchange matrices'', we don't want to think of it that way (and have chosen an overline in the notation rather than a tilde) because we will not always mutate it like an extended exchange matrix.
 (See Proposition~\ref{special mut}, below.)
 
@@ -3785,7 +3788,7 @@ If $\kk$ is a sequence of non-affine indices with expanded sequence $\widehat\kk
 \end{proposition}
 \begin{proof}
    %Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.
-  \sayS{\color{orange}I think this sentence has to go: it is in the claim \rd{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}}
+  \sayS{I think this sentence has to go: it is in the claim \rd{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}  \rn{I'm confused what this comment is talking about.}}
 Since $\eta_{\widehat\kk}^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
 \end{proof}
 
@@ -3923,7 +3926,7 @@ The theorem follows.
 
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
-We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}}
+We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?}}
 Given an integer point $\lambda\in\integers^m$, define $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\tB^T}\bigr)^{-1}\sett{\eta_\kk^{\tB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ \sayS{Was $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$} for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_\lambda$ of $\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\lambda,\kk}$ over all~$\kk$.
 
@@ -3931,7 +3934,7 @@ It is immediate that $\set{\lambda}\subseteq\IP^\tB_\lambda\subseteq\P^\tB_\lamb
 Thus in particular, Theorem~\ref{affine P point indep} is true with $\IP_\lambda^\tB$ replacing $\P_\lambda^\tB$.
 The following is the integral version of Theorem~\ref{affine main extended}.
 
-\begin{theorem}\label{affine main integral}  \marginN{Right now, this result is not mentioned anywhere else in the paper.  We should figure out where to mention it.\rs{I added few words at the end of the introduction}}
+\begin{theorem}\label{affine main integral}  \marginN{Right now, this result is not mentioned anywhere else in the paper.  We should figure out where to mention it.\rs{I added few words at the end of the introduction}\okn}
 Suppose $\tB$ is an $m\times n$ extended exchange matrix such that $B$ is of affine type.
 If $\lambda\in\integers^m$ is in the relative interior of the imaginary wall~$\d^\tB_\infty$, then the integral dominance region $\IP^\tB_\lambda$ is $\set{\lambda+a\tB\delta^B:a\ge0\in\integers}\cap\d^\tB_\infty$, consisting of every other integer point in the line segment $\P^\tB_\lambda$, starting with $\lambda$.
 \end{theorem}
