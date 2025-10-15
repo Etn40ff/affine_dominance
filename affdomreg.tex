@@ -472,18 +472,15 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \section{Introduction}
 \sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?  \rn{I don't understand the question.}}
 \sayS{I changed $\tilde B$ to $\widetilde B$  \okn}
-\sayN{\color{orange}I think I can/should delete "upper" from the abstract, because in the affine case, it's just the cluster algebra.  Yes/no? \rs{Yes, done it but only in the abstract since in the introduction we quote Qin in a general way}}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds". \rd{I tried to make our indexing of exchange matrices more uniform throughout by only using a numerical index associated to a mutation sequence rather than indexing by vertices of the n-regular graph.}}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
-The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, \marginN{\color{orange}Did I get the hypotheses of his theorem right?\rs{I think so}}
-characterizes all pointed bases of the upper cluster algebra in terms of this order.
+The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
 (Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
 See \cite[Section~1]{FanQin}.)
 
 Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
 (
-\sayS{\color{orange}In~\cite{RSDom} we were agnostic about about this}
 In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
 Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrices. 
 Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
@@ -532,7 +529,7 @@ As a consequence, we also show that dominance regions in finite type are singlet
 The results of this paper are motivated by two ongoing projects.  
 One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
 The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
-\sayN{Say more?  Say differently?\rs{How about this?} \rn{Yes, that's a good thing to say.  I revised it a bit.  The main motivation for revising is that it's not really the integer lattice, it's $\lambda$ plus the integer lattice.  That seemed annoying to say directly, so I came up with this.  (Old version commented out.)  OK?}}
+\sayN{\color{orange}Say more?  Say differently?\rs{How about this?} \rn{Yes, that's a good thing to say.  I revised it a bit.  The main motivation for revising is that it's not really the integer lattice, it's $\lambda$ plus the integer lattice.  That seemed annoying to say directly, so I came up with this.  (Old version commented out.)  OK?} \rd{I like this version so I made this orange.}}
 For both of these applications the relevant notion is the integral dominance region:  the set of points in $\P_\lambda^\tB$ that are obtained as $\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
 We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
 %For both these applications the relevant notion is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
@@ -559,9 +556,9 @@ Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to
 In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
 One such map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
-As in this paper we seldom use mutation maps without a transpose, we could have opted to drop the superscript $^T$ in our notation.
-We refrained from dropping it because we will need to discuss and adapt parts of some proofs already written elsewhere with our current notation.
-\sayS{Added this sentence to justify our three levels notation.  \rn{Good idea.  I revised slightly.}}
+In this paper we seldom use mutation maps without a transpose and so we could have opted to drop the superscript $^T$ in our notation.
+We refrained from this modification because we will need to discuss and adapt parts of some proofs already written elsewhere with our current notation.
+\sayS{Added this sentence to justify our three levels notation.  \rn{Good idea.  I revised slightly.} \rd{Revised a little more.}}
 
 Given $\lambda\in\reals^n$, define $\P^B_{\lambda,\kk}=\bigl(\eta_{\kk}^{B^T}\bigr)^{-1}\sett{\eta_\kk^{B^T}(\lambda)+\mu_\kk(B)\alpha:\alpha\in\reals^n,\alpha\ge0}$, where the symbol $\ge$ denotes componentwise comparison.
 (Throughout the paper, we will define sets indexed by vectors $\alpha\in\reals^n$ with $\alpha\ge0$, or sometimes $\alpha\in\reals^m$ with $\alpha\ge0$.
@@ -571,7 +568,8 @@ Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P
 If $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$, then 
   \sayD{We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.
   \rn{Before we make any changes, I wanted to mention the convention that is currently in place for  enumerate environments:  Roman numerals in parentheses (or lower case letters if nested inside something already numbered) for conditions (either listed as part of a definition or declared to be equivalent) and bold arabic numerals for assertions (or bold lowercase letters if nested inside something numbered).  We can do something different if you want, but I'd like to distinguish these two kinds of lists.  Changing our minds should be fairly easy because we're (hopefully) referring to everything by reference.\\
-Or, if the issue is more about capitalization after the item-marker, I'm not sure if we're consistent about that, but there might be reasons not to be completely consistent (e.g. some of the assertions are grammatically part of a large sentence and some are not).  Of course, we could also make the grammatical usage uniform.}}
+  Or, if the issue is more about capitalization after the item-marker, I'm not sure if we're consistent about that, but there might be reasons not to be completely consistent (e.g. some of the assertions are grammatically part of a large sentence and some are not).  Of course, we could also make the grammatical usage uniform.
+  \rd{Here specifically it says ``then'' and then there is a period at the end of the first item, in this context I would make that a semicolon.  Lemma 2.23 has the same.  Proposition 4.17 starts with a similar grammatical structure with a ``such that'' but then each item is its own sentence.  Theorem 4.38 has a bulleted list with semicolons but then each line is capitalized as though starting a new sentence.  I found a few others where there was an obvious way to fix a capitalization issue and just changed them.  If you have a strong preference for how to deal with these ones feel free to make a choice.}}}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
 $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -1615,9 +1613,9 @@ Because we have indexed $B_0$ so that its $ij$-entry is nonnegative whenever $i<
 Define
 \begin{align}
 \label{rep->}
-\TravProj{c}&:=\set{\alpha_1,s_1\alpha_2,\ldots,s_1\cdots s_{n-1}\alpha_n},\\
+\TravProj{c}&:=\set{\alpha_1,s_1\alpha_2,\ldots,s_1\cdots s_{n-1}\alpha_n};\\
 \label{rep<-}
-\TravInj{c}&:=\set{\alpha_n,s_n\alpha_{n-1},\ldots,s_n\cdots s_2\alpha_1},
+\TravInj{c}&:=\set{\alpha_n,s_n\alpha_{n-1},\ldots,s_n\cdots s_2\alpha_1}.
 \end{align}%
 Continuing under the assumption that $A$ is of affine type, the sets $\TravProj{c}$ and $\TravInj{c}$ are disjoint, and the union $\TravProj{c}\cup\TravInj{c}$ contains one representative of each of the $2n$ infinite $c$-orbits of roots.
 (See \cite[Chapter~1]{Dlab-Ringel} or \cite[Theorem~1.2]{afforb}.)
@@ -3089,7 +3087,7 @@ $\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ i
 \item
 the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
 \item
-If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -3124,7 +3122,7 @@ $\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu
 \item
 the mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise, and 
 \item
-If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -3760,7 +3758,7 @@ $\Comp(\mu_{\widehat\kk}(B))=\mu_\kk(\Comp(B))$,
 \item
 the mutation map $\eta^{B^T}_{\widehat\kk}$ fixes the imaginary ray pointwise, and 
 \item
-If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
+if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
 \end{itemize}
 (The fact, in each of Propositions~\ref{nonspecial mut} and~\ref{special mut}, that the mutated matrix is neighboring and has the same affine and special indices as $B$ is crucial to concluding these facts for $\widehat\kk$.)
 
