@@ -583,9 +583,9 @@ For any $\ll$,
 \eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})
 &=\eta^{B^T}_\kk\!\!\left(\bigl(\eta_{\ll}^{B^T}\bigr)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+\mu_\ll(B)\alpha:\alpha\ge0}\right)\\
 %&=\left(\eta^{B^T}_\ll\!\!\left(\eta_{\kk}^{B^T}\right)^{-1}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+\mu_\ll(B)\alpha:\alpha\ge0}\\
-&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\settt{\eta_\ll^{B^T}(\lambda)+\mu_\ll(B)\alpha:\alpha\ge0}\\
+&=\left(\eta^{B^T}_\ll\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\right)^{-1}\settt{\eta_\ll^{B^T}\!\!\eta_{\kk^{-1}}^{\mu_\kk(B)^T}\!\!\left(\eta^{B^T}_\kk(\lambda)\right)+\mu_\ll(B)\alpha:\alpha\ge0}\\
 %&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\set{\eta_\ll^{B^T}(\lambda)+\mu_\ell(B)\alpha:\alpha\ge0}\\
-&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\settt{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\left(\eta^{B^T}_\kk(\lambda)\right)+\mu_{\ll\kk^{-1}}(B')\alpha:\alpha\ge0}\\
+&=\left(\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\right)^{-1}\settt{\eta^{\mu_\kk(B)^T}_{\ll\kk^{-1}}\!\!\left(\eta^{B^T}_\kk(\lambda)\right)+\mu_{\ll\kk^{-1}}(B')\alpha:\alpha\ge0}\\
 &=\P^{B'}_{\lambda',\ll\kk^{-1}}.
 \end{align*}
   Thus $\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\bigcap_\ll\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\bigcap_\ll\P^{B'}_{\lambda',\ll\kk^{-1}}=\P^{B'}_{\lambda'}$.
@@ -681,7 +681,7 @@ By the definition of a red sequence, the lemma is equivalent to the statement th
 Suppose $\kk$ is a maximal green sequence for $B_0$.
 Lemma~\ref{max green neg cone} implies that, up to permuting columns, $C_t^{B_0;t_0}$ is the negative of the identity matrix.
 In other words, mutating the matrix $\begin{bsmallmatrix}B_0\\I\end{bsmallmatrix}$ by the sequence $\kk$ yields the matrix $\begin{bsmallmatrix}B_r\\-P\end{bsmallmatrix}$ for some permutation matrix $P$.
-\sayS{This proof was not correct as it was not properly taking care of the permutation, please check my fix.}
+  \sayS{This proof was not correct as it was not properly taking care of the permutation, please check my fix.\rd{Looks good to me.}}
 Each mutation in the sequence is at the index of a column such that the bottom half of the matrix has nonnegative entries, and the mutation turns those entries nonpositive.
 Since mutation commutes with negation and with reordering of the columns $\{n+1,\dots 2n\}$, mutating the matrix $\begin{bsmallmatrix}-B_r\\I\end{bsmallmatrix}$ by the sequence $\kk^{-1}$ yields the matrix $\begin{bsmallmatrix}-B_0\\-P^{-1}\end{bsmallmatrix}$, and each mutation is at the index of a column where the bottom half of the matrix is positive.
 Thus $\kk^{-1}$ is a maximal green sequence for $-B_r$.
@@ -837,7 +837,7 @@ The matrix for $\L_{\kk^{-1}}^{B_r^T}$, acting on column vectors, is $G_t^{B_0;t
 \end{proposition}
 \begin{proof}
 By \cite[Proposition~8.13]{universal} we have $\Cone^{B_0;t_0}_t=\eta_{\kk^{-1}}^{B_r^T}(\reals_{\ge0}^n)$, and therefore also ${\eta_\kk^{B_0^T}\bigl(\Cone^{B_0;t_0}_t\bigr)=\reals_{\ge0}^n}$.
-The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_r^T}$ takes the extreme ray of $\reals_{\ge0}^n$ spanned by $\e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $e_1,\ldots,e_n$ on $\g$-vectors at $t_0$ by the sequence of mutations $\kk$.
+The proof of \cite[Proposition~8.13]{universal} shows not only an equality of cones, but also that $\eta_{\kk^{-1}}^{B_r^T}$ takes the extreme ray of $\reals_{\ge0}^n$ spanned by $\e_i$ to the extreme ray of $\Cone^{B_0;t_0}_t$ spanned by the $i\th$ $\g$-vector at $t$ relative to $B_0;t_0$, where the total order on these $\g$-vectors at $t$ is obtained from the order $\e_1,\ldots,\e_n$ on $\g$-vectors at $t_0$ by the sequence of mutations $\kk$.
 \end{proof}
 
 The following is a result of \cite{NZ}.
@@ -890,7 +890,7 @@ The map $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ 
 The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
 We will find the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
 %Since $E^{B_1}_{\ep,k_1}$ is its own inverse, the claim is equivalent to saying that $E^{B_1}_{\ep,k_1}$ is the linear map that agrees with $\eta_{k_1}^{B_0^T}$ on $\Cone_t^{B_0;t_0}$.
-  \sayD{Was this reformulation actually used in the next paragraph?  \rn{No, the next paragraph is the proof of the claim.  We use the reformulation later in the paragraph that starts "We have seen..."  We could move the reformulation later, I guess.  UPDATE:  I'm not sure we use the reformulation at all.  I have now commented it out and rephrased a bit.}}
+  \sayD{\color{orange}Was this reformulation actually used in the next paragraph?  \rn{No, the next paragraph is the proof of the claim.  We use the reformulation later in the paragraph that starts "We have seen..."  We could move the reformulation later, I guess.  UPDATE:  I'm not sure we use the reformulation at all.  I have now commented it out and rephrased a bit.}\rd{Looks good now.}}
 
 By \cite[(1.13)]{NZ}, $\ep$ is the sign of the $k_1$-column of $\bigl(G_t^{-B_1^T;t_1}\bigr)^T$.
 That is, $\ep$ is the sign of the $k_1$-row of $G_t^{-B_1^T;t_1}$, or in other words, the sign of the $k_1$-entry of vectors in $\Cone_t^{-B^T_1;t_1}$.
@@ -904,7 +904,7 @@ By induction on $r$,
 \[\eta_{k_2\cdots k_r}^{B_r^T}\set{\eta_{k_r\cdots k_2}^{B_1^T}(\lambda')+B_r\alpha:\alpha\ge0}\subseteq\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 Applying the homeomorphism $\eta_{k_1}^{B_1^T}$ to both sides, we obtain
 \[\eta_{\kk^{-1}}^{B_r^T}\set{\eta_\kk^{B_0^T}(\lambda)+B_r\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
-\sayS{Was $\eta_{\kk^{-1}}^{B_r^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_r\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}$}
+  \sayS{\color{orange}Was $\eta_{\kk^{-1}}^{B_r^T}\set{\eta_\kk^{B_0^T}(\lambda')+B_r\alpha:\alpha\ge0}\subseteq\eta_{k_1}^{B_1^T}\set{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}$\rd{Looks good}}
 In light of \eqref{ind B0C}, we can complete the proof by showing that
 \[\eta_{k_1}^{B_1^T}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}\subseteq E^{B_1}_{\ep,k_1}\sett{\lambda'+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.\]
 
@@ -949,7 +949,7 @@ Similarly, if $\ep M_{kj}\le0$, then $M_{\col j}=N_{\col j}-|b_{kj}|N_{\col k}$.
 %\end{align*}
 %where $\sigma=\ep\delta\sum_{j=1}^n\gamma_jM_{kj}$ is a positive scalar, because $\delta\sum_{j=1}^n\gamma_jM_{kj}$ is the $k$-entry of $v_i$, which has sign $\ep$.
 
-\sayN{Commented out above is an a alternative to this paragraph that uses sign-coherence of $C_t^{B_1;t_1}$.  If this paragraph is wrong, maybe sign-coherence really was necessary after all.}
+\sayN{\color{orange}Commented out above is an a alternative to this paragraph that uses sign-coherence of $C_t^{B_1;t_1}$.  If this paragraph is wrong, maybe sign-coherence really was necessary after all.\rd{I didn't notice any issues.}}
 Now $v_i=E^{B_1}_{-\ep,k}B_1\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, so writing $\gamma_j$ for the entries of $\bigl(C_t^{B_1;t_1}\bigr)_{\col i}$, we have $v_i=\sum_{j=1}^n\gamma_jM_{\col j}$.
 Write $\set{1,\ldots,n}=S\cup T$ with $S\cap T=\emptyset$ such that $\ep M_{kj}\ge0$ for all $j\in S$ and $\ep M_{kj}\le0$ for all $j\in T$.
 Then
