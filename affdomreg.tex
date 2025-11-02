@@ -979,7 +979,7 @@ We follow \cite{ca4} in considering $m\times n$ extended exchange matrices $\tB$
 We will also consider an $m\times m$ matrix related to $\tB$.
 Write $\tB$ in block form $\begin{bsmallmatrix}B\\R\end{bsmallmatrix}$ and again take $\symmetrizer$ to be the diagonal matrix of skew-symmetrizing constants of~$B$.
 Let $\symmetrizer'$ be the integer diagonal matrix with minimal entries such that $R':=\symmetrizer'R\symmetrizer^{-1}$ has integer entries.
-Define $\BB$ to be the \sayS{Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}\rs{OK}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
+Define $\BB$ to be the \sayS{\color{orange}Can we really use ``the'' here, $R'$ is not unique? \rd{I changed the previous sentence to eliminate any ambiquity.}\rs{OK}} matrix with block form $\begin{bsmallmatrix}B\,&-(R')^T\\R\,&0\end{bsmallmatrix}$.
 Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsmallmatrix}\symmetrizer&0\\0&\symmetrizer'\end{bsmallmatrix}$ and agrees with $\tB$ in columns $1$ to $n$.
   Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
@@ -1013,10 +1013,10 @@ Proposition~\ref{BGCB} says that $\BB_r\bigl(\GG_t^{-\BB_0^T;t_0}\bigr)^T=\bigl(
 Restricted to the first $n$ columns, this says $\BB_r\bigl(\begin{bsmallmatrix}G_t^{-B^T;t_0}&\,0\end{bsmallmatrix}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0$.
 \end{proof}
 
-Given $\lambda\in\reals^m$, define $\P^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-The \newword{dominance region} $\P^\tB_\lambda$ of $\lambda$ with respect to $\tB$ is the intersection $\bigcap_\kk\P^\tB_{\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
+Given $\tilde\lambda\in\reals^m$, define $\P^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+The \newword{dominance region} $\P^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to $\tB$ is the intersection $\bigcap_\kk\P^\tB_{\tilde\lambda,\kk}$ over all sequences~$\kk$ of indices in $\set{1,\ldots,n}$.
 
-We relate the dominance region $\P_\lambda^\tB$ with respect to the extended exchange matrix $\tB$ to the dominance region $\P_\lambda^B$ with respect to the (non-extended) exchange matrix $B$.
+We relate the dominance region $\P_{\tilde\lambda}^\tB$ with respect to the extended exchange matrix $\tB$ to the dominance region $\P_\lambda^B$ with respect to the (non-extended) exchange matrix $B$.
 Let $\Proj_n$ be the projection from $\reals^m$ to $\reals^n$ that ignores the last $m-n$ coordinates.
 The following lemma is immediate.
 
@@ -1027,7 +1027,7 @@ Then $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ as maps on $\real
 
 \begin{proposition}\label{contains proj}
 Let $\tB$ be an extended exchange matrix with underlying exchange matrix $B$.
-If $\lambda\in\reals^m$ and $\lambda'=\Proj_n\lambda\in\reals^n$, then $\Proj_n(\P_\lambda^\tB)\subseteq\P_{\lambda'}^B$.
+  If $\tilde\lambda\in\reals^m$ and $\lambda=\Proj_n\tilde\lambda\in\reals^n$, then $\Proj_n(\P_{\tilde\lambda}^\tB)\subseteq\P_{\lambda}^B$.
 \end{proposition}
 \begin{proof}
 The proposition follows from Lemma~\ref{eta proj}, from the analogous fact for $\bigl(\eta_\kk^{\BB^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{\mu_\kk(\BB)^T}$, and from the fact that 
@@ -1035,7 +1035,7 @@ The proposition follows from Lemma~\ref{eta proj}, from the analogous fact for $
 \end{proof}
 
 Since $\kk$ consists only of indices in $\set{1,\ldots,n}$, the domains of definition of $\eta_\kk^{\BB^T}$ are determined by the domains of definition of $\eta_\kk^{B^T}$.
-Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is $\Proj_n^{-1}\Sigma$ for some domain $\Sigma$ of definition of $\eta_\kk^{B^T}$.
+Specifically, each domain of definition of $\eta_\kk^{\BB^T}$ is $\Proj_n^{-1}\Sigma$ for some domain of definition $\Sigma$ of $\eta_\kk^{B^T}$.
 Accordingly, we define $\Cone_t^{\tB;t_0}$ to be %the nonnegative span of the columns of $\GG_t^{\BB;t_0}$ and the columns of $\begin{bsmallmatrix}0\\-I_{m-n}\end{bsmallmatrix}$.
 $\Proj_n^{-1}\Cone_t^{B;t_0}$.
 Since $\Cone_t^{B_r;t_r}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every seed~$t$, also $\Cone_t^{\tB_r;t_r}=\eta_\kk^{\BB^T}\bigl(\Cone_t^{\tB;t_0}\bigr)$ for every seed~$t$.
@@ -1043,43 +1043,43 @@ Since $\Cone_t^{B_r;t_r}=\eta_\kk^{B^T}\bigl(\Cone_t^{B;t_0}\bigr)$ for every se
 Similarly, we define the mutation fan for $\tB^T$ to be the set $\F_{\tB^T}$ of cones $\Proj_n^{-1}C$ such that $C$ is a cone in the mutation fan $\F_{B^T}$.
 Since $\Proj_n\circ\eta_\kk^{\BB^T}=\eta_\kk^{B^T}\circ\Proj_n$ for sequences $\kk$ of indices in $\set{1,\ldots,n}$, the map $\eta_\kk^{\BB^T}$ is linear on every cone of $\F_{\tB^T}$ and acts as an isomorphism of fans from $\F_{\tB^T}$ to $\F_{\mu_\kk(\tB)^T}$.
 
-To understand dominance regions $\P^\tB_\lambda$, it is enough to consider the case where $\lambda$ has nonzero entries only in positions $1,\ldots,n$.
+To understand dominance regions $\P^\tB_{\tilde\lambda}$, it is enough to consider the case where $\tilde\lambda$ has nonzero entries only in positions $1,\ldots,n$.
 Other dominance regions are obtained by translation, as explained in the following lemma.
 The lemma is immediate, because the domains of definition of a mutation map $\eta_\kk^{\BB^T}$ depend only on the first $n$ coordinates and each $\eta_\kk^{\BB^T}$ is linear on each domain of definition.
 \begin{lemma}\label{after all coefficients are just coefficients}
-If $\lambda$ and $\lambda'$ are vectors in $\reals^m$ that agree in the first $n$ coordinates, then $\P^\tB_{\lambda'}=\P^\tB_\lambda-\lambda+\lambda'$.
+  If $\tilde\lambda$ and $\tilde\lambda'$ are vectors in $\reals^m$ that agree in the first $n$ coordinates, then $\P^\tB_{\tilde\lambda'}=\P^\tB_{\tilde\lambda}-\tilde\lambda+\tilde\lambda'$.
 \end{lemma}
 
 Lemma~\ref{shift} immediately implies the following lemma.
 \begin{lemma}\label{shift extended}
-If $\lambda'=\eta_\kk^{\BB^T}(\lambda)$ and $\tB'=\mu_\kk(\tB)$, then 
+If $\tilde\lambda'=\eta_\kk^{\BB^T}(\tilde\lambda)$ and $\tB'=\mu_\kk(\tB)$, then 
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift extended one}
-$\eta^{\BB^T}_\kk\!\!(\P^\tB_{\lambda,\ll})=\P^{\tB'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
+$\eta^{\BB^T}_\kk\!\!(\P^\tB_{\tilde\lambda,\ll})=\P^{\tB'}_{\tilde\lambda',\ll\kk^{-1}}$ for any $\ll$.
 \item \label{shift extended all}
-$\eta^{\BB^T}_\kk\!\!(\P^\tB_\lambda)=\P^{\tB'}_{\lambda'}$.
+  $\eta^{\BB^T}_\kk\!\!(\P^\tB_{\tilde\lambda})=\P^{\tB'}_{\tilde\lambda'}$.
 \end{enumerate}
 \end{lemma}
 
 The following lemma is proved similarly to Lemma~\ref{block dom} because the relevant matrix $\BB$ can be rearranged to have a diagonal block decomposition.
 
 \begin{lemma}\label{block dom ext}
-If $\tB$ has a block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\\R_1&0\\0&R_2\end{bsmallmatrix}$ and $\lambda\in\reals^n$ has a corresponding decomposition $\begin{bsmallmatrix}\kappa_1\\\kappa_2\\\nu_1\\\nu_2\end{bsmallmatrix}$, define $\tB_i=\begin{bsmallmatrix}B_i\\R_i\end{bsmallmatrix}$ and $\lambda_i=\begin{bsmallmatrix}\kappa_i\\\nu_i\end{bsmallmatrix}$ for $i=1,2$.
-Then $\P_\lambda^\tB=\P_{\lambda_1}^{\tB_1}\times\P_{\lambda_2}^{\tB_2}$.
+If $\tB$ has a block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\\R_1&0\\0&R_2\end{bsmallmatrix}$ and $\tilde\lambda\in\reals^m$ has a corresponding decomposition $\begin{bsmallmatrix}\kappa_1\\\kappa_2\\\nu_1\\\nu_2\end{bsmallmatrix}$, define $\tB_i=\begin{bsmallmatrix}B_i\\R_i\end{bsmallmatrix}$ and $\tilde\lambda_i=\begin{bsmallmatrix}\kappa_i\\\nu_i\end{bsmallmatrix}$ for $i=1,2$.
+  Then $\P_{\tilde\lambda}^\tB=\P_{\tilde\lambda_1}^{\tB_1}\times\P_{\tilde\lambda_2}^{\tB_2}$.
 \end{lemma}
 
 We will prove the following extension of Theorem~\ref{P in B0C}.
 
 \begin{theorem}\label{P in B0C extended}
 Suppose $\kk=k_r\cdots k_1$ is a sequence of indices in $\set{1,\ldots, n}$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
-If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_r$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{\tB_0;t_0}_t$,
-\[\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\tB_r\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
+If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_r$, then for any~$\tilde\lambda$ in the domain of definition of $\eta_\kk^{\BB_0^T}$ that contains $\Cone^{\tB_0;t_0}_t$,
+\[\P^{\tB_0}_{\tilde\lambda,\kk}\subseteq\set{\tilde\lambda+\GG_t^{\BB_0;t_0}\tB_r\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\tilde\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 \begin{proof}
 First, we notice that $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $\BB_r$, or in other words, $\kk$ is a green sequence for $-\BB_r$.
 Indeed, since $\CC_{t_{p-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{p-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_p$ of $\CC_{t_{p-1}}^{-\BB;t_0}$ equals the sign of column $k_p$ of $C_{t_{p-1}}^{-B;t_0}$ whenever $1\le p<r$.
 Thus Theorem~\ref{P in B0C} says that
-\[\P^{\BB_0}_{\lambda,\kk}\subseteq\set{\lambda+\GG_t^{\BB_0;t_0}\BB_r\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
+\[\P^{\BB_0}_{\tilde\lambda,\kk}\subseteq\set{\tilde\lambda+\GG_t^{\BB_0;t_0}\BB_r\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\tilde\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
 The assertion of Theorem~\ref{P in B0C extended} is that the same holds even when, in each term, the conditions $\alpha\in\reals^m,\alpha\ge0$ are strengthened by requiring that $\alpha$ is zero in coordinates $n+1,\ldots,m$.
 
 Thus we run through the proof of Theorem~\ref{P in B0C} with $\BB$ replacing $B$ and $m$ replacing $n$ throughout and these additional conditions on $\alpha$ in all relevant expressions.
