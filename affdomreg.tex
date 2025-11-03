@@ -873,6 +873,7 @@ In light of Proposition~\ref{B0C}, the conclusion of Theorem~\ref{P in B0C} is e
 \begin{proof}[Proof of Theorem~\ref{P in B0C}]
 We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$ by induction on $r$ (the length of $\kk$).
 The base case, where $\kk=\emptyset$, is true because $C_{t_0}^{B_0;t_0}$ is the identity matrix and $\P_{\lambda,\emptyset}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
+  \sayD{I prefer $\varnothing$ to $\emptyset$, any complaints about switching?}
  
 \cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_r;t}$.  
 (The hypothesis that $\kk^{-1}$ is a red sequence for $B_r$ determines $\ep$, but we leave $\ep$ unspecified for now in order to highlight later where this hypothesis is relevant.)
@@ -1094,44 +1095,44 @@ Thus $v_i$ is a nonnegative linear combination of columns $1$ through $n$ of~$N\
 We now use the tools developed so far to give sufficient conditions for the dominance region to be a point.
 We use the conditions to show that the dominance region is always a point when $B$ is of finite type and $\tB$ has linearly independent columns.
 In Section~\ref{rescue sec}, we prove the same fact for $B$ of finite type with no conditions on~$\tB$ (Theorem~\ref{finite P point}).
-In Section~\ref{aff sec}, we prove the same fact for $B$ of affine type, $\tB$ with linearly independent columns, and $\lambda$ in the $\g$-vector fan (Theorem~\ref{affine P point indep}). 
+In Section~\ref{aff sec}, we prove the same fact for $B$ of affine type, $\tB$ with linearly independent columns, and $\tilde\lambda$ in the $\g$-vector fan (Theorem~\ref{affine P point indep}). 
 
 \begin{theorem}\label{P point}  
 Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
-Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\lambda\in\Cone^{\tB_0;t_0}_t$.
-If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_\lambda=\set{\lambda}$.
+Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\tilde\lambda\in\Cone^{\tB_0;t_0}_t$.
+  If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{theorem}
 
 \begin{proof}%[Proof of Theorem~\ref{P point}]
 Let $t'$ be the seed at the end of the maximal red sequence for $B_t$.
 There exists $\ll=\ell_q\ell_{q-1}\cdots\ell_1$ with $t_0=t'_0\overset{\ell_1}{\edge}t'_1\overset{\ell_2}{\edge}\,\cdots\,\overset{\ell_q}{\edge}t'_q=t'$.
-Let $\lambda'=\eta^{\BB_0^T}_\ll\!(\lambda)$.
-Lemma~\ref{shift extended} says $\eta^{\BB_0^T}_\ll\!(\P^{\tB_0}_\lambda)=\P^{\tB'_q}_{\lambda'}$.
-Thus it is enough to prove that $\P^{\tB'_q}_{\lambda'}=\set{\lambda'}$.
+Let $\tilde\lambda'=\eta^{\BB_0^T}_\ll\!(\tilde\lambda)$.
+  Lemma~\ref{shift extended} says $\eta^{\BB_0^T}_\ll\!(\P^{\tB_0}_{\tilde\lambda})=\P^{\tB'_q}_{\tilde\lambda'}$.
+Thus it is enough to prove that $\P^{\tB'_q}_{\tilde\lambda'}=\set{\tilde\lambda'}$.
 Since $\eta_\ll^{\BB_0^T}\bigl(\Cone_t^{\tB_0;t_0}\bigr)=\Cone_t^{\tB'_q;t'}$, we may set $t_0$ to be $t'$ instead and assume there is a maximal red sequence for $B_r$ starting from $t$ and ending at $t_0$.
 (It is well known that the linear independence of the columns is preserved under mutation.
 See \cite[Lemma~1.2]{GSV03} or \cite[Lemma~3.2]{ca3}.)
 
 Let $\kk=k_r\cdots k_1$ be the reverse of the maximal red sequence and define seeds $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
-Then Theorem~\ref{P in B0C extended} says that $\P^{\tB_0}_{\lambda,\kk}$ is contained in $\set{\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+Then Theorem~\ref{P in B0C extended} says that $\P^{\tB_0}_{\tilde\lambda,\kk}$ is contained in $\set{\tilde\lambda+\tB_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
 Since $\kk^{-1}$ is a maximal red sequence for $B_r$, or in other words a maximal green sequence for $-B_r$, every column of $C_{t_0}^{-B_r;t}$ has negative sign, so $\Cone_{t_0}^{B_r^T;t}=\set{x\in\reals^n:x^TC_{t_0}^{-B_r;t}\ge0}$ consists of vectors with nonpositive entries.
 Since $\reals_{\le0}^n$ is a cone in the mutation fan $\F_{-B_r}$ (for example, combining \mbox{\cite[Proposition~7.1]{universal}}, \mbox{\cite[Proposition~8.9]{universal}}, and sign-coherence of $C$-vectors) and also $\Cone_{t_0}^{B_r^T;t}$ is a cone in $\F_{-B_r}$, we see that $\Cone_{t_0}^{B_r^T;t}=\reals_{\le0}^n$.
 Thus, up to permuting columns, $C_{t_0}^{-B_r;t}$ is the negative of the identity matrix.
-We see that $\P^{\tB_0}_{\lambda,\kk}\subseteq\set{\lambda-\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+We see that $\P^{\tB_0}_{\tilde\lambda,\kk}\subseteq\set{\tilde\lambda-\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 
-Since also $\P^{\tB_0}_{\lambda,\emptyset}=\set{\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is has linearly independent columns, we conclude that $\P^{\tB_0}_\lambda=\set{\lambda}$.
+  Since also $\P^{\tB_0}_{\tilde\lambda,\emptyset}=\set{\tilde\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is has linearly independent columns, we conclude that $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{proof}
 
 Taking care of the appropriate change in notations and conventions the result we just established provides a completely combinatorial proof of \cite[Lemma 3.4.12]{FanQin}.
-\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial? \rd{``elementary proof''?} \rs{I am not sure about elementary: we have a theorem, he has a lemma...}} 
+\sayS{Added this sentence. Should we say geometric and/or linear algebraic instead of combinatorial? \rd{``elementary proof''?} \rs{I am not sure about elementary: we have a theorem, he has a lemma...} \rd{I just mean that the proof is not conceptual and works directly from the definitions.}} 
 
 \begin{theorem}\label{finite P point indep}  
 Suppose $\tB$ is an $m\times n$ extended exchange matrix with linearly independent columns such that $B$ is of finite type.
-Then $\P^\tB_\lambda=\set{\lambda}$ for any $\lambda\in\reals^m$.
+  Then $\P^\tB_{\tilde\lambda}=\set{\tilde\lambda}$ for any $\tilde\lambda\in\reals^m$.
 \end{theorem}
 
-Since $B$ is of finite type, every $\lambda\in\reals^m$ is in some $\Cone^{\tB_0;t_0}_t$ for some seed $t$.
+Since $B$ is of finite type, every $\tilde\lambda\in\reals^m$ is in some $\Cone^{\tB_0;t_0}_t$ for some seed $t$.
 Thus Theorem~\ref{finite P point indep} follows from Theorem~\ref{P point} and the following proposition.
 
 \begin{proposition}\label{fin red}
@@ -1150,7 +1151,7 @@ In this section, we strengthen Theorem~\ref{finite P point indep} by removing th
 
 \begin{theorem}\label{finite P point}  
 Suppose $\tB$ is an $m\times n$ extended exchange matrix such that $B$ is of finite type.
-Then $\P^\tB_\lambda=\set{\lambda}$ for any $\lambda\in\reals^m$.
+  Then $\P^\tB_{\tilde\lambda}=\set{\tilde\lambda}$ for any $\tilde\lambda\in\reals^m$.
 \end{theorem}
 
 We had expected the proof of Theorem~\ref{finite P point} to be easy and uniform, but we did not find an easy or uniform proof.  
@@ -1224,6 +1225,7 @@ A lamination consists of a set of \newword{compatible} (i.e.\ noncrossing) curve
 Any collection of weighted curves joining the edges of the polygon has an associated vector of shear coordinates and there is a unique lamination having the same shear coordinates.
 Maximal sets of compatible curves have cardinality~$n$.
 If a lamination has fewer than $n$ curves, we always extend it to a set of $n$ compatible curves by adjoining additional curves with weight~$0$.
+  \sayD{The comment below about extending by zeros was also addressed here.}
 The way in which this is done will not affect the arguments below.
 Thus the combinatorics of laminations is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
 
@@ -1256,7 +1258,7 @@ They strictly disagree in sign if and only if~$\gamma$ and~$\theta_i$ are not co
 What is remarkable about these properties is not that we were able to find a set of curves satisfying them, but rather that the laminations that we are forced to consider consist of a set of curves with these properties.
 
 In order to compute $\P^B_\lambda$, we consider the weighted lamination $\Lambda$ such that $\lambda$ is the negation of the shear coordinates of $\Lambda$ with respect to the triangulation~$T$.
-\sayN{\color{orange}Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.\rs{OK}}
+\sayN{Modified following sentence.  It said ``This choice of $\Lambda$ ensures that we may compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by...''  But there is nothing special about $\Lambda$ that lets us compute mutation maps that way.  That's just how you compute mutation maps in the surfaces model.\rs{OK} \rd{I think that sentence was meant to be refering to the negation present in the choice of $\Lambda$, but it reads just fine without it.}}
 We can compute $\eta^{B^T}_{\kk^\ell}(\lambda)$ by reading the negative shear coordinates of $\Lambda$ with respect to a rotation of $T$, specifically the rotation $\ell$ units counterclockwise that corresponds to flipping the arcs of $T$ in the order specified by $\kk^\ell$.
 (See \cite[Theorem~12.6]{cats2}, \cite[Theorem~4.3]{unisurface}, and \cite[Section~5]{unisurface}.)
 \marginN{\color{orange}Added the following.  We need it because later we're going to ask for $L'_p$ to be the unique curve $\neq L_p$ that is compatible with the others.  Without extending, we don't get uniqueness.\rs{OK}}
@@ -1266,7 +1268,7 @@ We label the curves of the lamination~$\Lambda$ in some order as $L_1,L_2,\ldots
 
 For each $\ell\in\integers$, a point $x\in \P^B_{\lambda,\kk^\ell}$ is of the form $\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(\eta_{\kk^\ell}^{B^T}(\lambda)+\mu_{\kk^\ell}(B)\alpha^{(\ell)}\bigr)$ for some $\alpha^{(\ell)}$ with nonnegative entries $a_1^{(\ell)},\ldots,a_n^{(\ell)}$.
 For convenience, we also define $a_0^{(\ell)}=a_{n+1}^{(\ell)}=0$.
-In the $(n+3)$-gon model, such a point $x$ is obtained as follows:
+In the $(n+3)$-gon model, such a point $x$ is obtained as follows.
 Rotate $T$ by $\ell$ units counterclockwise to obtain a triangulation~$T'$.
 \sayN{\color{orange}Removed ``Observe that'' because we already said it in the previous paragraph, and it's not an observation, it's a result that we have to quote.'' \rs{OK}}
 Reading the shear coordinates of $\Lambda$ with respect to the rotated triangulation $T'$ is the same as applying the mutation map $\eta^{B^T}_{\kk^\ell}$ to $\lambda$.
@@ -1277,7 +1279,7 @@ The description above describes ${x=\bigl(\eta_{\kk^\ell}^{B^T}\bigr)^{-1}\bigl(
 However, it will be convenient to take advantage of the fact that rotations of the $(n+3)$-gon commute with the other operations that produce a point $x$, and thus construct such an $x\in \P^B_{\lambda,\kk^\ell}$ without ever rotating the triangulation.
 This will allow us to make use of the remarkable properties of the collection $\set{\theta_1,\ldots,\theta_n}$.
 
-So instead we construct a point $x\in \P^B_{\lambda,\kk^\ell}$ as follows:
+So instead we construct a point $x\in \P^B_{\lambda,\kk^\ell}$ as follows.
 First rotate $\Lambda$ clockwise $\ell$ units to obtain a lamination $\Lambda^{(\ell)}$
 with curves $(L_1)^{(\ell)},(L_2)^{(\ell)},\ldots,(L_n)^{(\ell)}$ weighted $w_1,\ldots,w_n$ respectively.
 Then find the unique lamination $\Theta^{(\ell)}$ whose shear coordinates with respect to~$T$ are~$-B\alpha^{(\ell)}$.
@@ -1314,7 +1316,7 @@ The negative of these shear coordinates is~$x$.
 Now suppose $x\in\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$.
 By the construction above, for each $\ell$, the vector~$x$ is the shear coordinates with respect to $T$ of a rotation of a lamination $X^{(\ell)}$ as above.
 Since there is a unique lamination associated to each vector, we obtain the following fact, which we refer to below as the \newword{main observation}:  \sayN{\color{orange}I wanted to make the following sentence more precise by saying what the rotation is.  So I added the ``specifically'' sentence.\rs{OK}}
-All of the laminations $X^{(\ell)}$ for $\ell\in\integers$ are related by rotations.
+all of the laminations $X^{(\ell)}$ for $\ell\in\integers$ are related by rotations.
 Specifically, $X^{(\ell)}$ is obtained by rotating $X^{(0)}$ clockwise $\ell$ units.
 
 We will show that $\alpha^{(\ell)}=0$ for all $\ell$, or in other words that $a_1^{(\ell)}=\cdots=a_n^{(\ell)}=0$.
@@ -1412,13 +1414,13 @@ Let $\Lambda$ be the weighted quasi-lamination such that $\lambda$ is the negati
 Quasi-laminations are a variant of laminations with the property that the curves allowed in quasi-laminations are in bijection with the tagged arcs.
 (See \cite[Section~4]{unisurface}.)
 A quasi-lamination $\Lambda$ in the once-punctured $n$-gon is a pairwise compatible set of curves, each with a real weight.
-Some of the curves connect an edge of the $n$-gon to \emph{different} edge.
+Some of the curves connect an edge of the $n$-gon to a \emph{different} edge.
 The two edges must be non-adjacent, unless the curve and the two edges enclose the puncture.
 The remaining curves have an endpoint on an edge and, at the other end, spiral into the puncture in either the clockwise or counterclockwise direction.
-In the once-punctured $n$-gon, there are two differences between laminations and quasi-laminations:
+In the once-punctured $n$-gon, there are two differences between laminations and quasi-laminations.
 First, a curve with both endpoints on the same edge of the $n$-gon, going around the puncture, is \emph{not} allowed in a quasi-lamination.
 Second, while the notion of compatibility is ``non-intersecting'' for most pairs of curves, there is one exception:  
-For each side, the two curves starting on that side and spiraling around the puncture in opposite directions \emph{are} compatible, even though they intersect.
+for each side, the two curves starting on that side and spiraling around the puncture in opposite directions \emph{are} compatible, even though they intersect.
 
 The key properties of laminations also hold for quasi-laminations, specifically the bijection (shear coordinates) between quasi-laminations and vectors \cite[Theorem~4.4]{unisurface} and the fact that applying $\eta^{B^T}$ to vectors corresponds to flipping a sequence of tagged arcs in the initial triangulation \cite[Theorem~4.3]{unisurface}.
 In particular, the negative of the shear coordinate vector of $\Lambda$ with respect to a rotation of $T$ by $\ell$ units, with taggings swapped when $\ell$ is odd, is $\eta^{B^T}_{\kk^\ell}(\lambda)$.
@@ -1429,9 +1431,9 @@ The curves of $\Lambda$ are $L_1,L_2,\ldots,L_n$, with weights $w_1,\ldots,w_n$.
 
 As in type A, we can describe a point $x\in\P^B_{\lambda,\kk^\ell}$ directly using the definition,  % (rotating $T$, constructing the lamination whose shear coordinates are the shear coordinates of $\Lambda$ plus $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}$, then rotating $T$ back).
 but here we skip directly to the more convenient description:
-To construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ clockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd to obtain a lamination $\Lambda^{(\ell)}$.
-We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
+to construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ clockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd to obtain a lamination $\Lambda^{(\ell)}$.
 
+We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in the right picture of  Figure~\ref{d T fig}.
 The curve $\theta_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
 The curve $\theta_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
@@ -1458,7 +1460,7 @@ The vector $x$ is obtained by rotating $X^{(\ell)}$ counterclockwise $\ell$ unit
 
 Suppose $x=\lambda+B\alpha^{(0)}$ is in $\bigcap_{\ell\in\integers}\P^B_{\lambda,\kk^\ell}$, so that $x$ determines a lamination $X^{(\ell)}$ for all $\ell\in\integers$.
 As in type A, we have the \newword{main observation}:
-For any $\ell\in\integers$, the lamination $X^{(\ell)}$ is obtained by rotating~$X^{(0)}$ by clockwise $\ell$ units, swapping spiral directions if $\ell$ is odd.
+for any $\ell\in\integers$, the lamination $X^{(\ell)}$ is obtained by rotating~$X^{(0)}$ clockwise by $\ell$ units, swapping spiral directions if $\ell$ is odd.
 
 The crux of the proof is that the curves $\set{\theta_1,\ldots,\theta_n}$ have the three \newword{remarkable properties} described in the type-A case, substituting ``rotations that appropriately swap spirals'' for ``rotations'' and ``quasi-laminations'' for ``laminations''.
 When the three properties are verified, the proof is then completed precisely as in the type-A case, with the same substitutions.
@@ -1475,7 +1477,7 @@ The stable automorphism $\sigma$ has orbits $\set{n}$ and $\set{i,2n-i}$ for $i=
 Since $i$ and $2n-i$ are in the same orbit for all $i=1,\ldots,n-1$, we can ask for $\kk$ to be an orbit sequence, and therefore every sequence appearing in Proposition~\ref{finite P point bip} is an orbit sequence.
 Thus the type-C case of the theorem follows from the type-A case and Theorem~\ref{fold dom reg}.
 
-Similarly, a bipartite exchange matrix of type $B_n$ is obtained from a bipartite exchange matrix of type $D_{n+1}$ by folding with respect to a stable automorphism whose only nontrivial orbit consists of the two ``antennae'' of the Cartan matrix.
+Similarly, a bipartite exchange matrix of type $B_n$ is obtained from a bipartite exchange matrix of type $D_{n+1}$ by folding with respect to a stable automorphism whose only nontrivial orbit consists of the two ``antennae'' of the Dynkin diagram.
 The two antennae are in the same part of the bipartition, so the type-B case of the theorem similarly follows from the type-D case.
 
 \medskip
@@ -1521,12 +1523,12 @@ Then $x$ has strictly positive dot product with every nonzero column of $B$, so 
 By Lemma~\ref{shift extended}, it is enough to prove the theorem for any exchange matrix mutation equivalent to~$\tB$.
 Thus, since every exchange matrix of finite type is mutation equivalent to a bipartite exchange matrix of finite type, we may as well assume that $B$ is bipartite, and thus salient by Lemma~\ref{bip sal}.
 
-Suppose $\tB$ is $m\times n$ and $B$ is bipartite of finite type and let $\lambda\in\reals^m$.
-Combining Theorem~\ref{finite P point no} with Proposition~\ref{contains proj}, we see that $\P_\lambda^\tB\subseteq\Proj_n^{-1}(\set{\lambda})$.
-But also $\P_\lambda^\tB\subseteq\P_{\lambda,\emptyset}^\tB=\set{\lambda+\tB\alpha:\alpha\ge0}$.
-Therefore $\P_\lambda^\tB\subseteq\set{\lambda+\tB\alpha:\alpha\ge0,B\alpha=0}$.
+  Suppose $\tB$ is $m\times n$ and $B$ is bipartite of finite type and let $\tilde\lambda\in\reals^m$ with $\lambda=\Proj_n(\tilde\lambda)$.
+  Combining Theorem~\ref{finite P point no} with Proposition~\ref{contains proj}, we see that $\P_{\tilde\lambda}^\tB\subseteq\Proj_n^{-1}(\set{\lambda})$.
+  But also $\P_{\tilde\lambda}^\tB\subseteq\P_{\tilde\lambda,\emptyset}^\tB=\set{\tilde\lambda+\tB\alpha:\alpha\ge0}$.
+  Therefore $\P_{\tilde\lambda}^\tB\subseteq\set{\tilde\lambda+\tB\alpha:\alpha\ge0,B\alpha=0}$.
 Since $B$ is salient, if $\alpha\ge0$ and $B\alpha=0$, then $\alpha=0$.
-Thus $\P_\lambda^\tB=\set{\lambda}$.
+  Thus $\P_{\tilde\lambda}^\tB=\set{\tilde\lambda}$.
 \end{proof}
 
 
