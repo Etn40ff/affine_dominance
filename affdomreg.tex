@@ -1727,7 +1727,7 @@ $c$-compatibility of roots in the same factor can be understood by picturing the
 
 \begin{remark}
   The roots appear as ``tubes'' in the cycle (in the sense of graph associahedra), and $c$-compatibility is the usual compatibility of tubes:
-  either the tubes are nested or there is at least one vertex between them on both sides.
+  either the tubes are nested \sayD{should this say ``either the roots are nested''?} or there is at least one vertex between them on both sides.
   %However, the representation theory literature uses the term ``tubes'' for the components
   However, this terminology conflicts with the representation theory literature use of the term ``tubes'', so we will avoid the term altogether.
 \end{remark}
@@ -1764,11 +1764,8 @@ The next two assertions are \cite[Proposition~3.12(8)]{affdenom}.
 The hyperplane $\set{v\in V:K(\gamma_c,v)=0}$ is the direct sum of all eigenspaces of $c$, so $c^\ell$ fixes this subspace pointwise.
 Write $\tau_c^i(\beta)$ as $q\gamma_c+v$ with $K(\gamma_c,v)=0$. \sayD{Why is it clear that this can be done?  \rn{Because the subspace $\set{v\in V:K(\gamma_c,v)=0}$ is a hyperplane and $\gamma_c$ is not in the hyperplane (i.e. $K(\gamma_c,\gamma_c)\neq0$.  But probably this needs to be said/jusitified}}
 Since $K$ is positive semidefinite and $\gamma_c$ is not a multiple of $\delta$, we have $q>0$ for $i>I$ by Assertion~\ref{K pos} and $q<0$ for $i<I$ by Assertion~\ref{K neg}.
-Applying Assertion~\ref{c pos} and using the fact that $c\gamma_c=\gamma_c+\delta$, we have $\tau_c^\ell(\tau_c^i(\beta))=q\ell\delta+q\gamma_c+v$ and $\tau_c^{-\ell}(\tau_c^i(\beta))=-q\ell\delta+q\gamma_c+v$, and Assertions~\ref{exists} and~\ref{lim} follow. \sayD{\color{orange}Should the last two equalities here also include a $q\gamma_c$?  \rn{Yes, fixed.}}
+Applying Assertion~\ref{c pos} and using the fact that $c\gamma_c=\gamma_c+\delta$, we have $\tau_c^\ell(\tau_c^i(\beta))=q\ell\delta+q\gamma_c+v$ and $\tau_c^{-\ell}(\tau_c^i(\beta))=-q\ell\delta+q\gamma_c+v$, and Assertions~\ref{exists} and~\ref{lim} follow.
 \end{proof}
-
-
-
 
 A maximal set of pairwise $c$-compatible roots in $\AP{c}$ is called a \newword{$c$-cluster}.
 A \newword{real $c$-cluster} is a $c$-cluster that does not contain $\delta$.
@@ -1777,7 +1774,7 @@ An \newword{imaginary $c$-cluster} is a $c$-cluster that contains $\delta$.
 Imaginary $c$-clusters have $n-1$ roots and span cones outside the $\dd$-vector fan.
 
 There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
-The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}. \sayD{\color{orange}Is there more here than Salvatore and my result that we can transform $\dd$-vectors to $\g$-vectors in acyclic types?  \rn{Yes, this is also about the parts of the fan $\Fan_c(\RS)$ that are outside the $\dd$-vector fan, or equivalently the parts of $\nu_c(\Fan_c(\RS))$ that are outside the $\g$-vector fan.} }
+The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}. 
 The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to the \newword{imaginary cones} of $\nu_c(\Fan_c(\RS))$.
 These cover the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call the \newword{imaginary wall}~$\d_\infty$.
 The imaginary wall is contained in $\delta^\perp$.
@@ -1838,7 +1835,7 @@ Then $I_+$ and $I_-$ are implicitly defined to realize ``large enough'' or ``sma
 
 Since $x$ is not in $\d_\infty$, it is in a full-dimensional cone of $\nu_c(\Fan_c(\RS))$.
 Thus $(\nu_c)^{-1}(x)$ is in a maximal cone of $\Fan_c(\RS)$ spanned by some $\beta_1,\ldots,\beta_n$, indexed with $\beta_1,\ldots,\beta_p\in\AP{c}\setminus\APT{c}$ and $\beta_{p+1},\ldots,\beta_n\in\APT{c}$ with $p\ge2$.
-\sayS{This was $p\ge 1$}
+  \sayS{\color{orange}This was $p\ge 1$ \rd{Looks good}}
 There exist $q_1,\ldots,q_n\ge0$ such that $(\nu_c)^{-1}(x)=\sum_{j=1}^nq_j\beta_j$ with $q_j>0$ for at least one $j\in\set{1,\ldots,p}$.
 By Proposition~\ref{delta limit}, there exist integers $I_1,\ldots,I_p$ and positive real $a_1,\ldots,a_p$ such that $\tau_c^{i+\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i>I_j$ and $\tau_c^{i-\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i<I_j$, for all $j=1,\ldots,p$.
 Set $a=\sum_{j=1}^p q_ja_j>0$.
@@ -1896,7 +1893,7 @@ If $\lambda\in\d_\infty$, then $\P^{B_0}_\lambda\subseteq\d_\infty$.
 \begin{proof}
 By definition, $\P^{B_0}_\lambda\subseteq\P^{B_0}_{\lambda,\emptyset}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
 Write the entries of $\lambda$ as $(\lambda_1,\ldots,\lambda_n)$.
-Since $B_0$ is acyclic and its first row has nonnegative entries, in particular every point in $\P^{B_0}_\lambda$ has first coordinate greater than or equal to $\lambda_1$.
+Since $B_0$ is acyclic and its first row has nonnegative entries, every point in $\P^{B_0}_\lambda$ has first coordinate greater than or equal to $\lambda_1$.
 Also, since $\delta$ has all entries positive and the first row of $B_0$ is nonzero, $B_0\delta$ has first coordinate strictly positive.
 
 Let $\ell$ be the order of $\eta^{B_0^T}_{12\cdots n}$ on $\d_\infty$ (see Proposition~\ref{eta nice}.\ref{eta is c}).
@@ -1946,7 +1943,7 @@ The simple-co-root coordinates of $C_c^i(v)\ck$ give the $C$-vector of the seed 
 Thus by \cite[Theorem~1.1]{framework}, the exchange matrix at the seed associated to $v$ has $ij$-entry $\omega_c(C_c^i(v)\ck,C_c^j(v))$.
 
 When $B_0$ is of finite type (equivalently, when $W$ is finite), the $c$-Cambrian fan coincides with the $\g$-vector fan, but otherwise (when $W$ is infinite), the $c$-Cambrian fan is not complete and is a proper subfan of the $\g$-vector fan.
-When $B_0$ is of affine type (equivalently, when $W$ is of affine type), the $\g$-vector fan is the \newword{doubled $c$-Cambrian fan}: the union of the \mbox{$c$-Cambrian} fan and the image of the \mbox{$c^{-1}$-Cambrian} fan under the antipodal map. \sayD{\color{orange}"antipodal map"?  \rn{Yes, fixed}} % (more briefly, the Cambrian fan and the \newword{opposite Cambrian fan}).
+When $B_0$ is of affine type (equivalently, when $W$ is of affine type), the $\g$-vector fan is the \newword{doubled $c$-Cambrian fan}: the union of the \mbox{$c$-Cambrian} fan and the image of the \mbox{$c^{-1}$-Cambrian} fan under the antipodal map.  % (more briefly, the Cambrian fan and the \newword{opposite Cambrian fan}).
 In particular, the $c$-Cambrian fan covers the open halfspace $\set{x\in V^*:\br{x,\delta}>0}$.
 
 \begin{proposition}\label{tack on c}
@@ -1983,7 +1980,7 @@ Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mu
 Let $t_0$ be a seed with exchange matrix $B_0$.
 Then there exists a $c$-sortable element~$v$ such that, writing $\kk$ for the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$ and defining seeds ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$, the exhange matrix at $t$ is $B$.
 These $v$ and $t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$.
-\sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so? \rs{I tried rephrasing}}
+  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so? \rs{I tried rephrasing} \rd{Looks good to me}}
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
@@ -2000,10 +1997,9 @@ Thus we choose $i$ large enough (i.e. choose $j$ large enough) so that $\bigl(G_
 But for $0\le p\le jn$, the prefix $a_1\cdots a_p$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
 By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_p}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_p$ to the positive cone.
 The resulting cone $\Cone^{B_0;t_0}_{t_p}$ is therefore contained in the Tits cone,
-\sayD{Should we introduce the Tits cone at the start of this section?  \rn{No objection.} \rs{Maybe not: we give lots of baground for granted and I do not expect that anyone can read up to here without knowing what the Tits cone is}} 
 so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with $\delta$.
 The cone $\Cone^{B_0;t_0}_{t_p}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
-We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here?}
+  We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here? \rd{Probably}}
 \end{proof}
 
 
@@ -2051,7 +2047,7 @@ All imaginary cones in $\F_{B^T}$ are contained in $(\delta^B)^\perp$.
 
 We refer to Remark~\ref{danger: co-roots} for clarification on how to interpret Proposition~\ref{delta is the man}.\ref{im hyp} in specific examples.
 See also the last part of the following proof.
-\sayS{I am not sure that I understand what is this paragraph meant to explain. Are we talking about how to interpret the orthogonality relation?}
+\sayS{I am not sure that I understand what is this paragraph meant to explain. Are we talking about how to interpret the orthogonality relation? \rd{Seems like it}}
 
 \begin{proof}%[Proof of Proposition~\ref{delta is the man}]
   The first claim in Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries. \sayN{\color{orange}Rest of this paragraph is what I added to prove the added statement.\rs{OK}}
@@ -2063,7 +2059,7 @@ Lemma~\ref{any prefix} says that for any ${p\in\set{0,1,\ldots,r}}$, the prefix 
 The corresponding postfix of $\kk$ and the seed $t_p$ have the same properties we used to define $\delta^B$, so writing $B_p$ for the exchange matrix at $t_p$, we can use $t_p$ to define $\delta^{B_p}$.
 Thus we argue by induction on $r$ for the remaining assertions.
 
-Assertion~\ref{im ray} is true by Lemma~\ref{nu delta} when $m=0$ (so that $t=t_0$ and $B=B_0$) because then $\delta^B=\delta$.
+Assertion~\ref{im ray} is true by Lemma~\ref{nu delta} when $r=0$ (so that $t=t_0$ and $B=B_0$) because then $\delta^B=\delta$.
 By induction, $-\frac12B_{r-1}\delta^{B_{r-1}}$ is the shortest integer vector in the imaginary ray of $\F_{B_{r-1}^T}$.
 The mutation map $\eta_{k_r}^{B_{r-1}^T}$ takes the shortest integer vector in the imaginary ray of $\F_{B_{r-1}^T}$ to the shortest integer vector in the imaginary ray of $\F_{B^T}$. 
 Thus we check that $\eta_{k_r}^{B_{r-1}^T}(-\frac12B_{r-1}\delta^{B_{r-1}})=-\frac12B\delta^{B}$.
@@ -2133,14 +2129,13 @@ We will also use Proposition~\ref{delta is the man} to prove the following theor
 
 \begin{theorem}\label{affine P point indep}
 Suppose $\tB$ is an extended exchange matrix with linearly independent columns such that $B$ is of affine type.
-If $\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_\lambda=\set{\lambda}$.
+  If $\tilde\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{theorem}
 
 Theorem~\ref{affine P point indep} follows from Theorem~\ref{P point} and the following proposition.
 
 \begin{proposition}\label{aff red}
 If $B$ is an exchange matrix of affine type, then $B$ admits a maximal green sequence and a maximal red sequence.
-\sayD{\color{orange}This argument is remarkably similar to the proof of Proposition 2.28 so I thought it could make sense to combine them, but it isn't clear if there is any way for this to actually work with the structure of the paper. \rs{I am ok either way; probably it is more efficient to leave things as is}.  \rn{I vote efficiency.}}  
 \end{proposition}
 \begin{proof}  
 Because $B$ is of affine type if and only if $-B$ is of affine type, it is enough to prove that every $B$ of affine type admits a maximal green sequence.
@@ -2153,12 +2148,12 @@ The $\g$-vector cones visited by this define a maximal green sequence.
 \end{proof}
 
 \begin{remark}\label{affine P point remark}
-Eventually, putting together Theorems~\ref{finite P point}, \ref{affine P point indep}, and~\ref{affine main extended}, we will have characterized all dominance regions in finite type, all dominance regions in affine type with the condition that $\tB$ has linearly independent columns, and additionally, with no condition on linear independence, all dominance regions $\P_\lambda^\tB$ in affine type such that the projection of $\lambda$ to its first $n$ coordinates is in the imaginary wall.
+  Eventually, putting together Theorems~\ref{finite P point}, \ref{affine P point indep}, and~\ref{affine main extended}, we will have characterized all dominance regions in finite type, all dominance regions in affine type with the condition that $\tB$ has linearly independent columns, and additionally, with no condition on linear independence, all dominance regions $\P_{\tilde\lambda}^\tB$ in affine type such that the projection of $\tilde\lambda$ to its first $n$ coordinates is in the imaginary wall.
 The piece that is missing for a characterization of all dominance regions in affine type is the following statement that is likely to be true.
 
 \begin{probable}\label{affine P point} 
 Suppose $\tB$ is an $m\times n$ extended exchange matrix such that $B$ is of affine type.
-If $\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_\lambda=\set{\lambda}$.
+  If $\tilde\lambda\in\Cone^{\tB;t_0}_t$ for some $t$, then $\P^\tB_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{probable}
 
 We have not pursued this result because the results that we do prove are sufficient for our purposes (related to pointed bases and theta functions, as explained in the introduction).
@@ -2188,8 +2183,7 @@ In fact, the following stronger statement holds \cite[Theorem~3.5]{Seven}
 An acyclic $n\times n$ exchange matrix with $n\ge3$ is mutation-finite if and only if its underlying Cartan matrix is of finite or affine type.
 \end{theorem}
 
-We also point out the following obvious and well known fact,  \sayN{\color{orange}Surely this is well known!  Reference? \rd{I might call it an "obvious fact" instead and leave off a reference, though I suppose it was probably stated somewhere already.}  \rn{OK,  done.}}
-which holds because, for any subset $I$ of $\set{1,\ldots,n}$, and any sequence $\kk$ of indices in $I$, if $B'=[b'_{ij}]=\mu_\kk(B)$, then $\mu_\kk([b_{ij}]_{i,j\in I})=[b'_{ij}]_{i,j\in I}$.
+We also point out the following obvious and well known fact, which holds because, for any subset $I$ of $\set{1,\ldots,n}$, and any sequence $\kk$ of indices in $I$, if $B'=[b'_{ij}]=\mu_\kk(B)$, then $\mu_\kk([b_{ij}]_{i,j\in I})=[b'_{ij}]_{i,j\in I}$.
 %(The analogous fact for 
 
 \begin{proposition}\label{mut fin sub}
@@ -2228,7 +2222,7 @@ Suppose $x$ and $x'$ are exchangeable cluster variables in a cluster pattern wit
 Then every exchange relation for $x$ and $x'$ is the same:
 it involves the same two cluster monomials with the same coefficients.
 \end{lemma}
-\sayS{Is this lemma really new?}
+\sayS{Is this lemma really new? \rd{It seems similar to a statement in the GSV book, I'll check it in my classroom tomorrow.}}
 \begin{proof}
 Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
 Sign-coherence of $C$-vectors (explained earlier in Section~\ref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
@@ -2241,7 +2235,7 @@ Now $N$ is a monomial in the coefficient variables times a cluster monomial, and
 
 \begin{remark}\label{4.3}
 It appears that, to extend Lemma~\ref{exch ind} to arbitrary coefficients, one needs \cite[Conjecture~4.3]{ca4}, which says that the exchange graph does not depend on the choice of coefficients.
-\sayN{As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? Is it worth saying anything more than we say now?  I'm leaning towards "no".\rs{I am also voting no}  \okn }
+  \sayN{\color{orange}As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? Is it worth saying anything more than we say now?  I'm leaning towards "no".\rs{I am also voting no}  \okn \rd{Same}}
 \end{remark}
 
 \subsubsection{Salient exchange matrices of affine type}
@@ -2427,7 +2421,6 @@ We use \cite[Corollary~4.18]{afframe}, which applies to the acyclic affine excha
 The notation $\DF_c$ in \cite{afframe} refers to the doubled Cambrian fan, which coincides with the $\g$-vector fan \cite[Corollary~1.3]{afframe}.
 As part of \cite[Corollary~4.18]{afframe}, if an $(n-2)$-dimensional cone $F$ of the $\g$-vector fan of $B_0$ is contained in infinitely many maximal cones of the $\g$-vector fan, then $F$ is in the boundary of the support of the $\g$-vector fan.
 Thus $F$ is also in the imaginary wall $\d_\infty$, and since $F$ is a cone in the $\g$-vector fan, it is in the boundary of~$\d_\infty$.
-\sayD{\color{orange}Should these be $\d_\infty$?  \rn{yes, fixed.}}
 
 Now, suppose some $\begin{bsmallmatrix}0&b_{ij}\\b_{ji}&0\end{bsmallmatrix}$ is of affine type (and in particular of infinite type).
 Then, in the $\g$-vector fan of $B$, there are infinitely many maximal cones of the $\g$-vector fan that contain the cone $F$ spanned by the $\g$-vectors $\set{\e_k:k\not\in\set{i,j}}$.
@@ -2478,7 +2471,7 @@ The two indices of $B_{44}$ are the \newword{affine indices} and $B_{44}$ is the
 %The \newword{tube components} of $\set{1,\ldots,n}$ are whichever of the sets $\set{1,\ldots,p_1}$, $\set{p_1+1,\ldots,p_1+p_2}$, and $\set{p_1+p_2+1,\ldots,n-2}$ are nonempty.
 
 \begin{proposition}\label{A and q-l}
-For $\ell=1,2,3$, if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of finite type $A_{p_\ell}$ and the special index in $B_{\ell\ell}$ is a quasi-leaf.
+  For $\ell=1,2,3$, if $p_\ell>0$, then $B_{\ell\ell}$ is an exchange matrix of finite type $A_{p_\ell}$ and the special index in $B_{\ell\ell}$ is a quasi-leaf.
 \end{proposition}
 \begin{proof}
 Write $\beta_0,\beta_1,\ldots,\beta_{p_\ell}$ for the simple roots of the component of $\RST{c}$ associated to $B_{\ell\ell}$, numbered so that $\beta_0$ is the unique one of these roots that does not occur in the support of $\gamma_i$ for $i\in I_\ell$.
@@ -2541,7 +2534,7 @@ In other words, $\omega_c(\delta,\phi)=0$, so Proposition~\ref{om del fin} says 
 Write $E_c$ for the $n\times n$ matrix $1-[-B_0]_+$ and $E_{c^{-1}}$ for the $n\times n$ matrix $1-[B_0]_+$.
 Then $B_0=E_c-E_{c^{-1}}$.
 The piecewise linear map~$\nu_c$, when applied to vectors with nonnegative entries, is defined by the matrix $E_c$ (taking simple-root coordinates to fundamental-weight coordinates).
-Furthermore, a result of Howlett \cite[Theorem~2.1]{Howlett} (see also \cite[Theorem~2.6]{affdenom}) says that the matrix for $c$ on the basis of simple roots is~$-E_{c^{-1}}^{-1}E_c$.
+Furthermore, a result of Howlett \cite[Theorem~2.1]{Howlett} (see also \cite[Theorem~2.6]{affdenom}) says that the matrix for $c$ in the basis of simple roots is~$-E_{c^{-1}}^{-1}E_c$.
 Thus the $\g$-vector of $y^\phi$ is 
 \[B_0\phi=(E_c-E_{c^{-1}})\phi=(E_c+E_cc^{-1})\phi=\nu_c(1+c^{-1})\phi.\]
 Thus because the exchange relation is homogeneous, the vector $(1+c^{-1})\phi$ equals $\beta_{qr}+\beta_{q'r'}-a\beta_{q(q'-2)}-b\beta_{(r+2)r'}$.
@@ -2930,7 +2923,7 @@ We state these assertions about $\delta^B$ and $-\frac12B\delta^B$ together beca
 
 Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall~$\d^B_\infty$.
 Thus Proposition~\ref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
-(More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here}}
+  (More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here} \rd{Seems fine since $D$ is the transition matrix between the two sets of coordinates.}}
 %NO. Proposition~\ref{delta is the man}.\ref{im ray} DOES NOT give this minimality.
 %Furthermore, Proposition~\ref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
@@ -2973,7 +2966,7 @@ Thus both equations say $r_n=-r_p$.
 Let $d_p$ and $d_n$ be the entries of $\delta^B$ in its affine positions.
 Since $\delta^B$ is zero in its non-affine positions and since $r_p$ and $r_n$ are the affine entries of $-\frac12B\delta^B$, we have $r_p=-d_n$ and $r_n=d_p$.
 Therefore $d_p=d_n$.
-From there, we see that the special entries of $-\frac12B\delta^B$ are also zero, and since $-\frac12B\delta^B$ is the shortest integer vector in the ray is spans (Proposition~\ref{delta is the man}.\ref{im ray}), $r_n=1=-r_p$.
+From there, we see that the special entries of $-\frac12B\delta^B$ are also zero, and since $-\frac12B\delta^B$ is the shortest integer vector in the ray it spans (Proposition~\ref{delta is the man}.\ref{im ray}), $r_n=1=-r_p$.
 Therefore also $d_p=d_n=1$.
 
 In the next case from Table~\ref{submat tab}, the mutations are
@@ -3096,7 +3089,7 @@ if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\C
 Mutating at $k$ means replacing the root $\gamma_k$ in the real $c$-cluster $\set{\gamma_1,\ldots,\gamma_n}$.
 Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root in $\APTre{c}$.
 Thus the $\g$-vector $\xi_k$ is replaced by another vector in $\d_\infty$.
-\sayD{The notation of $\gamma$ and $\xi$ was introduced around 7 pages back, it seems like we should recall their meaning before using them again.\rs{added "$\g$-vector" to help with this}}
+  \sayD{\color{orange}The notation of $\gamma$ and $\xi$ was introduced around 7 pages back, it seems like we should recall their meaning before using them again.\rs{added "$\g$-vector" to help with this} \okd}
 We see that $\mu_k(B)$ is neighboring.
 
 Furthermore, since $k$ is not special and not affine, row $k$ and column $k$ only have nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
