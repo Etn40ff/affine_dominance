@@ -473,7 +473,7 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \sayS{Should we say boundary of the g-vector fan here since we somehow define the imaginary wall in this and related papers?  \rn{I don't understand the question.}}
 \sayS{I changed $\tilde B$ to $\widetilde B$  \okn}
 \sayN{Throughout the paper, I have been sloppy with the difference between seeds and vertices of the n-regular graph.  It seems like this could be problematic, because we can lose track of which index is which if they are "seeds". \rd{I tried to make our indexing of exchange matrices more uniform throughout by only using a numerical index associated to a mutation sequence rather than indexing by vertices of the n-regular graph.}}
-Given an $m\times n$ extended exchange matrix $\tB$ and a point $\lambda\in\reals^m$, the dominance region $\P_\lambda^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
+Given an $m\times n$ extended exchange matrix $\tB$ and a point $\tilde\lambda\in\reals^m$, the dominance region $\P_{\tilde\lambda}^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
 The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
 (Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
@@ -493,17 +493,17 @@ In any type, the mutation fan for $B^T$ contains the $\g$-vector fan for $B$ as 
 This cone is called the imaginary wall, because it is a wall in the cluster scattering diagram~\cite{affscat}.
 There is a unique ray of the mutation fan, called the imaginary ray, that is in the relative interior of the imaginary wall.  
 
-Up to translation, the dominance region of $\lambda$ only depends on the projection of~$\lambda$ into $\reals^n$ that ignores the last $m-n$ entries.
-We prove that in affine types, when $\tB$ has linearly independent columns, the dominance region $\P_\lambda^\tB$ is a point if $\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
+Up to translation, the dominance region of $\tilde\lambda$ only depends on the projection of~$\tilde\lambda$ into $\reals^n$ that ignores the last $m-n$ entries.
+We prove that in affine types, when $\tB$ has linearly independent columns, the dominance region $\P_{\tilde\lambda}^\tB$ is a point if $\tilde\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\tilde\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
 
 \sayS{I rephrased the following paragraph and commented out the old version}
 Computing dominance regions without the assumption that $\tB$ has linearly independent columns is in general much harder. 
 \marginN{Modified following sentences.  Old version commented out.  Also removed parentheses in last sentence.}
 However, in affine type, for points that project to the relative interior of the imaginary wall, our argument requires us to first understand the coefficient-free case.
-In that case, the line segments are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
+In that case, the line segments are parallel to the imaginary ray and have one endpoint at $\lambda\in\reals^n$ and the other endpoint on the relative boundary of the imaginary wall.
 %However, in affine type, our argument to deal with points that project to the relative interior of the imaginary wall passes through understanding the coefficient-free case where we can describe the line segments explicitly:
 %They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
-From there, we can give the same characterization for $\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.
+From there, we can give the same characterization for $\tilde\lambda$ in the imaginary cone for arbitrary $\tB$ of affine type, with no condition on linear independence of columns.
 
 %In general, it appears to be much harder to compute dominance regions without the assumption that $\tB$ has linearly independent columns.
 %However, our characterization of dominance regions in affine type in the case of linearly independent columns requires us first to characterize, in the coefficient-free case, dominance regions for $\lambda$ in the imaginary cone.
@@ -530,7 +530,7 @@ The results of this paper are motivated by two ongoing projects.
 One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
 The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
 \sayN{\color{orange}Say more?  Say differently?\rs{How about this?} \rn{Yes, that's a good thing to say.  I revised it a bit.  The main motivation for revising is that it's not really the integer lattice, it's $\lambda$ plus the integer lattice.  That seemed annoying to say directly, so I came up with this.  (Old version commented out.)  OK?} \rd{I like this version so I made this orange.}}
-For both of these applications the relevant notion is the integral dominance region: the set of points in $\P_\lambda^\tB$ that are obtained as $\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
+For both of these applications the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are obtained as $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
 We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
 %For both these applications the relevant notion is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
 %We describe these in Section~\ref{sec:integral}.
