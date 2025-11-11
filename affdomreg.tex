@@ -3062,7 +3062,7 @@ Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative 
 \begin{proof}
 Suppose $\alpha$ has nonnegative entries and $B\alpha$ is in $(\delta^B)^\perp$.
 Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is a linear combination of simple roots in non-affine entries and $\gamma$ is a combination of simple roots in affine positions.
-\sayS{Should we avoid talking of roots when the underlying root system is not affine i.e. when the initial matrix is not acyclic?}
+  \sayS{Should we avoid talking of roots when the underlying root system is not affine i.e. when the initial matrix is not acyclic? \rd{The root language doesn't seem necessary here.  We can just say ``$\beta$ is zero in its affine entries and $\gamma$ is zero in its non-affine entries.''}}
 Then $B\beta$ is a nonnegative linear combination of the non-affine columns of $B$, and equivalently a nonnegative linear combination of the columns of $\CompPlus(B)$.
   Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.\sayD{This was observed somewhere earlier, maybe as a part of a proof, should we highlight it as a Lemma so that we can refer to it here?}
 By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the vector $\gamma$ is a scalar multiple of $\delta^B$.
@@ -3517,7 +3517,7 @@ The computation of the $ij$-entry of $\mu_k(\Comp(B))$ is the same as in Case~1,
 The assertions about $\CompPlus(\mu_\kk(B))$ and about $\eta^{B^T}_\kk$ are proved exactly as in Case~1.
 We have proved the proposition in the case of type $C_2^{(1)}$.
 
-The matrices of type $A_4^{(2)}$ shown in Table~\ref{submat tab} are obtained from the matrix of type $C_1{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
+The matrices of type $A_4^{(2)}$ shown in Table~\ref{submat tab} are obtained from the matrix of type $C_2^{(1)}$ by conjugating by a diagonal matrix (with diagonal entries either $1,2,1$ or $1,1,2$).
 Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix~$D$ \cite[Proposition~4.5]{ca1}, we can reuse the computations above, conjugated by a diagonal matrix, to obtain the proposition in the cases of type $A_4^{(2)}$.
 
 \medskip
@@ -3744,7 +3744,6 @@ Since $\mu_\kk(D^{-1}BD)=D^{-1}\mu_\kk(B)D$ for any positive diagonal matrix \ci
 \end{proof}
 
 Given a  is a sequence $\kk$ of non-affine indices, we define an \newword{expanded sequence}~$\widehat\kk$ 
-\sayD{\color{orange}It seems that we should introduce more specific notation like $\widehat\kk$ for this expanded sequence.  \rn{No objections from my side.}\rs{implemented}} 
 where each \emph{special} index in $\kk$ is replaced with the corresponding sequence whose existence is proved in Proposition~\ref{special mut}.
 Propositions~\ref{nonspecial mut} and~\ref{special mut} combine to say that 
 \begin{itemize}
@@ -3768,7 +3767,7 @@ We consider the mutation fan $\F_{\Comp(B)^T}$ as a complete fan in the subspace
 Every maximal cone $U$ of $\F_{\Comp(B)^T}$ is the image of the positive cone in $\reals^{n-2}$ under some mutation map $\eta^{(B')^T}_{\kk^{-1}}$, where $B'=\mu_\kk(\Comp(B))$ and $\kk$ is a sequence of non-affine indices.  
 Let $\widehat\kk$ be the expanded sequence, so that $B'=\Comp(\mu_{\widehat\kk}(B))$.
 There is an imaginary cone in $\F_{\mu_{\widehat\kk}(B)^T}$ that is the nonnegative linear span of the imaginary ray and the positive cone in $\reals^{n-2}$.
-Since $\eta^{\mu_{\widehat\kk}(B)^T}_{\widehat\kk^{-1}}$ is an isomorphism from $\F_{\mu_{\widehat\kk}(B)^T}$ to $\F_{B^T}$ that fixes the imaginary ray and sends the the positive cone in $\reals^{n-2}$ to $U$, the cone spanned by $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
+Since $\eta^{\mu_{\widehat\kk}(B)^T}_{\widehat\kk^{-1}}$ is an isomorphism from $\F_{\mu_{\widehat\kk}(B)^T}$ to $\F_{B^T}$ that fixes the imaginary ray and sends the positive cone in $\reals^{n-2}$ to $U$, the cone spanned by $U$ and the imaginary ray is an imaginary cone in $\F_{B^T}$.
 We see that the imaginary cones in $\F_{B^T}$ fill the half-hyperplane described in the proposition.
 Since the imaginary ray is in the relative interior of that half-hyperplane, there are no other imaginary cones.
 \end{proof}
@@ -3781,7 +3780,7 @@ If $\kk$ is a sequence of non-affine indices with expanded sequence $\widehat\kk
 \end{proposition}
 \begin{proof}
    %Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.
-  \sayS{I think this sentence has to go: it is in the claim \rd{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}  \rn{I'm confused what this comment is talking about.}}
+  \sayS{\color{orange}I think this sentence has to go: it is in the claim \rd{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}  \rn{I'm confused what this comment is talking about.} \rd{I think edits were made that resolved the issue so I'm making it orange.}}
 Since $\eta_{\widehat\kk}^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
 \end{proof}
 
@@ -3792,7 +3791,7 @@ Take $\lambda\in\d_\infty^B$, consider any $B'$ mutation-equivalent to $B$, and 
 Write $\lambda'$ for $\eta_\ll^{B^T}(\lambda)$.
 The mutation map $\eta_\ll^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\ll(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\ll(B)\delta^{\mu_\ll(B)}$.
 Furthermore, $\eta_\ll^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that Theorem~\ref{affine main} claims is equal to~$\P_\lambda^B$ to the line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
-\sayS{\color{orange}This sentence is missing something.  \rn{I don't think it's missing something, but it might be terribly written.   Theorem~\ref{affine main} claims that $\P_\lambda^B$ is a specific line segment.  It also claims that $\P_{\lambda'}^{B'}$ is a specific line segment.  This sentence is trying to say that $\eta_\ll^{B^T}$ takes the line segment claimed to be $\P_\lambda^B$ to the line segment claimed to be $\P_{\lambda'}^{B'}$.  How do we say this better?}\rs{It is probably ok as is}}
+  \sayS{\color{orange}This sentence is missing something.  \rn{I don't think it's missing something, but it might be terribly written.   Theorem~\ref{affine main} claims that $\P_\lambda^B$ is a specific line segment.  It also claims that $\P_{\lambda'}^{B'}$ is a specific line segment.  This sentence is trying to say that $\eta_\ll^{B^T}$ takes the line segment claimed to be $\P_\lambda^B$ to the line segment claimed to be $\P_{\lambda'}^{B'}$.  How do we say this better?}\rs{It is probably ok as is} \rd{It is a little awkward to parse but I think the sentence is cogent, I don't have any suggestions for improving it so I say we leave it.}}
 Now Lemma~\ref{shift} implies that it is enough to prove the theorem for any one $B$ in the exchange pattern.
 
 We choose $B$ to be a neighboring exchange matrix.
@@ -3822,7 +3821,7 @@ We see that
 The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
 
 The set $\P^B_{\lambda,\widehat\kk}$ is obtained by applying $(\eta_{\widehat\kk}^{B^T})^{-1}$ to $\set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-By Proposition~\ref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\widehat\kk}$  \sayN{Do we want $\P^B_{\lambda,\widehat\kk}\cap\d_\infty^{\mu_\ell(B)}$ instead?}
+  By Proposition~\ref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\widehat\kk}$  \sayN{Do we want $\P^B_{\lambda,\widehat\kk}\cap\d_\infty^{\mu_\ell(B)}$ instead? \rd{I think needing that would be bad because we want to know that the dominance region is already contained in the imaginary cone and not just make a statement about how they intersect.  Ah, Lemma 4.23 saves us and we can omit the intersection.}}
 for every $\widehat\kk$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
 Therefore Theorem~\ref{finite P point no} says that the projection of~$x$ is $\lambda_0$.
 We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
@@ -3844,7 +3843,7 @@ Accordingly, we define $\d_\infty^\tB$ to be $\Proj_n^{-1}\d_\infty^B$.
 \begin{theorem}\label{affine main extended}
 Suppose $\tB$ is an extended exchange matrix such that $B$ is of affine type.
 %Suppose $B$ is an exchange matrix of affine type and $\tB$ is an extension of $B$.
-If $\lambda$ is in the relative interior of the imaginary wall~$\d^\tB_\infty$, then the dominance region $\P^\tB_\lambda$ is $\set{\lambda+a\tB\delta^B:a\ge0}\cap\d^\tB_\infty$, the line segment parallel to $\tB\delta^B$, with one endpoint at $\lambda$ and the other endpoint on the relative boundary of $\d^\tB_\infty$.
+  If $\tilde\lambda$ is in the relative interior of the imaginary wall~$\d^\tB_\infty$, then the dominance region $\P^\tB_{\tilde\lambda}$ is $\set{\tilde\lambda+a\tB\delta^B:a\ge0}\cap\d^\tB_\infty$, the line segment parallel to $\tB\delta^B$, with one endpoint at $\tilde\lambda$ and the other endpoint on the relative boundary of $\d^\tB_\infty$.
 \end{theorem}
 
 The imaginary ray in $\F_{B^T}$, spanned by $-\frac12B\delta^B$, corresponds to a $(1+m-n)$-dimensional cone in $\F_{\tB^T}$.
@@ -3902,11 +3901,11 @@ Substituting into $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\del
 \begin{proof}[Proof of Theorem~\ref{affine main extended}]
 In light of Lemma~\ref{shift extended} and Proposition~\ref{delta is the tilde man}, we may assume that $B$ is a neighboring exchange matrix.
 Furthermore, in light of Propositions~\ref{nonspecial mut} and~\ref{special mut}, we can assume that each of the submatrices $B_{11}$, $B_{22}$, or $B_{33}$ is either empty or bipartite.
-Proposition~\ref{contains proj} says that $\P_\lambda^\tB\subseteq\Proj_n^{-1}(\P_{\lambda'}^B)$, where $\lambda'=\Proj_n\lambda\in\reals^n$.
-By the definition of $\d_\infty^\tB$, we have $\lambda'\in\d_\infty^B$, so Theorem~\ref{affine main} says $\P_{\lambda'}^B$ is the intersection of $\d_\infty^B$ with the ray that is pointed at $\lambda'$ and has direction $B\delta^B$.  \marginN{Note, not $-B\delta^B$ here.}
+  Proposition~\ref{contains proj} says that $\P_{\tilde\lambda}^\tB\subseteq\Proj_n^{-1}(\P_{\lambda}^B)$, where $\lambda=\Proj_n\tilde\lambda\in\reals^n$.
+By the definition of $\d_\infty^\tB$, we have $\lambda\in\d_\infty^B$, so Theorem~\ref{affine main} says $\P_{\lambda}^B$ is the intersection of $\d_\infty^B$ with the ray that is pointed at $\lambda$ and has direction $B\delta^B$.  \marginN{Note, not $-B\delta^B$ here.}
 
-Any vector $x\in\P_\lambda^\tB$ is $\lambda+\tB\alpha$ for some $\alpha\ge0$ in $\reals^n$.
-Since $\Proj_n(x)\in\P_{\lambda'}^B$, we see that $\Proj_n(x)$ is $\lambda'+aB\delta^B$ from some $a\ge0$ in $\reals$.
+  Any vector $x\in\P_{\tilde\lambda}^\tB$ is $\tilde\lambda+\tB\alpha$ for some $\alpha\ge0$ in $\reals^n$.
+Since $\Proj_n(x)\in\P_{\lambda}^B$, we see that $\Proj_n(x)$ is $\lambda+aB\delta^B$ from some $a\ge0$ in $\reals$.
 Thus $B\alpha$ and $B\delta^B$ agree up to a nonnegative scaling.
 Inspection of Proposition~\ref{neigh good stuff} and Theorem~\ref{neigh B} implies that $\alpha$ and $a\delta^B$ agree, up to nonnegative scaling, in their affine entries.
 Thus, when we compute $B\alpha$, the contribution of the affine columns of $B$ and the affine entries of $\alpha$ is zero.  
@@ -3919,29 +3918,29 @@ The theorem follows.
 
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
-We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?}}
-Given an integer point $\lambda\in\integers^m$, define $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\tB^T}\bigr)^{-1}\sett{\eta_\kk^{\tB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ \sayS{Was $\IP^\tB_{\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$} for all sequences~$\kk$.
-The \newword{integral dominance region} $\IP^\tB_\lambda$ of $\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\lambda,\kk}$ over all~$\kk$.
+We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?} \rd{I don't have any good suggestions either.}}
+Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\tB^T}\bigr)^{-1}\sett{\eta_\kk^{\tB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ \sayS{Was $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$} for all sequences~$\kk$.
+The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
-It is immediate that $\set{\lambda}\subseteq\IP^\tB_\lambda\subseteq\P^\tB_\lambda$.
-Thus in particular, Theorem~\ref{affine P point indep} is true with $\IP_\lambda^\tB$ replacing $\P_\lambda^\tB$.
+It is immediate that $\set{\tilde\lambda}\subseteq\IP^\tB_{\tilde\lambda}\subseteq\P^\tB_{\tilde\lambda}$.
+Thus in particular, Theorem~\ref{affine P point indep} is true with $\IP_{\tilde\lambda}^\tB$ replacing $\P_{\tilde\lambda}^\tB$.
 The following is the integral version of Theorem~\ref{affine main extended}.
 
 \begin{theorem}\label{affine main integral}  \marginN{Right now, this result is not mentioned anywhere else in the paper.  We should figure out where to mention it.\rs{I added few words at the end of the introduction}\okn}
 Suppose $\tB$ is an $m\times n$ extended exchange matrix such that $B$ is of affine type.
-If $\lambda\in\integers^m$ is in the relative interior of the imaginary wall~$\d^\tB_\infty$, then the integral dominance region $\IP^\tB_\lambda$ is $\set{\lambda+a\tB\delta^B:a\ge0\in\integers}\cap\d^\tB_\infty$, consisting of every other integer point in the line segment $\P^\tB_\lambda$, starting with $\lambda$.
+  If $\tilde\lambda\in\integers^m$ is in the relative interior of the imaginary wall~$\d^\tB_\infty$, then the integral dominance region $\IP^\tB_{\tilde\lambda}$ is $\set{\tilde\lambda+a\tB\delta^B:a\ge0\in\integers}\cap\d^\tB_\infty$, consisting of every other integer point in the line segment $\P^\tB_{\tilde\lambda}$, starting with $\tilde\lambda$.
 \end{theorem}
 
 \begin{proof}
 This proof is nearly identical to the proof of Theorem~\ref{affine main extended}.
 Lemma~\ref{shift extended} applies to integral dominance regions by the same proof.
 We appeal to the integral version of Lemma~\ref{shift extended} and to Proposition~\ref{delta is the tilde man} to assume that $B$ is neighboring and make the same assumptions on $B_{11}$, $B_{22}$, or $B_{33}$.
-We have $\IP_\lambda^\tB\subseteq\Proj_n^{-1}(\P_{\lambda'}^B)$ for $\lambda'=\Proj_n\lambda\in\reals^n$, and Theorem~\ref{affine main} says $\P_{\lambda'}^B=\set{\lambda+a\tB\delta^B:a\ge0\in\reals}\cap\d^B_\infty$.
+  We have $\IP_{\tilde\lambda}^\tB\subseteq\Proj_n^{-1}(\P_{\lambda}^B)$ for $\lambda=\Proj_n\tilde\lambda\in\reals^n$, and Theorem~\ref{affine main} says $\P_{\lambda}^B=\set{\lambda+aB\delta^B:a\ge0\in\reals}\cap\d^B_\infty$.
 
-Any vector $x\in\IP_\lambda^\tB$ is $\lambda+\tB\alpha$ for some $\alpha\ge0$ in $\integers^n$.
+  Any vector $x\in\IP_{\tilde\lambda}^\tB$ is $\tilde\lambda+\tB\alpha$ for some $\alpha\ge0$ in $\integers^n$.
 Arguing just as in the proof of Theorem~\ref{affine main extended}, we see that $\alpha$ and $\delta^B$ agree in all their entries up to a nonnegative scaling.
 Since $\alpha$ is an integer vector, by Proposition~\ref{delta is the man}.\ref{im ray pos}, $\alpha$ is a nonnegative integer multiple of $\delta^B$.
-Thus, in light of Proposition~\ref{delta is the tilde man} and the fact that $\eta^{\BB^T}_\kk$ is a bijection on the integer vectors in $\reals^m$, the integral dominance region $\IP^\tB_\lambda$ is $\set{\lambda+a\tB\delta^B:a\ge0\in\integers}\cap\d^\tB_\infty$.
+  Thus, in light of Proposition~\ref{delta is the tilde man} and the fact that $\eta^{\tB^T}_\kk$ is a bijection on the integer vectors in $\reals^m$, the integral dominance region $\IP^\tB_{\tilde\lambda}$ is $\set{\tilde\lambda+a\tB\delta^B:a\ge0\in\integers}\cap\d^\tB_\infty$.
 The fact about every other integer point follows by Proposition~\ref{delta is the man}.\ref{im ray}.
 \end{proof}
 
