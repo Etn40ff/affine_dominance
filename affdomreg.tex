@@ -1088,7 +1088,7 @@ If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_r$, then for any~$\tilde\la
 \end{theorem}
 \begin{proof}
 First, we notice that $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $\BB_r$, or in other words, $\kk$ is a green sequence for $-\BB_r$.
-Indeed, since $\CC_{t_{p-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{p-1}}^{-B;t_0}&*\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_p$ of $\CC_{t_{p-1}}^{-\BB;t_0}$ equals the sign of column $k_p$ of $C_{t_{p-1}}^{-B;t_0}$ whenever $1\le p<r$.
+Indeed, since $\CC_{t_{p-1}}^{-\BB;t_0}=\begin{bsmallmatrix}C_{t_{p-1}}^{-B;t_0}&*\\\\0&I_{m-n}\end{bsmallmatrix}$, the sign of column $k_p$ of $\CC_{t_{p-1}}^{-\BB;t_0}$ equals the sign of column $k_p$ of $C_{t_{p-1}}^{-B;t_0}$ whenever $1\le p<r$.
 Thus Theorem~\ref{P in B0C} says that
 \[\P^{\BB_0}_{\tilde\lambda,\kk}\subseteq\set{\tilde\lambda+\GG_t^{\BB_0;t_0}\BB_r\alpha:\alpha\in\reals^m,\alpha\ge0}=\set{\tilde\lambda+\BB_0\CC_t^{\BB_0;t_0}\alpha:\alpha\in\reals^m,\alpha\ge0}.\]
 The assertion of Theorem~\ref{P in B0C extended} is that the same holds even when, in each term, the conditions $\alpha\in\reals^m,\alpha\ge0$ are strengthened by requiring that $\alpha$ is zero in coordinates $n+1,\ldots,m$.
@@ -3123,7 +3123,9 @@ Since $B$ has zero entries in affine components of column $k$, the affine rows o
 Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^B$ is zero in all non-affine entries.
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
-Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}}), we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
+Thus if $x$ is a vector whose affine entries are zero (so that $\eta^{\Comp(B)^T}_k(x)$ makes sense),
+\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}\rn{I'm not sure I understand this conversation.}}
+we have $\eta^{B^T}_k(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{proof}
 
 \begin{proposition}\label{special mut}
@@ -3801,8 +3803,7 @@ It follows from Proposition~\ref{neigh im wall} that for any neighboring $B$ and
 If $\kk$ is a sequence of non-affine indices with expanded sequence $\widehat\kk$, then ${\eta^{B^T}_{\widehat\kk}(\lambda)=\eta_\kk^{\Comp(B)^T}(\lambda_0)+\lambda_\infty}$.
 \end{proposition}
 \begin{proof}
-   %Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.
-  \sayS{\color{orange}I think this sentence has to go: it is in the claim \rd{As the proposition was written it looked like an assumption but as it says here it is a consequence of Proposition~\ref{neigh im wall}.  Since we need the notation for the statement, I tried a fix.}  \rn{I'm confused what this comment is talking about.} \rd{I think edits were made that resolved the issue so I'm making it orange.}}
+%Proposition~\ref{neigh im wall} implies that we can write $\lambda$ as $\lambda_0+\lambda_\infty$.
 Since $\eta_{\widehat\kk}^{B^T}$ is linear on the imaginary cone containing $\lambda$, and since that cone contains the imaginary ray~$\delta^B$, the proposition follows from Propositions~\ref{nonspecial mut} and~\ref{special mut}.
 \end{proof}
 
@@ -3813,7 +3814,6 @@ Take $\lambda\in\d_\infty^B$, consider any $B'$ mutation-equivalent to $B$, and 
 Write $\lambda'$ for $\eta_\ll^{B^T}(\lambda)$.
 The mutation map $\eta_\ll^{B^T}$ acting on $\F_{B^T}$ takes the imaginary ray of $\F_{B^T}$ to the imaginary ray of $\F_{\mu_\ll(B)^T}$, and more specifically takes the vector $-\frac12B\delta^B$ to the vector $-\frac12\mu_\ll(B)\delta^{\mu_\ll(B)}$.
 Furthermore, $\eta_\ll^{B^T}$ is linear on each imaginary cone of $\F_{B^T}$, and thus takes the line segment that Theorem~\ref{affine main} claims is equal to~$\P_\lambda^B$ to the line segment that is claimed to equal $\P_{\lambda'}^{B'}$.
-  \sayS{\color{orange}This sentence is missing something.  \rn{I don't think it's missing something, but it might be terribly written.   Theorem~\ref{affine main} claims that $\P_\lambda^B$ is a specific line segment.  It also claims that $\P_{\lambda'}^{B'}$ is a specific line segment.  This sentence is trying to say that $\eta_\ll^{B^T}$ takes the line segment claimed to be $\P_\lambda^B$ to the line segment claimed to be $\P_{\lambda'}^{B'}$.  How do we say this better?}\rs{It is probably ok as is} \rd{It is a little awkward to parse but I think the sentence is cogent, I don't have any suggestions for improving it so I say we leave it.}}
 Now Lemma~\ref{shift} implies that it is enough to prove the theorem for any one $B$ in the exchange pattern.
 
 We choose $B$ to be a neighboring exchange matrix.
@@ -3843,12 +3843,12 @@ We see that
 The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
 
 The set $\P^B_{\lambda,\widehat\kk}$ is obtained by applying $(\eta_{\widehat\kk}^{B^T})^{-1}$ to $\set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
-  By Proposition~\ref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\widehat\kk}$  \sayN{Do we want $\P^B_{\lambda,\widehat\kk}\cap\d_\infty^{\mu_\ell(B)}$ instead? \rd{I think needing that would be bad because we want to know that the dominance region is already contained in the imaginary cone and not just make a statement about how they intersect.  Ah, Lemma 4.23 saves us and we can omit the intersection.}}
+By Proposition~\ref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\widehat\kk}$  
+\sayN{Do we want $\P^B_{\lambda,\widehat\kk}\cap\d_\infty^{\mu_\ell(B)}$ instead? \rd{I think needing that would be bad because we want to know that the dominance region is already contained in the imaginary cone and not just make a statement about how they intersect.  Ah, Lemma 4.23 saves us and we can omit the intersection.}  \rn{If everyone is happy with this, we can delete the note.}}
 for every $\widehat\kk$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
 Therefore Theorem~\ref{finite P point no} says that the projection of~$x$ is $\lambda_0$.
 We have showed that $\P^B_\lambda$ is contained in the line through $\lambda$ in the direction of~$B\delta^B$.
 But also $\P^B_\lambda$ is contained in $\d^B_\infty$, so it is contained in the ray in $\d^B_\infty$ parallel to the imaginary ray, containing $\lambda$, and having endpoint in the relative boundary of $\d^B_\infty$.
-\sayN{\color{orange}There was a problem here.  We were being too flippant about restricting from the ray to the line segment, but a little ``salience'' makes it correct.\rs{OK}}
 Arguing as in the first paragraph of this proof, we see that this fact about containment in a ray is true for any $B$ in the exchange pattern, and to restrict from the ray to the line segment, we can choose any $B$ in the exchange pattern.
 Proposition~\ref{affine salient} allows us to choose $B$ to be a salient exchange matrix in the exchange pattern.
 For this $B$, since $B\delta^B$ is in the nonnegative linear span of the columns of $B$, $-B\delta^B$ is not, so $\P^B_\lambda$ is contained in the set $\set{\lambda+B\delta^Ba:a\ge0}$.
@@ -3880,9 +3880,9 @@ The factors $\frac12$ in the statement are for aesthetic reasons, but the negati
 The analogous statement for $-\frac12B\delta^B$ is true because $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray.
 
 \begin{proof}%[Proof of Proposition~\ref{delta is the tilde man}]
-  \sayS{I simplified a bit the wording in this proof}
+  \sayS{I simplified a bit the wording in this proof.  \okn}
 If $t$ is a seed with extended exchange matrix $\tB$, the matrix $\mu_\kk(\tB)$ depends only on the seed $t'$ obtained from $t$ by mutating along the sequence $\kk$, not on the choice of a sequence $\kk$ that sends $t$ to $t'$.
-In turn, thanks to Proposition~\ref{delta is the man}, both  $\delta^B$ and $\delta^{\mu_\kk(B)}$ depend only on the seeds $t$ and $t'$ and not on the choice of a sequence connecting them.
+In turn, thanks to Proposition~\ref{delta is the man}, both~$\delta^B$ and $\delta^{\mu_\kk(B)}$ depend only on the seeds $t$ and $t'$ and not on the choice of a sequence connecting them.
 Thus, to prove the proposition, it is enough to show that, given any seeds $t$ and $t'$ with extended exchange matrices $\tB$ and $\tB'$ (of affine type), there exists a sequence $\kk$ taking~$t$ to~$t'$ such that $\eta^{\BB^T}_\kk(-\frac12\tB\delta^B)=-\frac12\mu_\kk(\tB)\delta^{\mu_\kk(B)}$.
 
 Choose an acyclic exchange matrix $B_0$, mutation equivalent to $B$, and let $c$ be the Coxeter element determined by~$B_0$.
@@ -3891,13 +3891,13 @@ The proof of Proposition~\ref{any B is sort} proceded by taking an \emph{arbitra
 These initial seed mutations change which seed we called the initial seed $t_0$ while preserving the fact that the initial exchange matrix is $B_0$.
 Further increasing~$i$ does not destroy the desired properties.
 
-Therefore we can carry out this process simultaneously for $B$ and $B'$ and choose $i$ large enough so that \emph{both} seeds have the desired properties relative to the initial seed $t_0$.
+Therefore we can carry out this process simultaneously for $B$ and $B'$ and choose~$i$ large enough so that \emph{both} seeds have the desired properties relative to the initial seed $t_0$.
 Write $\tB_0$ for the extended exchange matrix at $t_0$.
-The output of Proposition~\ref{any B is sort}, for this large enough $i$, is a $c$-sortable element $v$ such that the sequence $\kk$ that reverses the indices in the $c$-sorting word for $v$ has ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$ such that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$, and analogously for $t'$.
+The output of Proposition~\ref{any B is sort}, for this large enough $i$, is a $c$-sortable element $v$ such that the sequence $\kk=k_r\cdots k_1$ \marginN{Changed $\kk$ to $\kk=k_r\cdots k_1$, partly because it has been a long time since we said that, and partly because it fixes a line overflow in the next line.}
+that reverses the indices in the $c$-sorting word for $v$ has ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$ such that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$, and analogously for $t'$.
 %(That is, a $c$-sortable element $v'$ such that the sequence $\kk'$ that reverses the indices in the $c$-sorting word for $v'$ has ${t_0\overset{k'_1}{\edge}t'_1\overset{k'_2}{\edge}\,\cdots\,\overset{k'_{r'}}{\edge}t'_r=t}'$ such that $\bigl(G_{t'_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r'}$.)
 
 The argument in the proof of Proposition~\ref{delta is the man}, with Lemma~\ref{EBF trick ext} replacing Lemma~\ref{EBF trick}, shows that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
-\sayN{\color{orange}Commented out a longer version.  But with that commented out, this is as short as it can get, and I don't think there is anything to be gained (except complication) by combining this with Proposition~\ref{delta is the man}.\rs{OK}}
 %
 %We argue, by extending the argument in the proof of Proposition~\ref{delta is the man}, that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
 %Suppose $a_1\cdots a_m$ is the $c$-sorting word for $v$.
@@ -3913,7 +3913,7 @@ The argument in the proof of Proposition~\ref{delta is the man}, with Lemma~\ref
 %This was checked in the proof of Proposition~\ref{delta is the man}.
 %We see that $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$.
 %
-The same argument, with $t'$ replacing $t$, shows that $\eta^{\BB_0^T}_{\kk'}(-\frac12\tB_0\delta^{B_0})=-\frac12\tB'\delta^{B'}$.
+The same argument, with~$t'$ replacing $t$, shows that $\eta^{\BB_0^T}_{\kk'}(-\frac12\tB_0\delta^{B_0})=-\frac12\tB'\delta^{B'}$.
 Multiplying by the inverse $\eta^{\BB^T}_{(\kk')^{-1}}$ of $\eta^{\BB_0^T}_{\kk'}$, we see that $-\frac12\tB_0\delta^{B_0}=\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'})$.
 Substituting into $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$, we obtain $\eta^{\BB_0^T}_\kk(\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'}))=-\frac12\tB\delta^B$, or in other words $\eta^{\BB^T}_{\kk(\kk')^{-1}}(-\frac12\tB'\delta^{B'})=-\frac12\tB\delta^B$, as desired.
 \end{proof}
@@ -3924,7 +3924,7 @@ Substituting into $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\del
 In light of Lemma~\ref{shift extended} and Proposition~\ref{delta is the tilde man}, we may assume that $B$ is a neighboring exchange matrix.
 Furthermore, in light of Propositions~\ref{nonspecial mut} and~\ref{special mut}, we can assume that each of the submatrices $B_{11}$, $B_{22}$, or $B_{33}$ is either empty or bipartite.
   Proposition~\ref{contains proj} says that $\P_{\tilde\lambda}^\tB\subseteq\Proj_n^{-1}(\P_{\lambda}^B)$, where $\lambda=\Proj_n\tilde\lambda\in\reals^n$.
-By the definition of $\d_\infty^\tB$, we have $\lambda\in\d_\infty^B$, so Theorem~\ref{affine main} says $\P_{\lambda}^B$ is the intersection of $\d_\infty^B$ with the ray that is pointed at $\lambda$ and has direction $B\delta^B$.  \marginN{Note, not $-B\delta^B$ here.}
+By the definition of $\d_\infty^\tB$, we have $\lambda\in\d_\infty^B$, so Theorem~\ref{affine main} says $\P_{\lambda}^B$ is the intersection of $\d_\infty^B$ with the ray that is pointed at $\lambda$ and has direction~$B\delta^B$.  
 
   Any vector $x\in\P_{\tilde\lambda}^\tB$ is $\tilde\lambda+\tB\alpha$ for some $\alpha\ge0$ in $\reals^n$.
 Since $\Proj_n(x)\in\P_{\lambda}^B$, we see that $\Proj_n(x)$ is $\lambda+aB\delta^B$ from some $a\ge0$ in $\reals$.
@@ -3940,8 +3940,17 @@ The theorem follows.
 
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
-We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?} \rd{I don't have any good suggestions either.}}
-Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\tB^T}\bigr)^{-1}\sett{\eta_\kk^{\tB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ \sayS{Was $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$} for all sequences~$\kk$.
+We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?} \rd{I don't have any good suggestions either.}\rn{OK, the options I can think of are:\\
+$\integers\P^\tB_{\tilde\lambda,\kk}$\\
+$\IP^\tB_{\tilde\lambda,\kk}$\\
+$\P^\tB_{\integers,\tilde\lambda,\kk}$ or rearrange subscripts\\
+$\P^{\tB,\integers}_{\tilde\lambda,\kk}$ or rearrange superscripts\\
+\quad\\
+Looking at all these together, I wonder if $\integers\P^\tB_{\tilde\lambda,\kk}$ is the ``least worst''.  The script ``I'' for integers is really pretty bad.  Thoughts?
+}}
+Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$
+\sayS{Was $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$.  \rn{It was right before.  You changed it to $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\tB^T}\bigr)^{-1}\sett{\eta_\kk^{\tB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$, but we have only defined mutation maps for square matrices, so we have been writing $\eta_{\kk}^{\BB^T}$ throughout.  I changed it back.}} 
+for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
 It is immediate that $\set{\tilde\lambda}\subseteq\IP^\tB_{\tilde\lambda}\subseteq\P^\tB_{\tilde\lambda}$.
@@ -4022,11 +4031,6 @@ The fact about every other integer point follows by Proposition~\ref{delta is th
 %
 %Also, commented out in Proposition~\ref{affine salient} is the statement of proof that any extension of the matrix found by the proposition is also salient.
 %
-
-
-
-
-\sayN{Note to self:  Fix alignment of all matrices, if necessary using [ and small and array instead of bsmallmatrix.}
 
 
 
