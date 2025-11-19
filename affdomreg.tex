@@ -1840,7 +1840,7 @@ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order
 Suppose $B_0$ is an acyclic exchange matrix of affine type and let $\ell$ be the least common multiple of the sizes of finite $c$-orbits.
 Suppose $x\in V^*\setminus\d_\infty$.
 Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.
-\sayN{In this paper, we only use Assertions~\ref{correct side} and~\ref{eta lim} in this paper, but Assertion~\ref{pos a} is used to prove Assertion~\ref{eta lim}.  I hope it's OK that we keep the others (15 lines, including statements and proof), because they are needed in \{afftheta\}.\rs{It is ok for me but it looks like we do not have $\RSfin$ defined here. I think that the first assertion holds for any root, not just those in $\RSfin$ so I rephrased it. Please check my math}}
+\sayN{In this paper, we only use Assertions~\ref{correct side} and~\ref{eta lim} in this paper, but Assertion~\ref{pos a} is used to prove Assertion~\ref{eta lim}.  I hope it's OK that we keep the others (15 lines, including statements and proof), because they are needed in \{afftheta\}.\rs{It is ok for me but it looks like we do not have $\RSfin$ defined here. I think that the first assertion holds for any root, not just those in $\RSfin$ so I rephrased it. Please check my math.}  \okn}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{in big dinf}
 For $i>I_+$ or $i<I_-$, $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RS$ such that $\omega_c(\beta,\delta)>0$.
@@ -1864,7 +1864,6 @@ Then $I_+$ and $I_-$ are implicitly defined to realize ``large enough'' or ``sma
 
 Since $x$ is not in $\d_\infty$, it is in a full-dimensional cone of $\nu_c(\Fan_c(\RS))$.
 Thus $(\nu_c)^{-1}(x)$ is in a maximal cone of $\Fan_c(\RS)$ spanned by some $\beta_1,\ldots,\beta_n$, indexed with $\beta_1,\ldots,\beta_p\in\AP{c}\setminus\APT{c}$ and $\beta_{p+1},\ldots,\beta_n\in\APT{c}$ with $p\ge2$.
-  \sayS{\color{orange}This was $p\ge 1$ \rd{Looks good}}
 There exist $q_1,\ldots,q_n\ge0$ such that $(\nu_c)^{-1}(x)=\sum_{j=1}^nq_j\beta_j$ with $q_j>0$ for at least one $j\in\set{1,\ldots,p}$.
 By Proposition~\ref{delta limit}, there exist integers $I_1,\ldots,I_p$ and positive real $a_1,\ldots,a_p$ such that $\tau_c^{i+\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i>I_j$ and $\tau_c^{i-\ell}\beta_j=(\tau_c^i\beta_j)+a_j\delta$ whenever $i<I_j$, for all $j=1,\ldots,p$.
 Set $a=\sum_{j=1}^p q_ja_j>0$.
@@ -2009,7 +2008,6 @@ Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mu
 Let $t_0$ be a seed with exchange matrix $B_0$.
 Then there exists a $c$-sortable element~$v$ such that, writing $\kk$ for the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$ and defining seeds ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$, the exhange matrix at $t$ is $B$.
 These $v$ and $t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$.
-  \sayN{Have we explained ``associated seed''?  (I guess, sort of, above, but only for finite type.)  We mean the seed at the end of the green sequence in Proposition~\ref{sort green}, but should we say so? \rs{I tried rephrasing} \rd{Looks good to me}}
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
@@ -2026,9 +2024,9 @@ Thus we choose $i$ large enough (i.e. choose $j$ large enough) so that $\bigl(G_
 But for $0\le p\le jn$, the prefix $a_1\cdots a_p$ of the $c$-sorting word for $v$ is a prefix of $c^\infty$.
 By the characterization of $C$-vectors in terms of skips, we see that the columns of $C_{t_p}^{B_0;t_0}$ are the inward-facing normals of the cone obtained by applying $a_1\cdots a_p$ to the positive cone.
 The resulting cone $\Cone^{B_0;t_0}_{t_p}$ is therefore contained in the Tits cone,
-so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with $\delta$.
+so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with~$\delta$.
 The cone $\Cone^{B_0;t_0}_{t_p}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
-  We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here? \rd{Probably}}
+  We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here? \rd{Probably.}  \rn{I think non-negative is all we need, but strictly positive is what we get.  If this $\g$-vector cone really is in the Tits cone, then the $\g$-vectors that span it pair strictly positively with $\delta$.  Maybe we should strengthen the statement to say the thing that we're actually proving? }}
 \end{proof}
 
 
@@ -2066,8 +2064,7 @@ For such a choice of $v$ and $t$, define $\delta^B$ to be $\bigl(G_t^{-B_0^T;t_0
 Suppose $B$ is an exchange matrix of affine type.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{im ray pos}
-  $\delta^B$ has nonnegative entries and is the shortest integer vector in the ray it~spans.  \sayN{\color{orange}Added the statement that it's the shortest integer vector. Check me.\rs{It seems OK}}
-\item \label{im ray}
+$\delta^B$ has nonnegative entries and is the shortest integer vector in the ray it~spans.  \item \label{im ray}
 $-\frac12B\delta^B$ is the shortest integer vector in the imaginary ray of $\F_{B^T}$.
 \item \label{im hyp}
 All imaginary cones in $\F_{B^T}$ are contained in $(\delta^B)^\perp$.
@@ -2076,10 +2073,10 @@ All imaginary cones in $\F_{B^T}$ are contained in $(\delta^B)^\perp$.
 
 We refer to Remark~\ref{danger: co-roots} for clarification on how to interpret Proposition~\ref{delta is the man}.\ref{im hyp} in specific examples.
 See also the last part of the following proof.
-\sayS{I am not sure that I understand what is this paragraph meant to explain. Are we talking about how to interpret the orthogonality relation? \rd{Seems like it}}
+\sayS{I am not sure that I understand what is this paragraph meant to explain. Are we talking about how to interpret the orthogonality relation? \rd{Seems like it.}  \rn{Yes, I think that's the point.}}
 
 \begin{proof}%[Proof of Proposition~\ref{delta is the man}]
-  The first claim in Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries. \sayN{\color{orange}Rest of this paragraph is what I added to prove the added statement.\rs{OK}}
+  The first claim in Assertion~\ref{im ray pos} is true because we chose $v$ and $t$ so that $\bigl(G_t^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries.
 Recall from Section~\ref{def sec} that the inverse of $G_t^{-B^T;t_0}$ is $\bigl(C_t^{B;t_0}\bigr)^T$.
 Since $\delta$ is the shortest integer vector in the ray that it spans, and since $\delta^B$ is obtained from $\delta$ by the action of an integer matrix whose inverse is an integer matrix,~$\delta^B$ is also the shortest integer vector in the ray that it spans.
 
@@ -2264,7 +2261,6 @@ Now $N$ is a monomial in the coefficient variables times a cluster monomial, and
 
 \begin{remark}\label{4.3}
 It appears that, to extend Lemma~\ref{exch ind} to arbitrary coefficients, one needs \cite[Conjecture~4.3]{ca4}, which says that the exchange graph does not depend on the choice of coefficients.
-  \sayN{\color{orange}As of 2012 (and maybe 2019), this was known for skew-symmetric geometric type (Linear independence of cluster monomials for skew-symmetric cluster algebras, by Giovanni Cerulli Irelli, Bernhard Keller, Daniel Labardini-Fragoso, Pierre-Guy Plamondon).   Also, for nondegenerate $B$ (M. Gekhtman, M. Shapiro, A. Vainshtein, On the properties of the exchange graph of a cluster algebra, Math. Res. Lett. 15 (2) (2008) 321--330.) and of course finite type (ca2).  Is it known more generally now? Is it worth saying anything more than we say now?  I'm leaning towards "no".\rs{I am also voting no}  \okn \rd{Same}}
 \end{remark}
 
 \subsubsection{Salient exchange matrices of affine type}
@@ -2520,11 +2516,11 @@ Proposition~\ref{compatible in tubes} says cluster variables $x_{qr}$ and $x_{q'
 %The map $\nu_c$ is linear on the cone spanned by positive roots.
 Similarly, \cite[Theorem~7.2]{affdenom} says that cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable if and only if $\beta_{qr}$ and $\beta_{q'r'}$ either have disjoint support but are not spaced or have overlapping support but are not nested.
 (In interpreting \cite[Theorem~7.2]{affdenom}, the key fact is that $q\ge1$ and $q'\ge 1$, so neither of these roots has $\beta_0$ in its support.)
-If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, \sayN{\color{orange}changed $q<q'<r$ to $q<q'$.\rs{OK}} 
-$q<r<r'$, and $q'\le r+1$.
+If two cluster variables $x_{qr}$ and $x_{q'r'}$ are exchangeable, then without loss of generality, $q<q'$, $q<r<r'$, and $q'\le r+1$.
 The solid lines in the left picture of Figure~\ref{tube fig} indicate~$\beta_{qr}$ and~$\beta_{q'r'}$ in the case where $q'<r$.
 Lemma~\ref{exch ind} implies that the only cluster variables that can occur in the exchange relation for $x_{qr}$ and $x_{q'r'}$ are the cluster variables that are in \emph{every} set $\Gamma$ of $n-1$ cluster variables such that $\Gamma\cup\set{x_{qr}}$ is a cluster and $\Gamma\cup\set{x_{q'r'}}$ is a cluster.
-These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, and\sayS{was ``or''}  $r'\ge r+2$.
+These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+2)r'}$, except that the last three only exist if, respectively, $q'\le r$, $q\le q'-2$, and\sayS{was ``or''.  \okn}  
+$r'\ge r+2$.
 (In what follows, if $x_{q'r}$ does not exist, the notation $x_{q'r}$ will mean $1$, and similarly for $x_{q(q'-2)}$ and $x_{(r+2)r'}$.)
 The dashed lines in the left picture of Figure~\ref{tube fig} indicate $\beta_{qr'}$, $\beta_{q'r}$, $\beta_{q(q'-2)}$, and $\beta_{(r+2)r'}$.
 
