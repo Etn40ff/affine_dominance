@@ -2555,7 +2555,7 @@ The $\g$-vector of $y^\phi$ is $B_0\phi$.
 The $\g$-vectors of all cluster variables in the exchange relation are in $\delta^\perp$ and the exchange relation is homogeneous in the $\g$-vector grading, so $B_0\phi$ is also in $\delta^\perp$.
 In other words, $\omega_c(\delta,\phi)=0$, so Proposition~\ref{om del fin} says that $\phi$ is in a finite $c$-orbit.
 
-\sayS{This used $c=s_1\dots s_n$ but we havent made this assumption in this section; I rewrote it.}
+\sayS{This used $c=s_1\dots s_n$ but we havent made this assumption in this section; I rewrote it.  \okn}
 Write $E_c$ for the $n\times n$ matrix $1-[-B_0]_+$ and $E_{c^{-1}}$ for the $n\times n$ matrix $1-[B_0]_+$.
 Then $B_0=E_c-E_{c^{-1}}$.
 The piecewise linear map~$\nu_c$, when applied to vectors with nonnegative entries, is defined by the matrix $E_c$ (taking simple-root coordinates to fundamental-weight coordinates).
@@ -2733,7 +2733,6 @@ These matrices determine inequalities, including
 \[
 3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-3b_{kp}>\frac94b_{kn},\\
 \]
-\sayS{The inequality here used to say $b_{kn}>-\frac32b_{kp}$ which is wrong, please check me. \rd{Looks good now.}}
 which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
 If $(b_{kp},b_{kn})=(2,-3)$, then $b_{pk}\in\set{-1,-2}$ and $b_{nk}=1$.
 Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which fails for either choice of $b_{pk}$, thus ruling out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
@@ -2948,7 +2947,7 @@ We state these assertions about $\delta^B$ and $-\frac12B\delta^B$ together beca
 
 Considering a cluster pattern with $B$ as the initial exchange matrix, the initial $\g$-vectors for non-affine indices are contained in the imaginary wall~$\d^B_\infty$.
 Thus Proposition~\ref{delta is the man}.\ref{im hyp} implies that $\delta^B$ is zero in all non-affine positions.
-  (More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here} \rd{Seems fine since $D$ is the transition matrix between the two sets of coordinates.}}
+  (More carefully, in light of~Remark~\ref{danger: co-roots}, the simple-co-root coordinates of $\delta^B$ are zero in non-affine positions, and therefore the same is true of the simple-root coordinates that we take as the ``entries'' of $\delta^B$.)  \sayN{I don't think this proof runs afoul of Remark~\ref{danger: co-roots} because we don't use Proposition~\ref{delta is the man}.\ref{im hyp} anywhere but here.\rs{I do not understand why are you concerned here} \rd{Seems fine since $D$ is the transition matrix between the two sets of coordinates.}  \rn{My comment was along the lines of ``I think we're OK, but we should be careful.''  I still think we're OK, so if neither of you are concerned, we can delete this comment.}}
 %NO. Proposition~\ref{delta is the man}.\ref{im ray} DOES NOT give this minimality.
 %Furthermore, Proposition~\ref{delta is the man}.\ref{im ray} says that $\delta^B$ has nonnegative entries and is minimal among integer vectors obtained from it by positive integer scaling.
 
@@ -3060,7 +3059,6 @@ Given a neighboring exchange matrix $B$, each diagonal block of $\Comp(B)$ is of
 %
 %\end{proof}
 
-\sayN{\color{orange}Salvatore, you said you were confused about the proof of the following proposition, and you were right to be!  It was wrong, and in fact the statement was wrong.  I think this is now correct and everything still works, but it's slightly more complicated \rs{Great!}}
 Let $\CompPlus(C)$ be the $n\times(n-2)$-matrix which agrees with the non-affine \emph{columns} of $B$, except that all entries in \emph{special columns} are multiplied by~$2$.
 Although $\CompPlus(B)$ is an extension of $\Comp(C)$ in the sense of ``extended exchange matrices'', we don't want to think of it that way (and have chosen an overline in the notation rather than a tilde) because we will not always mutate it like an extended exchange matrix.
 (See Proposition~\ref{special mut}, below.)
@@ -3086,10 +3084,10 @@ Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative 
 \end{proposition}
 \begin{proof}
 Suppose $\alpha$ has nonnegative entries and $B\alpha$ is in $(\delta^B)^\perp$.
-Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is a linear combination of simple roots in non-affine entries and $\gamma$ is a combination of simple roots in affine positions.
-  \sayS{Should we avoid talking of roots when the underlying root system is not affine i.e. when the initial matrix is not acyclic? \rd{The root language doesn't seem necessary here.  We can just say ``$\beta$ is zero in its affine entries and $\gamma$ is zero in its non-affine entries.''}}
+Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is zero in its affine entries and $\gamma$ is zero in its non-affine entries.
+\sayS{Should we avoid talking of roots when the underlying root system is not affine i.e. when the initial matrix is not acyclic? \rd{The root language doesn't seem necessary here.  We can just say ``$\beta$ is zero in its affine entries and $\gamma$ is zero in its non-affine entries.''}  \rn{I implemented Dylan's suggestion.}}
 Then $B\beta$ is a nonnegative linear combination of the non-affine columns of $B$, and equivalently a nonnegative linear combination of the columns of $\CompPlus(B)$.
-  Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.\sayD{This was observed somewhere earlier, maybe as a part of a proof, should we highlight it as a Lemma so that we can refer to it here?}
+ Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.\sayD{This was observed somewhere earlier, maybe as a part of a proof, should we highlight it as a Lemma so that we can refer to it here?  \rn{I did a very half-hearted search for where this comes up earlier, and didn't find it.  If someone wants to track it down and make a lemma, I'm OK with that... but I'm leaning towards leaving it and being that much closer to finished.}}
 By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the vector $\gamma$ is a scalar multiple of $\delta^B$.
 Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
 \end{proof}
@@ -3114,7 +3112,6 @@ if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)=\eta^{\C
 Mutating at $k$ means replacing the root $\gamma_k$ in the real $c$-cluster $\set{\gamma_1,\ldots,\gamma_n}$.
 Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root in $\APTre{c}$.
 Thus the $\g$-vector $\xi_k$ is replaced by another vector in $\d_\infty$.
-  \sayD{\color{orange}The notation of $\gamma$ and $\xi$ was introduced around 7 pages back, it seems like we should recall their meaning before using them again.\rs{added "$\g$-vector" to help with this} \okd}
 We see that $\mu_k(B)$ is neighboring.
 
 Furthermore, since $k$ is not special and not affine, row $k$ and column $k$ only have nonzero entries within one of the blocks $B_{\ell\ell}$ for $\ell\in\set{1,2,3}$.
