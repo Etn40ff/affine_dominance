@@ -1696,8 +1696,12 @@ Suppose the orbit of $x$ has $k$ elements.
 The sum $x+cx+\cdots+c^{k-1}x$ of all vectors in the $c$-orbit of $x$ is fixed by the action of $c$ and thus is a scalar multiple of $\delta$, since $\delta$ spans the $1$-eigenspace of $c$.
 Because $\omega_c$ is skew-symmetric, $\omega_c(x+cx+\cdots+c^{k-1}x,\delta)=0$.
 Now Lemma~\ref{omega c} says that $k\omega_c(x,\delta)=0$.
-The subspace consisting of vectors $x$ such that $\omega_c(x,\delta)=0$ has dimension $n-1$ and the subspace consisting of vectors in finite $c$-orbits also has dimension $n-1$ (for example, it contains $n-1$ linearly independent roots), \sayN{Expand on that?\rs{Maybe just few words on why $\omega_c(x,\delta)=0$ has dimension $n-1$} }
-so these subspaces must coincide.
+The subspace consisting of vectors $x$ such that $\omega_c(x,\delta)=0$ has dimension at most $n-1$.
+(For example, one can check that $\omega_c(\alpha_1,\delta)>0$.)
+Also, the subspace consisting of vectors in finite $c$-orbits has dimension $n-1$.
+(It contains $n-1$ linearly independent roots.)
+\sayN{Expand on that?\rs{Maybe just few words on why $\omega_c(x,\delta)=0$ has dimension $n-1$.}  \rn{OK, I tried.  How is this?}}
+Since every vector $x$ in a finite $c$-orbit has $\omega_c(x,\delta)=0$, these subspaces must coincide.
 \end{proof}
 
 
@@ -1714,8 +1718,10 @@ The total number of roots in $\SimplesT{c}$ is $n-2$ plus the number of factors 
 If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{c}$, then $\beta_0+\cdots+\beta_k=\delta$.
 These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
 
-\sayS{The definition of $\APTre{c}$ that we had here was wrong}
-Let $\APTre{c}$ be the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$ and denote by $\SuppT(\beta)$ their support with respect to $\SimplesT{c}$.
+\sayS{The definition of $\APTre{c}$ that we had here was wrong.  \rn{It said ``Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.'' and I still think that's correct.  (We said ``smaller than $\Simples$'', so we meant $\Supp$, not $\SuppT$.)  I'm trying for a combination of the two ideas, because I think the ``support smaller than $\Simples$'' idea is simpler.  Is this OK?}}\
+Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ with support, as a linear combination of simple roots, strictly smaller than $\Simples$.
+Equivalently, $\APTre{c}$ is the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$.
+Denote by $\SuppT(\beta)$ the support of $\beta\in\APTre{c}$ with respect to $\SimplesT{c}$.
 Let $\APT{c}=\APTre{c}\cup\set\delta$. 
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
 The set $\APre{c}=\AP{c}\setminus\set\delta$ of real roots in $\AP{c}$ is precisely the set of denominator vectors of cluster variables \cite[Theorem~1.2]{affdenom}, with respect to the initial exchange matrix $B_0$.
@@ -1745,7 +1751,8 @@ $c$-compatibility of roots in the same factor can be understood by picturing the
 
 \begin{remark}
   The roots appear as ``tubes'' in the cycle (in the sense of graph associahedra), and $c$-compatibility is the usual compatibility of tubes:
-  either the tubes are nested \sayD{should this say ``either the roots are nested''?} or there is at least one vertex between them on both sides.
+  either the tubes are nested \sayD{should this say ``either the roots are nested''?  \rn{No, we really mean ``tubes'' in the sense of ``tubings of graphs'' in connection with graph associahedra.}} 
+  or there is at least one vertex between them on both sides.
   %However, the representation theory literature uses the term ``tubes'' for the components
   However, this terminology conflicts with the representation theory literature use of the term ``tubes'', so we will avoid the term altogether.
 \end{remark}
@@ -1780,7 +1787,10 @@ $\displaystyle\lim_{i\to\infty}\frac{\tau_c^i\beta}{|\tau_c^i\beta|}=\lim_{i\to-
 The first two assertions are \cite[Proposition~3.12(2)]{affdenom}.
 The next two assertions are \cite[Proposition~3.12(8)]{affdenom}.
 The hyperplane $\set{v\in V:K(\gamma_c,v)=0}$ is the direct sum of all eigenspaces of $c$, so $c^\ell$ fixes this subspace pointwise.
-Write $\tau_c^i(\beta)$ as $q\gamma_c+v$ with $K(\gamma_c,v)=0$. \sayD{Why is it clear that this can be done?  \rn{Because the subspace $\set{v\in V:K(\gamma_c,v)=0}$ is a hyperplane and $\gamma_c$ is not in the hyperplane (i.e. $K(\gamma_c,\gamma_c)\neq0$.  But probably this needs to be said/jusitified}}
+Write $\tau_c^i(\beta)$ as $q\gamma_c+v$ with $K(\gamma_c,v)=0$. 
+(This can be done because $\set{v\in V:K(\gamma_c,v)=0}$ is a hyperplane and $\gamma_c$ is not in the hyperplane.  
+Indeed, $K(\gamma_c,\gamma_c)>0$.)
+\sayD{Why is it clear that this can be done?  \rn{Because the subspace $\set{v\in V:K(\gamma_c,v)=0}$ is a hyperplane and $\gamma_c$ is not in the hyperplane (i.e. $K(\gamma_c,\gamma_c)\neq0$.  But probably this needs to be said/jusitified.}\rn{UPDATE:  I added it.  OK?}}
 Since $K$ is positive semidefinite and $\gamma_c$ is not a multiple of $\delta$, we have $q>0$ for $i>I$ by Assertion~\ref{K pos} and $q<0$ for $i<I$ by Assertion~\ref{K neg}.
 Applying Assertion~\ref{c pos} and using the fact that $c\gamma_c=\gamma_c+\delta$, we have $\tau_c^\ell(\tau_c^i(\beta))=q\ell\delta+q\gamma_c+v$ and $\tau_c^{-\ell}(\tau_c^i(\beta))=-q\ell\delta+q\gamma_c+v$, and Assertions~\ref{exists} and~\ref{lim} follow.
 \end{proof}
