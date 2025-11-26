@@ -470,8 +470,8 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \tableofcontents
 
 \section{Introduction}
-\sayS{@Nathan I changed ``imaginary wall'' to ``boundary of the $\g$-vector fan'' at the end of the abstract; is it OK?}
-\sayS{I changed $\tilde B$ to $\widetilde B$  \rn{After some thought, I'm not wild about this change.  It makes higher lines in the prose (see, for example, the 7th line of the first paragraph) and it makes the tilde too far above the $B$.  But I'll go with whatever the group decides.}\rs{I prefer widetilde for readibility but I agree that it is too high and ruins lines. I tried looking for alternatives but could not locate a good one}}
+\sayS{@Nathan I changed ``imaginary wall'' to ``boundary of the $\g$-vector fan'' at the end of the abstract; is it OK? \rd{It reads fine to me.}}
+\sayS{I changed $\tilde B$ to $\widetilde B$  \rn{After some thought, I'm not wild about this change.  It makes higher lines in the prose (see, for example, the 7th line of the first paragraph) and it makes the tilde too far above the $B$.  But I'll go with whatever the group decides.}\rs{I prefer widetilde for readibility but I agree that it is too high and ruins lines. I tried looking for alternatives but could not locate a good one} \rd{I usually prefer the widetilde but I'm fine either way.}}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\tilde\lambda\in\reals^m$, the dominance region $\P_{\tilde\lambda}^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
 The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
@@ -577,7 +577,7 @@ Same change in Lemma~\ref{shift extended}.
 For Lemma~\ref{eta nice}, I said ``Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.''
 In Theorem~\ref{neigh B}\ref{neigh detailed}, I replaced the colon and all the semicolons with periods. 
 Feel free to do something different.
-}}
+  }\rd{I am happy now in most places but Prop 4.16 and Prop 4.17 feel like the numbering should be different since the sentence structure is different.  We should also compare with Props 4.52 and 4.53.}}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
 $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -1243,7 +1243,6 @@ A lamination consists of a set of \newword{compatible} (i.e.\ noncrossing) curve
 Any collection of weighted curves joining the edges of the polygon has an associated vector of shear coordinates and there is a unique lamination having the same shear coordinates.
 Maximal sets of compatible curves have cardinality~$n$.
 If a lamination has fewer than $n$ curves, we always extend it to a set of $n$ compatible curves by adjoining additional curves with weight~$0$.
-\sayD{The comment below about extending by zeros was also addressed here.  \rn{Do we want to address that by removing one, or just leave it?}\rs{I would leave it as is}}
 The way in which this is done will not affect the arguments below.
 Thus the combinatorics of laminations is the combinatorics of triangulations of the $(n+3)$-gon, except that each curve connects two non-adjacent \emph{sides} of the polygon rather than two non-adjacent \emph{vertices}.
 
@@ -3068,7 +3067,7 @@ Then the intersection of the hyperplane $(\delta^B)^\perp$ with the nonnegative 
 Suppose $\alpha$ has nonnegative entries and $B\alpha$ is in $(\delta^B)^\perp$.
 Write $\alpha$ as $\beta+\gamma$ such that $\beta$ is zero in its affine entries and $\gamma$ is zero in its non-affine entries.
 Then $B\beta$ is a nonnegative linear combination of the non-affine columns of $B$, and equivalently a nonnegative linear combination of the columns of $\CompPlus(B)$.
-Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.\sayD{This was observed somewhere earlier, maybe as a part of a proof, should we highlight it as a Lemma so that we can refer to it here?  \rn{I did a very half-hearted search for where this comes up earlier, and didn't find it.  If someone wants to track it down and make a lemma, I'm OK with that... but I'm leaning towards leaving it and being that much closer to finished.}\rs{I also vote for leaving it as is}}
+Also $B\beta$ is in $(\delta^B)^\perp$ because every non-affine column of $B$ is.
 By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the vector $\gamma$ is a scalar multiple of $\delta^B$.
 Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
 \end{proof}
@@ -3926,7 +3925,7 @@ $\P^{\tB,\integers}_{\tilde\lambda,\kk}$ or rearrange superscripts\\
 \quad\\
 Looking at all these together, I wonder if $\integers\P^\tB_{\tilde\lambda,\kk}$ is the ``least worst''.  The script ``I'' for integers is really pretty bad.  Thoughts?
 }
-\rs{A single mathcal letter is probably the best choice here, how about $\mathcal{Z}$ (implemented to see how it looks like).}}
+\rs{A single mathcal letter is probably the best choice here, how about $\mathcal{Z}$ (implemented to see how it looks like).}\rd{I am fine with any of the options except $\mathbb{Z}\mathcal{P}$ since this looks too much like $\mathbb{ZP}$ or $\mathbb{QP}$ for a semifield $\mathbb{P}$ and we don't mean anything similar.}}
 Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
