@@ -557,43 +557,6 @@ When we can do so without confusion, we will omit the explicit statement that $\
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
 Suppose $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$.
-  \sayD{\color{orange}[NR:  Commented out earlier parts of this marginal note to focus on what we're still talking about.]
-%We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.
-%\rn{
-%Before we make any changes, I wanted to mention the convention that is currently in place for  enumerate environments:  Roman numerals in parentheses (or lower case letters if nested inside something already numbered) for conditions (either listed as part of a definition or declared to be equivalent) and bold arabic numerals for assertions (or bold lowercase letters if nested inside something numbered).  We can do something different if you want, but I'd like to distinguish these two kinds of lists.  Changing our minds should be fairly easy because we're (hopefully) referring to everything by reference.\\
-%  Or, if the issue is more about capitalization after the item-marker, I'm not sure if we're consistent about that, but there might be reasons not to be completely consistent (e.g. some of the assertions are grammatically part of a large sentence and some are not).  Of course, we could also make the grammatical usage uniform.}
-%\rd{Here specifically it says ``then'' and then there is a period at the end of the first item, in this context I would make that a semicolon.  Lemma 2.23 has the same.  Proposition 4.17 starts with a similar grammatical structure with a ``such that'' but then each item is its own sentence.  Theorem 4.38 has a bulleted list with semicolons but then each line is capitalized as though starting a new sentence.  I found a few others where there was an obvious way to fix a capitalization issue and just changed them.  If you have a strong preference for how to deal with these ones feel free to make a choice.}
-%\rn{
-%OK, I made some changes.  For this one:\\
-%Suppose $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$.
-%\begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
-%\item \label{shift one}
-%$\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
-%\item \label{shift all}
-%$\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
-%\end{enumerate}
-%That way, everything is a complete sentence with periods.
-%Same change in Lemma~\ref{shift extended}.
-%For Lemma~\ref{eta nice}, I said ``Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.''
-%In Theorem~\ref{neigh B}\ref{neigh detailed}, I replaced the colon and all the semicolons with periods. 
-%Feel free to do something different.
-%}
-\rd{I am happy now in most places but Prop 4.16 and Prop 4.17 feel like the numbering should be different since the sentence structure is different.  We should also compare with Props 4.52 and 4.53.}
-\rn{I made a change to Proposition~\ref{eta nice} that brings it in line with what we do in this lemma.  (Old version commented out for easy reverting if we want.)  The change makes the beginning of each line crowded with notation, but maybe we can live with that.
-I also made a change to Proposition~\ref{nonspecial mut} to bring it into line with the others.  (Again, old version commented out.)\\
-
-If these changes are acceptable, then the remaining issue is Propositions~\ref{delta limit eta} and~\ref{special mut}.  These are the two numbered results where we say "there exists [something] such that [list of assertions]."  Currently, one has the assertions as a numbered list of complete sentences and the other has the assertions as a bulleted list and the assertions all fit together into a sentence that was started before the list.\\
-
-Option A:  We change Proposition~\ref{delta limit eta} to bullet points to match Proposition~\ref{special mut}.  That would leave us with unnumbered assertions and we would have to fix how we refer to them.  We refer to them by number in two places outside of the proof.  Inside the proof, we refer to assertions by number a lot.\\
-
-Option B:  We change Proposition~\ref{special mut} to numbered complete sentences.  The numbered complete sentences, in connection with a "there exists" are not independent "assertions" in the same sense as other numbered lists of assertions. \\
-
-I think I prefer Option B.  
-I don't think most readers will appreciate the subtle reason to typeset these differently with bullets, so it will just seem strange that they are different.
-I can live with the subtle, "not independent assertions" still being numbered.  But I am willing to be persuaded.
-}
-  \rd{I implemented the change in Proposition~\ref{special mut}, feel free to delete this comment chain if it looks good.}
-}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
 $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -3970,17 +3933,6 @@ The theorem follows.
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
 We conclude by characterizing the integral dominance regions of affine type. 
-\marginN{\color{orange}Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?} \rd{I don't have any good suggestions either.}\rn{OK, the options I can think of are:\\
-$\integers\P^\tB_{\tilde\lambda,\kk}$\\
-$\IP^\tB_{\tilde\lambda,\kk}$\\
-$\P^\tB_{\integers,\tilde\lambda,\kk}$ or rearrange subscripts\\
-$\P^{\tB,\integers}_{\tilde\lambda,\kk}$ or rearrange superscripts\\
-\quad\\
-Looking at all these together, I wonder if $\integers\P^\tB_{\tilde\lambda,\kk}$ is the ``least worst''.  The script ``I'' for integers is really pretty bad.  Thoughts?
-}
-\rs{A single mathcal letter is probably the best choice here, how about $\mathcal{Z}$ (implemented to see how it looks like).}\rd{I am fine with any of the options except $\mathbb{Z}\mathcal{P}$ since this looks too much like $\mathbb{ZP}$ or $\mathbb{QP}$ for a semifield $\mathbb{P}$ and we don't mean anything similar.}
-\rn{I like the option with only mathcal Z.  Thanks, Salvatore, this is much better.}
-}
 Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
