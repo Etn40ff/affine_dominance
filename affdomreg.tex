@@ -470,8 +470,6 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \tableofcontents
 
 \section{Introduction}
-\sayS{@Nathan I changed ``imaginary wall'' to ``boundary of the $\g$-vector fan'' at the end of the abstract; is it OK? \rd{It reads fine to me.}}
-\sayS{I changed $\tilde B$ to $\widetilde B$  \rn{After some thought, I'm not wild about this change.  It makes higher lines in the prose (see, for example, the 7th line of the first paragraph) and it makes the tilde too far above the $B$.  But I'll go with whatever the group decides.}\rs{I prefer widetilde for readibility but I agree that it is too high and ruins lines. I tried looking for alternatives but could not locate a good one} \rd{I usually prefer the widetilde but I'm fine either way.}}
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\tilde\lambda\in\reals^m$, the dominance region $\P_{\tilde\lambda}^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
 The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
@@ -514,12 +512,12 @@ These are seeds that have $n-2$ of their $\g$-vectors in the imaginary wall (the
 It is apparent already from \cite{affdenom} that the combinatorics of neighboring seeds involves a product of finite type~B or~C generalized associahedra \cite[Propositions~5.13, 6,13]{affdenom}.  
 (The work of McCammond and Sulway on Artin groups of Euclidean type~\cite{McSul} finds, in an affine version of noncrossing partition lattices, products of finite type-B noncrossing partition lattices in a closely analogous way.)
 In this paper, we make the appearance of finite type B/C combinatorics in mutation fans of affine type completely explicit.
-\sayS{Rephrased the following sentence slightly}
-Specifically, we show that with respect to a neighboring seed having exchange matrix $B$, the imaginary wall is a halfspace and the restriction of the mutation fan to the imaginary wall is (\emph{metrically}, not merely \emph{combinatorially}) a product of the imaginary ray and some number ($1$, $2$ or $3$) of mutation fans of finite type~C.
+\sayS{Rephrased the following sentence slightly.  \rn{Changed "halfspace" to "half-hyperplane", because to me, "halfspace" carries the connotation of "full-dimensional".}}
+Specifically, we show that with respect to a neighboring seed having exchange matrix $B$, the imaginary wall is a half-hyperplane and the restriction of the mutation fan to the imaginary wall is (\emph{metrically}, not merely \emph{combinatorially}) a product of the imaginary ray and some number ($1$, $2$ or $3$) of mutation fans of finite type~C.
 We also show that certain sequences of mutations of $B$ correspond to (and give the same mutation maps as) mutations of the corresponding finite type-C exchange matrices.
 
 To use these insights to compute dominance regions in affine type, we were obliged to prove that, in the finite-type coefficient-free case, each dominance region is a single point.
-\sayS{Small edits}
+\sayS{Small edits.  \okn}
 A proof of this statement, which we had initially assumed would be trivial, turned out to be very difficult to find.
 The one we give involves a type-by-type argument using the marked surfaces model, folding, and computations.
 As a consequence, we also show that dominance regions are singletons in finite type with arbitrary coefficients.
@@ -561,23 +559,42 @@ When we can do so without confusion, we will omit the explicit statement that $\
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
 Suppose $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$.
-  \sayD{We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.
-  \rn{Before we make any changes, I wanted to mention the convention that is currently in place for  enumerate environments:  Roman numerals in parentheses (or lower case letters if nested inside something already numbered) for conditions (either listed as part of a definition or declared to be equivalent) and bold arabic numerals for assertions (or bold lowercase letters if nested inside something numbered).  We can do something different if you want, but I'd like to distinguish these two kinds of lists.  Changing our minds should be fairly easy because we're (hopefully) referring to everything by reference.\\
-  Or, if the issue is more about capitalization after the item-marker, I'm not sure if we're consistent about that, but there might be reasons not to be completely consistent (e.g. some of the assertions are grammatically part of a large sentence and some are not).  Of course, we could also make the grammatical usage uniform.
-  \rd{Here specifically it says ``then'' and then there is a period at the end of the first item, in this context I would make that a semicolon.  Lemma 2.23 has the same.  Proposition 4.17 starts with a similar grammatical structure with a ``such that'' but then each item is its own sentence.  Theorem 4.38 has a bulleted list with semicolons but then each line is capitalized as though starting a new sentence.  I found a few others where there was an obvious way to fix a capitalization issue and just changed them.  If you have a strong preference for how to deal with these ones feel free to make a choice.}}\rn{OK, I made some changes.  For this one:\\
-Suppose $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$.
-\begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
-\item \label{shift one}
-$\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
-\item \label{shift all}
-$\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
-\end{enumerate}
-That way, everything is a complete sentence with periods.
-Same change in Lemma~\ref{shift extended}.
-For Lemma~\ref{eta nice}, I said ``Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.''
-In Theorem~\ref{neigh B}\ref{neigh detailed}, I replaced the colon and all the semicolons with periods. 
-Feel free to do something different.
-  }\rd{I am happy now in most places but Prop 4.16 and Prop 4.17 feel like the numbering should be different since the sentence structure is different.  We should also compare with Props 4.52 and 4.53.}}
+\sayD{[NR:  Commented out earlier parts of this marginal note to focus on what we're still talking about.]
+%We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.
+%\rn{
+%Before we make any changes, I wanted to mention the convention that is currently in place for  enumerate environments:  Roman numerals in parentheses (or lower case letters if nested inside something already numbered) for conditions (either listed as part of a definition or declared to be equivalent) and bold arabic numerals for assertions (or bold lowercase letters if nested inside something numbered).  We can do something different if you want, but I'd like to distinguish these two kinds of lists.  Changing our minds should be fairly easy because we're (hopefully) referring to everything by reference.\\
+%  Or, if the issue is more about capitalization after the item-marker, I'm not sure if we're consistent about that, but there might be reasons not to be completely consistent (e.g. some of the assertions are grammatically part of a large sentence and some are not).  Of course, we could also make the grammatical usage uniform.}
+%\rd{Here specifically it says ``then'' and then there is a period at the end of the first item, in this context I would make that a semicolon.  Lemma 2.23 has the same.  Proposition 4.17 starts with a similar grammatical structure with a ``such that'' but then each item is its own sentence.  Theorem 4.38 has a bulleted list with semicolons but then each line is capitalized as though starting a new sentence.  I found a few others where there was an obvious way to fix a capitalization issue and just changed them.  If you have a strong preference for how to deal with these ones feel free to make a choice.}
+%\rn{
+%OK, I made some changes.  For this one:\\
+%Suppose $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$.
+%\begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
+%\item \label{shift one}
+%$\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
+%\item \label{shift all}
+%$\eta^{B^T}_\kk\!\!(\P^B_\lambda)=\P^{B'}_{\lambda'}$.
+%\end{enumerate}
+%That way, everything is a complete sentence with periods.
+%Same change in Lemma~\ref{shift extended}.
+%For Lemma~\ref{eta nice}, I said ``Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.''
+%In Theorem~\ref{neigh B}\ref{neigh detailed}, I replaced the colon and all the semicolons with periods. 
+%Feel free to do something different.
+%}
+\rd{I am happy now in most places but Prop 4.16 and Prop 4.17 feel like the numbering should be different since the sentence structure is different.  We should also compare with Props 4.52 and 4.53.}
+\rn{I made a change to Proposition~\ref{eta nice} that brings it in line with what we do in this lemma.  (Old version commented out for easy reverting if we want.)  The change makes the beginning of each line crowded with notation, but maybe we can live with that.
+I also made a change to Proposition~\ref{nonspecial mut} to bring it into line with the others.  (Again, old version commented out.)\\
+
+If these changes are acceptable, then the remaining issue is Propositions~\ref{delta limit eta} and~\ref{special mut}.  These are the two numbered results where we say "there exists [something] such that [list of assertions]."  Currently, one has the assertions as a numbered list of complete sentences and the other has the assertions as a bulleted list and the assertions all fit together into a sentence that was started before the list.\\
+
+Option A:  We change Proposition~\ref{delta limit eta} to bullet points to match Proposition~\ref{special mut}.  That would leave us with unnumbered assertions and we would have to fix how we refer to them.  We refer to them by number in two places outside of the proof.  Inside the proof, we refer to assertions by number a lot.\\
+
+Option B:  We change Proposition~\ref{special mut} to numbered complete sentences.  The numbered complete sentences, in connection with a "there exists" are not independent "assertions" in the same sense as other numbered lists of assertions. \\
+
+I think I prefer Option B.  
+I don't think most readers will appreciate the subtle reason to typeset these differently with bullets.
+I can live with the subtle, "not independent assertions" still being numbered.  But I am willing to be persuaded.
+}
+}
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
 $\eta^{B^T}_\kk\!\!(\P^B_{\lambda,\ll})=\P^{B'}_{\lambda',\ll\kk^{-1}}$ for any $\ll$.
@@ -1107,7 +1124,7 @@ Here, we give a direct, linear-algebraic proof.
 \begin{theorem}\label{P point}  
 Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
 Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\tilde\lambda\in\Cone^{\tB_0;t_0}_t$.
-  If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
+If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{theorem}
 
 \begin{proof}%[Proof of Theorem~\ref{P point}]
@@ -1707,7 +1724,7 @@ If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{
 These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
 
 
-\sayS{The definition of $\APTre{c}$ that we had here was wrong.  \rn{It said ``Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.'' and I still think that's correct.  (We said ``smaller than $\Simples$'', so we meant $\Supp$, not $\SuppT$.)  I'm trying for a combination of the two ideas, because I think the ``support smaller than $\Simples$'' idea is simpler.  Is this OK?}   \rs{No it is not, here is the counterexample: In type $D_4^{(1)}$ let 3 be the central node and consider the usual Coxeter element $c=s_1\dots s_5$. Then there is a finite orbit consisting of $\alpha_3$ and $\sum_{i=1}^5\alpha_i$; the latter has full support. I am reverting your change.}}
+\sayS{The definition of $\APTre{c}$ that we had here was wrong.  \rn{It said ``Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.'' and I still think that's correct.  (We said ``smaller than $\Simples$'', so we meant $\Supp$, not $\SuppT$.)  I'm trying for a combination of the two ideas, because I think the ``support smaller than $\Simples$'' idea is simpler.  Is this OK?}   \rs{No it is not, here is the counterexample: In type $D_4^{(1)}$ let 3 be the central node and consider the usual Coxeter element $c=s_1\dots s_5$. Then there is a finite orbit consisting of $\alpha_3$ and $\sum_{i=1}^5\alpha_i$; the latter has full support. I am reverting your change.}  \rn{Oh,  see.  Yes, I'm okay with this as corrected by SS.}}
 Let $\APTre{c}$ be the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$ and denote by $\SuppT(\beta)$ their support with respect to $\SimplesT{c}$.
 Let $\APT{c}=\APTre{c}\cup\set\delta$. 
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
@@ -1806,21 +1823,30 @@ The following proposition is part of \cite[Proposition~7.31]{affscat}.
 
 \begin{proposition}\label{eta nice} 
 Suppose $B_0$ is an acyclic exchange matrix of affine type and the Coxeter element associated to $B_0$ is $c=s_1\cdots s_n$.
-Then the piecewise linear map $\eta^{B_0^T}_{12\cdots n}$
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{nu tau}   
-has $\eta^{B^T}_{12\cdots n}\circ\nu_c=\nu_c\circ\tau_c$ as maps on $\AP{c}$, 
+$\eta^{B^T}_{12\cdots n}\circ\nu_c=\nu_c\circ\tau_c$ as maps on $\AP{c}$.
 \item\label{eta aut mut}
-is an automorphism of $\F_{B^T}$,
+$\eta^{B_0^T}_{12\cdots n}$ is an automorphism of $\F_{B^T}$.
 \item\label{eta is c}
-fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
-%% Tried to add this, but it's not true.  
-%\item\label{eta is c bigger}
-%agrees with $c$ on $\set{x\in V^*:\br{x,\beta}<0,\,\forall \beta\in\RSfin\text{ s.t. }\omega_c(\beta,\delta)>0}$.
-%NO, THIS LAST POINT IS NOT PROVED IN \cite{affscat}, and may not be true.  Need to deal with consequences of that for what follows.
+$\eta^{B_0^T}_{12\cdots n}$ fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
 \end{enumerate}
 \end{proposition}
 
+%This is the version of the proposition before Nathan made some changes 26 Nov 2025
+%\begin{proposition}\label{eta nice} 
+%Suppose $B_0$ is an acyclic exchange matrix of affine type and the Coxeter element associated to $B_0$ is $c=s_1\cdots s_n$.
+%Then the piecewise linear map $\eta^{B_0^T}_{12\cdots n}$
+%\begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
+%\item \label{nu tau}   
+%has $\eta^{B^T}_{12\cdots n}\circ\nu_c=\nu_c\circ\tau_c$ as maps on $\AP{c}$, 
+%\item\label{eta aut mut}
+%is an automorphism of $\F_{B^T}$,
+%\item\label{eta is c}
+%fixes $\d_\infty$ as a set, agrees with $c$ on $\d_\infty$, and has finite order on $\d_\infty$.
+%\end{enumerate}
+%\end{proposition}
+%
 \begin{proposition}\label{delta limit eta}
 Suppose $B_0$ is an acyclic exchange matrix of affine type and let $\ell$ be the least common multiple of the sizes of finite $c$-orbits.
 Suppose $x\in V^*\setminus\d_\infty$.
@@ -1991,7 +2017,7 @@ Since the $c$-sorting word associated to $t_{p+1}$ is reduced, the skip of $s_{k
 Suppose $B_0$ is an acyclic exchange matrix of affine type and suppose $B$ is mutation-equivalent to $B_0$.
 Let $t_0$ be a seed with exchange matrix $B_0$.
 Then there exists a $c$-sortable element~$v$ such that, writing $\kk$ for the \emph{reverse} of the sequence of indices in the $c$-sorting word for~$v$ and defining seeds ${t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t}$, the exhange matrix at $t$ is $B$.
-These $v$ and $t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has nonnegative entries for all ${p=0,\ldots,r}$.
+These $v$ and $t$ can be chosen so that $\bigl(G_{t_p}^{-B_0^T;t_0}\bigr)^T\delta$ has positive entries for all ${p=0,\ldots,r}$.
 \end{proposition}
 \begin{proof}
 Since $B$ is mutation-equivalent to $B_0$, taking $B_0$ to be the exchange matrix at $t_0$, there exists a seed $t'$ with $B$ as exchange matrix.
@@ -2010,7 +2036,8 @@ By the characterization of $C$-vectors in terms of skips, we see that the column
 The resulting cone $\Cone^{B_0;t_0}_{t_p}$ is therefore contained in the Tits cone,
 so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with~$\delta$.
 The cone $\Cone^{B_0;t_0}_{t_p}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
-We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here? \rd{Probably.}  \rn{I think non-negative is all we need, but strictly positive is what we get.  If this $\g$-vector cone really is in the Tits cone, then the $\g$-vectors that span it pair strictly positively with $\delta$.  Maybe we should strengthen the statement to say the thing that we're actually proving? }\rs{Possibly in case this is needed ina  future paper? I am also happy to leave it as is }}
+We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here? \rd{Probably.}  \rn{I think non-negative is all we need, but strictly positive is what we get.  If this $\g$-vector cone really is in the Tits cone, then the $\g$-vectors that span it pair strictly positively with $\delta$.  Maybe we should strengthen the statement to say the thing that we're actually proving? }\rs{Possibly in case this is needed ina  future paper? I am also happy to leave it as is }
+\rn{I changed the statement to say "positive".}}
 \end{proof}
 
 
@@ -3074,20 +3101,36 @@ Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
 
 \begin{proposition}\label{nonspecial mut}
 Suppose $B$ is a neighboring exchange matrix and $k$ is a non-special, non-affine index of~$B$.
-Then the following hold:
-\begin{itemize}
+\begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item
-$\mu_k(B)$ is neighboring,
+$\mu_k(B)$ is neighboring.
 \item
-$\Comp(\mu_k(B))=\mu_k(\Comp(B))$,
+$\Comp(\mu_k(B))=\mu_k(\Comp(B))$.
 \item
-$\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ in the affine rows,
+$\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ in the affine rows.
 \item
-the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
+The mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise.
 \item
-if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
-\end{itemize}
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
+\end{enumerate}
 \end{proposition}
+%Version of the prop before NR made changes 26 Nov 2025
+%\begin{proposition}\label{nonspecial mut}
+%Suppose $B$ is a neighboring exchange matrix and $k$ is a non-special, non-affine index of~$B$.
+%Then the following hold:
+%\begin{itemize}
+%\item
+%$\mu_k(B)$ is neighboring,
+%\item
+%$\Comp(\mu_k(B))=\mu_k(\Comp(B))$,
+%\item
+%$\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ in the affine rows,
+%\item
+%the mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise, and 
+%\item
+%if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
+%\end{itemize}
+%\end{proposition}
 \begin{proof}
 Mutating at $k$ means replacing the root $\gamma_k$ in the real $c$-cluster $\set{\gamma_1,\ldots,\gamma_n}$.
 Since $k$ is not special and not affine, $\gamma_k$ is replaced by another root in $\APTre{c}$.
@@ -3925,7 +3968,9 @@ $\P^{\tB,\integers}_{\tilde\lambda,\kk}$ or rearrange superscripts\\
 \quad\\
 Looking at all these together, I wonder if $\integers\P^\tB_{\tilde\lambda,\kk}$ is the ``least worst''.  The script ``I'' for integers is really pretty bad.  Thoughts?
 }
-\rs{A single mathcal letter is probably the best choice here, how about $\mathcal{Z}$ (implemented to see how it looks like).}\rd{I am fine with any of the options except $\mathbb{Z}\mathcal{P}$ since this looks too much like $\mathbb{ZP}$ or $\mathbb{QP}$ for a semifield $\mathbb{P}$ and we don't mean anything similar.}}
+\rs{A single mathcal letter is probably the best choice here, how about $\mathcal{Z}$ (implemented to see how it looks like).}\rd{I am fine with any of the options except $\mathbb{Z}\mathcal{P}$ since this looks too much like $\mathbb{ZP}$ or $\mathbb{QP}$ for a semifield $\mathbb{P}$ and we don't mean anything similar.}
+\rn{I like the option with only mathcal Z.  Thanks, Salvatore, this is much better.}
+}
 Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
