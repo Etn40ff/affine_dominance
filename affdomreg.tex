@@ -557,7 +557,7 @@ When we can do so without confusion, we will omit the explicit statement that $\
 Define the \newword{dominance region} of $\lambda$ with respect to $B$ to be $\P^B_\lambda=\bigcap_\kk\P^B_{\lambda,\kk}$, where the intersection is over all sequences~$\kk$.
 \begin{lemma}\label{shift}
 Suppose $\lambda'=\eta^{B^T}_\kk(\lambda)$ and $B'=\mu_\kk(B)$.
-\sayD{[NR:  Commented out earlier parts of this marginal note to focus on what we're still talking about.]
+  \sayD{\color{orange}[NR:  Commented out earlier parts of this marginal note to focus on what we're still talking about.]
 %We have some inconsistencies on punctuation and capitalization when we use an enumerate/itemize.  I can make the changes throughout once we settle on a convention.
 %\rn{
 %Before we make any changes, I wanted to mention the convention that is currently in place for  enumerate environments:  Roman numerals in parentheses (or lower case letters if nested inside something already numbered) for conditions (either listed as part of a definition or declared to be equivalent) and bold arabic numerals for assertions (or bold lowercase letters if nested inside something numbered).  We can do something different if you want, but I'd like to distinguish these two kinds of lists.  Changing our minds should be fairly easy because we're (hopefully) referring to everything by reference.\\
@@ -592,6 +592,7 @@ I think I prefer Option B.
 I don't think most readers will appreciate the subtle reason to typeset these differently with bullets, so it will just seem strange that they are different.
 I can live with the subtle, "not independent assertions" still being numbered.  But I am willing to be persuaded.
 }
+  \rd{I implemented the change in Proposition~\ref{special mut}, feel free to delete this comment chain if it looks good.}
 }
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{shift one}
@@ -1146,13 +1147,6 @@ We see that $\P^{\tB_0}_{\tilde\lambda,\kk}\subseteq\set{\tilde\lambda-\tB_0\alp
   Since also $\P^{\tB_0}_{\tilde\lambda,\varnothing}=\set{\tilde\lambda+\tB_0\alpha:\alpha\in\reals^n,\alpha\ge0}$, and since $\tB_0$ is has linearly independent columns, we conclude that $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{proof}
 
-\marginN{Moved the explanation of Theorem~\ref{finite P point indep} to before the theorem.  Also, the following proposition is pretty obvious:\\
-\begin{proposition}\label{fin red}
-If $B$ is an exchange matrix of finite type, then $B$ admits a maximal green sequence and a maximal red sequence.
-\end{proposition}
-It is obvious enough to leave it (and its proof) out, in favor of the sentence that I wrote here.
-Put it (and the proof) back if you disagree.
-\rs{LGTM}}
 When $B$ is of finite type, every $\tilde\lambda\in\reals^m$ is in some $\Cone^{\tB_0;t_0}_t$ for some seed $t$.
 It is also well known, and easy to prove, that every exchange matrix $B$ of finite type admits a maximal green sequence and a maximal red sequence.
 Thus the following theorem is a consequence of Theorem~\ref{P point}.
@@ -2254,7 +2248,11 @@ Suppose $x$ and $x'$ are exchangeable cluster variables in a cluster pattern wit
 Then every exchange relation for $x$ and $x'$ is the same:
 it involves the same two cluster monomials with the same coefficients.
 \end{lemma}
-\sayS{Is this lemma really new? \rd{It seems similar to a statement in the GSV book, I'll check it in my classroom tomorrow.}}
+\sayS{Is this lemma really new? \rd{Theorem 7.5 in the GSV book is similar but not identical to this so maybe it's a new observation.  Here is their statement:\\ Theorem 7.5. Let every seed in a cluster algebra $\mathcal{A}\in\mathfrak{A}(B)$ be uniquely defined by its cluster. Then two clusters are adjacent in the exchange graph of $\mathcal{A}$ if and only if they have exactly $n-1$ common variables. In particular, Conjecture 3.46(ii) holds true for $\mathcal{A}$ satisfying one of the conditions (i) or (ii) of Theorem 7.4.\\  Here is their Theorem 7.4:\\ Theorem 7.4. Let a cluster algebra $\mathcal{A}\in\mathfrak{A}(B)$ satisfy one of the following two conditions:
+(i) $\mathcal{A}$ is of geometric type;
+(ii) $\mathcal{A}$ is arbitrary and B is nondegenerate.
+Then every seed in $\mathcal{A}$ is uniquely defined by its cluster (in other words, Conjecture 3.46(i) holds true for $\mathcal{A}$).\\
+We can mention these results if you think they are relevant.}}
 \begin{proof}
 Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
 Sign-coherence of $C$-vectors (explained earlier in Section~\ref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
@@ -3144,24 +3142,39 @@ Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delt
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
 Moreover the affine entries in column $k$ of $B$ are zero.
 Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
-\sayD{\color{orange}This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}\rn{I'm not sure I understand this conversation.}\rs{Dylan is complaining about $x$ being an $n$ vector while $\Comp(B)$ has $n-2$ rows. I tried to address this here and in the statement above.}  \rn{OK, that makes sense.  In this sentence, I replaced "we have that" by "then".}}
 \end{proof}
 
+%\begin{proposition}\label{special mut}
+%Suppose $B$ is a neighboring exchange matrix and $k$ is a special index of~$B$.
+%Then there exists a sequence $\kk$ of indices in $\set{k,n-1,n}$ such that 
+%\begin{itemize}
+%\item
+%$\mu_\kk(B)$ is neighboring,
+%\item
+%$\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$,
+%\item
+%$\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows,
+%\item
+%the mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise, and 
+%\item
+%if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+%\end{itemize}
+%\end{proposition}
 \begin{proposition}\label{special mut}
 Suppose $B$ is a neighboring exchange matrix and $k$ is a special index of~$B$.
-Then there exists a sequence $\kk$ of indices in $\set{k,n-1,n}$ such that 
-\begin{itemize}
+Then there exists a sequence $\kk$ of indices in $\set{k,n-1,n}$ with the following properties.
+\begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item
-$\mu_\kk(B)$ is neighboring,
+$\mu_\kk(B)$ is neighboring.
 \item
-$\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$,
+$\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
 \item
-$\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows,
+$\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows.
 \item
-the mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise, and 
+The mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise.
 \item
-if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
-\end{itemize}
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
 The special index $k$, together with the affine indices, determines a $3\times3$ submatrix of $B$ that agrees with one of the entries in Table~\ref{submat tab}.
