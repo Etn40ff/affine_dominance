@@ -512,12 +512,10 @@ These are seeds that have $n-2$ of their $\g$-vectors in the imaginary wall (the
 It is apparent already from \cite{affdenom} that the combinatorics of neighboring seeds involves a product of finite type~B or~C generalized associahedra \cite[Propositions~5.13, 6,13]{affdenom}.  
 (The work of McCammond and Sulway on Artin groups of Euclidean type~\cite{McSul} finds, in an affine version of noncrossing partition lattices, products of finite type-B noncrossing partition lattices in a closely analogous way.)
 In this paper, we make the appearance of finite type B/C combinatorics in mutation fans of affine type completely explicit.
-\sayS{Rephrased the following sentence slightly.  \rn{Changed "halfspace" to "half-hyperplane", because to me, "halfspace" carries the connotation of "full-dimensional".}}
 Specifically, we show that with respect to a neighboring seed having exchange matrix $B$, the imaginary wall is a half-hyperplane and the restriction of the mutation fan to the imaginary wall is (\emph{metrically}, not merely \emph{combinatorially}) a product of the imaginary ray and some number ($1$, $2$ or $3$) of mutation fans of finite type~C.
 We also show that certain sequences of mutations of $B$ correspond to (and give the same mutation maps as) mutations of the corresponding finite type-C exchange matrices.
 
 To use these insights to compute dominance regions in affine type, we were obliged to prove that, in the finite-type coefficient-free case, each dominance region is a single point.
-\sayS{Small edits.  \okn}
 A proof of this statement, which we had initially assumed would be trivial, turned out to be very difficult to find.
 The one we give involves a type-by-type argument using the marked surfaces model, folding, and computations.
 As a consequence, we also show that dominance regions are singletons in finite type with arbitrary coefficients.
@@ -1268,7 +1266,6 @@ To compute dominance regions, we need to find, for every vector that is a nonneg
 Those laminations all have the same underlying set $\set{\theta_1,\ldots,\theta_n}$ of curves, which we now describe.
 Since $B$ is bipartite, each arc $t_i$ except for $t_1$ and $t_n$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
 The quadrilaterals enclosing $t_1$ and $t_n$ have three boundary edges and the curves $\theta_1$ and $\theta_n$ connect the two that are opposite to each other. 
-\sayS{Here we were claiming something false about the number of boundary arcs. If we want to be pedantic there is still the case of $n=1$. I do not know if it is better to add it here or to deal with it in the exceptional types.  \rn{I don't understand this comment.}\rs{When $n=1$ it is not true that the quadrilateral enclosing $t_1$ has only 3 boundary components. I added a comment about this at the beginning of the proof for this type.}  \rn{Oh, I see.  Good catch.  I rephrased the comment, because I wasn't sure what "corner cases" meant.}}
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
@@ -1725,7 +1722,6 @@ If $\beta_0,\ldots,\beta_k$ are the simple roots in one of the factors of $\RST{
 These simple roots can be indexed so that $c\beta_{i-1}=\beta_i$ for $i=1,\ldots,k$ and $c\beta_k=\beta_0$.
 
 
-\sayS{The definition of $\APTre{c}$ that we had here was wrong.  \rn{It said ``Let $\APTre{c}$ be the set of positive real roots in $\RST{c}$ whose support is strictly smaller than $\Simples$.'' and I still think that's correct.  (We said ``smaller than $\Simples$'', so we meant $\Supp$, not $\SuppT$.)  I'm trying for a combination of the two ideas, because I think the ``support smaller than $\Simples$'' idea is simpler.  Is this OK?}   \rs{No it is not, here is the counterexample: In type $D_4^{(1)}$ let 3 be the central node and consider the usual Coxeter element $c=s_1\dots s_5$. Then there is a finite orbit consisting of $\alpha_3$ and $\sum_{i=1}^5\alpha_i$; the latter has full support. I am reverting your change.}  \rn{Oh,  see.  Yes, I'm okay with this as corrected by SS.}}
 Let $\APTre{c}$ be the set of positive real roots $\beta$ in $\RST{c}$ that can be written uniquely as a linear combination of elements of $\SimplesT{c}$ and denote by $\SuppT(\beta)$ their support with respect to $\SimplesT{c}$.
 Let $\APT{c}=\APTre{c}\cup\set\delta$. 
 The set $\AP{c}$ of \newword{almost positive Schur roots} is ${-\Simples\cup(\RSpos\setminus\RST{c})\cup\APT{c}}$.
@@ -2037,8 +2033,7 @@ By the characterization of $C$-vectors in terms of skips, we see that the column
 The resulting cone $\Cone^{B_0;t_0}_{t_p}$ is therefore contained in the Tits cone,
 so that every nonzero vector in $\Cone^{B_0;t_0}_{t_p}$ pairs strictly positively with~$\delta$.
 The cone $\Cone^{B_0;t_0}_{t_p}$ is the nonnegative span of the rows of $\bigl(C_t^{B_0;t_0}\bigr)^{-1}$, which equals $\bigl(G_t^{-B_0^T;t_0}\bigr)^T$ by \cite[Theorem~1.2]{NZ}.
-We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.\sayS{Do we mean non-negatively here? \rd{Probably.}  \rn{I think non-negative is all we need, but strictly positive is what we get.  If this $\g$-vector cone really is in the Tits cone, then the $\g$-vectors that span it pair strictly positively with $\delta$.  Maybe we should strengthen the statement to say the thing that we're actually proving? }\rs{Possibly in case this is needed ina  future paper? I am also happy to leave it as is }
-\rn{I changed the statement to say "positive".}}
+We see that the columns of $G_{t_p}^{-B_0^T;t_0}$ pair strictly positively with $\delta$.
 \end{proof}
 
 
@@ -3149,7 +3144,7 @@ Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delt
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
 Moreover the affine entries in column $k$ of $B$ are zero.
 Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
-\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}\rn{I'm not sure I understand this conversation.}\rs{Dylan is complaining about $x$ being an $n$ vector while $\Comp(B)$ has $n-2$ rows. I tried to address this here and in the statement above.}  \rn{OK, that makes sense.  In this sentence, I replaced "we have that" by "then".}}
+\sayD{\color{orange}This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}\rn{I'm not sure I understand this conversation.}\rs{Dylan is complaining about $x$ being an $n$ vector while $\Comp(B)$ has $n-2$ rows. I tried to address this here and in the statement above.}  \rn{OK, that makes sense.  In this sentence, I replaced "we have that" by "then".}}
 \end{proof}
 
 \begin{proposition}\label{special mut}
@@ -3961,7 +3956,8 @@ The theorem follows.
 
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
-We conclude by characterizing the integral dominance regions of affine type.  \marginN{Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?} \rd{I don't have any good suggestions either.}\rn{OK, the options I can think of are:\\
+We conclude by characterizing the integral dominance regions of affine type. 
+\marginN{\color{orange}Please rescue me from this bad notation.\rs{Sorry I can't :(}  \rn{Dylan?  Please?} \rd{I don't have any good suggestions either.}\rn{OK, the options I can think of are:\\
 $\integers\P^\tB_{\tilde\lambda,\kk}$\\
 $\IP^\tB_{\tilde\lambda,\kk}$\\
 $\P^\tB_{\integers,\tilde\lambda,\kk}$ or rearrange subscripts\\
