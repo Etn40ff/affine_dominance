@@ -591,7 +591,7 @@ Option A:  We change Proposition~\ref{delta limit eta} to bullet points to match
 Option B:  We change Proposition~\ref{special mut} to numbered complete sentences.  The numbered complete sentences, in connection with a "there exists" are not independent "assertions" in the same sense as other numbered lists of assertions. \\
 
 I think I prefer Option B.  
-I don't think most readers will appreciate the subtle reason to typeset these differently with bullets.
+I don't think most readers will appreciate the subtle reason to typeset these differently with bullets, so it will just seem strange that they are different.
 I can live with the subtle, "not independent assertions" still being numbered.  But I am willing to be persuaded.
 }
 }
@@ -1223,7 +1223,8 @@ We assume the most basic facts about the marked surfaces model \cite{cats1,cats2
 
 \noindent
 \textbf{Type A.}
-To avoid corner cases we deal with type $A_1$ by direct inspection as for the exceptional types below and in the following assume $n\ge2$.
+In the following, we assume $n\ge2$ to avoid separate explanations for type~$A_1$, which can instead be handled by direct inspection.
+%To avoid corner cases we deal with type $A_1$ by direct inspection as for the exceptional types below and in the following assume $n\ge2$.
 Let $T$ be a triangulation of the regular $(n+3)$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$.
 Then up to switching the orientation of the plane, $T$ is as exemplified in the left picture of Figure~\ref{T fig}.
 \begin{figure}
@@ -1267,7 +1268,7 @@ To compute dominance regions, we need to find, for every vector that is a nonneg
 Those laminations all have the same underlying set $\set{\theta_1,\ldots,\theta_n}$ of curves, which we now describe.
 Since $B$ is bipartite, each arc $t_i$ except for $t_1$ and $t_n$ lies in a quadrilateral containing exactly two boundary edges and the curve $\theta_i$ connects these two edges as exemplified in the right picture of Figure~\ref{T fig}.
 The quadrilaterals enclosing $t_1$ and $t_n$ have three boundary edges and the curves $\theta_1$ and $\theta_n$ connect the two that are opposite to each other. 
-\sayS{Here we were claiming something false about the number of boundary arcs. If we want to be pedantic there is still the case of $n=1$. I do not know if it is better to add it here or to deal with it in the exceptional types.  \rn{I don't understand this comment.}\rs{When $n=1$ it is not true that the quadrilateral enclosing $t_1$ has only 3 boundary components. I added a comment about this at the beginning of the proof for this type.}}
+\sayS{Here we were claiming something false about the number of boundary arcs. If we want to be pedantic there is still the case of $n=1$. I do not know if it is better to add it here or to deal with it in the exceptional types.  \rn{I don't understand this comment.}\rs{When $n=1$ it is not true that the quadrilateral enclosing $t_1$ has only 3 boundary components. I added a comment about this at the beginning of the proof for this type.}  \rn{Oh, I see.  Good catch.  I rephrased the comment, because I wasn't sure what "corner cases" meant.}}
 This collection has several remarkable properties that are crucial to the proof.  
 In fact, most of the argument will seem clear without explicit appeals to these properties, but we highlight these properties in order to make the later type-D argument more clear.
 
@@ -3147,8 +3148,8 @@ Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
 Moreover the affine entries in column $k$ of $B$ are zero.
-Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, we have that the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
-\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}\rn{I'm not sure I understand this conversation.}\rs{Dylan is complaining about $x$ being an $n$ vector while $\Comp(B)$ has $n-2$ rows. I tried to address this here and in the statement above.}}
+Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
+\sayD{This convention of identifying spaces should probably be explicitly stated above, I thought I remembered this being done but I didn't see it so far in this reading.\rs{Are you thinking of the proof of Proposition~\ref{neigh im wall}?}\rn{I'm not sure I understand this conversation.}\rs{Dylan is complaining about $x$ being an $n$ vector while $\Comp(B)$ has $n-2$ rows. I tried to address this here and in the statement above.}  \rn{OK, that makes sense.  In this sentence, I replaced "we have that" by "then".}}
 \end{proof}
 
 \begin{proposition}\label{special mut}
