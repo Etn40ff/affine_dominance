@@ -3,7 +3,8 @@
 \documentclass{amsart}
 \usepackage{array}
 \newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\usepackage{graphicx,verbatim, amsmath, amssymb, amsthm, amsfonts, epsfig, amsxtra,ifthen,mathtools,epstopdf,caption,enumitem,hhline,bbm,capt-of,longtable}	
+\usepackage{graphicx,verbatim, amsmath, amssymb, amsthm, amsfonts, epsfig, amsxtra,ifthen,mathtools,%epstopdf,
+caption,enumitem,hhline,bbm,capt-of,longtable}	
 \usepackage[bookmarks=true, bookmarksopen=false,%
     colorlinks=true,%
     linkcolor=darkblue,%
@@ -20,9 +21,6 @@
 \DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
 \DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
 \DeclareMathAccent{\widebar}{0}{mathx}{"73}
-\epstopdfsetup{suffix=}
-\DeclareGraphicsExtensions{.ps}
-\DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
 
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{theorem}[proposition]{Theorem}
@@ -1168,7 +1166,7 @@ In the following, we assume $n\ge2$ to avoid separate explanations for type~$A_1
 Let $T$ be a triangulation of the regular $(n+3)$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$.
 Then up to switching the orientation of the plane, $T$ is as exemplified in the left picture of Figure~\ref{T fig}.
 \begin{figure}
-\scalebox{0.85}{\includegraphics{Tfig.ps}
+\scalebox{0.85}{\includegraphics{Tfig.pdf}
 \begin{picture}(0,0)(73,-73)
 \put(-58.5,-23){$t_1$}
 \put(-48,6){$t_2$}
@@ -1179,7 +1177,7 @@ Then up to switching the orientation of the plane, $T$ is as exemplified in the 
 \put(54.5,-3){$t_7$}
 \end{picture}}
 \qquad\quad
-\scalebox{0.66}[0.85]{\includegraphics{Theta.ps}
+\scalebox{0.66}[0.85]{\includegraphics{Theta.pdf}
 \begin{picture}(0,0)(93,-73)
 \put(-70,-12){$\theta_1$}
 \put(-53,12){$\theta_2$}
@@ -1253,7 +1251,7 @@ with curves $(L_1)^{(\ell)},(L_2)^{(\ell)},\ldots,(L_n)^{(\ell)}$ weighted $w_1,
 Then find the unique lamination $\Theta^{(\ell)}$ whose shear coordinates with respect to~$T$ are~$-B\alpha^{(\ell)}$.
 Crucially, $\Theta^{(\ell)}$ consists of the curves $\set{\theta_1,\ldots,\theta_n}$ with $\theta_i$ having weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$. 
 %\begin{figure}
-%\scalebox{0.83}[1]{\includegraphics{Theta.ps}
+%\scalebox{0.83}[1]{\includegraphics{Theta.pdf}
 %\begin{picture}(0,0)(93,-73)
 %\put(-70,-12){$\theta_1$}
 %\put(-53,12){$\theta_2$}
@@ -1263,7 +1261,7 @@ Crucially, $\Theta^{(\ell)}$ consists of the curves $\set{\theta_1,\ldots,\theta
 %\put(49,-37){$\theta_6$}
 %\put(56,4){$\theta_7$}
 %\end{picture}}
-%%\scalebox{1}{\includegraphics{Theta.ps}}
+%%\scalebox{1}{\includegraphics{Theta.pdf}}
 %%\begin{picture}(0,0)(113,-83)
 %%\put(-88,-8){$b_1^{(\ell)}$}
 %%\put(-63,8){$b_2^{(\ell)}$}
@@ -1294,7 +1292,7 @@ By the first remarkable property, for each $L_p$ there exists an $\ell_p\in\inte
 Then the sum of the shear coordinates of $\Lambda^{(\ell_p)}$ and~$\Theta^{(\ell_p)}$ is $\ep_{i_p}(w_p+z_{i_p}^{(\ell_p)})$ in position~$t_{i_p}$ because the second remarkable property assures that $(L_p)^{(\ell_p)}$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_p)}$ or $\Theta^{(\ell_p)}$ contribute to this coordinate.
 (See the left picture of Figure~\ref{theti fig}.)
 \begin{figure}
-\scalebox{0.77}{\includegraphics{theti1.ps}
+\scalebox{0.77}{\includegraphics{theti1.pdf}
 \begin{picture}(0,0)(73,-73)
 \put(-21,-17){$\thet_{i_p}$}
 \put(-2.5,25){\small$L_p^{(\ell_p)}$}
@@ -1302,21 +1300,21 @@ Then the sum of the shear coordinates of $\Lambda^{(\ell_p)}$ and~$\Theta^{(\ell
 \put(5,-19){$t_{i_p}$}
 \end{picture}}
 \hspace{0.5pt}
-\scalebox{0.77}{\includegraphics{theti1.5.ps}
+\scalebox{0.77}{\includegraphics{theti1.5.pdf}
 \begin{picture}(0,0)(73,-73)
 \put(2.5,9){\small$L_p$}
 \put(-16,-33){$L'_p$}
 %\put(5,-19){$t_{i_p}$}
 \end{picture}}
 \hspace{0.5pt}
-\scalebox{0.77}{\includegraphics{theti2.ps}
+\scalebox{0.77}{\includegraphics{theti2.pdf}
 \begin{picture}(0,0)(73,-73)
 %\put(-25,25){\small$(L_p)^{(\ell'_p)}$}
 \put(-3,22){$\thet_{\!i'_p}$}
 \put(6.5,-18){$t_{\!i'_p}$}
 \end{picture}}
 %\quad
-%\scalebox{0.77}{\includegraphics{theti3.ps}}
+%\scalebox{0.77}{\includegraphics{theti3.pdf}}
 %\begin{picture}(0,0)(73,-73)
 %\put(-3,-33){$\thet_i$}
 %\put(15,-30){$t_i$}
@@ -1349,7 +1347,7 @@ The outline of the proof in type D is essentially the same as in type~A.
 The major difference in type D is the appearance of tagged triangulations.
 Let~$T$ be a tagged triangulation of the once-punctured regular $n$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$, exemplified in the left picture of Figure~\ref{d T fig}.
 \begin{figure}
-\scalebox{0.85}{\includegraphics{Tfigd.ps}
+\scalebox{0.85}{\includegraphics{Tfigd.pdf}
 \begin{picture}(0,0)(82,-86)
 \put(-62,12.5){$t_1$}
 \put(-36.5,-14){$t_2$}
@@ -1360,7 +1358,7 @@ Let~$T$ be a tagged triangulation of the once-punctured regular $n$-gon whose si
 \put(55.5,-26){$t_7$}
 \end{picture}}
 \qquad
-\scalebox{0.85}{\includegraphics{Thetad.ps}
+\scalebox{0.85}{\includegraphics{Thetad.pdf}
 \begin{picture}(0,0)(82,-86)
 \put(-40,-15.5){$\theta_1$}
 \put(-64,22){$\theta_2$}
@@ -1408,7 +1406,7 @@ Each remaining curve intersects exactly one arc of $T$.
 The curve $\theta_3$ intersects $t_3$ and has weight $z_3^{(\ell)}=a_1+a_2+a_4$.
 For $i=4,\ldots,n$, the curve $\theta_i$ has weight $z_i^{(\ell)}=a_{i-1}^{(\ell)}+a_{i+1}^{(\ell)}$ and intersects~$t_i$ (taking $a_{n+1}^{(\ell)}=0$ as before).
 %\begin{figure}
-%\scalebox{1}{\includegraphics{Thetad.ps}
+%\scalebox{1}{\includegraphics{Thetad.pdf}
 %\begin{picture}(0,0)(82,-86)
 %\put(-40,-15.5){$\theta_1$}
 %\put(-64,22){$\theta_2$}
