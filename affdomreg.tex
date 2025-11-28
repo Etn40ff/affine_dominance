@@ -967,7 +967,7 @@ Most importantly, $\BB$ is skew-symmetrizable by the diagonal matrix $\begin{bsm
   Throughout, if we have defined an extended exchange matrix $\tB$, without comment we will take $B$ to be the underlying exchange matrix and $\BB$ to be the associated $m\times m$ matrix.
 The following is \cite[(3.2)]{ca3}, the version of Lemma~\ref{EBF trick} for extended exchange matrices.
 \begin{lemma}\label{EBF trick ext}
-For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of~$\tB$ at $k$ is $\mu_k(\tB)=E_{\ep,k}^\BB BF_{\ep,k}^B$.
+For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of~$\tB$ at $k$ is $\mu_k(\tB)=E_{\ep,k}^\BB \tB F_{\ep,k}^B$.
 \end{lemma}
 
 The matrix $\BB$ defines mutation maps $\eta_\kk^{\BB^T}$ that act on $\reals^m$ rather than $\reals^n$, but without exception we will only consider mutations in positions $1,\ldots,n$.
@@ -979,14 +979,6 @@ Since $\kk$ only contains indices in $\set{1,\ldots,n}$, these matrices have blo
 \CC_t^{\BB;t_0}=\begin{bsmallmatrix}C_t^{B;t_0}&K_t^{\tB;t_0}\\0&I_{m-n}\end{bsmallmatrix},
 \]
 where $H_t^{\tB;t_0}$ is an $(m-n)\times n$ matrix, $K_t^{\tB;t_0}$ is an $n\times(m-n)$ matrix, and $I_{m-n}$ is the identity matrix.
-
-\begin{proposition}\label{GBBC ext}  \sayN{Maybe we don't need this?\rs{It looks like we do not.}\rn{Dylan, unless you disagree, delete this marginal note and Proposition~\ref{GBBC ext}.}}
-$\GG_t^{\BB_0;t_0}\tB_r=\tB_0C_t^{B;t_0}$.
-\end{proposition}
-\begin{proof}
-Proposition~\ref{GBBC} says that $\GG_t^{\BB_0;t_0}\BB_r=\BB_0\CC_t^{\BB_0;t_0}$.
-Restricted to the first $n$ columns, this says $\GG_t^{\BB_0;t_0}\tB_r=\BB_0\begin{bsmallmatrix}C_t^{B;t_0}\\0\end{bsmallmatrix}$.
-\end{proof}
 
 \begin{proposition}\label{BGCB ext}
 $\tB_r\bigl(G_t^{-B_0^T;t_0}\bigr)^T=\bigl(\CC_t^{-\BB_0^T;t_0}\bigr)^T\tB_0$.
@@ -2211,12 +2203,7 @@ Suppose $x$ and $x'$ are exchangeable cluster variables in a cluster pattern wit
 Then every exchange relation for $x$ and $x'$ is the same:
 it involves the same two cluster monomials with the same coefficients.
 \end{lemma}
-\sayS{Is this lemma really new? \rd{Theorem 7.5 in the GSV book is similar but not identical to this so maybe it's a new observation.  Here is their statement:\\ Theorem 7.5. Let every seed in a cluster algebra $\mathcal{A}\in\mathfrak{A}(B)$ be uniquely defined by its cluster. Then two clusters are adjacent in the exchange graph of $\mathcal{A}$ if and only if they have exactly $n-1$ common variables. In particular, Conjecture 3.46(ii) holds true for $\mathcal{A}$ satisfying one of the conditions (i) or (ii) of Theorem 7.4.\\  Here is their Theorem 7.4:\\ Theorem 7.4. Let a cluster algebra $\mathcal{A}\in\mathfrak{A}(B)$ satisfy one of the following two conditions:
-(i) $\mathcal{A}$ is of geometric type;
-(ii) $\mathcal{A}$ is arbitrary and B is nondegenerate.
-Then every seed in $\mathcal{A}$ is uniquely defined by its cluster (in other words, Conjecture 3.46(i) holds true for $\mathcal{A}$).\\
-We can mention these results if you think they are relevant.}
-\rs{I am not sure that we are claiming the same thing: they basically say that the set of clusters containing any given $n-1$ cluster variables consists only of two elements while we are saying that any exchangeable pair of cluster variables is withnessed by the same subset of cluster variables. I am still surprised that this result is new but I am voting to leave it as is.}   \rn{I am also OK to leave it as is, so Dylan, if you agree, delete this.}}
+
 \begin{proof}
 Let $\g(x)$ and $\g(x')$ be the $\g$-vectors of $x$ and $x'$.
 Sign-coherence of $C$-vectors (explained earlier in Section~\ref{def sec}) implies that every exchange relation for $x$ and $x'$ has a monomial $M$, involving cluster variables but not coefficient variables, whose $\g$-vector is $\g(x)+\g(x')$.
@@ -3908,7 +3895,7 @@ The argument in the proof of Proposition~\ref{delta is the man}, with Lemma~\ref
 %
 The same argument, with~$t'$ replacing $t$, shows that $\eta^{\BB_0^T}_{\kk'}(-\frac12\tB_0\delta^{B_0})=-\frac12\tB'\delta^{B'}$.
 Multiplying by the inverse $\eta^{\BB^T}_{(\kk')^{-1}}$ of $\eta^{\BB_0^T}_{\kk'}$, we see that $-\frac12\tB_0\delta^{B_0}=\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'})$.
-Substituting into $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$, we obtain $\eta^{\BB_0^T}_\kk(\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'}))=-\frac12\tB\delta^B$, or in other words $\eta^{\BB^T}_{\kk(\kk')^{-1}}(-\frac12\tB'\delta^{B'})=-\frac12\tB\delta^B$, as desired.
+Substituting into $\eta^{\BB_0^T}_\kk(-\frac12\tB_0\delta^{B_0})=-\frac12\tB\delta^B$, we obtain $\eta^{\BB_0^T}_\kk\big(\eta^{\BB^T}_{(\kk')^{-1}}(-\frac12\tB'\delta^{B'})\big)=-\frac12\tB\delta^B$, or in other words $\eta^{\BB^T}_{\kk(\kk')^{-1}}(-\frac12\tB'\delta^{B'})=-\frac12\tB\delta^B$, as desired.
 \end{proof}
 
 
