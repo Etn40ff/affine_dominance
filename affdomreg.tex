@@ -451,8 +451,12 @@ Salvatore Stella was partially supported by PRIN 20223FEA2E, \lq\lq Cluster alge
 \begin{abstract}
 We determine dominance regions associated to cluster algebras of affine type.
 In the most interesting cases, the dominance region is a line segment, which we describe explicitly.
-Motivations for this work include a project to determine all pointed bases for cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
+Motivations for this work include a project to determine all pointed bases for cluster algebras of affine type and a separate application that determines all theta functions in the affine case.
 The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the boundary of the $\g$-vector fan).
+%We determine dominance regions associated to cluster algebras of affine type.
+%In the most interesting cases, the dominance region is a line segment, which we describe explicitly.
+%Motivations for this work include a project to determine all pointed bases for cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
+%The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the boundary of the $\g$-vector fan).
 \end{abstract}
 
 \maketitle
@@ -462,19 +466,32 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \setcounter{tocdepth}{2}
 \tableofcontents
 
-\section{Introduction}
-Given an $m\times n$ extended exchange matrix $\tB$ and a point $\tilde\lambda\in\reals^m$, the dominance region $\P_{\tilde\lambda}^\tB$ is the intersection of an infinite collections of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
-Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
-The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
-(Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
-See \cite[Section~1]{FanQin}.)
+\marginN{Small changes in wording in the abstract}
 
-Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
-(In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
-Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrices. 
-Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
-They found that, in the rank-$2$ affine case, dominance regions are either points or line segments.
-The purpose of this paper is to generalize that fact to extended exchange matrices of affine type, beyond rank~$2$.
+\section{Introduction}  
+Given an $m\times n$ extended exchange matrix $\tB$ and a point $\tilde\lambda\in\reals^m$, the dominance region $\P_{\tilde\lambda}^\tB$ is the intersection of an infinite collection of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
+Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
+\marginN{rewrote from here to end of paragraph.  Also fixed typo "collections" above.}
+Dominance regions/orders are the crucial discrete-geometric construction that characterizes the class of pointed bases, a class that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
+(More specifically, Fan Qin characterized all pointed bases of the upper cluster algebra in terms of this order, assuming that $\tB$ has linearly independent columns and admits a green-to-red sequence \cite[Theorem~1.2.1]{FanQin}.)
+%The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
+%(Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
+%See \cite[Section~1]{FanQin}.)
+
+\marginN{Rewrote the following paragraph to avoid diluting the impact with a discussion of ``rank''.  It doesn't seem like that discussion needs to be re-inserted anywhere else.  Also, grabbed part of the discussion on motivations from the end of the intro, to make it more prominent.}
+%Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
+%(In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
+%Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrices. 
+%Accordingly, we will avoid the standard linear algebra notion of rank, using the phrase ``with linearly independent columns'' in place of ``full rank''.)
+%They found that, in the rank-$2$ affine case, dominance regions are either points or line segments.
+%The purpose of this paper is to generalize that fact to extended exchange matrices of affine type, beyond rank~$2$.
+Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $n=m=2$. 
+They found that, in the $n=m=2$ affine case, dominance regions are either points or line segments.
+In this paper, we generalize that fact to all extended exchange matrices of affine type for arbitrary $m\ge n$.
+The results of this paper are motivated by two applications.  
+One is an ongoing project to determine all pointed bases of cluster algebras of affine type using \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
+The other application combines the results of this paper with a result of \cite{canonical} that uses the dominance region to greatly simplify the computation of some structure constants for multiplication of theta functions in the cluster scattering diagram (in the sense of~\cite{GHKK}).
+This allows us, in~\cite{afftheta}, to determine all theta functions for cluster scattering diagrams of affine type, determine ``imaginary'' exchange relations among them, and identify an ``imaginary subalgebra'' that is essentially a product of generalized cluster algebras of finite type $C$.
 
 Let $B$ be the $n\times n$ submatrix of $\widetilde B$ associated to mutable variables.
 A preliminary step to understanding dominance regions in affine type is to understand the mutation fan for $B^T$ in the sense of~\cite{universal}, which coincides in affine type \mbox{\cite[Theorem~2.10]{affscat}} with the cluster scattering fan in the sense of~\cite{scatfan}.
@@ -514,13 +531,14 @@ The one we give involves a type-by-type argument using the marked surfaces model
 As a consequence, we also show that dominance regions are singletons in finite type with arbitrary coefficients.
 %As a consequence, we also show that dominance regions in finite type are singletons for arbitrary coefficients.
 
-The results of this paper are motivated by two ongoing projects.  
-One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
-The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
-For both of these applications the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are obtained as $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
+\marginN{This is where I grabbed some motivation from to place it earlier.}
+For our applications, the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are obtained as $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
 We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
-%For both these applications the relevant notion is that of integral dominance regions i.e. the intersection of dominance regions with the integral lattice spanned by the columns of $\tB$.
-%We describe these in Section~\ref{sec:integral}.
+%The results of this paper are motivated by two ongoing projects.  
+%One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
+%The other project is to determine all theta functions for cluster scattering diagrams of affine type, in the sense of~\cite{GHKK}.
+%For both of these applications the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are obtained as $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
+%We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
 
 \section{Dominance regions}
 In this section, we define dominance regions and prove some foundational facts about them.
@@ -4001,7 +4019,8 @@ The fact about every other integer point follows by Proposition~\ref{delta is th
 % bibliography
 \bibliographystyle{plain}
 \bibliography{bibliography}
-\vspace{-0.175 em}
+\vspace{-0.6 em}
+
 
 
 \end{document}
