@@ -467,19 +467,15 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 \setcounter{tocdepth}{2}
 \tableofcontents
 
-\marginN{Small changes in wording in the abstract}
-
 \section{Introduction}  
 Given an $m\times n$ extended exchange matrix $\tB$ and a point $\tilde\lambda\in\reals^m$, the dominance region $\P_{\tilde\lambda}^\tB$ is the intersection of an infinite collection of piecewise polyhedral sets, each defined by applying mutation maps to a (translated) cone.
 Dominance regions were defined by Rupel and Stella~\cite{RSDom}, recasting the definition of a partial order called dominance on $\integers^m$ due to Fan Qin~\cite{FanQin}.
-\marginN{rewrote from here to end of paragraph.  Also fixed typo "collections" above.}
-Dominance regions/orders are the crucial discrete-geometric construction that characterizes the class of pointed bases, a class that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
+Dominance regions/orders are the crucial discrete-geometric construction that characterizes the class of pointed bases of the (upper) cluster algebra associated to $\tB$, a class that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
 (More specifically, Fan Qin characterized all pointed bases of the upper cluster algebra in terms of this order, assuming that $\tB$ has linearly independent columns and admits a green-to-red sequence \cite[Theorem~1.2.1]{FanQin}.)
 %The importance of dominance order/dominance regions is a theorem of Fan Qin \cite[Theorem~1.2.1]{FanQin} that, when $\tB$ has linearly independent columns and admits a green-to-red sequence, characterizes all pointed bases of the upper cluster algebra in terms of this order.
 %(Pointed bases are an important class of bases that includes the theta basis~\cite{GHKK}, the generic basis~\cite{Dup11}, and the common triangular basis~\cite{QinTri}. 
 %See \cite[Section~1]{FanQin}.)
 
-\marginN{Rewrote the following paragraph to avoid diluting the impact with a discussion of ``rank''.  It doesn't seem like that discussion needs to be re-inserted anywhere else.  Also, grabbed part of the discussion on motivations from the end of the intro, to make it more prominent.}
 %Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $\tB$ has rank~$2$.
 %(In this paper, we consider \emph{tall} extended exchange matrices rather than \emph{wide} ones.
 %Also, we follow the usual practice of taking the ``rank'' of a cluster algebra to be the number of columns in its extended exchange matrices. 
@@ -489,9 +485,9 @@ Dominance regions/orders are the crucial discrete-geometric construction that ch
 Rupel and Stella~\cite{RSDom} computed dominance regions in the case where $n=m=2$. 
 They found that, in the $n=m=2$ affine case, dominance regions are either points or line segments.
 In this paper, we generalize that fact to all extended exchange matrices of affine type for arbitrary $m\ge n$.
-The results of this paper are motivated by two applications.  
+Our results are motivated by two applications.  
 One is an ongoing project to determine all pointed bases of cluster algebras of affine type using \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
-The other application combines the results of this paper with a result of \cite{canonical} that uses the dominance region to greatly simplify the computation of some structure constants for multiplication of theta functions in the cluster scattering diagram (in the sense of~\cite{GHKK}).
+The other application combines the results of this paper with a result of \cite{canonical} and uses dominance regions to greatly simplify the computation of some structure constants for multiplication of theta functions.
 This allows us, in~\cite{afftheta}, to determine all theta functions for cluster scattering diagrams of affine type, determine ``imaginary'' exchange relations among them, and identify an ``imaginary subalgebra'' that is essentially a product of generalized cluster algebras of finite type $C$.
 
 Let $B$ be the $n\times n$ submatrix of $\widetilde B$ associated to mutable variables.
@@ -517,7 +513,6 @@ From there, we can give the same characterization, for vectors $\tilde\lambda$ t
 %They are parallel to the imaginary ray and have one endpoint at $\lambda$ and the other endpoint on the relative boundary of the imaginary wall.
 
 A crucial ingredient for the characterization of dominance regions in affine type is a detailed study of the exchange matrices of neighboring seeds.  
-\marginN{Expanded parenthetical to mention Felikson-Tumarkin.  Also rephrased to make it clear that they only do *part* of the result.}
 (One aspect of this study appears in work of Felikson and Tumarkin~\cite{FeTuCoeff} and of Greenberg and Kaufman~\cite{GreenbergKaufman}.
 See Remark~\ref{related remark}.)
 %(A related result is proved by Greenberg and Kaufman~\cite{GreenbergKaufman}.
@@ -535,7 +530,6 @@ The one we give involves a type-by-type argument using the marked surfaces model
 As a consequence, we also show that dominance regions are singletons in finite type with arbitrary coefficients.
 %As a consequence, we also show that dominance regions in finite type are singletons for arbitrary coefficients.
 
-\marginN{This is where I grabbed some motivation from here to place it earlier.}
 For our applications, the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are obtained as $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
 We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
 %The results of this paper are motivated by two ongoing projects.  
@@ -2400,7 +2394,7 @@ If a submatrix in Table~\ref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, o
 
 \begin{remark}\label{related remark}
 The existence, in each mutation class of affine type, of a matrix satisfying Condition~\ref{neigh detailed} 
-has been pointed out elsewhere, namely by Felikson and Tumarkin \cite{FeTuCoeff} in the context of a classification of extended exchange matrices of finite mutation type and by Greenberg and Kaufman \cite{GreenbergKaufman} in the context of a uniform description of the cluster modular groups of affine and extended affine types.  \marginN{Modified this to mention Felikson and Tumarkin as well.}
+has been pointed out elsewhere, namely by Felikson and Tumarkin \cite{FeTuCoeff} in the context of a classification of extended exchange matrices of finite mutation type and by Greenberg and Kaufman \cite{GreenbergKaufman} in the context of a uniform description of the cluster modular groups of affine and extended affine types.  
 \end{remark}
 
 %We now prepare to prove Theorem~\ref{neigh B} as a series of propositions.  
