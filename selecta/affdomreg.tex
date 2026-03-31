@@ -20,7 +20,7 @@
     linktoc=all,%
     urlcolor=darkblue
 ]{hyperref}
-\usepackage[usenames]{xcolor}
+\usepackage{xcolor}
 \definecolor{darkblue}{cmyk}{1,0.3,0,0.1}  %blue
 \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
 \DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
@@ -369,6 +369,11 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 %In the most interesting cases, the dominance region is a line segment, which we describe explicitly.
 %Motivations for this work include a project to determine all pointed bases for cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
 %The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the boundary of the $\g$-vector fan).
+\vspace{1em}
+
+\noindent \textbf{Keywords:} Cluster algebras, Dominance order, Pointed bases.
+
+\noindent \textbf{MSC2020:} Primary 13F60.
 \end{abstract}
 
 %\vspace{-8pt}
@@ -788,8 +793,7 @@ By Lemma~\ref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$
 &=E^{B_1}_{\ep,k_1}\set{E^{B_1}_{\ep,k_1}\lambda+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.
 \end{aligned}\end{equation}
 
-The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$.  
-This map is $\eta_{\kk}^{B_0^T}={\eta_{k_r}^{B_{r-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
+The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$ and it is $\eta_{\kk}^{B_0^T}={\eta_{k_r}^{B_{r-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
 The map $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B_1;t_1}$.
 The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
 We will find the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
@@ -995,7 +999,7 @@ Here, we give a direct, linear-algebraic proof.
 
 \begin{theorem}\label{P point}  
 Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
-Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\tilde\lambda\in\Cone^{\tB_0;t_0}_t$.
+Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take~$\tilde\lambda\in\Cone^{\tB_0;t_0}_t$.
 If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{theorem}
 
@@ -1061,7 +1065,7 @@ We begin by proving the coefficient-free version of Theorem~\ref{finite P point}
 
 \begin{theorem}\label{finite P point no}  
 Suppose $B$ is an $n\times n$ exchange matrix of finite type.
-Then ${\P^B_\lambda=\set{\lambda}}$ for all $\lambda\in\reals^n$.
+Then  ${\P^B_\lambda=\set{\lambda}}$ for all $\lambda\in\reals^n$.
 \end{theorem}
 
 We say that an exchange matrix $B=[b_{ij}]$ is \newword{bipartite} if there is a bipartition $\set{1,\ldots,n}=P\cup N$ such that $b_{ij}>0$ implies $i\in P$ and $j\in N$.
@@ -1078,7 +1082,7 @@ Thus in light of Lemma~\ref{shift}, Theorem~\ref{finite P point no} is an immedi
 The intersection in Proposition~\ref{finite P point bip} is written as an infinite intersection but in fact is the intersection of finitely many different sets.
 
 \begin{proof}%[Proof of Proposition~\ref{finite P point bip}]
-In light of Lemma~\ref{block dom}, we may as well assume that $B$ is block-indecomposable.
+In light of Lemma~\ref{block dom}, we may assume that $B$ is block-indecomposable.
 Thus the Cartan matrix associated to $B$ is indecomposable of finite type.
 We verify the proposition type-by-type using the marked surfaces model, folding, and computations.
 We assume the most basic facts about the marked surfaces model \cite{cats1,cats2}, including the signed adjacency matrix of a triangulation, mutation by flipping arcs, the definition of shear coordinates, and the fact that shear coordinates define a bijection between laminations and vectors.
@@ -1327,7 +1331,7 @@ As in type A, we can describe a point $x\in\P^B_{\lambda,\kk^\ell}$ directly usi
 but here we skip directly to the more convenient description:
 to construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ clockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd to obtain a lamination $\Lambda^{(\ell)}$.
 
-We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
+Let $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in the right picture of  Figure~\ref{d T fig}.
 The curve $\theta_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
 The curve $\theta_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
@@ -1720,7 +1724,7 @@ Suppose $x\in V^*\setminus\d_\infty$.
 Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{in big dinf}
-For $i>I_+$ or $i<I_-$, $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RS$ such that $\omega_c(\beta,\delta)>0$.
+For $i>I_+$ or $i<I_-$, $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RS$ with $\omega_c(\beta,\delta)>0$.
 \item \label{c agree}
 %\item \label{c agree +}
 For $i>I_+$ or $i<I_-$, $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ and $\nu_c(\delta)$ are in the same domain of definition of $\eta_{12\cdots n}^{B^T}$ and $\eta_{12\cdots n}^{B^T}$ agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$.
@@ -1803,7 +1807,7 @@ Also, since $\delta$ has all entries positive and the first row of $B_0$ is nonz
 
 Let $\ell$ be the order of $\eta^{B_0^T}_{12\cdots n}$ on $\d_\infty$ (see Proposition~\ref{eta nice}.\ref{eta is c}).
 Then $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^\ell$ fixes $\d_\infty$ pointwise.
-Also, $\mu_{12\cdots n}(B_0)=B_0$, so Lemma~\ref{shift}.\ref{shift all} says ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^\ell(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
+Also, $\mu_{12\cdots n}(B_0)=B_0$, so from Lemma~\ref{shift}.\ref{shift all} we get that ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^\ell(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
 
 Now suppose $\P^{B_0}_\lambda$ contains a point $x\not\in\d_\infty$.
 Applying Proposition~\ref{delta limit eta}.\ref{eta lim}, we find a sequence of points in $\P^{B_0}_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
@@ -2109,7 +2113,7 @@ Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see t
 
 Second, given an $n\times n$ exchange matrix $B=[b_{ij}]$ and a subset $I\subseteq\set{1,\ldots,n}$, if the submatrix $[b_{ij}]_{i,j\in I}$ has exponential growth, it is immediate that that $B$ has exponential growth as well.
 
-Finally, a non-acyclic skew-symmetrizable $3\times3$ exchange matrix with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ has exponential growth.
+Finally, a non-acyclic skew-symmetrizable $3\times3$ exchange matrix having $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ has exponential growth.
 To see why, one can check that such matrices have the property that every single-step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
 
 \subsubsection{Exchange relations in the principal coefficients case}\label{exch rel sec}
@@ -2607,7 +2611,7 @@ These matrices determine inequalities, including
 \[
 3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-3b_{kp}>\frac94b_{kn},\\
 \]
-which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
+which rules out all pairs $(b_{kp},b_{kn})$ except for $(1,-2)$, $(2,-3)$, and $(2,-4)$.
 If $(b_{kp},b_{kn})=(2,-3)$, then $b_{pk}\in\set{-1,-2}$ and $b_{nk}=1$.
 Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which fails for either choice of $b_{pk}$, thus ruling out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
 Similar considerations starting with $b_{pk}+3b_{nk}>0$ and $3b_{pk}+4b_{nk}<0$ rule out all pairs $(b_{pk},b_{nk})$ except $(-2,1)$ and $(-4,2)$.
@@ -3288,7 +3292,7 @@ b_{ij}+m(2b_{ik},b_{kj})&-2b_{ik}\\
 \]
 and we conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
 We see also that all entries in affine rows are preserved by $\mu_\kk$.
-Thus $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows.
+Thus $\CompPlus(\mu_\kk(B))$ agrees in the affine rows with $\CompPlus(B)$.
 However, $\CompPlus(\mu_\kk(B))\neq\mu_k(\CompPlus(B))$, because the latter disagrees with $\CompPlus(B)$ in the $k\th$ entries of the affine rows (differing by a sign).
 
 The computations above can be reused to prove the assertions about $\eta^{B^T}_\kk$.
@@ -3611,7 +3615,7 @@ The sequence $\kk$ is $1313231$, and the mutation acts on $B$ as shown here.
 Once again, Theorem~\ref{neigh B} implies that $\mu_\kk(B)$ is neighboring.
 
 There are no additional entries of $\mu_\kk(B)$ to compute, and $\Comp(B)$ is $[0]$, so we see that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
-The assertions about $\CompPlus(\mu_\kk(B))$ is proved as in previous cases.
+Reasoning as in the previous cases one proves also the assertions about $\CompPlus(\mu_\kk(B))$.
 
 To prove the assertions about mutation maps, we consider adding an extra column with entries $c_1,c_2,c_3$ with $c_3=-c_2\ge0$.
 \begin{multline*}
@@ -3746,7 +3750,7 @@ We see that
 \end{multline*}
 The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
 
-The set $\P^B_{\lambda,\widehat\kk}$ is obtained by applying $(\eta_{\widehat\kk}^{B^T})^{-1}$ to $\set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+The set $\P^B_{\lambda,\widehat\kk}$ is $(\eta_{\widehat\kk}^{B^T})^{-1}\set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 By Proposition~\ref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\widehat\kk}$  
 for every $\widehat\kk$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
 Therefore Theorem~\ref{finite P point no} says that the projection of~$x$ is $\lambda_0$.
@@ -3842,7 +3846,7 @@ The theorem follows.
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
 We conclude by characterizing the integral dominance regions of affine type. 
-Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
+Given an integer point $\tilde\lambda\in\integers^m$, let $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
 It is immediate that $\set{\tilde\lambda}\subseteq\IP^\tB_{\tilde\lambda}\subseteq\P^\tB_{\tilde\lambda}$.   
