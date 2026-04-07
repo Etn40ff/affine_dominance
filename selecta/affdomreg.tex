@@ -1,10 +1,12 @@
 %!TEX TS-program =  pdflatex 
 
-%Changes made after submission to Selecta are marked
-%SinceSelecta
-
-
-\documentclass{amsart}
+\documentclass[10pt]{article}
+\textwidth=125mm
+\textheight=185mm
+\parindent=8mm
+\evensidemargin=0pt
+%\oddsidemargin=0pt
+\frenchspacing
 \usepackage{array}
 \newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \usepackage{graphicx,verbatim, amsmath, amssymb, amsthm, amsfonts, epsfig, amsxtra,ifthen,mathtools,epstopdf,caption,enumitem,hhline,bbm,capt-of,longtable}	
@@ -18,7 +20,7 @@
     linktoc=all,%
     urlcolor=darkblue
 ]{hyperref}
-\usepackage[usenames]{xcolor}
+\usepackage{xcolor}
 \definecolor{darkblue}{cmyk}{1,0.3,0,0.1}  %blue
 \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
 \DeclareFontShape{U}{mathx}{m}{n}{<-> mathx10}{}
@@ -63,7 +65,6 @@
 
 \newcommand{\ep}{\varepsilon}
 \newcommand{\thet}{\vartheta}
-\newcommand{\na}{{\operatorname{na}}}
 \newcommand{\col}{\operatorname{col}}
 \newcommand{\cut}{\operatorname{cut}}
 \newcommand{\id}{\operatorname{id}}
@@ -343,117 +344,21 @@
 
 
 
-% commands for marginal notes below
-% to make a marginal note, insert
-% \margin{Your comment here.} in the text.
-%  To sign the note:
-% \margin[You]{Your comment here.}
-% You can also label your comments and get a reference to the 
-% number later, like:
-% \margin[You]{Your comment here. \label{thefrivolouscomment}}
-% Things may start to look ugly if you have more than 99 
-%  marginal notes, but utility, not beauty is the intention here.
-%  This uses the command \marginpar
-%  defined, I think, in verbatim
-%  The circled numbers will screw up the formatting slightly.
-
-% Sometimes, if you terminate a run of LaTeX with "X" while using this macro, the next time you compile you will get the error "! File ended while scanning use of \@newl@bel.". The solution is to delete the .aux file (and fix whatever made you abort the run in the first place) and run LaTeX again.
-% Another solution seems to be to terminate the new run with "q" and then run again.
-
-% to set color for comment numbers, use any of the 68 colors from 
-% the color package in the command below
-\newcommand{\margincolor}{red}      
-\definecolor{darkgreen}{rgb}{0,0.7,0}
-\newcommand{\marginauthorcolor}{darkgreen}      
-
-% control the width of your comments
-\addtolength{\marginparwidth}{5mm}
-
-\newcounter{margincounter}
-\setcounter{margincounter}{0}
-
-\newcommand{\marginnum}{
-\ifnum\value{margincounter}<10
-\textcolor{\margincolor}{\begin{picture}(0,0)\put(2.2,2.4){\circle{9}}\end{picture}\footnotesize\arabic{margincounter}}
-\else\ifnum\value{margincounter}<100
-\textcolor{\margincolor}{\begin{picture}(0,0)\put(4.256,2.5){\circle{11}}\end{picture}\footnotesize\arabic{margincounter}}
-\else
-\textcolor{\margincolor}{\begin{picture}(0,0)\put(6.8,2.5){\circle{14}}\end{picture}\footnotesize\arabic{margincounter}}
-\fi\fi
-}
-
-%\newcommand{\marginnum}{\textcolor{\margincolor}{\begin{picture}(0,0)\put(4.256,2.5){\circle{11}}\end{picture}\footnotesize\arabic{margincounter}}}
-
-
-\newcommand{\margin}[2][]
-{\!\!\refstepcounter{margincounter}\marginnum\marginpar{\textcolor{\margincolor}{\arabic{margincounter}.}\,\,\textcolor{\marginauthorcolor}{\small#1:}\,\,\tiny #2}}
-%  If you want to switch which margin you're using, do the command  \reversemarginpar before your marginal comment.
-% To switch back, do \normalmarginpar
-% (But I think it won't let you switch which margin you use in the middle of a paragraph of the main text.
-
-%  to remove marginal notes, uncomment the following:
-%  \renewcommand{\margin}[2][]{}
-%  to remove just the circled numbers in the text, uncomment the following:
-%  \renewcommand{\marginnum}{}
-%  For final versions of a paper, it's probably best to remove all the \margin
-%  commands.  Much to my annoyance, they mess up the typesetting.
-
-\newcommand{\marginN}[1]{\margin[NR]{#1}}
-
-%  If you want to switch which margin you're using, do the command  \switchmargin before your marginal comment.
-% But it won't let you switch which margin you use in the middle of a paragraph of the main text.
-% Also, you can only switch if there is room on the other margin.  (I.e. if you switch too often, things may overlap.)
-\makeatletter
-\newcommand{\switchmargin}{
-\if@reversemargin
-\normalmarginpar
-\else
-\reversemarginpar
-\fi
-}
-\makeatother
-
-\newcommand{\saySS}[1]{\margin[S]{#1}}
-\newcommand{\sayS}[1]{\margin[S]{#1}}
-\newcommand{\sayN}[1]{\margin[NR]{#1}}
-\newcommand{\sayD}[1]{\margin[DR]{#1}}
-% control the width of your comments
-\addtolength{\marginparwidth}{3mm}
-
-%\newcommand{\response}[2]{{\color{red}#1:--}#2{\color{red}--:#1}}
-\newcommand{\response}[2]{ {\color{red}#1:}~#2}
-\newcommand{\rn}[1]{\response{NR}{#1}}
-\newcommand{\rs}[1]{\response{SS}{#1}}
-\newcommand{\rd}[1]{\response{DR}{#1}}
-
-\newcommand{\ok}[1]{ {\color{blue}#1: OK }}
-\newcommand{\okn}{\ok{NR}}
-\newcommand{\oks}{\ok{SS}}
-\newcommand{\okd}{\ok{DR}}
 
 
 
-
-\author{Nathan Reading}
-\author{Dylan Rupel}
-\author{Salvatore Stella}
-\title{Dominance regions for affine cluster algebras}
-\address[N. Reading]{Department of Mathematics, North Carolina State University, %Raleigh, NC, 
-USA}
-\address[D. Rupel]{Math Academy, Pasadena Unified School District, Pasadena, CA, USA}
-\address[Salvatore Stella]{Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica, Universit\`{a} degli Studi dell'Aquila, IT}
+\title{Dominance regions for affine cluster algebras\thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608 and by the National Science Foundation under award number DMS-2054489. Salvatore Stella was partially supported by PRIN 20223FEA2E, \lq\lq Cluster algebras and Poisson Lie groups\rq\rq and INdAM/GNSAGA}}
+\author{Nathan Reading\thanks{Department of Mathematics, North Carolina State University, Raleigh, NC, USA} \and
+Dylan Rupel\thanks{Math Academy, Pasadena Unified School District, Pasadena, CA, USA} \and
+Salvatore Stella\thanks{Dipartimento di Ingegneria e Scienze dell'Informazione e Matematica, Universit\`{a} degli Studi dell'Aquila, IT}}
 %\keywords{}
-\thanks{Nathan Reading was partially supported by the Simons Foundation under award number 581608 and by the National Science Foundation under award number DMS-2054489.
-Salvatore Stella was partially supported by PRIN 20223FEA2E, \lq\lq Cluster algebras and Poisson Lie groups\rq\rq and INdAM/GNSAGA}
-%\received{}
-%\revised{}
-%\accepted{}
 
 \allowdisplaybreaks
 
-\subjclass[2020]{Primary 13F60}
-\keywords{Cluster algebras, Dominance order, Pointed bases}
+
 \begin{document}
+
+\maketitle
 
 \begin{abstract}
 We determine dominance regions associated to cluster algebras of affine type.
@@ -464,9 +369,12 @@ The proofs draw on known results from the doubled Cambrian fan and almost-positi
 %In the most interesting cases, the dominance region is a line segment, which we describe explicitly.
 %Motivations for this work include a project to determine all pointed bases for cluster algebras of affine type and a separate project to determine all theta functions in the affine case.
 %The proofs draw on known results from the doubled Cambrian fan and almost-positive roots models, as well as a new tool that we develop: a detailed description of neighboring seeds of affine type (seeds that are, in some sense, as close as possible to the boundary of the $\g$-vector fan).
-\end{abstract}
+\vspace{1em}
 
-\maketitle
+\noindent \textbf{Keywords:} Cluster algebras, Dominance order, Pointed bases.
+
+\noindent \textbf{MSC2020:} Primary 13F60.
+\end{abstract}
 
 %\vspace{-8pt}
 
@@ -503,7 +411,7 @@ This cone is called the imaginary wall, because it is a wall in the cluster scat
 There is a unique ray of the mutation fan, called the imaginary ray, that is in the relative interior of the imaginary wall.  
 
 Up to translation, the dominance region of $\tilde\lambda$ only depends on the projection of~$\tilde\lambda$ into $\reals^n$ that ignores the last $m-n$ entries.
-We prove that in affine types, when $\tB$ has linearly independent columns, the dominance region $\P_{\tilde\lambda}^\tB$ is a point if $\tilde\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\tilde\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
+We prove that in affine types, when $\tB$ has linearly independent columns, the dominance region $\P_{\tilde\lambda}^\tB$ is a point if~$\tilde\lambda$ projects to the $\g$-vector fan or otherwise (i.e.\ when $\tilde\lambda$ projects to the relative interior of the imaginary wall) is a line segment that we describe explicitly.
 
 Computing dominance regions without the assumption that $\tB$ has linearly independent columns is in general much harder. 
 However, in affine type, for points that project to the relative interior of the imaginary wall, our argument requires us to first understand the coefficient-free case.
@@ -536,7 +444,7 @@ The one we give involves a type-by-type argument using the marked surfaces model
 As a consequence, we also show that dominance regions are singletons in finite type with arbitrary coefficients.
 %As a consequence, we also show that dominance regions in finite type are singletons for arbitrary coefficients.
 
-For our applications, the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are obtained as $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
+For our applications, the relevant notion is the integral dominance region: the set of points in $\P_{\tilde\lambda}^\tB$ that are $\tilde\lambda$ plus an \emph{integer}-linear combination of columns of $\tB$.
 We describe the integral dominance region in affine type in Section~\ref{sec:integral}.
 %The results of this paper are motivated by two ongoing projects.  
 %One project is to determine all pointed bases of cluster algebras of affine type, using the result of Fan Qin mentioned above \cite[Theorem~1.2.1]{FanQin} and to relate them to certain generalized minors in double Bruhat cells as in \cite{RSW19}.
@@ -551,8 +459,8 @@ Also, throughout the section, we use results from~\cite{NZ}.
 
 
 \subsection{Definitions and background}\label{def sec}
-We begin with a skew-symmetrizable $n \times n$ exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all $i,j$).
-The diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$ has $\symmetrizer B\symmetrizer^{-1}=-B^T$.
+We begin with a skew-symmetrizable $n \times n$ exchange matrix~$B=[b_{ij}]$ and write $d_1,\ldots,d_n$ for the skew-symmetrizing constants of $B$ (so that $d_i b_{ij}=-d_j b_{ji}$ for all~$i,j$).
+The diagonal matrix $\symmetrizer$ with diagonal entries $d_1,\ldots,d_n$ is such that $\symmetrizer B\symmetrizer^{-1}=-B^T$.
 
 Given a sequence $\kk=k_r\cdots k_1$ of indices in $\set{1,\ldots,n}$, we read the sequence from right to left for the purposes of matrix mutation.
 That is, $\mu_\kk(B)$ means $\mu_{k_r}(\mu_{k_{r-1}}(\cdots(\mu_{k_1}(B))\cdots))$ and, when a sequence $\kk$ has been chosen, we often denote this mutated exchange matrix simply as $B_r$.
@@ -560,7 +468,7 @@ We write $\kk^{-1}$ for $k_1\cdots k_r$, the reverse of $\kk$.
 Throughout, we will use without comment the fact that matrix mutation commutes with the maps $B\mapsto-B$ and $B\mapsto B^T$.
 
 Given an exchange matrix $B$, the \newword{mutation map} $\eta^B_\kk:\reals^n\to\reals^n$ takes the input vector in $\reals^n$, places it as an additional row below $B$, mutates the resulting matrix according to the sequence $\kk$, and outputs the bottom row of the mutated matrix \cite[Definition~4.1]{universal}.
-In this paper, it is convenient to think of vectors in $\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
+In this paper, it is convenient to think of vectors in~$\reals^n$ as column vectors and thus the mutation maps we need use transposes $B^T$ of exchange matrices, i.e. we use the mutation maps $\eta_\kk^{B^T}$.
 One such map takes a vector, places it as an additional \emph{column} to the right of $B$ (not $B^T$), does mutations according to $\kk$, and reads the rightmost column of the mutated matrix.
 The inverse of the mutation map $\eta^{B^T}_\kk$ is $\eta_{\kk^{-1}}^{\mu_\kk(B)^T}$.
 In this paper we seldom use mutation maps without a transpose and so we could have opted to drop the superscript $^T$ in our notation.
@@ -606,8 +514,8 @@ Each column of $C_t^{B;t_0}$ is nonzero and all of its nonzero entries have the 
 (This is ``sign-coherence of $C$-vectors'', which was implicitly conjectured in \cite{ca4} and proved as \cite[Corollary~5.5]{GHKK}.)
 Thus we may refer to the \newword{sign} of a column of $C_t^{B;t_0}$.
 For $\kk=k_r\cdots k_1$, define seeds $t_1,\ldots,t_r$ by $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r$.
-The sequence $\kk$ is a \newword{green sequence} for the exchange matrix $B$ if column $k_p$ of $C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$.
-A \newword{maximal green sequence} for $B$ is a green sequence that cannot be extended.
+The sequence $\kk$ is a \newword{green sequence} for the exchange matrix~$B$ if column $k_p$ of~$C_{t_{p-1}}^{B;t_0}$ is \emph{positive} for all $p$ with $1\le p\le r$.
+A \newword{maximal green sequence} for~$B$ is a green sequence that cannot be extended.
 That is, a green sequence $\kk$ is a maximal green sequence if every column of $C_{t_r}^{B;t_0}$ is \emph{negative}.
 
 We will call $\kk$ a \newword{red sequence} for~$B$ if it is a green sequence for $-B$.
@@ -632,7 +540,7 @@ Two vectors are in the same \newword{domain of definition} of $\eta_\kk^{B^T}$ i
 In particular, $\eta_\kk^{B^T}$ is linear in each of its domains of definition, but the domains of linearity of $\eta_\kk^{B^T}$ can be larger than its domains of definition.
 
 There is a fan $\F_{B^T}$ called the \newword{mutation fan} for $B^T$ \cite[Definition~5.12]{universal}.
-We will not need the details of the definition, but roughly, the cones of $\F_{B^T}$ are the intersections of domains of definition of mutation maps $\eta_\kk^{B^T}$ for all sequences $\kk$.
+We will not need the details of the definition, but roughly, the cones of $\F_{B^T}$ are the intersections of domains of definition of mutation maps $\eta_\kk^{B^T}$ for all sequences~$\kk$.
 Thus for each $\kk$, each cone of $\F_{B^T}$ is contained in a domain of definition of $\eta_\kk^{B^T}$, and the mutation map $\eta_\kk^{B^T}$ is linear on every cone of $\F_{B^T}$ \cite[Proposition~5.3]{universal}.
 Every cone $\Cone^{B;t_0}_t$ is a maximal cone in the mutation fan $\F_{B^T}$ \cite[Proposition~8.13]{universal}.
 Thus in particular, the mutation map $\eta_\kk^{B^T}$ is linear on every cone $\Cone^{B;t_0}_t$.
@@ -649,7 +557,7 @@ As written, \cite[Proposition~8.13]{universal} is conditional on the conjectured
 We will need to relate the cones $\Cone^{B;t_0}_t$ and $\Cone^{-B^T;t_0}_t$.
 Recall that $-B^T=\symmetrizer B\symmetrizer^{-1}$, where $\symmetrizer$ is the diagonal matrix with positive entries $d_1,\ldots,d_n$.
 In the language of \cite[Section~7]{universal}, $-B^T$ is a \newword{rescaling} of $B$.
-Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the $i\th$ column of $\symmetrizer^{-1}G_t^{B;t_0}$.
+Therefore, \cite[Proposition~8.20]{universal} says that the $i\th$ column of $G_t^{-B^T;t_0}$ is a positive scalar multiple of the~$i\th$ column of $\symmetrizer^{-1}G_t^{B;t_0}$.
 (In the statement of \cite[Proposition~8.20]{universal}, the roles of $\symmetrizer$ and $\symmetrizer^{-1}$ are reversed, and $\symmetrizer$ is multiplied on the right because, in~\cite{universal}, the $\g$-vectors are row vectors rather than column vectors.)
 Thus we have the following fact.
 \begin{lemma}\label{B or -BT}
@@ -700,7 +608,7 @@ E_{\ep,k}^B&=J_k+[\ep B]_+^{\bullet k}\\
 F_{\ep,k}^B&=J_k+[-\ep B]_+^{k\bullet}.
 \end{align*}
 Each matrix $E_{\ep,k}^B$ is its own inverse, and each $F_{\ep,k}^B$ is its own inverse.
-We note that $(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$, where~$\symmetrizer$ is the diagonal matrix of skew-symmetrizing constants of~$B$.
+We note that~$(E_{\ep,k}^B)^T=J_k+[\ep B^T]_+^{k\bullet}=F_{\ep,k}^{-B^T}=\symmetrizer F_{\ep,k}^B\symmetrizer^{-1}$, where~$\symmetrizer$ is the diagonal matrix of skew-symmetrizing constants of~$B$.
 The following is a special case of \cite[(3.2)]{ca3}.
 \begin{lemma}\label{EBF trick}
 For $k\in\set{1,\ldots,n}$ and either choice of $\ep\in\set{\pm1}$, the mutation of $B$ at $k$ is $\mu_k(B)=E_{\ep,k}^BBF_{\ep,k}^B$.
@@ -798,14 +706,14 @@ Then for any orbit sequence $\kk$, the mutation map $\eta^{B^T}_\kk$, defined as
 \end{proposition}
 
 For a vector $\alpha\in(\reals^n)^\sigma$, we say $\alpha\ge0$ to mean that $\alpha$ has nonnegative coordinates in the orbit basis and we interpret the notation $\pi_\sigma(B)\alpha$ as the matrix $\pi_\sigma(B)$ times the column vector of orbit-basis coordinates of $\alpha$.
-We can thus interpret $\pi_\sigma(B)\alpha$ as a vector in $(\reals^n)^\sigma$.
+We can thus interpret~$\pi_\sigma(B)\alpha$ as a vector in $(\reals^n)^\sigma$.
 We observe that when $\sigma$ is a stable automorphism of $B$,
 \[\sett{B\alpha:\alpha\in\reals^n,\alpha\ge0}\cap(\reals^n)^\sigma=\sett{\pi_\sigma(B)\alpha:\alpha\in(\reals^n)^\sigma,\alpha\ge0}.\]
 This observation, combined with Proposition~\ref{VielLemma}, immediately implies the following theorem.
 In the theorem, we interpret $\P_\lambda^{\pi_\sigma(B)}$ as the dominance region of $\lambda$ inside $(\reals^n)^\sigma$ defined in terms of the orbit basis of $(\reals^n)^\sigma$.
 \begin{theorem}\label{fold dom reg}
 Suppose $\sigma$ is a stable automorphism of $B$ and $\lambda\in(\reals^n)^\sigma$.
-Then $\P_{\lambda,\kk}^{\pi_\sigma(B)}=\P_{\lambda,\kk}^B\cap(\reals^n)^\sigma$ for all orbit sequences~$\kk$.
+Then~$\P_{\lambda,\kk}^{\pi_\sigma(B)}=\P_{\lambda,\kk}^B\cap(\reals^n)^\sigma$ for all orbit sequences~$\kk$.
 \end{theorem}
 
 
@@ -824,13 +732,13 @@ We will prove the following theorem.
 
 \begin{theorem}\label{P in B0C}
 Suppose $\kk=k_r\cdots k_1$ and $t_0\overset{k_1}{\edge}t_1\overset{k_2}{\edge}\,\cdots\,\overset{k_r}{\edge}t_r=t$.
-If $\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_r$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{B_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
+If~$\kk^{-1}=k_1\cdots k_r$ is a red sequence for $B_r$, then for any~$\lambda$ in the domain of definition of $\eta_\kk^{B_0^T}$ that contains $\Cone^{B_0;t_0}_t$,
 \[\P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+G_t^{B_0;t_0}B_r\alpha:\alpha\in\reals^n,\alpha\ge0}=\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\in\reals^n,\alpha\ge0}.\]
 \end{theorem}
 
 Since $\bigl(\eta_{\kk}^{B_0^T}\bigr)^{-1}=\eta_{\kk^{-1}}^{B_r^T}$, we have $\P^{B_0}_{\lambda,\kk}=\eta_{\kk^{-1}}^{B_r^T}\sett{\eta_\kk^{B_0^T}(\lambda)+B_r\alpha:\alpha\ge0}$.
 Let $\Sigma$ be the domain of definition of $\eta_{\kk}^{B_0^T}$  that contains $\Cone^{B_0;t_0}_t$.
-Then $\eta_{\kk^{-1}}^{B_r^T}$ is linear on $\eta_{\kk}^{B_0^T}(\Sigma)$.
+Then $\eta_{\kk^{-1}}^{B_r^T}$ is linear on~$\eta_{\kk}^{B_0^T}(\Sigma)$.
 Let~$\L_{\kk^{-1}}^{B_r^T}$ be the linear map that agrees with $\eta_{\kk^{-1}}^{B_r^T}$ on~$\eta_{\kk}^{B_0^T}(\Sigma)$.
 
 \begin{proposition}\label{L mat}
@@ -854,7 +762,7 @@ We can rewrite Proposition~\ref{GBBC} as follows.
 $B_r\bigl(G_t^{-B_0^T;t_0}\bigr)^T=\bigl(C_t^{-B_0^T;t_0}\bigr)^TB_0$.
 \end{proposition}
 \begin{proof}
-We use \cite[Theorem~1.2]{NZ} to rewrite $G_t^{B_0;t_0}$ as $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}$ and $C_t^{B_0;t_0}$ as $\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$, so Proposition~\ref{GBBC} says $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}B_r=B_0\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$.
+We use \cite[Theorem~1.2]{NZ} to rewrite $G_t^{B_0;t_0}$ as $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}$ and $C_t^{B_0;t_0}$ as~$\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$, so Proposition~\ref{GBBC} says $\bigl(C_t^{-B_0^T;t_0}\bigr)^{-T}B_r=B_0\bigl(G_t^{-B_0^T;t_0}\bigr)^{-T}$.
 \end{proof}
 
 Since $G_t^{B_0;t_0}$ is the matrix for~$\L_{\kk^{-1}}^{B_r^T}$ and since $\L_{\kk^{-1}}^{B_r^T}\eta_\kk^{B_0^T}(\lambda)=\lambda$, the following result is immediate from Proposition~\ref{GBBC}.
@@ -873,7 +781,7 @@ In light of Proposition~\ref{B0C}, the conclusion of Theorem~\ref{P in B0C} is e
 
 \begin{proof}[Proof of Theorem~\ref{P in B0C}]
 We will prove that $P^{B_0}_{\lambda,\kk}\subseteq\set{\lambda+B_0C_t^{B_0;t_0}\alpha:\alpha\ge0}$ by induction on $r$ (the length of $\kk$).
-The base case, where $\kk=\varnothing$, is true because $C_{t_0}^{B_0;t_0}$ is the identity matrix and $\P_{\lambda,\varnothing}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
+The base case, where $\kk=\varnothing$, is true because~$C_{t_0}^{B_0;t_0}$ is the identity matrix and $\P_{\lambda,\varnothing}=\set{\lambda+B_0\alpha:\alpha\ge0}$.
  
 \cite[Proposition~1.4]{NZ} says that $C_t^{B_0;t_0}=F^{B_1}_{\ep,k_1}C_t^{B_1;t_1}$, where $\ep$ is the sign of the $k_1$-column of $C_{t_1}^{-B_r;t}$.  
 (The hypothesis that $\kk^{-1}$ is a red sequence for $B_r$ determines $\ep$, but we leave $\ep$ unspecified for now in order to highlight later where this hypothesis is relevant.)
@@ -885,8 +793,7 @@ By Lemma~\ref{EBF trick} and because $E^{B_1}_{\ep,k_1}$ and $F^{B_1}_{\ep,k_1}$
 &=E^{B_1}_{\ep,k_1}\set{E^{B_1}_{\ep,k_1}\lambda+B_1C_t^{B_1;t_1}\alpha:\alpha\ge0}.
 \end{aligned}\end{equation}
 
-The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$.  
-This map is $\eta_{\kk}^{B_0^T}={\eta_{k_r}^{B_{r-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
+The map $\eta_{\kk}^{B_0^T}$ is linear on $\Cone_t^{B_0;t_0}$ and it is $\eta_{\kk}^{B_0^T}={\eta_{k_r}^{B_{r-1}^T}\circ\cdots\circ\eta_{k_2}^{B_1^T}\circ\eta_{k_1}^{B_0^T}}$.
 The map $\eta_{k_1}^{B_0^T}$ restricts to a linear map from $\Cone_t^{B_0;t_0}$ to $\Cone_t^{B_1;t_1}$.
 The inverse of $\eta_{k_1}^{B_0^T}$ is $\eta_{k_1}^{B_1^T}$.
 We will find the matrix for the linear map on column vectors that agrees with $\eta_{k_1}^{B_1^T}$ on $\Cone_t^{B_1;t_1}$.
@@ -969,7 +876,7 @@ Thus $C_t^{B_1;t_1}\bigl(C_t^{B_1;t_1}\bigr)^{-1}(\ep e_k)=\ep e_k$ is a nonnega
 Now, the hypothesis that $\kk^{-1}$ is a red sequence for $B_r$, or equivalently a green sequence for $-B_r$, says that $\ep=+1$, so that $e_k$ is a nonnegative linear combination of columns of~$C_t^{B_1;t_1}$.
 Thus $N_{\col k}=Ne_k$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
 We have shown that $v_i=N\bigl(C_t^{B_1;t_1}\bigr)_{\col i}+\sigma N_{\col k}$ is a nonnegative linear combination of columns of~$NC_t^{B_1;t_1}$.
-In other words, $v_i$ is in $\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n$, as desired.
+In other words, $v_i$ is in~$\nnspan\sett{\bigl(E^{B_1}_{\ep,k_1}B_1C_t^{B_1;t_1}\bigr)_{\col i}}_{i=1}^n$, as desired.
 \end{proof}
 
 \subsection{Dominance regions for extended exchange matrices}\label{ext sec}
@@ -1055,7 +962,7 @@ The following lemma is proved similarly to Lemma~\ref{block dom} because the rel
 
 \begin{lemma}\label{block dom ext}
 If $\tB$ has a block decomposition $\begin{bsmallmatrix}B_1&0\\0&B_2\\R_1&0\\0&R_2\end{bsmallmatrix}$ and $\tilde\lambda\in\reals^m$ has a corresponding decomposition $\begin{bsmallmatrix}\kappa_1\\\kappa_2\\\nu_1\\\nu_2\end{bsmallmatrix}$, define $\tB_i=\begin{bsmallmatrix}B_i\\R_i\end{bsmallmatrix}$ and $\tilde\lambda_i=\begin{bsmallmatrix}\kappa_i\\\nu_i\end{bsmallmatrix}$ for $i=1,2$.
-  Then $\P_{\tilde\lambda}^\tB=\P_{\tilde\lambda_1}^{\tB_1}\times\P_{\tilde\lambda_2}^{\tB_2}$.
+  Then~$\P_{\tilde\lambda}^\tB=\P_{\tilde\lambda_1}^{\tB_1}\times\P_{\tilde\lambda_2}^{\tB_2}$.
 \end{lemma}
 
 We will prove the following extension of Theorem~\ref{P in B0C}.
@@ -1092,7 +999,7 @@ Here, we give a direct, linear-algebraic proof.
 
 \begin{theorem}\label{P point}  
 Suppose $\tB_0$ is an extended exchange matrix with linearly independent columns.
-Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take $\tilde\lambda\in\Cone^{\tB_0;t_0}_t$.
+Suppose $t$ is a seed in the exchange graph for $\tB_0;t_0$ and take~$\tilde\lambda\in\Cone^{\tB_0;t_0}_t$.
 If there exists a maximal red sequence for $B_t$, then $\P^{\tB_0}_{\tilde\lambda}=\set{\tilde\lambda}$.
 \end{theorem}
 
@@ -1158,7 +1065,7 @@ We begin by proving the coefficient-free version of Theorem~\ref{finite P point}
 
 \begin{theorem}\label{finite P point no}  
 Suppose $B$ is an $n\times n$ exchange matrix of finite type.
-Then ${\P^B_\lambda=\set{\lambda}}$ for all $\lambda\in\reals^n$.
+Then  ${\P^B_\lambda=\set{\lambda}}$ for all $\lambda\in\reals^n$.
 \end{theorem}
 
 We say that an exchange matrix $B=[b_{ij}]$ is \newword{bipartite} if there is a bipartition $\set{1,\ldots,n}=P\cup N$ such that $b_{ij}>0$ implies $i\in P$ and $j\in N$.
@@ -1175,7 +1082,7 @@ Thus in light of Lemma~\ref{shift}, Theorem~\ref{finite P point no} is an immedi
 The intersection in Proposition~\ref{finite P point bip} is written as an infinite intersection but in fact is the intersection of finitely many different sets.
 
 \begin{proof}%[Proof of Proposition~\ref{finite P point bip}]
-In light of Lemma~\ref{block dom}, we may as well assume that $B$ is block-indecomposable.
+In light of Lemma~\ref{block dom}, we may assume that $B$ is block-indecomposable.
 Thus the Cartan matrix associated to $B$ is indecomposable of finite type.
 We verify the proposition type-by-type using the marked surfaces model, folding, and computations.
 We assume the most basic facts about the marked surfaces model \cite{cats1,cats2}, including the signed adjacency matrix of a triangulation, mutation by flipping arcs, the definition of shear coordinates, and the fact that shear coordinates define a bijection between laminations and vectors.
@@ -1190,6 +1097,7 @@ In the following, we assume $n\ge2$ to avoid separate explanations for type~$A_1
 Let $T$ be a triangulation of the regular $(n+3)$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$.
 Then up to switching the orientation of the plane, $T$ is as exemplified in the left picture of Figure~\ref{T fig}.
 \begin{figure}
+  \centering
 \scalebox{0.85}{\includegraphics{Tfig.ps}
 \begin{picture}(0,0)(73,-73)
 \put(-58.5,-23){$t_1$}
@@ -1316,7 +1224,8 @@ By the first remarkable property, for each $L_p$ there exists an $\ell_p\in\inte
 Then the sum of the shear coordinates of $\Lambda^{(\ell_p)}$ and~$\Theta^{(\ell_p)}$ is $\ep_{i_p}(w_p+z_{i_p}^{(\ell_p)})$ in position~$t_{i_p}$ because the second remarkable property assures that $(L_p)^{(\ell_p)}$ makes this contribution and the third remarkable property says that no other curves of $\Lambda^{(\ell_p)}$ or $\Theta^{(\ell_p)}$ contribute to this coordinate.
 (See the left picture of Figure~\ref{theti fig}.)
 \begin{figure}
-\scalebox{0.77}{\includegraphics{theti1.ps}
+  \centering
+\scalebox{0.75}{\includegraphics{theti1.ps}
 \begin{picture}(0,0)(73,-73)
 \put(-21,-17){$\thet_{i_p}$}
 \put(-2.5,25){\small$L_p^{(\ell_p)}$}
@@ -1324,14 +1233,14 @@ Then the sum of the shear coordinates of $\Lambda^{(\ell_p)}$ and~$\Theta^{(\ell
 \put(5,-19){$t_{i_p}$}
 \end{picture}}
 \hspace{0.5pt}
-\scalebox{0.77}{\includegraphics{theti1.5.ps}
+\scalebox{0.75}{\includegraphics{theti1.5.ps}
 \begin{picture}(0,0)(73,-73)
 \put(2.5,9){\small$L_p$}
 \put(-16,-33){$L'_p$}
 %\put(5,-19){$t_{i_p}$}
 \end{picture}}
 \hspace{0.5pt}
-\scalebox{0.77}{\includegraphics{theti2.ps}
+\scalebox{0.75}{\includegraphics{theti2.ps}
 \begin{picture}(0,0)(73,-73)
 %\put(-25,25){\small$(L_p)^{(\ell'_p)}$}
 \put(-3,22){$\thet_{\!i'_p}$}
@@ -1371,6 +1280,7 @@ The outline of the proof in type D is essentially the same as in type~A.
 The major difference in type D is the appearance of tagged triangulations.
 Let~$T$ be a tagged triangulation of the once-punctured regular $n$-gon whose signed adjacency matrix is the bipartite exchange matrix~$B$, exemplified in the left picture of Figure~\ref{d T fig}.
 \begin{figure}
+  \centering
 \scalebox{0.85}{\includegraphics{Tfigd.ps}
 \begin{picture}(0,0)(82,-86)
 \put(-62,12.5){$t_1$}
@@ -1421,7 +1331,7 @@ As in type A, we can describe a point $x\in\P^B_{\lambda,\kk^\ell}$ directly usi
 but here we skip directly to the more convenient description:
 to construct a point $x\in\P^B_{\lambda,\kk^\ell}$, we first rotate $\Lambda$ clockwise $\ell$ units, swapping all spiral directions if $\ell$ is odd to obtain a lamination $\Lambda^{(\ell)}$.
 
-We define $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
+Let $\Theta^{(\ell)}$ to be the lamination whose shear coordinates are $-\mu_{\kk^\ell}(B)\alpha^{(\ell)}=-B\alpha^{(\ell)}$.
 The lamination $\Theta^{(\ell)}$ has $n$ curves, described as follows and exemplified in the right picture of  Figure~\ref{d T fig}.
 The curve $\theta_1$ has an endpoint on the edge enclosed by $t_3$ and spirals counterclockwise into the puncture.
 The curve $\theta_2$ also has an endpoint on that edge but spirals clockwise into the puncture.
@@ -1814,7 +1724,7 @@ Suppose $x\in V^*\setminus\d_\infty$.
 Then there exist integers $I_+$ and $I_-$ such that the following assertions hold.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
 \item \label{in big dinf}
-For $i>I_+$ or $i<I_-$, $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RS$ such that $\omega_c(\beta,\delta)>0$.
+For $i>I_+$ or $i<I_-$, $\br{\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x),\beta}<0$ for all $\beta\in\RS$ with $\omega_c(\beta,\delta)>0$.
 \item \label{c agree}
 %\item \label{c agree +}
 For $i>I_+$ or $i<I_-$, $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$ and $\nu_c(\delta)$ are in the same domain of definition of $\eta_{12\cdots n}^{B^T}$ and $\eta_{12\cdots n}^{B^T}$ agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)$.
@@ -1897,7 +1807,7 @@ Also, since $\delta$ has all entries positive and the first row of $B_0$ is nonz
 
 Let $\ell$ be the order of $\eta^{B_0^T}_{12\cdots n}$ on $\d_\infty$ (see Proposition~\ref{eta nice}.\ref{eta is c}).
 Then $\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^\ell$ fixes $\d_\infty$ pointwise.
-Also, $\mu_{12\cdots n}(B_0)=B_0$, so Lemma~\ref{shift}.\ref{shift all} says ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^\ell(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
+Also, $\mu_{12\cdots n}(B_0)=B_0$, so from Lemma~\ref{shift}.\ref{shift all} we get that ${\bigl(\eta^{B_0^T}_{12\cdots n}\bigr)^\ell(\P_\lambda^{B_0})=P_\lambda^{B_0}}$.
 
 Now suppose $\P^{B_0}_\lambda$ contains a point $x\not\in\d_\infty$.
 Applying Proposition~\ref{delta limit eta}.\ref{eta lim}, we find a sequence of points in $\P^{B_0}_\lambda$ that approach the direction of $\nu_c(\delta)$ with the component in the direction of $\nu_c(\delta)$ increasing without bound.
@@ -2203,7 +2113,7 @@ Combining \cite[Theorem~3.5]{Seven} and \cite[Theorem~1.1]{FeShThTu12}, we see t
 
 Second, given an $n\times n$ exchange matrix $B=[b_{ij}]$ and a subset $I\subseteq\set{1,\ldots,n}$, if the submatrix $[b_{ij}]_{i,j\in I}$ has exponential growth, it is immediate that that $B$ has exponential growth as well.
 
-Finally, a non-acyclic skew-symmetrizable $3\times3$ exchange matrix with $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ has exponential growth.
+Finally, a non-acyclic skew-symmetrizable $3\times3$ exchange matrix having $b_{12}b_{21}=b_{13}b_{31}=b_{23}b_{32}=-4$ has exponential growth.
 To see why, one can check that such matrices have the property that every single-step mutation coincides with negation of the matrix, and thereby apply \cite[Theorem~1.1]{FeShThTu12}.
 
 \subsubsection{Exchange relations in the principal coefficients case}\label{exch rel sec}
@@ -2355,7 +2265,7 @@ If a submatrix in Table~\ref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, o
 	\begin{table}
 	\caption{Possible submatrices}
 	\label{submat tab}	
-%	\begin{center}
+\begin{center}
 	\begin{tabular}{|cc|cc|}
 	Type & matrix & Type & matrix \\
 	\hline & & & \\[-1ex]
@@ -2395,7 +2305,7 @@ If a submatrix in Table~\ref{submat tab} of type $A_{4}^{(2)}$, $G_{2}^{(1)}$, o
 	2 & -4 & 0
 	\end{bsmallmatrix*}$ 
 	\end{tabular}
-%	\end{center}	
+\end{center}	
 	\end{table}
 
 \begin{remark}\label{related remark}
@@ -2493,6 +2403,7 @@ These are the cluster variables $x_{qr'}$, $x_{q'r}$, $x_{q(q'-2)}$, and $x_{(r+
 The dashed lines in the left picture of Figure~\ref{tube fig} indicate $\beta_{qr'}$, $\beta_{q'r}$, $\beta_{q(q'-2)}$, and $\beta_{(r+2)r'}$.
 
 \begin{figure}
+  \centering
 \scalebox{1}{
 \includegraphics{tubefig}
 \begin{picture}(0,0)(54,-54)
@@ -2700,7 +2611,7 @@ These matrices determine inequalities, including
 \[
 3b_{kp}+b_{kn}>0,\quad 4b_{kp}+3b_{kn}<0\quad \implies\quad b_{kn}>-3b_{kp}>\frac94b_{kn},\\
 \]
-which rules out all pairs $(b_{kp},b_{kn})$ except $(1,-2)$, $(2,-3)$, and $(2,-4)$.
+which rules out all pairs $(b_{kp},b_{kn})$ except for $(1,-2)$, $(2,-3)$, and $(2,-4)$.
 If $(b_{kp},b_{kn})=(2,-3)$, then $b_{pk}\in\set{-1,-2}$ and $b_{nk}=1$.
 Skew-symmetrizability of $B$ implies that $\frac{b_{pk}}{b_{kp}}=4\frac{b_{nk}}{b_{kn}}$, which fails for either choice of $b_{pk}$, thus ruling out the possibility that $(b_{kp},b_{kn})=(2,-3)$.
 Similar considerations starting with $b_{pk}+3b_{nk}>0$ and $3b_{pk}+4b_{nk}<0$ rule out all pairs $(b_{pk},b_{nk})$ except $(-2,1)$ and $(-4,2)$.
@@ -3058,9 +2969,6 @@ By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the v
 Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
 \end{proof}
 
-%SinceSelecta:  Defined the projection that we should be using multiple times.
-If $x$ is a vector whose affine entries are zero, write $x_\na$ for the projection of $x$ onto $\reals^{n-2}$ that deletes the affine indices.
-
 \begin{proposition}\label{nonspecial mut}
 Suppose $B$ is a neighboring exchange matrix and $k$ is a non-special, non-affine index of~$B$.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
@@ -3073,9 +2981,7 @@ $\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ i
 \item
 The mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise.
 \item
-%SinceSelecta:  Restated this with the notation for the projection.
-If $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_k(x)$ are again zero and $\bigl(\eta^{B^T}_k(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
-%If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
 \end{enumerate}
 \end{proposition}
 %Version of the prop before NR made changes 26 Nov 2025
@@ -3111,9 +3017,7 @@ Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
 Moreover the affine entries in column $k$ of $B$ are zero.
-%SinceSelecta:  Restated this with the notation for the projection.
-Thus if $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_k(x)$ are zero and $\bigl(\eta^{B^T}_k(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
-%Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
+Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
 \end{proof}
 
 %\begin{proposition}\label{special mut}
@@ -3145,11 +3049,7 @@ $\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu
 \item
 The mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise.
 \item
-%SinceSelecta:  This was incorrect, because $\eta^{\Comp(B)^T}_k(x)$ is applying a mutation map in
-%$\reals^{n-2}$ to a vector in $\reals^n$.  I made the same correction here that we had previously
-%made in Proposition~\ref{nonspecial mut}.
-If $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_\kk(x)$ are again zero and $\bigl(\eta^{B^T}_\kk(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
-%If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -3392,7 +3292,7 @@ b_{ij}+m(2b_{ik},b_{kj})&-2b_{ik}\\
 \]
 and we conclude that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
 We see also that all entries in affine rows are preserved by $\mu_\kk$.
-Thus $\CompPlus(\mu_\kk(B))$ agrees with $\CompPlus(B)$ in the affine rows.
+Thus $\CompPlus(\mu_\kk(B))$ agrees in the affine rows with $\CompPlus(B)$.
 However, $\CompPlus(\mu_\kk(B))\neq\mu_k(\CompPlus(B))$, because the latter disagrees with $\CompPlus(B)$ in the $k\th$ entries of the affine rows (differing by a sign).
 
 The computations above can be reused to prove the assertions about $\eta^{B^T}_\kk$.
@@ -3401,10 +3301,8 @@ Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that the vector $-\fr
 Thus, the computations above are valid, replacing the $j\th$ column of $B$ in the calculations with $-\frac12B\delta^B$.
 Specifically, we replace $b_{ij}$ and $b_{kj}$ with $0$ and replace $b_{nj}$ with $1$, and the computations show that $\eta^{B^T}_\kk$ fixes $-\frac12B\delta^B$.
 
-%SinceSelecta:  Fixed this to match the statement
 Similarly, if $x$ is a vector whose affine entries are zero, it can take the place of the $j\th$ column of $B$ in the above calculations, and will satisfy the requirements $b_{(n-1)j}=-b_{nj}\le0$, and $b_{i(n-1)}=-b_{in}\ge0$ that were used in the calculation.  
-We see the affine entries of $\eta^{B^T}_\kk(x)$ are zero and that $\bigl(\eta^{B^T}_\kk(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
-%Therefore, we see that $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+Therefore, we see that $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
 We have proved the proposition in this case.
 
 \medskip
@@ -3717,7 +3615,7 @@ The sequence $\kk$ is $1313231$, and the mutation acts on $B$ as shown here.
 Once again, Theorem~\ref{neigh B} implies that $\mu_\kk(B)$ is neighboring.
 
 There are no additional entries of $\mu_\kk(B)$ to compute, and $\Comp(B)$ is $[0]$, so we see that $\Comp(\mu_\kk(B))=\mu_k(\Comp(B))$.
-The assertions about $\CompPlus(\mu_\kk(B))$ is proved as in previous cases.
+Reasoning as in the previous cases one proves also the assertions about $\CompPlus(\mu_\kk(B))$.
 
 To prove the assertions about mutation maps, we consider adding an extra column with entries $c_1,c_2,c_3$ with $c_3=-c_2\ge0$.
 \begin{multline*}
@@ -3786,10 +3684,7 @@ $\Comp(\mu_{\widehat\kk}(B))=\mu_\kk(\Comp(B))$,
 \item
 the mutation map $\eta^{B^T}_{\widehat\kk}$ fixes the imaginary ray pointwise, and 
 \item
-%SinceSelecta:  This was incorrect, because it was phrased in the erroneous way that I just fixed in
-%Proposition~\ref{special mut}.
-if $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_{\widehat\kk}k(x)$ are zero and $\bigl(\eta^{B^T}_{\widehat\kk}(x)\bigr)_\na=\eta^{\Comp(B)^T}_\kk(x_\na)$.
-%if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
+if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
 \end{itemize}
 (The fact, in each of Propositions~\ref{nonspecial mut} and~\ref{special mut}, that the mutated matrix is neighboring and has the same affine and special indices as $B$ is crucial to concluding these facts for $\widehat\kk$.)
 
@@ -3855,7 +3750,7 @@ We see that
 \end{multline*}
 The projection of this set to $\reals^{n-2}$ is $\set{\eta_\kk^{\Comp(B)}(\lambda_0)+\Comp(B')\alpha:\alpha\ge0}$.
 
-The set $\P^B_{\lambda,\widehat\kk}$ is obtained by applying $(\eta_{\widehat\kk}^{B^T})^{-1}$ to $\set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
+The set $\P^B_{\lambda,\widehat\kk}$ is $(\eta_{\widehat\kk}^{B^T})^{-1}\set{\eta_{\widehat\kk}^{B^T}(\lambda)+B'\alpha:\alpha\in\reals^n,\alpha\ge0}$.
 By Proposition~\ref{factor eta}, if some point $x$ is in $\P^B_{\lambda,\widehat\kk}$  
 for every $\widehat\kk$, then the projection of $x$ to $\reals^{n-2}$ is in $\P^{\Comp(B)}_{\lambda_0,\kk}$ for every $\kk$.
 Therefore Theorem~\ref{finite P point no} says that the projection of~$x$ is $\lambda_0$.
@@ -3951,7 +3846,7 @@ The theorem follows.
 \subsection{Integral dominance regions in affine type}
 \label{sec:integral}
 We conclude by characterizing the integral dominance regions of affine type. 
-Given an integer point $\tilde\lambda\in\integers^m$, define $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
+Given an integer point $\tilde\lambda\in\integers^m$, let $\IP^\tB_{\tilde\lambda,\kk}=\bigl(\eta_{\kk}^{\BB^T}\bigr)^{-1}\sett{\eta_\kk^{\BB^T}(\tilde\lambda)+\mu_\kk(\tB)\alpha:\alpha\in\integers^n,\alpha\ge0}$ for all sequences~$\kk$.
 The \newword{integral dominance region} $\IP^\tB_{\tilde\lambda}$ of $\tilde\lambda$ with respect to~$\tB$ is the intersection $\bigcap_\kk\IP^\tB_{\tilde\lambda,\kk}$ over all~$\kk$.
 
 It is immediate that $\set{\tilde\lambda}\subseteq\IP^\tB_{\tilde\lambda}\subseteq\P^\tB_{\tilde\lambda}$.   
