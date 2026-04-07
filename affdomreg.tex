@@ -1,5 +1,9 @@
 %!TEX TS-program =  pdflatex 
 
+%Changes made after submission to Selecta are marked
+%SinceSelecta
+
+
 \documentclass{amsart}
 \usepackage{array}
 \newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -59,6 +63,7 @@
 
 \newcommand{\ep}{\varepsilon}
 \newcommand{\thet}{\vartheta}
+\newcommand{\na}{{\operatorname{na}}}
 \newcommand{\col}{\operatorname{col}}
 \newcommand{\cut}{\operatorname{cut}}
 \newcommand{\id}{\operatorname{id}}
@@ -3052,6 +3057,9 @@ By Proposition~\ref{neigh good stuff}, since $B\gamma\in(\delta^B)^\perp$, the v
 Thus $B\gamma$ is in the nonnegative span of $\frac12B\delta^B$.
 \end{proof}
 
+%SinceSelecta:  Defined the projection that we should be using multiple times.
+If $x$ is a vector whose affine entries are zero, write $x_\na$ for the projection of $x$ onto $\reals^{n-2}$ that deletes the affine indices.
+
 \begin{proposition}\label{nonspecial mut}
 Suppose $B$ is a neighboring exchange matrix and $k$ is a non-special, non-affine index of~$B$.
 \begin{enumerate}[label=\bf\arabic*., ref=\arabic*]
@@ -3064,7 +3072,9 @@ $\CompPlus(\mu_k(B))=\mu_k(\CompPlus(B))$, and these agree with $\CompPlus(B)$ i
 \item
 The mutation map $\eta^{B^T}_k$ fixes the imaginary ray pointwise.
 \item
-If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
+%SinceSelecta:  Restated this with the notation for the projection.
+If $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_k(x)$ are again zero and $\bigl(\eta^{B^T}_k(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
+%If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_k(x)$ is again a vector whose affine entries are zero; writing $y$ for the projection of $x$ onto the subspace of non-affine indices, the non-affine entries of $\eta^{B^T}_k(x)$ coincide with the entries of the vector $\eta^{\Comp(B)^T}_k(y)$.
 \end{enumerate}
 \end{proposition}
 %Version of the prop before NR made changes 26 Nov 2025
@@ -3100,7 +3110,9 @@ Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that $\frac12B\delta^
 Since $k$ is a non-affine entry, we see that $\eta^{B^T}_k$ fixes $\frac12B\delta^B$ and thus fixes the imaginary ray pointwise.
 Since $k$ is non-special, the non-affine entries of column $k$ of $B$ agree with column $k$ of $\Comp(B)$.
 Moreover the affine entries in column $k$ of $B$ are zero.
-Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
+%SinceSelecta:  Restated this with the notation for the projection.
+Thus if $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_k(x)$ are zero and $\bigl(\eta^{B^T}_k(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
+%Thus if $x$ is a vector whose affine entries are zero and $y$ is its projection onto the subspace of non-affine indices, then the non-affine entries of $\eta^{B^T}_k(x)$ and $\eta^{\Comp(B)^T}_k(y)$ coincide while the affine entries of $\eta^{B^T}_k(x)$ are zero.
 \end{proof}
 
 %\begin{proposition}\label{special mut}
@@ -3132,7 +3144,11 @@ $\CompPlus(\mu_\kk(B))$ does not equal $\mu_k(\CompPlus(B))$, but $\CompPlus(\mu
 \item
 The mutation map $\eta^{B^T}_\kk$ fixes the imaginary ray pointwise.
 \item
-If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+%SinceSelecta:  This was incorrect, because $\eta^{\Comp(B)^T}_k(x)$ is applying a mutation map in
+%$\reals^{n-2}$ to a vector in $\reals^n$.  I made the same correction here that we had previously
+%made in Proposition~\ref{nonspecial mut}.
+If $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_\kk(x)$ are again zero and $\bigl(\eta^{B^T}_\kk(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
+%If $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -3384,8 +3400,10 @@ Proposition~\ref{neigh good stuff}.\ref{neigh im ray} says that the vector $-\fr
 Thus, the computations above are valid, replacing the $j\th$ column of $B$ in the calculations with $-\frac12B\delta^B$.
 Specifically, we replace $b_{ij}$ and $b_{kj}$ with $0$ and replace $b_{nj}$ with $1$, and the computations show that $\eta^{B^T}_\kk$ fixes $-\frac12B\delta^B$.
 
+%SinceSelecta:  Fixed this to match the statement
 Similarly, if $x$ is a vector whose affine entries are zero, it can take the place of the $j\th$ column of $B$ in the above calculations, and will satisfy the requirements $b_{(n-1)j}=-b_{nj}\le0$, and $b_{i(n-1)}=-b_{in}\ge0$ that were used in the calculation.  
-Therefore, we see that $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
+We see the affine entries of $\eta^{B^T}_\kk(x)$ are zero and that $\bigl(\eta^{B^T}_\kk(x)\bigr)_\na=\eta^{\Comp(B)^T}_k(x_\na)$.
+%Therefore, we see that $\eta^{B^T}_\kk(x)=\eta^{\Comp(B)^T}_k(x)$.
 We have proved the proposition in this case.
 
 \medskip
@@ -3767,7 +3785,10 @@ $\Comp(\mu_{\widehat\kk}(B))=\mu_\kk(\Comp(B))$,
 \item
 the mutation map $\eta^{B^T}_{\widehat\kk}$ fixes the imaginary ray pointwise, and 
 \item
-if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
+%SinceSelecta:  This was incorrect, because it was phrased in the erroneous way that I just fixed in
+%Proposition~\ref{special mut}.
+if $x$ is a vector whose affine entries are zero, then the affine entries of $\eta^{B^T}_{\widehat\kk}k(x)$ are zero and $\bigl(\eta^{B^T}_{\widehat\kk}(x)\bigr)_\na=\eta^{\Comp(B)^T}_\kk(x_\na)$.
+%if $x$ is a vector whose affine entries are zero, then $\eta^{B^T}_{\widehat\kk}(x)=\eta^{\Comp(B)^T}_\kk(x)$.
 \end{itemize}
 (The fact, in each of Propositions~\ref{nonspecial mut} and~\ref{special mut}, that the mutated matrix is neighboring and has the same affine and special indices as $B$ is crucial to concluding these facts for $\widehat\kk$.)
 
