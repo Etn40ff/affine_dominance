@@ -1765,7 +1765,8 @@ An \newword{imaginary $c$-cluster} is a $c$-cluster that contains $\delta$.
 Imaginary $c$-clusters have $n-1$ roots and span cones outside the $\dd$-vector fan.
 
 There is a piecewise linear homeomorphism $\nu_c$ from $V$ to $V^*$ that is linear on every cone of $\Fan_c(\RS)$ and thus defines a fan $\nu_c(\Fan_c(\RS))$ in $V^*$.
-The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$, and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~2.9]{affscat}. 
+%SinceSelecta:  Corrected "restriction" citation to Theorem 3.4 and added reference to 2.9
+The fan $\nu_c(\Fan_c(\RS))$ is the mutation fan for $B_0^T$ \cite[Theorem~2.9]{affscat}, and the map $\nu_c$ restricts to an isomorphism from the $\dd$-vector fan of $B_0$ to the $\g$-vector fan \cite[Theorem~3.4]{affscat}. 
 The cones of $\Fan_c(\RS)$ spanned by $\APT{c}$ map to the \newword{imaginary cones} of $\nu_c(\Fan_c(\RS))$.
 These cover the closure of the complement of the $\g$-vector fan, a codimension-$1$ cone that we call the \newword{imaginary wall}~$\d_\infty$.
 The imaginary wall is contained in $\delta^\perp$.
@@ -1780,7 +1781,8 @@ The vector~$\nu_c(\delta)$ spanning the imaginary ray is $-\frac12B_0\delta$.
 \end{lemma}
 
 %Since $\mu_{12\cdots n}(B)=B$, the map $\eta^{B_0^T}_{12\cdots n}$ is an automorphism of the fan and separately of the $\g$-vector fan.
-The following proposition is part of \cite[Proposition~7.31]{affscat}.
+%SinceSelecta:  Corrected 7.31 to 7.33
+The following proposition is part of \cite[Proposition~7.33]{affscat}.
 
 \begin{proposition}\label{eta nice} 
 Suppose $B_0$ is an acyclic exchange matrix of affine type and the Coxeter element associated to $B_0$ is $c=s_1\cdots s_n$.
@@ -1842,7 +1844,8 @@ Then $\tau_c^{i+\ell}((\nu_c)^{-1}(x))=\tau_c^i((\nu_c)^{-1}(x))+a\delta$ for $i
 Applying $\nu_c$ and appealing to Proposition~\ref{eta nice}.\ref{nu tau}, we see that $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i+\ell}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\max(I_1,\ldots,I_p)$ and $\bigl(\eta_{12\cdots n}^{B^T}\bigr)^{i-\ell}(x)=\bigl(\eta_{12\cdots n}^{B^T}\bigr)^i(x)+a\nu_c(\delta)$ for $i>\min(I_1,\ldots,I_p)$.
 This is Assertion~\ref{pos a}, and Assertion~\ref{eta lim} follows immediately.
 
-The proof of Proposition~\ref{eta nice}.\ref{eta is c} in \cite[Proposition~7.31]{affscat} includes checking, for each of the $n$ mutation steps of applying $\eta^{B^T}_{12\cdots n}$ to $\nu_c(\delta)$, which of the cases of the mutation map applies.
+%SinceSelecta:  Corrected 7.31 to 7.33
+The proof of Proposition~\ref{eta nice}.\ref{eta is c} in \cite[Proposition~7.33]{affscat} includes checking, for each of the $n$ mutation steps of applying $\eta^{B^T}_{12\cdots n}$ to $\nu_c(\delta)$, which of the cases of the mutation map applies.
 At each step, the condition yields strict inequality (i.e. the vector in question is not on the hyperplane separating the two conditions), so $\nu_c(\delta)$ is in the \emph{interior} of the domain of definition of $\eta^{B^T}_{12\cdots n}$.
 Thus Assertion~\ref{eta lim} implies that for large enough or small enough $i$, the $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$ are in the same domain of definition of $\eta^{B^T}_{12\cdots n}$ and $\eta^{B^T}_{12\cdots n}$agrees with $c$ on $\bigl(\eta_{12\cdots n}^{B_0^T}\bigr)^i(x)$.
 This is Assertion~\ref{c agree}.
